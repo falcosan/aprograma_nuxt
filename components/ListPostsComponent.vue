@@ -10,11 +10,11 @@
       >
         <PostTeaser
           v-if="post.content"
-          :post-link="post.full_slug"
-          :post-content="post.content"
+          :postLink="`blog/${post.slug}`"
+          :postContent="post.content"
         />
         <p v-else class="px-4 py-2 text-white bg-red-700 text-center rounded">
-          This content loads on save. <strong>Save the entry & reload.</strong>
+          This content loads on save.
         </p>
       </li>
     </ul>

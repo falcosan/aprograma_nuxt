@@ -9,7 +9,7 @@
       :is="blok.component" />
   </div>
 </template>
-
+ 
 <script>
 export default {
   props: {

@@ -1,10 +1,13 @@
 <template>
-  <page
-    v-if="story.content.component"
-    :key="story.content._uid"
-    :blok="story.content" />
+  <section>
+    <component
+      v-if="story.content.component"
+      :key="story.content._uid"
+      :blok="story.content"
+      :is="story.content.component" />
+  </section>
 </template>
-
+ 
 <script>
 export default {
   data () {
@@ -21,6 +24,7 @@ export default {
     })
     // Use the bridge to listen the events
     this.$storybridge.on(['published', 'change'], (event) => {
+      // window.location.reload()
       this.$nuxt.$router.go({
         path: this.$nuxt.$router.currentRoute,
         force: true,
@@ -28,15 +32,12 @@ export default {
     })
   },
   asyncData (context) {
-    // We are getting only the draft version of the content in this example.
-    // In real world project you should ask for correct version of the content
-    // according to the environment you are deploying to.
+    // // This what would we do in real project
     // const version = context.query._storyblok || context.isDev ? 'draft' : 'published'
-
-    const fullSlug = (context.route.path == '/' || context.route.path == '') ? 'home' : context.route.path
-
+    // const fullSlug = (context.route.path == '/' || context.route.path == '') ? 'home' : context.route.path
+ 
     // Load the JSON from the API - loadig the home content (index page)
-    return context.app.$storyapi.get(`cdn/stories/${fullSlug}`, {
+    return context.app.$storyapi.get('cdn/stories/home', {
       version: 'draft'
     }).then((res) => {
       return res.data

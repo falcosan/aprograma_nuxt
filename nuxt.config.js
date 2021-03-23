@@ -24,7 +24,6 @@ export default {
   ],
 
   buildModules: [
-
     '@nuxtjs/tailwindcss',
   ],
 
@@ -32,8 +31,9 @@ export default {
     [
       'storyblok-nuxt',
       {
-        accessToken: 'Hfa8vm7STr9uvb8iPaDIKQtt',
+        accessToken: process.env.VUE_APP_PUBLIC_TOKEN,
         cacheProvider: 'memory'
+
       }
     ],
   ],

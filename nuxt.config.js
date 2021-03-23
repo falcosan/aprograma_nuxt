@@ -19,7 +19,9 @@ export default {
   css: [
   ],
 
-  plugins: [],
+  plugins: [
+    '~/plugins/registerComponent'
+  ],
 
   buildModules: [
     '@nuxtjs/tailwindcss',

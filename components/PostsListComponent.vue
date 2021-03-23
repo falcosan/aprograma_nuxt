@@ -10,7 +10,7 @@
       >
         <PostTeaser
           v-if="post.content"
-          :postLink="`blog/${post.slug}`"
+          :postLink="post.full_slug"
           :postContent="post.content"
         />
         <p v-else class="px-4 py-2 text-white bg-red-700 text-center rounded">

@@ -1,6 +1,4 @@
 export const state = () => ({
-  story: {},
-  path: "",
   posts: [],
   loaded: '0',
 })

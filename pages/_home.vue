@@ -13,7 +13,7 @@
 export default {
   asyncData(context) {
     return context.app.$storyapi
-      .get(`cdn/stories/aprograma/home`, {
+      .get(`cdn/stories/home`, {
         version: 'published',
       })
       .then((res) => {

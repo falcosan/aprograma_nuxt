@@ -12,7 +12,7 @@
 export default {
   asyncData(context) {
     return context.app.$storyapi
-      .get(`cdn/stories/aprograma/${context.route.path}`, {
+      .get(`cdn/stories/${context.route.path}`, {
         version: 'published',
       })
       .then((res) => {

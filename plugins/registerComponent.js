@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Page from '~/components/PageComponent.vue'
-import ListPosts from '@/components/ListPostsComponent'
+import PostsList from '@/components/PostsListComponent'
  
 Vue.component('Page', Page)
-Vue.component('ListPosts', ListPosts)
+Vue.component('PostsList', PostsList)

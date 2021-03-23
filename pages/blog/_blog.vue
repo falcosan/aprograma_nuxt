@@ -20,7 +20,7 @@ export default {
   async fetch(context) {
     if (context.store.state.posts.loaded !== '1') {
       let postsRefRes = await context.app.$storyapi.get(`cdn/stories/`, {
-        starts_with: 'aprograma/blog',
+        starts_with: 'blog',
         version: 'published',
       })
       context.store.commit('posts/setPosts', postsRefRes.data.stories)
@@ -29,7 +29,7 @@ export default {
   },
   asyncData(context) {
     return context.app.$storyapi
-      .get(`cdn/stories/aprograma/${context.route.path}`, {
+      .get(`cdn/stories/${context.route.path}`, {
         version: 'published',
       })
       .then((res) => {

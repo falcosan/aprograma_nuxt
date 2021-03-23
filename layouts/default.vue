@@ -1,16 +1,16 @@
 <template>
   <div>
-    <HeaderComponentVue></HeaderComponentVue>
+    <Header />
     <Nuxt />
-    <FooterComponentVue></FooterComponentVue>
+    <Footer />
   </div>
 </template>
 
 
 <script>
-import FooterComponentVue from '@/components/FooterComponentVue'
-import HeaderComponentVue from '@/components/HeaderComponentVue'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 export default {
-  components: { HeaderComponentVue, FooterComponentVue },
+  components: { Header, Footer },
 }
 </script>

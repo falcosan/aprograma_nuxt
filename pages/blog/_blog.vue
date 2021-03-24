@@ -11,13 +11,13 @@
 <script>
 export default {
   async fetch(context) {
-    if (context.store.state.posts.loaded !== '1') {
+    if (context.store.state.blog.loaded !== '1') {
       let postsRefRes = await context.app.$storyapi.get(`cdn/stories/`, {
         starts_with: 'blog',
         version: 'published',
       })
-      context.store.commit('posts/setPosts', postsRefRes.data.stories)
-      context.store.commit('posts/setLoaded', '1')
+      context.store.commit('blog/setPosts', postsRefRes.data.stories)
+      context.store.commit('blog/setLoaded', '1')
     }
   },
   asyncData(context) {

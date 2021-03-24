@@ -1,5 +1,5 @@
 <template>
-  <div :class="`logo_box ${style.logo}`" v-html="blok.logo" />
+  <div :class="`logo_box`" v-html="blok.logo" />
 </template>
             
 

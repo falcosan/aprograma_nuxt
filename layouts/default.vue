@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="font-body">
     <component
       v-for="layout in story.content.body"
       :key="layout._uid"

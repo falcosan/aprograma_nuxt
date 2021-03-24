@@ -20,6 +20,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        body: ['DM Serif Display']
+      },
       gridTemplateColumns: {
         7: '300px auto',
         8: '1fr 112px'

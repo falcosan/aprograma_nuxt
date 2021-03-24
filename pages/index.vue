@@ -11,6 +11,7 @@
  
 <script>
 export default {
+  
   asyncData(context) {
     return context.app.$storyapi
       .get(`cdn/stories/home`, {

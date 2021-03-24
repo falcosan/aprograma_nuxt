@@ -1,5 +1,5 @@
 <template>
-  <div class="px-6">
+  <div :class="`${blok.name.toLowerCase()}-page p-6`">
     <component
       v-for="blok in blok.body"
       :key="blok._uid"

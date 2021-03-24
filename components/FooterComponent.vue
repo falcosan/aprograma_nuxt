@@ -9,7 +9,7 @@
     </div>
     <div class="footer_content grid items-center">
       <h3 class="row-start-1 row-end-1 col-start-1 col-end-1 ml-4 text-sm">
-    hey
+        hey
       </h3>
       <h4
         class="footer_copyright text-sm text-center w-full row-start-1 row-end-1 col-start-1 col-end-3"
@@ -22,12 +22,12 @@
 
 <script>
 export default {
-  // props: {
-  //   content: {
-  //     type: Object,
-  //     required: true,
-  //   },
-  // },
+  props: {
+    content: {
+      type: undefined,
+      required: true,
+    },
+  },
   data() {
     return {
       expanded: 'not_expanded h-0',

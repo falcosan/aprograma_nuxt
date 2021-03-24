@@ -20,7 +20,8 @@ export default {
   ],
 
   plugins: [
-    '~/plugins/registerComponent'
+    '~/plugins/registerComponent',
+    '~/plugins/contentByName'
   ],
 
   buildModules: [

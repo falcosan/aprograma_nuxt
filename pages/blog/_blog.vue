@@ -9,14 +9,7 @@
   </section>
 </template>
 <script>
-import Post from '@/components/PostComponent'
 export default {
-  components: { Post },
-  data() {
-    return {
-      story: {},
-    }
-  },
   async fetch(context) {
     if (context.store.state.posts.loaded !== '1') {
       let postsRefRes = await context.app.$storyapi.get(`cdn/stories/`, {

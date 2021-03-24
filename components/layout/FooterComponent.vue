@@ -23,7 +23,7 @@
 <script>
 export default {
   props: {
-    content: {
+    blok: {
       type: Object,
       required: true,
     },

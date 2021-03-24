@@ -14,5 +14,8 @@ export default {
         return res.data
       })
   },
+  mounted() {
+    console.log(this.story)
+  },
 }
 </script>

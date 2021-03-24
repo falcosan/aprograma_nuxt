@@ -40,7 +40,14 @@ export default {
   ],
 
   build: {
-    extend(config, ctx) {
+    postcss: {
+      plugins: {
+      },
+      preset: {
+        autoprefixer: {
+          grid: true
+        }
+      }
     }
   }
 }

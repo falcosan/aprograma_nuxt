@@ -1,6 +1,5 @@
 <template>
   <div
-    v-editable="blok"
     class="my-24 mx-auto">
     <h1>{{ blok.title }}</h1>
   </div>

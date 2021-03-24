@@ -3,7 +3,7 @@
     <component
       v-for="layout in story.content.body"
       :key="layout._uid"
-      :content="layout"
+      :blok="layout"
       :is="layout.component"
     />
   </div>

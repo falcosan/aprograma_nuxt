@@ -1,11 +1,11 @@
 <template>
-  <Nuxt v-if="content.view"/>
+  <Nuxt v-if="blok.view"/>
 </template>
 
 <script>
 export default {
   props: {
-    content: {
+    blok: {
       type: Object,
       required: true,
     },

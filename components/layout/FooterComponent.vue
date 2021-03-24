@@ -24,7 +24,7 @@
 export default {
   props: {
     content: {
-      type: undefined,
+      type: Object,
       required: true,
     },
   },

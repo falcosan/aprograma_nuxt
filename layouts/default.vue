@@ -1,19 +1,21 @@
 <template>
   <div>
-    <Header :content="contentByName(story.content.body, 'Header')" />
-    <Nuxt />
-    <Footer :content="contentByName(story.content.body, 'Footer')" />
+    <component
+      v-for="layout in story.content.body"
+      :key="layout._uid"
+      :content="layout"
+      :is="layout.component"
+    />
   </div>
 </template>
 
 
 <script>
-import contentByName from '@/plugins/contentByName'
-import Header from '@/components/HeaderComponent'
-import Footer from '@/components/FooterComponent'
+import Header from '@/components/layout/HeaderComponent'
+import Main from '@/components/layout/MainComponent'
+import Footer from '@/components/layout/FooterComponent'
 export default {
-  components: { Header, Footer },
-  mixins: [contentByName],
+  components: { Header, Main, Footer },
   data() {
     return {
       story: {
@@ -23,7 +25,7 @@ export default {
       },
     }
   },
-  mounted() {
+  created() {
     this.getLayout()
   },
   methods: {

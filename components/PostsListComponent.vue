@@ -13,9 +13,6 @@
           :postLink="post.full_slug"
           :postContent="post.content"
         />
-        <p v-else class="px-4 py-2 text-white bg-red-700 text-center rounded">
-          This content loads on save.
-        </p>
       </li>
     </ul>
   </div>

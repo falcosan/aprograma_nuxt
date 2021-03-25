@@ -9,7 +9,9 @@
   </section>
 </template>
 <script>
+import Post from '@/components/blog/PostComponent'
 export default {
+  components: { Post },
   async fetch(context) {
     if (context.store.state.blog.loaded !== '1') {
       let postsRefRes = await context.app.$storyapi.get(`cdn/stories/`, {

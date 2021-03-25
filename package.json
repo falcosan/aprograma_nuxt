@@ -1,8 +1,8 @@
 {
-  "name": "getting-started-nuxtjs",
+  "name": "aprograma",
   "version": "1.0.0",
-  "description": "My outstanding Nuxt.js project",
-  "author": "Samuel Snopko",
+  "description": "aprograma",
+  "author": "aprograma",
   "private": true,
   "scripts": {
     "dev": "nuxt",

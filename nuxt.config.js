@@ -30,13 +30,13 @@ export default {
     '@nuxtjs/tailwindcss',
   ],
   env: {
-    storyBlokToken: process.env.NODE_ENV === 'production' ? process.env.VUE_APP_PUBLIC_TOKEN : process.env.VUE_APP_PREVIEW_TOKEN,
+    VUE_APP_PUBLIC_TOKEN: process.env.VUE_APP_PUBLIC_TOKEN
   },
   modules: [
     [
       'storyblok-nuxt',
       {
-        accessToken: process.env.storyBlokToken,
+        accessToken: process.env.VUE_APP_PUBLIC_TOKEN,
         cacheProvider: 'memory'
 
       }

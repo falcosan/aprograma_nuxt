@@ -21,7 +21,7 @@ export default {
 
   plugins: [
     '~/plugins/registerComponent',
-    '~/plugins/contentByName'
+    { src: '~/plugins/contentByName', mode: 'client' },
   ],
 
   buildModules: [

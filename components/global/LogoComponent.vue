@@ -1,5 +1,5 @@
 <template>
-  <div :class="`logo_box`" v-html="blok.logo" />
+  <div :class="`logo_box ${blok.style}`" v-html="blok.logo" />
 </template>
             
 
@@ -11,5 +11,5 @@ export default {
       required: true,
     },
   },
-};
+}
 </script>

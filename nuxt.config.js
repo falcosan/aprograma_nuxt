@@ -1,6 +1,6 @@
 
 export default {
-  target: 'server',
+  target: 'static',
 
   head: {
     title: process.env.npm_package_name || '',
@@ -13,7 +13,9 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-
+  generate: {
+    fallback: true
+  },
   loading: { color: '#fff' },
 
   css: [
@@ -32,7 +34,7 @@ export default {
     [
       'storyblok-nuxt',
       {
-        accessToken: process.env.NODE_ENV === 'production' ? process.env.VUE_APP_PUBLIC_TOKEN : process.env.VUE_APP_PREVIEW_TOKEN,
+        accessToken: process.env.NODE_ENV === 'production' ? process.env.NUXT_ENV_PUBLIC_TOKEN : process.env.NUXT_ENV_PREVIEW_TOKEN,
         cacheProvider: 'memory'
 
       }

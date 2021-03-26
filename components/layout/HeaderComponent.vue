@@ -25,12 +25,7 @@ export default {
     },
   },
   created() {
-    this.setElementName()
-  },
-  methods: {
-    setElementName() {
-      return this.$store.dispatch('values/setElementsName', this.blok.component)
-    },
+    this.$store.dispatch('values/setElementsName', this.blok.component)
   },
 }
 </script>

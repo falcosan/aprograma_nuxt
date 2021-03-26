@@ -44,7 +44,7 @@ export default {
     }
   },
   created() {
-    this.setElementName()
+    this.$store.dispatch('values/setElementsName', this.blok.component)
   },
   methods: {
     expandIn() {
@@ -52,9 +52,6 @@ export default {
     },
     expandOut() {
       this.expanded = 'not_expanded h-0'
-    },
-    setElementName() {
-      return this.$store.dispatch('values/setElementsName', this.blok.component)
     },
   },
 }

@@ -23,7 +23,7 @@ export default {
 
   plugins: [
     '~/plugins/registerComponent',
-    { src: '~/plugins/contentByName', mode: 'client' },
+    '~/plugins/injection',
   ],
 
   buildModules: [

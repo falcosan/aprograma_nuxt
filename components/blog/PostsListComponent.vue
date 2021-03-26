@@ -3,7 +3,7 @@
     <li v-for="post in sortedPosts" :key="post._uid">
       <PostTeaser
         v-if="post.content"
-        :postLink="post.full_slug"
+        :postLink="`blog/${post.slug}`"
         :postContent="post.content"
       />
     </li>

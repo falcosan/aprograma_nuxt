@@ -3,19 +3,19 @@
     :key="blok._uid"
     :title="blok.tooltip"
     :href="blok.path"
-    :class="`icon_link ${blok.style}`"
+    :class="`icon-link ${customIconLink}`"
     target="_blank"
     rel="noopener"
-    ><span role="img" :class="`icon_container`"
+    ><span role="img" :class="`icon-container`"
       ><img
-        :alt="`${blok.icon.filename
-          .split(/[\\/]/)
-          .pop()
-          .replace(/\.[^/.]+$/, '')}_icon`"
         :class="`icon ${blok.icon.filename
           .split(/[\\/]/)
           .pop()
-          .replace(/\.[^/.]+$/, '')}_icon`"
+          .replace(/\.[^/.]+$/, '')}-icon`"
+        :alt="`${blok.icon.filename
+          .split(/[\\/]/)
+          .pop()
+          .replace(/\.[^/.]+$/, '')}-icon`"
         :src="blok.icon.filename" /></span
   ></a>
 </template>
@@ -26,6 +26,11 @@ export default {
     blok: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    customIconLink() {
+      return this.$customClass('layout', 'w-6 mr-4')
     },
   },
 }

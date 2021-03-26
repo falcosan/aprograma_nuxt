@@ -4,10 +4,9 @@ export default ({ app }, inject) => {
         return filteredbloks.length > 1 ? filteredbloks : filteredbloks[0]
 
     }),
-        inject('customClass', (routeName, style) => {
-            if ($nuxt.$route.name.includes(routeName) || routeName === "layout") {
+        inject('customClass', (elementName, style) => {
+            if ($nuxt.$route.name.includes(elementName) || app.store.state.values.nameElement.includes(elementName)) {
                 return style
             }
         })
-
 }

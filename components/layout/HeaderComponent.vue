@@ -2,7 +2,11 @@
   <header class="header top-0 z-10 fixed h-20 w-auto justify-between mt-0">
     <nav class="navbar">
       <ul class="menu_wrapper">
-        <li class="link_menu" v-for="item in blok.body" :key="item._uid">
+        <li
+          class="link_menu"
+          v-for="item in $contentByName(blok.body, 'ItemNavbar')"
+          :key="item._uid"
+        >
           <ItemNavbar :blok="item" />
         </li>
       </ul>
@@ -18,6 +22,14 @@ export default {
     blok: {
       type: Object,
       required: true,
+    },
+  },
+  created() {
+    this.setElementName()
+  },
+  methods: {
+    setElementName() {
+      return this.$store.dispatch('values/setElementsName', this.blok.component)
     },
   },
 }

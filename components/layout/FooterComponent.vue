@@ -16,7 +16,9 @@
       >
         © 2020 - {{ currentYear }}, aprograma
       </h4>
-      <div class="social_links flex row-start-1 row-end-1 col-start-2 col-end-2 w-max justify-self-end">
+      <div
+        class="social_links flex row-start-1 row-end-1 col-start-2 col-end-2 w-max justify-self-end"
+      >
         <IconLink
           v-for="iconLink in $contentByName(blok.body, 'IconLink')"
           :key="iconLink._uid"
@@ -41,12 +43,18 @@ export default {
       currentYear: new Date().getFullYear(),
     }
   },
+  created() {
+    this.setElementName()
+  },
   methods: {
     expandIn() {
       this.expanded = 'expandend h-28'
     },
     expandOut() {
       this.expanded = 'not_expanded h-0'
+    },
+    setElementName() {
+      return this.$store.dispatch('values/setElementsName', this.blok.component)
     },
   },
 }

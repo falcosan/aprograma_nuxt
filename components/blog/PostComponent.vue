@@ -3,25 +3,25 @@
     <div
       @mouseover="hoverIn()"
       @mouseleave="hoverOut()"
-      class="post_wrapper grid grid-cols-7 grid-rows-2 gap-x-10 h-full row-start-1 row-end-1 col-start-1 col-end-3 bg-red-400 relative z-10"
+      class="post-wrapper grid grid-cols-7 grid-rows-2 gap-x-10 h-full row-start-1 row-end-1 col-start-1 col-end-3 bg-red-400 relative z-10"
     >
       <component
         :is="lookFile()"
-        class="post_file w-full h-full row-start-1 row-end-3 object-cover"
+        class="post-file w-full h-full row-start-1 row-end-3 object-cover"
         :alt="getAlt"
         :src="getFile"
       />
       <div
-        class="post_text row-start-1 row-end-3 flex overflow-hidden h-full justify-center flex-col"
+        class="post-text row-start-1 row-end-3 flex overflow-hidden h-full justify-center flex-col"
         v-html="getPost"
       />
     </div>
-    <div class="post_expanded row-start-1 row-end-1 col-start-2 col-end-2 w-28">
+    <div class="post-expanded row-start-1 row-end-1 col-start-2 col-end-2 w-28">
       <div
-        :class="`post_date ${hovered} row-start-2 col-start-3 self-end flex flex-col justify-center items-center h-full transition-transform duration-150 ease-in transform`"
+        :class="`post-date ${hovered} row-start-2 col-start-3 self-end flex flex-col justify-center items-center h-full transition-transform duration-150 ease-in transform`"
       >
         <h1
-          class="date_text h-auto transform rotate-90 w-max whitespace-nowrap text-3xl"
+          class="date-text h-auto transform rotate-90 w-max whitespace-nowrap text-3xl"
           v-text="changeDate(blok.date)"
         />
       </div>
@@ -42,7 +42,7 @@ export default {
     return {
       getFile: "",
       getAlt: "",
-      hovered: "not_moved",
+      hovered: "not-moved",
     };
   },
   methods: {
@@ -70,7 +70,7 @@ export default {
       this.hovered = "moved translate-x-28";
     },
     hoverOut() {
-      this.hovered = "not_moved translate-x-0";
+      this.hovered = "not-moved translate-x-0";
     },
     setDefaultFile() {
       if (this.blok.file.filename) {

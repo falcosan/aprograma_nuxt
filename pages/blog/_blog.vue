@@ -14,11 +14,11 @@ export default {
   components: { Post },
   async fetch(context) {
     if (context.store.state.blog.loaded !== '1') {
-      let postsRefRes = await context.app.$storyapi.get(`cdn/stories/`, {
+      let listPosts = await context.app.$storyapi.get(`cdn/stories/`, {
         starts_with: 'blog',
         version: 'published',
       })
-      context.store.commit('blog/setPosts', postsRefRes.data.stories)
+      context.store.commit('blog/setPosts', listPosts.data.stories)
       context.store.commit('blog/setLoaded', '1')
     }
   },
@@ -31,7 +31,11 @@ export default {
         return data.data
       })
       .catch(() => {
-        context.$errorMessage(context)
+        context.$errorMessage(
+          `Sorry but post called ${context.route.path.substring(
+            context.route.path.lastIndexOf('/') + 1
+          )} doesn't extist`
+        )
       })
   },
 }

@@ -19,7 +19,7 @@ export default {
         return res.data
       })
       .catch(() => {
-        context.$errorMessage(context)
+        context.$errorMessage('404')
       })
   },
 }

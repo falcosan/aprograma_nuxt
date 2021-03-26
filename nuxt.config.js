@@ -25,6 +25,7 @@ export default {
 
   buildModules: [
     '@nuxtjs/tailwindcss',
+    "nuxt-compress"
   ],
 
   modules: [
@@ -36,6 +37,17 @@ export default {
 
       }
     ],
+    [
+      "nuxt-compress",
+      {
+        gzip: {
+          cache: true
+        },
+        brotli: {
+          threshold: 10240
+        }
+      }
+    ]
   ],
 
   build: {

@@ -5,10 +5,7 @@ module.exports = {
       './pages/**/*.vue',
       './plugins/**/*.{js,ts}',
       './nuxt.config.{js,ts}',],
-    enabled: process.env.NODE_ENV === 'production',
-    options: {
-
-    },
+    enabled: process.env.NODE_ENV === 'production'
   },
   darkMode: false,
   theme: {

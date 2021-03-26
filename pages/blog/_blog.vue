@@ -27,8 +27,11 @@ export default {
       .get(`cdn/stories/${context.route.path}`, {
         version: 'published',
       })
-      .then((res) => {
-        return res.data
+      .then((data) => {
+        return data.data
+      })
+      .catch(() => {
+        context.$errorMessage(context)
       })
   },
 }

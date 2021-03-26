@@ -13,11 +13,6 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  loading: { color: '#fff' },
-
-  css: [
-  ],
-
   plugins: [
     '~/plugins/registerComponent',
     '~/plugins/injection',
@@ -56,7 +51,7 @@ export default {
       },
       preset: {
         autoprefixer: {
-          grid: true
+          grid: "autoplace"
         }
       }
     }

@@ -9,4 +9,10 @@ export default ({ app }, inject) => {
                 return style
             }
         })
+    inject('errorMessage', (context) => {
+        context.error({
+            statusCode: 404,
+            message: `Ops! This ${context.route.path} doesn't extist, so, stop joking with the URL and enjoy the website`,
+        })
+    })
 }

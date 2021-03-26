@@ -18,6 +18,9 @@ export default {
       .then((res) => {
         return res.data
       })
+      .catch(() => {
+        context.$errorMessage(context)
+      })
   },
 }
 </script>

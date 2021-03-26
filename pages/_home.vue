@@ -11,7 +11,6 @@
  
 <script>
 export default {
-  
   asyncData(context) {
     return context.app.$storyapi
       .get(`cdn/stories/home`, {
@@ -19,6 +18,9 @@ export default {
       })
       .then((res) => {
         return res.data
+      })
+      .catch(() => {
+        context.$errorMessage(context)
       })
   },
 }

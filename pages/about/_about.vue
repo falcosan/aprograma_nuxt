@@ -17,7 +17,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'About description',
+          content: 'About the aprograma project',
         },
       ],
     }

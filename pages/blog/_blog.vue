@@ -12,6 +12,18 @@
 import Post from '@/components/blog/PostComponent'
 export default {
   components: { Post },
+  head() {
+    return {
+      title: `${this.story.name} - aprograma`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Blog with last news of aprograma',
+        },
+      ],
+    }
+  },
   async fetch(context) {
     if (context.store.state.blog.loaded !== '1') {
       let listPosts = await context.app.$storyapi.get(`cdn/stories/`, {

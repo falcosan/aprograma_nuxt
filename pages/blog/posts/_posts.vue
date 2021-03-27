@@ -7,14 +7,14 @@
 import Post from '@/components/blog/PostComponent'
 export default {
   components: { Post },
-  asyncData(context) {
+  asyncData (context) {
     return context.app.$storyapi
       .get(`cdn/stories/blog/${context.route.slug}`, {
-        version: 'published',
+        version: 'published'
       })
       .then((res) => {
         return res.data
       })
-  },
+  }
 }
 </script>

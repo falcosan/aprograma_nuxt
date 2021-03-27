@@ -1,15 +1,15 @@
 export const state = () => ({
-    nameElement: []
+  nameElement: []
 })
 
 export const mutations = {
-    setName(state, currentName) {
-        state.nameElement.unshift(currentName)
-    },
+  setName (state, currentName) {
+    state.nameElement.unshift(currentName)
+  }
 }
 
 export const actions = {
-    async setElementsName({ commit }, setName) {
-        commit('setName', setName.toLowerCase());
-    }
+  async setElementsName ({ commit }, setName) {
+    commit('setName', setName.toLowerCase())
+  }
 }

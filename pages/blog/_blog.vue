@@ -1,10 +1,10 @@
 <template>
   <section>
     <component
+      :is="story.content.component"
       v-if="story.content.component"
       :key="story.content._uid"
       :blok="story.content"
-      :is="story.content.component"
     />
   </section>
 </template>
@@ -12,32 +12,10 @@
 import Post from '@/components/blog/PostComponent'
 export default {
   components: { Post },
-  head() {
-    return {
-      title: `${this.story.name} - aprograma`,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Blog with last news of aprograma',
-        },
-      ],
-    }
-  },
-  async fetch(context) {
-    if (context.store.state.blog.loaded !== '1') {
-      let listPosts = await context.app.$storyapi.get(`cdn/stories/`, {
-        starts_with: 'blog',
-        version: 'published',
-      })
-      context.store.commit('blog/setPosts', listPosts.data.stories)
-      context.store.commit('blog/setLoaded', '1')
-    }
-  },
-  asyncData(context) {
+  asyncData (context) {
     return context.app.$storyapi
       .get(`cdn/stories/${context.route.path}`, {
-        version: 'published',
+        version: 'published'
       })
       .then((data) => {
         return data.data
@@ -50,5 +28,27 @@ export default {
         )
       })
   },
+  async fetch (context) {
+    if (context.store.state.blog.loaded !== '1') {
+      const listPosts = await context.app.$storyapi.get('cdn/stories/', {
+        starts_with: 'blog',
+        version: 'published'
+      })
+      context.store.commit('blog/setPosts', listPosts.data.stories)
+      context.store.commit('blog/setLoaded', '1')
+    }
+  },
+  head () {
+    return {
+      title: `${this.story.name} - aprograma`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Blog with last news of aprograma'
+        }
+      ]
+    }
+  }
 }
 </script>

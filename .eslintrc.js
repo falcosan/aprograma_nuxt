@@ -6,15 +6,11 @@ module.exports = {
   },
   extends: [
     '@nuxtjs',
-    'eslint:recommended',
-    'plugin:vue/essential'
+    'eslint:recommended'
   ],
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module'
   },
-  plugins: [
-    'vue'
-  ],
   rules: {}
 }

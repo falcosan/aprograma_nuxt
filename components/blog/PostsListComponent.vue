@@ -3,13 +3,13 @@
     <li v-for="post in sortedPosts" :key="post._uid">
       <PostTeaser
         v-if="post.content"
-        :postLink="`blog/${post.slug}`"
-        :postContent="post.content"
+        :post-link="`blog/${post.slug}`"
+        :post-content="post.content"
       />
     </li>
   </ul>
 </template>
- 
+
 <script>
 import PostTeaser from './PostTeaserComponent'
 export default {
@@ -17,11 +17,11 @@ export default {
   props: {
     blok: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   computed: {
-    sortedPosts() {
+    sortedPosts () {
       const featuredPosts = this.$store.state.blog.posts.filter((post) => {
         return this.blok.posts.includes(post.uuid)
       })
@@ -29,7 +29,7 @@ export default {
         return this.blok.posts.indexOf(a.uuid) - this.blok.posts.indexOf(b.uuid)
       })
       return featuredPosts
-    },
-  },
+    }
+  }
 }
 </script>

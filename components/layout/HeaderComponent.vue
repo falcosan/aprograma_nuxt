@@ -3,9 +3,9 @@
     <nav class="navbar">
       <ul class="menu_wrapper">
         <li
-          class="link_menu"
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"
+          class="link_menu"
         >
           <ItemNavbar :blok="item" />
         </li>
@@ -21,12 +21,11 @@ export default {
   props: {
     blok: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
-  created() {
+  created () {
     this.$store.dispatch('values/setElementsName', this.blok.component)
-  },
+  }
 }
 </script>
-

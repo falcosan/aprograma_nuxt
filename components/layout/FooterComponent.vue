@@ -1,8 +1,8 @@
 <template>
   <footer
+    :class="`footer ${expanded} w-full fixed z-50 bottom-0 bg-gray-200 transition-height duration-200 ease-in-out`"
     @mouseleave="expandOut()"
     @mouseover="expandIn()"
-    :class="`footer ${expanded} w-full fixed z-50 bottom-0 bg-gray-200 transition-height duration-200 ease-in-out`"
   >
     <div class="input_footer flex justify-center transform -translate-y-10">
       <span class="input_text text-center animate-bounce text-4xl">.</span>
@@ -34,27 +34,25 @@ export default {
   props: {
     blok: {
       type: Object,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      expanded: 'not_expanded h-0',
-      currentYear: new Date().getFullYear(),
+      required: true
     }
   },
-  created() {
+  data () {
+    return {
+      expanded: 'not_expanded h-0',
+      currentYear: new Date().getFullYear()
+    }
+  },
+  created () {
     this.$store.dispatch('values/setElementsName', this.blok.component)
   },
   methods: {
-    expandIn() {
+    expandIn () {
       this.expanded = 'expandend h-28'
     },
-    expandOut() {
+    expandOut () {
       this.expanded = 'not_expanded h-0'
-    },
-  },
+    }
+  }
 }
 </script>
-
-

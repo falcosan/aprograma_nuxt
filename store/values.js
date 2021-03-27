@@ -9,7 +9,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async setElementsName ({ commit }, setName) {
+  setElementsName ({ commit }, setName) {
     commit('setName', setName.toLowerCase())
   }
 }

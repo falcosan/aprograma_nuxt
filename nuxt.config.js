@@ -5,7 +5,7 @@ export default {
   head: {
     title: process.env.npm_package_name || '',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
@@ -18,12 +18,12 @@ export default {
   },
   plugins: [
     '~/plugins/components',
-    '~/plugins/injection',
+    '~/plugins/injection'
   ],
 
   buildModules: [
     '@nuxtjs/tailwindcss',
-    "nuxt-compress"
+    'nuxt-compress'
   ],
 
   modules: [
@@ -36,7 +36,7 @@ export default {
       }
     ],
     [
-      "nuxt-compress",
+      'nuxt-compress',
       {
         gzip: {
           cache: true
@@ -54,7 +54,7 @@ export default {
       },
       preset: {
         autoprefixer: {
-          grid: "autoplace"
+          grid: 'autoplace'
         }
       }
     }

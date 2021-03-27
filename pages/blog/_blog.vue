@@ -32,7 +32,7 @@ export default {
       })
       .catch(() => {
         context.$errorMessage(
-          `Sorry but post called ${context.route.path.substring(
+          `Sorry but the post called ${context.route.path.substring(
             context.route.path.lastIndexOf('/') + 1
           )} doesn't extist`
         )

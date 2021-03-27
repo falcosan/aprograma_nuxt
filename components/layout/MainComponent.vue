@@ -1,6 +1,10 @@
 <template>
-  <Nuxt v-if="blok.view"/>
+  <main>
+    <Nuxt v-if="blok.view" />
+  </main>
 </template>
+
+
 
 <script>
 export default {

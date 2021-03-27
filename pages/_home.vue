@@ -11,6 +11,18 @@
  
 <script>
 export default {
+  head() {
+    return {
+      title: `${this.story.name} - aprograma`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Home page description',
+        },
+      ],
+    }
+  },
   asyncData(context) {
     return context.app.$storyapi
       .get(`cdn/stories/home`, {

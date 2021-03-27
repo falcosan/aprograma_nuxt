@@ -2,7 +2,14 @@
   "name": "aprograma",
   "version": "1.0.0",
   "description": "aprograma",
-  "author": "aprograma",
+  "contributors": [
+    {
+      "name": "Daniele Falchetti <danielefalche@gmail.com>"
+    },
+    {
+      "name": "aprograma"
+    }
+  ],
   "private": true,
   "scripts": {
     "push:dev": "git checkout develop && git add -A && git commit -m 'develop' && git push origin develop",

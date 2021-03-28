@@ -1,14 +1,17 @@
 <template>
-  <ul class="translater">
+  <ul class="translate">
     <li
       v-for="language in blok"
       :key="language._uid"
-      :class="`link_translate cursor-pointer mr-4`"
-      @click="
-        changeLang(language.language.toLowerCase().substring(0,2) === 'en' ? '' : language.language.toLowerCase().substring(0,2))
-      "
+      class="link_translate cursor-pointer mr-4"
     >
-      <span class="translate_lang">/{{ language.language }}/</span>
+      <a
+        @click="
+          changeLang(language.language.toLowerCase().substring(0,2) === 'en' ? '' : language.language.toLowerCase().substring(0,2))
+        "
+      >
+        <span class="translate_lang">{{ language.language }}</span>
+      </a>
     </li>
   </ul>
 </template>

@@ -1,16 +1,18 @@
 <template>
   <header class="header top-0 z-10 fixed h-20 w-auto justify-between mt-0">
-    <Translate :blok="$contentByName(blok.body, 'Translate')" />
     <nav class="navbar">
-      <ul class="menu_wrapper">
+      <ul class="menu-wrapper">
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"
-          class="link_menu"
+          class="link-menu"
         >
           <ItemNavbar :blok="item" />
         </li>
       </ul>
+    </nav>
+    <nav class="language-bar">
+      <Translate :blok="$contentByName(blok.body, 'Translate')" />
     </nav>
   </header>
 </template>

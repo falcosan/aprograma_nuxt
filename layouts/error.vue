@@ -4,16 +4,18 @@
       {{ error.message }}
     </h1>
     <h1 v-else>
-      An error occurred
+      {{ error.message }}
     </h1>
-    <NuxtLink to="/">
-      Home
-    </NuxtLink>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['error']
+  props: {
+    error: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>

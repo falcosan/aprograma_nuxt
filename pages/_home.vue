@@ -19,13 +19,14 @@ export default {
     }
   },
   async fetch () {
+    const slug = (this.$route.path === '/' || this.$route.path === '') ? 'home' : this.$route.path
     try {
-      const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/home`, {
+      const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/${slug}`, {
         version: 'published'
       })
       this.story = data.story
     } catch (error) {
-      this.$errorMessage(`404 ${error}`)
+      this.$errorMessage(this.story.content.component, `404 ${error}`, '500')
     }
   },
   head () {

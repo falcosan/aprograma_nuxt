@@ -24,7 +24,7 @@ export default {
       })
       this.story = data.story
     } catch (error) {
-      this.$errorMessage(`404 ${error}`)
+      this.$errorMessage(this.story.content.component, `404 ${error}`, '500')
     }
   },
   head () {

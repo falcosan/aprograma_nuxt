@@ -12,30 +12,34 @@
 import Post from '@/components/blog/PostComponent'
 export default {
   components: { Post },
-  asyncData (context) {
-    return context.app.$storyapi
-      .get(`cdn/stories/${context.route.path}`, {
+  data () {
+    return {
+      story: {
+        content: {}
+      }
+    }
+  },
+  async fetch () {
+    try {
+      const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/${this.$route.path}`, {
         version: 'published'
       })
-      .then((data) => {
-        return data.data
-      })
-      .catch(() => {
-        context.$errorMessage(
-          `Sorry but the post called ${context.route.path.substring(
-            context.route.path.lastIndexOf('/') + 1
-          )} doesn't extist`
-        )
-      })
-  },
-  async fetch (context) {
-    if (context.store.state.blog.loaded !== '1') {
-      const listPosts = await context.app.$storyapi.get('cdn/stories/', {
+      this.story = data.story
+    } catch (error) {
+      this.$errorMessage(
+          `Sorry but the post called ${this.$route.path.substring(
+            this.$route.path.lastIndexOf('/') + 1
+          )} doesn't extist anymore`
+      )
+    }
+
+    if (this.$store.state.blog.loaded !== '1') {
+      const listPosts = await this.$storyapi.get('cdn/stories/', {
         starts_with: 'blog',
         version: 'published'
       })
-      context.store.commit('blog/setPosts', listPosts.data.stories)
-      context.store.commit('blog/setLoaded', '1')
+      this.$store.commit('blog/setPosts', listPosts.data.stories)
+      this.$store.commit('blog/setLoaded', '1')
     }
   },
   head () {
@@ -49,6 +53,9 @@ export default {
         }
       ]
     }
+  },
+  watch: {
+    '$store.state.language.language': '$fetch'
   }
 }
 </script>

@@ -10,17 +10,22 @@
 </template>
 <script>
 export default {
-  asyncData (context) {
-    return context.app.$storyapi
-      .get(`cdn/stories/${context.route.path}`, {
+  data () {
+    return {
+      story: {
+        content: {}
+      }
+    }
+  },
+  async fetch () {
+    try {
+      const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/${this.$route.path}`, {
         version: 'published'
       })
-      .then((res) => {
-        return res.data
-      })
-      .catch(() => {
-        context.$errorMessage('404')
-      })
+      this.story = data.story
+    } catch (error) {
+      this.$errorMessage(`404 ${error}`)
+    }
   },
   head () {
     return {
@@ -33,6 +38,9 @@ export default {
         }
       ]
     }
+  },
+  watch: {
+    '$store.state.language.language': '$fetch'
   }
 }
 </script>

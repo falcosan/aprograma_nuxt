@@ -1,5 +1,6 @@
 <template>
   <header class="header top-0 z-10 fixed h-20 w-auto justify-between mt-0">
+    <Translate :blok="$contentByName(blok.body, 'Translate')" />
     <nav class="navbar">
       <ul class="menu_wrapper">
         <li
@@ -15,9 +16,10 @@
 </template>
 
 <script>
-import ItemNavbar from '@/components/layout/ItemNavbarComponent'
+import Translate from './TranslateComponent'
+import ItemNavbar from './ItemNavbarComponent'
 export default {
-  components: { ItemNavbar },
+  components: { Translate, ItemNavbar },
   props: {
     blok: {
       type: Object,

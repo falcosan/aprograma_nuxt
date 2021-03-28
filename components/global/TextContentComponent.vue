@@ -1,5 +1,7 @@
 <template>
-  <span :class="`text text-${customClass}`" v-html="getText" />
+  <div>
+    <span :class="`text text-${customClass}`" v-html="getText" />
+  </div>
 </template>
 <script>
 import marked from 'marked'

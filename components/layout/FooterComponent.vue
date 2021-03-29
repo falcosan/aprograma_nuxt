@@ -9,7 +9,7 @@
     </div>
     <div class="footer_content grid items-center">
       <h3 class="row-start-1 row-end-1 col-start-1 col-end-1 ml-4 text-sm">
-        hey
+        {{ blok.message }}
       </h3>
       <h4
         class="footer_copyright text-sm text-center w-full row-start-1 row-end-1 col-start-1 col-end-3"

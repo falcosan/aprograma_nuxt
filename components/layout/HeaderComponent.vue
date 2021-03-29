@@ -11,8 +11,10 @@
         </li>
       </ul>
     </nav>
-    <Translate :class="`bg-black text-white ${expanded}`" :blok="$contentByName(blok.body, 'Translate')" @mouseleave="expandOut()" />
-    <CurrentLanguage class="bg-black text-white" :blok="$contentByName(blok.body, 'CurrentLanguage')[0]" @click="expandIn()" />
+    <nav class="language-bar flex relative top-10">
+      <Translate :class="`bg-black absolute text-white ${expanded}`" :blok="$contentByName(blok.body, 'Translate')" @mouseleave.native="expandOut()" />
+      <CurrentLanguage class="bg-black px-3 flex items-center rounded-r-full text-white" :blok="$contentByName(blok.body, 'CurrentLanguage')[0]" @click.native="expandIn()" />
+    </nav>
   </header>
 </template>
 
@@ -31,7 +33,7 @@ export default {
   data () {
     return {
       timer: undefined,
-      expanded: 'not-expanded left-full'
+      expanded: 'not-expanded -left-full'
     }
   },
   created () {

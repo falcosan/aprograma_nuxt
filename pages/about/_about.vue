@@ -10,6 +10,16 @@
 </template>
 <script>
 export default {
+  asyncData (context) {
+    return context.app.$storyapi
+      .get(`cdn/stories/${context.route.path}`)
+      .then((res) => {
+        return res.data
+      })
+      .catch((res) => {
+        context.$errorMessage(!res, `404 ${res.response.data}`, res.response.data)
+      })
+  },
   data () {
     return {
       story: {
@@ -18,14 +28,8 @@ export default {
     }
   },
   async fetch () {
-    try {
-      const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/${this.$route.path}`, {
-        version: 'published'
-      })
-      this.story = data.story
-    } catch (error) {
-      this.$errorMessage(this.story.content.component, `404 ${error}`, '500')
-    }
+    const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/${this.$route.path}`)
+    this.story = data.story
   },
   head () {
     return {

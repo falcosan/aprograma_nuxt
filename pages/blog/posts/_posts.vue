@@ -9,9 +9,7 @@ export default {
   components: { Post },
   asyncData (context) {
     return context.app.$storyapi
-      .get(`cdn/stories/blog/${context.route.slug}`, {
-        version: 'published'
-      })
+      .get(`cdn/stories/blog/${context.route.slug}`)
       .then((res) => {
         return res.data
       })

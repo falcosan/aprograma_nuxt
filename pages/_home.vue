@@ -11,6 +11,17 @@
 
 <script>
 export default {
+  asyncData (context) {
+    const slug = (context.route.path === '/' || context.route.path === '') ? 'home' : context.route.path
+    return context.app.$storyapi
+      .get(`cdn/stories/${slug}`)
+      .then((res) => {
+        return res.data
+      })
+      .catch((res) => {
+        context.$errorMessage(!res, `404 ${res.response.data}`, res.response.data)
+      })
+  },
   data () {
     return {
       story: {
@@ -19,15 +30,8 @@ export default {
     }
   },
   async fetch () {
-    const slug = (this.$route.path === '/' || this.$route.path === '') ? 'home' : this.$route.path
-    try {
-      const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/${slug}`, {
-        version: 'published'
-      })
-      this.story = data.story
-    } catch (error) {
-      this.$errorMessage(this.story.content.component, `404 ${error}`, '500')
-    }
+    const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/home`)
+    this.story = data.story
   },
   head () {
     return {

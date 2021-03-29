@@ -12,11 +12,11 @@
           :alt="getAlt"
           :src="getFile"
         />
-        <div
+        <h3
           class="post_text row-start-1 row-end-3 flex overflow-hidden h-full justify-center flex-col"
         >
           {{ postContent.title }}
-        </div>
+        </h3>
       </div>
       <div
         class="post_expanded row-start-1 row-end-1 col-start-2 col-end-2 w-28"

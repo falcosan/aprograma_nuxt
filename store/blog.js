@@ -6,8 +6,5 @@ export const state = () => ({
 export const mutations = {
   setPosts (state, entries) {
     state.posts = entries
-  },
-  setLoaded (state, loaded) {
-    state.loaded = loaded
   }
 }

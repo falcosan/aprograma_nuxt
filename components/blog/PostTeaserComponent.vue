@@ -1,8 +1,8 @@
 <template>
-  <nuxt-link :to="postLink" class="block w-9/12 mx-auto">
-    <div class="post grid grid-cols-8 h-50">
+  <NuxtLink :to="postLink" class="block w-9/12 mx-auto">
+    <div class="post-teaser grid grid-cols-8 h-50">
       <div
-        class="post_wrapper grid grid-cols-7 grid-rows-2 gap-x-10 h-full row-start-1 row-end-1 col-start-1 col-end-3 bg-red-400 relative z-10"
+        class="teaser-head grid grid-cols-7 grid-rows-2 gap-x-10 h-full row-start-1 row-end-1 col-start-1 col-end-3 bg-red-400 relative z-10"
         @mouseover="hoverIn()"
         @mouseleave="hoverOut()"
       >
@@ -12,11 +12,18 @@
           :alt="getAlt"
           :src="getFile"
         />
-        <h3
-          class="post_text row-start-1 row-end-3 flex overflow-hidden h-full justify-center flex-col"
-        >
-          {{ postContent.title }}
-        </h3>
+        <div class="teaser-body flex flex-col justify-center row-start-1 row-end-3">
+          <h3
+            class="post_text overflow-hidden"
+          >
+            {{ postContent.title }}
+          </h3>
+          <h5
+            class="post_text overflow-hidden"
+          >
+            {{ postContent.intro }}
+          </h5>
+        </div>
       </div>
       <div
         class="post_expanded row-start-1 row-end-1 col-start-2 col-end-2 w-28"
@@ -31,7 +38,8 @@
         </div>
       </div>
     </div>
-  </nuxt-link>
+    </nuxt-link>
+  </nuxtlink>
 </template>
 
 <script>

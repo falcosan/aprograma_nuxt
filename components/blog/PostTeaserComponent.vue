@@ -38,8 +38,7 @@
         </div>
       </div>
     </div>
-    </nuxt-link>
-  </nuxtlink>
+  </NuxtLink>
 </template>
 
 <script>

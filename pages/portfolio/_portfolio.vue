@@ -9,9 +9,9 @@
   </section>
 </template>
 <script>
-import Post from '@/components/blog/PostComponent'
+import Project from '@/components/portfolio/ProjectComponent'
 export default {
-  components: { Post },
+  components: { Project },
   asyncData (context) {
     return context.app.$storyapi
       .get(`cdn/stories/${context.route.path}`)
@@ -20,9 +20,9 @@ export default {
       })
       .catch((res) => {
         context.$errorMessage(res.response,
-          `Sorry but the post called ${context.route.path.substring(
+          `Sorry but the project called ${context.route.path.substring(
             context.route.path.lastIndexOf('/') + 1
-          )} doesn't extist`, `Sorry, but the post called: "${context.route.path.substring(
+          )} doesn't extist`, `Sorry, but the project called: "${context.route.path.substring(
           context.route.path.lastIndexOf('/') + 1)}" has a problem or doesn't exist`
         )
       })
@@ -37,11 +37,11 @@ export default {
   async fetch () {
     const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/${this.$route.path}`)
     this.story = data.story
-    const languagePost = this.$store.state.language.language === '' ? '[default]/blog' : `${this.$store.state.language.language}/blog`
-    const listPosts = await this.$storyapi.get('cdn/stories', {
-      starts_with: languagePost
+    const languageProject = this.$store.state.language.language === '' ? '[default]/portfolio' : `${this.$store.state.language.language}/portfolio`
+    const listProjects = await this.$storyapi.get('cdn/stories', {
+      starts_with: languageProject
     })
-    this.$store.commit('blog/setPosts', listPosts.data.stories)
+    this.$store.commit('portfolio/setProjects', listProjects.data.stories)
   },
   head () {
     return {
@@ -50,7 +50,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'Blog with last news of aprograma'
+          content: 'Projects make experience'
         }
       ]
     }

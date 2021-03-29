@@ -1,0 +1,35 @@
+<template>
+  <ul class="grid gap-y-5">
+    <li v-for="project in sortedProject" :key="project._uid">
+      <ProjectTeaser
+        v-if="project.content"
+        :project-link="`portfolio/${project.slug}`"
+        :project-content="project.content"
+      />
+    </li>
+  </ul>
+</template>
+
+<script>
+import ProjectTeaser from './ProjectTeaserComponent'
+export default {
+  components: { ProjectTeaser },
+  props: {
+    blok: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    sortedProject () {
+      const featuredProjects = this.$store.state.portfolio.projects.filter((project) => {
+        return this.blok.projects.includes(project.uuid)
+      })
+      featuredProjects.sort((a, b) => {
+        return this.blok.projects.indexOf(a.uuid) - this.blok.projects.indexOf(b.uuid)
+      })
+      return featuredProjects
+    }
+  }
+}
+</script>

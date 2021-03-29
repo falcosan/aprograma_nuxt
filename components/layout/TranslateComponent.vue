@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     changeLang (lang) {
-      this.$store.commit('language/languageMutation', lang)
+      this.$store.commit('data/languageMutation', lang)
     }
   }
 }

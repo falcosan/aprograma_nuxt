@@ -24,14 +24,14 @@ export default {
   },
 
   watch: {
-    '$store.state.language.language': 'getLayout'
+    '$store.state.data.language': 'getLayout'
   },
   created () {
     this.getLayout()
   },
   methods: {
     async getLayout () {
-      const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/layout`)
+      const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.data.language}/layout`)
       this.story = data.story
     }
   }

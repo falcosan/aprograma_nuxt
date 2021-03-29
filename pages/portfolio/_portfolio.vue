@@ -35,9 +35,8 @@ export default {
     }
   },
   async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/${this.$route.path}`)
-    this.story = data.story
-    const languageProject = this.$store.state.language.language === '' ? '[default]/portfolio' : `${this.$store.state.language.language}/portfolio`
+    this.$store.dispatch('data/updateData', this.$route.path)
+    const languageProject = this.$store.state.data.language === '' ? '[default]/portfolio' : `${this.$store.state.data.language}/portfolio`
     const listProjects = await this.$storyapi.get('cdn/stories', {
       starts_with: languageProject
     })
@@ -56,7 +55,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.language.language': '$fetch'
+    '$store.state.data.language': '$fetch'
   }
 }
 </script>

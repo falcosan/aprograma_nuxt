@@ -31,9 +31,8 @@ export default {
       }
     }
   },
-  async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/home`)
-    this.story = data.story
+  fetch () {
+    this.$store.dispatch('data/updateData', 'home')
   },
   head () {
     return {
@@ -48,7 +47,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.language.language': '$fetch'
+    '$store.state.data.language': '$fetch'
   }
 }
 </script>

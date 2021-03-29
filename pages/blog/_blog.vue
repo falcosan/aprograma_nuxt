@@ -34,13 +34,9 @@ export default {
       }
     }
   },
-  async fetch () {
+  fetch () {
     this.$store.dispatch('data/updateData', this.$route.path)
-    const languagePost = this.$store.state.data.language === '' ? '[default]/blog' : `${this.$store.state.data.language}/blog`
-    const listPosts = await this.$storyapi.get('cdn/stories', {
-      starts_with: languagePost
-    })
-    this.$store.commit('blog/setPosts', listPosts.data.stories)
+    this.$store.dispatch('list/addItems', 'blog')
   },
   head () {
     return {

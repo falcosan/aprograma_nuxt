@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     sortedPosts () {
-      const featuredPosts = this.$store.state.blog.posts.filter((post) => {
+      const featuredPosts = this.$store.state.list.items.filter((post) => {
         return this.blok.posts.includes(post.uuid)
       })
       featuredPosts.sort((a, b) => {

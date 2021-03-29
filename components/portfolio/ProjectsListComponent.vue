@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     sortedProject () {
-      const featuredProjects = this.$store.state.portfolio.projects.filter((project) => {
+      const featuredProjects = this.$store.state.list.items.filter((project) => {
         return this.blok.projects.includes(project.uuid)
       })
       featuredProjects.sort((a, b) => {

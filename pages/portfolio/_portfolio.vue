@@ -34,13 +34,9 @@ export default {
       }
     }
   },
-  async fetch () {
+  fetch () {
     this.$store.dispatch('data/updateData', this.$route.path)
-    const languageProject = this.$store.state.data.language === '' ? '[default]/portfolio' : `${this.$store.state.data.language}/portfolio`
-    const listProjects = await this.$storyapi.get('cdn/stories', {
-      starts_with: languageProject
-    })
-    this.$store.commit('portfolio/setProjects', listProjects.data.stories)
+    this.$store.dispatch('list/addItems', 'portfolio')
   },
   head () {
     return {

@@ -44,7 +44,7 @@ export default {
     }
   },
   created () {
-    this.$store.dispatch('values/setElementsName', this.blok.component)
+    this.$store.commit('classes/setName', this.blok.component)
   },
   methods: {
     expandIn () {

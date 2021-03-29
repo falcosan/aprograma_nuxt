@@ -1,5 +1,5 @@
 <template>
-  <ul class="">
+  <ul class="grid gap-y-5">
     <li v-for="post in sortedPosts" :key="post._uid">
       <PostTeaser
         v-if="post.content"

@@ -15,7 +15,11 @@ module.exports = {
       },
       gridTemplateColumns: {
         7: '300px auto',
-        8: '1fr 112px'
+        8: '1fr 112px',
+        9: '20rem auto 35px'
+      },
+      gridTemplateRows: {
+        7: '100vh auto 35px'
       },
       transitionProperty: {
         height: 'height',

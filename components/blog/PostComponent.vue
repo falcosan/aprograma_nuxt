@@ -1,30 +1,30 @@
 <template>
-  <div class="post grid grid-cols-8 py-5 mx-auto h-50 w-9/12">
-    <div
-      class="post-wrapper grid grid-cols-7 grid-rows-2 gap-x-10 h-full row-start-1 row-end-1 col-start-1 col-end-3 bg-red-400 relative z-10"
-      @mouseover="hoverIn()"
-      @mouseleave="hoverOut()"
-    >
+  <div class="post w-9/12 my-0 mx-auto grid grid-rows-7 grid-cols-1">
+    <div class=" post-head h-full row-start-1 row-end-1 col-start-1 col-end-1">
       <component
         :is="lookFile()"
         class="post-file w-full h-full row-start-1 row-end-3 object-cover"
         :alt="getAlt"
         :src="getFile"
       />
-      <div
-        class="post-text row-start-1 row-end-3 flex overflow-hidden h-full justify-center flex-col"
-        v-html="getPost"
-      />
     </div>
-    <div class="post-expanded row-start-1 row-end-1 col-start-2 col-end-2 w-28">
-      <div
-        :class="`post-date ${hovered} row-start-2 col-start-3 self-end flex flex-col justify-center items-center h-full transition-transform duration-150 ease-in transform`"
-      >
-        <h1
-          class="date-text h-auto transform rotate-90 w-max whitespace-nowrap text-3xl"
-          v-text="changeDate(blok.date)"
-        />
-      </div>
+    <div class="post-body bg-green-500 grid gap-y-5 text-center p-5">
+      <h1
+        class="post-title row-start-2 row-end-2 col-start-1 col-end-1"
+        v-text="blok.title"
+      />
+      <h3
+        class="post-intro row-start-3 row-end-3 col-start-1 col-end-1"
+        v-text="blok.intro"
+      />
+      <p
+        class="post-description row-start-4 row-end-4 col-start-1 col-end-1"
+        v-html="getDescription"
+      />
+      <h4
+        class="post-date row-start-5 row-end-5 col-start-1 col-end-1 w-max whitespace-nowrap"
+        v-text="changeDate(blok.date)"
+      />
     </div>
   </div>
 </template>
@@ -41,12 +41,11 @@ export default {
   data () {
     return {
       getFile: '',
-      getAlt: '',
-      hovered: 'not-moved'
+      getAlt: ''
     }
   },
   computed: {
-    getPost () {
+    getDescription () {
       return DOMPurify.sanitize(marked(this.blok.long_text))
     }
   },
@@ -73,12 +72,6 @@ export default {
         case 'mp4':
           return 'video'
       }
-    },
-    hoverIn () {
-      this.hovered = 'moved translate-x-28'
-    },
-    hoverOut () {
-      this.hovered = 'not-moved translate-x-0'
     },
     setDefaultFile () {
       if (this.blok.file.filename) {

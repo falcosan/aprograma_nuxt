@@ -4,7 +4,7 @@ module.exports = {
       './layouts/**/*.vue',
       './pages/**/*.vue',
       './plugins/**/*.{js,ts}',
-      './nuxt.config.{js,ts}',],
+      './nuxt.config.{js,ts}'],
     enabled: process.env.NODE_ENV === 'production'
   },
   darkMode: false,
@@ -18,12 +18,13 @@ module.exports = {
         8: '1fr 112px'
       },
       transitionProperty: {
-        'height': 'height'
+        height: 'height',
+        left: 'left'
       }
-    },
+    }
   },
   variants: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
+  plugins: []
 }

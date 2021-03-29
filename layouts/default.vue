@@ -18,22 +18,18 @@ export default {
   data () {
     return {
       story: {
-        content: {
-          body: []
-        }
+        content: {}
       }
     }
   },
-  created () {
-    this.getLayout()
+  async fetch () {
+    const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/layout`, {
+      version: 'published'
+    })
+    this.story = data.story
   },
-  methods: {
-    async getLayout () {
-      const { data } = await this.$storyapi.get('cdn/stories/layout', {
-        version: 'published'
-      })
-      this.story = data.story
-    }
+  watch: {
+    '$store.state.language.language': '$fetch'
   }
 }
 </script>

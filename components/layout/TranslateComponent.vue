@@ -1,22 +1,26 @@
 <template>
-  <ul class="translate">
-    <li
-      v-for="language in blok"
-      :key="language._uid"
-      class="link_translate cursor-pointer mr-4"
-    >
-      <a
-        @click="
-          changeLang(language.language.toLowerCase().substring(0,2) === 'en' ? '' : language.language.toLowerCase().substring(0,2))
-        "
+  <nav class="language-bar flex items-center relative top-10">
+    <ul class="rounded-r-2xl transition-all duration-200 ease-in-out">
+      <li
+        v-for="language in blok"
+        :key="language._uid"
+        class="translate-item cursor-pointer"
       >
-        <span class="translate_lang">{{ language.language }}</span>
-      </a>
-    </li>
-  </ul>
+        <a
+          class="link-translate"
+          @click="
+            changeLang(language.language.toLowerCase().substring(0,2) === 'en' ? '' : language.language.toLowerCase().substring(0,2))
+          "
+        >
+          <span class="translate-lang">{{ language.language }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script>
+
 export default {
   props: {
     blok: {
@@ -24,7 +28,6 @@ export default {
       required: true
     }
   },
-
   methods: {
     changeLang (lang) {
       this.$store.commit('language/languageMutation', lang)

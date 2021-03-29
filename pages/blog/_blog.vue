@@ -26,7 +26,7 @@ export default {
       })
       this.story = data.story
     } catch (error) {
-      this.$errorMessage(this.story.content.component,
+      this.$errorMessage(!this.story.content.component,
           `Sorry but the post called ${this.$route.path.substring(
             this.$route.path.lastIndexOf('/') + 1
           )} doesn't extist anymore`, '500'

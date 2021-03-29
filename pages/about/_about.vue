@@ -17,7 +17,9 @@ export default {
         return res.data
       })
       .catch((res) => {
-        context.$errorMessage(!res, `404 ${res.response.data}`, res.response.data)
+        context.$errorMessage(res.response, `Sorry, but this content: "${res.response.config.url.substring(
+          res.response.config.url.lastIndexOf('/') + 1)}" doesn't exist`, `Sorry, but the content: "${res.response.config.url.substring(
+          res.response.config.url.lastIndexOf('/') + 1)}" has a problem or doesn't exist`)
       })
   },
   data () {

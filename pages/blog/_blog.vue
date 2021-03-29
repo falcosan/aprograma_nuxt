@@ -19,10 +19,11 @@ export default {
         return res.data
       })
       .catch((res) => {
-        context.$errorMessage(!res,
-          `Sorry but the post called ${context.$route.path.substring(
-            context.$route.path.lastIndexOf('/') + 1
-          )} doesn't extist anymore`, '500'
+        context.$errorMessage(res.response,
+          `Sorry but the post called ${context.route.path.substring(
+            context.route.path.lastIndexOf('/') + 1
+          )} doesn't extist`, `Sorry, but the post called: "${context.route.path.substring(
+          context.route.path.lastIndexOf('/') + 1)}" has a problem or doesn't exist`
         )
       })
   },

@@ -1,9 +1,11 @@
 <template>
   <div>
     <h1 v-if="error.statusCode === 404">
+      {{ error.statusCode }}
       {{ error.message }}
     </h1>
     <h1 v-else>
+      {{ error.statusCode }}
       {{ error.message }}
     </h1>
   </div>

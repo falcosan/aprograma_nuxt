@@ -25,6 +25,10 @@
         class="post-date row-start-5 row-end-5 col-start-1 col-end-1 w-max whitespace-nowrap"
         v-text="changeDate(blok.date)"
       />
+      <h5
+        class="post-date row-start-5 row-end-5 col-start-1 col-end-1 justify-self-end italic"
+        v-text="blok.author"
+      />
     </div>
   </div>
 </template>

@@ -22,14 +22,20 @@ export default {
       }
     }
   },
-  async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/layout`, {
-      version: 'published'
-    })
-    this.story = data.story
-  },
+
   watch: {
-    '$store.state.language.language': '$fetch'
+    '$store.state.language.language': 'getLayout'
+  },
+  created () {
+    this.getLayout()
+  },
+  methods: {
+    async getLayout () {
+      const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/layout`, {
+        version: 'published'
+      })
+      this.story = data.story
+    }
   }
 }
 </script>

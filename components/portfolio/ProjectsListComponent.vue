@@ -3,7 +3,7 @@
     <li v-for="project in sortedProject" :key="project._uid">
       <ProjectTeaser
         v-if="project.content"
-        :project-link="`${project.full_slug}`"
+        :project-link="`portfolio/${project.slug}`"
         :project-content="project.content"
       />
     </li>

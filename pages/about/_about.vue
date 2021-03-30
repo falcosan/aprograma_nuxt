@@ -29,8 +29,9 @@ export default {
       }
     }
   },
-  fetch () {
-    this.$store.dispatch('data/updateData', this.$route.path)
+  async fetch () {
+    const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.data.language}/${this.$route.path}`)
+    this.story = data.story
   },
   head () {
     return {

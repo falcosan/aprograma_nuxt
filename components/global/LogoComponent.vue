@@ -1,15 +1,11 @@
 <template>
-  <div :class="`logo logo-${customLogo}`" v-html="blok.logo" />
+  <div :class="`logo logo-${customLogo}`">
+    aprograma.
+  </div>
 </template>
 
 <script>
 export default {
-  props: {
-    blok: {
-      type: Object,
-      required: true
-    }
-  },
   computed: {
     customLogo () {
       return this.$customClass(

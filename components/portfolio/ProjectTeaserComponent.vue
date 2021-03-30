@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="projectLink" class="block w-9/12 mx-auto">
+  <NuxtLink :to="projectLink" class="block mx-auto">
     <div> {{ projectContent.title }}</div>
     <img :src="projectContent.image.filename" :alt="projectContent.image.alt">
     <div> {{ projectContent.start_date }} {{ projectContent.end_date }}</div>

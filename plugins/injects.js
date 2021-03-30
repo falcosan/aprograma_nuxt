@@ -7,8 +7,8 @@ export default ({ app }, inject) => {
   inject('contentByName', (from, nameComponent) => {
     return from.filter(function (item) { return item.component === `${nameComponent}` })
   })
-  inject('errorMessage', (call, message404, message500) => {
-    if (!call) {
+  inject('errorMessage', (res, message404, message500) => {
+    if (!res) {
       app.context.error({
         statusCode: 404,
         message: message404

@@ -1,7 +1,5 @@
 <template>
-  <section>
-    <Project :blok="story.content" />
-  </section>
+  <Project :blok="story.content" />
 </template>
 <script>
 import Project from '@/components/portfolio/ProjectComponent'

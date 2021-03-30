@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="postLink" class="block w-9/12 mx-auto">
+  <NuxtLink :to="postLink" class="block mx-auto">
     <div class="post-teaser grid grid-cols-8 h-50">
       <div
         class="teaser-head grid grid-cols-7 grid-rows-2 gap-x-10 h-full row-start-1 row-end-1 col-start-1 col-end-3 bg-red-400 relative z-10"

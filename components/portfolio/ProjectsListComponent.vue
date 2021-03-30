@@ -1,6 +1,6 @@
 <template>
-  <ul class="grid gap-y-5">
-    <li v-for="project in sortedProject" :key="project._uid">
+  <ul class="flex flex-row flex-wrap">
+    <li v-for="project in sortedProject" :key="project._uid" class="flex-1 max-w-sm">
       <ProjectTeaser
         v-if="project.content"
         :project-link="`portfolio/${project.slug}`"

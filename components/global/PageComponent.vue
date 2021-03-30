@@ -1,12 +1,12 @@
 <template>
-  <div :class="`${blok.name.toLowerCase()}-page p-6`">
+  <section :class="`${blok.name.toLowerCase()}-page`">
     <component
       :is="component.component"
       v-for="component in blok.body"
       :key="component._uid"
       :blok="component"
     />
-  </div>
+  </section>
 </template>
 
 <script>

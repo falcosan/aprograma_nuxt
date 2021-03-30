@@ -1,12 +1,10 @@
 <template>
-  <section>
-    <component
-      :is="story.content.component"
-      v-if="story.content.component"
-      :key="story.content._uid"
-      :blok="story.content"
-    />
-  </section>
+  <component
+    :is="story.content.component"
+    v-if="story.content.component"
+    :key="story.content._uid"
+    :blok="story.content"
+  />
 </template>
 <script>
 import Post from '@/components/blog/PostComponent'

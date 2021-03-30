@@ -1,5 +1,5 @@
 <template>
-  <div class="post w-9/12 my-0 mx-auto grid grid-rows-7 grid-cols-1">
+  <div class="post my-0 mx-auto grid grid-rows-7 grid-cols-1">
     <div class=" post-head h-full row-start-1 row-end-1 col-start-1 col-end-1">
       <component
         :is="lookFile()"

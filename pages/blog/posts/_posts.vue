@@ -1,7 +1,5 @@
 <template>
-  <section>
-    <Post :blok="story.content" />
-  </section>
+  <Post :blok="story.content" />
 </template>
 <script>
 import Post from '@/components/blog/PostComponent'

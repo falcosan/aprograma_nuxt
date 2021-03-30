@@ -18,9 +18,7 @@ export default {
   },
   plugins: [
     '~/plugins/components',
-    '~/plugins/content',
-    '~/plugins/error',
-    '~/plugins/style'
+    '~/plugins/injects'
   ],
 
   buildModules: [

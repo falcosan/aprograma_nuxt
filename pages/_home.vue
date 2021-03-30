@@ -14,7 +14,7 @@ export default {
   asyncData (context) {
     const slug = (context.route.path === '/' || context.route.path === '') ? 'home' : context.route.path
     return context.app.$storyapi
-      .get(`cdn/stories/${slug}`)
+      .get(`cdn/stories/${context.store.state.data.language}/${slug}`)
       .then((res) => {
         return res.data
       })
@@ -23,17 +23,6 @@ export default {
           res.response.config.url.lastIndexOf('/') + 1)}" doesn't exist`, `Sorry, but the content: "${res.response.config.url.substring(
           res.response.config.url.lastIndexOf('/') + 1)}" has a problem or doesn't exist`)
       })
-  },
-  data () {
-    return {
-      story: {
-        content: {}
-      }
-    }
-  },
-  async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.data.language}/home`)
-    this.story = data.story
   },
   head () {
     return {
@@ -48,7 +37,12 @@ export default {
     }
   },
   watch: {
-    '$store.state.data.language': '$fetch'
+    '$store.state.data.language': 'refreshData'
+  },
+  methods: {
+    refreshData () {
+      this.$nuxt.refresh()
+    }
   }
 }
 </script>

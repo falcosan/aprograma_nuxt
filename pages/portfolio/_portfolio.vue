@@ -12,21 +12,6 @@
 import Project from '@/components/portfolio/ProjectComponent'
 export default {
   components: { Project },
-  asyncData (context) {
-    return context.app.$storyapi
-      .get(`cdn/stories/${context.route.path}`)
-      .then((res) => {
-        return res.data
-      })
-      .catch((res) => {
-        context.$errorMessage(res.response,
-          `Sorry but the project called ${context.route.path.substring(
-            context.route.path.lastIndexOf('/') + 1
-          )} doesn't extist`, `Sorry, but the project called: "${context.route.path.substring(
-          context.route.path.lastIndexOf('/') + 1)}" has a problem or doesn't exist`
-        )
-      })
-  },
   data () {
     return {
       story: {
@@ -35,8 +20,17 @@ export default {
     }
   },
   async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.data.language}/${this.$route.path}`)
-    this.story = data.story
+    try {
+      const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.data.language}/${this.$route.path}`)
+      this.story = data.story
+    } catch {
+      this.$errorMessage(this.story.content.component,
+          `Sorry but the project called ${this.$route.path.substring(
+            this.$route.path.lastIndexOf('/') + 1
+          )} doesn't extist`, `Sorry, but the project called: "${this.$route.path.substring(
+          this.$route.path.lastIndexOf('/') + 1)}" has a problem or doesn't exist`
+      )
+    }
     this.$store.dispatch('list/addItems', 'portfolio')
   },
   head () {

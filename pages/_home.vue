@@ -37,12 +37,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.data.language': 'refreshData'
-  },
-  methods: {
-    refreshData () {
-      this.$nuxt.refresh()
-    }
+    '$store.state.data.language': { handler () { this.$nuxt.refresh() } }
   }
 }
 </script>

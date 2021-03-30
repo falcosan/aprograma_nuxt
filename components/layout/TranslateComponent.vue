@@ -1,9 +1,9 @@
 <template>
-  <ul class="rounded-r-2xl transition-all duration-200 ease-in-out">
+  <ul class="transition-all duration-200 ease-in-out">
     <li
       v-for="language in blok"
       :key="language._uid"
-      class="translate-item cursor-pointer"
+      :class="`translate-item-${customTranslateItem} cursor-pointer`"
     >
       <a
         class="link-translate"
@@ -11,7 +11,7 @@
           changeLang(language.language.toLowerCase().substring(0,2) === 'en' ? '' : language.language.toLowerCase().substring(0,2))
         "
       >
-        <span class="translate-lang">{{ language.language }}</span>
+        <span class="translate-lang hover:text-gray-400 hover:text-underline">{{ language.language }}</span>
       </a>
     </li>
   </ul>
@@ -24,6 +24,13 @@ export default {
     blok: {
       type: Array,
       required: true
+    }
+  },
+  computed: {
+    customTranslateItem () {
+      return (
+        this.$customClass('header', 'header py-2 px-4')
+      )
     }
   },
   methods: {

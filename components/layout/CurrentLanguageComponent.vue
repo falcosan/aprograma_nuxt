@@ -1,5 +1,5 @@
 <template>
-  <span class="w-full h-10 cursor-pointer">
+  <span class="cursor-pointer">
     {{ blok.language }}
   </span>
 </template>

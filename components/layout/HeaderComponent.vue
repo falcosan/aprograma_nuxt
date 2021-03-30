@@ -11,9 +11,9 @@
         </li>
       </ul>
     </nav>
-    <nav class="language-bar flex relative top-10">
+    <nav class="language-bar flex relative">
       <Translate :class="`bg-black absolute text-white ${expanded}`" :blok="$contentByName(blok.body, 'Translate')" @mouseleave.native="expandOut()" />
-      <CurrentLanguage class="bg-black px-3 flex items-center rounded-r-full text-white" :blok="$contentByName(blok.body, 'CurrentLanguage')[0]" @click.native="expandIn()" />
+      <CurrentLanguage class="bg-black h-10 px-4 flex items-center justify-center text-white" :blok="$contentByName(blok.body, 'CurrentLanguage')[0]" @click.native="expandIn()" />
     </nav>
   </header>
 </template>
@@ -41,13 +41,13 @@ export default {
   },
   methods: {
     expandIn () {
-      this.expanded = 'expandend left-0 p-5'
+      this.expanded = 'expandend left-0 py-4 w-28'
       clearTimeout(this.timer)
       this.timer = undefined
     },
     expandOut () {
       this.timer = setTimeout(() => {
-        this.expanded = 'not-expanded -left-full delay-100'
+        this.expanded = 'not-expanded -left-full'
       }, 1000)
       this.timer = undefined
     }

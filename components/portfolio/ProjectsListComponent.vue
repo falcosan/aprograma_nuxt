@@ -1,5 +1,6 @@
 <template>
   <Slider
+    v-if="sortedProject"
     :blok="sortedProject"
     :parent="$route.path"
   />

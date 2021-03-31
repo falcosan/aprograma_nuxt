@@ -24,6 +24,9 @@ module.exports = {
       transitionProperty: {
         height: 'height',
         left: 'left'
+      },
+      spacing: {
+        'full-adapted': 'calc(100vh - 3rem)'
       }
     }
   },

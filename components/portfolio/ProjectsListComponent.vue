@@ -1,19 +1,11 @@
 <template>
-  <ul class="flex flex-row flex-wrap">
-    <li v-for="project in sortedProject" :key="project._uid" class="flex-1 max-w-sm">
-      <ProjectTeaser
-        v-if="project.content"
-        :project-link="`portfolio/${project.slug}`"
-        :project-content="project.content"
-      />
-    </li>
-  </ul>
+  <Slider
+    :blok="sortedProject"
+    :parent="$route.path"
+  />
 </template>
-
 <script>
-import ProjectTeaser from './ProjectTeaserComponent'
 export default {
-  components: { ProjectTeaser },
   props: {
     blok: {
       type: Object,
@@ -30,6 +22,9 @@ export default {
       })
       return featuredProjects
     }
+  },
+  created () {
+    console.log(this.$route)
   }
 }
 </script>

@@ -22,9 +22,6 @@ export default {
       })
       return featuredProjects
     }
-  },
-  created () {
-    console.log(this.$route)
   }
 }
 </script>

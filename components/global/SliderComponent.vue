@@ -1,10 +1,15 @@
 <template>
-  <ul class="flex flex-row flex-nowrap overflow-x-auto">
-    <li v-for="item in blok" :key="item._uid" class="flex flex-shrink-0 flex-grow-0">
-      <NuxtLink :to="`${parent}/${item.slug}`" class="w-full h-full-adapted mr-5 bg-blue-500">
-        <div> {{ item.content.title }}</div>
-        <img class="w-auto object-contain" :src="item.content.image.filename" :alt="item.content.image.alt">
-        <div> {{ item.content.start_date }} {{ item.content.end_date }}</div>
+  <ul class="slider h-full-adapted flex flex-nowrap overflow-x-auto">
+    <li v-for="item in blok" :key="item._uid" class="slide slide-item w-full flex flex-shrink-0 flex-grow-0 bg-indigo-800">
+      <NuxtLink :to="`${parent}/${item.slug}`" class="item-link w-full grid grid-rows-1 grid-cols-2">
+        <div class="text-container flex flex-col justify-center row-start-1 row-end-1 col-start-1 col-end-1 px-5 relative z-10 ">
+          <h1 class="item-text text-white">
+            {{ item.content.title }}
+          </h1>
+        </div>
+        <div class="image-container flex row-start-1 row-end-1 col-start-2 col-end-2">
+          <img class="item-image w-full object-cover object-center" :src="item.content.image.filename" :alt="item.content.image.alt">
+        </div>
       </NuxtLink>
     </li>
   </ul>
@@ -39,3 +44,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+::-webkit-scrollbar {
+width: 0;
+height: 0;
+}
+</style>

@@ -16,7 +16,8 @@ module.exports = {
       gridTemplateColumns: {
         7: '300px auto',
         8: '1fr 112px',
-        9: '20rem auto 35px'
+        9: '20rem auto 35px',
+        slider: '1fr 1fr 5rem'
       },
       gridTemplateRows: {
         7: '100vh auto 35px'

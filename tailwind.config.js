@@ -20,7 +20,7 @@ module.exports = {
         slider: '1fr 1fr 5rem'
       },
       gridTemplateRows: {
-        7: '100vh auto 35px'
+        post: '100vh auto'
       },
       transitionProperty: {
         height: 'height',

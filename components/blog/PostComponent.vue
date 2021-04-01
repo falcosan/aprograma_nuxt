@@ -4,7 +4,7 @@
       <component
         :is="lookFile()"
         class="post-file w-full h-full row-start-1 row-end-3 object-cover"
-        :alt="getAlt"
+        :alt="`${getAlt} project`"
         :src="getFile"
       />
     </div>

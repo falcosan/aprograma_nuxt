@@ -8,7 +8,7 @@
       <a
         class="link-translate"
         @click="
-          changeLang(language.language.toLowerCase().substring(0,2) === 'en' ? '' : language.language.toLowerCase().substring(0,2))
+          changeLang(language.language)
         "
       >
         <span class="translate-lang hover:text-gray-400 hover:text-underline">{{ language.language }}</span>

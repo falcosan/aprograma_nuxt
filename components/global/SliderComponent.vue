@@ -91,7 +91,7 @@ export default {
       }
     },
     resetData () {
-      this.indexControls = 1
+      this.indexControls = 0
       this.frame.up = 0
       this.frame.data = 1
       this.translation.enter = ''

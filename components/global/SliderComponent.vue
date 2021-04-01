@@ -21,7 +21,7 @@
         </NuxtLink>
       </li>
     </template>
-    <div v-if="frame.down === blok.length && blok.length > 1" :key="`${frame.up}-1`" :class="`flex justify-center items-center col-start-1 col-end-1 ${blok.length % 2 == 0 ? 'row-start-1 row-end-1' : 'row-start-2 row-end-2'} cursor-pointer`" @click="next">
+    <div v-if="frame.down === blok.length && blok.length > 1" :key="`${frame.up}-1`" :class="`h-2/3 flex justify-center items-center col-start-1 col-end-1 ${blok.length % 2 == 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} cursor-pointer`" @click="next">
       <h1>restart</h1>
     </div>
     <div :key="frame.up" class="next-control flex items-center h-full-adapted absolute right-20">

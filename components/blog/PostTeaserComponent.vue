@@ -1,18 +1,25 @@
 <template>
-  <NuxtLink :to="postLink" class="block mx-auto">
-    <div class="post-teaser grid grid-cols-8 h-50">
+  <transition-group
+    v-if="postContent"
+    tag="li"
+    appear
+    enter-active-class="transition-all duration-500 ease-out"
+    enter-class="opacity-0"
+    class="post-teaser w-full block mx-auto"
+  >
+    <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link grid grid-cols-8 h-50 ">
       <div
-        class="teaser-head grid grid-cols-7 grid-rows-2 gap-x-10 h-full row-start-1 row-end-1 col-start-1 col-end-3 bg-red-400 relative z-10"
+        class="teaser-content grid grid-cols-7 grid-rows-2 gap-x-10 h-full row-start-1 row-end-1 col-start-1 col-end-3 bg-red-400 relative z-10"
         @mouseover="hoverIn()"
         @mouseleave="hoverOut()"
       >
         <component
           :is="lookFile()"
-          class="post_file w-full h-full row-start-1 row-end-3 object-cover"
+          class="teaser-file w-full h-full row-start-1 row-end-3 object-cover"
           :alt="getAlt"
           :src="getFile"
         />
-        <div class="teaser-body flex flex-col justify-center row-start-1 row-end-3">
+        <div class="teaser-text flex flex-col justify-center row-start-1 row-end-3">
           <h3
             class="post_text overflow-hidden"
           >
@@ -26,19 +33,19 @@
         </div>
       </div>
       <div
-        class="post_expanded row-start-1 row-end-1 col-start-2 col-end-2 w-28"
+        class="teaser-expanded row-start-1 row-end-1 col-start-2 col-end-2 w-28"
       >
         <div
-          :class="`post_date ${hovered} row-start-2 col-start-3 self-end flex flex-col justify-center items-center h-full transition-transform duration-150 ease-in transform`"
+          :class="`teaser-date ${hovered} row-start-2 col-start-3 self-end flex flex-col justify-center items-center h-full transition-transform duration-150 ease-in transform`"
         >
           <h1
-            class="date_text h-auto transform rotate-90 w-max whitespace-nowrap text-3xl"
+            class="date-text h-auto transform rotate-90 w-max whitespace-nowrap text-3xl"
             v-text="changeDate(postContent.date)"
           />
         </div>
       </div>
-    </div>
-  </NuxtLink>
+    </NuxtLink>
+  </transition-group>
 </template>
 
 <script>

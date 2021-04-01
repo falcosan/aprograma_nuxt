@@ -1,12 +1,11 @@
 <template>
-  <ul class="grid gap-y-5">
-    <li v-for="post in sortedPosts" :key="post._uid">
-      <PostTeaser
-        v-if="post.content"
-        :post-link="`blog/${post.slug}`"
-        :post-content="post.content"
-      />
-    </li>
+  <ul class="post-list grid gap-y-5">
+    <PostTeaser
+      v-for="post in sortedPosts"
+      :key="post._uid"
+      :post-link="`blog/${post.slug}`"
+      :post-content="post.content"
+    />
   </ul>
 </template>
 

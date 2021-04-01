@@ -2,39 +2,39 @@
   <transition-group
     tag="ul"
     enter-active-class="transition-all duration-500 ease-out"
-    leave-active-class="transition-all duration-300 linear"
+    leave-active-class="transition-all duration-300"
     :enter-class="`opacity-0 transform ${translation.enter}`"
     :leave-to-class="`opacity-0 transform ${translation.leave}`"
-    class="slider w-full h-full-adapted flex flex-nowrap overflow-x-hidden"
+    class="slider w-full h-full-adapted grid grid-cols-1 grid-rows-2 overflow-x-hidden"
   >
     <template v-for="(item, index) in blok">
-      <li v-if="index === frame" :key="item.uuid" class="slide slide-item w-full flex flex-shrink-0 flex-grow-0">
+      <li v-if="index === frame.up || index === frame.down" :key="item.uuid" :class="`slide slide-item w-full flex p-5 col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1' : 'row-start-2 row-end-2'}`">
         <NuxtLink :to="`${parent}/${item.slug}`" class="item-link w-full grid grid-rows-1 grid-cols-2">
-          <div class="text-container flex flex-col justify-center row-start-1 row-end-1 col-start-1 col-end-1 px-5 relative z-10 bg-indigo-800">
+          <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1 px-5 relative z-10 bg-indigo-800`">
             <h1 class="item-text text-white">
               {{ item.content.title }}
             </h1>
           </div>
-          <div class="image-container flex row-start-1 row-end-1 col-start-2 col-end-2">
+          <div :class="`image-container flex row-start-1 row-end-1 ${index % 2 == 0 ? 'col-start-2 col-end-2' : 'col-start-1 col-end-1'}`">
             <img class="item-image w-full object-cover object-center" :src="item.content.image.filename" :alt="item.content.image.alt">
           </div>
         </NuxtLink>
       </li>
     </template>
-    <div :key="`${frame}-0`" class="flex items-center h-full-adapted absolute right-20">
-      <span v-if="elements.length + 1 >= frame" class="cursor-pointer" @click="next">
-        next
-      </span>
-      <span v-else class="cursor-pointer" @click="next">
-        restart
-      </span>
+    <div v-if="frame.down === blok.length && blok.length % 2 !== 0" :key="`${frame.up}-1`" class="flex justify-center items-center col-start-1 col-end-1 row-start-2 row-end-2 cursor-pointer" @click="next">
+      <h1>restart</h1>
     </div>
-    <div :key="`${frame}-1`" class="flex items-center h-full-adapted absolute left-20">
-      <span v-if="elements.length + 1 >= frame" class="cursor-pointer" @click="prev">
-        prev
+    <div :key="frame.up" class="next-control flex items-center h-full-adapted absolute right-20">
+      <span v-if="frame.up + 1 <= blok.length" class="cursor-pointer" @click="next">
+        {{ frame.down + 1 > blok.length ? 'restart' : 'next' }}
       </span>
-      <span v-else class="cursor-pointer" @click="next">
-        restart
+      <!-- <span v-else class="cursor-pointer" @click="next">
+
+      </span> -->
+    </div>
+    <div :key="frame.down" class="previous-control flex items-center h-full-adapted absolute left-20">
+      <span v-if="frame.down - 1 > elements.length" class="cursor-pointer" @click="prev">
+        prev
       </span>
     </div>
   </transition-group>
@@ -53,30 +53,47 @@ export default {
   },
   data () {
     return {
-      frame: 0,
+      frame: {
+        up: 0,
+        down: 1
+      },
       translation: {
-        enter: 'translate-x-full',
-        leave: '-translate-x-full'
+        enter: '',
+        leave: ''
       },
       elements: this.blok
     }
   },
+  destroyed () {
+    this.resetData()
+  },
   methods: {
     next () {
-      if (this.elements.length + 1 >= this.frame) {
-        this.frame++
+      if (this.blok.length - 1 > this.frame.up && this.blok.length > this.frame.down) {
+        this.frame.up++
+        this.frame.down++
         this.translation.enter = 'translate-x-full'
         this.translation.leave = '-translate-x-full'
       } else {
-        this.frame = 0
+        this.frame.up = 0
+        this.frame.down = 1
+        this.translation.enter = ''
+        this.translation.leave = ''
       }
     },
     prev () {
-      if (this.frame !== 0) {
-        this.frame--
+      if (this.frame.up !== 0 && this.frame.down !== 1) {
+        this.frame.up--
+        this.frame.down--
         this.translation.enter = '-translate-x-full'
         this.translation.leave = 'translate-x-full'
       }
+    },
+    resetData () {
+      this.frame.up = 0
+      this.frame.data = 1
+      this.translation.enter = ''
+      this.translation.leave = ''
     }
   }
 }

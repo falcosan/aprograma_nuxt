@@ -8,9 +8,9 @@
     class="slider w-full h-full-adapted grid grid-cols-1 grid-rows-2 overflow-x-hidden"
   >
     <template v-for="(item, index) in blok">
-      <li v-if="index === frame.up || index === frame.down" :key="item.uuid" :class="`slide slide-item w-full flex p-5 col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1' : 'row-start-2 row-end-2'}`">
+      <li v-if="index === frame.up || index === frame.down" :key="item.uuid" :class="`slide slide-item w-full h-2/3 flex p-5 col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'}`">
         <NuxtLink :to="`${parent}/${item.slug}`" class="item-link w-full grid grid-rows-1 grid-cols-2">
-          <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1 px-5 relative z-10 bg-indigo-800`">
+          <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1 px-5 relative z-10 bg-indigo-700`">
             <h1 class="item-text text-white">
               {{ item.content.title }}
             </h1>
@@ -21,16 +21,13 @@
         </NuxtLink>
       </li>
     </template>
-    <div v-if="frame.down === blok.length && blok.length % 2 !== 0" :key="`${frame.up}-1`" class="flex justify-center items-center col-start-1 col-end-1 row-start-2 row-end-2 cursor-pointer" @click="next">
+    <div v-if="frame.down === blok.length && blok.length > 1" :key="`${frame.up}-1`" :class="`flex justify-center items-center col-start-1 col-end-1 ${blok.length % 2 == 0 ? 'row-start-1 row-end-1' : 'row-start-2 row-end-2'} cursor-pointer`" @click="next">
       <h1>restart</h1>
     </div>
     <div :key="frame.up" class="next-control flex items-center h-full-adapted absolute right-20">
-      <span v-if="frame.up + 1 <= blok.length" class="cursor-pointer" @click="next">
-        {{ frame.down + 1 > blok.length ? 'restart' : 'next' }}
+      <span v-if="frame.up + 1 < blok.length" class="cursor-pointer" @click="next">
+        next
       </span>
-      <!-- <span v-else class="cursor-pointer" @click="next">
-
-      </span> -->
     </div>
     <div :key="frame.down" class="previous-control flex items-center h-full-adapted absolute left-20">
       <span v-if="frame.down - 1 > elements.length" class="cursor-pointer" @click="prev">

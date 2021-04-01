@@ -1,6 +1,12 @@
 <template>
-  <header class="header top-0 z-10 fixed h-20 w-auto justify-between mt-0">
-    <nav class="navbar">
+  <transition-group
+    tag="header"
+    appear
+    enter-active-class="transition-all duration-200 out-in"
+    enter-class="opacity-0"
+    class="header top-0 z-10 fixed h-20 w-auto justify-between mt-0"
+  >
+    <nav key="navbar" class="navbar">
       <ul class="menu-wrapper">
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
@@ -11,11 +17,11 @@
         </li>
       </ul>
     </nav>
-    <nav class="language-bar flex relative">
+    <nav key="language-navbar" class="language-navbar flex relative">
       <Translate :class="`bg-black absolute text-white ${expanded}`" :blok="$contentByName(blok.body, 'Translate')" @mouseleave.native="expandOut()" />
       <CurrentLanguage class="bg-black h-10 px-4 flex items-center justify-center text-white" :blok="$contentByName(blok.body, 'CurrentLanguage')[0]" @click.native="expandIn()" />
     </nav>
-  </header>
+  </transition-group>
 </template>
 
 <script>

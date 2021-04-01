@@ -1,8 +1,8 @@
 <template>
   <div
-    class="text-section"
+    :class="`text-section text-${customTextSection}`"
   >
-    <span :class="`text-content text-${customClass}`" v-html="getText" />
+    <span :class="`text-content ${customTextContent} h-min-content mx-auto py-6 px-10`" v-html="getText" />
   </div>
 </template>
 <script>
@@ -16,14 +16,20 @@ export default {
     }
   },
   computed: {
-    customClass () {
-      return this.$customClass(
-        'about',
-        'about absolute w-1/2 top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 bg-yellow-300 py-6 px-10'
-      )
-    },
     getText () {
       return DOMPurify.sanitize(marked(this.blok.text))
+    },
+    customTextSection  () {
+      return this.$customClass(
+        'about',
+        'about h-full-adapted items-center flex my-0'
+      )
+    },
+    customTextContent  () {
+      return this.$customClass(
+        'about',
+        'bg-yellow-300'
+      )
     }
   }
 }

@@ -13,6 +13,9 @@ module.exports = {
       fontFamily: {
         body: ['DM Serif Display']
       },
+      height: {
+        'min-content': 'min-content'
+      },
       gridTemplateColumns: {
         7: '300px auto',
         8: '1fr 112px',

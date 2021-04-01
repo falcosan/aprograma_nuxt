@@ -1,7 +1,15 @@
 <template>
-  <div :class="`logo logo-${customLogo}`">
-    aprograma.
-  </div>
+  <transition
+    tag="div"
+    appear
+    enter-active-class="transition-all duration-200 out-in"
+    enter-class="opacity-0"
+    class="logo-container"
+  >
+    <p :class="`logo logo-${customLogo}`">
+      aprograma.
+    </p>
+  </transition>
 </template>
 
 <script>

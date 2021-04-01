@@ -3,7 +3,7 @@
     v-if="postContent"
     tag="li"
     appear
-    enter-active-class="transition-all duration-500 ease-out"
+    enter-active-class="transition-all duration-100 out-in"
     enter-class="opacity-0"
     class="post-teaser w-full block mx-auto"
   >

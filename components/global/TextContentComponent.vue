@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <span :class="`text text-${customClass}`" v-html="getText" />
+  <div
+    class="text-section"
+  >
+    <span :class="`text-content text-${customClass}`" v-html="getText" />
   </div>
 </template>
 <script>

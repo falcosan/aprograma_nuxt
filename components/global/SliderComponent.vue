@@ -1,8 +1,9 @@
 <template>
   <transition-group
     tag="ul"
-    enter-active-class="transition-all duration-500 ease-out"
-    leave-active-class="transition-all duration-300"
+    appear
+    enter-active-class="transition-all duration-400 in-out"
+    leave-active-class="transition-all duration-200 out-in"
     :enter-class="`opacity-0 transform ${translation.enter}`"
     :leave-to-class="`opacity-0 transform ${translation.leave}`"
     class="slider w-full h-full-adapted grid grid-cols-1 grid-rows-2 overflow-x-hidden"
@@ -21,16 +22,16 @@
         </NuxtLink>
       </li>
     </template>
-    <div v-if="frame.down === blok.length && blok.length > 1" :key="`${frame.up}-1`" :class="`h-2/3 flex justify-center items-center col-start-1 col-end-1 ${blok.length % 2 == 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} cursor-pointer`" @click="next">
+    <div v-if="frame.down === blok.length && blok.length > 1" :key="`${indexControls}-0`" :class="`restart-control control h-2/3 flex justify-center items-center col-start-1 col-end-1 ${blok.length % 2 == 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} cursor-pointer`" @click="next">
       <h1>restart</h1>
     </div>
-    <div :key="frame.up" class="next-control flex items-center h-full-adapted absolute right-20">
-      <span v-if="frame.up + 1 < blok.length" class="cursor-pointer" @click="next">
+    <div :key="`${indexControls}-1`" class="next-control control flex items-center h-full-adapted absolute right-20">
+      <span v-if="frame.up + 1 < blok.length" class="next-text cursor-pointer" @click="next">
         next
       </span>
     </div>
-    <div :key="frame.down" class="previous-control flex items-center h-full-adapted absolute left-20">
-      <span v-if="frame.down - 1 > elements.length" class="cursor-pointer" @click="prev">
+    <div :key="`${indexControls}-2`" class="previous-control control flex items-center h-full-adapted absolute left-20">
+      <span v-if="frame.up != 0" class="previous-text cursor-pointer" @click="prev">
         prev
       </span>
     </div>
@@ -50,6 +51,7 @@ export default {
   },
   data () {
     return {
+      indexControls: 0,
       frame: {
         up: 0,
         down: 1
@@ -57,8 +59,7 @@ export default {
       translation: {
         enter: '',
         leave: ''
-      },
-      elements: this.blok
+      }
     }
   },
   destroyed () {
@@ -67,11 +68,13 @@ export default {
   methods: {
     next () {
       if (this.blok.length - 1 > this.frame.up && this.blok.length > this.frame.down) {
+        this.indexControls++
         this.frame.up++
         this.frame.down++
         this.translation.enter = 'translate-x-full'
         this.translation.leave = '-translate-x-full'
       } else {
+        this.indexControls = 0
         this.frame.up = 0
         this.frame.down = 1
         this.translation.enter = ''
@@ -80,6 +83,7 @@ export default {
     },
     prev () {
       if (this.frame.up !== 0 && this.frame.down !== 1) {
+        this.indexControls--
         this.frame.up--
         this.frame.down--
         this.translation.enter = '-translate-x-full'
@@ -87,6 +91,7 @@ export default {
       }
     },
     resetData () {
+      this.indexControls = 1
       this.frame.up = 0
       this.frame.data = 1
       this.translation.enter = ''
@@ -95,9 +100,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-::-webkit-scrollbar{
-width: 0;
-height: 0;
-}
-</style>

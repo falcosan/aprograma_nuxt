@@ -1,9 +1,9 @@
 <template>
   <div class="project h-full-adapted grid grid-cols-3 grid-rows-project p-4 gap-y-4 bg-green-600 text-white">
-    <h1 class="project-title self-center text-center col-start-1 col-end-3 row-start-1 row-end-1">
+    <h2 class="project-title self-center col-start-1 col-end-3 row-start-1 row-end-1">
       {{ blok.title }}
-    </h1>
-    <div class="image-container flex justify-center overflow-y-hidden col-start-1 col-end-3 justify-self-center">
+    </h2>
+    <div class="image-container flex justify-center overflow-y-hidden col-start-1 col-end-3">
       <img class="project-image w-full object-cover" :src="blok.image.filename" :alt="blok.image.alt">
     </div>
     <span class="project-description row-start-1 row-end-3 flex items-center justify-end text-right text-1xl" v-html="getDescription" />

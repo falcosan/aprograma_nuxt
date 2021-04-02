@@ -23,7 +23,8 @@ module.exports = {
         slider: '1fr 1fr 5rem'
       },
       gridTemplateRows: {
-        post: '100vh auto'
+        post: '100vh auto',
+        project: '1fr 36rem 1fr'
       },
       transitionProperty: {
         height: 'height',

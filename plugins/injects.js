@@ -7,6 +7,16 @@ export default ({ app }, inject) => {
   inject('contentByName', (from, nameComponent) => {
     return from.filter(function (item) { return item.component === `${nameComponent}` })
   })
+  inject('languageCase', (english, spanish, italian) => {
+    switch (app.store.state.data.language) {
+      case '':
+        return english
+      case 'es':
+        return spanish
+      case 'it':
+        return italian
+    }
+  })
   inject('errorMessage', (res, message404, message500) => {
     if (!res) {
       app.context.error({

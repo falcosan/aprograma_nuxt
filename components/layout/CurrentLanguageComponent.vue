@@ -1,6 +1,6 @@
 <template>
   <span class="cursor-pointer">
-    {{ blok.language }}
+    {{ $languageCase('Language', 'Idioma', 'Lingua') }}
   </span>
 </template>
 

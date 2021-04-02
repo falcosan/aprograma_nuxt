@@ -8,9 +8,20 @@
       <span class="input_text text-center animate-bounce text-4xl">.</span>
     </div>
     <div class="footer_content grid items-center">
-      <h3 class="row-start-1 row-end-1 col-start-1 col-end-1 ml-4 text-sm">
-        {{ blok.message }}
-      </h3>
+      <transition-group
+        tag="div"
+        enter-active-class="transition-all duration-1000"
+        leave-active-class="transition-all duration-1000"
+        enter-class="opacity-0"
+        leave-to-class="opacity-0"
+        class="h-full w-max row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
+      >
+        <template v-for="(message, index) in blok.message">
+          <h6 v-if="index === messageIndex" :key="index" class="text-sm h-0">
+            {{ message }}
+          </h6>
+        </template>
+      </transition-group>
       <h4
         class="footer_copyright text-sm text-center w-full row-start-1 row-end-1 col-start-1 col-end-3"
       >
@@ -40,11 +51,13 @@ export default {
   data () {
     return {
       expanded: 'not_expanded h-0',
-      currentYear: new Date().getFullYear()
+      currentYear: new Date().getFullYear(),
+      messageIndex: 0
     }
   },
   created () {
     this.$store.commit('classes/setName', this.blok.component)
+    this.changeMessage()
   },
   methods: {
     expandIn () {
@@ -52,6 +65,15 @@ export default {
     },
     expandOut () {
       this.expanded = 'not_expanded h-0'
+    },
+    changeMessage () {
+      setInterval(() => {
+        if (this.messageIndex + 1 < this.blok.message.length && this.blok.message.length > 1) {
+          this.messageIndex++
+        } else {
+          this.messageIndex = 0
+        }
+      }, 2500)
     }
   }
 }

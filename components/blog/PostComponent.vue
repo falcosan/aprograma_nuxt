@@ -8,7 +8,7 @@
         :src="getFile"
       />
     </div>
-    <div class="post-body bg-green-500 grid gap-y-5 text-center p-5">
+    <div class="post-body bg-red-400 grid gap-y-5 text-center p-5">
       <h1
         class="post-title row-start-2 row-end-2 col-start-1 col-end-1"
         v-text="blok.title"

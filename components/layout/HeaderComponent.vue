@@ -19,7 +19,7 @@
     </nav>
     <nav key="language-navbar" class="language-navbar flex relative">
       <Translate :class="`bg-black absolute text-white ${expanded}`" :blok="$contentByName(blok.body, 'Translate')" @mouseleave.native="expandOut()" />
-      <CurrentLanguage class="bg-black h-10 px-4 flex items-center justify-center text-white" :blok="$contentByName(blok.body, 'CurrentLanguage')[0]" @click.native="expandIn()" />
+      <CurrentLanguage class="bg-black h-10 px-4 flex items-center justify-center text-white" @click.native="expandIn()" />
     </nav>
   </transition-group>
 </template>

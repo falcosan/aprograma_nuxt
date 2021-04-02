@@ -18,7 +18,12 @@
         {{ !blok.current_project ? changeDate(blok.end_date) : $languageCase('present', 'presente', 'presente') }}
       </h4>
     </div>
-    <a class="project-url self-center text-center italic" :href="blok.url_project">{{ blok.url_project !== "" ? `${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}` : $languageCase('private project', 'proyecto privado', 'progetto privato') }}</a>
+    <a
+      class="project-url self-center text-center italic"
+      :href="blok.url_project"
+      target="_blank"
+      rel="noopener"
+    >{{ blok.url_project !== "" ? `${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}` : $languageCase('private project', 'proyecto privado', 'progetto privato') }}</a>
   </div>
 </template>
 <script>

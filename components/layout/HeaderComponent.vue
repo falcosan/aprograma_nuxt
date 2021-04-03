@@ -8,6 +8,11 @@
   >
     <nav key="navbar" class="navbar">
       <ul class="menu-wrapper">
+        <li class="logo-home">
+          <NuxtLink to="/">
+            <Logo style-logo-container=" w-20 pt-5 pb-7" />
+          </NuxtLink>
+        </li>
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"
@@ -18,7 +23,7 @@
       </ul>
     </nav>
     <nav key="language-navbar" class="language-navbar flex relative">
-      <Translate :class="`bg-black absolute text-white ${expanded}`" :blok="$contentByName(blok.body, 'Translate')" @mouseleave.native="expandOut()" />
+      <Translate :class="`bg-black absolute text-white ${expanded}`" style-translate-item="py-3 px-4" :blok="$contentByName(blok.body, 'Translate')" @mouseleave.native="expandOut()" />
       <CurrentLanguage class="bg-black h-10 px-4 flex items-center justify-center text-white" @click.native="expandIn()" />
     </nav>
   </transition-group>
@@ -26,10 +31,11 @@
 
 <script>
 import Translate from './TranslateComponent'
+import Logo from './../global/LogoComponent'
 import CurrentLanguage from './CurrentLanguageComponent'
 import ItemNavbar from './ItemNavbarComponent'
 export default {
-  components: { ItemNavbar, Translate, CurrentLanguage },
+  components: { Logo, ItemNavbar, Translate, CurrentLanguage },
   props: {
     blok: {
       type: Object,
@@ -41,9 +47,6 @@ export default {
       timer: undefined,
       expanded: 'not-expanded -left-full'
     }
-  },
-  created () {
-    this.$store.commit('classes/setName', this.blok.component)
   },
   methods: {
     expandIn () {

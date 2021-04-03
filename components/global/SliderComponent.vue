@@ -11,7 +11,7 @@
     <template v-for="(item, index) in blok">
       <li v-if="index === frame.up || index === frame.down" :key="item.uuid" :class="`slide slide-item w-full h-2/3 flex p-5 col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'}`">
         <NuxtLink :to="`${parent}/${item.slug}`" class="item-link w-full grid grid-rows-1 grid-cols-2">
-          <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1 px-5 relative z-10 ${customTextContainer}`">
+          <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1 px-5 relative z-10 ${$customClass('portfolio', 'bg-green-600')}`">
             <h2 class="item-text text-white">
               {{ item.content.title }}
             </h2>
@@ -62,11 +62,6 @@ export default {
         enter: '',
         leave: ''
       }
-    }
-  },
-  computed: {
-    customTextContainer () {
-      return this.$customClass('portfolio', 'bg-green-600')
     }
   },
   destroyed () {

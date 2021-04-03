@@ -34,6 +34,7 @@
           v-for="iconLink in $contentByName(blok.body, 'IconLink')"
           :key="iconLink._uid"
           :blok="iconLink"
+          style-icon-link="w-6 mr-4"
         />
       </div>
     </div>
@@ -56,7 +57,6 @@ export default {
     }
   },
   created () {
-    this.$store.commit('classes/setName', this.blok.component)
     this.changeMessage()
   },
   methods: {

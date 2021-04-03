@@ -3,7 +3,7 @@
     :key="blok._uid"
     :title="blok.tooltip"
     :href="blok.path"
-    :class="`icon-link icon-link-${customIconLink}`"
+    :class="`icon-link ${styleIconLink}`"
     target="_blank"
     rel="noopener"
   ><span
@@ -28,14 +28,8 @@ export default {
     blok: {
       type: Object,
       required: true
-    }
-  },
-  computed: {
-    customIconLink () {
-      return (
-        this.$customClass('footer', 'footer w-6 mr-4')
-      )
-    }
+    },
+    styleIconLink: String
   }
 }
 </script>

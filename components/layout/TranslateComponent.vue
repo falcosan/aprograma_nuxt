@@ -3,7 +3,7 @@
     <li
       v-for="language in blok"
       :key="language._uid"
-      :class="`translate-item-${customTranslateItem} cursor-pointer`"
+      :class="`${styleTranslateItem} cursor-pointer`"
     >
       <a
         class="link-translate"
@@ -24,14 +24,8 @@ export default {
     blok: {
       type: Array,
       required: true
-    }
-  },
-  computed: {
-    customTranslateItem () {
-      return (
-        this.$customClass('header', 'header py-2 px-4')
-      )
-    }
+    },
+    styleTranslateItem: String
   },
   methods: {
     changeLang (lang) {

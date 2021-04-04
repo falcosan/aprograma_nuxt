@@ -7,9 +7,9 @@
     enter-class="opacity-0"
     class="post-teaser w-full block mx-auto"
   >
-    <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link grid grid-cols-8 h-50 ">
+    <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link grid grid-cols-post-teaser-link h-50 ">
       <div
-        class="teaser-content grid grid-cols-7 grid-rows-2 gap-x-10 h-full row-start-1 row-end-1 col-start-1 col-end-3 bg-red-400 relative z-10"
+        class="teaser-content grid grid-cols-post-teaser-content grid-rows-2 gap-x-10 h-full row-start-1 row-end-1 col-start-1 col-end-3 bg-red-400 relative z-10"
         @mouseover="hoverIn()"
         @mouseleave="hoverOut()"
       >

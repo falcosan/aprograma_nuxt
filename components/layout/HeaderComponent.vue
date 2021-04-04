@@ -10,7 +10,7 @@
       <ul class="menu-wrapper">
         <li class="logo-home">
           <NuxtLink to="/">
-            <Logo style-logo-container="w-28 px-2 py-2 my-0 mx-auto" />
+            <Logo style-logo-container="w-24 m-0" />
           </NuxtLink>
         </li>
         <li

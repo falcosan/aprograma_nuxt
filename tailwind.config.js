@@ -11,15 +11,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        body: ['DM Serif Display']
+        body: ['Asap']
       },
       height: {
         'min-content': 'min-content'
       },
       gridTemplateColumns: {
-        7: '300px auto',
-        8: '1fr 112px',
-        9: '20rem auto 35px',
+        'post-teaser-link': '1fr 112px',
+        'post-teaser-content': '300px auto',
         slider: '1fr 1fr 5rem'
       },
       gridTemplateRows: {
@@ -34,7 +33,7 @@ module.exports = {
         'full-adapted': 'calc(100vh - 3rem)'
       },
       transformOrigin: {
-        20: '50% 47%'
+        'center-left': '50% 40%'
       },
       rotate: {
         360: '360deg'

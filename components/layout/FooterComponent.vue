@@ -10,8 +10,8 @@
     <div class="footer_content grid items-center">
       <transition-group
         tag="div"
-        enter-active-class="transition-all duration-1000"
-        leave-active-class="transition-all duration-1000"
+        enter-active-class="transition-opacity duration-1000"
+        leave-active-class="transition-opacity duration-1000"
         enter-class="opacity-0"
         leave-to-class="opacity-0"
         class="h-full w-max row-start-1 row-end-1 col-start-1 col-end-1 ml-4"

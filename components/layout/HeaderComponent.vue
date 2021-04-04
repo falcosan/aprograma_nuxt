@@ -2,7 +2,7 @@
   <transition-group
     tag="header"
     appear
-    enter-active-class="transition-all duration-200 out-in"
+    enter-active-class="transition-opacity duration-200 out-in"
     enter-class="opacity-0"
     class="header top-0 z-10 fixed h-20 w-auto justify-between mt-0"
   >
@@ -10,7 +10,7 @@
       <ul class="menu-wrapper">
         <li class="logo-home">
           <NuxtLink to="/">
-            <Logo style-logo-container=" w-20 pt-5 pb-7" />
+            <Logo style-logo-container="w-28 px-2 py-2 my-0 mx-auto" />
           </NuxtLink>
         </li>
         <li

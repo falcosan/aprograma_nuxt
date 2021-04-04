@@ -32,6 +32,12 @@ module.exports = {
       },
       spacing: {
         'full-adapted': 'calc(100vh - 3rem)'
+      },
+      transformOrigin: {
+        20: '50% 47%'
+      },
+      rotate: {
+        360: '360deg'
       }
     }
   },

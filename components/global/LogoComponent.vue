@@ -2,28 +2,26 @@
   <transition-group
     tag="div"
     appear
-    enter-active-class="transition-all duration-200 out-in"
+    enter-active-class="transition-opacity duration-200 out-in"
     enter-class="opacity-0"
     :class="`logo-container ${styleLogoContainer} ${$customClass('home', 'my-0 mx-auto')}`"
   >
     >
     <svg
       id="logo"
-      key="logo"
-      class="logo-aprograma w-full h-auto"
+      key="logo-up"
+      class="logo-svg w-full h-auto"
       version="1.1"
       baseProfile="basic"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
-      x="0px"
-      y="0px"
-      width="441.28px"
-      height="436.89px"
       viewBox="0 0 441.28 436.89"
       xml:space="preserve"
+      @mouseover="playOn()"
+      @mouseleave="playOff()"
     >
       <g id="a">
-        <g id="a-shape">
+        <g id="a-shape" :class="`transition-element ${moved.a}`">
           <path
             fill="#282828"
             d="M303.19,203.37c-8,200.96-295,200.81-302.93,0c0-83.65,67.81-153.42,151.46-153.42
@@ -63,7 +61,7 @@
             />
           </g>
         </g>
-        <g id="a-shade" opacity="0.06">
+        <g id="a-shade" :class="`transition-element ${moved.a}`" opacity="0.06">
 
           <image
             overflow="visible"
@@ -22670,6 +22668,7 @@ RU5ErkJggg=="
         </g>
         <path
           id="a-line"
+          :class="`transition-element ${moved.a}`"
           fill="#353535"
           d="M211.3803,357.6222h-8.3663c-26.463,0-47.9155-21.4525-47.9155-47.9154V97.5095
           c0-26.463,21.4525-47.9154,47.9155-47.9154h8.3663c26.463,0,47.9155,21.4525,47.9155,47.9154v212.1973
@@ -22677,7 +22676,7 @@ RU5ErkJggg=="
         />
       </g>
       <g id="p">
-        <g id="p-a-shadow_1_">
+        <g id="p-a-shadow_1_" :class="`transition-element ${moved.p}`">
 
           <image
             overflow="visible"
@@ -25543,7 +25542,7 @@ AAAAAAAAAAAAAAAAAAAAAAAA8IP/D+txo3FUby5FAAAAAElFTkSuQmCC"
           d="M195.7,207.33c0,29.68-24.06,53.75-53.75,53.75
           c-71.29-2.83-71.27-104.67,0-107.49C171.64,153.58,195.7,177.64,195.7,207.33z"
         />
-        <g id="p-shape_1_">
+        <g id="p-shape_1_" :class="`transition-element ${moved.p}`">
           <path
             fill="#1C1C1C"
             d="M201.11,330.48c-0.32-36.29-0.55-79.05-0.55-126.56c0-4.69,0.22-8.41,0.7-12.07l0.06-0.43
@@ -25562,41 +25561,10 @@ AAAAAAAAAAAAAAAAAAAAAAAA8IP/D+txo3FUby5FAAAAAElFTkSuQmCC"
         </g>
         <path
           id="p-center_1_"
+          :class="`transition-element ${moved.p}`"
           fill="#FFFFFF"
           d="M348.14,207.33c0,29.68-24.06,53.75-53.75,53.75c-71.29-2.83-71.27-104.67,0-107.49
           C324.08,153.58,348.14,177.64,348.14,207.33z"
-        />
-
-        <linearGradient
-          id="p-shade_2_"
-          gradientUnits="userSpaceOnUse"
-          x1="187.9968"
-          y1="213.4843"
-          x2="438.635"
-          y2="253.1816"
-          gradientTransform="matrix(1 0 0 -1 0 437.8898)"
-        >
-          <stop offset="0" style="stop-color:#000000" />
-          <stop offset="0.2971" style="stop-color:#020202" />
-          <stop offset="0.446" style="stop-color:#0A0A0A" />
-          <stop offset="0.5619" style="stop-color:#171717" />
-          <stop offset="0.6609" style="stop-color:#2A2A2A" />
-          <stop offset="0.749" style="stop-color:#424242" />
-          <stop offset="0.8294" style="stop-color:#606060" />
-          <stop offset="0.904" style="stop-color:#848484" />
-          <stop offset="0.972" style="stop-color:#ACACAC" />
-          <stop offset="1" style="stop-color:#BFBFBF" />
-        </linearGradient>
-        <path
-          id="p-shade_1_"
-          opacity="0.2"
-          fill="url(#p-shade_2_)"
-          d="M404,307c-26.94,32.36-61.48,43.15-83,50
-          c-25.58,8.14-77.26,24.59-103-1c-14.78-14.7-14.52-36.81-14.48-38.25c0.6-23.19,16.87-38.76,19.54-41.04
-          c32.63-27.92,75.4,0.51,107.49-29.32c3.24-3.01,13.08-12.86,16.45-28.39c3.57-16.46-0.72-36.62-15.15-50.52
-          c-14.61-14.08-32.44-14.9-36.48-14.89c-22.86,0.04-45.47,12.84-53.37,41.42c-2.12,8-0.9,10.46-3,12
-          c-9.16,6.68-58.52-20.89-62.84-61.24c-2.76-25.77,14.02-45.8,21.5-54.72C230.07,52.35,281.04,52.06,292,52
-          c24.75-0.14,63.02,7.52,97,38C451.08,144.21,456.65,242.65,404,307z"
         />
       </g>
     </svg>
@@ -25608,6 +25576,29 @@ export default {
   props: {
     styleLogoContainer: String,
     styleLogo: String
+  },
+  data () {
+    return {
+      moved: {
+        a: '',
+        p: ''
+      },
+      endTransition: undefined
+    }
+  },
+  methods: {
+    playOn () {
+      this.moved.a = 'origin-20 transform translate rotate-360 transition duration-1000 ease-out'
+      this.moved.p = 'origin-center transform translate rotate-360 transition duration-1000 ease-out'
+      clearInterval(this.endTransition)
+      this.endTransition = undefined
+    },
+    playOff () {
+      this.endTransition = setInterval(() => {
+        this.moved.a = ''
+        this.moved.p = ''
+      }, 800)
+    }
   }
 }
 </script>

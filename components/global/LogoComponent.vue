@@ -4,7 +4,7 @@
     appear
     enter-active-class="transition-opacity duration-200 out-in"
     enter-class="opacity-0"
-    :class="`logo-container ${styleLogoContainer} ${$customClass('home', 'my-0 mx-auto')}`"
+    :class="`logo-container ${styleLogoContainer}`"
   >
     >
     <svg

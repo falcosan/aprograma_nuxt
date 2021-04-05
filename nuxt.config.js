@@ -51,7 +51,7 @@ export default {
   ],
 
   sitemap: {
-    hostname: 'https://aprograma.co',
+    hostname: process.env.BASE_URL,
     gzip: true,
     routes: async () => {
       const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}`)

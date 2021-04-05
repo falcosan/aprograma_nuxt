@@ -20,6 +20,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/sitemap": "^2.4.0",
     "core-js": "^3.9.1",
     "dompurify": "^2.2.7",
     "marked": "^2.0.1",

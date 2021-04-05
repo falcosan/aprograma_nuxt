@@ -1,3 +1,5 @@
+const os = require('os')
+const axios = require('axios')
 
 export default {
   target: 'static',
@@ -45,9 +47,18 @@ export default {
           threshold: 10240
         }
       }
-    ]
+    ],
+    '@nuxtjs/sitemap'
   ],
 
+  sitemap: {
+    hostname: os.hostname(),
+    gzip: true,
+    routes: async () => {
+      const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}`)
+      return Object.values(data.links).map(link => link.slug)
+    }
+  },
   build: {
     postcss: {
       plugins: {

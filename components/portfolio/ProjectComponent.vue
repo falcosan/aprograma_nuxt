@@ -1,5 +1,5 @@
 <template>
-  <div class="project h-full-adapted grid grid-cols-3 grid-rows-project p-4 gap-y-4 bg-green-600 text-white">
+  <div class="project h-full-adapted grid grid-cols-3 grid-rows-project p-4 gap-y-4 gap-x-4 bg-green-600 text-white">
     <h2 class="project-title self-center col-start-1 col-end-3 row-start-1 row-end-1">
       {{ blok.title }}
     </h2>

@@ -1,4 +1,3 @@
-const os = require('os')
 const axios = require('axios')
 
 export default {
@@ -52,7 +51,7 @@ export default {
   ],
 
   sitemap: {
-    hostname: os.hostname(),
+    hostname: 'https://aprograma.co',
     gzip: true,
     routes: async () => {
       const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}`)

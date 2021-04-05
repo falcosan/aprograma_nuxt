@@ -2,8 +2,8 @@
   <transition-group
     tag="ul"
     appear
-    enter-active-class="transition-all duration-400 in-out"
-    leave-active-class="transition-all duration-300 out-in"
+    enter-active-class="transition-all duration-200 in-out"
+    leave-active-class="transition-all duration-200 out-in"
     :enter-class="`opacity-0 transform ${translation.enter}`"
     :leave-to-class="`opacity-0 transform ${translation.leave}`"
     class="slider w-full h-full-adapted grid grid-cols-1 grid-rows-2 overflow-x-hidden"

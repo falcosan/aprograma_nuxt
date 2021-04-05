@@ -3,8 +3,8 @@
     v-if="postContent"
     tag="li"
     appear
-    enter-active-class="transition-opacity duration-200 out-in"
-    enter-class="opacity-0"
+    appear-active-class="transition-opacity duration-200 out-in"
+    appear-class="opacity-0"
     class="post-teaser w-full block mx-auto"
   >
     <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link grid grid-cols-post-teaser-link h-50 ">

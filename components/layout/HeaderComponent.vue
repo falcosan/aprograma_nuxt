@@ -2,8 +2,8 @@
   <transition-group
     tag="header"
     appear
-    enter-active-class="transition-opacity duration-200 out-in"
-    enter-class="opacity-0"
+    appear-active-class="transition-opacity duration-200 out-in"
+    appear-class="opacity-0"
     class="header top-0 z-10 fixed h-20 w-auto justify-between mt-0"
   >
     <nav key="navbar" class="navbar">

@@ -1,6 +1,6 @@
 
 <template>
-  <form class="contact-form" @submit="sendEmail">
+  <form class="contact-form" @submit.prevent="sendEmail">
     <label>Name</label>
     <input type="text" name="user_name">
     <label>Email</label>

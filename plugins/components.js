@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Logo from '@/components/global/LogoComponent'
+import Form from '@/components/global/FormComponent'
 import Page from '@/components/global/PageComponent.vue'
 import Slider from '@/components/global/SliderComponent'
 import PostsList from '@/components/blog/PostsListComponent'
@@ -9,6 +10,7 @@ import ProjectsList from '@/components/portfolio/ProjectsListComponent'
 
 // GLOBAL
 Vue.component('Logo', Logo)
+Vue.component('Form', Form)
 Vue.component('Page', Page)
 Vue.component('Slider', Slider)
 Vue.component('IconLink', IconLink)

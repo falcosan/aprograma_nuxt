@@ -59,8 +59,17 @@ export default {
     '@nuxtjs/sitemap'
   ],
 
+  publicRuntimeConfig: {
+    emailJSuser: process.env.NODE_ENV === 'production' ? '' : process.env.NUXT_ENV_EMAILJSUSER,
+    emailJSservice: process.env.NODE_ENV === 'production' ? '' : process.env.NUXT_ENV_EMAILJSSERVICE
+  },
+  privateRuntimeConfig: {
+    emailJSuser: process.env.NUXT_ENV_EMAILJSUSER,
+    emailJSservice: process.env.NUXT_ENV_EMAILJSSERVICE
+  },
+
   sitemap: {
-    hostname: process.env.NUXT_ENV_HOSTNAME,
+    hostname: 'https://aprograma.co',
     routes: async () => {
       const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}`)
       const pages = ['about', 'portfolio', 'blog', 'contact']

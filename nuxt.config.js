@@ -11,10 +11,19 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Coding can be defined in many ways, sometimes even stressful. The goal of aprograma is to change this.' }
+      { hid: 'description', name: 'description', content: 'Coding can be defined in many ways, sometimes even stressful. The goal of aprograma is to change this.' },
+      { name: 'application-name', content: 'aprograma' },
+      { name: 'apple-mobile-web-app-title', content: 'aprograma' },
+      { name: 'msapplication-TileColor', content: '#da532c' },
+      { name: 'theme-color', content: '#ffffff' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/icon/favicon.ico' },
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/icon/favicon-32x32.png' },
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/icon/favicon-16x16.png' },
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/icon/apple-touch-icon.png' },
+      { rel: 'mask-icon', href: '/icon/safari-pinned-tab.svg', color: '#454545' },
+      { rel: 'manifest', href: '/icon/site.webmanifest' }
     ]
   },
   plugins: [

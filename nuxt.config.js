@@ -11,7 +11,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Coding can be defined in many ways, sometimes even stressful. The goal of aprograma is to change this' }
+      { hid: 'description', name: 'description', content: 'Coding can be defined in many ways, sometimes even stressful. The goal of aprograma is to change this.' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

@@ -60,10 +60,6 @@ export default {
   ],
 
   publicRuntimeConfig: {
-    emailJSuser: process.env.NODE_ENV === 'production' ? '' : process.env.NUXT_ENV_EMAILJSUSER,
-    emailJSservice: process.env.NODE_ENV === 'production' ? '' : process.env.NUXT_ENV_EMAILJSSERVICE
-  },
-  privateRuntimeConfig: {
     emailJSuser: process.env.NUXT_ENV_EMAILJSUSER,
     emailJSservice: process.env.NUXT_ENV_EMAILJSSERVICE
   },

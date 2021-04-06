@@ -2,11 +2,28 @@
 <template>
   <form class="contact-form" @submit.prevent="sendEmail">
     <label>Name</label>
-    <input type="text" name="user_name">
+    <input
+      v-model="name"
+      type="text"
+      name="name"
+      placeholder="Your Name"
+    >
     <label>Email</label>
-    <input type="email" name="user_email">
+    <input
+      v-model="email"
+      type="email"
+      name="email"
+      placeholder="Your Email"
+    >
     <label>Message</label>
-    <textarea name="message" />
+    <textarea
+      v-model="message"
+      name="message"
+      cols="30"
+      rows="5"
+      placeholder="Message"
+    />
+
     <input type="submit" value="Send">
   </form>
 </template>

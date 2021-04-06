@@ -4,14 +4,14 @@ export default {
   target: 'static',
 
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'aprograma - a paceful coding experience',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: 'Coding can be defined in many ways, sometimes even stressful. The goal of aprograma is to change this' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -51,11 +51,17 @@ export default {
   ],
 
   sitemap: {
-    hostname: 'https://aprograma.co',
-    gzip: true,
+    hostname: process.env.NUXT_ENV_HOSTNAME,
     routes: async () => {
       const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}`)
-      return Object.values(data.links).map(link => link.slug)
+      const pages = ['about', 'portfolio', 'blog', 'contact']
+      const exclude = Object.values(data.links).map(link => pages.some(el => link.slug.includes(el)) ? link.slug : '')
+      return exclude.filter(Boolean)
+    },
+    defaults: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmod: new Date()
     }
   },
   build: {

@@ -22,18 +22,6 @@ export default {
           res.response.config.url.lastIndexOf('/') + 1)}" has a problem or doesn't exist`)
       })
   },
-  head () {
-    return {
-      title: `${this.story.name} - aprograma`,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Home page of aprograma website'
-        }
-      ]
-    }
-  },
   watch: {
     '$store.state.data.language': { handler () { this.$nuxt.refresh() } }
   }

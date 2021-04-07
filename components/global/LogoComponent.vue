@@ -20,10 +20,8 @@
       height="710.8732px"
       viewBox="0 0 710.8732 710.8732"
       xml:space="preserve"
-      @mouseenter="playOn()"
-      @mouseout="playOff()"
     >
-      <g id="a" :class="moved.a">
+      <g id="a" :class="`transition-logo logo-a ${transitionA}`">
         <path
           fill="#999999"
           d="M255.8788,165.9017c-83.6324,0-151.4281,69.7552-151.4281,153.3876
@@ -48,7 +46,7 @@
           C406.9996,452.4832,387.2071,472.2758,362.7918,472.2758z"
         />
       </g>
-      <g id="p" :class="moved.p">
+      <g id="p" :class="`transition-logo logo-p ${transitionP}`">
         <path
           d="M606.4182,314.8502c-1.7396-92.0206-73.0146-151.8879-149.2385-151.878c-25.4046,0-51.3691,6.6486-75.4841,20.9756
           c-29.9037,16.8764-66.7359,59.2875-73.1945,110.9466c-0.9298,6.9985-1.2198,13.4971-1.2198,19.9458
@@ -75,29 +73,9 @@
 export default {
   props: {
     styleLogoContainer: String,
-    styleLogo: String
-  },
-  data () {
-    return {
-      moved: {
-        a: 'transition-logo',
-        p: 'transition-logo'
-      }
-
-    }
-  },
-
-  methods: {
-    playOn () {
-      this.moved.a = 'origin-center-left transform translate rotate-360 transition duration-700 ease-out'
-      this.moved.p = 'origin-center transform translate rotate-360 transition duration-700 ease-out'
-    },
-    playOff () {
-      document.getElementById('logo').ontransitionend = () => {
-        this.moved.p = 'transition-logo'
-        this.moved.a = 'transition-logo'
-      }
-    }
+    styleLogo: String,
+    transitionA: String,
+    transitionP: String
   }
 
 }

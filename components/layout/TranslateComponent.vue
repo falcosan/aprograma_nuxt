@@ -1,5 +1,5 @@
 <template>
-  <ul class="transition-all duration-200 ease-in-out">
+  <ul id="translate" class="list-translate w-full">
     <li
       v-for="language in blok"
       :key="language._uid"

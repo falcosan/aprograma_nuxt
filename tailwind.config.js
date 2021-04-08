@@ -14,6 +14,7 @@ module.exports = {
         body: ['Asap']
       },
       height: {
+        'full-adapted': 'calc(100vh - 3rem)',
         'min-content': 'min-content'
       },
       gridTemplateColumns: {
@@ -28,9 +29,6 @@ module.exports = {
       transitionProperty: {
         height: 'height',
         left: 'left'
-      },
-      spacing: {
-        'full-adapted': 'calc(100vh - 3rem)'
       },
       transformOrigin: {
         'center-left': '50% 40%'

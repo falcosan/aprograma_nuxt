@@ -67,7 +67,7 @@ export default {
   sitemap: {
     hostname: 'https://aprograma.co',
     routes: async () => {
-      const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}`)
+      const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
       const pages = ['about', 'portfolio', 'contact', 'blog']
       const exclude = Object.values(data.links).map(link => pages.includes(link.slug) ? link.slug : '')
       return exclude.filter(Boolean)

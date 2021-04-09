@@ -42,9 +42,9 @@ export default {
   },
   methods: {
     updateFields () {
-      if (this.blok.type === 'email') {
+      if (this.isEmail) {
         this.$store.commit('validator/emailValidation', this.fieldValue)
-      } else if (this.blok.tag === 'textarea') {
+      } else if (this.isMessage) {
         this.$store.commit('validator/messageValidation', this.fieldValue)
       }
     },

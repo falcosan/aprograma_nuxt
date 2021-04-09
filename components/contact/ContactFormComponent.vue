@@ -20,7 +20,7 @@
 </template>
 
 <script>
-// import emailjs from 'emailjs-com'
+import emailjs from 'emailjs-com'
 import Field from '../global/FieldComponent'
 export default {
   components: { Field },
@@ -36,19 +36,20 @@ export default {
     }
   },
   methods: {
-    // sendEmail (e) {
-    //   if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.$store.state.validator.email) && this.countWords.every(text => text > 5)) {
-    //     emailjs.sendForm(this.$config.emailJSservice, 'contact_form', e.target,
-    //       this.$config.emailJSuser)
-    //       .then((result) => {
-    //         console.log('SUCCESS!', result.status, result.text)
-    //       }, (error) => {
-    //         console.log('FAILED...', error)
-    //       })
-    //   } else {
-    //     alert('compila il form con tutte le informazioni')
-    //   }
-    // },
+    sendEmail (e) {
+      this.$store.dispatch('validator/checkValues')
+      if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes') {
+        emailjs.sendForm(this.$config.emailJSservice, 'contact_form', e.target,
+          this.$config.emailJSuser)
+          .then((result) => {
+            console.log('SUCCESS!', result.status, result.text)
+          }, (error) => {
+            console.log('FAILED...', error)
+          })
+      } else {
+        alert('compila il form con tutte le informazioni')
+      }
+    },
     test () {
       this.$store.dispatch('validator/checkValues')
       if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes') {

@@ -35,45 +35,46 @@ export default {
   },
   data () {
     return {
-      fields: []
+      fields: {}
     }
   },
+
   destroyed () {
     this.$store.dispatch('validator/clearValues')
   },
   methods: {
-    submit (e) {
-      if (this.blok.type === 'contact_form') {
-        this.$store.dispatch('validator/checkValues')
-        if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes') {
-          emailjs.sendForm(this.$config.emailJSservice, 'contact_form', e.target,
-            this.$config.emailJSuser)
-            .then(() => {
-              alert(this.blok.passed_message)
-              this.$store.dispatch('validator/clearValues')
-            }, () => {
-              alert('form di contatto momentaneamenre non disponibile')
-            })
-        } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.passed === 'yes') {
-          alert(this.blok.reject_email_field)
-        } else if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'no') {
-          alert(this.blok.reject_text_field)
-        } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.passed === 'no') {
-          alert(this.blok.reject_message)
-        }
-      }
-    },
+    // submit (e) {
+    //   if (this.blok.type === 'contact_form') {
+    //     this.$store.dispatch('validator/checkValues')
+    //     if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes') {
+    //       emailjs.sendForm(this.$config.emailJSservice, 'contact_form', e.target,
+    //         this.$config.emailJSuser)
+    //         .then(() => {
+    //           alert(this.blok.passed_message)
+    //           this.$store.dispatch('validator/clearValues')
+    //         }, () => {
+    //           alert('form di contatto momentaneamenre non disponibile')
+    //         })
+    //     } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.passed === 'yes') {
+    //       alert(this.blok.reject_email_field)
+    //     } else if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'no') {
+    //       alert(this.blok.reject_text_field)
+    //     } else {
+    //       alert(this.blok.reject_message)
+    //     }
+    //   }
+    // },
     test () {
       if (this.blok.type === 'contact_form') {
         this.$store.dispatch('validator/checkValues')
-        if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes') {
+        if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.blok.body.length && Object.values(this.fields).every(text => text.length > 1)) {
           alert(this.blok.passed_message)
           this.$store.dispatch('validator/clearValues')
-        } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.passed === 'yes') {
+        } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.text > 5) {
           alert(this.blok.reject_email_field)
-        } else if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'no') {
+        } else if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.$store.state.validator.email.text) && this.$store.state.validator.message.passed === 'no') {
           alert(this.blok.reject_text_field)
-        } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.passed === 'no') {
+        } else {
           alert(this.blok.reject_message)
         }
       }

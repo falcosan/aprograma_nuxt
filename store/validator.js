@@ -7,14 +7,15 @@ export const state = () => ({
   message: {
     text: '',
     passed: ''
-  }
+  },
+  check: false
 })
 
 export const mutations = {
-  emailValidation (state, newEmail) {
+  checkEmail (state, newEmail) {
     state.email.text = newEmail
   },
-  messageValidation (state, newMessage) {
+  checkMessage (state, newMessage) {
     state.message.text = newMessage
   },
   passEmail (state, newEmail) {
@@ -22,10 +23,14 @@ export const mutations = {
   },
   passMessage (state, newMessage) {
     state.message.passed = newMessage
+  },
+  checkForm (state, submitForm) {
+    state.check = submitForm
   }
 }
 export const actions = {
   checkValues: ({ state, commit }) => {
+    commit('checkForm', true)
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email.text)) {
       commit('passEmail', 'yes')
     } else {
@@ -39,8 +44,9 @@ export const actions = {
   },
   clearValues: ({ commit }) => {
     commit('passEmail', '')
-    commit('emailValidation', '')
+    commit('checkEmail', '')
     commit('passMessage', '')
-    commit('messageValidation', '')
+    commit('checkMessage', '')
+    commit('checkForm', false)
   }
 }

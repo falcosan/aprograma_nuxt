@@ -6,10 +6,10 @@
       :name="blok.name"
       :type="blok.tag === 'textarea' ? false : blok.type"
       :placeholder="blok.value_placeholder"
-      :class="`field${isEmail ? emailFail : isMessage ? messageFail : ''}`"
+      :class="`field${isEmail ? emailFail : isMessage ? messageFail : ''} ${$store.state.validator.check && fieldValue < 1 ? 'bg-red-500' : ''}`"
       :value="fieldValue !== '' ? fieldValue : false"
       @keyup="updateFields()"
-      @input="emit('update:fieldValue', $event.target.value)"
+      @input="$emit('update:fieldValue', $event.target.value)"
     />
   </div>
 </template>
@@ -34,19 +34,19 @@ export default {
   },
   computed: {
     emailFail () {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.fieldValue) ? '' : this.$store.state.validator.email.passed === 'no' ? ' bg-red-500' : ''
+      return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.fieldValue) && this.$store.state.validator.email.passed === 'no' ? ' bg-red-500' : ''
     },
     messageFail () {
-      return this.fieldValue.length > 5 ? '' : this.$store.state.validator.message.passed === 'no' ? ' bg-red-500' : ''
+      return this.fieldValue.length < 5 && this.$store.state.validator.message.passed === 'no' ? ' bg-red-500' : ''
     }
   },
 
   methods: {
     updateFields () {
       if (this.isEmail) {
-        this.$store.commit('validator/emailValidation', this.fieldValue)
+        this.$store.commit('validator/checkEmail', this.fieldValue)
       } else if (this.isMessage) {
-        this.$store.commit('validator/messageValidation', this.fieldValue)
+        this.$store.commit('validator/checkMessage', this.fieldValue)
       }
     }
   }

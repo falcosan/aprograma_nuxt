@@ -72,7 +72,7 @@ export default {
           this.$store.dispatch('validator/clearValues')
         } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.text > 5) {
           alert(this.blok.reject_email_field)
-        } else if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.$store.state.validator.email.text) && this.$store.state.validator.message.passed === 'no') {
+        } else if (this.$emailValidator(this.$store.state.validator.email.text) && this.$store.state.validator.message.passed === 'no') {
           alert(this.blok.reject_text_field)
         } else {
           alert(this.blok.reject_message)

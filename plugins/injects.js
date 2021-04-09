@@ -9,6 +9,9 @@ export default ({ app }, inject) => {
   inject('contentByName', (from, nameComponent) => {
     return from.filter(function (item) { return item.component === `${nameComponent}` })
   })
+  inject('emailValidator', (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  })
   inject('languageCase', (english, spanish, italian) => {
     switch (app.store.state.data.language) {
       case '':

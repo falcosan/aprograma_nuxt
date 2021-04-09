@@ -36,7 +36,7 @@ export const actions = {
     } else {
       commit('passEmail', 'no')
     }
-    if (state.message.text && state.message.text.length > 5) {
+    if (state.message.text.length > 5) {
       commit('passMessage', 'yes')
     } else {
       commit('passMessage', 'no')

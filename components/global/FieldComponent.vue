@@ -34,7 +34,7 @@ export default {
   },
   computed: {
     emailFail () {
-      return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.fieldValue) && this.$store.state.validator.email.passed === 'no' ? ' bg-red-500' : ''
+      return !this.$emailValidator(this.fieldValue) && this.$store.state.validator.email.passed === 'no' ? ' bg-red-500' : ''
     },
     messageFail () {
       return this.fieldValue.length < 5 && this.$store.state.validator.message.passed === 'no' ? ' bg-red-500' : ''

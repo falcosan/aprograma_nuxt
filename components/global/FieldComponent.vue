@@ -6,10 +6,10 @@
       :name="blok.name"
       :type="blok.tag === 'textarea' ? false : blok.type"
       :placeholder="blok.value_placeholder"
-      :class="`field${isEmail && $store.state.validator.email.passed === 'no' ? emailFail : isMessage && $store.state.validator.message.passed === 'no' ? messageFail : ''}`"
-      :value="fieldValue === '' ? false : fieldValue"
+      :class="`field${isEmail ? emailFail : isMessage ? messageFail : ''}`"
+      :value="fieldValue !== '' ? fieldValue : false"
       @keyup="updateFields()"
-      @input="$emit('update:fieldValue', $event.target.value)"
+      @input="emit('update:fieldValue', $event.target.value)"
     />
   </div>
 </template>
@@ -34,28 +34,19 @@ export default {
   },
   computed: {
     emailFail () {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.fieldValue) ? null : this.emailControl()
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.fieldValue) ? '' : this.$store.state.validator.email.passed === 'no' ? ' bg-red-500' : ''
     },
     messageFail () {
-      return this.fieldValue.length > 5 ? null : this.messageControl()
+      return this.fieldValue.length > 5 ? '' : this.$store.state.validator.message.passed === 'no' ? ' bg-red-500' : ''
     }
   },
+
   methods: {
     updateFields () {
       if (this.isEmail) {
         this.$store.commit('validator/emailValidation', this.fieldValue)
       } else if (this.isMessage) {
         this.$store.commit('validator/messageValidation', this.fieldValue)
-      }
-    },
-    emailControl () {
-      if (this.$store.state.validator.email.passed === 'no') {
-        return ' bg-red-500'
-      }
-    },
-    messageControl () {
-      if (this.$store.state.validator.message.passed === 'no') {
-        return ' bg-green-500'
       }
     }
   }

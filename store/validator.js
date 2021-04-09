@@ -36,5 +36,11 @@ export const actions = {
     } else {
       commit('passMessage', 'no')
     }
+  },
+  clearValues: ({ commit }) => {
+    commit('passEmail', '')
+    commit('emailValidation', '')
+    commit('passMessage', '')
+    commit('messageValidation', '')
   }
 }

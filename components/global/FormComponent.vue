@@ -1,0 +1,83 @@
+
+<template>
+  <transition-group
+    tag="div"
+    appear
+    appear-active-class="transition-opacity duration-200 out-in"
+    appear-class="opacity-0"
+    class="form-container"
+  >
+    <h1 key="form-title" class="form-title">
+      {{ blok.title }}
+    </h1>
+    <form key="form" class="form flex" novalidate="true" @submit.prevent="test">
+      <Field
+        v-for="(input, index) in blok.body"
+        :key="input._uid"
+        :field-value.sync="fields[index]"
+        :blok="input"
+      />
+      <input type="submit" :value="blok.submit">
+    </form>
+  </transition-group>
+</template>
+
+<script>
+import emailjs from 'emailjs-com'
+import Field from '../global/FieldComponent'
+export default {
+  components: { Field },
+  props: {
+    blok: {
+      type: Object,
+      required: true
+    }
+  },
+  data () {
+    return {
+      fields: []
+    }
+  },
+  destroyed () {
+    this.$store.dispatch('validator/clearValues')
+  },
+  methods: {
+    submit (e) {
+      if (this.blok.type === 'contact_form') {
+        this.$store.dispatch('validator/checkValues')
+        if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes') {
+          emailjs.sendForm(this.$config.emailJSservice, 'contact_form', e.target,
+            this.$config.emailJSuser)
+            .then(() => {
+              alert(this.blok.passed_message)
+              this.$store.dispatch('validator/clearValues')
+            }, () => {
+              alert('form di contatto momentaneamenre non disponibile')
+            })
+        } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.passed === 'yes') {
+          alert(this.blok.reject_email_field)
+        } else if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'no') {
+          alert(this.blok.reject_text_field)
+        } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.passed === 'no') {
+          alert(this.blok.reject_message)
+        }
+      }
+    },
+    test () {
+      if (this.blok.type === 'contact_form') {
+        this.$store.dispatch('validator/checkValues')
+        if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes') {
+          alert(this.blok.passed_message)
+          this.$store.dispatch('validator/clearValues')
+        } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.passed === 'yes') {
+          alert(this.blok.reject_email_field)
+        } else if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'no') {
+          alert(this.blok.reject_text_field)
+        } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.passed === 'no') {
+          alert(this.blok.reject_message)
+        }
+      }
+    }
+  }
+}
+</script>

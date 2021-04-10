@@ -71,7 +71,7 @@ export default {
         if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.blok.body.length && Object.values(this.fields).every(text => text.length > 1)) {
           alert(this.blok.passed_message)
           this.$store.dispatch('validator/clearValues')
-        } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.text > 5) {
+        } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.text >= 5) {
           alert(this.blok.reject_email_field)
         } else if (this.$emailValidator(this.$store.state.validator.email.text) && this.$store.state.validator.message.passed === 'no') {
           alert(this.blok.reject_text_field)

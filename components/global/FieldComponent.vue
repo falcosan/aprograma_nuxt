@@ -1,15 +1,13 @@
 <template>
   <div class="field-item">
-    <label v-if="blok.type !== 'submit'" class="field-label">{{ blok.name }}</label>
+    <label v-if="blok.type !== 'submit'" :class="`field-label  ${fieldError() ? 'text-red-700' : 'text-black'}`">{{ blok.name }}</label>
     <component
       :is="blok.tag"
       :name="blok.name"
       :type="blok.tag === 'textarea' ? false : blok.type"
-      :class="`field-input w-full border resize-none p-2 focus:outline-none
-      ${isMessage ? 'h-20' : 'h-7'}
-      ${emailFail && $store.state.validator.email.passed === 'no' ? 'border-red-700' : 'border-black'}
-      ${messageFail && $store.state.validator.message.passed === 'no' ? 'border-red-700' : 'border-black'}
-      ${blok.tag !== 'textarea' && fieldFail ? 'border-red-700' : 'border-black'}`"
+      :class="`field-input w-full resize-none p-2 focus:outline-none
+      ${isMessage ? 'h-20' : 'h-10 leading-10'}
+      ${fieldError() ? 'border-dotted border-2 border-red-700' : 'border border-black'}`"
       :value="fieldValue !== '' ? fieldValue : false"
       @keyup="updateFields()"
       @input="$emit('update:fieldValue', $event.target.value)"
@@ -33,15 +31,15 @@ export default {
     return {
       isEmail: this.blok.type === 'email',
       isMessage: this.blok.tag === 'textarea',
-      isField: !this.isMessage
+      isField: !this.isMessage && !this.isField
     }
   },
   computed: {
     emailFail () {
-      return this.isEmail && !this.$emailValidator(this.$store.state.validator.email.text)
+      return this.isEmail && !this.$emailValidator(this.fieldValue)
     },
     messageFail () {
-      return this.isMessage && this.$store.state.validator.message.text.length < 5
+      return this.isMessage && this.fieldValue.length < 5
     },
     fieldFail () {
       return this.fieldValue.length < 1 && this.$store.state.validator.check
@@ -54,6 +52,17 @@ export default {
         this.$store.commit('validator/checkEmail', this.fieldValue)
       } else if (this.isMessage) {
         this.$store.commit('validator/checkMessage', this.fieldValue)
+      }
+    },
+    fieldError () {
+      if (this.emailFail && this.$store.state.validator.email.passed === 'no') {
+        return true
+      } else if (this.messageFail && this.$store.state.validator.message.passed === 'no') {
+        return true
+      } else if (this.isField && this.fieldFail) {
+        return true
+      } else {
+        return false
       }
     }
   }

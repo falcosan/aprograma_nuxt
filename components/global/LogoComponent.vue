@@ -72,11 +72,22 @@
 <script>
 export default {
   props: {
-    styleLogoContainer: String,
-    styleLogo: String,
-    transitionA: String,
-    transitionP: String
+    styleLogoContainer: {
+      type: String,
+      default: ''
+    },
+    styleLogo: {
+      type: String,
+      default: ''
+    },
+    transitionA: {
+      type: String,
+      default: ''
+    },
+    transitionP: {
+      type: String,
+      default: ''
+    }
   }
-
 }
 </script>

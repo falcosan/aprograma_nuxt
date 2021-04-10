@@ -29,7 +29,10 @@ export default {
       type: Object,
       required: true
     },
-    styleIconLink: String
+    styleIconLink: {
+      type: String,
+      default: ''
+    }
   }
 }
 </script>

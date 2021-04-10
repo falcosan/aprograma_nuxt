@@ -4,7 +4,7 @@
     appear
     appear-active-class="transition-opacity duration-200 out-in"
     appear-class="opacity-0"
-    class="header h-auto w-full flex fixed justify-between mt-0"
+    class="header h-auto flex-col flex fixed justify-between mt-0"
   >
     <nav key="navbar" class="navbar">
       <ul class="menu-wrapper">
@@ -63,14 +63,14 @@ export default {
       moved: {
         a: '',
         p: '',
-        translateList: '-translate-y-full opacity-0'
+        translateList: 'not_expanded -translate-x-full opacity-0'
       }
     }
   },
   methods: {
     expandIn () {
       this.expanded = true
-      this.moved.translateList = 'translate-y-0 opacity-100'
+      this.moved.translateList = 'expanded translate-x-0 opacity-100'
       this.timer = 0
     },
     expandStill () {
@@ -80,7 +80,7 @@ export default {
     expandOut () {
       this.timer = setTimeout(() => {
         this.expanded = false
-        this.moved.translateList = '-translate-y-full opacity-0'
+        this.moved.translateList = 'not_expanded -translate-x-full opacity-0'
       }, 700)
     },
     playOn () {

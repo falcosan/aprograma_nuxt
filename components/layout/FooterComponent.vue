@@ -1,6 +1,6 @@
 <template>
   <footer
-    :class="`footer ${expanded} w-full fixed z-50 bottom-0 bg-gray-200 transition-height duration-200 ease-in-out`"
+    :class="`footer ${expanded} w-full fixed z-20 bottom-0 bg-gray-200 transition-height duration-200 ease-in-out`"
     @mouseleave="expandOut()"
     @mouseover="expandIn()"
   >

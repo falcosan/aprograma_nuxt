@@ -9,7 +9,10 @@
         </span>
       </template>
     </div>
-    <ul id="translate-list" :class="`translate-list ${styleTranslateList} flex flex-col`">
+    <ul
+      id="translate-list"
+      :class="`translate-list ${styleTranslateList} flex flex-col`"
+    >
       <template v-for="language in blok">
         <li
           v-if="cutLanguage(language) !== $store.state.data.language && $store.state.data.language !== '' || cutLanguage(language) !== 'en' && $store.state.data.language === ''"
@@ -17,6 +20,7 @@
           :class="`translate-item ${styleTranslateItem} cursor-pointer`"
         >
           <a
+
             class="translate-link"
             @click="
               changeLanguage(language.language)
@@ -50,6 +54,7 @@ export default {
       type: String,
       default: ''
     },
+
     showTranslate: Boolean
   },
   methods: {

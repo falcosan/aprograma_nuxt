@@ -7,17 +7,18 @@
     appear-class="opacity-0"
     class="form-container"
   >
-    <h1 key="form-title" class="form-title">
+    <h1 key="form-title" class="form-title mb-10">
       {{ blok.title }}
     </h1>
-    <form key="form" class="form flex" novalidate="true" @submit.prevent="test">
+    <form key="form" class="form grid gap-y-10 w-7/12" novalidate="true" @submit.prevent="test">
       <Field
         v-for="(input, index) in blok.body"
         :key="input._uid"
+        class=""
         :field-value.sync="fields[index]"
         :blok="input"
       />
-      <input type="submit" :value="blok.submit">
+      <input class="button-submit justify-self-end py-3 px-10 cursor-pointer bg-black text-white" type="submit" :value="blok.submit">
     </form>
   </transition-group>
 </template>

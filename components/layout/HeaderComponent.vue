@@ -4,7 +4,7 @@
     appear
     appear-active-class="transition-opacity duration-200 out-in"
     appear-class="opacity-0"
-    class="header h-auto w-24 top-0 z-10 fixed justify-between mt-0"
+    class="header h-auto w-full flex fixed justify-between mt-0"
   >
     <nav key="navbar" class="navbar">
       <ul class="menu-wrapper">
@@ -28,18 +28,18 @@
         </li>
       </ul>
     </nav>
-    <nav key="language-navbar" class="language-navbar flex relative">
-      <transition enter-active-class="in-out" leave-active-class="out-in" enter-class="opacity-0" leave-to-class="opacity-0">
-        <Translate
-          v-if="expanded"
-          class="absolute py-4 transition-all duration-200 text-white bg-black "
-          style-translate-item="py-3 px-4"
-          :blok="$contentByName(blok.body, 'Translate')"
-          @mouseover.native="expandStill()"
-          @mouseleave.native="expandOut()"
-        />
-      </transition>
-      <CurrentLanguage class="h-10 px-4 text-white bg-black" @click.native="expandIn()" />
+    <nav key="language-navbar" class="language-navbar">
+      <Translate
+        class="w-20 text-white"
+        style-current-language="py-3 px-4 bg-black"
+        :style-translate-list="`transform transition-all duration-200 esase-out ${moved.translateList} bg-black`"
+        style-translate-item="py-3 px-4 text-center"
+        :show-translate="expanded"
+        :blok="$contentByName(blok.body, 'Translate')"
+        @mouseover.native="expandStill()"
+        @mouseleave.native="expandOut()"
+        @click.native="expandIn()"
+      />
     </nav>
   </transition-group>
 </template>
@@ -47,10 +47,9 @@
 <script>
 import Translate from './TranslateComponent'
 import Logo from './../global/LogoComponent'
-import CurrentLanguage from './CurrentLanguageComponent'
 import ItemNavbar from './ItemNavbarComponent'
 export default {
-  components: { Logo, ItemNavbar, Translate, CurrentLanguage },
+  components: { Logo, ItemNavbar, Translate },
   props: {
     blok: {
       type: Object,
@@ -63,13 +62,15 @@ export default {
       timer: 0,
       moved: {
         a: '',
-        p: ''
+        p: '',
+        translateList: '-translate-y-full opacity-0'
       }
     }
   },
   methods: {
     expandIn () {
       this.expanded = true
+      this.moved.translateList = 'translate-y-0 opacity-100'
       this.timer = 0
     },
     expandStill () {
@@ -79,6 +80,7 @@ export default {
     expandOut () {
       this.timer = setTimeout(() => {
         this.expanded = false
+        this.moved.translateList = '-translate-y-full opacity-0'
       }, 700)
     },
     playOn () {

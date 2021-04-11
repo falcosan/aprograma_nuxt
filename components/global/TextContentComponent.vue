@@ -4,11 +4,17 @@
     appear
     appear-active-class="transition-opacity duration-200 out-in"
     appear-class="opacity-0"
-    :class="`text-section ${$customClass('about', 'h-full-adapted items-center flex my-0')} ${$customClass('home', 'h-full-adapted items-center flex my-0')}`"
+    :class="`text-section
+    ${$customClass('home', 'items-center flex my-0')}
+    ${$customClass('about', 'items-center flex my-0')}
+    ${$customClass('contact', 'w-1/2 h-full flex flex-1 m-0 items-center bg-blue-400')}`"
   >
     <span
       key="text-content"
-      :class="`text-content ${$customClass('about', 'bg-yellow-300')} ${$customClass('home', 'text-7xl')} h-min-content mx-auto py-6 px-10`"
+      :class="`text-contentmx-auto py-6 px-10
+      ${$customClass('home', 'text-7xl')}
+      ${$customClass('about', 'bg-yellow-300')}
+      ${$customClass('contact', 'h-3/5 flex flex-row flex-wrap text-white ')}`"
       v-html="getText"
     />
   </transition-group>

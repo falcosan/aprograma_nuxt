@@ -1,7 +1,7 @@
 <template>
   <div class="translate-container">
     <div
-      :class="`current-language w-full relative z-10 flex items-center justify-center cursor-pointer ${styleCurrentLanguage}`"
+      :class="`current-language w-full relative z-10 flex cursor-pointer ${styleCurrentLanguage}`"
     >
       <template v-for="selector in blok">
         <span v-if="cutLanguage(selector) === $store.state.data.language || cutLanguage(selector) === 'en' && $store.state.data.language === ''" :key="selector._uid" class="">
@@ -11,13 +11,13 @@
     </div>
     <ul
       id="translate-list"
-      :class="`translate-list ${styleTranslateList} flex flex-col`"
+      :class="`translate-list flex flex-col ${styleTranslateList}`"
     >
       <template v-for="language in blok">
         <li
           v-if="cutLanguage(language) !== $store.state.data.language && $store.state.data.language !== '' || cutLanguage(language) !== 'en' && $store.state.data.language === ''"
           :key="language._uid"
-          :class="`translate-item ${styleTranslateItem} cursor-pointer`"
+          :class="`translate-item cursor-pointer ${styleTranslateItem}`"
         >
           <a
 

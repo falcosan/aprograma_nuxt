@@ -30,10 +30,10 @@
     </nav>
     <nav key="language-navbar" class="language-navbar">
       <Translate
-        class="w-20 text-white"
+        class="w-min text-white"
         style-current-language="py-3 px-4 bg-black"
         :style-translate-list="`transform transition-all duration-200 esase-out ${moved.translateList} bg-black`"
-        style-translate-item="py-3 px-4 text-center"
+        style-translate-item="py-3 px-4"
         :show-translate="expanded"
         :blok="$contentByName(blok.body, 'Translate')"
         @mouseover.native="expandStill()"

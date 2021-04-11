@@ -5,12 +5,12 @@
     appear
     appear-active-class="transition-opacity duration-200 out-in"
     appear-class="opacity-0"
-    class="form-container"
+    :class="`form-container w-full m-0 items-center ${$customClass('contact','mr-10')}`"
   >
     <h1 key="form-title" class="form-title mb-10">
       {{ blok.title }}
     </h1>
-    <form key="form" class="form grid gap-y-10 w-7/12" novalidate="true" @submit.prevent="test">
+    <form key="form" class="form w-full grid gap-y-10" novalidate="true" @submit.prevent="submit">
       <Field
         v-for="(input, index) in blok.body"
         :key="input._uid"
@@ -44,33 +44,18 @@ export default {
     this.$store.dispatch('validator/clearValues')
   },
   methods: {
-    // submit (e) {
-    //   if (this.blok.type === 'contact_form') {
-    //     this.$store.dispatch('validator/checkValues')
-    //     if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes') {
-    //       emailjs.sendForm(this.$config.emailJSservice, 'contact_form', e.target,
-    //         this.$config.emailJSuser)
-    //         .then(() => {
-    //           alert(this.blok.passed_message)
-    //           this.$store.dispatch('validator/clearValues')
-    //         }, () => {
-    //           alert('form di contatto momentaneamenre non disponibile')
-    //         })
-    //     } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.passed === 'yes') {
-    //       alert(this.blok.reject_email_field)
-    //     } else if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'no') {
-    //       alert(this.blok.reject_text_field)
-    //     } else {
-    //       alert(this.blok.reject_message)
-    //     }
-    //   }
-    // },
-    test () {
+    submit (e) {
       if (this.blok.type === 'contact_form') {
         this.$store.dispatch('validator/checkValues')
         if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.blok.body.length && Object.values(this.fields).every(text => text.length > 1)) {
-          alert(this.blok.passed_message)
-          this.$store.dispatch('validator/clearValues')
+          emailjs.sendForm(this.$config.emailJSservice, 'contact_form', e.target,
+            this.$config.emailJSuser)
+            .then(() => {
+              alert(this.blok.passed_message)
+              this.$store.dispatch('validator/clearValues')
+            }, () => {
+              alert('form di contatto momentaneamenre non disponibile')
+            })
         } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.text >= 5) {
           alert(this.blok.reject_email_field)
         } else if (this.$emailValidator(this.$store.state.validator.email.text) && this.$store.state.validator.message.passed === 'no') {

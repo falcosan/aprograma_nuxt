@@ -6,7 +6,7 @@
     leave-active-class="transition-all duration-200 out-in"
     :enter-class="`opacity-0 transform ${translation.enter}`"
     :leave-to-class="`opacity-0 transform ${translation.leave}`"
-    class="slider w-full grid grid-cols-1 grid-rows-2 overflow-x-hidden"
+    class="slider w-full h-full grid grid-cols-1 grid-rows-2 overflow-x-hidden"
   >
     <template v-for="(item, index) in blok">
       <li v-if="index === frame.up || index === frame.down" :key="item.uuid" :class="`slide slide-item w-full h-2/3 flex p-5 col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'}`">

@@ -59,7 +59,8 @@ export default {
     '@nuxtjs/sitemap'
   ],
 
-  publicRuntimeConfig: {
+  generate: {
+    fallback: true
   },
 
   sitemap: {

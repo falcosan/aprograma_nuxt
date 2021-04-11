@@ -23,7 +23,6 @@
     "@nuxtjs/sitemap": "^2.4.0",
     "core-js": "^3.9.1",
     "dompurify": "^2.2.7",
-    "emailjs-com": "^2.6.4",
     "marked": "^2.0.1",
     "nuxt": "^2.15.3",
     "nuxt-compress": "^4.1.1",

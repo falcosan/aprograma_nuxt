@@ -60,8 +60,6 @@ export default {
   ],
 
   publicRuntimeConfig: {
-    emailJSuser: process.env.NUXT_ENV_EMAILJSUSER,
-    emailJSservice: process.env.NUXT_ENV_EMAILJSSERVICE
   },
 
   sitemap: {

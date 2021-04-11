@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import emailjs from 'emailjs-com'
 import Field from '../global/FieldComponent'
 export default {
   components: { Field },
@@ -48,14 +47,13 @@ export default {
       if (this.blok.type === 'contact_form') {
         this.$store.dispatch('validator/checkValues')
         if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.blok.body.length && Object.values(this.fields).every(text => text.length > 1)) {
-          emailjs.sendForm(this.$config.emailJSservice, 'contact_form', e.target,
-            this.$config.emailJSuser)
-            .then(() => {
-              alert(this.blok.passed_message)
-              this.$store.dispatch('validator/clearValues')
-            }, () => {
-              alert('form di contatto momentaneamenre non disponibile')
-            })
+
+          // .then(() => {
+          //   alert(this.blok.passed_message)
+          //   this.$store.dispatch('validator/clearValues')
+          // }, () => {
+          //   alert('form di contatto momentaneamenre non disponibile')
+          // })
         } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.text >= 5) {
           alert(this.blok.reject_email_field)
         } else if (this.$emailValidator(this.$store.state.validator.email.text) && this.$store.state.validator.message.passed === 'no') {

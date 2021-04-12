@@ -1,9 +1,5 @@
 <template>
-  <transition-group
-    tag="div"
-    appear
-    appear-active-class="transition-opacity duration-200 out-in"
-    appear-class="opacity-0"
+  <div
     :class="`logo-container ${styleLogoContainer}`"
   >
     <svg
@@ -66,7 +62,7 @@
         />
       </g>
     </svg>
-  </transition-group>
+  </div>
 </template>
 
 <script>

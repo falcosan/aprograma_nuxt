@@ -1,5 +1,9 @@
 <template>
-  <section
+  <transition-group
+    tag="section"
+    appear
+    appear-active-class="transition-opacity duration-200 out-in"
+    appear-class="opacity-0"
     :class="`${blok.name.toLowerCase()}-page h-full
       ${$customClass('home', 'flex items-center')}
       ${$customClass('about', 'flex items-center')}
@@ -12,7 +16,7 @@
       :key="component._uid"
       :blok="component"
     />
-  </section>
+  </transition-group>
 </template>
 
 <script>

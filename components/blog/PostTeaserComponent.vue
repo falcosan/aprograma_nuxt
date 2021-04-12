@@ -1,10 +1,6 @@
 <template>
-  <transition-group
+  <li
     v-if="postContent"
-    tag="li"
-    appear
-    appear-active-class="transition-opacity duration-200 out-in"
-    appear-class="opacity-0"
     class="post-teaser w-full block mx-auto"
   >
     <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link grid grid-cols-post-teaser-link h-50 ">
@@ -45,7 +41,7 @@
         </div>
       </div>
     </NuxtLink>
-  </transition-group>
+  </li>
 </template>
 
 <script>

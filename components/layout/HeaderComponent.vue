@@ -1,9 +1,5 @@
 <template>
-  <transition-group
-    tag="header"
-    appear
-    appear-active-class="transition-opacity duration-200 out-in"
-    appear-class="opacity-0"
+  <header
     class="header h-auto flex-col flex fixed justify-between mt-0"
   >
     <nav key="navbar" class="navbar">
@@ -41,7 +37,7 @@
         @click.native="expandIn()"
       />
     </nav>
-  </transition-group>
+  </header>
 </template>
 
 <script>

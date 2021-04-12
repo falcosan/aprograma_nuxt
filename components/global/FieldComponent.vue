@@ -31,7 +31,7 @@ export default {
     return {
       isEmail: this.blok.type === 'email',
       isMessage: this.blok.tag === 'textarea',
-      isField: !this.isMessage && !this.isField
+      isField: !this.isMessage && !this.isEmail
     }
   },
   computed: {

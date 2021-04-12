@@ -1,9 +1,5 @@
 <template>
-  <transition-group
-    tag="div"
-    appear
-    appear-active-class="transition-opacity duration-200 out-in"
-    appear-class="opacity-0"
+  <div
     :class="`text-section
     ${$customClass('home', 'items-center flex my-0')}
     ${$customClass('about', 'items-center flex my-0')}
@@ -17,7 +13,7 @@
       ${$customClass('contact', 'h-3/5 flex flex-row flex-wrap text-white ')}`"
       v-html="getText"
     />
-  </transition-group>
+  </div>
 </template>
 <script>
 import marked from 'marked'

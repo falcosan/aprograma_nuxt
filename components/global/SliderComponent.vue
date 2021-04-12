@@ -1,7 +1,6 @@
 <template>
   <transition-group
     tag="ul"
-    appear
     enter-active-class="transition-all duration-200 in-out"
     leave-active-class="transition-all duration-200 out-in"
     :enter-class="`opacity-0 transform ${translation.enter}`"

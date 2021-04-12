@@ -8,12 +8,7 @@
       <span class="input_text text-center animate-bounce text-4xl">.</span>
     </div>
     <div class="footer_content grid items-center">
-      <transition-group
-        tag="div"
-        enter-active-class="transition-opacity duration-1000"
-        leave-active-class="transition-opacity duration-1000"
-        enter-class="opacity-0"
-        leave-to-class="opacity-0"
+      <div
         class="h-full w-max row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
       >
         <template v-for="(message, index) in blok.message">
@@ -21,7 +16,7 @@
             {{ message }}
           </h6>
         </template>
-      </transition-group>
+      </div>
       <h4
         class="footer_copyright text-sm text-center w-full row-start-1 row-end-1 col-start-1 col-end-3"
       >

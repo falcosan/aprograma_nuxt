@@ -3,8 +3,9 @@
   <div
     :class="`form-container w-full m-0 items-center`"
   >
+    <Loader v-if="submitting" size="w-32" class="form-loading w-full h-full flex justify-center absolute top-0 left-0 opacity-70 bg-black" />
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
-      <div v-if="alert.message" :class="`form-alert absolute w-full top-0 left-0 p-5 text-center transform transition-transform ${alert.color}`" v-text="alert.message" />
+      <div v-if="alert.message" :class="`form-alert absolute w-full top-0 left-0 p-5 text-center transform transition-transform text-lg ${alert.color} text-white`" v-text="alert.message" />
     </transition>
     <h1 key="form-title" class="form-title mb-10">
       {{ blok.title }}
@@ -25,8 +26,9 @@
 <script>
 import axios from 'axios'
 import Field from '../global/FieldComponent'
+import Loader from '../global/LoaderComponent'
 export default {
-  components: { Field },
+  components: { Field, Loader },
   props: {
     blok: {
       type: Object,
@@ -36,6 +38,7 @@ export default {
   data () {
     return {
       fields: {},
+      submitting: false,
       alert: {
         timer: 0,
         message: null,
@@ -64,6 +67,7 @@ export default {
       if (this.blok.type === 'contact_form') {
         this.$store.dispatch('validator/checkValues')
         if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.blok.body.length && Object.values(this.fields).every(text => text.length > 1)) {
+          this.submitting = true
           try {
             await axios.post(
               '/.netlify/functions/sendmail',
@@ -73,6 +77,7 @@ export default {
                 message: this.$store.state.validator.message.text
               }
             )
+            this.submitting = false
             this.setAlert(this.blok.passed_message, 'bg-green-400')
           } catch {
             this.setAlert(this.blok.error_message, 'bg-red-400')

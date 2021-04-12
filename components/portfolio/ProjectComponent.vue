@@ -1,12 +1,13 @@
 <template>
-  <div class="project h-full grid grid-cols-3 grid-rows-project gap-y-4 gap-x-4 bg-green-600 text-white">
+  <div class="project h-full p-4 grid grid-cols-3 grid-rows-project gap-y-4 gap-x-4 bg-green-600 text-white">
     <h2 class="project-title ml-4 self-center col-start-1 col-end-3 row-start-1 row-end-1">
       {{ blok.title }}
     </h2>
+    <input class="project-back justify-self-end self-start px-2 col-start-3 col-end-3 row-start-1 row-end-1 text-3xl bg-transparent cursor-pointer focus:outline-none" type="button" value="x" @click="$router.push('/portfolio')">
     <div class="image-container flex justify-center overflow-y-hidden col-start-1 col-end-3">
       <img class="project-image w-full object-cover" :src="blok.image.filename" :alt="blok.image.alt">
     </div>
-    <span class="project-description mt-4 mr-4 row-start-1 row-end-3 flex items-center justify-end text-right text-1xl" v-html="getDescription" />
+    <span class="project-description col-start-3 col-end-3 row-start-2 row-end-3 flex items-center justify-end text-right text-1xl" v-html="getDescription" />
     <div class="project-date col-start-1 col-end-3 grid grid-cols-3 items-center flex-row">
       <h4 class="date-start text-right">
         {{ changeDate(blok.start_date) }}
@@ -40,9 +41,6 @@ export default {
     getDescription () {
       return DOMPurify.sanitize(marked(this.blok.description))
     }
-  },
-  created () {
-    console.log(this.$route.name)
   },
   methods: {
     changeDate (date) {

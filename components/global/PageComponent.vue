@@ -5,10 +5,10 @@
     appear-active-class="transition-opacity duration-200 out-in"
     appear-class="opacity-0"
     :class="`${blok.name.toLowerCase()}-page h-full
-      ${$customClass('home', 'flex items-center')}
-      ${$customClass('about', 'flex items-center')}
-      ${$customClass('portfolio', 'flex items-center')}
-      ${$customClass('contact', 'grid items-center grid-cols-2 gap-x-10')}`"
+      ${$customClass('home', 'h-full-adapted flex items-center')}
+      ${$customClass('about', 'h-full-adapted flex items-center')}
+      ${$customClass('portfolio', 'h-full-adapted flex items-center')}
+      ${$customClass('contact', 'h-full-adapted grid items-center grid-cols-2 gap-x-10')}`"
   >
     <component
       :is="component.component"

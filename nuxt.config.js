@@ -4,7 +4,7 @@ export default {
   target: 'static',
 
   head: {
-    title: 'Aprograma - a paceful coding experience',
+    title: 'Aprograma - a peaceful coding experience',
     htmlAttrs: {
       lang: 'en'
     },

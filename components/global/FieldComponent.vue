@@ -1,16 +1,20 @@
 <template>
-  <div class="field-item">
-    <label v-if="blok.type !== 'submit'" :class="`field-label  ${fieldError() ? 'text-red-700' : 'text-black'}`">{{ blok.name }}</label>
+  <div class="field-item flex flex-row flex-wrap justify-between" @mouseleave="showIndication = false">
+    <label :class="`field-label ${fieldError() ? 'text-red-700' : 'text-black'}`">{{ blok.name }}</label>
+    <span v-if="showIndication && blok.indication !== ''" class="field-indication text-xs">
+      {{ blok.indication }}
+    </span>
     <component
       :is="blok.tag"
       :name="blok.name"
-      :type="blok.tag === 'textarea' ? false : blok.type"
+      :type="blok.type"
       :class="`field-input w-full resize-none p-2 focus:outline-none
-      ${isMessage ? 'h-20' : 'h-10 leading-10'}
+      ${isMessage ? 'h-60' : 'h-10 leading-10'}
       ${fieldError() ? 'border-dotted border-2 border-red-700' : 'border border-black'}`"
       :value="fieldValue !== '' ? fieldValue : false"
       @keyup="updateFields()"
-      @input="$emit('update:fieldValue', $event.target.value)"
+      @click="messageFail ? showIndication = true : showIndication = false"
+      @input="$emit('update:fieldValue', $event.target.value); messageFail ? showIndication = true : showIndication = false"
     />
   </div>
 </template>
@@ -31,7 +35,8 @@ export default {
     return {
       isEmail: this.blok.type === 'email',
       isMessage: this.blok.tag === 'textarea',
-      isField: !this.isMessage && !this.isEmail
+      isField: !this.isMessage && !this.isEmail,
+      showIndication: false
     }
   },
   computed: {
@@ -39,7 +44,7 @@ export default {
       return this.isEmail && !this.$emailValidator(this.fieldValue)
     },
     messageFail () {
-      return this.isMessage && this.fieldValue.length < 5
+      return this.isMessage && this.fieldValue.length < 6
     },
     fieldFail () {
       return this.fieldValue.length < 1 && this.$store.state.validator.check

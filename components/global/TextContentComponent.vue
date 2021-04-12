@@ -3,14 +3,14 @@
     :class="`text-section
     ${$customClass('home', 'items-center flex my-0')}
     ${$customClass('about', 'items-center flex my-0')}
-    ${$customClass('contact', 'w-1/2 h-full flex flex-1 m-0 items-center bg-blue-400')}`"
+    ${$customClass('contact', 'h-full flex flex-1 m-0 items-center justify-center bg-blue-400')}`"
   >
     <span
       key="text-content"
       :class="`text-contentmx-auto py-6 px-10
       ${$customClass('home', 'text-7xl')}
       ${$customClass('about', 'bg-yellow-300')}
-      ${$customClass('contact', 'h-3/5 flex flex-row flex-wrap text-white ')}`"
+      ${$customClass('contact', 'flex flex-col text-white ')}`"
       v-html="getText"
     />
   </div>

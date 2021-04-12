@@ -12,7 +12,7 @@ exports.handler = async function (event) {
   const data = {
     to: SENDGRID_TO_EMAIL,
     from: SENDGRID_FROM_EMAIL,
-    subject: `New message from ${name} (${email})`,
+    subject: `Nuovo messaggio da ${name} (${email})`,
     html: message
   }
 

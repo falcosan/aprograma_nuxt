@@ -8,7 +8,7 @@
       ${$customClass('home', 'flex items-center')}
       ${$customClass('about', 'flex items-center')}
       ${$customClass('portfolio', 'flex items-center')}
-      ${$customClass('contact', 'flex items-center')}`"
+      ${$customClass('contact', 'grid items-center grid-cols-2 gap-x-10')}`"
   >
     <component
       :is="component.component"

@@ -28,7 +28,7 @@
       <Translate
         class="w-min text-white"
         style-current-language="py-3 px-4 bg-black"
-        :style-translate-list="`transform transition-all duration-200 esase-out ${moved.translateList} bg-black`"
+        :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-black`"
         style-translate-item="py-3 px-4"
         :show-translate="expanded"
         :blok="$contentByName(blok.body, 'Translate')"
@@ -59,7 +59,7 @@ export default {
       moved: {
         a: '',
         p: '',
-        translateList: 'not_expanded -translate-x-full opacity-0'
+        translateList: 'not_expanded -translate-x-full'
       }
     }
   },
@@ -76,7 +76,7 @@ export default {
     expandOut () {
       this.timer = setTimeout(() => {
         this.expanded = false
-        this.moved.translateList = 'not_expanded -translate-x-full opacity-0'
+        this.moved.translateList = 'not_expanded -translate-x-full'
       }, 700)
     },
     playOn () {

@@ -1,8 +1,11 @@
 
 <template>
   <div
-    :class="`form-container w-full m-0 items-center ${$customClass('contact','mr-10')}`"
+    :class="`form-container w-full m-0 items-center`"
   >
+    <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
+      <div v-if="alert.message" :class="`form-alert absolute w-full top-0 left-0 p-5 text-center transform transition-transform ${alert.color}`" v-text="alert.message" />
+    </transition>
     <h1 key="form-title" class="form-title mb-10">
       {{ blok.title }}
     </h1>
@@ -14,7 +17,7 @@
         :field-value.sync="fields[index]"
         :blok="input"
       />
-      <input class="button-submit justify-self-end py-3 px-10 cursor-pointer bg-black text-white" type="submit" :value="blok.submit">
+      <input class="button-submit justify-self-end py-3 px-10 cursor-pointer focus:outline-none bg-black text-white" type="submit" :value="blok.submit">
     </form>
   </div>
 </template>
@@ -32,13 +35,31 @@ export default {
   },
   data () {
     return {
-      fields: {}
+      fields: {},
+      alert: {
+        timer: 0,
+        message: null,
+        color: ''
+      }
     }
   },
   destroyed () {
     this.$store.dispatch('validator/clearValues')
   },
   methods: {
+    setAlert (message, color) {
+      this.alert.message = message
+      this.alert.color = color
+      clearInterval(this.alert.timer)
+      this.removeAlert()
+    },
+    removeAlert () {
+      this.alert.timer = setTimeout(() => {
+        this.alert.timer = 0
+        this.alert.message = null
+        this.alert.color = ''
+      }, 5000)
+    },
     async submit () {
       if (this.blok.type === 'contact_form') {
         this.$store.dispatch('validator/checkValues')
@@ -52,17 +73,12 @@ export default {
                 message: this.$store.state.validator.message.text
               }
             )
-            alert('Thank you, your message was sent successfully!')
-          } catch (e) {
-            console.error(e)
-            alert('Error:  Your message could not be sent')
+            this.setAlert(this.blok.passed_message, 'bg-green-400')
+          } catch {
+            this.setAlert(this.blok.error_message, 'bg-red-400')
           }
-        } else if (this.$store.state.validator.email.passed === 'no' && this.$store.state.validator.message.text >= 5) {
-          alert(this.blok.reject_email_field)
-        } else if (this.$emailValidator(this.$store.state.validator.email.text) && this.$store.state.validator.message.passed === 'no') {
-          alert(this.blok.reject_text_field)
         } else {
-          alert(this.blok.reject_message)
+          this.setAlert(this.blok.reject_message, 'bg-red-400')
         }
       }
     }

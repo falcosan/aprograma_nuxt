@@ -22,7 +22,7 @@
       <h4
         class="footer_copyright text-sm text-center w-full row-start-1 row-end-1 col-start-1 col-end-3"
       >
-        © 2020 - {{ currentYear }}, aprograma
+        © 2020 - {{ currentYear }}, Aprograma
       </h4>
       <div
         class="social_links flex row-start-1 row-end-1 col-start-2 col-end-2 w-max justify-self-end"

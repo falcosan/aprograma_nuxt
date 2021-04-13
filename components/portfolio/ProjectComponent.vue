@@ -1,5 +1,5 @@
 <template>
-  <div v-click-outside="outside" class="project h-full p-4 grid grid-cols-3 grid-rows-project gap-y-4 gap-x-4 bg-green-600 text-white">
+  <div v-click-outside="outside" class="project h-full-adapted p-4 grid grid-cols-3 grid-rows-project gap-y-4 gap-x-4 bg-green-600 text-white">
     <h2 class="project-title ml-4 self-center col-start-1 col-end-3 row-start-1 row-end-1">
       {{ blok.title }}
     </h2>

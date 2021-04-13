@@ -46,7 +46,11 @@ export default {
       }
     }
   },
-
+  computed: {
+    nameField () {
+      return Object.assign(...this.blok.body.map(({ name }, index) => ({ [name.toLowerCase()]: Object.values(this.fields)[index] })))
+    }
+  },
   destroyed () {
     this.$store.dispatch('validator/clearValues')
     this.clearFields()
@@ -81,9 +85,9 @@ export default {
             await axios.post(
               '/.netlify/functions/sendmail',
               {
-                name: this.fields[0],
-                email: this.$store.state.validator.email.text,
-                message: this.$store.state.validator.message.text
+                name: this.nameField.name,
+                email: this.nameField.email,
+                message: this.nameField.message
               }
             )
             this.submitting = false

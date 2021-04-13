@@ -1,12 +1,19 @@
 <template>
-  <div v-click-outside="outside" class="post my-0 mx-auto grid grid-rows-post grid-cols-1 transform -translate-y-6">
-    <Back class="post-back justify-self-end self-start p-10 col-start-1 col-end-1 row-start-1 row-end-1" size="w-8" color="black" @click.native="$router.push(`/${$route.name.split('-')[0]}`)" />
+  <div class="post relative my-0 mx-auto grid grid-rows-post grid-cols-1 transform -translate-y-6">
+    <Icon
+      back
+      class="post-back absolute self-center left-full transform translate-x-full"
+      tag="button"
+      size="w-8"
+      color="black"
+      @click.native="backTo"
+    />
     <div class=" post-head h-full row-start-1 row-end-1 col-start-1 col-end-1">
       <component
         :is="lookFile()"
         class="post-file w-full h-full row-start-1 row-end-3 object-cover"
-        :alt="`${getAlt} project`"
-        :src="getFile"
+        :alt="`${blok.file.alt} project`"
+        :src="blok.file.filename"
       />
     </div>
     <div class="post-body bg-red-400 grid gap-y-5 text-center p-5">
@@ -36,9 +43,7 @@
 <script>
 import marked from 'marked'
 import DOMPurify from 'dompurify'
-import Back from '../global/single/BackComponent'
 export default {
-  components: { Back },
   directives: {
     'click-outside': {
       bind (el, binding) {
@@ -63,22 +68,13 @@ export default {
       required: true
     }
   },
-  data () {
-    return {
-      getFile: '',
-      getAlt: ''
-    }
-  },
   computed: {
     getDescription () {
       return DOMPurify.sanitize(marked(this.blok.long_text))
     }
   },
-  created () {
-    this.setDefaultFile()
-  },
   methods: {
-    outside () {
+    backTo () {
       this.$router.push(`/${this.$route.name.split('-')[0]}`)
     },
     changeDate (date) {
@@ -89,7 +85,7 @@ export default {
       return formattedDate.toString()
     },
     lookFile () {
-      switch (this.getFile.toLowerCase().split('.').pop()) {
+      switch (this.blok.file.filename.toLowerCase().split('.').pop()) {
         case 'jpg':
         case 'png':
         case 'gif':
@@ -99,16 +95,6 @@ export default {
           return 'embed'
         case 'mp4':
           return 'video'
-      }
-    },
-    setDefaultFile () {
-      if (this.blok.file.filename) {
-        this.getFile = this.blok.file.filename
-        this.getAlt = this.blok.file.alt
-      } else {
-        this.getFile =
-          'https://a.storyblok.com/f/106240/470x314/fcb457a1eb/giphy.gif'
-        this.getAlt = 'illegal site funny website'
       }
     }
   }

@@ -27,11 +27,12 @@
       <div
         class="social_links flex row-start-1 row-end-1 col-start-2 col-end-2 w-max justify-self-end"
       >
-        <IconLink
-          v-for="iconLink in $contentByName(blok.body, 'IconLink')"
+        <Icon
+          v-for="iconLink in $contentByName(blok.body, 'Icon')"
           :key="iconLink._uid"
+          tag="a"
           :blok="iconLink"
-          style-icon-link="w-6 mr-4"
+          class="social-icon w-6 mr-4"
         />
       </div>
     </div>

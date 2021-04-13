@@ -3,7 +3,7 @@
   <div
     :class="`form-container w-full m-0 items-center ${$customClass('contact', 'row-start-2 row-end-2 col-start-1 col-end-1')}`"
   >
-    <Loader v-if="submitting" size="w-32" class="form-loader w-full h-full flex justify-center absolute top-0 left-0 z-30 bg-white" />
+    <Icon v-if="submitting" tag="div" loader size="w-32" class="form-loader w-full h-full flex justify-center absolute top-0 left-0 z-30 bg-white" />
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
       <div v-if="alert.message" :class="`form-alert absolute w-full top-0 left-0 p-5 text-center transform transition-transform text-lg ${alert.color} text-white`" v-text="alert.message" />
     </transition>
@@ -26,9 +26,8 @@
 <script>
 import axios from 'axios'
 import Field from '../global/FieldComponent'
-import Loader from '../global/single/LoaderComponent'
 export default {
-  components: { Field, Loader },
+  components: { Field },
   props: {
     blok: {
       type: Object,

@@ -1,9 +1,9 @@
 <template>
-  <div v-click-outside="outside" class="project h-full-adapted p-4 grid grid-cols-3 grid-rows-project gap-y-4 gap-x-4 bg-green-600 text-white">
+  <div v-click-outside="goBack" class="project h-full-adapted p-4 grid grid-cols-3 grid-rows-project gap-y-4 gap-x-4 bg-green-600 text-white">
     <h2 class="project-title ml-4 self-center col-start-1 col-end-3 row-start-1 row-end-1">
       {{ blok.title }}
     </h2>
-    <Back class="project-back justify-self-center self-center px-2 col-start-3 col-end-3 row-start-1 row-end-1" size="w-8" color="white" @click.native="$router.push(`/${$route.name.split('-')[0]}`)" />
+    <Icon back tag="button" class="project-back justify-self-center self-center px-2 col-start-3 col-end-3 row-start-1 row-end-1" size="w-8" color="white" @click.native="goBack" />
     <div class="image-container flex justify-center overflow-y-hidden col-start-1 col-end-3">
       <img class="project-image w-full object-cover" :src="blok.image.filename" :alt="blok.image.alt">
     </div>
@@ -30,9 +30,7 @@
 <script>
 import marked from 'marked'
 import DOMPurify from 'dompurify'
-import Back from '../global/single/BackComponent'
 export default {
-  components: { Back },
   directives: {
     'click-outside': {
       bind (el, binding) {
@@ -63,7 +61,7 @@ export default {
     }
   },
   methods: {
-    outside () {
+    goBack () {
       this.$router.push(`/${this.$route.name.split('-')[0]}`)
     },
     changeDate (date) {

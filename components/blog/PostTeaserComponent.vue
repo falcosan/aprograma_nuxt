@@ -12,8 +12,8 @@
         <component
           :is="lookFile()"
           class="teaser-file w-full h-full row-start-1 row-end-3 object-cover"
-          :alt="getAlt"
-          :src="getFile"
+          :alt="postContent.file.alt"
+          :src="postContent.file.filename"
         />
         <div class="teaser-text flex flex-col justify-center row-start-1 row-end-3">
           <h3
@@ -63,9 +63,6 @@ export default {
       hovered: 'not_moved'
     }
   },
-  created () {
-    this.setDefaultFile()
-  },
   methods: {
     changeDate (date) {
       const currentDateTime = new Date(date.replace(' ', 'T'))
@@ -75,7 +72,7 @@ export default {
       return formattedDate.toString()
     },
     lookFile () {
-      switch (this.getFile.toLowerCase().split('.').pop()) {
+      switch (this.postContent.file.filename.toLowerCase().split('.').pop()) {
         case 'jpg':
         case 'png':
         case 'gif':
@@ -92,16 +89,6 @@ export default {
     },
     hoverOut () {
       this.hovered = 'not_moved translate-x-0'
-    },
-    setDefaultFile () {
-      if (this.postContent.file.filename) {
-        this.getFile = this.postContent.file.filename
-        this.getAlt = this.postContent.file.alt
-      } else {
-        this.getFile =
-          'https://a.storyblok.com/f/106240/470x314/fcb457a1eb/giphy.gif'
-        this.getAlt = 'illegal site funny website'
-      }
     }
   }
 }

@@ -1,8 +1,8 @@
 <template>
-  <transition-group tag="div" appear-active-class="transition-opacity duration-200 out-in" appear-class="opacity-0">
+  <transition-group tag="div" appear appear-active-class="transition-opacity duration-200 out-in" appear-class="opacity-0" class="loader-container">
     <svg
       key="loader"
-      :class="size"
+      :class="`loader-svg ${size}`"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -14,12 +14,12 @@
     >
       <circle
         fill="none"
-        stroke="#fff"
+        stroke="#c1c1c1"
         stroke-width="4"
         cx="50"
         cy="50"
         r="44"
-        class="opacity-30"
+        class="opacity-40"
       />
       <circle
         fill="#fff"

@@ -3,14 +3,14 @@
   <div
     :class="`form-container w-full m-0 items-center`"
   >
-    <Loader v-if="submitting" size="w-32" class="form-loading w-full h-full flex justify-center absolute top-0 left-0 opacity-70 bg-black" />
+    <Loader v-if="submitting" size="w-32" class="form-loader w-full h-full flex justify-center absolute top-0 left-0 z-30 bg-white" />
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
       <div v-if="alert.message" :class="`form-alert absolute w-full top-0 left-0 p-5 text-center transform transition-transform text-lg ${alert.color} text-white`" v-text="alert.message" />
     </transition>
     <h1 key="form-title" class="form-title mb-10">
       {{ blok.title }}
     </h1>
-    <form key="form" class="form w-full grid gap-y-10" novalidate="true" @submit.prevent="submit">
+    <form id="form" key="form" class="form w-full grid gap-y-10" novalidate="true" @submit.prevent="submit">
       <Field
         v-for="(input, index) in blok.body"
         :key="input._uid"
@@ -49,8 +49,8 @@ export default {
 
   destroyed () {
     this.$store.dispatch('validator/clearValues')
+    this.clearFields()
   },
-  
   methods: {
     setAlert (message, color) {
       this.alert.message = message
@@ -65,7 +65,13 @@ export default {
         this.alert.color = ''
       }, 5000)
     },
-
+    clearFields () {
+      this.fields = {}
+      this.alert.timer = 0
+      this.alert.message = null
+      this.alert.color = ''
+      document.getElementById('form').reset()
+    },
     async submit () {
       if (this.blok.type === 'contact_form') {
         this.$store.dispatch('validator/checkValues')
@@ -81,8 +87,11 @@ export default {
               }
             )
             this.submitting = false
+            this.clearFields()
+            this.$store.dispatch('validator/clearValues')
             this.setAlert(this.blok.passed_message, 'bg-green-400')
           } catch {
+            this.submitting = false
             this.setAlert(this.blok.error_message, 'bg-red-400')
           }
         } else {

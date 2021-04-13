@@ -11,11 +11,13 @@
       <div
         class="h-full w-max row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
       >
-        <template v-for="(message, index) in blok.message">
-          <h6 v-if="index === messageIndex" :key="index" class="text-sm h-0">
-            {{ message }}
-          </h6>
-        </template>
+        <transition-group enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="opacity-0" leave-to-class="opacity-0">
+          <template v-for="(message, index) in blok.message">
+            <h6 v-if="index === messageIndex" :key="index" class="text-sm h-0">
+              {{ message }}
+            </h6>
+          </template>
+        </transition-group>
       </div>
       <h4
         class="footer_copyright text-sm text-center w-full row-start-1 row-end-1 col-start-1 col-end-3"

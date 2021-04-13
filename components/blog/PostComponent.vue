@@ -1,5 +1,6 @@
 <template>
-  <div class="post my-0 mx-auto grid grid-rows-post grid-cols-1 transform -translate-y-6">
+  <div v-click-outside="outside" class="post my-0 mx-auto grid grid-rows-post grid-cols-1 transform -translate-y-6">
+    <Back class="post-back justify-self-end self-start p-10 col-start-1 col-end-1 row-start-1 row-end-1" size="w-8" color="black" @click.native="$router.push(`/${$route.name.split('-')[0]}`)" />
     <div class=" post-head h-full row-start-1 row-end-1 col-start-1 col-end-1">
       <component
         :is="lookFile()"
@@ -35,7 +36,27 @@
 <script>
 import marked from 'marked'
 import DOMPurify from 'dompurify'
+import Back from '../global/single/BackComponent'
 export default {
+  components: { Back },
+  directives: {
+    'click-outside': {
+      bind (el, binding) {
+        const handler = (e) => {
+          if (binding.modifiers.bubble || (!el.contains(e.target) && el !== e.target)) {
+            binding.value(e)
+          }
+        }
+        el.outsideClick = handler
+        document.addEventListener('click', handler)
+      },
+
+      unbind (el) {
+        document.removeEventListener('click', el.outsideClick)
+        el.outsideClick = null
+      }
+    }
+  },
   props: {
     blok: {
       type: Object,
@@ -57,6 +78,9 @@ export default {
     this.setDefaultFile()
   },
   methods: {
+    outside () {
+      this.$router.push(`/${this.$route.name.split('-')[0]}`)
+    },
     changeDate (date) {
       const currentDateTime = new Date(date.replace(' ', 'T'))
       const formattedDate = `${currentDateTime.getDate()} / ${

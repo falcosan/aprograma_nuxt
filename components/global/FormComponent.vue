@@ -26,7 +26,7 @@
 <script>
 import axios from 'axios'
 import Field from '../global/FieldComponent'
-import Loader from '../global/LoaderComponent'
+import Loader from '../global/single/LoaderComponent'
 export default {
   components: { Field, Loader },
   props: {

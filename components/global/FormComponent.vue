@@ -46,9 +46,11 @@ export default {
       }
     }
   },
+
   destroyed () {
     this.$store.dispatch('validator/clearValues')
   },
+  
   methods: {
     setAlert (message, color) {
       this.alert.message = message
@@ -63,10 +65,11 @@ export default {
         this.alert.color = ''
       }, 5000)
     },
+
     async submit () {
       if (this.blok.type === 'contact_form') {
         this.$store.dispatch('validator/checkValues')
-        if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.blok.body.length && Object.values(this.fields).every(text => text.length > 1)) {
+        if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.blok.body.length && Object.values(this.fields).every(text => text.length > 0)) {
           this.submitting = true
           try {
             await axios.post(

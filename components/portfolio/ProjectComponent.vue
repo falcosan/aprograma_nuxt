@@ -3,7 +3,7 @@
     <h2 class="project-title ml-4 self-center col-start-1 col-end-3 row-start-1 row-end-1">
       {{ blok.title }}
     </h2>
-    <input class="project-back justify-self-end self-start px-2 col-start-3 col-end-3 row-start-1 row-end-1 text-3xl bg-transparent cursor-pointer focus:outline-none" type="button" value="x" @click="$router.push('/portfolio')">
+    <input class="project-back justify-self-end self-start px-2 col-start-3 col-end-3 row-start-1 row-end-1 text-3xl bg-transparent cursor-pointer focus:outline-none" type="button" value="x" @click="$router.push(`/${$route.name.split('-')[0]}`)">
     <div class="image-container flex justify-center overflow-y-hidden col-start-1 col-end-3">
       <img class="project-image w-full object-cover" :src="blok.image.filename" :alt="blok.image.alt">
     </div>

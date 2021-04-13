@@ -24,7 +24,8 @@ module.exports = {
       },
       gridTemplateRows: {
         post: '100vh auto',
-        project: '5rem auto 5rem'
+        project: '5rem auto 5rem',
+        contact: '1fr 1fr 1fr'
       },
       transitionProperty: {
         height: 'height',

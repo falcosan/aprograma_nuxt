@@ -28,7 +28,8 @@ export default {
   },
   plugins: [
     '~/plugins/components',
-    '~/plugins/injects'
+    '~/plugins/injects',
+    '~/plugins/directives'
   ],
 
   buildModules: [

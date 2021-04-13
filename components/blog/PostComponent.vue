@@ -1,14 +1,14 @@
 <template>
-  <div class="post relative my-0 mx-auto grid grid-rows-post grid-cols-1 transform -translate-y-6">
+  <div class="post relative my-0 mx-auto flex flex-col transform -translate-y-6">
     <Icon
-      back
-      class="post-back absolute self-center left-full transform translate-x-full"
+      close
+      class="post-back absolute left-full transform translate-x-full translate-y-full"
       tag="button"
       size="w-8"
       color="black"
       @click.native="backTo"
     />
-    <div class=" post-head h-full row-start-1 row-end-1 col-start-1 col-end-1">
+    <div class=" post-head h-screen row-start-1 row-end-1 col-start-1 col-end-1">
       <component
         :is="lookFile()"
         class="post-file w-full h-full row-start-1 row-end-3 object-cover"

@@ -4,7 +4,7 @@
     :key="blok ? blok._uid : false"
     :title="blok ? blok.tooltip : false"
     :href="blok ? blok.path : tag === 'a' ? to : false"
-    :class="`icon-container ${blok || back ? size : ''} focus:outline-none cursor-pointer`"
+    :class="`icon-container ${!loader ? size : ''} focus:outline-none cursor-pointer`"
     :target="blok && blok.tag === 'a' || tag === 'a' ? '_blank' : false"
     :rel="blok && blok.tag === 'a' || tag === 'a' ? 'noopener' : false"
   >
@@ -18,22 +18,55 @@
       type="image/svg+xml"
     >
 
-    <!-- BACK ICON -->
+    <!-- BACK-->
     <svg
       v-else-if="back"
       width="24"
       height="24"
-      :class="`back-svg fill-current text-${color}`"
+      :class="`back-icon fill-current text-${color}`"
       xmlns="http://www.w3.org/2000/svg"
       fill-rule="evenodd"
       clip-rule="evenodd"
     ><path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z" /></svg>
 
-    <!--LOADER -->
+    <!--CLOSE-->
+    <svg
+      v-else-if="close"
+      :class="`close-icon fill-current text-${color}`"
+      width="24"
+      height="24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    ><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z" /></svg>
+
+    <!--NEXT-->
+    <svg
+      v-else-if="next"
+      :class="`next-icon fill-current text-${color}`"
+      width="24"
+      height="24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    ><path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z" /></svg>
+
+    <!--PREVIOUS-->
+    <svg
+      v-else-if="previous"
+      :class="`previous-icon fill-current text-${color}`"
+      width="24"
+      height="24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    ><path d="M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z" /></svg>
+
+    <!--LOADER-->
     <svg
       v-else-if="loader"
       key="loader"
-      :class="`loader-svg ${size}`"
+      :class="`loader-icon ${size}`"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -91,6 +124,18 @@ export default {
       required: true
     },
     back: {
+      type: Boolean,
+      default: false
+    },
+    close: {
+      type: Boolean,
+      default: false
+    },
+    next: {
+      type: Boolean,
+      default: false
+    },
+    previous: {
       type: Boolean,
       default: false
     },

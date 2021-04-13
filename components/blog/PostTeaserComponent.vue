@@ -58,8 +58,6 @@ export default {
   },
   data () {
     return {
-      getFile: '',
-      getAlt: '',
       hovered: 'not_moved'
     }
   },

@@ -3,7 +3,14 @@
     <h2 class="project-title ml-4 self-center col-start-1 col-end-3 row-start-1 row-end-1">
       {{ blok.title }}
     </h2>
-    <Icon back tag="button" class="project-back justify-self-center self-center px-2 col-start-3 col-end-3 row-start-1 row-end-1" size="w-8" color="white" @click.native="goBack" />
+    <Icon
+      back
+      tag="button"
+      class="project-back justify-self-center self-center px-2 col-start-3 col-end-3 row-start-1 row-end-1"
+      size="w-8"
+      color="white"
+      @click.native="goBack"
+    />
     <div class="image-container flex justify-center overflow-y-hidden col-start-1 col-end-3">
       <img class="project-image w-full object-cover" :src="blok.image.filename" :alt="blok.image.alt">
     </div>

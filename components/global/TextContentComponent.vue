@@ -11,23 +11,16 @@
       ${$customClass('index', 'text-7xl')}
       ${$customClass('about', 'bg-yellow-300')}
       ${$customClass('contact', 'w-full h-full grid text-white')}`"
-      v-html="getText"
+      v-html="blok.text.content"
     />
   </div>
 </template>
 <script>
-import marked from 'marked'
-import DOMPurify from 'dompurify'
 export default {
   props: {
     blok: {
       type: Object,
       required: true
-    }
-  },
-  computed: {
-    getText () {
-      return DOMPurify.sanitize(marked(this.blok.text))
     }
   }
 }

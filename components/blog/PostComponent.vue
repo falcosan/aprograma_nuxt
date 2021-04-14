@@ -27,7 +27,7 @@
       />
       <p
         class="post-description row-start-4 row-end-4 col-start-1 col-end-1"
-        v-html="getDescription"
+        v-html="blok.long_text.content"
       />
       <h4
         class="post-date row-start-5 row-end-5 col-start-1 col-end-1 w-max whitespace-nowrap"
@@ -41,18 +41,11 @@
   </div>
 </template>
 <script>
-import marked from 'marked'
-import DOMPurify from 'dompurify'
 export default {
   props: {
     blok: {
       type: Object,
       required: true
-    }
-  },
-  computed: {
-    getDescription () {
-      return DOMPurify.sanitize(marked(this.blok.long_text))
     }
   },
   methods: {

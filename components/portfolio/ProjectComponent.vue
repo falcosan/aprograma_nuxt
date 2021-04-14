@@ -14,7 +14,7 @@
     <div class="image-container flex justify-center overflow-y-hidden col-start-1 col-end-3">
       <img class="project-image w-full object-cover" :src="blok.image.filename" :alt="blok.image.alt">
     </div>
-    <span class="project-description col-start-3 col-end-3 row-start-2 row-end-3 flex items-center justify-end text-right text-1xl" v-html="getDescription" />
+    <span class="project-description col-start-3 col-end-3 row-start-2 row-end-3 text-justify text-base" v-text="blok.description" />
     <div class="project-date col-start-1 col-end-3 grid grid-cols-3 items-center flex-row">
       <h4 class="date-start text-right">
         {{ changeDate(blok.start_date) }}
@@ -35,18 +35,11 @@
   </div>
 </template>
 <script>
-import marked from 'marked'
-import DOMPurify from 'dompurify'
 export default {
   props: {
     blok: {
       type: Object,
       required: true
-    }
-  },
-  computed: {
-    getDescription () {
-      return DOMPurify.sanitize(marked(this.blok.description))
     }
   },
   methods: {

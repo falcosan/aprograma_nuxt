@@ -26,9 +26,9 @@
     </nav>
     <nav key="language-navbar" class="language-navbar">
       <Translate
-        class="w-min text-white"
-        style-current-language="py-3 px-4 bg-black"
-        :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-black`"
+        class="w-16"
+        :style-current-language="`py-3 px-4 text-black transition-all ${expanded ? 'border-t border-b border-r border-black text-gray-600' : 'bg-black text-white'}`"
+        :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-black text-white`"
         style-translate-item="py-3 px-4"
         :show-translate="expanded"
         :blok="$contentByName(blok.body, 'Translate')"

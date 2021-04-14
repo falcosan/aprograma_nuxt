@@ -4,7 +4,7 @@
       :class="`current-language w-full relative z-10 flex cursor-pointer ${styleCurrentLanguage}`"
     >
       <template v-for="selector in blok">
-        <span v-if="cutLanguage(selector) === $store.state.data.language || cutLanguage(selector) === 'en' && $store.state.data.language === ''" :key="selector._uid" class="">
+        <span v-if="cutLanguage(selector) === $store.state.data.language || cutLanguage(selector) === 'en' && $store.state.data.language === ''" :key="selector._uid" class="language-item">
           {{ selector.language }}
         </span>
       </template>

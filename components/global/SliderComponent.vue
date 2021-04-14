@@ -1,8 +1,11 @@
 <template>
   <transition-group
     tag="ul"
-    enter-active-class="transition-all duration-200 in-out"
-    leave-active-class="transition-all duration-200 out-in"
+    appear
+    appear-active-class="transition-opacity duration-75"
+    appear-class="opacity-100"
+    enter-active-class="transition-all duration-500 in-out"
+    leave-active-class="transition-all duration-500 out-in"
     :enter-class="`opacity-0 transform ${translation.enter}`"
     :leave-to-class="`opacity-0 transform ${translation.leave}`"
     class="slider w-full h-full grid grid-cols-1 grid-rows-2 overflow-x-hidden"

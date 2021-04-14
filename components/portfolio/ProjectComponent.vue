@@ -1,5 +1,5 @@
 <template>
-  <div v-click-outside="goBack" class="project h-screen w-8/12 my-0 mx-auto p-4 grid grid-cols-3 grid-rows-project gap-y-4 gap-x-4 bg-green-600 text-white">
+  <div class="project h-screen w-8/12 my-0 mx-auto p-4 grid grid-cols-3 grid-rows-project gap-y-4 gap-x-4 bg-green-600 text-white">
     <h2 class="project-title ml-4 self-center col-start-1 col-end-3 row-start-1 row-end-1">
       {{ blok.title }}
     </h2>
@@ -38,24 +38,6 @@
 import marked from 'marked'
 import DOMPurify from 'dompurify'
 export default {
-  directives: {
-    'click-outside': {
-      bind (el, binding) {
-        const handler = (e) => {
-          if (binding.modifiers.bubble || (!el.contains(e.target) && el !== e.target)) {
-            binding.value(e)
-          }
-        }
-        el.outsideClick = handler
-        document.addEventListener('click', handler)
-      },
-
-      unbind (el) {
-        document.removeEventListener('click', el.outsideClick)
-        el.outsideClick = null
-      }
-    }
-  },
   props: {
     blok: {
       type: Object,

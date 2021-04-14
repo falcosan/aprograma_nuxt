@@ -1,6 +1,6 @@
 <template>
   <section
-    :class="`${blok.name.toLowerCase()}-page w-full
+    :class="`${blok.name.toLowerCase()}-page w-8/12 my-0 mx-auto h-screen
       ${$customClass('index', 'flex items-center')}
       ${$customClass('about', 'flex items-center')}
       ${$customClass('portfolio', 'flex items-center')}

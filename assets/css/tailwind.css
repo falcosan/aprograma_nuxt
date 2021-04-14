@@ -49,13 +49,13 @@
     background-color: rgb(36, 36, 36);
 }
 
-.default-enter-active, .default-leave-active {
+.page-enter-active, .page-leave-active {
     transition-property: all;
     transition-timing-function: ease-in-out;
     transition-duration: 300ms;
 }
 
-.default-enter, .default-leave-to {
+.page-enter, .page-leave-to {
     opacity: 0;
     transform: scale(0.8);
 }

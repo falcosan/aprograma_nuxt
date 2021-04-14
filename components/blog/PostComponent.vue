@@ -1,5 +1,5 @@
 <template>
-  <div class="post h-screen  my-0 mx-auto flex flex-col">
+  <div class="post w-8/12 my-0 mx-auto flex flex-col">
     <Icon
       close
       class="post-back fixed top-10 right-10"

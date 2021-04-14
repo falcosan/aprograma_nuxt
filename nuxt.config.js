@@ -59,6 +59,10 @@ export default {
     '@nuxtjs/sitemap'
   ],
 
+  generate: {
+    fallback: true
+  },
+
   sitemap: {
     hostname: 'https://aprograma.co',
     routes: async () => {

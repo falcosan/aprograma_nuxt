@@ -27,7 +27,9 @@
     <form
       id="form"
       key="form"
-      data-netlify="true"
+      netlify
+      netlify-honeypot="bot-field"
+      :name="blok.title.toLowerCase().replace(/ /g,'-')"
       class="form w-full grid gap-y-10"
       novalidate="true"
       @submit.prevent="submit"

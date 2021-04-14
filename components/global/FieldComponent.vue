@@ -1,14 +1,14 @@
 <template>
   <div class="field-item flex flex-row flex-wrap justify-between overflow-hidden">
     <label :class="`field-label mb-5 ${fieldError() ? 'text-red-600' : 'text-black'}`">{{ blok.name }} *</label>
-    <transition enter-active-class="duration-100 in-out" leave-active-class="duration-100 out-in" enter-class="translate-x-full" leave-to-class="translate-x-full">
+    <transition v-if="blok.indication" enter-active-class="duration-100 in-out" leave-active-class="duration-100 out-in" enter-class="translate-x-full" leave-to-class="translate-x-full">
       <span v-if="indication" class="field-indication text-xs h-min-content p-2 transform bg-red-400 text-white">
         {{ blok.indication }}
       </span>
     </transition>
     <component
       :is="blok.tag"
-      :name="blok.name"
+      :name="blok.name.toLowerCase().replace(/ /g,'')"
       :type="blok.type"
       :class="`field-input w-full resize-none p-2 focus:outline-none
       ${isMessage ? 'h-60' : 'h-10 leading-10'}

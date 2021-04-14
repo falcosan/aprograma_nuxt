@@ -35,6 +35,7 @@
         @apply font-extralight;
     }
 }
+
 *::-webkit-scrollbar {
     width: 0.2rem;
     height: 0.2rem;
@@ -46,4 +47,15 @@
 
 *::-webkit-scrollbar-thumb {
     background-color: rgb(36, 36, 36);
+}
+
+.default-enter-active, .default-leave-active {
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transition-duration: 300ms;
+}
+
+.default-enter, .default-leave-to {
+    opacity: 0;
+    transform: scale(0.8);
 }

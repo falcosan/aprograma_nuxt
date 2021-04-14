@@ -10,6 +10,7 @@
 import Post from '@/components/blog/PostComponent'
 export default {
   components: { Post },
+  transition: 'default',
   asyncData (context) {
     return context.app.$storyapi
       .get(`cdn/stories/${context.store.state.data.language}/${context.route.path}`)

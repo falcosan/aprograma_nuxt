@@ -1,7 +1,6 @@
 
 <template>
-  <div>ei</div>
-  <!-- <div
+  <div
     :class="`form-container w-full m-0 items-center ${$customClass('contact', 'row-start-2 row-end-2 col-start-1 col-end-1')}`"
   >
     <transition
@@ -40,88 +39,88 @@
       />
       <input class="button-submit justify-self-end py-3 px-10 cursor-pointer focus:outline-none bg-black text-white" type="submit" :value="blok.submit">
     </form>
-  </div> -->
+  </div>
 </template>
 
 <script>
-// import axios from 'axios'
-// import Field from '../global/FieldComponent'
-// export default {
-//   components: { Field },
-//   props: {
-//     blok: {
-//       type: Object,
-//       required: true
-//     }
-//   },
-//   data () {
-//     return {
-//       fields: {},
-//       submitting: false,
-//       alert: {
-//         timer: 0,
-//         message: null,
-//         color: ''
-//       }
-//     }
-//   },
-//   computed: {
-//     nameField () {
-//       return Object.assign(...this.blok.body.map(({ name }, index) => ({ [name.toLowerCase()]: Object.values(this.fields)[index] })))
-//     }
-//   },
-//   destroyed () {
-//     this.$store.dispatch('validator/clearValues')
-//     this.clearFields()
-//   },
-//   methods: {
-//     setAlert (message, color) {
-//       this.alert.message = message
-//       this.alert.color = color
-//       clearInterval(this.alert.timer)
-//       this.removeAlert()
-//     },
-//     removeAlert () {
-//       this.alert.timer = setTimeout(() => {
-//         this.alert.timer = 0
-//         this.alert.message = null
-//         this.alert.color = ''
-//       }, 5000)
-//     },
-//     clearFields () {
-//       this.fields = {}
-//       this.alert.timer = 0
-//       this.alert.message = null
-//       this.alert.color = ''
-//       document.getElementById('form').reset()
-//     },
-//     async submit () {
-//       if (this.blok.type === 'contact_form') {
-//         this.$store.dispatch('validator/checkValues')
-//         if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.blok.body.length && Object.values(this.fields).every(text => text.length > 0)) {
-//           this.submitting = true
-//           try {
-//             await axios.post(
-//               '/.netlify/functions/sendmail',
-//               {
-//                 name: this.nameField.name,
-//                 email: this.nameField.email,
-//                 message: this.nameField.message
-//               }
-//             )
-//             this.submitting = false
-//             this.clearFields()
-//             this.$store.dispatch('validator/clearValues')
-//             this.setAlert(this.blok.passed_message, 'bg-green-400')
-//           } catch {
-//             this.submitting = false
-//             this.setAlert(this.blok.error_message, 'bg-red-400')
-//           }
-//         } else {
-//           this.setAlert(this.blok.reject_message, 'bg-red-400')
-//         }
-//       }
-//     }
-//   }
-// }
-// </script>
+import axios from 'axios'
+import Field from '../global/FieldComponent'
+export default {
+  components: { Field },
+  props: {
+    blok: {
+      type: Object,
+      required: true
+    }
+  },
+  data () {
+    return {
+      fields: {},
+      submitting: false,
+      alert: {
+        timer: 0,
+        message: null,
+        color: ''
+      }
+    }
+  },
+  computed: {
+    nameField () {
+      return Object.assign(...this.blok.body.map(({ name }, index) => ({ [name.toLowerCase()]: Object.values(this.fields)[index] })))
+    }
+  },
+  destroyed () {
+    this.$store.dispatch('validator/clearValues')
+    this.clearFields()
+  },
+  methods: {
+    setAlert (message, color) {
+      this.alert.message = message
+      this.alert.color = color
+      clearInterval(this.alert.timer)
+      this.removeAlert()
+    },
+    removeAlert () {
+      this.alert.timer = setTimeout(() => {
+        this.alert.timer = 0
+        this.alert.message = null
+        this.alert.color = ''
+      }, 5000)
+    },
+    clearFields () {
+      this.fields = {}
+      this.alert.timer = 0
+      this.alert.message = null
+      this.alert.color = ''
+      document.getElementById('form').reset()
+    },
+    async submit () {
+      if (this.blok.type === 'contact_form') {
+        this.$store.dispatch('validator/checkValues')
+        if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.blok.body.length && Object.values(this.fields).every(text => text.length > 0)) {
+          this.submitting = true
+          try {
+            await axios.post(
+              '/.netlify/functions/sendmail',
+              {
+                name: this.nameField.name,
+                email: this.nameField.email,
+                message: this.nameField.message
+              }
+            )
+            this.submitting = false
+            this.clearFields()
+            this.$store.dispatch('validator/clearValues')
+            this.setAlert(this.blok.passed_message, 'bg-green-400')
+          } catch {
+            this.submitting = false
+            this.setAlert(this.blok.error_message, 'bg-red-400')
+          }
+        } else {
+          this.setAlert(this.blok.reject_message, 'bg-red-400')
+        }
+      }
+    }
+  }
+}
+</script>

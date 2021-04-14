@@ -24,7 +24,14 @@
     <h1 key="form-title" :class="`form-title mb-10 ${$customClass('contact', 'pt-6 text-right')}`">
       {{ blok.title }}
     </h1>
-    <form id="form" key="form" class="form w-full grid gap-y-10" novalidate="true" @submit.prevent="submit">
+    <form
+      id="form"
+      key="form"
+      data-netlify="true"
+      class="form w-full grid gap-y-10"
+      novalidate="true"
+      @submit.prevent="submit"
+    >
       <Field
         v-for="(input, index) in blok.body"
         :key="input._uid"

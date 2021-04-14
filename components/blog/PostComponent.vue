@@ -1,14 +1,14 @@
 <template>
-  <div class="post relative my-0 mx-auto flex flex-col transform -translate-y-6">
+  <div class="post h-screen  my-0 mx-auto flex flex-col">
     <Icon
       close
-      class="post-back absolute left-full transform translate-x-full translate-y-full"
+      class="post-back fixed top-10 right-10"
       tag="button"
       size="w-8"
       color="black"
-      @click.native="backTo"
+      @click.native="goBack"
     />
-    <div class=" post-head h-screen row-start-1 row-end-1 col-start-1 col-end-1">
+    <div class="post-head h-screen row-start-1 row-end-1 col-start-1 col-end-1">
       <component
         :is="lookFile()"
         class="post-file w-full h-full row-start-1 row-end-3 object-cover"
@@ -16,7 +16,7 @@
         :src="blok.file.filename"
       />
     </div>
-    <div class="post-body bg-red-400 grid gap-y-5 text-center p-5">
+    <div class="post-body mb-10 grid gap-y-5 text-center p-5 bg-red-400">
       <h1
         class="post-title row-start-2 row-end-2 col-start-1 col-end-1"
         v-text="blok.title"
@@ -44,24 +44,6 @@
 import marked from 'marked'
 import DOMPurify from 'dompurify'
 export default {
-  directives: {
-    'click-outside': {
-      bind (el, binding) {
-        const handler = (e) => {
-          if (binding.modifiers.bubble || (!el.contains(e.target) && el !== e.target)) {
-            binding.value(e)
-          }
-        }
-        el.outsideClick = handler
-        document.addEventListener('click', handler)
-      },
-
-      unbind (el) {
-        document.removeEventListener('click', el.outsideClick)
-        el.outsideClick = null
-      }
-    }
-  },
   props: {
     blok: {
       type: Object,
@@ -74,7 +56,7 @@ export default {
     }
   },
   methods: {
-    backTo () {
+    goBack () {
       this.$router.push(`/${this.$route.name.split('-')[0]}`)
     },
     changeDate (date) {

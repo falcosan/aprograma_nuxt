@@ -1,11 +1,11 @@
 <template>
   <transition-group
     tag="ul"
-    enter-active-class="duration-200 in-out"
-    leave-active-class="duration-200 out-in"
+    enter-active-class="transition-all duration-200 in-out"
+    leave-active-class="transition-all duration-200 out-in"
     :enter-class="`opacity-0 transform ${translation.enter}`"
     :leave-to-class="`opacity-0 transform ${translation.leave}`"
-    class="slider w-full h-full grid grid-cols-1 grid-rows-2 overflow-x-hidden transition-all"
+    class="slider w-full h-full grid grid-cols-1 grid-rows-2 overflow-x-hidden"
   >
     <template v-for="(item, index) in blok">
       <li v-if="index === frame.up || index === frame.down" :key="item.uuid" :class="`slide slide-item w-full h-2/3 flex p-5 col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'}`">
@@ -26,10 +26,10 @@
         restart
       </h2>
     </li>
-    <li v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control control flex items-center h-full-adapted absolute right-20">
+    <li v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control control absolute top-1/2 right-20">
       <Icon next tag="button" @click.native="next" />
     </li>
-    <li v-if="blok.length > 2 && frame.up != 0" :key="`${indexControls}-2`" class="previous-control control flex items-center h-full-adapted absolute left-20">
+    <li v-if="blok.length > 2 && frame.up != 0" :key="`${indexControls}-2`" class="previous-control control absolute top-1/2 left-20">
       <Icon previous tag="button" @click.native="prev" />
     </li>
   </transition-group>

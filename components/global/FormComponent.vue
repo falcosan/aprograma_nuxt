@@ -70,7 +70,6 @@ export default {
     }
   },
   destroyed () {
-    this.$store.dispatch('validator/clearValues')
     this.clearFields()
   },
   methods: {
@@ -92,7 +91,7 @@ export default {
       this.alert.timer = 0
       this.alert.message = null
       this.alert.color = ''
-      document.getElementById('form').reset()
+      this.$store.dispatch('validator/clearValues')
     },
     async submit () {
       if (this.blok.type === 'contact_form') {
@@ -110,7 +109,7 @@ export default {
             )
             this.submitting = false
             this.clearFields()
-            this.$store.dispatch('validator/clearValues')
+            document.getElementById('form').reset()
             this.setAlert(this.blok.passed_message, 'bg-green-400')
           } catch {
             this.submitting = false

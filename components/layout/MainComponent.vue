@@ -1,6 +1,6 @@
 <template>
   <main
-    class="p-6 w-9/12 my-0 mx-auto"
+    class="w-9/12 h-screen my-0 mx-auto flex"
   >
     <Nuxt v-if="blok.view" />
   </main>

@@ -1,9 +1,9 @@
 <template>
   <NuxtLink
     :to="blok.path"
-    class="link_item inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
+    class="item-link inline-block text-gray-600 no-underline hover:text-gray-300 py-2 px-4"
   >
-    <span>{{ blok.name }}</span>
+    <span class="item-text">{{ blok.name }}</span>
   </NuxtLink>
 </template>
 <script>

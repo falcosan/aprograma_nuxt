@@ -11,7 +11,7 @@
       ${$customClass('index', 'flex text-7xl')}
       ${$customClass('about', 'py-6 px-10 bg-yellow-300')}
       ${$customClass('contact', 'w-full h-full py-6 px-10 grid text-white')}`"
-      v-html="!blok.typewriter ? blok.text.content : value"
+      v-html="!blok.typewriter ? blok.text.content : typewriter"
     />
   </div>
 </template>
@@ -25,18 +25,18 @@ export default {
   },
   data () {
     return {
-      value: '',
+      typewriter: '',
       index: 0,
       charIndex: 0
     }
   },
   created () {
-    setTimeout(this.typeText, this.blok.delay / 0)
+    setTimeout(this.typeText, 0)
   },
   methods: {
     typeText () {
       if (this.charIndex < this.blok.phrases[this.index].length) {
-        this.value += this.blok.phrases[this.index].charAt(this.charIndex)
+        this.typewriter += this.blok.phrases[this.index].charAt(this.charIndex)
         this.charIndex++
         setTimeout(this.typeText, this.blok.speed)
       } else {
@@ -45,7 +45,7 @@ export default {
     },
     eraseText () {
       if (this.charIndex > 0) {
-        this.value = this.blok.phrases[this.index].substring(0, this.charIndex - 1)
+        this.typewriter = this.blok.phrases[this.index].substring(0, this.charIndex - 1)
         this.charIndex--
         setTimeout(this.eraseText, this.blok.speed)
       } else {

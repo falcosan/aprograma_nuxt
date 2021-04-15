@@ -13,9 +13,9 @@
       >
         <transition-group enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="opacity-0" leave-to-class="opacity-0">
           <template v-for="(message, index) in blok.message">
-            <h6 v-if="index === messageIndex" :key="index" class="footer-messages text-sm h-0">
+            <p v-if="index === messageIndex" :key="index" class="footer-messages text-sm h-0">
               {{ message }}
-            </h6>
+            </p>
           </template>
         </transition-group>
       </div>

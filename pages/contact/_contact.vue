@@ -8,7 +8,6 @@
 </template>
 <script>
 export default {
-
   asyncData (context) {
     return context.app.$storyapi
       .get(`cdn/stories/${context.store.state.data.language}/${context.route.path}`)

@@ -9,7 +9,6 @@
 
 <script>
 export default {
-
   asyncData (context) {
     const slug = (context.route.path === '/' || context.route.path === '') ? 'home' : context.route.path
     return context.app.$storyapi

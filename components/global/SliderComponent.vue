@@ -22,7 +22,7 @@
       </li>
     </template>
     <li v-if="frame.down === blok.length && blok.length > 2" :key="`${indexControls}-0`" :class="`restart-control control h-2/3 flex justify-center items-center col-start-1 col-end-1 ${blok.length % 2 == 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} cursor-pointer`">
-      <Icon restart size="w-14" tag="button" @click.native="next" />
+      <Icon class="w-full h-full flex items-center justify-center" restart size="w-14" tag="button" @click.native="next" />
     </li>
     <li v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control control absolute top-1/2 right-20">
       <Icon next size="w-8" tag="button" @click.native="next" />

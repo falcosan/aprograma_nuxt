@@ -24,7 +24,7 @@
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      :class="`back-icon fill-current h-full ${size} ${color}`"
+      :class="`back-icon fill-current h-auto ${size} ${color}`"
       xmlns="http://www.w3.org/2000/svg"
       fill-rule="evenodd"
       clip-rule="evenodd"
@@ -33,7 +33,7 @@
     <!--CLOSE-->
     <svg
       v-else-if="close"
-      :class="`close-icon fill-current h-full ${size} ${color}`"
+      :class="`close-icon fill-current h-auto ${size} ${color}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -45,7 +45,7 @@
     <!--NEXT-->
     <svg
       v-else-if="next"
-      :class="`next-icon fill-current h-full ${size} ${color}`"
+      :class="`next-icon fill-current h-auto ${size} ${color}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -57,7 +57,7 @@
     <!--PREVIOUS-->
     <svg
       v-else-if="previous"
-      :class="`previous-icon fill-current h-full ${size} ${color}`"
+      :class="`previous-icon fill-current h-auto ${size} ${color}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -72,7 +72,7 @@
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      :class="`restart-icon fill-current h-full ${size} ${color}`"
+      :class="`restart-icon fill-current h-auto ${size} ${color}`"
       xmlns="http://www.w3.org/2000/svg"
       fill-rule="evenodd"
       clip-rule="evenodd"

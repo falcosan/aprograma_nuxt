@@ -30,6 +30,7 @@
         <Icon
           v-for="iconLink in $contentByName(blok.body, 'Icon')"
           :key="iconLink._uid"
+          size="w-8"
           tag="a"
           :blok="iconLink"
           class="social-icon w-6 mr-4"

@@ -4,7 +4,7 @@
     :key="blok ? blok._uid : false"
     :title="blok ? blok.tooltip : false"
     :href="blok ? blok.path : tag === 'a' ? to : false"
-    :class="`icon-container ${!loader ? size : ''} focus:outline-none cursor-pointer`"
+    :class="`icon-container focus:outline-none cursor-pointer`"
     :target="blok && blok.tag === 'a' || tag === 'a' ? '_blank' : false"
     :rel="blok && blok.tag === 'a' || tag === 'a' ? 'noopener' : false"
   >
@@ -23,7 +23,8 @@
       v-else-if="back"
       width="24"
       height="24"
-      :class="`back-icon fill-current text-${color}`"
+      viewBox="0 0 24 24"
+      :class="`back-icon fill-current h-full ${size} ${color}`"
       xmlns="http://www.w3.org/2000/svg"
       fill-rule="evenodd"
       clip-rule="evenodd"
@@ -32,9 +33,10 @@
     <!--CLOSE-->
     <svg
       v-else-if="close"
-      :class="`close-icon fill-current text-${color}`"
+      :class="`close-icon fill-current h-full ${size} ${color}`"
       width="24"
       height="24"
+      viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill-rule="evenodd"
       clip-rule="evenodd"
@@ -43,9 +45,10 @@
     <!--NEXT-->
     <svg
       v-else-if="next"
-      :class="`next-icon fill-current text-${color}`"
+      :class="`next-icon fill-current h-full ${size} ${color}`"
       width="24"
       height="24"
+      viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill-rule="evenodd"
       clip-rule="evenodd"
@@ -54,13 +57,26 @@
     <!--PREVIOUS-->
     <svg
       v-else-if="previous"
-      :class="`previous-icon fill-current text-${color}`"
+      :class="`previous-icon fill-current h-full ${size} ${color}`"
       width="24"
       height="24"
+      viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill-rule="evenodd"
       clip-rule="evenodd"
     ><path d="M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z" /></svg>
+
+    <!--RESTART-->
+    <svg
+      v-else-if="restart"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      :class="`restart-icon fill-current h-full ${size} ${color}`"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    ><path d="M7 9h-7v-7h1v5.2c1.853-4.237 6.083-7.2 11-7.2 6.623 0 12 5.377 12 12s-5.377 12-12 12c-6.286 0-11.45-4.844-11.959-11h1.004c.506 5.603 5.221 10 10.955 10 6.071 0 11-4.929 11-11s-4.929-11-11-11c-4.66 0-8.647 2.904-10.249 7h5.249v1z" /></svg>
 
     <!--LOADER-->
     <svg
@@ -136,6 +152,10 @@ export default {
       default: false
     },
     previous: {
+      type: Boolean,
+      default: false
+    },
+    restart: {
       type: Boolean,
       default: false
     },

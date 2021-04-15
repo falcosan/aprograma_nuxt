@@ -5,7 +5,7 @@
       class="post-back fixed top-10 right-10"
       tag="button"
       size="w-8"
-      color="black"
+      color="text-black"
       @click.native="goBack"
     />
     <div class="post-head h-screen row-start-1 row-end-1 col-start-1 col-end-1">

@@ -24,7 +24,7 @@ module.exports = {
       },
       gridTemplateRows: {
         post: '100vh auto',
-        project: '5rem auto 5rem',
+        project: '1.25rem 5rem auto 5rem 1.25rem ',
         contact: '1fr 1fr 1fr'
       },
       transitionProperty: {

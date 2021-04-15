@@ -14,12 +14,9 @@ module.exports = {
         body: ['Asap']
       },
       height: {
-        'full-adapted': 'calc(100vh - 3rem)',
         'min-content': 'min-content'
       },
       gridTemplateColumns: {
-        'post-teaser-link': '1fr 112px',
-        'post-teaser-content': '300px auto',
         slider: '1fr 1fr 5rem'
       },
       gridTemplateRows: {
@@ -28,8 +25,7 @@ module.exports = {
         contact: '1fr 1fr 1fr'
       },
       transitionProperty: {
-        height: 'height',
-        left: 'left'
+        height: 'height'
       },
       transformOrigin: {
         'center-left': '50% 40%'

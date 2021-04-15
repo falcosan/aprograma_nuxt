@@ -1,5 +1,5 @@
 <template>
-  <div class="post w-8/12 my-0 mx-auto flex flex-col">
+  <div class="post">
     <Icon
       close
       class="post-back fixed top-10 right-10"
@@ -8,7 +8,7 @@
       color="text-black"
       @click.native="goBack"
     />
-    <div class="post-head h-screen row-start-1 row-end-1 col-start-1 col-end-1">
+    <div class="post-head w-8/12 h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
       <component
         :is="lookFile()"
         class="post-file w-full h-full row-start-1 row-end-3 object-cover"
@@ -16,7 +16,7 @@
         :src="blok.file.filename"
       />
     </div>
-    <div class="post-body mb-10 grid gap-y-5 text-center p-5 bg-red-400">
+    <div class="post-body w-8/12 mx-auto mb-10 grid gap-y-5 text-center p-5 bg-red-400">
       <h1
         class="post-title row-start-2 row-end-2 col-start-1 col-end-1"
         v-text="blok.title"

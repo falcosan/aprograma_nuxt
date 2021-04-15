@@ -1,45 +1,45 @@
 <template>
   <li
     v-if="postContent"
-    class="post-teaser w-full block mx-auto"
+    class="post-teaser"
   >
-    <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link grid grid-cols-post-teaser-link h-50 ">
+    <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link grid">
       <div
-        class="teaser-content grid grid-cols-post-teaser-content grid-rows-2 gap-x-10 h-full row-start-1 row-end-1 col-start-1 col-end-3 bg-red-400 relative z-10"
-        @mouseover="hoverIn()"
-        @mouseleave="hoverOut()"
+        class="teaser-content h-60 w-full relative z-10 flex row-start-1 row-end-1 col-start-1 col-end-3 bg-red-400"
+        @mouseover="expanded = true"
+        @mouseleave="expanded = false"
       >
         <component
           :is="lookFile()"
-          class="teaser-file w-full h-full row-start-1 row-end-3 object-cover"
+          class="teaser-file w-96 object-cover"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div class="teaser-text flex flex-col justify-center row-start-1 row-end-3">
+        <div class="teaser-text w-full h-full flex flex-col justify-center px-5 overflow-hidden">
           <h3
-            class="post_text overflow-hidden"
+            class="teaser-title"
           >
             {{ postContent.title }}
           </h3>
           <h5
-            class="post_text overflow-hidden"
+            class="teaser-intro"
           >
             {{ postContent.intro }}
           </h5>
         </div>
       </div>
-      <div
-        class="teaser-expanded row-start-1 row-end-1 col-start-2 col-end-2 w-28"
+      <transition
+        enter-active-class="duration-200 linear"
+        leave-active-class="duration-200 linear"
+        enter-class="-translate-x-full"
+        leave-to-class="-translate-x-full"
       >
-        <div
-          :class="`teaser-date ${hovered} row-start-2 col-start-3 self-end flex flex-col justify-center items-center h-full transition-transform duration-150 ease-in transform`"
-        >
-          <h1
-            class="date-text h-auto transform rotate-90 w-max whitespace-nowrap text-3xl"
-            v-text="changeDate(postContent.date)"
-          />
-        </div>
-      </div>
+        <h1
+          v-if="expanded"
+          class="date-text justify-self-end row-start-1 row-end-1 col-start-2 col-end-2 -mr-10 transform rotate-90 whitespace-nowrap text-3xl pointer-events-none"
+          v-text="changeDate(postContent.date)"
+        />
+      </transition>
     </NuxtLink>
   </li>
 </template>
@@ -58,7 +58,7 @@ export default {
   },
   data () {
     return {
-      hovered: 'not_moved'
+      expanded: false
     }
   },
   methods: {
@@ -81,12 +81,6 @@ export default {
         case 'mp4':
           return 'video'
       }
-    },
-    hoverIn () {
-      this.hovered = 'moved translate-x-28'
-    },
-    hoverOut () {
-      this.hovered = 'not_moved translate-x-0'
     }
   }
 }

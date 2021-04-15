@@ -1,7 +1,7 @@
 
 <template>
   <div
-    :class="`form-container w-full m-0 items-center ${$customClass('contact', 'row-start-2 row-end-2 col-start-1 col-end-1')}`"
+    :class="`form-container w-full items-center m-0 ${$customClass('contact', 'col-start-1 col-end-1')}`"
   >
     <transition
       enter-active-class="duration-200 in-out"
@@ -26,7 +26,7 @@
     <form
       id="form"
       :name="blok.title.toLowerCase().replace(/ /g,'-')"
-      class="form w-full grid gap-y-10"
+      class="form w-full grid gap-y-5"
       novalidate="true"
       @submit.prevent="submit"
     >

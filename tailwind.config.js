@@ -16,14 +16,6 @@ module.exports = {
       height: {
         'min-content': 'min-content'
       },
-      gridTemplateColumns: {
-        slider: '1fr 1fr 5rem'
-      },
-      gridTemplateRows: {
-        post: '100vh auto',
-        project: '1.25rem 5rem auto 5rem 1.25rem ',
-        contact: '1fr 1fr 1fr'
-      },
       transitionProperty: {
         height: 'height'
       },

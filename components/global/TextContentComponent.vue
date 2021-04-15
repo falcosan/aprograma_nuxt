@@ -3,7 +3,7 @@
     :class="`text-container
     ${$customClass('index', 'items-center flex my-0')}
     ${$customClass('about', 'items-center flex my-0')}
-    ${$customClass('contact', 'h-full row-start-2 row-end-2 col-start-2 col-end-2 bg-blue-400')}`"
+    ${$customClass('contact', 'col-start-2 col-end-2 bg-blue-400')}`"
   >
     <span
       key="text-content"

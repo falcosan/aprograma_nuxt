@@ -70,7 +70,7 @@ export default {
     },
     getTypewriter () {
       this.container.innerHTML = this.blok.text.content
-      return this.container.querySelectorAll('ul li')
+      return this.container.querySelectorAll('p')
     },
     restartTypewriter () {
       if (this.blok.typewriter) {

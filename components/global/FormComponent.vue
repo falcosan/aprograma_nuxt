@@ -66,7 +66,7 @@ export default {
   },
   computed: {
     nameField () {
-      return Object.assign(...this.blok.body.map(({ name }, index) => ({ [name.toLowerCase()]: Object.values(this.fields)[index] })))
+      return Object.assign(...this.blok.body.map(({ name }, index) => ({ [name.toLowerCase().replace(/ .*/, '')]: Object.values(this.fields)[index] })))
     }
   },
   destroyed () {

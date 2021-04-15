@@ -6,7 +6,6 @@
     :blok="story.content"
   />
 </template>
-
 <script>
 export default {
   asyncData (context) {

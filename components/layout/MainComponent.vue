@@ -2,7 +2,9 @@
   <main
     class="main"
   >
-    <Nuxt v-if="blok.view" />
+    <transition appear appear-active-class="page-appear-active" appear-class="page-appear" name="page">
+      <Nuxt v-if="blok.view" />
+    </transition>
   </main>
 </template>
 

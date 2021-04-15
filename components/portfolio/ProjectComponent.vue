@@ -11,11 +11,11 @@
       color="text-white"
       @click.native="goBack"
     />
-    <div class="image-container flex justify-center overflow-y-hidden col-start-1 col-end-3 border-2 border-green-600">
-      <img class="project-image w-full object-cover" :src="blok.image.filename" :alt="blok.image.alt">
+    <div class="image-container flex items-center overflow-y-hidden col-start-1 col-end-3 border-2 border-green-600">
+      <img class="project-image w-full h-screen object-cover" :src="blok.image.filename" :alt="blok.image.alt">
     </div>
     <span class="project-description col-start-3 col-end-3 p-5 text-justify text-base bg-green-600 text-white" v-text="blok.description" />
-    <div class="project-date col-start-1 col-end-3   grid grid-cols-3 items-center flex-row">
+    <div class="project-date col-start-1 col-end-3 grid grid-cols-3 items-center flex-row">
       <h4 class="date-start text-right">
         {{ changeDate(blok.start_date) }}
       </h4>

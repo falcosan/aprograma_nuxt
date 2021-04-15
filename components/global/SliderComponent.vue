@@ -1,8 +1,8 @@
 <template>
   <transition-group
     tag="ul"
-    enter-active-class="transition-all duration-500 in-out"
-    leave-active-class="transition-all duration-500 out-in"
+    :enter-active-class="`${transitionActive} in-out`"
+    :leave-active-class="`${transitionActive} out-in`"
     :enter-class="`opacity-0 transform ${translation.enter}`"
     :leave-to-class="`opacity-0 transform ${translation.leave}`"
     class="slider w-full h-full grid grid-cols-1 grid-rows-2 overflow-x-hidden"
@@ -46,7 +46,7 @@ export default {
   },
   data () {
     return {
-      transitionEnter: '',
+      transitionActive: '',
       indexControls: 0,
       frame: {
         up: 0,
@@ -63,6 +63,7 @@ export default {
   },
   methods: {
     next () {
+      this.transitionActive = 'translation-all duration-500'
       if (this.blok.length - 1 > this.frame.up && this.blok.length > this.frame.down) {
         this.indexControls++
         this.frame.up++
@@ -78,6 +79,7 @@ export default {
       }
     },
     prev () {
+      this.transitionActive = 'translation-all duration-500'
       if (this.frame.up !== 0 && this.frame.down !== 1) {
         this.indexControls--
         this.frame.up--
@@ -90,6 +92,7 @@ export default {
       this.indexControls = 0
       this.frame.up = 0
       this.frame.data = 1
+      this.transitionActive = ''
       this.translation.enter = ''
       this.translation.leave = ''
     }

@@ -4,28 +4,28 @@
     @mouseleave="expandOut()"
     @mouseover="expandIn()"
   >
-    <div class="input_footer flex justify-center transform -translate-y-10">
-      <span class="input_text text-center animate-bounce text-4xl">.</span>
+    <div class="input-footer flex justify-center transform -translate-y-10">
+      <span class="input-text text-center animate-bounce text-4xl">.</span>
     </div>
-    <div class="footer_content grid items-center">
+    <div class="footer-content grid items-center">
       <div
         class="h-full w-max row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
       >
         <transition-group enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="opacity-0" leave-to-class="opacity-0">
           <template v-for="(message, index) in blok.message">
-            <h6 v-if="index === messageIndex" :key="index" class="text-sm h-0">
+            <h6 v-if="index === messageIndex" :key="index" class="footer-messages text-sm h-0">
               {{ message }}
             </h6>
           </template>
         </transition-group>
       </div>
       <h4
-        class="footer_copyright text-sm text-center w-full row-start-1 row-end-1 col-start-1 col-end-3"
+        class="footer-copyright text-sm text-center w-full row-start-1 row-end-1 col-start-1 col-end-3"
       >
         © 2020 - {{ currentYear }}, Aprograma
       </h4>
       <div
-        class="social_links flex row-start-1 row-end-1 col-start-2 col-end-2 w-max justify-self-end"
+        class="social-links flex row-start-1 row-end-1 col-start-2 col-end-2 w-max justify-self-end"
       >
         <Icon
           v-for="iconLink in $contentByName(blok.body, 'Icon')"
@@ -50,7 +50,7 @@ export default {
   },
   data () {
     return {
-      expanded: 'not_expanded h-0',
+      expanded: 'not-expanded h-0',
       currentYear: new Date().getFullYear(),
       messageIndex: 0
     }
@@ -63,7 +63,7 @@ export default {
       this.expanded = 'expandend h-28'
     },
     expandOut () {
-      this.expanded = 'not_expanded h-0'
+      this.expanded = 'not-expanded h-0'
     },
     changeMessage () {
       setInterval(() => {

@@ -6,7 +6,7 @@
     :href="blok ? blok.path : tag === 'a' ? to : false"
     :class="`icon-container focus:outline-none cursor-pointer`"
     :target="blok && blok.tag === 'a' || tag === 'a' ? '_blank' : false"
-    :rel="blok && blok.tag === 'a' || tag === 'a' ? 'noopener' : false"
+    :rel="blok && blok.tag === 'a' || tag === 'a' ? 'noopener noreferrer' : false"
   >
     <img
       v-if="blok"
@@ -15,6 +15,10 @@
         .pop()
         .replace(/\.[^/.]+$/, '')}-icon`"
       :src="blok.icon.filename"
+      alt=""
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
       type="image/svg+xml"
     >
 

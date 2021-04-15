@@ -5,7 +5,7 @@
     <nav key="navbar" class="navbar">
       <ul class="menu-wrapper">
         <li class="logo-home">
-          <NuxtLink to="/">
+          <NuxtLink to="/" aria-label="Aprograma">
             <Logo
               :transition-a="moved.a"
               :transition-p="moved.p"

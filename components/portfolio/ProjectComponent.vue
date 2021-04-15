@@ -30,7 +30,7 @@
       class="project-url self-center text-center italic  "
       :href="blok.url_project !== '' ? blok.url_project : false"
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
     >{{ blok.url_project !== "" ? `${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}` : $languageCase('private project', 'proyecto privado', 'progetto privato') }}</a>
   </div>
 </template>

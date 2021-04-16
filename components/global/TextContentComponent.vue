@@ -46,7 +46,7 @@ export default {
       this.typeText()
     }
   },
-  destroyed () {
+  beforeDestroy () {
     this.restartTypewriter()
   },
   methods: {

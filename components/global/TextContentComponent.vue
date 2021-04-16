@@ -52,8 +52,9 @@ export default {
       this.typeText()
     }
   },
-  beforeDestroy () {
+  destroyed () {
     this.restartTypewriter()
+    this.index = 0
   },
   methods: {
     typeText () {

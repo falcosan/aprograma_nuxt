@@ -1,14 +1,13 @@
 <template>
   <div
-    :class="`text-container
-    ${$customClass('index', 'items-center flex my-0')}
-    ${$customClass('about', 'items-center flex my-0')}
+    :class="`text-container text-7xl
+    ${$customClass('index', 'flex items-center my-0')}
+    ${$customClass('about', 'flex items-center my-0')}
     ${$customClass('contact', 'col-start-2 col-end-2 bg-blue-400')}`"
   >
-    <span
+    <p
       key="text-content"
       :class="`text-content mx-auto
-      ${$customClass('index', 'text-7xl')}
       ${$customClass('about', 'py-6 px-10 bg-yellow-300')}
       ${$customClass('contact', 'w-full h-full py-6 px-10 grid text-white')}`"
       v-html="!blok.typewriter ? blok.text.content : typewriter"
@@ -31,13 +30,17 @@ export default {
       container: document.createElement('div')
     }
   },
+  computed: {
+    queryTags () {
+      return [...new Set(this.blok.text.content.match(/(?<=<)([^\W].*?)(?=>)/gm))].join(' ')
+    }
+  },
   watch: {
     '$store.state.data.language': { handler () { this.restartTypewriter() } }
-
   },
   created () {
     if (this.blok.typewriter) {
-      setTimeout(this.typeText, 0)
+      this.typeText()
     }
   },
   destroyed () {
@@ -46,8 +49,8 @@ export default {
   methods: {
     typeText () {
       if (this.blok.typewriter) {
-        if (this.charIndex < this.getTypewriter()[this.index].innerHTML.replace(/( |<([^>]+)>)/igm, ' ').length) {
-          this.typewriter += this.getTypewriter()[this.index].innerHTML.replace(/( |<([^>]+)>)/igm, ' ').charAt(this.charIndex)
+        if (this.charIndex < this.getTypewriter()[this.index].innerHTML.length) {
+          this.typewriter += this.getTypewriter()[this.index].innerHTML.charAt(this.charIndex)
           this.charIndex++
           setTimeout(this.typeText, this.blok.speed)
         } else {
@@ -58,7 +61,7 @@ export default {
     eraseText () {
       if (this.blok.typewriter) {
         if (this.charIndex > 0) {
-          this.typewriter = this.getTypewriter()[this.index].innerHTML.replace(/( |<([^>]+)>)/igm, ' ').substring(0, this.charIndex - 1)
+          this.typewriter = this.getTypewriter()[this.index].innerHTML.substring(0, this.charIndex - 1)
           this.charIndex--
           setTimeout(this.eraseText, this.blok.speed)
         } else {
@@ -70,7 +73,7 @@ export default {
     },
     getTypewriter () {
       this.container.innerHTML = this.blok.text.content
-      return this.container.querySelectorAll('p')
+      return this.container.querySelectorAll(this.queryTags)
     },
     restartTypewriter () {
       if (this.blok.typewriter) {

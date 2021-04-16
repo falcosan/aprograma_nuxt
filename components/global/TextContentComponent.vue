@@ -1,13 +1,14 @@
 <template>
   <div
-    :class="`text-container text-7xl
+    :class="`text-container
     ${$customClass('index', 'flex items-center my-0')}
     ${$customClass('about', 'flex items-center my-0')}
     ${$customClass('contact', 'col-start-2 col-end-2 bg-blue-400')}`"
   >
-    <p
+    <span
       key="text-content"
-      :class="`text-content mx-auto
+      :class="`text-content mx-auto ${textSize()}
+      ${$customClass('index', 'text-7xl')}
       ${$customClass('about', 'py-6 px-10 bg-yellow-300')}
       ${$customClass('contact', 'w-full h-full py-6 px-10 grid text-white')}`"
       v-html="!blok.typewriter ? blok.text.content : typewriter"
@@ -75,11 +76,27 @@ export default {
       this.container.innerHTML = this.blok.text.content
       return this.container.querySelectorAll(this.queryTags)
     },
+    textSize () {
+      if (this.blok.typewriter) {
+        switch (this.blok.typewriter_size) {
+          case 'small':
+            return 'text-sm'
+          case 'normal':
+            return ''
+          case 'large':
+            return 'text-2xl'
+          case 'huge':
+            return 'text-7xl'
+        }
+      } else {
+        return ''
+      }
+    },
     restartTypewriter () {
       if (this.blok.typewriter) {
-        this.typewriter = ''
         clearTimeout(this.typeText)
         clearTimeout(this.eraseText)
+        this.typewriter = ''
         this.index = 0
         this.charIndex = 0
       }

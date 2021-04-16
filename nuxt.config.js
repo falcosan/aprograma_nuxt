@@ -40,14 +40,16 @@ export default {
     [
       'storyblok-nuxt',
       {
-        accessToken: process.env.NODE_ENV === 'production' ? process.env.NUXT_ENV_PUBLIC_TOKEN : process.env.NUXT_ENV_PREVIEW_TOKEN
+        accessToken: process.env.NODE_ENV === 'production' ? process.env.NUXT_ENV_PUBLIC_TOKEN : process.env.NUXT_ENV_PREVIEW_TOKEN,
+        cacheProvider: 'memory'
+
       }
     ],
     [
       'nuxt-compress',
       {
         gzip: {
-          cache: false
+          cache: true
         },
         brotli: {
           threshold: 10240

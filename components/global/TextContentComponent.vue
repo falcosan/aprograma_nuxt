@@ -7,9 +7,10 @@
     ${$customClass('contact', 'col-start-2 col-end-2 bg-blue-400')}`"
   >
     <span
+      :style="blok.typewriter ? `color: ${blok.color.color}` : false"
       :class="`text-content${blok.typewriter ? ' typewriter-content' : ''} mx-auto
-      ${typewriterStyle('index', 'whitespace-nowrap text-red-500')}
-      ${$customClass('home', 'flex items-center my-0')}
+      ${typewriterStyle('home', 'whitespace-nowrap')}
+      ${$customClass('home', 'flex items-center my-0 whitespace-nowrap')}
       ${$customClass('about', 'py-6 px-10 bg-yellow-300')}
       ${$customClass('contact', 'w-full h-full py-6 px-10 grid text-white')}`"
       v-html="!blok.typewriter ? blok.text.content : typewriter"
@@ -28,6 +29,7 @@ export default {
     return {
       typewriter: '',
       typewriterSize: '',
+      typewriterColor: '',
       index: 0,
       charIndex: 0,
       container: document.createElement('div')

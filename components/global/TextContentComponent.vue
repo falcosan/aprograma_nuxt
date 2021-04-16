@@ -1,13 +1,14 @@
 <template>
   <div
+    :key="blok._uid"
     :class="`text-container${blok.typewriter ? ' typewriter-container' : ''}
-    ${typewriterStyle('index', 'whitespace-nowrap')}
     ${$customClass('index', 'flex items-center my-0')}
     ${$customClass('about', 'flex items-center my-0')}
     ${$customClass('contact', 'col-start-2 col-end-2 bg-blue-400')}`"
   >
     <span
       :class="`text-content${blok.typewriter ? ' typewriter-content' : ''} mx-auto
+      ${typewriterStyle('index', 'whitespace-nowrap text-red-500')}
       ${$customClass('index', 'flex items-center my-0')}
       ${$customClass('about', 'py-6 px-10 bg-yellow-300')}
       ${$customClass('contact', 'w-full h-full py-6 px-10 grid text-white')}`"

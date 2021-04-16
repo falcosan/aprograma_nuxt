@@ -39,8 +39,13 @@ export default {
     queryTags () {
       return [...new Set(this.blok.text.content.match(/(?<=<)([^\W].*?)(?=>)/gm))].join(' ')
     },
-    randomIndex () {
-      return ~~(Math.random() * (this.getTypewriter().length - Math.ceil(this.index) + 1)) + Math.ceil(0)
+    randomIndex: {
+      get () {
+        return ~~(Math.random() * (this.getTypewriter().length - Math.ceil(this.index) + 1)) + Math.ceil(0)
+      },
+      set (resetIndex) {
+        this.randomIndex = resetIndex
+      }
     },
     words () {
       return this.getTypewriter()[this.randomIndex].innerHTML.replace(/(&nbsp;|<br>|<br \/>)/gm, '')
@@ -117,6 +122,7 @@ export default {
         this.typewriter = ''
         this.typewriterSize = ''
         this.index = 0
+        this.rupdateIndex = 0
         this.charIndex = 0
       }
     }

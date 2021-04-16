@@ -15,7 +15,7 @@
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div class="teaser-text w-full h-full flex flex-col justify-center px-5 overflow-hidden">
+        <div class="teaser-text w-full h-full flex flex-col justify-center p-10 overflow-hidden">
           <h3
             class="teaser-title"
           >

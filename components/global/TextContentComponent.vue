@@ -1,13 +1,13 @@
 <template>
   <div
-    :class="`text-container
+    :class="`text-container${blok.typewriter ? ' typewriter-container' : ''}
+    ${typewriterStyle('index', 'whitespace-nowrap')}
     ${$customClass('index', 'flex items-center my-0')}
     ${$customClass('about', 'flex items-center my-0')}
     ${$customClass('contact', 'col-start-2 col-end-2 bg-blue-400')}`"
   >
     <span
-      :class="`text-content mx-auto
-      ${typewriterStyle('index', 'text-yellow-300')}
+      :class="`text-content${blok.typewriter ? ' typewriter-content' : ''} mx-auto
       ${$customClass('index', 'flex items-center my-0')}
       ${$customClass('about', 'py-6 px-10 bg-yellow-300')}
       ${$customClass('contact', 'w-full h-full py-6 px-10 grid text-white')}`"
@@ -26,6 +26,7 @@ export default {
   data () {
     return {
       typewriter: '',
+      typewriterSize: '',
       index: 0,
       charIndex: 0,
       container: document.createElement('div')
@@ -50,6 +51,7 @@ export default {
   methods: {
     typeText () {
       if (this.blok.typewriter) {
+        this.textSize()
         if (this.charIndex < this.getTypewriter()[this.index].innerHTML.length) {
           this.typewriter += this.getTypewriter()[this.index].innerHTML.charAt(this.charIndex)
           this.charIndex++
@@ -77,22 +79,24 @@ export default {
       return this.container.querySelectorAll(this.queryTags)
     },
     textSize () {
-      if (this.blok.typewriter) {
-        switch (this.blok.typewriter_size) {
-          case 'small':
-            return 'text-sm'
-          case 'normal':
-            return ''
-          case 'large':
-            return 'text-2xl'
-          case 'huge':
-            return 'text-5xl'
-        }
+      switch (this.blok.typewriter_size) {
+        case 'small':
+          this.typewriterSize = 'text-sm'
+          break
+        case 'normal':
+          this.typewriterSize = ''
+          break
+        case 'large':
+          this.typewriterSize = 'text-2xl'
+          break
+        case 'huge':
+          this.typewriterSize = 'text-6xl'
+          break
       }
     },
     typewriterStyle (page, style) {
       if (this.blok.typewriter) {
-        return this.$customClass(page, `${style.trim()} ${this.textSize()}`)
+        return this.$customClass(page, `${style} ${this.typewriterSize}`)
       } else {
         return ''
       }
@@ -102,6 +106,7 @@ export default {
         clearTimeout(this.typeText)
         clearTimeout(this.eraseText)
         this.typewriter = ''
+        this.typewriterSize = ''
         this.index = 0
         this.charIndex = 0
       }

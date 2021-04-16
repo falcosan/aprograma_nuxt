@@ -4,7 +4,7 @@
     :key="blok ? blok._uid : false"
     :title="blok ? blok.tooltip : false"
     :href="blok ? blok.path : tag === 'a' ? to : false"
-    :class="`icon-container focus:outline-none cursor-pointer`"
+    :class="`icon-container cursor-pointer`"
     :target="blok && blok.tag === 'a' || tag === 'a' ? '_blank' : false"
     :rel="blok && blok.tag === 'a' || tag === 'a' ? 'noopener noreferrer' : false"
   >

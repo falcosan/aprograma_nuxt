@@ -11,7 +11,7 @@ export default {
   asyncData (context) {
     const slug = (context.route.path === '/' || context.route.path === '') ? 'home' : context.route.path
     return context.app.$storyapi
-      .get(`cdn/stories/${context.store.state.data.language}/${slug}?version=published&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
+      .get(`cdn/stories/${context.store.state.data.language}/${slug}`)
       .then((res) => {
         return res.data
       })

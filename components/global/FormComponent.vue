@@ -37,7 +37,7 @@
         :field-value.sync="fields[index]"
         :blok="input"
       />
-      <input class="button-submit justify-self-end py-3 px-10 cursor-pointer focus:outline-none bg-black text-white" type="submit" :value="blok.submit">
+      <input class="button-submit justify-self-end py-3 px-10 cursor-pointer bg-black text-white" type="submit" :value="blok.submit">
     </form>
   </div>
 </template>

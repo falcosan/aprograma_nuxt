@@ -33,7 +33,7 @@ export default {
     }
   },
   async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.data.language}/${this.$route.path}?version=published&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
+    const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.data.language}/${this.$route.path}`)
     this.story = data.story
     this.$store.dispatch('list/addItems', 'blog')
   },

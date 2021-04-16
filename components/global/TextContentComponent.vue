@@ -40,7 +40,7 @@ export default {
       return [...new Set(this.blok.text.content.match(/(?<=<)([^\W].*?)(?=>)/gm))].join(' ')
     },
     randomIndex () {
-      return ~~(Math.random() * (this.getTypewriter().length - this.index) + 0)
+      return ~~(Math.random() * (this.getTypewriter().length - Math.ceil(this.index) + 1)) + Math.ceil(0)
     },
     words () {
       return this.getTypewriter()[this.randomIndex].innerHTML.replace(/(&nbsp;|<br>|<br \/>)/gm, '')

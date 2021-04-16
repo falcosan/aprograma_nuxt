@@ -6,9 +6,9 @@
     ${$customClass('contact', 'col-start-2 col-end-2 bg-blue-400')}`"
   >
     <span
-      key="text-content"
-      :class="`text-content mx-auto ${textSize()}
-      ${$customClass('index', 'text-7xl')}
+      :class="`text-content mx-auto
+      ${typewriterStyle('index', 'text-yellow-300')}
+      ${$customClass('index', 'flex items-center my-0')}
       ${$customClass('about', 'py-6 px-10 bg-yellow-300')}
       ${$customClass('contact', 'w-full h-full py-6 px-10 grid text-white')}`"
       v-html="!blok.typewriter ? blok.text.content : typewriter"
@@ -86,8 +86,13 @@ export default {
           case 'large':
             return 'text-2xl'
           case 'huge':
-            return 'text-7xl'
+            return 'text-5xl'
         }
+      }
+    },
+    typewriterStyle (page, style) {
+      if (this.blok.typewriter) {
+        return this.$customClass(page, `${style.trim()} ${this.textSize()}`)
       } else {
         return ''
       }

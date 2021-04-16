@@ -1,9 +1,9 @@
 <template>
   <section
     :class="`${blok.name.toLowerCase()}-page w-8/12 my-0 mx-auto h-screen
-      ${$customClass('index', 'flex items-center ')}
-      ${$customClass('about', 'flex items-center ')}
-      ${$customClass('portfolio', 'flex items-center ')}
+      ${$customClass('index', 'flex items-center')}
+      ${$customClass('about', 'flex items-center')}
+      ${$customClass('portfolio', 'flex items-center')}
       ${$customClass('contact', 'grid grid-cols-2 content-center gap-x-10')}
       ${$customClass('blog', 'p-6')}`"
   >

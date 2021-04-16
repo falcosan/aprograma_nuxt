@@ -10,7 +10,7 @@
 export default {
   asyncData (context) {
     return context.app.$storyapi
-      .get(`cdn/stories/${context.store.state.data.language}/${context.route.path}`)
+      .get(`cdn/stories/${context.store.state.data.language}/${context.route.path}?version=published&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
       .then((res) => {
         return res.data
       })

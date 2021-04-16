@@ -52,8 +52,8 @@ export default {
     typeText () {
       if (this.blok.typewriter) {
         this.textSize()
-        if (this.charIndex < this.getTypewriter()[this.index].innerHTML.length) {
-          this.typewriter += this.getTypewriter()[this.index].innerHTML.charAt(this.charIndex)
+        if (this.charIndex < this.getTypewriter()[this.index].innerHTML.replace(/(&nbsp;|<br>|<br \/>)/gm, '').length) {
+          this.typewriter += this.getTypewriter()[this.index].innerHTML.replace(/(&nbsp;|<br>|<br \/>)/gm, '').charAt(this.charIndex)
           this.charIndex++
           setTimeout(this.typeText, this.blok.speed)
         } else {
@@ -64,7 +64,7 @@ export default {
     eraseText () {
       if (this.blok.typewriter) {
         if (this.charIndex > 0) {
-          this.typewriter = this.getTypewriter()[this.index].innerHTML.substring(0, this.charIndex - 1)
+          this.typewriter = this.getTypewriter()[this.index].innerHTML.replace(/(&nbsp;|<br>|<br \/>)/gm, '').substring(0, this.charIndex - 1)
           this.charIndex--
           setTimeout(this.eraseText, this.blok.speed)
         } else {

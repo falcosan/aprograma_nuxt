@@ -1,7 +1,7 @@
 
 <template>
   <div
-    :class="`form-container w-full items-center m-0 ${$customClass('contact', 'col-start-1 col-end-1')}`"
+    :class="`form-container w-full items-center m-0 ${$customClass('contact', 'all', 'col-start-1 col-end-1')}`"
   >
     <transition
       enter-active-class="duration-200 in-out"
@@ -20,7 +20,7 @@
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
       <div v-if="alert.message" :class="`form-alert absolute w-full top-0 left-0 p-5 text-center transform transition-transform text-lg ${alert.color} text-white`" v-text="alert.message" />
     </transition>
-    <h1 v-if="blok.show_title" :class="`form-title mb-10 ${$customClass('contact', 'pt-6 text-right')}`">
+    <h1 v-if="blok.show_title" :class="`form-title mb-10 ${$customClass('contact', 'all', 'pt-6 text-right')}`">
       {{ blok.title }}
     </h1>
     <form
@@ -66,7 +66,7 @@ export default {
   },
   computed: {
     nameField () {
-      return Object.assign(...this.blok.body.map(({ name }, index) => ({ [name.toLowerCase()]: Object.values(this.fields)[index] })))
+      return Object.assign(...this.blok.body.map(({ title }, index) => ({ [title.toLowerCase()]: Object.values(this.fields)[index] })))
     }
   },
   destroyed () {

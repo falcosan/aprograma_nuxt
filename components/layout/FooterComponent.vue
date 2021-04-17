@@ -11,13 +11,9 @@
       <div
         class="h-full w-max row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
       >
-        <transition-group enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="opacity-0" leave-to-class="opacity-0">
-          <template v-for="(message, index) in blok.message">
-            <p v-if="index === messageIndex" :key="index" class="footer-messages text-sm h-0">
-              {{ message }}
-            </p>
-          </template>
-        </transition-group>
+        <span class="footer-messages text-sm">
+          Aprograma {{ typewriter }}
+        </span>
       </div>
       <h4
         class="footer-copyright text-sm text-center w-full row-start-1 row-end-1 col-start-1 col-end-3"
@@ -52,11 +48,21 @@ export default {
     return {
       expanded: 'not-expanded h-0',
       currentYear: new Date().getFullYear(),
-      messageIndex: 0
+      typewriter: '',
+      typewriterIndex: 0,
+      charIndex: 0
     }
   },
+  computed: {
+    words () {
+      return this.blok.message[this.typewriterIndex]
+    }
+  },
+  watch: {
+    '$store.state.data.language': { handler () { this.restartTypewriter() } }
+  },
   created () {
-    this.changeMessage()
+    this.typeText()
   },
   methods: {
     expandIn () {
@@ -65,15 +71,35 @@ export default {
     expandOut () {
       this.expanded = 'not-expanded h-0'
     },
-    changeMessage () {
-      setInterval(() => {
-        if (this.messageIndex + 1 < this.blok.message.length && this.blok.message.length > 1) {
-          this.messageIndex++
-        } else {
-          this.messageIndex = 0
-        }
-      }, 2500)
+    typeText () {
+      if (this.charIndex < this.words.length) {
+        this.typewriter += this.words.charAt(this.charIndex)
+        this.charIndex++
+        setTimeout(this.typeText, 50)
+      } else {
+        if (this.typewriterIndex >= this.blok.message.length) { this.typewriterIndex = 0 }
+        setTimeout(this.eraseText, 2000)
+      }
+    },
+    eraseText () {
+      if (this.charIndex > 0) {
+        this.typewriter = this.words.substring(0, this.charIndex - 1)
+        this.charIndex--
+        setTimeout(this.eraseText, 50)
+      } else {
+        this.typewriterIndex++
+        if (this.typewriterIndex >= this.blok.message.length) { this.typewriterIndex = 0 }
+        setTimeout(this.typeText, 50)
+      }
+    },
+    restartTypewriter () {
+      clearTimeout(this.typeText)
+      clearTimeout(this.eraseText)
+      this.charIndex = -1
+      this.typewriterIndex = 0
+      this.typewriter = ''
     }
+
   }
 }
 </script>

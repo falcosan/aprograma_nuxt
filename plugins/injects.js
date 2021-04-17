@@ -1,6 +1,6 @@
 export default ({ app }, inject) => {
-  inject('customClass', (elementName, style) => {
-    if (app.context.route.name.includes(elementName)) {
+  inject('customClass', (elementName, componentName, style) => {
+    if (app.context.route.name.includes(elementName) && componentName) {
       return style
     } else {
       return ''

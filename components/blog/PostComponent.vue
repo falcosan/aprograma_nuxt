@@ -16,7 +16,7 @@
         :src="blok.file.filename"
       />
     </div>
-    <div class="post-body w-8/12 mx-auto mb-10 grid gap-y-5 text-center p-5 bg-red-400">
+    <div :style="`color: ${blok.post_text_color.color}; background-color: ${blok.post_background_color.color};`" class="post-body w-8/12 mx-auto mb-10 grid gap-y-5 text-center p-5">
       <h2
         class="post-title row-start-2 row-end-2 col-start-1 col-end-1"
         v-text="blok.title"

@@ -78,7 +78,7 @@ export default {
         setTimeout(this.typeText, 50)
       } else {
         if (this.typewriterIndex >= this.blok.message.length) { this.typewriterIndex = 0 }
-        setTimeout(this.eraseText, 2000)
+        setTimeout(this.eraseText, 1500)
       }
     },
     eraseText () {

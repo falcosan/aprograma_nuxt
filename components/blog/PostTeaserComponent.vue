@@ -5,7 +5,8 @@
   >
     <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link grid">
       <div
-        class="teaser-content h-60 w-full relative z-10 flex row-start-1 row-end-1 col-start-1 col-end-3 bg-red-400"
+        :style="`background-color: ${postContent.teaser_background_color.color};`"
+        class="teaser-content h-60 w-full relative z-10 flex row-start-1 row-end-1 col-start-1 col-end-3"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
@@ -15,7 +16,7 @@
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div class="teaser-text w-full h-full flex flex-col justify-center p-10 overflow-hidden">
+        <div :style="`color: ${postContent.teaser_text_color.color};`" class="teaser-text w-full h-full flex flex-col justify-center p-10 overflow-hidden">
           <h3
             class="teaser-title"
           >

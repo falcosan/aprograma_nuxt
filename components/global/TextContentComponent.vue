@@ -28,10 +28,10 @@ export default {
   },
   computed: {
     randomTextColor () {
-      return this.blok.text_color.color.split(' ').length > 1 ? this.blok.text_color.color.split(' ')[this.colorUpdate(this.blok.text_color.color.split(' ').length)] : this.blok.text_color.color.split(' ')[0]
+      return this.blok.text_color.color.split('; ').length > 1 ? this.blok.text_color.color.split(' ')[this.colorUpdate(this.blok.text_color.color.split(' ').length)] : this.blok.text_color.color.split(' ')[0]
     },
     randomBackgroundColor () {
-      return this.blok.background_color.color.split(' ').length > 1 ? this.blok.background_color.color.split(' ')[this.colorUpdate(this.blok.background_color.color.split(' ').length)] : this.blok.background_color.color.split(' ')[0]
+      return this.blok.background_color.color.split('; ').length > 1 ? this.blok.background_color.color.split(' ')[this.colorUpdate(this.blok.background_color.color.split(' ').length)] : this.blok.background_color.color.split(' ')[0]
     }
   },
   methods: {

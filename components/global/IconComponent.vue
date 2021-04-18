@@ -28,8 +28,9 @@
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      :class="`back-icon fill-current h-auto ${size} ${color}`"
+      :class="`back-icon fill-current h-auto ${size}`"
       xmlns="http://www.w3.org/2000/svg"
+      :style="`color: ${color};`"
       fill-rule="evenodd"
       clip-rule="evenodd"
     ><path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z" /></svg>
@@ -37,11 +38,12 @@
     <!--CLOSE-->
     <svg
       v-else-if="close"
-      :class="`close-icon fill-current h-auto ${size} ${color}`"
+      :class="`close-icon fill-current h-auto ${size}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
+      :style="`color: ${color};`"
       fill-rule="evenodd"
       clip-rule="evenodd"
     ><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z" /></svg>
@@ -49,11 +51,12 @@
     <!--NEXT-->
     <svg
       v-else-if="next"
-      :class="`next-icon fill-current h-auto ${size} ${color}`"
+      :class="`next-icon fill-current h-auto ${size}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
+      :style="`color: ${color};`"
       fill-rule="evenodd"
       clip-rule="evenodd"
     ><path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z" /></svg>
@@ -61,11 +64,12 @@
     <!--PREVIOUS-->
     <svg
       v-else-if="previous"
-      :class="`previous-icon fill-current h-auto ${size} ${color}`"
+      :class="`previous-icon fill-current h-auto ${size}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
+      :style="`color: ${color};`"
       fill-rule="evenodd"
       clip-rule="evenodd"
     ><path d="M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z" /></svg>
@@ -76,8 +80,9 @@
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      :class="`restart-icon fill-current h-auto ${size} ${color}`"
+      :class="`restart-icon fill-current h-auto ${size}`"
       xmlns="http://www.w3.org/2000/svg"
+      :style="`color: ${color};`"
       fill-rule="evenodd"
       clip-rule="evenodd"
     ><path d="M7 9h-7v-7h1v5.2c1.853-4.237 6.083-7.2 11-7.2 6.623 0 12 5.377 12 12s-5.377 12-12 12c-6.286 0-11.45-4.844-11.959-11h1.004c.506 5.603 5.221 10 10.955 10 6.071 0 11-4.929 11-11s-4.929-11-11-11c-4.66 0-8.647 2.904-10.249 7h5.249v1z" /></svg>

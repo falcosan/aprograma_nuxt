@@ -8,7 +8,6 @@
     </transition>
     <component
       :is="blok.tag"
-      autocomplete="off"
       :name="blok.label.toLowerCase().replace(/ /g,'')"
       :type="blok.type"
       :class="`field-input w-full resize-none p-2

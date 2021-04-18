@@ -6,15 +6,25 @@
     <Icon
       back
       tag="button"
-      class="project-back w-full flex justify-center items-center col-start-3 col-end-3 p-5 bg-green-600"
+      :style="`background-color: ${blok.project_background_color.color};`"
+      class="project-back w-full flex justify-center items-center col-start-3 col-end-3 p-5"
       size="w-8"
-      color="text-white"
+      :color="blok.project_text_color.color"
       @click.native="goBack"
     />
-    <div class="image-container flex items-center overflow-y-hidden col-start-1 col-end-3 border-2 border-green-600">
+    <div
+      class="image-container flex items-center overflow-y-hidden col-start-1 col-end-3 border-2"
+      :style="`background-color: ${blok.project_background_color.color};`"
+    >
       <img class="project-image w-full h-screen object-cover" :src="blok.image.filename" :alt="blok.image.alt">
     </div>
-    <span class="project-description col-start-3 col-end-3 p-5 text-justify text-base bg-green-600 text-white" v-text="blok.description" />
+    <div class="project-container col-start-3 col-end-3 p-5" :style="`background-color: ${blok.project_background_color.color};`">
+      <span
+        :style="`color: ${blok.project_text_color.color};`"
+        class="project-description text-justify text-base"
+        v-text="blok.description"
+      />
+    </div>
     <div class="project-date col-start-1 col-end-3 grid grid-cols-3 items-center flex-row">
       <h4 class="date-start text-right">
         {{ changeDate(blok.start_date) }}

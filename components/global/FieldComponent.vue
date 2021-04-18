@@ -14,10 +14,11 @@
       ${isMessage ? 'h-40' : 'h-10 leading-10'}
       ${fieldError() ? 'border-dotted border-2 border-red-600' : 'border border-black'}`"
       :value="fieldValue !== '' ? fieldValue : false"
-      @keyup="updateFields(); showIndication()"
+      @keyup="showIndication()"
       @focus="showIndication()"
       @blur="indication = false"
-      @input="$emit('update:fieldValue', $event.target.value)"
+      @change="updateFields()"
+      @input="$emit('update:fieldValue', $event.target.value);"
     />
   </div>
 </template>

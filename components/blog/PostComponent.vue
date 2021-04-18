@@ -17,7 +17,7 @@
       />
     </div>
     <div class="post-body w-8/12 mx-auto mb-10 grid gap-y-5 text-center p-5 bg-red-400">
-      <h1
+      <h2
         class="post-title row-start-2 row-end-2 col-start-1 col-end-1"
         v-text="blok.title"
       />

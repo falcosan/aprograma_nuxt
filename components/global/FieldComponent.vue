@@ -8,17 +8,17 @@
     </transition>
     <component
       :is="blok.tag"
+      autocomplete="off"
       :name="blok.label.toLowerCase().replace(/ /g,'')"
       :type="blok.type"
       :class="`field-input w-full resize-none p-2
       ${isMessage ? 'h-40' : 'h-10 leading-10'}
       ${fieldError() ? 'border-dotted border-2 border-red-600' : 'border border-black'}`"
       :value="fieldValue !== '' ? fieldValue : false"
-      @keyup="showIndication()"
+      @keyup="updateFields(); showIndication()"
       @focus="showIndication()"
       @blur="indication = false"
-      @change="updateFields()"
-      @input="$emit('update:fieldValue', $event.target.value);"
+      @input="$emit('update:fieldValue', $event.target.value); updateFields()"
     />
   </div>
 </template>

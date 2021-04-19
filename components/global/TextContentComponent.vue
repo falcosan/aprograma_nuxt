@@ -3,7 +3,7 @@
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor};`"
     :class="`text-container
-    ${$customClass('home', 'all', 'my-0 p-7 sm:p-10 mb-5')}
+    ${$customClass('home', 'all', 'my-0 p-7 sm:p-10 mb-5 transition-all duration-500')}
     ${$customClass('about', 'all', 'flex items-center my-0')}
     ${$customClass('contact', 'all', 'col-start-2 col-end-2')}`"
   >
@@ -41,7 +41,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.data.moved': 'randomIndex'
+    '$store.state.data.moved' () { if (this.$store.state.data.moved) { this.randomIndex() } }
   },
   mounted () {
     this.randomIndex()

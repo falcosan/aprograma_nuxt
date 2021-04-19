@@ -10,8 +10,7 @@
               :transition-a="moved.a"
               :transition-p="moved.p"
               style-logo-container="w-24 m-0"
-              @click.native="playOn()"
-              @mouseout.native="playOff()"
+              @click.native="play()"
             />
           </NuxtLink>
         </li>
@@ -79,15 +78,14 @@ export default {
         this.moved.translateList = 'not_expanded -translate-x-full'
       }, 700)
     },
-    playOn () {
+    play () {
       this.moved.a = 'transform origin-center-left translate rotate-360 transition duration-700 ease-out'
       this.moved.p = 'transform origin-center translate rotate-360 transition duration-700 ease-out'
-      this.$store.commit('data/moveMutation')
-    },
-    playOff () {
+      this.$store.commit('data/moveMutation', true)
       document.getElementById('logo').ontransitionend = () => {
         this.moved.p = ''
         this.moved.a = ''
+        this.$store.commit('data/moveMutation', false)
       }
     }
   }

@@ -1,9 +1,9 @@
 <template>
   <header
-    class="header h-auto flex-col flex fixed justify-between mt-0"
+    class="header h-auto sm:h-auto w-full sm:w-auto flex-col flex fixed justify-between mt-0"
   >
     <nav key="navbar" class="navbar">
-      <ul class="menu-wrapper">
+      <ul class="menu-wrapper flex flex-row items-center sm:items-baseline sm:flex-col">
         <li class="logo-home">
           <NuxtLink to="/" aria-label="Aprograma">
             <Logo
@@ -18,7 +18,7 @@
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"
-          class="link-menu"
+          class="link-menu flex-1 text-center sm:text-left"
         >
           <ItemNavbar :blok="item" />
         </li>
@@ -82,6 +82,7 @@ export default {
     playOn () {
       this.moved.a = 'transform origin-center-left translate rotate-360 transition duration-700 ease-out'
       this.moved.p = 'transform origin-center translate rotate-360 transition duration-700 ease-out'
+      this.$store.commit('data/moveMutation')
     },
     playOff () {
       document.getElementById('logo').ontransitionend = () => {

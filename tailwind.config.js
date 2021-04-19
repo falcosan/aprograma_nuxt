@@ -13,6 +13,9 @@ module.exports = {
       fontFamily: {
         body: ['Asap']
       },
+      screens: {
+        xs: '320px'
+      },
       height: {
         'min-content': 'min-content'
       },

@@ -17,7 +17,7 @@
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"
-          class="link-menu flex-1 text-center sm:text-left"
+          class="link-menu flex-1 text-left text-gray-600 no-underline hover:text-gray-300 md:py-2 md:px-4"
         >
           <ItemNavbar :blok="item" />
         </li>
@@ -69,7 +69,7 @@ export default {
       this.timer = 0
     },
     expandStill () {
-      clearInterval(this.timer)
+      clearTimeout(this.timer)
       this.timer = 0
     },
     expandOut () {

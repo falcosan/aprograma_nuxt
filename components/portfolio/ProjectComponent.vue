@@ -13,8 +13,8 @@
       @click.native="goBack"
     />
     <div
-      class="image-container flex items-center overflow-y-hidden col-start-1 col-end-3 border-2"
-      :style="`background-color: ${blok.project_background_color.color};`"
+      class="image-container flex items-center overflow-y-hidden col-start-1 col-end-3 border-4"
+      :style="`border-color: ${blok.project_background_color.color};`"
     >
       <img class="project-image w-full h-screen object-cover" :src="blok.image.filename" :alt="blok.image.alt">
     </div>

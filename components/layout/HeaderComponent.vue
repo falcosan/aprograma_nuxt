@@ -1,9 +1,9 @@
 <template>
   <header
-    class="header h-auto sm:h-auto w-full sm:w-auto flex-col flex fixed justify-between mt-0"
+    class="header  flex-col flex fixed justify-between mt-0"
   >
-    <nav key="navbar" class="navbar">
-      <ul class="menu-wrapper flex flex-row items-center sm:items-baseline sm:flex-col">
+    <nav class="navbar">
+      <ul class="menu-wrapper flex flex-col">
         <li class="logo-home">
           <NuxtLink to="/" aria-label="Aprograma">
             <Logo
@@ -17,13 +17,13 @@
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"
-          class="link-menu flex-1 text-left text-gray-600 no-underline hover:text-gray-300 md:py-2 md:px-4"
+          class="link-menu flex-1 text-left text-gray-600 no-underline hover:text-gray-300 py-2 px-4"
         >
           <ItemNavbar :blok="item" />
         </li>
       </ul>
     </nav>
-    <nav key="language-navbar" class="language-navbar">
+    <nav class="language-navbar">
       <Translate
         class="w-16"
         :style-current-language="`py-3 px-4 text-black transition-all ${expanded ? 'border-t border-b border-r border-black text-gray-600' : 'bg-black text-white'}`"

@@ -1,27 +1,59 @@
 <template>
   <footer
+    v-if="!$isMobile()"
     :class="`footer ${expanded} w-full fixed z-20 bottom-0 bg-gray-200 transition-height duration-200 ease-in-out`"
     @mouseleave="expandOut()"
     @mouseover="expandIn()"
   >
     <div class="input-footer flex justify-center transform -translate-y-10">
-      <span class="input-text text-center animate-bounce text-4xl">.</span>
+      <span class="input-dot text-center animate-bounce text-4xl">.</span>
     </div>
-    <div class="footer-content grid items-center">
+    <div class="footer-content flex items-center">
       <div
-        class="h-full w-max row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
+        class="messages-container h-full flex-1 row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
       >
         <span class="footer-messages text-sm">
           Aprograma {{ typewriter }}
         </span>
       </div>
       <h4
-        class="footer-copyright text-sm text-center w-full row-start-1 row-end-1 col-start-1 col-end-3"
+        class="footer-copyright text-sm text-center flex-1 row-start-1 row-end-1 col-start-1 col-end-3"
       >
         © 2020 - {{ currentYear }}, Aprograma
       </h4>
       <div
-        class="social-links flex row-start-1 row-end-1 col-start-2 col-end-2 w-max justify-self-end"
+        class="social-links flex flex-1 row-start-1 row-end-1 col-start-2 col-end-2 w-max justify-end"
+      >
+        <Icon
+          v-for="iconLink in $contentByName(blok.body, 'Icon')"
+          :key="iconLink._uid"
+          size="w-8"
+          tag="a"
+          :blok="iconLink"
+          class="social-icon w-6 mr-4"
+        />
+      </div>
+    </div>
+  </footer>
+  <footer
+    v-else
+    class="footer h-48"
+  >
+    <div class="footer-content h-full flex flex-col md:flex-row items-center whitespace-nowrap border-t py-8 sm:py:0 mx-20">
+      <div
+        class="messages-container flex-1 row-start-1 row-end-1 col-start-1 col-end-1"
+      >
+        <span class="footer-messages text-sm">
+          Aprograma {{ typewriter }}
+        </span>
+      </div>
+      <h4
+        class="footer-copyright flex-1 text-sm text-center row-start-1 row-end-1 col-start-1 col-end-3"
+      >
+        © 2020 - {{ currentYear }}, Aprograma
+      </h4>
+      <div
+        class="social-links flex flex-1 row-start-1 row-end-1 col-start-2 col-end-2 w-max justify-end"
       >
         <Icon
           v-for="iconLink in $contentByName(blok.body, 'Icon')"

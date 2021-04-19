@@ -7,9 +7,10 @@
     ${$customClass('about', 'all', 'flex items-center my-0')}
     ${$customClass('contact', 'all', 'col-start-2 col-end-2')}`"
   >
-    <span
+    <component
+      :is="blok.article ? 'article' : 'span'"
       :style="`color: ${randomTextColor};`"
-      :class="`text-content mx-auto
+      :class="`text-content mx-auto${blok.article ? ' prose max-w-none' : ''}
       ${$customClass('about', 'all', 'py-6 px-10')}
       ${$customClass('contact', 'all', 'w-full h-full grid auto-rows-auto py-6 px-10')}`"
       v-html="blok.text.content"

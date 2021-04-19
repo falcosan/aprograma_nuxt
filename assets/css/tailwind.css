@@ -34,10 +34,6 @@
         @apply text-xs md:text-lg;
         @apply font-extralight;
     }
-    p, span {
-        @apply text-sm md:text-base;
-        @apply font-extralight;
-    }
 }
 
 *::-webkit-scrollbar {

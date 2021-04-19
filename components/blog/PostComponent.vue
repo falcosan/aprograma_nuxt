@@ -16,27 +16,35 @@
         :src="blok.file.filename"
       />
     </div>
-    <div :style="`color: ${blok.post_text_color.color}; background-color: ${blok.post_background_color.color};`" class="post-body w-8/12 mx-auto mb-10 grid gap-y-5 p-5">
-      <h2
-        class="post-title row-start-2 row-end-2 col-start-1 col-end-1 text-center"
-        v-text="blok.title"
-      />
-      <h3
-        class="post-intro row-start-3 row-end-3 col-start-1 col-end-1 text-center"
-        v-text="blok.intro"
-      />
-      <p
-        class="post-description row-start-4 row-end-4 col-start-1 col-end-1"
-        v-html="blok.long_text.content"
-      />
-      <h4
-        class="post-date row-start-5 row-end-5 col-start-1 col-end-1 w-max whitespace-nowrap"
-        v-text="changeDate(blok.date)"
-      />
-      <h5
-        class="post-date row-start-5 row-end-5 col-start-1 col-end-1 justify-self-end italic"
-        v-text="blok.author"
-      />
+    <div class="post-body w-8/12 flex justify-center mx-auto mb-10" :style="`background-color: ${blok.post_background_color.color};`">
+      <div class="post-article prose prose-sm sm:prose lg:prose-lg xl:prose-xl py-10">
+        <h1
+          :style="`color: ${blok.post_text_color.color};`"
+          class="post-title text-center"
+          v-text="blok.title"
+        />
+        <h2
+          :style="`color: ${blok.post_text_color.color};`"
+          class="post-intro text-center"
+          v-text="blok.intro"
+        />
+        <h3
+          :style="`color: ${blok.post_text_color.color};`"
+          class="post-author border-t border-b py-8 border-black italic"
+        >
+          {{ $languageCase('by', 'de', 'di') }} {{ blok.author }}
+        </h3>
+        <article
+          :style="`color: ${blok.post_text_color.color};`"
+          class="post-description"
+          v-html="blok.long_text.content"
+        />
+        <h4
+          :style="`color: ${blok.post_text_color.color};`"
+          class="post-date text-right"
+          v-text="changeDate(blok.date)"
+        />
+      </div>
     </div>
   </div>
 </template>

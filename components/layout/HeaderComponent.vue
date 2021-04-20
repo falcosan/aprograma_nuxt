@@ -10,7 +10,7 @@
             <Logo
               :transition-a="moved.a"
               :transition-p="moved.p"
-              style-logo-container="w-24 m-0"
+              style-logo-container="w-24"
             />
             <transition
               appear
@@ -52,12 +52,12 @@
     v-else
     class="header"
   >
-    <nav class="navbar-up w-full flex items-center justify-between fixed top-0 z-30">
-      <NuxtLink class="home-link flex items-center" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
+    <nav class="navbar-up w-full h-20 flex justify-between items-center fixed top-0 z-30">
+      <NuxtLink class="home-link w-2/12 flex justify-center items-center" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
         <Logo
           :transition-a="moved.a"
           :transition-p="moved.p"
-          style-logo-container="w-24 m-0"
+          style-logo-container="w-full sm:w-24"
           @click.native="play()"
         />
         <transition
@@ -69,18 +69,18 @@
           enter-class="opacity-0"
           leave-to-class="opacity-0"
         >
-          <span v-if="$route.name !== 'home'" class="project- absolute right-1/2 transform translate-x-1/2 p-2 bg-black text-white" v-text="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)" />
+          <span v-if="$route.name !== 'home'" class="project-name absolute right-1/2 transform translate-x-1/2 p-2 bg-black text-white" v-text="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)" />
         </transition>
       </NuxtLink>
       <Translate
+        class="translate-header w-2/12 flex justify-center text-center"
         :translate-transition="false"
-        class="translate-header flex mr-5 text-center"
         style-translate-list="grid gap-y-1"
-        style-translate-item=""
+        style-translate-item="text-sm"
         :blok="$contentByName(blok.body, 'Translate')"
       />
     </nav>
-    <nav class="navbar-down w-full h-24 flex items-center fixed bottom-0 z-30 bg-gray-400">
+    <nav class="navbar-down w-full h-16 flex items-center fixed bottom-0 z-30 bg-gray-400">
       <ul class="menu-wrapper w-full flex">
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"

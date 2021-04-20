@@ -37,9 +37,9 @@
   </footer>
   <footer
     v-else
-    class="footer h-48 mb-24"
+    class="footer h-48 mb-20"
   >
-    <div class="footer-content h-full flex flex-col md:flex-row items-center whitespace-nowrap border-t mx-20 py-8 sm:py:0">
+    <div class="footer-content h-full flex flex-col items-center whitespace-nowrap border-t mx-20 py-8 sm:py:0">
       <div
         class="messages-container flex-1 row-start-1 row-end-1 col-start-1 col-end-1"
       >

@@ -17,16 +17,16 @@
           :src="postContent.file.filename"
         />
         <div :style="`color: ${postContent.teaser_text_color.color};`" class="teaser-text w-full h-full flex flex-col justify-center p-10 overflow-hidden">
-          <h3
-            class="teaser-title"
+          <span
+            class="teaser-title text-lg md:text-3xl"
           >
             {{ postContent.title }}
-          </h3>
-          <h5
-            class="teaser-intro"
+          </span>
+          <span
+            class="teaser-intro text-base md:text-xl"
           >
             {{ postContent.intro }}
-          </h5>
+          </span>
         </div>
       </div>
       <transition

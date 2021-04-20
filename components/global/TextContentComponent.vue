@@ -3,7 +3,8 @@
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor};`"
     :class="`text-container
-    ${customClass('home', 'all', 'my-0 p-5 sm:p-10 mb-5 md:w-max')}
+    ${customClass('home', 'all', 'my-0 p-5 sm:p-10 md:w-max')}
+    ${customClass('home', blok.name === 'text_home_1', 'mb-5')}
     ${customClass('home', blok.name === 'text_home_2', 'transition-all duration-1000 ease-in-out')}
     ${customClass('about', 'all', 'flex items-center p-5 md:m-10 md:p-10 my-0')}
     ${customClass('contact', 'all', 'col-start-2 col-end-2')}`"

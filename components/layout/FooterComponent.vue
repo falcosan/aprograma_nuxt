@@ -1,7 +1,7 @@
 <template>
   <footer
     v-if="!$store.state.data.mobile"
-    :class="`footer ${expanded} w-full fixed z-20 bottom-0 bg-gray-200 transition-height duration-200 ease-in-out`"
+    :class="`footer ${expanded} w-full fixed z-20 bottom-0 bg-gray-300 transition-height duration-200 ease-in-out`"
     @mouseleave="expandOut()"
     @mouseover="expandIn()"
   >
@@ -37,7 +37,7 @@
   </footer>
   <footer
     v-else
-    :class="`footer h-48 mb-16 mx-24 ${customClass('home', 'all', 'h-56')}`"
+    class="footer h-48 w-8/12 md:w-full my-0 mx-auto mb-16"
   >
     <div class="footer-content h-full flex flex-col items-center whitespace-nowrap border-t py-8 sm:py:0">
       <div

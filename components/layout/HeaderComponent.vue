@@ -14,10 +14,8 @@
             />
             <transition
               appear
-              appear-active-class="transition-opacity duration-1000"
-              enter-active-class="transition-opacity duration-500"
-              leave-active-class="transition-opacity duration-500"
-              appear-class="opacity-0"
+              enter-active-class="transition-opacity duration-300"
+              leave-active-class="transition-opacity duration-300"
               enter-class="opacity-0"
               leave-to-class="opacity-0"
             >
@@ -62,10 +60,8 @@
         />
         <transition
           appear
-          appear-active-class="transition-opacity duration-1000"
-          enter-active-class="transition-opacity duration-500"
-          leave-active-class="transition-opacity duration-500"
-          appear-class="opacity-0"
+          enter-active-class="transition-opacity duration-300"
+          leave-active-class="transition-opacity duration-300"
           enter-class="opacity-0"
           leave-to-class="opacity-0"
         >
@@ -80,7 +76,7 @@
         :blok="$contentByName(blok.body, 'Translate')"
       />
     </nav>
-    <nav class="navbar-down w-full h-16 flex items-center fixed bottom-0 z-30 bg-gray-400">
+    <nav class="navbar-down w-full h-16 flex items-center fixed bottom-0 z-30 bg-gray-300">
       <ul class="menu-wrapper w-full flex">
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"

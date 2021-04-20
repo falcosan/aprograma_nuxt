@@ -3,16 +3,18 @@
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor};`"
     :class="`text-container
-    ${$customClass('home', 'all', 'my-0 p-7 sm:p-10 mb-5 transition-all duration-500')}
-    ${$customClass('about', 'all', 'flex items-center my-0')}
-    ${$customClass('contact', 'all', 'col-start-2 col-end-2')}`"
+    ${customClass('home', 'all', 'my-0 p-5 sm:p-10 mb-5 md:w-max')}
+    ${customClass('home', blok.name === 'text_home_2', 'transition-all duration-1000 ease-in-out')}
+    ${customClass('about', 'all', 'flex items-center p-5 md:m-10 md:p-10 my-0')}
+    ${customClass('contact', 'all', 'col-start-2 col-end-2')}`"
   >
     <component
       :is="blok.article ? 'article' : 'span'"
       :style="`color: ${randomTextColor};`"
       :class="`text-content mx-auto${blok.article ? ' prose max-w-none' : ''}
-      ${$customClass('about', 'all', 'py-6 px-10')}
-      ${$customClass('contact', 'all', 'w-full h-full grid auto-rows-auto py-6 px-10')}`"
+      ${customClass('home', 'all', 'text-2xl md:text-5xl')}
+      ${customClass('about', 'all', 'text-xl md:text-5xl')}
+      ${customClass('contact', 'all', 'w-full h-full grid auto-rows-auto py-6 px-10')}`"
       v-html="blok.text.content"
     />
   </div>
@@ -50,6 +52,13 @@ export default {
   methods: {
     randomIndex () {
       this.index = ~~(Math.random() * (this.colors.length - 0)) + 0
+    },
+    customClass (page, component, style) {
+      if (this.$store.state.data.page === page && component) {
+        return style
+      } else {
+        return ''
+      }
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="post">
     <Icon
       close
-      class="post-back fixed top-8 right-10"
+      class="post-back fixed top-8 right-60"
       tag="button"
       size="w-8"
       color="text-black"

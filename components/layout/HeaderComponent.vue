@@ -21,7 +21,7 @@
               enter-class="opacity-0"
               leave-to-class="opacity-0"
             >
-              <span v-if="$route.name !== 'home'" class="project-name fixed right-28 text-xl p-2 bg-black text-white" v-text="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)" />
+              <span v-if="$route.name !== 'home'" class="project-name fixed right-6 text-xl p-2 bg-black text-white" v-text="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)" />
             </transition>
           </NuxtLink>
         </li>
@@ -57,7 +57,7 @@
         <Logo
           :transition-a="moved.a"
           :transition-p="moved.p"
-          style-logo-container="w-full sm:w-24"
+          style-logo-container="w-full"
           @click.native="play()"
         />
         <transition
@@ -73,10 +73,10 @@
         </transition>
       </NuxtLink>
       <Translate
-        class="translate-header w-2/12 flex justify-center text-center"
+        class="translate-header w-2/12 justify-center"
         :translate-transition="false"
-        style-translate-list="grid gap-y-1"
-        style-translate-item="text-sm"
+        style-translate-list="text-center"
+        style-translate-item="text-sm md:text-base"
         :blok="$contentByName(blok.body, 'Translate')"
       />
     </nav>
@@ -117,7 +117,7 @@ export default {
       }
     }
   },
-  updated () {
+  created () {
     this.$store.commit('data/mobileMutation')
   },
   methods: {

@@ -1,11 +1,11 @@
 <template>
   <section
-    :class="`${blok.name.toLowerCase()}-page w-8/12 my-0 mx-auto h-screen
-      ${$customClass('home','all', 'flex flex-col justify-center sm:items-center')}
-      ${$customClass('about','all', 'flex items-center')}
-      ${$customClass('portfolio','all', 'flex items-center')}
-      ${$customClass('contact','all', 'grid grid-cols-2 content-center gap-x-10')}
-      ${$customClass('blog','all', 'p-6')}`"
+    :class="`${blok.name.toLowerCase()}-page w-8/12 my-0 mx-auto
+      ${customClass('home','all', 'flex flex-col justify-center h-screen')}
+      ${customClass('about','all', 'flex mt-20 md:mt-0')}
+      ${customClass('portfolio','all', 'flex items-center mt-20 md:mt-0 md:h-screen')}
+      ${customClass('contact','all', 'grid grid-cols-2 content-center gap-x-10 mt-20 md:mt-0 md:h-screen')}
+      ${customClass('blog','all', 'p-6 mt-20 md:mt-0 md:h-screen')}`"
   >
     <component
       :is="component.component"
@@ -22,6 +22,15 @@ export default {
     blok: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    customClass (page, component, style) {
+      if (this.$store.state.data.page === page && component) {
+        return style
+      } else {
+        return ''
+      }
     }
   }
 }

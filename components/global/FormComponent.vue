@@ -1,7 +1,7 @@
 
 <template>
   <div
-    :class="`form-container w-full items-center m-0 ${$customClass('contact', 'all', 'col-start-1 col-end-1')}`"
+    :class="`form-container w-full items-center m-0 ${customClass('contact', 'all', 'col-start-1 col-end-1')}`"
   >
     <transition
       enter-active-class="duration-200 in-out"
@@ -20,7 +20,7 @@
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
       <div v-if="alert.message" :class="`form-alert absolute w-full top-0 left-0 p-5 text-center transform transition-transform text-lg ${alert.color} text-white`" v-text="alert.message" />
     </transition>
-    <h1 v-if="blok.show_title" :class="`form-title mb-10 ${$customClass('contact', 'all', 'pt-6 text-right')}`">
+    <h1 v-if="blok.show_title" :class="`form-title mb-10 ${customClass('contact', 'all', 'pt-6 text-right')}`">
       {{ blok.title }}
     </h1>
     <form
@@ -73,6 +73,13 @@ export default {
     this.clearFields()
   },
   methods: {
+    customClass (page, component, style) {
+      if (this.$store.state.data.page === page && component) {
+        return style
+      } else {
+        return ''
+      }
+    },
     setAlert (message, color) {
       this.alert.message = message
       this.alert.color = color

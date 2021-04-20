@@ -1,11 +1,4 @@
 export default ({ app }, inject) => {
-  inject('customClass', (elementName, componentName, style) => {
-    if (app.context.route.name.includes(elementName) && componentName) {
-      return style
-    } else {
-      return ''
-    }
-  })
   inject('contentByName', (from, nameComponent) => {
     return from.filter(function (item) { return item.component === `${nameComponent}` })
   })

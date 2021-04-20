@@ -3,7 +3,7 @@
     :is="blok ? blok.tag : tag"
     :key="blok ? blok._uid : false"
     :title="blok ? blok.tooltip : false"
-    :href="blok ? blok.path : tag === 'a' ? to : false"
+    :href="blok ? blok.path !== '' : tag === 'a' ? to : false"
     :class="`icon-container cursor-pointer`"
     :target="blok && blok.tag === 'a' || tag === 'a' ? '_blank' : false"
     :rel="blok && blok.tag === 'a' || tag === 'a' ? 'noopener noreferrer' : false"
@@ -13,9 +13,10 @@
       :class="`icon ${blok.icon.filename
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-icon`"
+        .replace(/\.[^/.]+$/, '')}-icon ${size}`"
       :src="blok.icon.filename"
       alt=""
+      :name="blok.name"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -148,6 +149,14 @@ export default {
       type: String,
       required: true
     },
+    color: {
+      type: String,
+      default: ''
+    },
+    size: {
+      type: String,
+      default: ''
+    },
     back: {
       type: Boolean,
       default: false
@@ -171,14 +180,6 @@ export default {
     loader: {
       type: Boolean,
       default: false
-    },
-    color: {
-      type: String,
-      default: ''
-    },
-    size: {
-      type: String,
-      default: ''
     }
   }
 }

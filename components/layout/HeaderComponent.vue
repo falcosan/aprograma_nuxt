@@ -30,7 +30,7 @@
           :key="item._uid"
           class="link-menu flex-1 text-left no-underline py-2 px-4 text-gray-600 hover:text-gray-300"
         >
-          <ItemNavbar :blok="item" />
+          <ItemNavbar :icon-item="false" :blok="item" />
         </li>
       </ul>
     </nav>
@@ -52,7 +52,7 @@
     v-else
     class="header"
   >
-    <nav class="navbar-up flex items-center justify-between fixed top-0 z-30 w-full">
+    <nav class="navbar-up w-full flex items-center justify-between fixed top-0 z-30">
       <NuxtLink class="home-link flex items-center" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
         <Logo
           :transition-a="moved.a"
@@ -75,20 +75,19 @@
       <Translate
         :translate-transition="false"
         class="translate-header flex mr-5 text-center"
-        style-current-language=""
-        style-translate-list="flex flex-col"
+        style-translate-list="grid gap-y-1"
         style-translate-item=""
         :blok="$contentByName(blok.body, 'Translate')"
       />
     </nav>
-    <nav class="navbar-down w-full h-24 fixed bottom-0 z-30 bg-gray-400">
-      <ul class="menu-wrapper flex">
+    <nav class="navbar-down w-full h-24 flex items-center fixed bottom-0 z-30 bg-gray-400">
+      <ul class="menu-wrapper w-full flex">
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"
           class="link-menu flex-1 text-center py-2 px-4 text-gray-600 no-underline hover:text-gray-300"
         >
-          <ItemNavbar :blok="item" />
+          <ItemNavbar icon-item icon-size="w-7" :blok="item" />
         </li>
       </ul>
     </nav>

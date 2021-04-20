@@ -61,7 +61,7 @@
           size="w-8"
           tag="a"
           :blok="iconLink"
-          class="social-icon w-6 mr-4"
+          class="social-icon mr-4"
         />
       </div>
     </div>

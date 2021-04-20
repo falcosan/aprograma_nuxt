@@ -2,7 +2,6 @@ const axios = require('axios')
 
 export default {
   target: 'static',
-
   head: {
     title: 'Aprograma - a peaceful coding experience',
     htmlAttrs: {
@@ -35,7 +34,9 @@ export default {
     '@nuxtjs/tailwindcss',
     'nuxt-compress'
   ],
-
+  publicRuntimeConfig: {
+    projectName: process.env.npm_package_name
+  },
   modules: [
     [
       'storyblok-nuxt',

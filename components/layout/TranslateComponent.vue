@@ -1,7 +1,8 @@
 <template>
   <div class="translate-container">
     <div
-      :class="`current-language w-full relative z-10 flex cursor-pointer ${styleCurrentLanguage}`"
+      v-if="translateTransition"
+      :class="`current-language cursor-pointer ${styleCurrentLanguage}`"
     >
       <template v-for="selector in blok">
         <span v-if="cutLanguage(selector) === $store.state.data.language || cutLanguage(selector) === 'en' && $store.state.data.language === ''" :key="selector._uid" class="language-item">
@@ -11,11 +12,11 @@
     </div>
     <ul
       id="translate-list"
-      :class="`translate-list flex flex-col ${styleTranslateList}`"
+      :class="`translate-list ${styleTranslateList}`"
     >
       <template v-for="language in blok">
         <li
-          v-if="cutLanguage(language) !== $store.state.data.language && $store.state.data.language !== '' || cutLanguage(language) !== 'en' && $store.state.data.language === ''"
+          v-if="translateTransition ? (cutLanguage(language) !== $store.state.data.language && $store.state.data.language !== '' || cutLanguage(language) !== 'en' && $store.state.data.language === '') : true"
           :key="language._uid"
           :class="`translate-item cursor-pointer ${styleTranslateItem}`"
         >
@@ -26,7 +27,7 @@
               changeLanguage(language.language)
             "
           >
-            <span class="translate-language hover:text-gray-400 hover:text-underline">{{ language.language }}</span>
+            <span class="translate-language hover:text-gray-400">{{ language.language }}</span>
           </a>
         </li>
       </template>
@@ -42,6 +43,10 @@ export default {
       type: Array,
       required: true
     },
+    translateTransition: {
+      type: Boolean,
+      required: true
+    },
     styleTranslateItem: {
       type: String,
       default: ''
@@ -53,9 +58,7 @@ export default {
     styleCurrentLanguage: {
       type: String,
       default: ''
-    },
-
-    showTranslate: Boolean
+    }
   },
   methods: {
     changeLanguage (lang) {

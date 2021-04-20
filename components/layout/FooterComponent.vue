@@ -1,6 +1,6 @@
 <template>
   <footer
-    v-if="!$isMobile()"
+    v-if="!$store.state.data.mobile"
     :class="`footer ${expanded} w-full fixed z-20 bottom-0 bg-gray-200 transition-height duration-200 ease-in-out`"
     @mouseleave="expandOut()"
     @mouseover="expandIn()"
@@ -37,9 +37,9 @@
   </footer>
   <footer
     v-else
-    class="footer h-48"
+    class="footer h-48 mb-24"
   >
-    <div class="footer-content h-full flex flex-col md:flex-row items-center whitespace-nowrap border-t py-8 sm:py:0 mx-20">
+    <div class="footer-content h-full flex flex-col md:flex-row items-center whitespace-nowrap border-t mx-20 py-8 sm:py:0">
       <div
         class="messages-container flex-1 row-start-1 row-end-1 col-start-1 col-end-1"
       >
@@ -92,6 +92,9 @@ export default {
   },
   watch: {
     '$store.state.data.language': { handler () { this.restartTypewriter() } }
+  },
+  updated () {
+    this.$store.commit('data/mobileMutation')
   },
   created () {
     this.typeText()

@@ -29,7 +29,7 @@ export const mutations = {
   }
 }
 export const actions = {
-  checkValues: ({ state, commit }) => {
+  checkValues ({ state, commit }) {
     commit('checkForm', true)
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email.text)) {
       commit('passEmail', 'yes')
@@ -42,7 +42,7 @@ export const actions = {
       commit('passMessage', 'no')
     }
   },
-  clearValues: ({ commit }) => {
+  clearValues ({ commit }) {
     commit('passEmail', '')
     commit('checkEmail', '')
     commit('passMessage', '')

@@ -14,7 +14,7 @@
         tag="span"
         loader
         size="w-32"
-        class="form-loader w-full h-full flex justify-center absolute top-0 left-0 z-30 bg-white"
+        class="form-loader w-full h-full flex justify-center absolute top-0 left-0 z-40 bg-white"
       />
     </transition>
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full" leave-to-class="-translate-y-full">

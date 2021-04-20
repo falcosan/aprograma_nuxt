@@ -6,7 +6,7 @@
     <span v-if="!iconItem" class="item-text">{{ blok.title }}</span>
     <Icon
       v-else
-      class="item-icon"
+      :class="`item-icon ${iconStyle}`"
       :tag="blok.body[0].tag"
       :blok="blok.body[0]"
       :size="iconSize"
@@ -23,6 +23,10 @@ export default {
     iconItem: {
       type: Boolean,
       required: true
+    },
+    iconStyle: {
+      type: String,
+      default: ''
     },
     iconSize: {
       type: String,

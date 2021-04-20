@@ -87,7 +87,7 @@
           :key="item._uid"
           class="link-menu flex-1 text-center py-2 px-4 text-gray-600 no-underline hover:text-gray-300"
         >
-          <ItemNavbar icon-item icon-size="w-7" :blok="item" />
+          <ItemNavbar icon-item icon-style="p-3" icon-size="w-7" :blok="item" />
         </li>
       </ul>
     </nav>

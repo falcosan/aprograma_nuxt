@@ -3,20 +3,19 @@
     v-if="postContent"
     class="post-teaser"
   >
-    <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link grid">
+    <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link md:grid">
       <div
-        :style="`background-color: ${postContent.teaser_background_color.color};`"
-        class="teaser-content h-60 w-full relative z-10 flex row-start-1 row-end-1 col-start-1 col-end-3"
+        class="teaser-content h-full md:h-60 w-full md:relative md:z-10 flex flex-col md:flex-row row-start-1 row-end-1 col-start-1 col-end-3"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
         <component
           :is="lookFile()"
-          class="teaser-file w-96 object-cover"
+          class="teaser-file w-full md:w-96 md:object-cover"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div :style="`color: ${postContent.teaser_text_color.color};`" class="teaser-text w-full h-full flex flex-col justify-center p-10 overflow-hidden">
+        <div :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`" class="teaser-text w-full h-full flex flex-col justify-center p-5 md:p-10 text-center sm:text-left overflow-hidden">
           <span
             class="teaser-title mb-2 text-xl md:text-4xl"
           >
@@ -27,6 +26,12 @@
           >
             {{ postContent.intro }}
           </span>
+
+          <span
+            v-if="$store.state.data.mobile"
+            class="date-text mt-5 sm:text-right text-lg"
+            v-text="changeDate(postContent.date)"
+          />
         </div>
       </div>
       <transition
@@ -35,8 +40,8 @@
         enter-class="-translate-x-full"
         leave-to-class="-translate-x-full"
       >
-        <h1
-          v-if="expanded"
+        <span
+          v-if="expanded && !$store.state.data.mobile"
           class="date-text justify-self-end row-start-1 row-end-1 col-start-2 col-end-2 -mr-10 transform rotate-90 whitespace-nowrap text-3xl pointer-events-none"
           v-text="changeDate(postContent.date)"
         />

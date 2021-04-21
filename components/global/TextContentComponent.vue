@@ -12,8 +12,8 @@
     <component
       :is="blok.article ? 'article' : 'span'"
       :style="`color: ${randomTextColor};`"
-      :class="`text-content mx-auto${blok.article ? ' prose max-w-none' : ''} prose-sm md:prose-xl
-      ${customClass('contact', 'all', 'md:w-full md:h-full md:grid md:auto-rows-auto break-words')}`"
+      :class="`text-content mx-auto text-xs prose-sm md:prose-xl
+      ${customClass('contact', 'all', 'md:w-full md:h-full break-words')}`"
       v-html="blok.text.content"
     />
   </div>

@@ -5,8 +5,8 @@
     @mouseleave="expandOut()"
     @mouseover="expandIn()"
   >
-    <div class="input-footer flex justify-center transform -translate-y-10">
-      <span class="input-dot text-center animate-bounce text-4xl">.</span>
+    <div class="input-footer flex justify-center transform -translate-y-7">
+      <span class="input-dot text-center animate-bounce text-xl">•</span>
     </div>
     <div class="footer-content flex items-center">
       <div
@@ -40,7 +40,7 @@
     class="footer h-48 w-8/12 md:w-full my-0 mx-auto mb-16"
   >
     <div class="footer-content h-full flex flex-col items-center whitespace-nowrap">
-      <span class="input-dot relative bottom-10 text-center animate-bounce text-4xl">.</span>
+      <span class="input-dot relative bottom-10 text-center animate-bounce text-xl">•</span>
       <div
         class="messages-container flex-1 row-start-1 row-end-1 col-start-1 col-end-1"
       >

@@ -1,6 +1,7 @@
 <template>
-  <div class="post">
+  <div class="post my-20 md:my-0">
     <Icon
+      v-if="!$store.state.data.mobile"
       close
       class="post-back fixed top-8 right-60"
       tag="button"
@@ -8,16 +9,16 @@
       color="text-black"
       @click.native="goBack"
     />
-    <div class="post-head w-8/12 h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
+    <div class="post-head w-full md:w-8/12 md:h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
       <component
         :is="lookFile()"
-        class="post-file w-full h-full row-start-1 row-end-3 object-cover"
+        class="post-file w-full md:h-full row-start-1 row-end-3 object-cover md:object-cover"
         :alt="`${blok.file.alt} project`"
         :src="blok.file.filename"
       />
     </div>
-    <div class="post-body w-8/12 flex justify-center mx-auto mb-10" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article prose prose-sm sm:prose lg:prose-lg xl:prose-xl py-10">
+    <div class="post-body w-full md:w-8/12 flex justify-center mx-auto mb-10" :style="`background-color: ${blok.post_background_color.color};`">
+      <div class="post-article prose-sm sm:prose lg:prose-lg xl:prose-xl px-5 py-5 xl:px-0 md:py-10">
         <h1
           :style="`color: ${blok.post_text_color.color};`"
           class="post-title text-center"

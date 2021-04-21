@@ -63,7 +63,6 @@ export default {
   generate: {
     fallback: true
   },
-
   sitemap: {
     hostname: 'https://aprograma.co',
     routes: async () => {

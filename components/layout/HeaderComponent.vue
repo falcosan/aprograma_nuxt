@@ -6,11 +6,12 @@
     <nav class="navbar">
       <ul class="menu-wrapper flex flex-col">
         <li class="logo-home">
-          <NuxtLink class="home-link flex items-center" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)" @click.native="play()">
+          <NuxtLink class="home-link flex items-center" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
             <Logo
               :transition-a="moved.a"
               :transition-p="moved.p"
               style-logo-container="w-24"
+              @click.native="play()"
             />
             <transition
               appear

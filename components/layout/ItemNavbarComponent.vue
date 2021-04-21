@@ -1,7 +1,8 @@
 <template>
   <NuxtLink
+    :active-class="`${!$store.state.data.mobile ? 'font-semibold' : 'bg-gray-400'} `"
     :to="blok.path"
-    class="item-link"
+    class="item-link block h-full"
   >
     <span v-if="!iconItem" class="item-text">{{ blok.title }}</span>
     <Icon

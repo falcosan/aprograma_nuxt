@@ -5,7 +5,7 @@
       ${customClass('about','all', 'flex md:items-center my-20 md:my-0')}
       ${customClass('portfolio','all', 'md:h-screen flex items-center my-20 md:my-0')}
       ${customClass('contact','all', 'md:h-screen md:grid md:grid-cols-2 md:content-center md:gap-x-10 my-20 md:my-0')}
-      ${customClass('blog','all', 'md:h-screen p-6')}`"
+      ${customClass('blog','all', 'my-20 md:my-0 md:py-6')}`"
   >
     <component
       :is="component.component"

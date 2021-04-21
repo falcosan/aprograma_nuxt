@@ -20,9 +20,9 @@
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
       <div v-if="alert.message" :class="`form-alert absolute w-full top-0 left-0 p-5 text-center transform transition-transform text-lg ${alert.color} text-white`" v-text="alert.message" />
     </transition>
-    <h1 v-if="blok.show_title && !$store.state.data.mobile" :class="`form-title mb-10 text-5xl ${customClass('contact', 'all', 'pt-6 text-right')}`">
+    <h2 v-if="blok.show_title" :class="`form-title mb-10 text-4xl ${customClass('contact', 'all', 'pt-6 md:text-right')}`">
       {{ blok.title }}
-    </h1>
+    </h2>
     <form
       id="form"
       :name="blok.title.toLowerCase().replace(/ /g,'-')"

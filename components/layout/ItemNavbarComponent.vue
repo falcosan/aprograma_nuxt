@@ -2,7 +2,7 @@
   <NuxtLink
     :active-class="`${!$store.state.data.mobile ? 'font-semibold' : 'bg-gray-400'} `"
     :to="blok.path"
-    class="item-link block h-full"
+    class="item-link h-full block"
   >
     <span v-if="!iconItem" class="item-text">{{ blok.title }}</span>
     <Icon

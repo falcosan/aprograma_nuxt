@@ -18,7 +18,7 @@
         <li
           v-if="translateTransition ? (cutLanguage(language) !== $store.state.data.language && $store.state.data.language !== '' || cutLanguage(language) !== 'en' && $store.state.data.language === '') : true"
           :key="language._uid"
-          :class="`translate-item cursor-pointer ${styleTranslateItem}`"
+          :class="`translate-item cursor-pointer ${cutLanguage(language) !== $store.state.data.language && $store.state.data.language !== '' || cutLanguage(language) !== 'en' && $store.state.data.language === '' ? 'text-gray-300' : ''} ${styleTranslateItem}`"
         >
           <a
 
@@ -27,7 +27,7 @@
               changeLanguage(language.language)
             "
           >
-            <span class="translate-language hover:text-gray-400">{{ language.language }}</span>
+            <span class="translate-language md:hover:text-gray-400">{{ language.language }}</span>
           </a>
         </li>
       </template>

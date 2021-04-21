@@ -8,9 +8,9 @@
     <div class="input-footer flex justify-center transform -translate-y-7">
       <span class="input-dot text-center animate-bounce text-xl">•</span>
     </div>
-    <div class="footer-content flex items-center">
+    <div class="footer-content h-1/2 flex items-center">
       <div
-        class="messages-container h-full flex-1 row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
+        class="messages-container flex-1 row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
       >
         <span class="footer-messages text-sm">
           Aprograma {{ typewriter }}

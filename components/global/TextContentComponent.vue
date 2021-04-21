@@ -3,19 +3,17 @@
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor};`"
     :class="`text-container
-    ${customClass('home', 'all', 'my-0 p-5 sm:p-10 md:w-max')}
-    ${customClass('home', blok.name === 'text_home_1', 'mb-5')}
-    ${customClass('home', blok.name === 'text_home_2', 'transition-all duration-1000 ease-in-out')}
+    ${customClass('home', 'all', 'my-0 p-5 sm:p-10')}
+    ${customClass('home', blok.name === 'text_home_1', 'md:w-min mb-5')}
+    ${customClass('home', blok.name === 'text_home_2', 'xl:w-max transition-all duration-1000 ease-in-out')}
     ${customClass('about', 'all', 'flex items-center p-5 md:m-10 md:p-10 my-0')}
-    ${customClass('contact', 'all', 'col-start-2 col-end-2')}`"
+    ${customClass('contact', 'all', 'md:col-start-2 md:col-end-2 py-5 px-5 mt-10 md:mt-0 md:py-6 md:px-10')}`"
   >
     <component
       :is="blok.article ? 'article' : 'span'"
       :style="`color: ${randomTextColor};`"
-      :class="`text-content mx-auto${blok.article ? ' prose max-w-none' : ''}
-      ${customClass('home', 'all', 'text-2xl md:text-5xl')}
-      ${customClass('about', 'all', 'text-xl md:text-5xl')}
-      ${customClass('contact', 'all', 'w-full h-full grid auto-rows-auto py-6 px-10')}`"
+      :class="`text-content mx-auto${blok.article ? ' prose max-w-none' : ''} prose-sm md:prose-xl
+      ${customClass('contact', 'all', 'md:w-full md:h-full md:grid md:auto-rows-auto break-words')}`"
       v-html="blok.text.content"
     />
   </div>

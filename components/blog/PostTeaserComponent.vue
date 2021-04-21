@@ -18,7 +18,7 @@
         />
         <div :style="`color: ${postContent.teaser_text_color.color};`" class="teaser-text w-full h-full flex flex-col justify-center p-10 overflow-hidden">
           <span
-            class="teaser-title text-lg md:text-3xl"
+            class="teaser-title mb-2 text-xl md:text-4xl"
           >
             {{ postContent.title }}
           </span>

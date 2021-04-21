@@ -39,7 +39,8 @@
     v-else
     class="footer h-48 w-8/12 md:w-full my-0 mx-auto mb-16"
   >
-    <div class="footer-content h-full flex flex-col items-center whitespace-nowrap border-t py-8 sm:py:0">
+    <div class="footer-content h-full flex flex-col items-center whitespace-nowrap">
+      <span class="input-dot relative bottom-10 text-center animate-bounce text-4xl">.</span>
       <div
         class="messages-container flex-1 row-start-1 row-end-1 col-start-1 col-end-1"
       >
@@ -58,7 +59,7 @@
         <Icon
           v-for="iconLink in $contentByName(blok.body, 'Icon')"
           :key="iconLink._uid"
-          size="w-8"
+          size="w-6"
           tag="a"
           :blok="iconLink"
           class="social-icon mr-4"

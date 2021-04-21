@@ -55,7 +55,7 @@
         <Logo
           :transition-a="moved.a"
           :transition-p="moved.p"
-          style-logo-container="w-full"
+          style-logo-container="w-20"
           @click.native="play()"
         />
         <transition

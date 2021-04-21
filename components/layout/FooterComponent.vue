@@ -96,7 +96,6 @@ export default {
   },
   created () {
     this.typeText()
-    this.$store.commit('data/mobileMutation')
   },
   methods: {
     customClass (page, component, style) {

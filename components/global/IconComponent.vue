@@ -3,8 +3,8 @@
     :is="blok ? blok.tag : tag"
     :key="blok ? blok._uid : false"
     :title="blok ? blok.tooltip : false"
-    :href="blok ? blok.path !== '' : tag === 'a' ? to : false"
-    :class="`icon-container cursor-pointer`"
+    :href="blok ? blok.path : tag === 'a' ? to : false"
+    :class="`icon-container`"
     :target="blok && blok.tag === 'a' || tag === 'a' ? '_blank' : false"
     :rel="blok && blok.tag === 'a' || tag === 'a' ? 'noopener noreferrer' : false"
   >
@@ -13,7 +13,7 @@
       :class="`icon ${blok.icon.filename
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-icon ${size}`"
+        .replace(/\.[^/.]+$/, '')}-icon ${size} cursor-pointer`"
       :src="blok.icon.filename"
       alt=""
       :name="blok.name"
@@ -29,7 +29,7 @@
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      :class="`back-icon fill-current h-auto ${size}`"
+      :class="`back-icon fill-current h-auto ${size} cursor-pointer`"
       xmlns="http://www.w3.org/2000/svg"
       :style="`color: ${color};`"
       fill-rule="evenodd"
@@ -39,7 +39,7 @@
     <!--CLOSE-->
     <svg
       v-else-if="close"
-      :class="`close-icon fill-current h-auto ${size}`"
+      :class="`close-icon fill-current h-auto ${size} cursor-pointer`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -52,7 +52,7 @@
     <!--NEXT-->
     <svg
       v-else-if="next"
-      :class="`next-icon fill-current h-auto ${size}`"
+      :class="`next-icon fill-current h-auto ${size} cursor-pointer`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -65,7 +65,7 @@
     <!--PREVIOUS-->
     <svg
       v-else-if="previous"
-      :class="`previous-icon fill-current h-auto ${size}`"
+      :class="`previous-icon fill-current h-auto ${size} cursor-pointer`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -81,7 +81,7 @@
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      :class="`restart-icon fill-current h-auto ${size}`"
+      :class="`restart-icon fill-current h-auto ${size} cursor-pointer`"
       xmlns="http://www.w3.org/2000/svg"
       :style="`color: ${color};`"
       fill-rule="evenodd"

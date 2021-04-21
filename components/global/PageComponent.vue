@@ -1,11 +1,11 @@
 <template>
   <section
-    :class="`${blok.name.toLowerCase()}-page w-8/12 my-0 mx-auto
-      ${customClass('home','all', 'h-screen flex flex-col justify-center')}
-      ${customClass('about','all', 'flex md:items-center my-20 md:my-0')}
-      ${customClass('portfolio','all', 'md:h-screen flex items-center my-20 md:my-0')}
-      ${customClass('contact','all', 'md:h-screen md:grid md:grid-cols-2 md:content-center md:gap-x-10 my-20 md:my-0')}
-      ${customClass('blog','all', 'my-20 md:my-0 md:py-6')}`"
+    :class="`${blok.name.toLowerCase()}-page w-8/12 mx-auto my-0 py-20 md:py-6
+      ${customClass('home','all', 'h-screen flex flex-col justify-center ')}
+      ${customClass('about','all', 'flex md:items-center ')}
+      ${customClass('portfolio','all', 'flex items-center :')}
+      ${customClass('contact','all', 'lg:grid lg:grid-cols-2 lg:content-center lg:gap-x-10 ')}
+      ${customClass('blog','all', '')}`"
   >
     <component
       :is="component.component"

@@ -1,16 +1,12 @@
 <template>
-  <div class="field-item flex flex-row flex-wrap justify-between overflow-hidden">
+  <div class="field-item relative flex flex-col justify-between mb-5">
     <label :class="`field-label mb-5 ${fieldError() ? 'text-red-600' : 'text-black'}`">{{ blok.label }} *</label>
-    <transition v-if="blok.indication" enter-active-class="duration-100 in-out" leave-active-class="duration-100 out-in" enter-class="translate-x-full" leave-to-class="translate-x-full">
-      <span v-if="indication" class="field-indication text-xs h-min-content p-2 transform bg-red-400 text-white">
-        {{ blok.indication }}
-      </span>
-    </transition>
+
     <component
       :is="blok.tag"
       :name="blok.label.toLowerCase().replace(/ /g,'')"
       :type="blok.type"
-      :class="`field-input w-full resize-none p-2
+      :class="`field-input relative z-10 w-full resize-none p-2
       ${isMessage ? 'h-40' : 'h-10 leading-10'}
       ${fieldError() ? 'border-dotted border-2 border-red-600' : 'border border-black'}`"
       :value="fieldValue !== '' ? fieldValue : false"
@@ -19,6 +15,11 @@
       @blur="indication = false"
       @input="$emit('update:fieldValue', $event.target.value); updateFields()"
     />
+    <transition v-if="blok.indication" enter-active-class="duration-100 in-out" leave-active-class="duration-100 out-in" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
+      <span v-if="indication" class="field-indication w-full h-min-content absolute -bottom-8 left-0 p-2 transform bg-red-400 text-white text-xs">
+        {{ blok.indication }}
+      </span>
+    </transition>
   </div>
 </template>
 

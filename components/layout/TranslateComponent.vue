@@ -27,7 +27,7 @@
               changeLanguage(language.language)
             "
           >
-            <span class="translate-language md:hover:text-gray-400">{{ language.language }}</span>
+            <span :class="`translate-language${!$store.state.data.mobile ?' md:hover:text-gray-300' : ''}`">{{ language.language }}</span>
           </a>
         </li>
       </template>

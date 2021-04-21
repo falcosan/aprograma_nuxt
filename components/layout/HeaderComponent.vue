@@ -20,14 +20,14 @@
               enter-class="opacity-0"
               leave-to-class="opacity-0"
             >
-              <span v-if="$route.name !== 'home'" class="project-name fixed right-6 text-xl p-2 bg-black text-white" v-text="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)" />
+              <span v-if="$route.name !== 'home'" class="project-name fixed top-6 right-4 text-lg p-2 bg-black text-white" v-text="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)" />
             </transition>
           </NuxtLink>
         </li>
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"
-          class="link-menu flex-1 text-left no-underline py-2 px-3 text-gray-600 hover:text-gray-300"
+          class="link-menu flex-1 text-left no-underline py-2 px-3 text-gray-600 md:hover:text-gray-300"
         >
           <ItemNavbar :icon-item="false" :blok="item" />
         </li>
@@ -78,13 +78,13 @@
       />
     </nav>
     <nav class="navbar-down w-full h-14 flex items-center fixed bottom-0 z-30 bg-gray-300">
-      <ul class="menu-wrapper w-full flex">
+      <ul class="menu-wrapper w-full h-full flex">
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"
-          class="link-menu flex-1 text-center py-2 px-3 text-gray-600 no-underline hover:text-gray-300"
+          :class="`link-menu flex-1 text-gray-600 no-underline${!$store.state.data.mobile ?' md:hover:text-gray-300' : ''}`"
         >
-          <ItemNavbar icon-item icon-style="w-full flex justify-center p-3" icon-size="w-6" :blok="item" />
+          <ItemNavbar icon-item icon-style="w-full h-full flex justify-center items-center" icon-size="w-6" :blok="item" />
         </li>
       </ul>
     </nav>
@@ -113,9 +113,6 @@ export default {
         translateList: 'not_expanded -translate-x-full'
       }
     }
-  },
-  created () {
-    this.$store.commit('data/mobileMutation')
   },
   methods: {
     expandIn () {

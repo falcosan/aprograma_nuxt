@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    :active-class="`${!$store.state.data.mobile ? 'font-semibold' : 'bg-gray-400'} `"
+    :active-class="`${!$store.state.data.mobile ? 'font-semibold text-gray-300' : 'bg-gray-400'} `"
     :to="blok.path"
     class="item-link h-full block"
   >

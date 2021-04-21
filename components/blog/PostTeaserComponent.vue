@@ -11,7 +11,7 @@
       >
         <component
           :is="lookFile()"
-          class="teaser-file w-full md:h-80 lg:h-auto lg:w-96 lg:max-w-xs xl:max-w-none object-cover"
+          class="teaser-file w-full md:h-60 lg:h-auto lg:w-96 lg:max-w-xs xl:max-w-none object-cover"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />

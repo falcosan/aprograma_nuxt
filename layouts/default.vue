@@ -26,7 +26,8 @@ export default {
   watch: {
     '$store.state.data.language': 'getLayout'
   },
-  created () {
+  mounted () {
+    this.$store.commit('data/mobileMutation')
     this.getLayout()
   },
   methods: {

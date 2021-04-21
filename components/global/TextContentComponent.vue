@@ -6,14 +6,14 @@
     ${customClass('home', 'all', 'my-0 p-5 sm:p-10')}
     ${customClass('home', blok.name === 'text_home_1', 'md:w-min mb-5')}
     ${customClass('home', blok.name === 'text_home_2', 'xl:w-max transition-all duration-700 ease-in-out')}
-    ${customClass('about', 'all', 'flex items-center p-5 md:m-10 sm:p-10 my-0')}
-    ${customClass('contact', 'all', 'md:col-start-2 md:col-end-2 py-5 px-5 mt-10 md:mt-0 md:py-6 md:px-10')}`"
+    ${customClass('about', 'all', 'flex items-center p-5 sm:p-10')}
+    ${customClass('contact', 'all', 'lag:col-start-2 lag:col-end-2 py-5 px-5 mt-10 lag:mt-0 lag:py-6 lag:px-10')}`"
   >
     <component
       :is="blok.article ? 'article' : 'span'"
       :style="`color: ${randomTextColor};`"
-      :class="`text-content mx-auto text-xs prose-sm md:prose-lg break-words w-full
-      ${customClass('contact', 'all', 'md:w-full md:h-full')}`"
+      :class="`text-content mx-auto text-xs prose-sm lg:prose-lg break-words w-full
+      ${customClass('contact', 'all', 'lg:w-full lg:h-full')}`"
       v-html="blok.text.content"
     />
   </div>

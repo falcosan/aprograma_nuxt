@@ -77,7 +77,7 @@
         :blok="$contentByName(blok.body, 'Translate')"
         @translateAction="expandOut"
         @click.native="expandIn"
-        @mouseover.native="expandOut"
+        @mouseleave.native="expandOut"
       />
     </nav>
     <nav class="navbar-down w-full h-10 flex items-center fixed bottom-0 z-30">

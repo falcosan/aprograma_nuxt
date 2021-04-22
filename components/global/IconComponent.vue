@@ -2,8 +2,8 @@
   <component
     :is="blok ? blok.tag : tag"
     :key="blok ? blok._uid : false"
-    :title="blok ? blok.tooltip : false"
-    :href="blok ? blok.path : tag === 'a' ? to : false"
+    :title="blok && blok.tooltip ? blok.tooltip : false"
+    :href="blok && blok.path ? blok.path : tag === 'a' ? to : false"
     :class="`icon-container`"
     :target="blok && blok.tag === 'a' || tag === 'a' ? '_blank' : false"
     :rel="blok && blok.tag === 'a' || tag === 'a' ? 'noopener noreferrer' : false"
@@ -13,15 +13,24 @@
       :class="`icon ${blok.icon.filename
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-icon ${size} cursor-pointer`"
+        .replace(/\.[^/.]+$/, '')}-icon ${size}${negative ? ' filter invert' : ''} cursor-pointer`"
       :src="blok.icon.filename"
       alt=""
       :name="blok.name"
+      type="image/svg+xml"
+    >
+
+    <!-- HOME-->
+    <svg
+      v-else-if="home"
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      type="image/svg+xml"
-    >
+      :class="`back-icon h-auto fill-current ${size} cursor-pointer`"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    ><path d="M22 11.414v12.586h-20v-12.586l-1.293 1.293-.707-.707 12-12 12 12-.707.707-1.293-1.293zm-6 11.586h5v-12.586l-9-9-9 9v12.586h5v-9h8v9zm-1-7.889h-6v7.778h6v-7.778z" /></svg>
 
     <!-- BACK-->
     <svg
@@ -29,9 +38,8 @@
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      :class="`back-icon fill-current h-auto ${size} cursor-pointer`"
+      :class="`back-icon h-auto fill-current ${size} cursor-pointer`"
       xmlns="http://www.w3.org/2000/svg"
-      :style="`color: ${color};`"
       fill-rule="evenodd"
       clip-rule="evenodd"
     ><path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z" /></svg>
@@ -39,12 +47,11 @@
     <!--CLOSE-->
     <svg
       v-else-if="close"
-      :class="`close-icon fill-current h-auto ${size} cursor-pointer`"
+      :class="`close-icon h-auto fill-current ${size} cursor-pointer`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
-      :style="`color: ${color};`"
       fill-rule="evenodd"
       clip-rule="evenodd"
     ><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z" /></svg>
@@ -52,12 +59,11 @@
     <!--NEXT-->
     <svg
       v-else-if="next"
-      :class="`next-icon fill-current h-auto ${size} cursor-pointer`"
+      :class="`next-icon h-auto fill-current ${size} cursor-pointer`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
-      :style="`color: ${color};`"
       fill-rule="evenodd"
       clip-rule="evenodd"
     ><path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z" /></svg>
@@ -65,12 +71,11 @@
     <!--PREVIOUS-->
     <svg
       v-else-if="previous"
-      :class="`previous-icon fill-current h-auto ${size} cursor-pointer`"
+      :class="`previous-icon h-auto fill-current ${size} cursor-pointer`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
-      :style="`color: ${color};`"
       fill-rule="evenodd"
       clip-rule="evenodd"
     ><path d="M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z" /></svg>
@@ -81,9 +86,8 @@
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      :class="`restart-icon fill-current h-auto ${size} cursor-pointer`"
+      :class="`restart-icon h-auto fill-current ${size} cursor-pointer`"
       xmlns="http://www.w3.org/2000/svg"
-      :style="`color: ${color};`"
       fill-rule="evenodd"
       clip-rule="evenodd"
     ><path d="M7 9h-7v-7h1v5.2c1.853-4.237 6.083-7.2 11-7.2 6.623 0 12 5.377 12 12s-5.377 12-12 12c-6.286 0-11.45-4.844-11.959-11h1.004c.506 5.603 5.221 10 10.955 10 6.071 0 11-4.929 11-11s-4.929-11-11-11c-4.66 0-8.647 2.904-10.249 7h5.249v1z" /></svg>
@@ -149,13 +153,17 @@ export default {
       type: String,
       required: true
     },
-    color: {
-      type: String,
-      default: ''
+    negative: {
+      type: Boolean,
+      default: false
     },
     size: {
       type: String,
       default: ''
+    },
+    home: {
+      type: Boolean,
+      default: false
     },
     back: {
       type: Boolean,
@@ -184,3 +192,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+img svg{
+  fill: inherit;
+}
+</style>

@@ -10,9 +10,9 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Coding can be defined in many ways, sometimes even stressful. The goal of aprograma is to change this.' },
-      { name: 'application-name', content: 'aprograma' },
-      { name: 'apple-mobile-web-app-title', content: 'aprograma' },
+      { hid: 'description', name: 'description', content: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.' },
+      { name: 'application-name', content: 'Aprograma' },
+      { name: 'apple-mobile-web-app-title', content: 'Aprograma' },
       { name: 'msapplication-TileColor', content: '#da532c' },
       { name: 'theme-color', content: '#ffffff' }
     ],

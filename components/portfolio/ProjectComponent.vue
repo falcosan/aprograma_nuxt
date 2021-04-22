@@ -6,10 +6,9 @@
     <Icon
       back
       tag="button"
-      :style="`background-color: ${blok.project_background_color.color};`"
+      :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
       class="project-back w-full flex justify-center items-center col-start-3 col-end-3 p-5"
       size="w-8"
-      :color="blok.project_text_color.color"
       @click.native="goBack"
     />
     <div

@@ -23,12 +23,12 @@ export default {
   },
   head () {
     return {
-      title: `${this.story.name} - aprograma`,
+      title: `${this.story.name} - Aprograma`,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Contact the aprograma'
+          content: 'Contact the Aprograma'
         }
       ]
     }

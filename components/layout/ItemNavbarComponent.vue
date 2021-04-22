@@ -1,16 +1,17 @@
 <template>
   <NuxtLink
-    :active-class="`${!$store.state.data.mobile ? 'font-semibold text-gray-300' : 'bg-gray-400'} `"
+    :active-class="`${!iconItem ? 'font-semibold text-gray-500' : 'filter invert grayscale bg-gray-300'}`"
     :to="blok.path"
     class="item-link h-full block"
   >
     <span v-if="!iconItem" class="item-text">{{ blok.title }}</span>
     <Icon
       v-else
-      :class="`item-icon ${iconStyle}`"
+      :class="`item-icon ${iconStyle} `"
       :tag="blok.body[0].tag"
       :blok="blok.body[0]"
       :size="iconSize"
+      :negative="iconNegative"
     />
   </NuxtLink>
 </template>
@@ -32,6 +33,10 @@ export default {
     iconSize: {
       type: String,
       default: ''
+    },
+    iconNegative: {
+      type: Boolean,
+      default: false
     }
   }
 }

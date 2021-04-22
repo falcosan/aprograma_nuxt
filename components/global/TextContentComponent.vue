@@ -2,12 +2,12 @@
   <div
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor};`"
-    :class="`text-container w-full md:w-auto
+    :class="`text-container w-auto
     ${customClass('home', 'all', 'my-0 p-5 sm:p-10')}
     ${customClass('home', blok.name === 'text_home_1', 'md:w-min mb-5')}
     ${customClass('home', blok.name === 'text_home_2', 'xl:w-max transition-all duration-700 ease-in-out')}
     ${customClass('about', 'all', 'flex items-center p-5 sm:p-10')}
-    ${customClass('contact', 'all', 'lag:col-start-2 lag:col-end-2 py-5 px-5 mt-10 lag:mt-0 lag:py-6 lag:px-10')}`"
+    ${customClass('contact', 'all', 'lg:col-start-2 lg:col-end-2 py-5 px-5 mt-10 lg:mt-0 lg:py-6 lg:px-10')}`"
   >
     <component
       :is="blok.article ? 'article' : 'span'"

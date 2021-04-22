@@ -33,7 +33,7 @@
         <form
           id="form"
           :name="blok.title.toLowerCase().replace(/ /g,'-')"
-          class="form-fields w-full grid gap-y-5"
+          class="form-fields w-full"
           novalidate="true"
           @submit.prevent="submit"
         >
@@ -44,7 +44,7 @@
             :field-value.sync="fields[index]"
             :blok="input"
           />
-          <input class="button-submit justify-self-end py-3 px-10 cursor-pointer bg-black text-white" type="submit" :value="blok.submit">
+          <input class="button-submit justify-self-end py-3 px-10 cursor-pointer bg-gray-800 filter grayscale text-white" type="submit" :value="blok.submit">
         </form>
       </div>
     </transition>

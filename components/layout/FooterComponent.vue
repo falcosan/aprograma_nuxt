@@ -37,7 +37,7 @@
   </footer>
   <footer
     v-else
-    class="footer h-48 w-8/12 md:w-full my-0 mx-auto mb-16"
+    class="footer h-48 md:w-full my-10 md:my-0 mx-auto"
   >
     <div class="footer-content h-full flex flex-col items-center whitespace-nowrap">
       <span class="input-dot relative bottom-10 text-center animate-bounce text-xl">•</span>

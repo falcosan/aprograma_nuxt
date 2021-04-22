@@ -1,12 +1,11 @@
 <template>
-  <div class="post py-20 md:py-0">
+  <div class="post py-10 md:py-0">
     <Icon
       v-if="!$store.state.data.mobile"
       close
-      class="post-back fixed top-8 right-60"
+      class="post-back fixed top-8 right-60 text-black"
       tag="button"
       size="w-8"
-      color="text-black"
       @click.native="goBack"
     />
     <div class="post-head w-full md:w-8/12 md:h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">

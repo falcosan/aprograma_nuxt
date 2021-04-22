@@ -20,7 +20,7 @@
               enter-class="opacity-0"
               leave-to-class="opacity-0"
             >
-              <span v-if="$route.name !== 'home'" class="project-name fixed top-6 right-4 text-lg p-2 bg-black text-white" v-text="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)" />
+              <span v-if="$route.name !== 'home'" class="project-name fixed top-6 right-4 text-lg p-2 bg-gray-800 filter grayscale text-white" v-text="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)" />
             </transition>
           </NuxtLink>
         </li>
@@ -37,8 +37,8 @@
       <Translate
         translate-transition
         class="translate-header w-16"
-        :style-current-language="`py-3 px-4 transition-all ${expanded ? 'border-t border-b border-r border-black text-gray-600' : 'bg-black text-white'}`"
-        :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-black text-white`"
+        :style-current-language="`py-3 px-4 transition-all ${expanded ? 'border-t border-b border-r border-black text-gray-600' : 'bg-gray-800 filter grayscale text-white'}`"
+        :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-gray-800 filter grayscale text-white`"
         style-translate-item="py-3 px-4"
         :blok="$contentByName(blok.body, 'Translate')"
         @mouseover.native="expandStill()"
@@ -51,14 +51,8 @@
     v-else
     class="header"
   >
-    <nav class="navbar-up w-full h-20 flex justify-between items-center fixed top-0 z-30">
-      <NuxtLink class="home-link w-2/12 flex justify-center items-center" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
-        <Logo
-          :transition-a="moved.a"
-          :transition-p="moved.p"
-          style-logo-container="w-20"
-          @click.native="play()"
-        />
+    <nav class="navbar-up w-full h-10 flex justify-between fixed top-0 z-30 shadow-sm bg-gray-100">
+      <NuxtLink class="home-link w-full" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
         <transition
           appear
           enter-active-class="transition-opacity duration-300"
@@ -66,25 +60,42 @@
           enter-class="opacity-0"
           leave-to-class="opacity-0"
         >
-          <span v-if="$route.name !== 'home'" class="project-name absolute right-1/2 transform translate-x-1/2 p-2 bg-black text-white" v-text="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)" />
+          <Icon
+            v-if="$route.name !== 'home'"
+            home
+            tag="button"
+            size="w-5"
+            class="home-link h-full w-2/12 flex items-center justify-center bg-gray-100"
+          />
         </transition>
+        <Logo
+          class="absolute top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full shadow-sm bg-white"
+          :transition-a="moved.a"
+          :transition-p="moved.p"
+          style-logo-container="w-14"
+          @click.native="play()"
+        />
       </NuxtLink>
       <Translate
-        class="translate-header w-2/12 justify-center"
-        :translate-transition="false"
-        style-translate-list="text-center"
-        style-translate-item="text-sm md:text-base"
+        translate-transition
+        class="translate-header w-2/12"
+        style-current-language="h-full flex items-center justify-center transition-all bg-gray-100"
+        :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-gray-800 filter grayscale`"
+        style-translate-item="p-3 text-center"
         :blok="$contentByName(blok.body, 'Translate')"
+        @mouseover.native="expandStill()"
+        @mouseleave.native="expandOut()"
+        @click.native="expandIn()"
       />
     </nav>
-    <nav class="navbar-down w-full h-14 flex items-center fixed bottom-0 z-30 bg-gray-300">
-      <ul class="menu-wrapper w-full h-full flex">
+    <nav class="navbar-down w-full h-10 flex items-center fixed bottom-0 z-30">
+      <ul class="menu-wrapper w-full h-full grid grid-cols-4 bg-gray-100">
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"
-          :class="`link-menu flex-1 text-gray-600 no-underline${!$store.state.data.mobile ?' md:hover:text-gray-300' : ''}`"
+          class="link-menu no-underline"
         >
-          <ItemNavbar icon-item icon-style="w-full h-full flex justify-center items-center" icon-size="w-6" :blok="item" />
+          <ItemNavbar icon-item icon-style="w-full h-full flex justify-center items-center" icon-size="w-5" :blok="item" />
         </li>
       </ul>
     </nav>
@@ -110,7 +121,7 @@ export default {
       moved: {
         a: '',
         p: '',
-        translateList: 'not_expanded -translate-x-full'
+        translateList: 'not_expanded translate-x-full md:-translate-x-full'
       }
     }
   },
@@ -127,7 +138,7 @@ export default {
     expandOut () {
       this.timer = setTimeout(() => {
         this.expanded = false
-        this.moved.translateList = 'not_expanded -translate-x-full'
+        this.moved.translateList = 'not_expanded translate-x-full md:-translate-x-full'
       }, 700)
     },
     play () {

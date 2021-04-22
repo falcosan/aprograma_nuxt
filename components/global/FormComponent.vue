@@ -33,18 +33,18 @@
         <form
           id="form"
           :name="blok.title.toLowerCase().replace(/ /g,'-')"
-          class="form-fields w-full"
+          class="form-fields w-full flex flex-col items-end"
           novalidate="true"
           @submit.prevent="submit"
         >
           <Field
             v-for="(input, index) in blok.body"
             :key="input._uid"
-            class="contact-field"
+            class="contact-field w-full"
             :field-value.sync="fields[index]"
             :blok="input"
           />
-          <input class="button-submit justify-self-end py-3 px-10 cursor-pointer bg-gray-800 filter grayscale text-white" type="submit" :value="blok.submit">
+          <input class="button-submit py-3 px-10 cursor-pointer bg-gray-800 filter grayscale text-white" type="submit" :value="blok.submit">
         </form>
       </div>
     </transition>

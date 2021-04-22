@@ -52,7 +52,7 @@
     class="header"
   >
     <nav class="navbar-up w-full h-10 flex justify-between fixed top-0 z-30 shadow-sm bg-gray-100">
-      <NuxtLink class="home-link w-full" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
+      <NuxtLink class="home-link w-2/12" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
         <transition
           appear
           enter-active-class="transition-opacity duration-300"
@@ -61,24 +61,24 @@
           leave-to-class="opacity-0"
         >
           <Icon
-            v-if="$route.name !== 'home'"
             home
             tag="button"
             size="w-5"
-            class="home-link h-full w-2/12 flex items-center justify-center bg-gray-100"
+            class="home-link h-full w-full flex items-center justify-center bg-gray-100"
           />
         </transition>
-        <Logo
-          class="absolute top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full shadow-sm bg-white"
-          :transition-a="moved.a"
-          :transition-p="moved.p"
-          style-logo-container="w-14"
-          @click.native="play()"
-        />
       </NuxtLink>
+      <Logo
+        class="absolute top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full shadow-sm bg-white"
+        :transition-a="moved.a"
+        :transition-p="moved.p"
+        style-logo-container="w-14"
+        @click.native="play()"
+      />
+
       <Translate
         translate-transition
-        class="translate-header w-2/12"
+        class="translate-header text-sm w-2/12"
         style-current-language="h-full flex items-center justify-center transition-all bg-gray-100"
         :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-gray-800 filter grayscale`"
         style-translate-item="p-3 text-center"
@@ -139,7 +139,7 @@ export default {
       this.timer = setTimeout(() => {
         this.expanded = false
         this.moved.translateList = 'not_expanded translate-x-full md:-translate-x-full'
-      }, 700)
+      }, !this.$store.state.data.mobile ? 700 : 0)
     },
     play () {
       this.moved.a = 'transform origin-center-left translate rotate-360 transition duration-700 ease-out'

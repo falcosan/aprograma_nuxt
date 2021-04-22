@@ -3,7 +3,7 @@
     :class="`${blok.name.toLowerCase()}-page md:w-8/12 mx-auto my-0 py-14 px-4 md:py-6
       ${customClass('home','all', 'h-screen flex flex-col justify-center ')}
       ${customClass('about','all', 'flex md:items-center ')}
-      ${customClass('portfolio','all', 'flex items-center :')}
+      ${customClass('portfolio','all', 'h-screen flex items-center :')}
       ${customClass('contact','all', 'lg:grid lg:grid-cols-2 lg:content-center lg:gap-x-10 ')}`"
   >
     <component

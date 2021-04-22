@@ -2,8 +2,8 @@
   <footer
     v-if="!$store.state.data.mobile"
     :class="`footer ${expanded} w-full fixed z-20 bottom-0 bg-gray-300 transition-height duration-200 ease-in-out`"
-    @mouseleave="expandOut()"
-    @mouseover="expandIn()"
+    @mouseleave="expandOut"
+    @mouseover="expandIn"
   >
     <div class="input-footer flex justify-center transform -translate-y-7">
       <span class="input-dot text-center animate-bounce text-xl">•</span>

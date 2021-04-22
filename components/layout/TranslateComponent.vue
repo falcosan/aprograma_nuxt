@@ -21,11 +21,8 @@
           :class="`translate-item${cutLanguage(language) !== $store.state.data.language && $store.state.data.language !== '' || cutLanguage(language) !== 'en' && $store.state.data.language === '' ? ' text-gray-300' : ''} ${styleTranslateItem} cursor-pointer`"
         >
           <a
-
             class="translate-link"
-            @click="
-              changeLanguage(language.language)
-            "
+            @click="changeLanguage(language.language); $emit('translateAction')"
           >
             <span :class="`translate-language${!$store.state.data.mobile ?' md:hover:text-gray-300' : ''}`">{{ language.language }}</span>
           </a>

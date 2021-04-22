@@ -25,6 +25,10 @@
     background-color: rgb(36, 36, 36);
 }
 
+.noscroll {
+    overflow: hidden;
+}
+
 .page-appear-active {
     transition-property: opacity;
     transition-timing-function: ease-in-out;

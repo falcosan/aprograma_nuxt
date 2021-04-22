@@ -1,5 +1,5 @@
 <template>
-  <div class="post py-10 md:py-0">
+  <div class="post py-10 md:pt-0">
     <Icon
       v-if="!$store.state.data.mobile"
       close

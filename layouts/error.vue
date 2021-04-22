@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="py-10 md:py-6">
     <h1 v-if="error.statusCode === 404">
       {{ error.statusCode }}
       {{ error.message }}

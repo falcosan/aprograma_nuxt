@@ -11,12 +11,12 @@
               :transition-a="moved.a"
               :transition-p="moved.p"
               style-logo-container="w-24"
-              @click.native="play()"
+              @click.native="play"
             />
             <transition
               appear
-              enter-active-class="transition-opacity duration-300"
-              leave-active-class="transition-opacity duration-300"
+              enter-active-class="duration-300"
+              leave-active-class="duration-300"
               enter-class="opacity-0"
               leave-to-class="opacity-0"
             >
@@ -41,9 +41,9 @@
         :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-gray-800 filter grayscale text-white`"
         style-translate-item="py-3 px-4"
         :blok="$contentByName(blok.body, 'Translate')"
-        @mouseover.native="expandStill()"
-        @mouseleave.native="expandOut()"
-        @click.native="expandIn()"
+        @mouseover.native="expandStill"
+        @mouseleave.native="expandOut"
+        @click.native="expandIn"
       />
     </nav>
   </header>
@@ -53,27 +53,19 @@
   >
     <nav class="navbar-up w-full h-10 flex justify-between fixed top-0 z-30 shadow-sm bg-gray-100">
       <NuxtLink class="home-link w-2/12" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
-        <transition
-          appear
-          enter-active-class="transition-opacity duration-300"
-          leave-active-class="transition-opacity duration-300"
-          enter-class="opacity-0"
-          leave-to-class="opacity-0"
-        >
-          <Icon
-            home
-            tag="button"
-            size="w-5"
-            class="home-link h-full w-full flex items-center justify-center bg-gray-100"
-          />
-        </transition>
+        <Icon
+          home
+          tag="button"
+          size="w-5"
+          class="home-link h-full w-full flex items-center justify-center bg-gray-100"
+        />
       </NuxtLink>
       <Logo
         class="absolute top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full shadow-sm bg-white"
         :transition-a="moved.a"
         :transition-p="moved.p"
         style-logo-container="w-14"
-        @click.native="play()"
+        @click.native="play"
       />
 
       <Translate
@@ -83,8 +75,9 @@
         :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-gray-800 filter grayscale`"
         style-translate-item="p-3 text-center"
         :blok="$contentByName(blok.body, 'Translate')"
-        @mouseout.native="expandOut()"
-        @click.native="expandIn()"
+        @translateAction="expandOut"
+        @click.native="expandIn"
+        @mouseleave.native="expandOut"
       />
     </nav>
     <nav class="navbar-down w-full h-10 flex items-center fixed bottom-0 z-30">
@@ -105,7 +98,7 @@
 import Translate from './TranslateComponent'
 import ItemNavbar from './ItemNavbarComponent'
 export default {
-  components: {Translate, ItemNavbar },
+  components: { Translate, ItemNavbar },
   props: {
     blok: {
       type: Object,

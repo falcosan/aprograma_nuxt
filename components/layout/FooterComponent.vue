@@ -37,24 +37,24 @@
   </footer>
   <footer
     v-else
-    class="footer h-48 md:w-full my-10 md:my-0 mx-auto"
+    class="footer h-48 my-12 mx-auto"
   >
     <div class="footer-content h-full flex flex-col items-center whitespace-nowrap">
       <span class="input-dot relative bottom-10 text-center animate-bounce text-xl">•</span>
       <div
-        class="messages-container flex-1 row-start-1 row-end-1 col-start-1 col-end-1"
+        class="messages-container flex-1"
       >
         <span class="footer-messages text-sm">
           Aprograma {{ typewriter }}
         </span>
       </div>
       <h4
-        class="footer-copyright flex-1 text-sm text-center row-start-1 row-end-1 col-start-1 col-end-3"
+        class="footer-copyright flex-1 text-sm text-center"
       >
         © 2020 - {{ currentYear }}, Aprograma
       </h4>
       <div
-        class="social-links flex flex-1 row-start-1 row-end-1 col-start-2 col-end-2 w-max justify-end"
+        class="social-links flex flex-1"
       >
         <Icon
           v-for="iconLink in $contentByName(blok.body, 'Icon')"

@@ -1,6 +1,6 @@
 <template>
   <section
-    :class="`${blok.name.toLowerCase()}-page md:w-8/12 mx-auto my-0 py-14 px-4 md:py-6
+    :class="`${blok.name.toLowerCase()}-page max-w-sm sm:max-w-md md:max-w-lg lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl mx-auto my-0 pb-12 pt-16 px-4 md:p-6
       ${customClass('home','all', 'h-screen flex flex-col justify-center ')}
       ${customClass('about','all', 'flex md:items-center ')}
       ${customClass('portfolio','all', 'h-screen flex items-center :')}

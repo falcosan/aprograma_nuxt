@@ -77,10 +77,10 @@
         :blok="$contentByName(blok.body, 'Translate')"
         @translateAction="expandOut"
         @click.native="expandIn"
-        @mouseleave.native="expandOut"
+        @mouseleave.native.passive="expandOut"
       />
     </nav>
-    <nav class="navbar-down w-full h-10 flex items-center fixed bottom-0 z-30">
+    <nav class="navbar-down w-full h-12 flex items-center fixed bottom-0 z-30">
       <ul class="menu-wrapper w-full h-full grid grid-cols-4 bg-gray-100">
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"

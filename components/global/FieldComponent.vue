@@ -1,5 +1,5 @@
 <template>
-  <div class="field-item relative flex flex-col mb-5">
+  <div class="field-item relative flex flex-col">
     <label :class="`field-label mb-5 ${fieldError() ? 'text-red-600' : 'text-black'}`">{{ blok.label }} *</label>
     <component
       :is="blok.tag"
@@ -15,7 +15,7 @@
       @input="$emit('update:fieldValue', $event.target.value)"
     />
     <transition v-if="blok.indication" enter-active-class="duration-100 in-out" leave-active-class="duration-100 out-in" enter-class="-translate-y-full opacity-0" leave-to-class="-translate-y-full opacity-0">
-      <span v-if="indication" class="field-indication w-full absolute -bottom-0 p-2 transform bg-red-400 text-white text-xs text-center">
+      <span v-if="indication" class="field-indication w-full absolute bottom-1 p-2 transform bg-red-400 text-white text-xs text-center">
         {{ blok.indication }}
       </span>
     </transition>

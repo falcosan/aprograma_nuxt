@@ -69,6 +69,9 @@ export default {
       return Object.assign(...this.blok.body.map(({ title }, index) => ({ [title.toLowerCase()]: Object.values(this.fields)[index] })))
     }
   },
+  watch: {
+    submitting: { handler () { this.onSubmiting() } }
+  },
   destroyed () {
     this.clearFields()
   },
@@ -113,7 +116,6 @@ export default {
         this.$store.dispatch('validator/checkValues')
         if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.blok.body.length && Object.values(this.fields).every(text => text.length > 0)) {
           this.submitting = true
-          this.onSubmiting()
           try {
             await axios.post(
               '/.netlify/functions/sendmail',
@@ -124,12 +126,10 @@ export default {
               }
             )
             this.submitting = false
-            this.onSubmiting()
             this.clearFields()
             this.setAlert(this.blok.passed_message, 'bg-green-400')
           } catch {
             this.submitting = false
-            this.onSubmiting()
             this.setAlert(this.blok.error_message, 'bg-red-400')
           }
         } else {

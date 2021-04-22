@@ -6,7 +6,7 @@
       :name="blok.label.toLowerCase().replace(/ /g,'')"
       :type="blok.type"
       :class="`field-input w-full relative z-10 resize-none p-2 mb-10
-      ${isMessage ? 'h-40' : 'h-full leading-10'}
+      ${isMessage ? 'h-40' : 'h-9'}
       ${fieldError() ? 'border-dotted border-2 border-red-600' : 'border border-black'}`"
       :value="fieldValue !== '' ? fieldValue : false"
       @keyup="updateFields(); showIndication()"

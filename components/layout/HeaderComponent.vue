@@ -83,8 +83,7 @@
         :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-gray-800 filter grayscale`"
         style-translate-item="p-3 text-center"
         :blok="$contentByName(blok.body, 'Translate')"
-        @mouseover.native="expandStill()"
-        @mouseleave.native="expandOut()"
+        @mouseout.native="expandOut()"
         @click.native="expandIn()"
       />
     </nav>
@@ -104,10 +103,9 @@
 
 <script>
 import Translate from './TranslateComponent'
-import Logo from './../global/LogoComponent'
 import ItemNavbar from './ItemNavbarComponent'
 export default {
-  components: { Logo, ItemNavbar, Translate },
+  components: {Translate, ItemNavbar },
   props: {
     blok: {
       type: Object,

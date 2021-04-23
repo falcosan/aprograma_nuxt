@@ -1,6 +1,6 @@
 <template>
   <main
-    class="main"
+    class="main font-body"
   >
     <transition appear appear-active-class="page-appear-active" appear-class="page-appear" name="page">
       <Nuxt v-if="blok.view" />

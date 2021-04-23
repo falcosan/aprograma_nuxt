@@ -14,7 +14,7 @@
         tag="span"
         loader
         size="w-32"
-        class="form-loader w-screen h-screen flex justify-center fixed inset-0 z-40 bg-white"
+        class="form-loader w-screen h-screen fixed flex justify-center inset-0 z-40 pointer-events-none bg-white"
       />
     </transition>
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
@@ -25,7 +25,7 @@
     </h2>
     <form
       :name="blok.title.toLowerCase().replace(/ /g,'-')"
-      class="form-fields w-full flex flex-col items-end"
+      class="form-fields w-full flex flex-col gap-y-5"
       novalidate="true"
       @submit.prevent="submit"
     >
@@ -105,9 +105,9 @@ export default {
     onSubmiting () {
       if (this.submitting) {
         window.scrollTo(0, 0)
-        document.getElementsByTagName('html')[0].classList.add('noscroll')
+        document.body.classList.add('noscroll')
       } else {
-        document.getElementsByTagName('html')[0].classList.remove('noscroll')
+        document.body.classList.remove('noscroll')
       }
     },
     async submit () {

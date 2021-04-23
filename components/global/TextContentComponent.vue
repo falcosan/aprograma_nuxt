@@ -2,10 +2,10 @@
   <div
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor};`"
-    :class="`text-container p-5 md:p-10
+    :class="`text-container w-full p-5 md:p-10
     ${customClass('home', blok.name === 'text_home_1', 'md:w-min mb-5')}
     ${customClass('home', blok.name === 'text_home_2', 'xl:w-max transition-all duration-700 ease-in-out')}
-    ${customClass('contact', 'all', 'flex-1 mt-10')}`"
+    ${customClass('contact', 'all', 'h-full max-h-96 flex-1 mt-5')}`"
   >
     <component
       :is="blok.article ? 'article' : 'span'"

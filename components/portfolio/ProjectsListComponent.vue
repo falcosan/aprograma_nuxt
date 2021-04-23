@@ -1,12 +1,22 @@
 <template>
   <Slider
-    v-if="sortedProject"
+    v-if="sortedProject && !$store.state.data.mobile"
     :blok="sortedProject"
     :parent="$route.path"
   />
+  <ul v-else class="project-list w-full flex flex-col gap-y-10 md:gap-y-5">
+    <ProjectTeaser
+      v-for="project in sortedProject"
+      :key="project._uid"
+      :project-link="`portfolio/${project.slug}`"
+      :project-content="project.content"
+    />
+  </ul>
 </template>
 <script>
+import ProjectTeaser from './ProjectTeaserComponent'
 export default {
+  components: { ProjectTeaser },
   props: {
     blok: {
       type: Object,

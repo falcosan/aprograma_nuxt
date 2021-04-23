@@ -5,7 +5,7 @@
   >
     <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link md:grid">
       <div
-        class="teaser-content h-full lg:h-60 w-full lg:relative lg:z-10 flex flex-col lg:flex-row"
+        class="teaser-content h-full lg:h-60 lg:relative lg:z-10 flex flex-col lg:flex-row row-start-1 row-end-1 col-start-1 col-end-3"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >

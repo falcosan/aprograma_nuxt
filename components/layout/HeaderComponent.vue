@@ -42,7 +42,7 @@
         style-translate-item="py-3 px-4"
         :blok="$contentByName(blok.body, 'Translate')"
         @mouseover.native="expandStill"
-        @mouseleave="expandOut"
+        @mouseleave.native="expandOut"
         @click.native="expandIn"
       />
     </nav>

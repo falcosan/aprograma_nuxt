@@ -25,7 +25,7 @@
     </h2>
     <form
       :name="blok.title.toLowerCase().replace(/ /g,'-')"
-      class="form-fields w-full flex flex-col gap-y-5"
+      class="form-fields w-full flex flex-col"
       novalidate="true"
       @submit.prevent="submit"
     >

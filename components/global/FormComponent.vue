@@ -106,9 +106,9 @@ export default {
     onSubmiting () {
       if (this.submitting) {
         window.scrollTo(0, 0)
-        document.body.classList.add('noscroll')
+        document.getElementsByTagName('html')[0].classList.add('noscroll')
       } else {
-        document.body.classList.remove('noscroll')
+        document.getElementsByTagName('html')[0].classList.remove('noscroll')
       }
     },
     async submit () {

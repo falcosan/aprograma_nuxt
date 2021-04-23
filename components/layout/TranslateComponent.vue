@@ -3,6 +3,7 @@
     <div
       v-if="translateTransition"
       :class="`current-language cursor-pointer ${styleCurrentLanguage}`"
+      @click="$emit('currentLangAction')"
     >
       <template v-for="selector in blok">
         <span v-if="cutLanguage(selector) === $store.state.data.language || cutLanguage(selector) === 'en' && $store.state.data.language === ''" :key="selector._uid" class="language-item">
@@ -22,7 +23,7 @@
         >
           <a
             class="translate-link"
-            @click="changeLanguage(language.language); $emit('translateAction')"
+            @click="changeLanguage(language.language); $emit('translateListAction')"
           >
             <span :class="`translate-language${!$store.state.data.mobile ?' md:hover:text-gray-300' : ''}`">{{ language.language }}</span>
           </a>

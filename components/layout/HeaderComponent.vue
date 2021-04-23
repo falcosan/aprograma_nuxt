@@ -75,9 +75,9 @@
         :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-gray-800 filter grayscale`"
         style-translate-item="p-3 text-center"
         :blok="$contentByName(blok.body, 'Translate')"
-        @translateAction="expandOut"
-        @click.native="expandIn"
-        @mouseleave.native.passive="expandOut"
+        @translateListAction="expandOut"
+        @currentLangAction="expandIn"
+        @mouseleave.native="expandOut"
       />
     </nav>
     <nav class="navbar-down w-full h-12 flex items-center fixed bottom-0 z-30">
@@ -119,18 +119,23 @@ export default {
   methods: {
     expandIn () {
       this.expanded = true
-      this.moved.translateList = 'expanded translate-x-0 opacity-100'
-      this.timer = 0
+      this.moved.translateList = 'expanded translate-x-0'
     },
     expandStill () {
       clearTimeout(this.timer)
       this.timer = 0
     },
     expandOut () {
-      this.timer = setTimeout(() => {
+      if (!this.$store.state.data.mobile) {
+        this.timer = setTimeout(() => {
+          this.expanded = false
+          this.moved.translateList = 'not_expanded -translate-x-full'
+        }, 700)
+      } else {
+        this.timer = 0
         this.expanded = false
-        this.moved.translateList = 'not_expanded translate-x-full md:-translate-x-full'
-      }, !this.$store.state.data.mobile ? 700 : 0)
+        this.moved.translateList = 'not_expanded translate-x-full'
+      }
     },
     play () {
       this.moved.a = 'transform origin-center-left translate rotate-360 transition duration-700 ease-out'

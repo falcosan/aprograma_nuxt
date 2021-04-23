@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Crimson Text']
+        body: ['Nunito Sans']
       },
       screens: {
         xs: '320px'

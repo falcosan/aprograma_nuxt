@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white">
+  <div class="font-body">
     <component
       :is="layout.component"
       v-for="layout in story.content.body"

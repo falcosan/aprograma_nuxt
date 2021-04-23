@@ -1,30 +1,31 @@
 <template>
-  <div class="project h-screen w-8/12 my-0 mx-auto p-7 grid grid-cols-3 gap-y-4 gap-x-4">
-    <h1 class="project-title self-center col-start-1 col-end-3 text-xl md:text-2xl">
+  <div class="project md:w-9/12 max-w-7xl md:h-screen my-0 mx-auto py-10 md:py-12 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <h1 class="project-title p-10 md:p-0 md:self-center md:col-start-1 md:col-end-3 text-xl md:text-2xl">
       {{ blok.title }}
     </h1>
     <Icon
+      v-if="!$store.state.data.mobile"
       back
       tag="button"
       :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-      class="project-back w-full flex justify-center items-center col-start-3 col-end-3 p-5"
+      class="project-back w-full flex justify-center items-center md:col-start-3 md:col-end-3 p-5"
       size="w-8"
       @click.native="goBack"
     />
     <div
-      class="image-container flex items-center overflow-y-hidden col-start-1 col-end-3 border-4"
+      class="image-container flex items-center overflow-y-hidden md:col-start-1 md:col-end-3 md:border-4"
       :style="`border-color: ${blok.project_background_color.color};`"
     >
-      <img class="project-image w-full h-screen object-cover" :src="blok.image.filename" :alt="blok.image.alt">
+      <img class="project-image w-full md:h-screen object-cover" :src="blok.image.filename" :alt="blok.image.alt">
     </div>
-    <div class="project-container col-start-3 col-end-3 p-5" :style="`background-color: ${blok.project_background_color.color};`">
+    <div class="project-container md:col-start-3 md:col-end-3 p-5" :style="`background-color: ${blok.project_background_color.color};`">
       <span
         :style="`color: ${blok.project_text_color.color};`"
         class="project-description text-justify text-base"
         v-text="blok.description"
       />
     </div>
-    <div class="project-date col-start-1 col-end-3 grid grid-cols-3 items-center flex-row">
+    <div class="project-date md:col-start-1 md:col-end-3 md:grid md:grid-cols-3 items-center flex-row">
       <h4 class="date-start text-right">
         {{ changeDate(blok.start_date) }}
       </h4>

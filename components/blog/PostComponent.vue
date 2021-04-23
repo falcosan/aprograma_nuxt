@@ -1,22 +1,22 @@
 <template>
-  <div class="post py-10 md:pt-0">
+  <div class="post sm:w-9/12 max-w-7xl my-0 mx-auto py-10 md:pt-0">
     <Icon
       v-if="!$store.state.data.mobile"
       close
-      class="post-back fixed top-8 right-60 text-black"
+      class="post-back fixed top-28 right-8 text-black"
       tag="button"
       size="w-8"
       @click.native="goBack"
     />
-    <div class="post-head w-full md:w-8/12 md:h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
+    <div class="post-head w-full xl:h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
       <component
         :is="lookFile()"
-        class="post-file w-full md:h-full row-start-1 row-end-3 object-cover md:object-cover"
+        class="post-file w-full sm:h-full row-start-1 row-end-3 sm:object-cover"
         :alt="`${blok.file.alt} project`"
         :src="blok.file.filename"
       />
     </div>
-    <div class="post-body w-full md:w-8/12 flex justify-center mx-auto" :style="`background-color: ${blok.post_background_color.color};`">
+    <div class="post-body w-full flex justify-center mx-auto" :style="`background-color: ${blok.post_background_color.color};`">
       <div class="post-article w-full prose-sm sm:prose lg:prose-lg xl:prose-xl 2xl:prose-2xl px-5 py-5 xl:px-0 md:py-10">
         <h1
           :style="`color: ${blok.post_text_color.color};`"

@@ -2,18 +2,15 @@
   <div
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor};`"
-    :class="`text-container w-auto
-    ${customClass('home', 'all', 'my-0 p-5 sm:p-10')}
+    :class="`text-container p-5 md:p-10
     ${customClass('home', blok.name === 'text_home_1', 'md:w-min mb-5')}
     ${customClass('home', blok.name === 'text_home_2', 'xl:w-max transition-all duration-700 ease-in-out')}
-    ${customClass('about', 'all', 'flex items-center p-5 sm:p-10')}
-    ${customClass('contact', 'all', 'lg:col-start-2 lg:col-end-2 py-5 px-5 mt-10 lg:mt-0 lg:py-6 lg:px-10')}`"
+    ${customClass('contact', 'all', 'flex-1')}`"
   >
     <component
       :is="blok.article ? 'article' : 'span'"
       :style="`color: ${randomTextColor};`"
-      :class="`text-content mx-auto text-xs prose-sm lg:prose-lg break-words w-full
-      ${customClass('contact', 'all', 'lg:w-full lg:h-full')}`"
+      :class="`text-content w-full block prose-sm sm:text-base lg:prose-lg xl:prose-xl break-words`"
       v-html="blok.text.content"
     />
   </div>

@@ -22,13 +22,9 @@ export default {
       }
     }
   },
-
-  watch: {
-    '$store.state.data.language': 'getLayout'
-  },
   mounted () {
-    this.$store.commit('data/mobileMutation')
     this.getLayout()
+    this.$store.commit('data/mobileMutation')
   },
   methods: {
     async getLayout () {

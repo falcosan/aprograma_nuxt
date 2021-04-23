@@ -1,7 +1,7 @@
 
 <template>
   <div
-    :class="`form w-full items-center m-0 ${customClass('contact', 'all', 'col-start-1 col-end-1')}`"
+    :class="`form w-full items-center m-0 ${customClass('contact', 'all', 'flex-1')}`"
   >
     <transition
       enter-active-class="duration-200 in-out"

@@ -3,26 +3,26 @@
     v-if="postContent"
     class="post-teaser"
   >
-    <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link lg:grid">
+    <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link md:grid">
       <div
-        class="teaser-content h-full lg:h-60 w-full lg:relative lg:z-10 flex flex-col lg:flex-row row-start-1 row-end-1 col-start-1 col-end-3"
+        class="teaser-content h-full md:h-60 w-full md:relative md:z-10 flex flex-col md:flex-row row-start-1 row-end-1 col-start-1 col-end-3"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
         <component
           :is="lookFile()"
-          class="teaser-file w-full lg:h-auto lg:w-96 lg:max-w-xs xl:max-w-none object-cover"
+          class="teaser-file w-auto md:h-auto md:w-1/2 lg:w-96 md:max-w-xs xl:max-w-none object-cover"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`" class="teaser-text w-full flex flex-col justify-center p-5 lg:p-10 text-center sm:text-left overflow-hidden">
+        <div class="teaser-text w-auto md:w-1/2 lg:w-full flex flex-col justify-center p-5 lg:p-10 text-center sm:text-left overflow-hidden" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <span
-            class="teaser-title mb-2 text-xl md:text-3xl xl:text-4xl"
+            class="teaser-title mb-2 text-xl lg:text-3xl xl:text-4xl"
           >
             {{ postContent.title }}
           </span>
           <span
-            class="teaser-intro text-base md:text-lg xl:text-xl"
+            class="teaser-intro text-base md:text-md xl:text-xl"
           >
             {{ postContent.intro }}
           </span>

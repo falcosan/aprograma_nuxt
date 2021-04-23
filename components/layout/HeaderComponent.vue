@@ -37,12 +37,12 @@
       <Translate
         translate-transition
         class="translate-header w-16"
-        :style-current-language="`py-3 px-4 transition-all ${expanded ? 'border-t border-b border-r border-black text-gray-600' : 'bg-gray-800 filter grayscale text-white'}`"
+        :style-current-language="`py-3 px-4 transition-all filter grayscale ${expanded ? 'bg-gray-300 text-gray-600' : 'bg-gray-800 text-white'}`"
         :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-gray-800 filter grayscale text-white`"
         style-translate-item="py-3 px-4"
         :blok="$contentByName(blok.body, 'Translate')"
         @mouseover.native="expandStill"
-        @mouseleave.native="expandOut"
+        @mouseout.native="expandOut"
         @click.native="expandIn"
       />
     </nav>
@@ -77,7 +77,7 @@
         :blok="$contentByName(blok.body, 'Translate')"
         @translateListAction="expandOut"
         @currentLangAction="expandIn"
-        @mouseleave.native="expandOut"
+        @mouseout.native="expandOut"
       />
     </nav>
     <nav class="navbar-down w-full h-12 flex items-center fixed bottom-0 z-30">
@@ -119,7 +119,7 @@ export default {
   methods: {
     expandIn () {
       this.expanded = true
-      this.moved.translateList = 'expanded translate-x-0'
+      this.moved.translateList = 'expanded translate-x-0 opacity-100'
     },
     expandStill () {
       clearTimeout(this.timer)

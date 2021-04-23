@@ -14,7 +14,7 @@
         tag="span"
         loader
         size="w-32"
-        class="form-loader w-screen h-screen flex justify-center absolute top-0 left-0 z-40 bg-white"
+        class="form-loader w-screen h-screen flex justify-center fixed inset-0 z-40 bg-white"
       />
     </transition>
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
@@ -24,7 +24,6 @@
       {{ blok.title }}
     </h2>
     <form
-      id="form"
       :name="blok.title.toLowerCase().replace(/ /g,'-')"
       class="form-fields w-full flex flex-col items-end"
       novalidate="true"
@@ -126,6 +125,7 @@ export default {
               }
             )
             this.submitting = false
+            document.querySelector('form').reset()
             this.clearFields()
             this.setAlert(this.blok.passed_message, 'bg-green-400')
           } catch {

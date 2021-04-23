@@ -1,5 +1,5 @@
 <template>
-  <ul class="post-list grid gap-y-10 justify-center lg:gap-y-5">
+  <ul class="post-list w-full flex flex-col gap-y-10 md:gap-y-5">
     <PostTeaser
       v-for="post in sortedPosts"
       :key="post._uid"

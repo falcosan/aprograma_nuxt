@@ -1,7 +1,7 @@
 
 <template>
   <div
-    :class="`form w-full items-center m-0 ${customClass('contact', 'all', 'flex-1')}`"
+    class="form"
   >
     <transition
       enter-active-class="duration-200 in-out"
@@ -25,14 +25,14 @@
     </h2>
     <form
       :name="blok.title.toLowerCase().replace(/ /g,'-')"
-      class="form-fields w-full flex flex-col"
+      class="form-fields"
       novalidate="true"
       @submit.prevent="submit"
     >
       <Field
         v-for="(input, index) in blok.body"
         :key="input._uid"
-        class="contact-field w-full"
+        class="contact-field"
         :field-value.sync="fields[index]"
         :blok="input"
       />

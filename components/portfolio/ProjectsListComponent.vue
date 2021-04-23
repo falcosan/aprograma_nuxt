@@ -4,7 +4,7 @@
     :blok="sortedProject"
     :parent="$route.path"
   />
-  <ul v-else class="project-list w-full flex flex-col">
+  <ul v-else class="project-list w-full grid gap-y-5">
     <ProjectTeaser
       v-for="project in sortedProject"
       :key="project._uid"

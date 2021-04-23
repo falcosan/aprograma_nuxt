@@ -1,6 +1,6 @@
 <template>
-  <div class="field-item relative flex flex-col">
-    <label :class="`field-label mb-7 ${fieldError() ? 'text-red-600' : 'text-black'}`">{{ blok.label }} *</label>
+  <div class="field-item relative grid mb-10">
+    <label :class="`field-label mb-1 ${fieldError() ? 'text-red-600' : 'text-black'}`">{{ blok.label }} *</label>
     <component
       :is="blok.tag"
       :name="blok.label.toLowerCase().replace(/ /g,'')"
@@ -14,8 +14,8 @@
       @blur="indication = false"
       @input="$emit('update:fieldValue', $event.target.value)"
     />
-    <transition v-if="blok.indication" enter-active-class="duration-100 in-out" leave-active-class="duration-100 out-in" enter-class="translate-y-full opacity-0" leave-to-class="translate-y-full opacity-0">
-      <span v-if="indication" class="field-indication w-full absolute top-6 p-1 transform rounded-t-sm text-sm text-center text-white bg-red-400">
+    <transition v-if="blok.indication" enter-active-class="duration-100 in-out" leave-active-class="duration-100 out-in" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
+      <span v-if="indication" class="field-indication w-full absolute -bottom-7 py-1 px-2 transform text-sm text-white bg-red-400">
         {{ blok.indication }}
       </span>
     </transition>

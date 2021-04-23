@@ -77,7 +77,7 @@
         :blok="$contentByName(blok.body, 'Translate')"
         @translateListAction="expandOut"
         @currentLangAction="expandIn"
-        @mouseout.native="expandOut"
+        @mouseleave.native="expandOut"
       />
     </nav>
     <nav class="navbar-down w-full h-12 flex items-center fixed bottom-0 z-30">
@@ -132,7 +132,6 @@ export default {
           this.moved.translateList = 'not_expanded -translate-x-full'
         }, 700)
       } else {
-        this.timer = 0
         this.expanded = false
         this.moved.translateList = 'not_expanded translate-x-full'
       }

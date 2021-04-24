@@ -1,5 +1,5 @@
 <template>
-  <div class="field-item relative grid mb-5 md:mb-10">
+  <div class="field-item relative grid mb-10">
     <label :class="`field-label mb-1 ${fieldError() ? 'text-red-600' : 'text-black'}`">{{ blok.label }} *</label>
     <component
       :is="blok.tag"

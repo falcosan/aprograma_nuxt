@@ -4,8 +4,7 @@
     :style="`background-color: ${randomBackgroundColor};`"
     :class="`text-container w-full p-5 md:p-10
     ${customClass('home', blok.name === 'text_home_1', 'md:w-min mb-5')}
-    ${customClass('home', blok.name === 'text_home_2', 'xl:w-max transition-all duration-700 ease-in-out')}
-    ${customClass('contact', 'all', 'h-full')}`"
+    ${customClass('home', blok.name === 'text_home_2', 'xl:w-max transition-all duration-700 ease-in-out')}`"
   >
     <component
       :is="blok.article ? 'article' : 'span'"

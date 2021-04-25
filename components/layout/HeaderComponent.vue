@@ -52,13 +52,13 @@
     v-else
     class="header"
   >
-    <nav class="navbar-up w-full h-10 flex justify-between fixed top-0 z-20 shadow-sm bg-gray-100">
+    <nav class="navbar-up w-full h-10 flex justify-between fixed top-0 z-20 shadow-sm bg-gray-200">
       <NuxtLink class="home-link w-2/12" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
         <Icon
           home
           tag="button"
           size="w-5"
-          class="home-link h-full w-full flex items-center justify-center bg-gray-100"
+          class="home-link h-full w-full flex items-center justify-center bg-gray-200"
         />
       </NuxtLink>
       <Logo
@@ -72,7 +72,7 @@
       <Translate
         translate-transition
         class="translate-header text-sm w-2/12"
-        style-current-language="h-full flex items-center justify-center transition-all bg-gray-100"
+        style-current-language="h-full flex items-center justify-center transition-all bg-gray-200"
         :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-gray-800 filter grayscale`"
         style-translate-item="p-3 text-center"
         :blok="$contentByName(blok.body, 'Translate')"
@@ -82,7 +82,7 @@
       />
     </nav>
     <nav class="navbar-down w-full h-12 flex items-center fixed bottom-0 z-10">
-      <ul class="menu-wrapper w-full h-full grid grid-cols-4 bg-gray-100">
+      <ul class="menu-wrapper w-full h-full grid grid-cols-4 bg-gray-200">
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"

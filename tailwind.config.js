@@ -11,10 +11,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Nunito Sans']
+        body: ['Lexend']
       },
       screens: {
         xs: '320px'
+      },
+      zIndex: {
+        '-10': '-10'
       },
       height: {
         'min-content': 'min-content'

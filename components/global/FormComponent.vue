@@ -13,12 +13,12 @@
         v-if="submitting"
         tag="span"
         loader
+        class="form-loader w-screen h-screen fixed flex justify-center inset-0 z-30 pointer-events-none bg-white"
         size="w-32"
-        class="form-loader w-screen h-screen fixed flex justify-center inset-0 z-40 pointer-events-none bg-white"
       />
     </transition>
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
-      <div v-if="alert.message" :class="`form-alert fixed z-30 w-full top-0 left-0 p-5 text-center transform text-base md:text-lg ${alert.color} text-white`" v-text="alert.message" />
+      <div v-if="alert.message" :class="`form-alert fixed z-20 w-full top-0 left-0 p-5 opacity-90 text-center text-base md:text-lg transform ${alert.color} text-white`" v-text="alert.message" />
     </transition>
     <h2 v-if="blok.show_title" :class="`form-title mb-10 text-4xl ${customClass('contact', 'all', 'pt-6 md:text-right')}`">
       {{ blok.title }}

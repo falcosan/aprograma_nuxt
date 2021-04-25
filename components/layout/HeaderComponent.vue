@@ -11,6 +11,7 @@
               :transition-a="moved.a"
               :transition-p="moved.p"
               style-logo-container="w-24"
+              :blok="$contentByName(blok.body, 'Logo')[0]"
               @click.native="play"
             />
             <transition
@@ -51,7 +52,7 @@
     v-else
     class="header"
   >
-    <nav class="navbar-up w-full h-10 flex justify-between fixed top-0 z-30 shadow-sm bg-gray-100">
+    <nav class="navbar-up w-full h-10 flex justify-between fixed top-0 z-20 shadow-sm bg-gray-100">
       <NuxtLink class="home-link w-2/12" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
         <Icon
           home
@@ -80,7 +81,7 @@
         @mouseleave.native="expandOut"
       />
     </nav>
-    <nav class="navbar-down w-full h-12 flex items-center fixed bottom-0 z-30">
+    <nav class="navbar-down w-full h-12 flex items-center fixed bottom-0 z-10">
       <ul class="menu-wrapper w-full h-full grid grid-cols-4 bg-gray-100">
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"

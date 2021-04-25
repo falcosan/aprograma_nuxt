@@ -1,7 +1,7 @@
 <template>
   <footer
     v-if="!$store.state.data.mobile"
-    :class="`footer ${expanded} w-full fixed z-20 bottom-0 bg-gray-300 transition-height duration-200 ease-in-out`"
+    :class="`footer ${expanded} w-full fixed z-10 bottom-0 bg-gray-300 transition-height duration-200 ease-in-out`"
     @mouseleave="expandOut"
     @mouseover="expandIn"
   >

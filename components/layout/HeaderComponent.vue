@@ -19,7 +19,7 @@
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"
-          class="link-menu flex-1 text-left no-underline py-2 px-3 md:hover:opacity-90"
+          class="link-menu flex-1 text-left no-underline py-2 px-3 opacity-90"
         >
           <ItemNavbar :icon-item="false" :blok="item" />
         </li>
@@ -29,8 +29,8 @@
       <Translate
         translate-transition
         class="translate-header w-16"
-        :style-current-language="`py-3 px-4 transition-all filter grayscale ${expanded ? 'bg-gray-300 text-gray-600' : 'bg-gray-800 text-white'}`"
-        :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-gray-800 filter grayscale text-white`"
+        :style-current-language="`py-3 px-4 transition-all ${expanded ? 'bg-gray-300 text-gray-600' : 'bg-gray-800 text-white'} filter grayscale`"
+        :style-translate-list="`transform transition-transform duration-200 esase-out  ${expanded ? 'translate-x-0' : '-translate-x-full'} bg-gray-800 filter grayscale text-white`"
         style-translate-item="py-3 px-4"
         :blok="$contentByName(blok.body, 'Translate')"
         @mouseover.native="expandStill"
@@ -41,40 +41,42 @@
   </header>
   <header
     v-else
-    class="header"
+    class="header flex justify-center"
   >
-    <nav class="navbar-up w-full h-10 flex justify-between fixed top-0 z-20 shadow-sm" :style="`background-color: ${blok.background_color.color};`">
-      <NuxtLink class="home-link w-2/12" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
-        <Icon
-          v-for="iconHeader in $contentByName(blok.body, 'Icon')"
-          :key="iconHeader._uid"
-          :blok="iconHeader"
-          size="w-5"
-          class="home-link h-full w-full flex items-center justify-center"
+    <nav class="navbar-up w-full h-10 fixed flex justify-center top-0 z-20 shadow-sm" :style="`background-color: ${blok.background_color.color};`">
+      <div class="menu-wrapper wrapper-up w-full h-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl flex justify-between">
+        <NuxtLink class="home-link w-2/12" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
+          <Icon
+            v-for="iconHeader in $contentByName(blok.body, 'Icon')"
+            :key="iconHeader._uid"
+            :blok="iconHeader"
+            size="w-5"
+            class="home-link h-full w-full flex items-center justify-center"
+          />
+        </NuxtLink>
+        <Logo
+          class="absolute top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full shadow-sm bg-white"
+          :transition-a="moved.a"
+          :transition-p="moved.p"
+          style-logo-container="w-14"
+          @click.native="play"
         />
-      </NuxtLink>
-      <Logo
-        class="absolute top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full shadow-sm bg-white"
-        :transition-a="moved.a"
-        :transition-p="moved.p"
-        style-logo-container="w-14"
-        @click.native="play"
-      />
 
-      <Translate
-        translate-transition
-        class="translate-header text-sm w-2/12"
-        style-current-language="h-full flex items-center justify-center transition-all"
-        :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-gray-800 filter grayscale`"
-        style-translate-item="p-3 text-center"
-        :blok="$contentByName(blok.body, 'Translate')"
-        @translateListAction="expandOut"
-        @currentLangAction="expandIn"
-        @mouseleave.native="expandOut"
-      />
+        <Translate
+          translate-transition
+          class="translate-header text-sm lg:text-base w-2/12 filter grayscale"
+          :style-current-language="`h-full flex items-center justify-center relative z-10 bg-gray-800 text-gray-300 ${expanded ? 'shadow-xl' : ''}`"
+          :style-translate-list="`transform transition-transform duration-200 esase-out ${expanded ? 'translate-y-0' : '-translate-y-full'} bg-gray-800`"
+          style-translate-item="p-3 text-center"
+          :blok="$contentByName(blok.body, 'Translate')"
+          @translateListAction="expandOut"
+          @currentLangAction="expandIn"
+          @mouseleave.native="expandOut"
+        />
+      </div>
     </nav>
-    <nav class="navbar-down w-full h-12 flex items-center fixed bottom-0 z-10" :style="`background-color: ${blok.background_color.color};`">
-      <ul class="menu-wrapper w-full h-full grid grid-cols-4">
+    <nav class="navbar-down w-full h-12 flex items-center justify-center fixed bottom-0 z-10 border-t border-gray-300" :style="`background-color: ${blok.background_color.color};`">
+      <ul class="menu-wrapper wrapper-down w-full h-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl grid grid-cols-4">
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"
@@ -104,15 +106,13 @@ export default {
       timer: 0,
       moved: {
         a: '',
-        p: '',
-        translateList: 'not_expanded translate-x-full md:-translate-x-full'
+        p: ''
       }
     }
   },
   methods: {
     expandIn () {
       this.expanded = true
-      this.moved.translateList = 'expanded translate-x-0 opacity-100'
     },
     expandStill () {
       clearTimeout(this.timer)
@@ -122,11 +122,9 @@ export default {
       if (!this.$store.state.data.mobile) {
         this.timer = setTimeout(() => {
           this.expanded = false
-          this.moved.translateList = 'not_expanded -translate-x-full'
         }, 700)
       } else {
         this.expanded = false
-        this.moved.translateList = 'not_expanded translate-x-full'
       }
     },
     play () {

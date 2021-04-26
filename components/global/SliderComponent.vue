@@ -39,10 +39,6 @@ export default {
       type: Array,
       required: true
     },
-    iconColor: {
-      type: String,
-      required: true
-    },
     parent: {
       type: String,
       required: true

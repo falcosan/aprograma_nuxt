@@ -25,7 +25,7 @@
             class="translate-link"
             @click="changeLanguage(language.language); $emit('translateListAction')"
           >
-            <span :class="`translate-language${!$store.state.data.mobile ?' md:hover:text-gray-300' : ''}`">{{ language.language }}</span>
+            <span class="translate-language">{{ language.language }}</span>
           </a>
         </li>
       </template>

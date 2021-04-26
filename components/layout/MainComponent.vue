@@ -41,6 +41,11 @@ export default {
     lookFile () {
       return (/(gif|jpe?g|tiff?|png|webp|bmp)/gi).test(this.blok.background_media.filename.toLowerCase().split('.').pop()) ? 'image' : 'video'
     }
+  },
+  methods: {
+    test () {
+      console.log('e')
+    }
   }
 }
 </script>

@@ -60,7 +60,6 @@
         <Icon
           v-for="iconLink in $contentByName(blok.body, 'Icon')"
           :key="iconLink._uid"
-          :style="`filter: invert(1);`"
           size="w-6"
           :blok="iconLink"
           class="social-icon mr-4"

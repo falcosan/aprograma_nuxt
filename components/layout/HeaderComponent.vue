@@ -47,9 +47,8 @@
       <div class="menu-wrapper wrapper-up w-full h-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl flex justify-between">
         <NuxtLink class="home-link w-2/12" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
           <Icon
-            v-for="iconHeader in $contentByName(blok.body, 'Icon')"
-            :key="iconHeader._uid"
-            :blok="iconHeader"
+            home
+            tag="button"
             size="w-5"
             class="home-link h-full w-full flex items-center justify-center"
           />

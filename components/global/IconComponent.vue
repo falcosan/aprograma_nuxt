@@ -21,8 +21,7 @@
 
     <!-- HOME-->
     <svg
-      v-else-if="blok && blok.icon_standard === 'home' || home"
-      :style="`${blok && blok.icon_color.color ? `color: ${blok.icon_color.color};` : false}`"
+      v-else-if="home"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -34,8 +33,7 @@
 
     <!-- BACK-->
     <svg
-      v-else-if="blok && blok.icon_standard === 'back' || back"
-      :style="`${blok && blok.icon_color.color ? `color: ${blok.icon_color.color};` : false}`"
+      v-else-if="back"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -47,9 +45,8 @@
 
     <!--CLOSE-->
     <svg
-      v-else-if="blok && blok.icon_standard === 'close' || close"
+      v-else-if="close"
       :class="`close-icon h-auto fill-current ${size} cursor-pointer`"
-      :style="`${blok && blok.icon_color.color ? `color: ${blok.icon_color.color};` : false}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -60,9 +57,8 @@
 
     <!--NEXT-->
     <svg
-      v-else-if="blok && blok.icon_standard === 'next' || next"
+      v-else-if="next"
       :class="`next-icon h-auto fill-current ${size} cursor-pointer`"
-      :style="`${blok && blok.icon_color.color ? `color: ${blok.icon_color.color};` : false}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -73,9 +69,8 @@
 
     <!--PREVIOUS-->
     <svg
-      v-else-if="blok && blok.icon_standard === 'previous' || previous"
+      v-else-if="previous"
       :class="`previous-icon h-auto fill-current ${size} cursor-pointer`"
-      :style="`${blok && blok.icon_color.color ? `color: ${blok.icon_color.color};` : false}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -86,8 +81,7 @@
 
     <!--RESTART-->
     <svg
-      v-else-if="blok && blok.icon_standard === 'restart' || restart"
-      :style="`${blok && blok.icon_color.color ? `color: ${blok.icon_color.color};` : false}`"
+      v-else-if="restart"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -99,7 +93,7 @@
 
     <!--LOADER-->
     <svg
-      v-else-if="blok && blok.icon_standard === 'loader' || loader"
+      v-else-if="loader"
       key="loader"
       :class="`loader-icon ${size}`"
       version="1.1"

@@ -20,7 +20,7 @@
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
       <div v-if="alert.message" :class="`form-alert fixed z-20 w-full top-0 left-0 p-5 opacity-90 text-center text-sm md:text-base transform ${alert.color} text-white`" v-text="alert.message" />
     </transition>
-    <h2 v-if="blok.show_title" :class="`form-title mb-10 text-4xl ${customClass('contact', 'all', 'pt-6 md:text-right')}`">
+    <h2 v-if="blok.show_title" :class="`form-title mb-10 text-4xl`">
       {{ blok.title }}
     </h2>
     <form
@@ -36,7 +36,7 @@
         :field-value.sync="fields[index]"
         :blok="input"
       />
-      <Button v-for="button in $contentByName(blok.body, 'Button')" :key="button._uid" class="py-3 px-10" :blok="button" />
+      <Button v-for="button in $contentByName(blok.body, 'Button')" :key="button._uid" class="submit-button float-right py-3 px-10" :blok="button" />
     </form>
   </div>
 </template>
@@ -65,7 +65,7 @@ export default {
   },
   computed: {
     nameField () {
-      return Object.assign(...this.blok.body.map(({ title }, index) => ({ [title.toLowerCase()]: Object.values(this.fields)[index] })))
+      return Object.assign(...this.$contentByName(this.blok.body, 'Field').map(({ title }, index) => ({ [title.toLowerCase()]: Object.values(this.fields)[index] })))
     }
   },
   watch: {
@@ -113,7 +113,7 @@ export default {
     async submit () {
       if (this.blok.type === 'contact_form') {
         this.$store.dispatch('validator/checkValues')
-        if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.blok.body.length && Object.values(this.fields).every(text => text.length > 0)) {
+        if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.$contentByName(this.blok.body, 'Field').length && Object.values(this.fields).every(text => text.length > 0)) {
           this.submitting = true
           try {
             await axios.post(

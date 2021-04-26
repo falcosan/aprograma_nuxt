@@ -1,6 +1,6 @@
 <template>
   <Slider
-    v-if="sortedProject && !$store.state.data.mobile"
+    v-if="sortedProject && (!$store.state.data.mobile || $store.state.data.windowWidth > 768)"
     :blok="sortedProject"
     :parent="$route.path"
   />

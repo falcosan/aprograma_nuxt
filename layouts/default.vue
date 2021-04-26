@@ -25,6 +25,10 @@ export default {
   mounted () {
     this.getLayout()
     this.$store.commit('data/mobileMutation')
+    window.addEventListener(
+      'resize',
+      this.$store.commit('data/responsiveMutation')
+    )
   },
   methods: {
     async getLayout () {

@@ -17,7 +17,7 @@
       />
     </div>
     <div class="post-body w-full flex justify-center mx-auto" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full prose prose-sm lg:prose-lg xl:prose-xl 2xl:prose-2xl px-5 py-5 xl:px-0 md:py-10">
+      <div class="post-article w-full prose-sm lg:prose-lg prose px-5 py-5 xl:px-0 md:py-10">
         <h1
           :style="`color: ${blok.post_text_color.color};`"
           class="post-title text-center"

@@ -30,13 +30,13 @@
       @submit.prevent="submit"
     >
       <Field
-        v-for="(input, index) in blok.body"
+        v-for="(input, index) in $contentByName(blok.body, 'Field')"
         :key="input._uid"
         class="contact-field"
         :field-value.sync="fields[index]"
         :blok="input"
       />
-      <input class="button-submit py-3 px-10 cursor-pointer bg-gray-800 filter grayscale text-white" type="submit" :value="blok.submit">
+      <Button v-for="button in $contentByName(blok.body, 'Button')" :key="button._uid" class="py-3 px-10" :blok="button" />
     </form>
   </div>
 </template>

@@ -2,10 +2,10 @@
   <div
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor};`"
-    :class="`text-container w-full p-5 md:p-10 overflow-y-auto
+    :class="`text-container w-full p-5 md:p-10
     ${customClass('home', blok.name === 'text_home_1', 'md:w-min mb-5')}
     ${customClass('home', blok.name === 'text_home_2', 'xl:w-max transition-all duration-700 ease-in-out')}
-    ${customClass('about', 'all', 'max-h-full')}`"
+    ${customClass('about', 'all', 'max-h-full overflow-y-auto')}`"
   >
     <component
       :is="blok.article ? 'article' : 'span'"

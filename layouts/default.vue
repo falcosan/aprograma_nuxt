@@ -22,13 +22,14 @@ export default {
       }
     }
   },
+
+  beforeMount () {
+    this.$store.commit('data/responsiveMutation', window.innerWidth)
+  },
   mounted () {
     this.getLayout()
-    this.$store.commit('data/mobileMutation')
-    window.addEventListener(
-      'resize',
-      this.$store.commit('data/responsiveMutation')
-    )
+    this.$store.dispatch('data/mobileAction')
+    this.$store.dispatch('data/responsiveAction')
   },
   methods: {
     async getLayout () {

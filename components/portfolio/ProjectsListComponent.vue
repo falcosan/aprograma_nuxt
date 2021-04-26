@@ -1,10 +1,10 @@
 <template>
   <Slider
-    v-if="sortedProject && (!$store.state.data.mobile || $store.state.data.windowWidth > 768)"
+    v-if="sortedProject && !$store.state.data.mobile && $store.state.data.windowWidth >= 768"
     :blok="sortedProject"
     :parent="$route.path"
   />
-  <ul v-else class="project-list w-full grid gap-y-5">
+  <ul v-else-if="sortedProject" class="project-list w-full grid gap-y-5">
     <ProjectTeaser
       v-for="project in sortedProject"
       :key="project._uid"

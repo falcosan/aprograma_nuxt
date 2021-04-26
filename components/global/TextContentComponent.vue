@@ -10,7 +10,7 @@
     <component
       :is="blok.article ? 'article' : 'span'"
       :style="`color: ${randomTextColor};`"
-      :class="`text-content w-full block prose-sm sm:text-base lg:prose-lg xl:prose-xl 2xl:prose-2xl break-words`"
+      :class="`text-content w-full block prose-sm sm:text-base lg:prose-lg xl:prose-xl break-words`"
       v-html="blok.text.content"
     />
   </div>

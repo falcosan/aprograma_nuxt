@@ -8,7 +8,7 @@
       size="w-8"
       @click.native="goBack"
     />
-    <div class="post-head w-full xl:h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
+    <div class="post-head w-full 2xl:h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
       <component
         :is="lookFile()"
         class="post-file w-full sm:h-full row-start-1 row-end-3 sm:object-cover"

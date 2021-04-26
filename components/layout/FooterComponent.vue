@@ -1,12 +1,13 @@
 <template>
   <footer
     v-if="!$store.state.data.mobile"
-    :class="`footer ${expanded} w-full fixed z-10 bottom-0 bg-gray-300 transition-height duration-200 ease-in-out`"
+    :style="`background-color: ${blok.background_color.color};`"
+    :class="`footer ${expanded} w-full fixed z-10 bottom-0 transition-height duration-200 ease-in-out`"
     @mouseleave="expandOut"
     @mouseover="expandIn"
   >
     <div class="input-footer flex justify-center transform -translate-y-7">
-      <span class="input-dot text-center animate-bounce text-xl">•</span>
+      <span class="input-dot text-center animate-bounce text-xl" :style="`color: ${blok.text_color.color};`">•</span>
     </div>
     <div class="footer-content h-1/2 flex items-center">
       <div
@@ -28,7 +29,6 @@
           v-for="iconLink in $contentByName(blok.body, 'Icon')"
           :key="iconLink._uid"
           size="w-8"
-          tag="a"
           :blok="iconLink"
           class="social-icon w-6 mr-4"
         />
@@ -40,16 +40,17 @@
     class="footer h-48 my-12 mx-auto"
   >
     <div class="footer-content h-full flex flex-col items-center whitespace-nowrap">
-      <span class="input-dot relative bottom-10 text-center animate-bounce text-xl">•</span>
+      <span class="input-dot relative bottom-10 text-center animate-bounce text-xl" :style="`color: ${blok.text_color.color};`">•</span>
       <div
         class="messages-container flex-1"
       >
-        <span class="footer-messages text-sm">
+        <span class="footer-messages text-sm" :style="`color: ${blok.text_color.color};`">
           Aprograma {{ typewriter }}
         </span>
       </div>
       <h4
         class="footer-copyright flex-1 text-sm text-center"
+        :style="`color: ${blok.text_color.color};`"
       >
         © 2020 - {{ currentYear }}, Aprograma
       </h4>
@@ -59,8 +60,8 @@
         <Icon
           v-for="iconLink in $contentByName(blok.body, 'Icon')"
           :key="iconLink._uid"
+          :style="`filter: invert(1);`"
           size="w-6"
-          tag="a"
           :blok="iconLink"
           class="social-icon mr-4"
         />

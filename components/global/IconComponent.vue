@@ -1,20 +1,19 @@
 <template>
   <component
     :is="blok ? blok.tag : tag"
-    :key="blok ? blok._uid : false"
     :title="blok && blok.tooltip ? blok.tooltip : false"
     :href="blok && blok.path ? blok.path : tag === 'a' ? to : false"
-    :class="`icon-container`"
+    class="icon-container"
     :target="blok && blok.tag === 'a' || tag === 'a' ? '_blank' : false"
     :rel="blok && blok.tag === 'a' || tag === 'a' ? 'noopener noreferrer' : false"
   >
     <img
-      v-if="blok"
-      :class="`icon ${blok.icon.filename
+      v-if="blok && blok.icon_image.filename"
+      :class="`icon ${blok.icon_image.filename
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-icon ${size}${negative ? ' filter invert' : ''} cursor-pointer`"
-      :src="blok.icon.filename"
+        .replace(/\.[^/.]+$/, '')}-icon ${size} cursor-pointer`"
+      :src="blok.icon_image.filename"
       alt=""
       :name="blok.name"
       type="image/svg+xml"
@@ -22,7 +21,8 @@
 
     <!-- HOME-->
     <svg
-      v-else-if="home"
+      v-else-if="blok && blok.icon_standard === 'home' || home"
+      :style="`${blok && blok.icon_color.color ? `color: ${blok.icon_color.color};` : false}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -34,7 +34,8 @@
 
     <!-- BACK-->
     <svg
-      v-else-if="back"
+      v-else-if="blok && blok.icon_standard === 'back' || back"
+      :style="`${blok && blok.icon_color.color ? `color: ${blok.icon_color.color};` : false}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -46,8 +47,9 @@
 
     <!--CLOSE-->
     <svg
-      v-else-if="close"
+      v-else-if="blok && blok.icon_standard === 'close' || close"
       :class="`close-icon h-auto fill-current ${size} cursor-pointer`"
+      :style="`${blok && blok.icon_color.color ? `color: ${blok.icon_color.color};` : false}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -58,8 +60,9 @@
 
     <!--NEXT-->
     <svg
-      v-else-if="next"
+      v-else-if="blok && blok.icon_standard === 'next' || next"
       :class="`next-icon h-auto fill-current ${size} cursor-pointer`"
+      :style="`${blok && blok.icon_color.color ? `color: ${blok.icon_color.color};` : false}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -70,8 +73,9 @@
 
     <!--PREVIOUS-->
     <svg
-      v-else-if="previous"
+      v-else-if="blok && blok.icon_standard === 'previous' || previous"
       :class="`previous-icon h-auto fill-current ${size} cursor-pointer`"
+      :style="`${blok && blok.icon_color.color ? `color: ${blok.icon_color.color};` : false}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -82,7 +86,8 @@
 
     <!--RESTART-->
     <svg
-      v-else-if="restart"
+      v-else-if="blok && blok.icon_standard === 'restart' || restart"
+      :style="`${blok && blok.icon_color.color ? `color: ${blok.icon_color.color};` : false}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -94,7 +99,7 @@
 
     <!--LOADER-->
     <svg
-      v-else-if="loader"
+      v-else-if="blok && blok.icon_standard === 'loader' || loader"
       key="loader"
       :class="`loader-icon ${size}`"
       version="1.1"
@@ -142,7 +147,6 @@ export default {
   props: {
     blok: {
       type: Object,
-      required: false,
       default: undefined
     },
     to: {
@@ -151,11 +155,7 @@ export default {
     },
     tag: {
       type: String,
-      required: true
-    },
-    negative: {
-      type: Boolean,
-      default: false
+      default: ''
     },
     size: {
       type: String,

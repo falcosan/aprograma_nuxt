@@ -2,8 +2,9 @@
   <div class="post sm:w-9/12 max-w-7xl my-0 mx-auto py-10 md:pt-0">
     <Icon
       v-if="!$store.state.data.mobile"
+      :style="`color: ${blok.post_text_color.color};`"
       close
-      class="post-back fixed top-28 right-8 text-black"
+      class="post-back fixed top-8 right-8 filter invert"
       tag="button"
       size="w-8"
       @click.native="goBack"

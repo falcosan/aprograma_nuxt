@@ -3,6 +3,7 @@
     v-if="sortedProject && !$store.state.data.mobile"
     :blok="sortedProject"
     :parent="$route.path"
+    :icon-color="blok.icon_color.color"
   />
   <ul v-else class="project-list w-full grid gap-y-5">
     <ProjectTeaser

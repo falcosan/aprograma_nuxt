@@ -14,21 +14,12 @@
               :blok="$contentByName(blok.body, 'Logo')[0]"
               @click.native="play"
             />
-            <transition
-              appear
-              enter-active-class="duration-300"
-              leave-active-class="duration-300"
-              enter-class="opacity-0"
-              leave-to-class="opacity-0"
-            >
-              <span v-if="$route.name !== 'home'" class="project-name fixed top-6 right-4 text-lg p-2 bg-gray-800 filter grayscale text-white" v-text="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)" />
-            </transition>
           </NuxtLink>
         </li>
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"
-          class="link-menu flex-1 text-left no-underline py-2 px-3 text-gray-600 md:hover:text-gray-300"
+          class="link-menu flex-1 text-left no-underline py-2 px-3 md:hover:opacity-90"
         >
           <ItemNavbar :icon-item="false" :blok="item" />
         </li>
@@ -52,13 +43,14 @@
     v-else
     class="header"
   >
-    <nav class="navbar-up w-full h-10 flex justify-between fixed top-0 z-20 shadow-sm bg-gray-200">
+    <nav class="navbar-up w-full h-10 flex justify-between fixed top-0 z-20 shadow-sm" :style="`background-color: ${blok.background_color.color};`">
       <NuxtLink class="home-link w-2/12" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
         <Icon
-          home
-          tag="button"
+          v-for="iconHeader in $contentByName(blok.body, 'Icon')"
+          :key="iconHeader._uid"
+          :blok="iconHeader"
           size="w-5"
-          class="home-link h-full w-full flex items-center justify-center bg-gray-200"
+          class="home-link h-full w-full flex items-center justify-center"
         />
       </NuxtLink>
       <Logo
@@ -72,7 +64,7 @@
       <Translate
         translate-transition
         class="translate-header text-sm w-2/12"
-        style-current-language="h-full flex items-center justify-center transition-all bg-gray-200"
+        style-current-language="h-full flex items-center justify-center transition-all"
         :style-translate-list="`transform transition-transform duration-200 esase-out ${moved.translateList} bg-gray-800 filter grayscale`"
         style-translate-item="p-3 text-center"
         :blok="$contentByName(blok.body, 'Translate')"
@@ -81,8 +73,8 @@
         @mouseleave.native="expandOut"
       />
     </nav>
-    <nav class="navbar-down w-full h-12 flex items-center fixed bottom-0 z-10">
-      <ul class="menu-wrapper w-full h-full grid grid-cols-4 bg-gray-200">
+    <nav class="navbar-down w-full h-12 flex items-center fixed bottom-0 z-10" :style="`background-color: ${blok.background_color.color};`">
+      <ul class="menu-wrapper w-full h-full grid grid-cols-4">
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"

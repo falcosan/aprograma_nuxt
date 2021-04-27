@@ -1,6 +1,6 @@
 <template>
   <footer
-    v-if="!$store.state.data.mobile"
+    v-if="!$store.state.data.mobile && $store.state.data.windowWidth >= 768"
     :style="`background-color: ${blok.background_color.color};`"
     :class="`footer ${expanded} w-full fixed z-10 bottom-0 transition-height duration-200 ease-in-out`"
     @mouseleave="expandOut"

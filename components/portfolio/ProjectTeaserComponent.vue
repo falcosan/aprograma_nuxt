@@ -1,14 +1,14 @@
 <template>
   <li
     v-if="projectContent"
-    class="project-teaser"
+    :class="`project-teaser w-full sm:w-1/2 xl:w-1/3 p-2`"
   >
-    <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link md:grid">
-      <div class="teaser-content w-full h-full flex flex-col justify-center relative p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
-        <img :class="`project-image w-full${projectContent.relevant ? ' h-60 sm:h-80' : ' h-40 sm:h-48' } object-cover`" :src="projectContent.image.filename" :alt="projectContent.image.alt">
+    <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
+      <div class="teaser-content grid p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
+        <img class="project-image w-full h-60 sm:h-44 md:h-60 lg:h-80 xl:h-60 2xl:h-80 object-cover" :src="projectContent.image.filename" :alt="projectContent.image.alt">
         <span
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
-          class="teaser-title w-full flex items-center justify-center p-3 text-base sm:text-lg"
+          class="teaser-title w-full p-5 truncate text-base sm:text-lg"
         >
           {{ projectContent.title }}
         </span>

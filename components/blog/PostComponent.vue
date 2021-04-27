@@ -1,9 +1,9 @@
 <template>
-  <div class="post sm:w-9/12 max-w-7xl my-0 mx-auto py-10 md:pt-0">
+  <div class="post sm:w-10/12 max-w-7xl my-0 mx-auto py-16 px-6">
     <Icon
-      v-if="!$store.state.data.mobile"
+      v-if="!$store.state.data.mobile && $store.state.data.windowWidth >= 640"
       close
-      class="post-back fixed top-8 right-8"
+      class="post-back fixed top-20 right-7 md:right-8"
       tag="button"
       size="w-8"
       @click.native="goBack"

@@ -7,7 +7,7 @@ export default {
   components: { Post },
   asyncData (context) {
     return context.app.$storyapi
-      .get(`cdn/stories/blog/${context.params.posts}`)
+      .get(`cdn/stories/blog/${context.params.slug}`)
       .then((res) => {
         return res.data
       })

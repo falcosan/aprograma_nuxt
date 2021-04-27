@@ -39,7 +39,7 @@
     v-else
     class="footer h-48 my-12 mx-auto"
   >
-    <div class="footer-content h-full flex flex-col items-center whitespace-nowrap">
+    <div class="footer-content h-full flex flex-col items-center text-center">
       <span class="input-dot relative bottom-10 text-center animate-bounce text-xl" :style="`color: ${blok.text_color.color};`">•</span>
       <div
         class="messages-container flex-1"

@@ -3,9 +3,9 @@
     <Icon
       v-if="$store.state.data.windowWidth >= 640"
       close
-      class="post-back fixed top-20 right-7 md:right-9 lg:right-12 xl:right-14"
+      class="post-back fixed top-16 md:top-5 right-0 transform -translate-x-full"
       tag="button"
-      size="w-8"
+      size="w-6"
       @click.native="goBack"
     />
     <div class="post-head w-full 2xl:h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">

@@ -5,13 +5,13 @@
     :leave-active-class="`${transitionActive} out-in`"
     :enter-class="`opacity-0 transform ${translation.enter}`"
     :leave-to-class="`opacity-0 transform ${translation.leave}`"
-    class="slider w-full h-full grid grid-cols-1 grid-rows-2 overflow-x-hidden"
+    class="slider w-full h-full grid grid-cols-1 grid-rows-2"
   >
     <template v-for="(item, index) in blok">
       <li v-if="index === frame.up || index === frame.down" :key="item.uuid" :class="`slide slide-item w-full h-full flex p-5 col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'}`">
         <NuxtLink :to="`${parent}/${item.slug}`" class="item-link w-full grid grid-rows-1 grid-cols-2">
-          <div :class="`text-container text-2xl ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1 px-5 relative z-10`" :style="`background-color: ${item.content.teaser_background_color.color};`">
-            <h2 class="item-text" :style="`color: ${item.content.teaser_text_color.color};`">
+          <div :class="`text-container text-xl xl:text-2xl ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1 px-5 lg:px-10`" :style="`background-color: ${item.content.teaser_background_color.color};`">
+            <h2 class="item-text truncate" :style="`color: ${item.content.teaser_text_color.color};`">
               {{ item.content.title }}
             </h2>
           </div>

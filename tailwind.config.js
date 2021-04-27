@@ -13,9 +13,6 @@ module.exports = {
       fontFamily: {
         body: ['Lexend']
       },
-      screens: {
-        xs: '320px'
-      },
       zIndex: {
         '-10': '-10'
       },

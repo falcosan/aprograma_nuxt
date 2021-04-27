@@ -7,7 +7,7 @@ export default {
   components: { Project },
   asyncData (context) {
     return context.app.$storyapi
-      .get(`cdn/stories/portfolio/${context.route.slug}`)
+      .get(`cdn/stories/portfolio/${context.params.projects}`)
       .then((res) => {
         return res.data
       })

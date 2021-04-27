@@ -28,7 +28,6 @@ export default {
   },
   mounted () {
     this.getLayout()
-    this.$store.dispatch('data/mobileAction')
     this.$store.dispatch('data/responsiveAction')
   },
   methods: {

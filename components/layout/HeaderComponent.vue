@@ -1,6 +1,6 @@
 <template>
   <header
-    v-if="!$store.state.data.mobile && $store.state.data.windowWidth >= 768"
+    v-if="$store.state.data.windowWidth >= 768"
     class="header flex-col flex fixed justify-between mt-0"
   >
     <nav class="navbar">
@@ -118,7 +118,7 @@ export default {
       this.timer = 0
     },
     expandOut () {
-      if (!this.$store.state.data.mobile) {
+      if (this.$store.state.data.windowWidth >= 768) {
         this.timer = setTimeout(() => {
           this.expanded = false
         }, 700)

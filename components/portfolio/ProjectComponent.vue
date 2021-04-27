@@ -1,5 +1,5 @@
 <template>
-  <div class="project sm:w-10/12 max-w-7xl my-0 mx-auto py-16 px-6 grid grid-cols-3 gap-4">
+  <div class="project sm:w-10/12 max-w-max my-0 mx-auto py-16 px-6 grid grid-cols-3 gap-4">
     <h1 class="project-title row-start-1 row-end-1 col-start-1 col-end-3 p-5 text-xl lg:text-2xl break-words">
       {{ blok.title }}
     </h1>

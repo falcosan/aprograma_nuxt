@@ -19,9 +19,6 @@ module.exports = {
       zIndex: {
         '-10': '-10'
       },
-      height: {
-        'min-content': 'min-content'
-      },
       transitionProperty: {
         height: 'height'
       },

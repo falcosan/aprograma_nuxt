@@ -32,8 +32,12 @@ export default {
 
   buildModules: [
     '@nuxtjs/tailwindcss',
-    'nuxt-compress'
+    'nuxt-compress',
+    '@nuxtjs/device'
   ],
+  device: {
+    refreshOnResize: true
+  },
   publicRuntimeConfig: {
     projectName: process.env.npm_package_name
   },

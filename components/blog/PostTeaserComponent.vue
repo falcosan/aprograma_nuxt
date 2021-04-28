@@ -26,7 +26,6 @@
           >
             {{ postContent.intro }}
           </span>
-
           <span
             class="date-text lg:hidden mt-5 sm:text-right text-lg"
             v-text="changeDate(postContent.date)"
@@ -40,7 +39,7 @@
         leave-to-class="-translate-x-full"
       >
         <span
-          v-if="expanded && $store.state.data.windowWidth >= 768"
+          v-if="expanded && $store.state.data.windowWidth >= 768 && $device.isDesktop"
           class="date-text hidden lg:block justify-self-end row-start-1 row-end-1 col-start-2 col-end-2 -mr-10 transform rotate-90 whitespace-nowrap text-3xl pointer-events-none"
           v-text="changeDate(postContent.date)"
         />

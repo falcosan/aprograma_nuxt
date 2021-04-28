@@ -1,7 +1,7 @@
 <template>
   <div class="post max-w-lg md:max-w-none md:w-9/12 lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl relative my-0 mx-auto py-16 2xl:pt-0 px-6">
     <Icon
-      v-if="$store.state.data.windowWidth >= 768"
+      v-if="$store.state.data.windowWidth >= 768 && $device.isDesktop"
       close
       class="post-close fixed top-16 md:top-5 right-0 transform -translate-x-full"
       tag="button"

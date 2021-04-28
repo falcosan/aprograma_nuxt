@@ -4,7 +4,7 @@
       ${customClass('index','all', 'md:h-screen flex flex-col md:justify-center')}
       ${customClass('about','all', 'lg:h-screen flex items-center')}
       ${customClass('portfolio','all', 'lg:h-screen')}
-      ${customClass('contact','all', 'lg:h-screen grid grid-cols-1 lg:grid-cols-2 gap-10 items-center')}`"
+      ${customClass('contact','all','lg:h-screen grid grid-cols-1 lg:grid-cols-2 gap-10 items-center')}`"
   >
     <component
       :is="component.component"

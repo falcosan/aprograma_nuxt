@@ -1,6 +1,6 @@
 <template>
   <header
-    v-if="$store.state.data.windowWidth >= 768"
+    v-if="$store.state.data.windowWidth >= 768 && $device.isDesktop"
     class="header flex-col flex fixed justify-between mt-0"
   >
     <nav class="navbar">

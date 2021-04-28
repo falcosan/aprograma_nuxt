@@ -82,6 +82,8 @@ export default {
       expanded: 'not-expanded h-0',
       currentYear: new Date().getFullYear(),
       typewriter: '',
+      playTypeText: undefined,
+      playEraseText: undefined,
       typewriterIndex: 0,
       charIndex: 0
     }
@@ -108,31 +110,31 @@ export default {
       if (this.charIndex < this.words.length) {
         this.typewriter += this.words.charAt(this.charIndex)
         this.charIndex++
-        setTimeout(this.typeText, 50)
+        this.playTypeText = setTimeout(this.typeText, 50)
       } else {
         if (this.typewriterIndex >= this.blok.message.length) { this.typewriterIndex = 0 }
-        setTimeout(this.eraseText, 1500)
+        this.playEraseText = setTimeout(this.eraseText, 1500)
       }
     },
     eraseText () {
       if (this.charIndex > 0) {
         this.typewriter = this.words.substring(0, this.charIndex - 1)
         this.charIndex--
-        setTimeout(this.eraseText, 50)
+        this.playEraseText = setTimeout(this.eraseText, 50)
       } else {
         this.typewriterIndex++
         if (this.typewriterIndex >= this.blok.message.length) { this.typewriterIndex = 0 }
-        setTimeout(this.typeText, 50)
+        this.playTypeText = setTimeout(this.typeText, 50)
       }
     },
     restartTypewriter () {
-      clearTimeout(this.typeText)
-      clearTimeout(this.eraseText)
-      this.charIndex = -1
-      this.typewriterIndex = 0
+      clearInterval(this.playTypeText)
+      clearInterval(this.playEraseText)
       this.typewriter = ''
+      this.charIndex = 0
+      this.typewriterIndex = 0
+      setTimeout(this.typeText, 200)
     }
-
   }
 }
 </script>

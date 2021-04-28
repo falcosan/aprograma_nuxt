@@ -33,9 +33,9 @@
         :style-translate-list="`transform transition-transform duration-200 esase-out  ${expanded ? 'translate-x-0' : '-translate-x-full'} bg-gray-800 filter grayscale text-white`"
         style-translate-item="py-3 px-4"
         :blok="$contentByName(blok.body, 'Translate')"
-        @mouseover.native="expandStill"
         @mouseleave.native="expandOut"
-        @click.native="expandIn"
+        @translateListAction="expandOut"
+        @currentLangAction="expandIn"
       />
     </nav>
   </header>
@@ -113,18 +113,8 @@ export default {
     expandIn () {
       this.expanded = true
     },
-    expandStill () {
-      clearTimeout(this.timer)
-      this.timer = 0
-    },
     expandOut () {
-      if (this.$store.state.data.windowWidth >= 768) {
-        this.timer = setTimeout(() => {
-          this.expanded = false
-        }, 700)
-      } else {
-        this.expanded = false
-      }
+      this.expanded = false
     },
     play () {
       this.moved.a = 'transform origin-center-left translate rotate-360 transition duration-700 ease-out'

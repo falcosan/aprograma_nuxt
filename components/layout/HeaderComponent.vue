@@ -34,7 +34,8 @@
         style-translate-item="py-3 px-4"
         :blok="$contentByName(blok.body, 'Translate')"
         @mouseleave.native="expandOut"
-        @click.native="expandIn"
+        @currentLangAction="expanded = !expanded"
+        @translateListAction="expanded = false"
       />
     </nav>
   </header>
@@ -109,9 +110,6 @@ export default {
     }
   },
   methods: {
-    expandIn () {
-      this.expanded = true
-    },
     expandOut () {
       this.timer = setTimeout(() => {
         this.expanded = false

@@ -1,6 +1,15 @@
 <template>
-  <div class="post sm:w-10/12 max-w-lg sm:max-w-max relative my-0 mx-auto py-16 2xl:pt-0 px-6">
+  <div class="post max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl relative my-0 mx-auto py-16 2xl:pt-0 px-6">
     <Icon
+      v-if="$store.state.data.windowWidth >= 768"
+      close
+      class="post-close fixed top-16 md:top-5 right-0 transform -translate-x-full"
+      tag="button"
+      size="w-6"
+      @click.native="goBack"
+    />
+    <Icon
+      v-else
       back
       class="post-back flex justify-center absolute p-3 transform translate-x-3 translate-y-3"
       tag="button"
@@ -8,7 +17,7 @@
       :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
       @click.native.passive="goBack"
     />
-    <div class="post-head w-full h-screen max-h-80 sm:h-full sm:max-h-full 2xl:h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
+    <div class="post-head w-full h-screen max-h-80 md:h-full md:max-h-full 2xl:h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
       <component
         :is="lookFile()"
         class="post-file w-full h-full  row-start-1 row-end-3 object-cover"

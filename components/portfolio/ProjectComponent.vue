@@ -27,7 +27,7 @@
     >
       {{ blok.url_project ? `${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}` : $languageCase('private project', 'proyecto privado', 'progetto privato') }}
     </component>
-    <div :class="`project-container h-full col-start-1 col-end-4 p-10`" :style="`background-color: ${blok.project_background_color.color};`">
+    <div :class="`project-container h-full col-start-1 col-end-4 p-5`" :style="`background-color: ${blok.project_background_color.color};`">
       <span
         :style="`color: ${blok.project_text_color.color};`"
         class="project-intro text-justify text-base"
@@ -40,20 +40,20 @@
       :inline-text-style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
       :blok="description"
     />
-    <div class="project-action h-20 grid self-center lg:blok grid-flow-col gap-x-5 col-start-1 col-end-4 lg:row-end-1 lg:col-start-3 lg:col-end-3">
+    <div class="project-action h-20 grid self-center lg:blok grid-flow-col  gap-5 col-start-1 col-end-4 lg:row-end-1 lg:col-start-3 lg:col-end-3">
       <Icon
         back
         tag="button"
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        class="project-back h-full flex justify-center items-center"
-        size="w-8"
+        class="project-back h-full flex justify-center items-center px-5"
+        size="w-6"
         @click.native="goBack"
       />
       <component
         :is="blok.url_project ? 'a' : 'span'"
         v-if="$store.state.data.windowWidth < 1024"
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        :class="`project-url h-full flex justify-center items-center${blok.url_project ? ' font-semibold' : ' italic'}`"
+        :class="`project-url h-full flex justify-center items-center px-5${blok.url_project ? ' font-semibold' : ' italic'}`"
         :href="blok.url_project ? blok.url_project : false"
         :target="blok.url_project ? '_blank' : false"
         :rel="blok.url_project ? 'noopener noreferrer' : false"

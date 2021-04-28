@@ -11,7 +11,7 @@ export default {
   asyncData (context) {
     const slug = (context.route.path === '/' || context.route.path === '') ? 'home' : context.route.path
     return context.app.$storyapi
-      .get(`cdn/stories/${context.store.state.data.language}/${slug}`)
+      .get(`cdn/stories/${context.store.state.language.language}/${slug}`)
       .then((res) => {
         return res.data
       })
@@ -22,7 +22,7 @@ export default {
       })
   },
   watch: {
-    '$store.state.data.language': { handler () { this.$nuxt.refresh() } }
+    '$store.state.language.language': { handler () { this.$nuxt.refresh() } }
   }
 }
 </script>

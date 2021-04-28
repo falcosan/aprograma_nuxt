@@ -23,7 +23,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.data.language': { handler () { this.getLayout() } }
+    '$store.state.language.language': { handler () { this.getLayout() } }
   },
 
   beforeMount () {
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     async getLayout () {
-      const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.data.language}/layout`)
+      const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}/layout`)
       this.story = data.story
     }
   }

@@ -16,7 +16,7 @@ export const actions = {
   async addItems ({ commit, state, rootState }, currentRoute) {
     commit('setItemsRoute', currentRoute)
     const listItems = await this.$storyapi.get('cdn/stories', {
-      starts_with: rootState.data.language === '' ? `[default]/${state.itemRoute}` : `${rootState.data.language}/${state.itemRoute}`
+      starts_with: rootState.language.language === '' ? `[default]/${state.itemRoute}` : `${rootState.language.language}/${state.itemRoute}`
     })
     commit('setItems', listItems.data.stories)
   }

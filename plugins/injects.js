@@ -6,7 +6,7 @@ export default ({ app }, inject) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
   })
   inject('languageCase', (english, spanish, italian) => {
-    switch (app.store.state.data.language) {
+    switch (app.store.state.language.language) {
       case '':
         return english
       case 'es':

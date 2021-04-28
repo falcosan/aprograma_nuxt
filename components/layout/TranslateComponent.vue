@@ -6,7 +6,7 @@
       @click="$emit('currentLangAction')"
     >
       <template v-for="selector in blok">
-        <span v-if="cutLanguage(selector) === $store.state.data.language || cutLanguage(selector) === 'en' && $store.state.data.language === ''" :key="selector._uid" class="language-item">
+        <span v-if="cutLanguage(selector) === $store.state.language.language || cutLanguage(selector) === 'en' && $store.state.language.language === ''" :key="selector._uid" class="language-item">
           {{ selector.language }}
         </span>
       </template>
@@ -17,9 +17,9 @@
     >
       <template v-for="language in blok">
         <li
-          v-if="translateTransition ? (cutLanguage(language) !== $store.state.data.language && $store.state.data.language !== '' || cutLanguage(language) !== 'en' && $store.state.data.language === '') : true"
+          v-if="translateTransition ? (cutLanguage(language) !== $store.state.language.language && $store.state.language.language !== '' || cutLanguage(language) !== 'en' && $store.state.language.language === '') : true"
           :key="language._uid"
-          :class="`translate-item${cutLanguage(language) !== $store.state.data.language && $store.state.data.language !== '' || cutLanguage(language) !== 'en' && $store.state.data.language === '' ? ' text-gray-300' : ''} ${styleTranslateItem} cursor-pointer`"
+          :class="`translate-item${cutLanguage(language) !== $store.state.language.language && $store.state.language.language !== '' || cutLanguage(language) !== 'en' && $store.state.language.language === '' ? ' text-gray-300' : ''} ${styleTranslateItem} cursor-pointer`"
         >
           <a
             class="translate-link"
@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     changeLanguage (lang) {
-      this.$store.commit('data/languageMutation', lang)
+      this.$store.commit('language/languageMutation', lang)
     },
     cutLanguage (abbr) {
       return abbr.language.toLowerCase().substring(0, 2)

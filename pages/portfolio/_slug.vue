@@ -7,13 +7,13 @@ export default {
   components: { Project },
   asyncData (context) {
     return context.app.$storyapi
-      .get(`cdn/stories/${context.store.state.data.language}/portfolio/${context.params.slug}`)
+      .get(`cdn/stories/${context.store.state.language.language}/portfolio/${context.params.slug}`)
       .then((res) => {
         return res.data
       })
   },
   watch: {
-    '$store.state.data.language': { handler () { this.$nuxt.refresh() } }
+    '$store.state.language.language': { handler () { this.$nuxt.refresh() } }
   }
 }
 </script>

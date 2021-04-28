@@ -34,6 +34,7 @@
         style-translate-item="py-3 px-4"
         :blok="$contentByName(blok.body, 'Translate')"
         @mouseleave.native="expandOut"
+        @mouseover.native="expandStill"
         @currentLangAction="expanded = !expanded"
         @translateListAction="expanded = false"
       />
@@ -110,6 +111,10 @@ export default {
     }
   },
   methods: {
+    expandStill () {
+      clearTimeout(this.timer)
+      this.timer = 0
+    },
     expandOut () {
       this.timer = setTimeout(() => {
         this.expanded = false

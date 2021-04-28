@@ -10,7 +10,7 @@
 export default {
   asyncData (context) {
     return context.app.$storyapi
-      .get(`cdn/stories/${context.store.state.data.language}/${context.route.path}`)
+      .get(`cdn/stories/${context.store.state.language.language}/${context.route.path}`)
       .then((res) => {
         return res.data
       })
@@ -33,7 +33,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.data.language': { handler () { this.$nuxt.refresh() } }
+    '$store.state.language.language': { handler () { this.$nuxt.refresh() } }
   }
 }
 </script>

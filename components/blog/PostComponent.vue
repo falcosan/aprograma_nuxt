@@ -1,31 +1,31 @@
 <template>
-  <div class="post sm:w-10/12 max-w-max my-0 mx-auto py-16 2xl:pt-0 px-6">
+  <div class="post sm:w-10/12 max-w-lg sm:max-w-max relative my-0 mx-auto py-16 2xl:pt-0 px-6">
     <Icon
-      v-if="$store.state.data.windowWidth >= 640"
-      close
-      class="post-back fixed top-16 md:top-5 right-0 transform -translate-x-full"
+      back
+      class="post-back flex justify-center absolute p-3 transform translate-x-3 translate-y-3"
       tag="button"
       size="w-6"
-      @click.native="goBack"
+      :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
+      @click.native.passive="goBack"
     />
-    <div class="post-head w-full 2xl:h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
+    <div class="post-head w-full h-screen max-h-80 sm:h-full sm:max-h-full 2xl:h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
       <component
         :is="lookFile()"
-        class="post-file w-full sm:h-full row-start-1 row-end-3 sm:object-cover"
+        class="post-file w-full h-full  row-start-1 row-end-3 object-cover"
         :alt="`${blok.file.alt} project`"
         :src="blok.file.filename"
       />
     </div>
     <div class="post-body w-full flex justify-center mx-auto" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full prose-sm lg:prose-lg prose px-5 py-5 xl:px-0 md:py-10">
+      <div class="post-article w-full max-w-prose prose-sm lg:prose-lg p-10">
         <h1
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-title text-center"
+          class="post-title font-medium"
           v-text="blok.title"
         />
         <h2
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-intro text-center"
+          class="post-intro text-justify"
           v-text="blok.intro"
         />
         <h3

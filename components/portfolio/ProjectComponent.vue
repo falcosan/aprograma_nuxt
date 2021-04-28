@@ -1,9 +1,9 @@
 <template>
-  <div class="project max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl grid gap-5 my-0 mx-auto py-16 px-8">
+  <div class="project max-w-lg md:max-w-none md:w-9/12 lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl grid gap-5 my-0 mx-auto py-16 px-8">
     <h1 class="project-title flex items-center col-start-1 col-end-4 lg:col-end-3 p-5 text-xl lg:text-2xl break-words">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.image.filename" class="image-container h-screen max-h-80 col-start-1 col-end-4 border-2" :style="`border-color: ${blok.project_background_color.color}`">
+    <div v-if="blok.image.filename" class="image-container max-h-screen col-start-1 col-end-4 border-2" :style="`border-color: ${blok.project_background_color.color}`">
       <img class="project-image w-full h-full object-cover" :src="blok.image.filename" :alt="blok.image.alt">
     </div>
     <div class="project-date flex items-center justify-around col-start-1 col-end-4 lg:col-end-3 grid-cols-3">

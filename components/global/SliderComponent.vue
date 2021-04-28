@@ -5,7 +5,7 @@
     :leave-active-class="`${transitionActive} out-in`"
     :enter-class="`opacity-0 transform ${translation.enter}`"
     :leave-to-class="`opacity-0 transform ${translation.leave}`"
-    class="slider w-full h-full grid grid-cols-1 grid-rows-2"
+    class="slider w-full h-full grid grid-cols-1 grid-rows-2 overflow-hidden"
   >
     <template v-for="(item, index) in blok">
       <li v-if="index === frame.up || index === frame.down" :key="item.uuid" :class="`slide slide-item w-full h-full flex py-5 col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'}`">
@@ -16,7 +16,7 @@
             </h2>
           </div>
           <div :class="`image-container flex row-start-1 row-end-1 ${index % 2 == 0 ? 'col-start-2 col-end-2' : 'col-start-1 col-end-1'}`">
-            <img class="item-image w-full object-cover object-center" :src="item.content.image.filename" :alt="item.content.image.alt">
+            <img class="item-image w-full object-cover object-center pointer-events-none" :src="item.content.image.filename" :alt="item.content.image.alt">
           </div>
         </NuxtLink>
       </li>

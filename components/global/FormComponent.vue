@@ -13,7 +13,7 @@
         v-if="submitting"
         tag="span"
         loader
-        class="form-loader w-screen h-screen fixed flex justify-center inset-0 z-30 pointer-events-none opacity-90 bg-white"
+        class="form-loader w-screen h-screen fixed flex justify-center inset-0 z-30 pointer-events-none bg-opacity-80 bg-white"
         size="w-32"
       />
     </transition>

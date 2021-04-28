@@ -1,6 +1,5 @@
 
 export const state = () => ({
-  page: '',
   language: '',
   moved: false,
   windowWidth: 0,
@@ -8,9 +7,6 @@ export const state = () => ({
 })
 
 export const mutations = {
-  pageMutation (state, newPage) {
-    state.page = newPage.replace(/[^\w\s]/gi, '')
-  },
   languageMutation (state, newLanguage) {
     state.language = newLanguage.toLowerCase().substring(0, 2) === 'en' ? '' : newLanguage.toLowerCase().substring(0, 2)
   },

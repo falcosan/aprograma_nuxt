@@ -3,8 +3,8 @@
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor};`"
     :class="`text-container w-full p-5 md:p-10
-    ${customClass('home', blok.name === 'text_home_1', 'md:w-min mb-5')}
-    ${customClass('home', blok.name === 'text_home_2', 'xl:w-max transition-all duration-700 ease-in-out')}
+    ${customClass('index', blok.name === 'text_home_1', 'md:w-min mb-5')}
+    ${customClass('index', blok.name === 'text_home_2', 'xl:w-max transition-all duration-700 ease-in-out')}
     ${customClass('about', 'all', 'max-h-full overflow-y-auto')}`"
   >
     <component
@@ -50,7 +50,7 @@ export default {
       this.index = ~~(Math.random() * (this.colors.length - 0)) + 0
     },
     customClass (page, component, style) {
-      if (this.$store.state.data.page === page && component) {
+      if (this.$route.name === page && component) {
         return style
       } else {
         return ''

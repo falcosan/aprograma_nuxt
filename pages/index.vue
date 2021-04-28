@@ -13,7 +13,6 @@ export default {
     return context.app.$storyapi
       .get(`cdn/stories/${context.store.state.data.language}/${slug}`)
       .then((res) => {
-        context.store.commit('data/pageMutation', slug)
         return res.data
       })
       .catch((res) => {

@@ -98,13 +98,6 @@ export default {
     this.typeText()
   },
   methods: {
-    customClass (page, component, style) {
-      if (this.$store.state.data.page === page && component) {
-        return style
-      } else {
-        return ''
-      }
-    },
     expandIn () {
       this.expanded = 'expandend h-28'
     },

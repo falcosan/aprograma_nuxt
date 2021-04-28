@@ -75,13 +75,6 @@ export default {
     this.clearFields()
   },
   methods: {
-    customClass (page, component, style) {
-      if (this.$store.state.data.page === page && component) {
-        return style
-      } else {
-        return ''
-      }
-    },
     setAlert (message, color) {
       this.alert.message = message
       this.alert.color = color

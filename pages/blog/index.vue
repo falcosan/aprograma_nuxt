@@ -14,7 +14,6 @@ export default {
     return context.app.$storyapi
       .get(`cdn/stories/${context.store.state.data.language}/${context.route.path}`)
       .then((res) => {
-        context.store.commit('data/pageMutation', context.route.path)
         return res.data
       })
       .catch((res) => {

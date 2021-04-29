@@ -20,7 +20,7 @@
     <component
       :is="blok.url_project ? 'a' : 'span'"
       v-if="$store.state.data.windowWidth >= 1024"
-      :class="`project-url col-start-2 col-end-2 lg:col-start-3 lg:col-end-3 self-center text-center${blok.url_project ? ' font-semibold' : ' italic'} whitespace-nowrap`"
+      :class="`project-url col-start-2 col-end-2 lg:col-start-3 lg:col-end-3 ${blok.url_project ? ' font-semibold' : ' italic'} text-center truncate`"
       :href="blok.url_project ? blok.url_project : false"
       :target="blok.url_project ? '_blank' : false"
       :rel="blok.url_project ? 'noopener noreferrer' : false"
@@ -53,7 +53,7 @@
         :is="blok.url_project ? 'a' : 'span'"
         v-if="$store.state.data.windowWidth < 1024"
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        :class="`project-url h-full p-5${blok.url_project ? ' font-semibold' : ' italic'} text-center text-xs sm:text-sm md:text-base break-words`"
+        :class="`project-url p-5${blok.url_project ? ' font-semibold' : ' italic'} text-center truncate`"
         :href="blok.url_project ? blok.url_project : false"
         :target="blok.url_project ? '_blank' : false"
         :rel="blok.url_project ? 'noopener noreferrer' : false"

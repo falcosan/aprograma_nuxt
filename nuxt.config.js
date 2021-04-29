@@ -68,7 +68,7 @@ export default {
     routes: async () => {
       const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
       const exclude = ['home', 'layout']
-      const include = Object.keys(data.links).map(index => !exclude.includes(data.links[index].slug) ? data.links[index].slug : '')
+      const include = Object.values(data.links).map(index => !exclude.includes(data.links[index].slug) ? data.links[index].slug : '')
       return include.filter(Boolean)
     }
   },
@@ -76,8 +76,8 @@ export default {
     hostname: 'https://aprograma.co',
     routes: async () => {
       const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
-      const pages = ['about', 'portfolio', 'contact', 'blog']
-      const include = Object.values(data.links).map(link => pages.includes(link.slug) ? link.slug : '')
+      const exclude = ['home', 'layout']
+      const include = Object.values(data.links).map(link => !exclude.includes(link.slug) ? link.slug : '')
       return include.filter(Boolean)
     },
     defaults: {

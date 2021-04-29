@@ -67,17 +67,18 @@ export default {
   generate: {
     routes: async () => {
       const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
-      return Object.keys(data.links).map(page => data.links[page].slug)
-    },
-    fallback: true
+      const exclude = ['home', 'layout']
+      const include = Object.keys(data.links).map(index => !exclude.includes(data.links[index].slug) ? data.links[index].slug : '')
+      return include.filter(Boolean)
+    }
   },
   sitemap: {
     hostname: 'https://aprograma.co',
     routes: async () => {
       const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
       const pages = ['about', 'portfolio', 'contact', 'blog']
-      const exclude = Object.values(data.links).map(link => pages.includes(link.slug) ? link.slug : '')
-      return exclude.filter(Boolean)
+      const include = Object.values(data.links).map(link => pages.includes(link.slug) ? link.slug : '')
+      return include.filter(Boolean)
     },
     defaults: {
       changefreq: 'daily',

@@ -2,9 +2,9 @@
   <div
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor}; color: ${randomTextColor};`"
-    :class="`text-container md:w-max max-w-full
+    :class="`text-container max-w-full
+    ${customClass('index', 'all', 'md:w-max transition-colors duration-700 ease-in-out')}
     ${customClass('index', blok.name === 'text_home_1', 'mb-5')}
-    ${customClass('index', blok.name === 'text_home_2', 'transition-colors duration-700 ease-in-out')}
     ${customClass('about', 'all', 'max-h-full overflow-y-auto')}`"
   >
     <component

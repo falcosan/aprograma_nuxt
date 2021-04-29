@@ -66,10 +66,10 @@ export default {
 
   generate: {
     routes (callback) {
-      const routes = ['/']
+      const routes = []
       axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&version=published&cv=CURRENT_TIMESTAMP`).then((res) => {
         Object.keys(res.data.links).forEach((key) => {
-          routes.push('/' + res.data.links[key].slug)
+          routes.push(res.data.links[key].slug)
         })
 
         callback(null, routes)

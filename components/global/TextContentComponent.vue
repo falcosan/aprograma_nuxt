@@ -4,7 +4,7 @@
     :style="`background-color: ${randomBackgroundColor};`"
     :class="`text-container w-full p-5 md:p-10
     ${customClass('index', blok.name === 'text_home_1', 'md:w-min mb-5')}
-    ${customClass('index', blok.name === 'text_home_2', `${$device.isDesktop ? 'xl:w-max transition-colors duration-700 ease-in-out' : 'transition-colors duration-700 ease-in-out'}`)}
+    ${customClass('index', blok.name === 'text_home_2', 'transition-colors duration-700 ease-in-out')}
     ${customClass('about', 'all', 'max-h-full overflow-y-auto')}`"
   >
     <component

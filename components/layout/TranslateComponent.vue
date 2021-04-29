@@ -7,7 +7,7 @@
     >
       <template v-for="selector in blok">
         <span v-if="cutLanguage(selector) === $store.state.language.language || cutLanguage(selector) === 'en' && $store.state.language.language === ''" :key="selector._uid" class="language-item">
-          {{ selector.language }}
+          {{ selector.language.toUpperCase() }}
         </span>
       </template>
     </div>
@@ -19,14 +19,12 @@
         <li
           v-if="translateTransition ? (cutLanguage(language) !== $store.state.language.language && $store.state.language.language !== '' || cutLanguage(language) !== 'en' && $store.state.language.language === '') : true"
           :key="language._uid"
-          :class="`translate-item${cutLanguage(language) !== $store.state.language.language && $store.state.language.language !== '' || cutLanguage(language) !== 'en' && $store.state.language.language === '' ? ' text-gray-300' : ''} ${styleTranslateItem} cursor-pointer`"
+          :class="`translate-item ${styleTranslateItem} cursor-pointer`"
+          @click="changeLanguage(language.language); $emit('translateListAction')"
         >
-          <a
-            class="translate-link"
-            @click="changeLanguage(language.language); $emit('translateListAction')"
-          >
-            <span class="translate-language">{{ language.language }}</span>
-          </a>
+          <span
+            class="translate-language"
+          >{{ language.language.toUpperCase() }}</span>
         </li>
       </template>
     </ul>

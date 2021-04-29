@@ -1,9 +1,9 @@
 <template>
-  <div class="post max-w-lg md:max-w-none md:w-9/12 lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl relative my-0 mx-auto py-16 2xl:pt-0 px-6">
+  <div :class="`post max-w-lg md:max-w-none md:w-9/12 lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl relative my-0 mx-auto py-16 px-6 ${$device.isDesktop ? '2xl:pt-0' : ''}`">
     <Icon
-      v-if="$store.state.data.windowWidth >= 768 && $device.isDesktop"
+      v-if="$store.state.data.windowWidth >= 768"
       close
-      class="post-close fixed top-16 md:top-5 right-0 transform -translate-x-full"
+      :class="`post-close fixed top-16 right-0 transform -translate-x-full ${$device.isDesktop ? 'md:top-5' : ''}`"
       tag="button"
       size="w-6"
       @click.native="goBack"
@@ -17,24 +17,24 @@
       :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
       @click.native.passive="goBack"
     />
-    <div class="post-head w-full h-screen max-h-80 md:h-full md:max-h-full 2xl:h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
+    <div class="post-head w-full max-h-full 2xl:h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
       <component
         :is="lookFile()"
-        class="post-file w-full h-full  row-start-1 row-end-3 object-cover"
+        class="post-file w-full h-full row-start-1 row-end-3 object-cover"
         :alt="`${blok.file.alt} project`"
         :src="blok.file.filename"
       />
     </div>
-    <div class="post-body w-full flex justify-center mx-auto" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full max-w-prose prose-sm lg:prose-lg p-10">
+    <div class="post-body w-full flex justify-center mx-auto break-words" :style="`background-color: ${blok.post_background_color.color};`">
+      <div class="post-article w-full max-w-prose prose-sm lg:prose-lg xl:prose-xl p-10">
         <h1
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-title font-medium"
+          class="post-title"
           v-text="blok.title"
         />
         <h2
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-intro text-justify"
+          class="post-intro"
           v-text="blok.intro"
         />
         <h3

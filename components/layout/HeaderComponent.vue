@@ -1,10 +1,10 @@
 <template>
   <header
     v-if="$store.state.data.windowWidth >= 768 && $device.isDesktop"
-    class="header flex-col flex fixed justify-between mt-0"
+    class="header h-full fixed"
   >
     <nav class="navbar">
-      <ul class="menu-wrapper flex flex-col">
+      <ul class="menu-wrapper">
         <li class="logo-home">
           <NuxtLink class="home-link flex items-center" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
             <Logo
@@ -19,19 +19,19 @@
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"
           :key="item._uid"
-          class="link-menu flex-1 text-left no-underline py-2 px-3 opacity-90"
+          class="link-menu"
         >
-          <ItemNavbar :icon-item="false" :blok="item" />
+          <ItemNavbar class="py-2 px-3" :icon-item="false" :blok="item" />
         </li>
       </ul>
     </nav>
     <nav class="language-navbar">
       <Translate
         translate-transition
-        class="translate-header w-16"
-        :style-current-language="`py-3 px-4 transition-all ${expanded ? 'bg-gray-300 text-gray-600' : 'bg-gray-800 text-white'} filter grayscale`"
+        class="translate-header"
+        style-current-language="p-3 transition-all bg-gray-800 text-white filter grayscale"
         :style-translate-list="`transform transition-transform duration-200 esase-out  ${expanded ? 'translate-x-0' : '-translate-x-full'} bg-gray-800 filter grayscale text-white`"
-        style-translate-item="py-3 px-4"
+        style-translate-item="w-full p-3"
         :blok="$contentByName(blok.body, 'Translate')"
         @mouseleave.native="expandOut"
         @mouseover.native="expandStill"
@@ -64,18 +64,18 @@
 
         <Translate
           translate-transition
-          class="translate-header text-sm lg:text-base w-2/12 filter grayscale"
-          :style-current-language="`h-full flex items-center justify-center relative z-10 bg-gray-800 text-gray-300 ${expanded ? 'shadow-xl' : ''}`"
+          class="translate-header w-2/12 bg-gray-800 text-white filter grayscale"
+          :style-current-language="`h-full flex items-center justify-center relative z-10 bg-gray-800 text-white ${expanded ? 'shadow-xl' : ''}`"
           :style-translate-list="`transform transition-transform duration-200 esase-out ${expanded ? 'translate-y-0' : '-translate-y-full'} bg-gray-800`"
           style-translate-item="p-3 text-center"
           :blok="$contentByName(blok.body, 'Translate')"
           @translateListAction.passive="expanded = false"
           @currentLangAction.passive="expanded = !expanded"
-          @mouseleave.native.passive="expanded = false"
+          @mouseleave.native.passive="$device.isDesktop ? expandOut() : expanded = false"
         />
       </div>
     </nav>
-    <nav class="navbar-down w-full h-12 flex items-center justify-center fixed bottom-0 z-10 border-t border-gray-300" :style="`background-color: ${blok.background_color.color};`">
+    <nav class="navbar-down w-full h-12 flex items-center justify-center fixed bottom-0 z-20 border-t border-gray-300" :style="`background-color: ${blok.background_color.color};`">
       <ul class="menu-wrapper wrapper-down w-full h-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl grid grid-cols-4">
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"

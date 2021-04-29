@@ -3,9 +3,9 @@
     v-if="postContent"
     class="post-teaser"
   >
-    <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link md:grid">
+    <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link grid">
       <div
-        class="teaser-content h-full lg:h-60 lg:relative lg:z-10 flex flex-col lg:flex-row row-start-1 row-end-1 col-start-1 col-end-3"
+        class="teaser-content h-full lg:relative lg:z-10 flex flex-col lg:flex-row row-start-1 row-end-1 col-start-1 col-end-3"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
@@ -15,19 +15,20 @@
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div class="teaser-text w-full flex flex-col justify-center p-5 lg:p-10 text-center sm:text-left overflow-hidden" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div class="teaser-text w-full grid gap-y-5 p-5 lg:p-10" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <span
-            class="teaser-title mb-2 text-xl md:text-3xl"
+            class="teaser-title self-end text-xl md:text-3xl overflow-hidden"
           >
             {{ postContent.title }}
           </span>
           <span
-            class="teaser-intro text-base md:text-md"
+            class="teaser-intro text-base md:text-md overflow-hidden"
           >
             {{ postContent.intro }}
           </span>
           <span
-            class="date-text lg:hidden mt-5 sm:text-right text-lg"
+            v-if=" $store.state.data.windowWidth < 1024 || !$device.isDesktop"
+            class="date-text text-right text-lg"
             v-text="changeDate(postContent.date)"
           />
         </div>
@@ -39,8 +40,8 @@
         leave-to-class="-translate-x-full"
       >
         <span
-          v-if="expanded && $store.state.data.windowWidth >= 768 && $device.isDesktop"
-          class="date-text hidden lg:block justify-self-end row-start-1 row-end-1 col-start-2 col-end-2 -mr-10 transform rotate-90 whitespace-nowrap text-3xl pointer-events-none"
+          v-if="expanded && ($store.state.data.windowWidth >= 1024 && $device.isDesktop)"
+          class="date-text justify-self-end row-start-1 row-end-1 col-start-2 col-end-2 -mr-10 text-3xl transform rotate-90 whitespace-nowrap pointer-events-none"
           v-text="changeDate(postContent.date)"
         />
       </transition>
@@ -89,3 +90,17 @@ export default {
   }
 }
 </script>
+<style scoped>
+
+.teaser-title{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.teaser-intro{
+   display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+</style>

@@ -9,16 +9,10 @@
 <script>
 export default {
   asyncData (context) {
-    const slug = (context.route.path === '/' || context.route.path === '') ? 'home' : context.route.path
     return context.app.$storyapi
-      .get(`cdn/stories/${context.store.state.language.language}/${slug}`)
+      .get(`cdn/stories/${context.store.state.language.language}/home`)
       .then((res) => {
         return res.data
-      })
-      .catch((res) => {
-        context.$errorMessage(res.response, `Sorry, but this content: "${res.response.config.url.substring(
-          res.response.config.url.lastIndexOf('/') + 1)}" doesn't exist`, `Sorry, but the content: "${res.response.config.url.substring(
-          res.response.config.url.lastIndexOf('/') + 1)}" has a problem or doesn't exist`)
       })
   },
   watch: {

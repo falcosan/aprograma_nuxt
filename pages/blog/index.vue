@@ -18,8 +18,8 @@ export default {
     }
   },
   async fetch () {
-    this.$store.dispatch('list/addItems', 'blog')
     const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}${this.$route.path}/`)
+    this.$store.dispatch('list/addItems', 'blog')
     this.story = data.story
   },
   head () {

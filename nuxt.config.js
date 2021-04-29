@@ -78,7 +78,7 @@ export default {
     '@nuxtjs/sitemap'
   ],
   router: {
-    trailingSlash: false
+    trailingSlash: true
   },
   sitemap: {
     hostname: 'https://aprograma.co',

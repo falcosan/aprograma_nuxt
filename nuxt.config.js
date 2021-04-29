@@ -67,7 +67,7 @@ export default {
   generate: {
     routes (callback) {
       // other routes that are not in Storyblok with their slug.
-      const routes = ['/'] // adds / directly
+      const routes = [] // adds / directly
       axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&version=published&cv=CURRENT_TIMESTAMP`).then((res) => {
         Object.keys(res.data.links).forEach((key) => {
           routes.push(res.data.links[key].slug)

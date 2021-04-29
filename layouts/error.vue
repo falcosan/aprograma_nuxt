@@ -4,7 +4,7 @@
       <span class="text-9xl font-bold">{{ error.statusCode }}</span>
       <span class="w-max h-max justify-self-center transform rotate-90"> = ( </span>
       <span class="text-2xl"> {{ error.message }}</span>
-      <NuxtLink class=" w-max justify-self-center py-3 px-10 filter grayscale bg-gray-500 text-white" to="/">
+      <NuxtLink class=" w-max justify-self-center py-3 px-10 filter grayscale bg-gray-600 text-white" to="/">
         Home
       </NuxtLink>
     </div>
@@ -12,7 +12,7 @@
       <span class="text-9xl font-bold">{{ error.statusCode }}</span>
       <span class="w-max h-max justify-self-center transform rotate-90"> = ( </span>
       <span class="text-2xl"> {{ error.message }}</span>
-      <NuxtLink class=" w-max justify-self-center py-3 px-10 filter grayscale bg-gray-500 text-white" to="/">
+      <NuxtLink class=" w-max justify-self-center py-3 px-10 filter grayscale bg-gray-600 text-white" to="/">
         Home
       </NuxtLink>
     </div>

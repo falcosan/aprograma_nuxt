@@ -10,18 +10,6 @@
 import Project from '@/components/portfolio/ProjectComponent'
 export default {
   components: { Project },
-  asyncData (context) {
-    return context.app.$storyapi
-      .get(`cdn/stories/${context.store.state.language.language}${context.route.path}`)
-      .then((res) => {
-        return res.data
-      })
-      .catch((res) => {
-        context.$errorMessage(res.response,
-          `Sorry but the project called ${context.route.name} doesn't extist`, `Sorry, but the project called: "${context.route.name}" has a problem or doesn't exist`
-        )
-      })
-  },
   data () {
     return {
       story: {
@@ -30,9 +18,14 @@ export default {
     }
   },
   async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}${this.$route.path}`)
-    this.story = data.story
-    this.$store.dispatch('list/addItems', this.$route.name)
+    try {
+      const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}${this.$route.path}`)
+      this.story = data.story
+      this.$store.dispatch('list/addItems', this.$route.name)
+    } catch (err) {
+      this.$errorMessage(err, `Sorry but the project called ${this.$route.name} doesn't extist`, `Sorry, but the project called: "${this.$route.name}" has a problem or doesn't exist`
+      )
+    }
   },
   head () {
     return {

@@ -68,9 +68,7 @@ export default {
     routes: async () => {
       const routes = []
       const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
-      Object.keys(data.links).map((page) => {
-        return routes.push(data.links[page].slug)
-      })
+      return Object.keys(data.links).map(page => routes.push(data.links[page].slug))
     },
     fallback: true
   },

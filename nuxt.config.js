@@ -77,9 +77,6 @@ export default {
     ],
     '@nuxtjs/sitemap'
   ],
-  router: {
-    trailingSlash: true
-  },
   sitemap: {
     hostname: 'https://aprograma.co',
     routes: async () => {

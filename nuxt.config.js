@@ -65,11 +65,18 @@ export default {
   ],
 
   generate: {
-    routes: async () => {
-      const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
+    routes (callback) {
       const exclude = ['home', 'layout']
-      const include = Object.values(data.links).map(index => !exclude.includes(data.links[index].slug) ? data.links[index].slug : '')
-      return include.filter(Boolean)
+      const routes = ['/']
+      axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&version=published&cv=CURRENT_TIMESTAMP`).then((res) => {
+        Object.keys(res.data.links).forEach((key) => {
+          if (!exclude.includes(res.data.links[key].slug)) {
+            routes.push('/' + res.data.links[key].slug)
+          }
+        })
+
+        callback(null, routes)
+      })
     }
   },
   sitemap: {

@@ -77,7 +77,8 @@ export default {
 
         callback(null, routes)
       })
-    }
+    },
+    fallback: true
   },
   sitemap: {
     hostname: 'https://aprograma.co',

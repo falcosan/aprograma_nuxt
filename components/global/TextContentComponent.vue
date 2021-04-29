@@ -1,16 +1,15 @@
 <template>
   <div
     :key="blok._uid"
-    :style="`background-color: ${randomBackgroundColor};`"
-    :class="`text-container w-full p-5 md:p-10
-    ${customClass('index', blok.name === 'text_home_1', 'md:w-min mb-5')}
+    :style="`background-color: ${randomBackgroundColor}; color: ${randomTextColor};`"
+    :class="`text-container md:w-max max-w-full
+    ${customClass('index', blok.name === 'text_home_1', 'mb-5')}
     ${customClass('index', blok.name === 'text_home_2', 'transition-colors duration-700 ease-in-out')}
     ${customClass('about', 'all', 'max-h-full overflow-y-auto')}`"
   >
     <component
       :is="blok.article ? 'article' : 'span'"
-      :style="`color: ${randomTextColor};`"
-      :class="`text-content w-full block prose-sm sm:text-base lg:prose-lg xl:prose-xl break-words`"
+      :class="`text-content block p-5 md:p-10 prose-sm lg:prose-lg xl:prose-xl break-words`"
       v-html="blok.text.content"
     />
   </div>

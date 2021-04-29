@@ -38,8 +38,8 @@
           v-text="blok.intro"
         />
         <h3
-          :style="`color: ${blok.post_text_color.color};`"
-          class="post-author border-t border-b py-8 border-black italic"
+          :style="`color: ${blok.post_text_color.color}; border-color: ${blok.post_text_color.color};`"
+          class="post-author border-t border-b py-8 italic"
         >
           {{ $languageCase('by', 'de', 'di') }} {{ blok.author }}
         </h3>

@@ -1,6 +1,7 @@
 const axios = require('axios')
 
 export default {
+  target: 'static',
   head: {
     title: 'Aprograma - a peaceful coding experience',
     htmlAttrs: {
@@ -65,22 +66,13 @@ export default {
 
   generate: {
     routes (callback) {
-      const token = process.env.NUXT_ENV_PUBLIC_TOKEN
-      const version = 'published'
-      let cacheVersion = 0
-      const toIgnore = ['home']
-      const routes = ['/'] // adds / directly
-
-      axios.get(`https://api.storyblok.com/v1/cdn/spaces/me?token=${token}`).then((spaceRes) => {
-        cacheVersion = spaceRes.data.space.version
-        axios.get(`https://api.storyblok.com/v1/cdn/links?token=${token}&version=${version}&cv=${cacheVersion}&per_page=100`).then((res) => {
-          Object.keys(res.data.links).forEach((key) => {
-            if (!toIgnore.includes(res.data.links[key].slug)) {
-              routes.push('/' + res.data.links[key].slug)
-            }
-          })
-          callback(null, routes)
+      const routes = ['/']
+      axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&version=published&cv=CURRENT_TIMESTAMP`).then((res) => {
+        Object.keys(res.data.links).forEach((key) => {
+          routes.push('/' + res.data.links[key].slug)
         })
+
+        callback(null, routes)
       })
     }
   },

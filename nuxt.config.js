@@ -65,12 +65,11 @@ export default {
   ],
 
   generate: {
-    routes () {
+    routes: async () => {
       const routes = []
-      axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`).then((res) => {
-        Object.keys(res.data.links).forEach((key) => {
-          return routes.push(res.data.links[key].slug)
-        })
+      const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
+      Object.keys(data.links).forEach((page) => {
+        return routes.push(data.links[page].slug)
       })
     },
     fallback: true

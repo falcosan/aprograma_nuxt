@@ -10,8 +10,9 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {
-      fontFamily: {
-        body: ['Lexend']
+      spacing: {
+        max: 'max-content',
+        min: 'min-content'
       },
       zIndex: {
         '-10': '-10'
@@ -26,9 +27,6 @@ module.exports = {
         360: '360deg'
       }
     }
-  },
-  variants: {
-    extend: {}
   },
   plugins: [
     require('@tailwindcss/typography')

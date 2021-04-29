@@ -12,16 +12,13 @@ export default {
   components: { Project },
   asyncData (context) {
     return context.app.$storyapi
-      .get(`cdn/stories/${context.store.state.language.language}/${context.route.path}`)
+      .get(`cdn/stories/${context.store.state.language.language}${context.route.path}`)
       .then((res) => {
         return res.data
       })
       .catch((res) => {
         context.$errorMessage(res.response,
-          `Sorry but the project called ${context.route.path.substring(
-            context.route.path.lastIndexOf('/') + 1
-          )} doesn't extist`, `Sorry, but the project called: "${context.route.path.substring(
-          context.route.path.lastIndexOf('/') + 1)}" has a problem or doesn't exist`
+          `Sorry but the project called ${context.route.name} doesn't extist`, `Sorry, but the project called: "${context.route.name}" has a problem or doesn't exist`
         )
       })
   },

@@ -68,7 +68,7 @@ export default {
       const token = process.env.NUXT_ENV_PUBLIC_TOKEN
       const version = 'published'
       let cacheVersion = 0
-      const toIgnore = ['home', 'about', 'portfolio', 'contact', 'blog']
+      const toIgnore = ['home']
       const routes = ['/'] // adds / directly
 
       axios.get(`https://api.storyblok.com/v1/cdn/spaces/me?token=${token}`).then((spaceRes) => {
@@ -82,8 +82,7 @@ export default {
           callback(null, routes)
         })
       })
-    },
-    fallback: true
+    }
   },
   sitemap: {
     hostname: 'https://aprograma.co',

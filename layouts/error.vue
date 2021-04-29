@@ -10,7 +10,7 @@
     </div>
     <div v-else class="max-h-screen grid gap-y-10 grid-flow-row text-center p-20 bg-gray-200">
       <span class="text-9xl font-bold">{{ error.statusCode }}</span>
-      <span class="w-max h-max justify-self-center transform rotate-90"> = ( </span>
+      <span class="w-max h-max justify-self-center transform rotate-90">= (</span>
       <span class="text-2xl"> {{ error.message }}</span>
       <NuxtLink class=" w-max justify-self-center py-3 px-10 filter grayscale bg-gray-600 text-white" to="/">
         Home

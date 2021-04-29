@@ -42,6 +42,7 @@ export default {
     projectName: process.env.npm_package_name
   },
   generate: {
+    fallback: true,
     routes (callback) {
       const exclude = ['home', 'layout']
       const routes = []
@@ -77,9 +78,6 @@ export default {
     ],
     '@nuxtjs/sitemap'
   ],
-  router: {
-    trailingSlash: false
-  },
   sitemap: {
     hostname: 'https://aprograma.co',
     routes: async () => {

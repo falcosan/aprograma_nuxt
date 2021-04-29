@@ -41,6 +41,20 @@ export default {
   publicRuntimeConfig: {
     projectName: process.env.npm_package_name
   },
+  generate: {
+    routes (callback) {
+      const exclude = ['home', 'layout']
+      const routes = []
+      axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`).then((res) => {
+        Object.keys(res.data.links).forEach((key) => {
+          if (!exclude.includes(res.data.links[key].slug)) {
+            routes.push('/' + res.data.links[key].slug)
+          }
+        })
+        callback(null, routes)
+      })
+    }
+  },
   modules: [
     [
       'storyblok-nuxt',
@@ -63,22 +77,6 @@ export default {
     ],
     '@nuxtjs/sitemap'
   ],
-
-  generate: {
-    routes (callback) {
-      const exclude = ['home', 'layout']
-      const routes = ['/']
-      axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`).then((res) => {
-        Object.keys(res.data.links).forEach((key) => {
-          if (!exclude.includes(res.data.links[key].slug)) {
-            routes.push(res.data.links[key].slug)
-          }
-        })
-
-        callback(null, routes)
-      })
-    }
-  },
   sitemap: {
     hostname: 'https://aprograma.co',
     routes: async () => {

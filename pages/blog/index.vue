@@ -10,17 +10,18 @@
 import Post from '@/components/blog/PostComponent'
 export default {
   components: { Post },
-  data () {
-    return {
-      story: {
-        content: {}
-      }
-    }
-  },
-  async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}${this.$route.path}/`)
-    this.$store.dispatch('list/addItems', 'blog')
-    this.story = data.story
+  asyncData (context) {
+    context.store.dispatch('list/addItems', 'blog')
+    return context.app.$storyapi
+      .get(`cdn/stories/${context.store.state.language.language}${context.route.path}`)
+      .then((res) => {
+        return res.data
+      })
+      .catch((res) => {
+        context.$errorMessage(res.response,
+          `Sorry but the post called ${context.route.name} doesn't extist`, `Sorry, but the post called: "${context.route.name}" has a problem or doesn't exist`
+        )
+      })
   },
   head () {
     return {

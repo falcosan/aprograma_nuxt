@@ -22,12 +22,8 @@
         :is="lookFile()"
         class="post-file w-full h-full row-start-1 row-end-3 object-cover"
         :alt="`${blok.file.alt} project`"
-        :src="lookFile() !== 'video' ? blok.file.filename : false"
-        :playsinline="lookFile() === 'video' ? true : false"
-        :controls="lookFile() === 'video' ? true : false"
-      >
-        <source :src="blok.file.filename" :type="`video/${blok.file.filename.toLowerCase().split('.').pop()}`">
-      </component>
+        :src="blok.file.filename"
+      />
     </div>
     <div class="post-body w-full flex justify-center mx-auto break-words" :style="`background-color: ${blok.post_background_color.color};`">
       <div class="post-article w-full max-w-prose prose-sm lg:prose-lg xl:prose-xl p-10">
@@ -89,8 +85,6 @@ export default {
           return 'img'
         case 'pdf':
           return 'embed'
-        case 'mp4':
-          return 'video'
       }
     }
   }

@@ -83,8 +83,6 @@ export default {
           return 'img'
         case 'pdf':
           return 'embed'
-        case 'mp4':
-          return 'video'
       }
     }
   }

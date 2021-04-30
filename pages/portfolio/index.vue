@@ -18,6 +18,22 @@ export default {
         return res.data
       })
   },
+  data () {
+    return {
+      story: {
+        content: {}
+      }
+    }
+  },
+  async fetch () {
+    try {
+      const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}${this.$route.path}`)
+      this.story = data.story
+    } catch (err) {
+      this.$errorMessage(err, `Sorry but the project called ${this.$route.name} doesn't extist`, `Sorry, but the project called: "${this.$route.name}" has a problem or doesn't exist`
+      )
+    }
+  },
   head () {
     return {
       title: `${this.story.name} - Aprograma`,

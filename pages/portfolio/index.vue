@@ -11,7 +11,6 @@ import Project from '@/components/portfolio/ProjectComponent'
 export default {
   components: { Project },
   asyncData (context) {
-    context.store.dispatch('list/addItems', context.route.name)
     return context.app.$storyapi
       .get(`cdn/stories/${context.store.state.language.language}${context.route.path}`)
       .then((res) => {
@@ -29,6 +28,7 @@ export default {
     try {
       const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}${this.$route.path}`)
       this.story = data.story
+      this.$store.dispatch('list/addItems', this.$route.name)
     } catch (err) {
       this.$errorMessage(err, `Sorry but the project called ${this.$route.name} doesn't extist`, `Sorry, but the project called: "${this.$route.name}" has a problem or doesn't exist`
       )

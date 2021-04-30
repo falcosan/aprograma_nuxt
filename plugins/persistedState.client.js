@@ -2,6 +2,7 @@ import createPersistedState from 'vuex-persistedstate'
 
 export default ({ store }) => {
   createPersistedState({
-    key: store.state.language.language
+    key: 'vuex',
+    paths: ['language']
   })(store)
 }

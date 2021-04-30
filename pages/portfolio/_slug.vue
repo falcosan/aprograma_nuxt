@@ -14,7 +14,6 @@ export default {
   },
   watch: {
     '$store.state.language.language': { handler () { this.$nuxt.refresh() } }
-  },
-  watchQuery: true
+  }
 }
 </script>

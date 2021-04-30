@@ -5,16 +5,12 @@
 import Project from '@/components/portfolio/ProjectComponent'
 export default {
   components: { Project },
-  data () {
-    return {
-      story: {
-        content: {}
-      }
-    }
-  },
-  async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories/${this.$store.state.language.language}${this.$route.path}`)
-    this.story = data.story
+  asyncData (context) {
+    return context.app.$storyapi
+      .get(`cdn/stories/${context.store.state.language.language}${context.route.path}`)
+      .then((res) => {
+        return res.data
+      })
   },
   watch: {
     '$store.state.language.language': { handler () { this.$nuxt.refresh() } }

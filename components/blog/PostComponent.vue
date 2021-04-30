@@ -65,9 +65,6 @@ export default {
       required: true
     }
   },
-  created () {
-    console.log(this.blok)
-  },
   methods: {
     goBack () {
       this.$router.push(`/${this.$route.name.split('-')[0]}`)

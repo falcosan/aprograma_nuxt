@@ -27,8 +27,7 @@ export default {
   },
   plugins: [
     '~/plugins/components',
-    '~/plugins/injects',
-    '~/plugins/persistedState.client.js'
+    '~/plugins/injects'
   ],
 
   buildModules: [

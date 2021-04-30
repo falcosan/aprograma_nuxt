@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     changeLanguage (lang) {
-      this.$store.commit('language/languageMutation', lang)
+      this.$store.dispatch('language/languageAction', lang)
     },
     cutLanguage (abbr) {
       return abbr.language.toLowerCase().substring(0, 2)

@@ -16,6 +16,10 @@ export default {
       .get(`cdn/stories/${context.store.state.language.language}${context.route.path}`)
       .then((res) => {
         return res.data
+      }).catch((res) => {
+        context.$errorMessage(res.response,
+          `Sorry but the post called ${context.route.name} doesn't extist`, `Sorry, but the post called: "${context.route.name}" has a problem or doesn't exist`
+        )
       })
   },
   head () {

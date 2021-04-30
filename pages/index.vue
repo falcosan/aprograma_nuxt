@@ -9,6 +9,7 @@
 <script>
 export default {
   asyncData (context) {
+    this.$nuxt.refresh()
     const slug = (context.route.path === '/' || context.route.path === '') ? '/home' : context.route.path
     return context.app.$storyapi
       .get(`cdn/stories${context.store.state.language.language ? `/${context.store.state.language.language}` : context.store.state.language.language}${slug}`)

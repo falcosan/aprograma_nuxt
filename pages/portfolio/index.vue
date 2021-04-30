@@ -11,6 +11,7 @@ import Project from '@/components/portfolio/ProjectComponent'
 export default {
   components: { Project },
   asyncData (context) {
+    this.$nuxt.refresh()
     context.store.dispatch('list/addItems', context.route.name)
     return context.app.$storyapi
       .get(`cdn/stories${context.store.state.language.language ? `/${context.store.state.language.language}` : context.store.state.language.language}${context.route.path}`)

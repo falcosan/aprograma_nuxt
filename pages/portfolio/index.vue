@@ -22,6 +22,17 @@ export default {
         )
       })
   },
+  data () {
+    return {
+      story: {
+        content: {}
+      }
+    }
+  },
+  async fetch () {
+    const { data } = await this.$storyapi.get(`cdn/stories${this.$store.state.language.language ? `/${this.$store.state.language.language}` : this.$store.state.language.language}${this.$route.path}`)
+    this.story = data.story
+  },
   head () {
     return {
       title: `${this.story.name} - Aprograma`,

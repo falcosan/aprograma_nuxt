@@ -44,6 +44,12 @@ export default {
   router: {
     trailingSlash: true
   },
+  redirect: [
+    {
+      from: '^(\\/[^\\?]*[^\\/])(\\?.*)?$',
+      to: '$1/$2'
+    }
+  ],
   generate: {
     fallback: true,
     routes (callback) {

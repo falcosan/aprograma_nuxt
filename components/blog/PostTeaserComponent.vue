@@ -5,19 +5,19 @@
   >
     <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link grid">
       <div
-        class="teaser-content h-full lg:relative lg:z-10 flex flex-col lg:flex-row row-start-1 row-end-1 col-start-1 col-end-3"
+        class="teaser-content lg:h-64 xl:h-72 lg:relative lg:z-10 flex flex-col lg:flex-row row-start-1 row-end-1 col-start-1 col-end-3"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
         <component
           :is="lookFile()"
-          class="teaser-file w-full max-h-72 lg:h-60 lg:max-w-xs lg:w-screen xl:max-w-sm object-cover"
+          class="teaser-file w-full max-h-72 lg:max-w-xs lg:w-screen xl:max-w-sm object-cover"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
         <div class="teaser-text w-full grid gap-y-5 p-5 lg:p-10" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <span
-            class="teaser-title self-end text-xl md:text-3xl overflow-hidden"
+            class="teaser-title self-end py-1 text-xl md:text-3xl overflow-hidden"
           >
             {{ postContent.title }}
           </span>

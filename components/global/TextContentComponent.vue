@@ -9,7 +9,7 @@
   >
     <component
       :is="blok.article ? 'article' : 'span'"
-      :class="`text-content block p-5 md:p-10 prose-sm lg:prose-lg xl:prose-xl break-words`"
+      :class="`text-content block p-5 md:p-10 prose-sm md:prose-lg xl:prose-xl break-words`"
       v-html="blok.text.content"
     />
   </div>

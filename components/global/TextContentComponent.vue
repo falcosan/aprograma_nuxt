@@ -41,7 +41,7 @@ export default {
   watch: {
     '$store.state.data.moved' () { if (this.$store.state.data.moved) { this.randomIndex() } }
   },
-  mounted () {
+  created () {
     this.randomIndex()
   },
   methods: {

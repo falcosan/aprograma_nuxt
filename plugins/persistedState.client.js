@@ -2,7 +2,6 @@ import createPersistedState from 'vuex-persistedstate'
 
 export default ({ store }) => {
   createPersistedState({
-    key: 'language/language',
-    storage: window.localStorage
+    key: 'language/language'
   })(store)
 }

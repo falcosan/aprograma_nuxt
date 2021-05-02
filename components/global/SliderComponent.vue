@@ -5,7 +5,7 @@
     :leave-active-class="`${transitionActive} out-in`"
     :enter-class="`opacity-0 transform ${translation.enter}`"
     :leave-to-class="`opacity-0 transform ${translation.leave}`"
-    class="slider w-full grid grid-cols-1 grid-rows-2 gap-5 overflow-hidden"
+    class="slider w-full grid grid-cols-1 grid-rows-2 gap-y-5 overflow-hidden"
   >
     <template v-for="(item, index) in blok">
       <li v-if="index === frame.up || index === frame.down" :key="item.uuid" :class="`slide slide-item w-full h-80 flex col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'}`">

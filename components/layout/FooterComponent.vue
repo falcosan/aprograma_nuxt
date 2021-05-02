@@ -133,7 +133,7 @@ export default {
       this.typewriter = ''
       this.charIndex = 0
       this.typewriterIndex = 0
-      setTimeout(this.typeText, 200)
+      setTimeout(this.typeText, 400)
     }
   }
 }

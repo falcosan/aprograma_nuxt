@@ -3,7 +3,8 @@
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor}; color: ${randomTextColor};`"
     :class="`text-container max-w-full
-    ${customClass('index', 'all', 'transition-colors duration-700 ease-in-out')}`"
+    ${customClass('index', blok.name === 'text_home_1', 'w-max')}
+    ${customClass('index', blok.name === 'text_home_2', 'transition-colors duration-700 ease-in-out')}`"
   >
     <component
       :is="blok.article ? 'article' : 'span'"

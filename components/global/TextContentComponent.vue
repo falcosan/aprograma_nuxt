@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="blok.text.content"
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor}; color: ${randomTextColor};`"
     :class="`text-container max-w-full

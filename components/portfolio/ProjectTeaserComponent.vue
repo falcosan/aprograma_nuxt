@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="projectContent"
-    :class="`project-teaser w-full lg:w-1/2 2xl:w-1/3 py-5 md:px-5`"
+    :class="`project-teaser w-full`"
   >
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
       <div class="teaser-content grid p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">

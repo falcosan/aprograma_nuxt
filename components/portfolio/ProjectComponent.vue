@@ -1,5 +1,5 @@
 <template>
-  <div class="project max-w-lg md:max-w-none md:w-9/12 lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl grid gap-10 my-0 mx-auto py-16 px-8">
+  <div class="project max-w-lg md:max-w-none md:w-9/12 lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl grid gap-5 my-0 mx-auto py-16 px-8">
     <h1 class="project-title flex justify-center items-center col-start-1 col-end-4 lg:col-end-3 p-5 text-xl lg:text-2xl text-center lg:text-left break-words">
       {{ blok.title }}
     </h1>
@@ -40,7 +40,7 @@
       :inline-text-style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
       :blok="description"
     />
-    <div class="project-action w-auto lg:w-60 grid self-center lg:justify-self-end lg:blok grid-flow-col gap-10 col-start-1 col-end-4 lg:row-end-1 lg:col-start-3 lg:col-end-3">
+    <div class="project-action w-auto lg:w-60 grid self-center lg:justify-self-end lg:blok grid-flow-col gap-5 col-start-1 col-end-4 lg:row-end-1 lg:col-start-3 lg:col-end-3">
       <Icon
         back
         tag="button"

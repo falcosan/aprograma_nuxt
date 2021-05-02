@@ -1,11 +1,11 @@
 <template>
   <li
     v-if="projectContent"
-    :class="`project-teaser w-full md:w-1/2 xl:w-1/3 p-2`"
+    :class="`project-teaser w-full lg:w-1/2 2xl:w-1/3 py-5 md:px-5`"
   >
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
       <div class="teaser-content grid p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
-        <img class="project-image w-full h-64 sm:h-80 md:h-56 lg:h-80 xl:h-60 2xl:h-96 object-cover" :src="projectContent.image.filename" :alt="projectContent.image.alt">
+        <img class="project-image w-full h-60 sm:h-80 md:h-96 lg:h-64 xl:h-80 2xl:h-80 object-cover" :src="projectContent.image.filename" :alt="projectContent.image.alt">
         <span
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
           class="teaser-title w-full p-5 truncate text-base sm:text-lg"

@@ -15,7 +15,7 @@
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div class="teaser-text w-full grid gap-y-5 p-5 lg:p-10" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div class="teaser-text w-full grid gap-y-10 p-5 lg:p-10" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <span
             class="teaser-title self-end py-1 text-xl md:text-3xl overflow-hidden"
           >

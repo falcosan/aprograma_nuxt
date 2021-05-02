@@ -3,13 +3,11 @@
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor}; color: ${randomTextColor};`"
     :class="`text-container max-w-full
-    ${customClass('index', 'all', 'md:w-max transition-colors duration-700 ease-in-out')}
-    ${customClass('index', blok.name === 'text_home_1', 'mb-5')}
-    ${customClass('about', 'all', 'max-h-full overflow-y-auto')}`"
+    ${customClass('index', 'all', 'transition-colors duration-700 ease-in-out')}`"
   >
     <component
       :is="blok.article ? 'article' : 'span'"
-      :class="`text-content block p-5 md:p-10 prose-sm md:prose-lg xl:prose-xl break-words`"
+      :class="`text-content h-full block p-5 md:p-10 prose-sm md:prose-lg xl:prose-xl break-words`"
       v-html="blok.text.content"
     />
   </div>

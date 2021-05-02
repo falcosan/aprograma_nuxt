@@ -46,7 +46,7 @@
   >
     <nav class="navbar-up w-full h-10 fixed flex justify-center top-0 z-20 shadow-sm" :style="`background-color: ${blok.background_color.color};`">
       <div class="menu-wrapper wrapper-up w-full h-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl flex justify-between">
-        <NuxtLink class="home-link w-2/12" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
+        <NuxtLink exact-active-class="filter invert grayscale bg-gray-300" class="home-link w-2/12" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
           <Icon
             home
             tag="button"

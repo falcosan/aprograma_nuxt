@@ -1,7 +1,7 @@
 <template>
   <header
     v-if="$store.state.data.windowWidth >= 768 && $device.isDesktop"
-    class="header h-full fixed"
+    class="header fixed"
   >
     <nav class="navbar">
       <ul class="menu-wrapper">

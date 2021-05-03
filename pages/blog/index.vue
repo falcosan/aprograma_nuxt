@@ -10,17 +10,6 @@
 import Post from '@/components/blog/PostComponent'
 export default {
   components: { Post },
-  asyncData (context) {
-    return context.app.$storyapi
-      .get(`cdn/stories${context.store.state.language.language ? `/${context.store.state.language.language}` : context.store.state.language.language}${context.route.path}`)
-      .then((res) => {
-        return res.data
-      }).catch((res) => {
-        context.$errorMessage(res.response,
-          `Sorry but the post called ${context.route.name} doesn't extist`, `Sorry, but the post called: "${context.route.name}" has a problem or doesn't exist`
-        )
-      })
-  },
   data () {
     return {
       story: {
@@ -29,9 +18,13 @@ export default {
     }
   },
   async fetch () {
-    this.$store.dispatch('list/addItems', this.$route.name)
-    const { data } = await this.$storyapi.get(`cdn/stories${this.$store.state.language.language ? `/${this.$store.state.language.language}` : this.$store.state.language.language}${this.$route.path}`)
-    this.story = data.story
+    try {
+      this.$store.dispatch('list/addItems', this.$route.name)
+      const { data } = await this.$storyapi.get(`cdn/stories${this.$store.state.language.language ? `/${this.$store.state.language.language}` : this.$store.state.language.language}${this.$route.path}`)
+      this.story = data.story
+    } catch (err) {
+      this.$errorMessage(err, `Sorry, but this post: "${this.$route.name}" doesn 't exist`, `Sorry, but this post: "${this.$route.name}" has a problem or doesn 't exist`)
+    }
   },
   head () {
     return {

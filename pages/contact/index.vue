@@ -1,10 +1,11 @@
 <template>
   <component
     :is="story.content.component"
-    v-if="story.content.component"
+    v-if="story.content.component && !$fetchState.pending"
     :key="story.content._uid"
     :blok="story.content"
   />
+  <div v-else class="h-screen" />
 </template>
 <script>
 export default {
@@ -25,7 +26,7 @@ export default {
   },
   head () {
     return {
-      title: `${this.story.name} - Aprograma`,
+      title: this.$fetchState.pending ? 'Aprograma' : `${this.story.name} - Aprograma`,
       meta: [
         {
           hid: 'description',

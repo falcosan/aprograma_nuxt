@@ -44,7 +44,7 @@
     v-else
     class="header flex justify-center"
   >
-    <nav class="navbar-up w-full h-10 fixed flex justify-center top-0 z-20 shadow-sm" :style="`background-color: ${blok.background_color.color};`">
+    <nav class="navbar-up w-full h-10 fixed flex justify-center top-0 z-20 drop-shadow-2xl" :style="`background-color: ${blok.background_color.color};`">
       <div class="menu-wrapper wrapper-up w-full h-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl flex justify-between">
         <NuxtLink exact-active-class="filter invert grayscale bg-gray-300" class="home-link w-2/12" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
           <Icon
@@ -55,7 +55,7 @@
           />
         </NuxtLink>
         <Logo
-          class="absolute top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full shadow-sm bg-white"
+          class="absolute top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full drop-shadow-2xl bg-white"
           :transition-a="moved.a"
           :transition-p="moved.p"
           style-logo-container="w-14"
@@ -65,7 +65,7 @@
         <Translate
           translate-transition
           class="translate-header w-2/12 bg-gray-800 text-white filter grayscale"
-          :style-current-language="`h-full flex items-center justify-center relative z-10 bg-gray-800 text-white ${expanded ? 'shadow-xl' : ''}`"
+          :style-current-language="`h-full flex items-center justify-center relative z-10 bg-gray-800 text-white ${expanded ? 'drop-shadow-2xl' : ''}`"
           :style-translate-list="`transform transition-transform duration-200 esase-out ${expanded ? 'translate-y-0' : '-translate-y-full'} bg-gray-800`"
           style-translate-item="p-3 text-center"
           :blok="$contentByName(blok.body, 'Translate')"
@@ -75,7 +75,7 @@
         />
       </div>
     </nav>
-    <nav class="navbar-down w-full h-12 flex items-center justify-center fixed bottom-0 z-20 border-t border-gray-300" :style="`background-color: ${blok.background_color.color};`">
+    <nav class="navbar-down w-full h-12 flex items-center justify-center fixed bottom-0 z-20 drop-shadow-2xl" :style="`background-color: ${blok.background_color.color};`">
       <ul class="menu-wrapper wrapper-down w-full h-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl grid grid-cols-4">
         <li
           v-for="item in $contentByName(blok.body, 'ItemNavbar')"

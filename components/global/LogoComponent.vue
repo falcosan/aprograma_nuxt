@@ -5,7 +5,7 @@
     <svg
       id="logo"
       key="logo-svg"
-      class="logo-svg w-full h-auto"
+      class="logo-svg w-full h-auto cursor-pointer"
       version="1.1"
       baseProfile="basic"
       xmlns="http://www.w3.org/2000/svg"

@@ -6,7 +6,7 @@
       @click="$emit('currentLangAction')"
     >
       <template v-for="selector in blok">
-        <span v-if="cutLanguage(selector) === $store.state.language.language || cutLanguage(selector) === 'en' && $store.state.language.language === ''" :key="selector._uid" class="language-item">
+        <span v-if="cutLanguage(selector) === $store.state.language.language || cutLanguage(selector) === 'en' && $store.state.language.language === ''" :key="selector._uid" class="language-item font-light">
           {{ selector.language.toUpperCase() }}
         </span>
       </template>
@@ -23,7 +23,7 @@
           @click="changeLanguage(language.language); $emit('translateListAction')"
         >
           <span
-            class="translate-language"
+            class="translate-language font-light"
           >{{ language.language.toUpperCase() }}</span>
         </li>
       </template>

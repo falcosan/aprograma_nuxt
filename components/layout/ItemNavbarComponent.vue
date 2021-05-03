@@ -2,7 +2,7 @@
   <NuxtLink
     :active-class="`${!iconItem ? 'bg-gray-300' : 'filter invert grayscale bg-gray-300'}`"
     :to="blok.path"
-    class="item-link h-full block font-s"
+    class="item-link h-full block font-light"
   >
     <span v-if="!iconItem" class="item-text" :style="`color: ${blok.text_color.color};`">{{ blok.title }}</span>
     <Icon

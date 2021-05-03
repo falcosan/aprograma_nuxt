@@ -7,8 +7,7 @@
     ${customClass('index', 'all', 'w-max')}
     ${customClass('index', blok.name === 'text_home_2', 'transition-colors duration-700 ease-in-out')}`"
   >
-    <component
-      :is="blok.article ? 'article' : 'span'"
+    <span
       :class="`text-content h-full block p-5 md:p-10 prose-sm md:prose-lg xl:prose-xl break-words`"
       v-html="blok.text.content"
     />

@@ -17,7 +17,7 @@
       :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
       @click.native.passive="goBack"
     />
-    <div class="post-head w-full max-h-full 2xl:h-screen my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
+    <div class="post-head w-full max-h-full my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
       <component
         :is="lookFile()"
         class="post-file w-full h-full row-start-1 row-end-3 object-cover"
@@ -26,7 +26,7 @@
       />
     </div>
     <div class="post-body w-full flex justify-center mx-auto break-words" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full max-w-prose prose-sm lg:prose-lg xl:prose-xl p-10">
+      <div class="post-article w-full prose max-w-prose prose-sm lg:prose-lg xl:prose-xl p-10">
         <h1
           :style="`color: ${blok.post_text_color.color};`"
           class="post-title"

@@ -72,7 +72,9 @@ export default {
     submitting: { handler () { this.onSubmiting() } }
   },
   destroyed () {
-    this.clearFields()
+    if (Object.keys(this.fields).length > 0) {
+      this.clearFields()
+    }
   },
   methods: {
     setAlert (message, color) {

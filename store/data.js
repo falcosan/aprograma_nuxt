@@ -1,8 +1,7 @@
 
 export const state = () => ({
   moved: false,
-  windowWidth: 0,
-  modal: false
+  windowWidth: 0
 })
 
 export const mutations = {
@@ -11,9 +10,6 @@ export const mutations = {
   },
   responsiveMutation (state, newResponsive) {
     state.windowWidth = newResponsive
-  },
-  modalMutation (state, newModal) {
-    state.modal = newModal
   }
 }
 

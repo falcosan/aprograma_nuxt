@@ -1,43 +1,48 @@
 <template>
-  <div v-if="$store.state.data.modal" class="modal-backdrop fixed inset-0 flex justify-center items-center p-5 z-40" tabindex="0" @click.self="$store.commit('data/modalMutation', false)" @keydown.esc="$store.commit('data/modalMutation', false)">
-    <div :class="`modal ${modalStyle}`">
-      <header class="modal-header">
-        <slot name="header" />
-        <Icon
-          close
-          class="modal-close fixed top-5 right-5"
-          tag="button"
-          size="w-6"
-          @click.native="$store.commit('data/modalMutation', false)"
-        />
-      </header>
-      <section class="modal-body">
-        <slot name="body" />
-      </section>
-      <footer class="modal-footer">
-        <slot name="footer" />
-      </footer>
+  <transition enter-active-class="duration-300 in-out" leave-active-class="duration-300 out-in" enter-class="-translate-y-full opacity-0" leave-to-class="-translate-y-full opacity-0">
+    <div v-if="openModal" class="modal-backdrop fixed inset-0 flex justify-center items-center z-40 p-2 sm:p-7 md:p-14 xl:p-16 cursor-pointer" tabindex="0" @click.self.stop="$emit('update:openModal', !openModal)" @keydown.esc="$emit('update:openModal', !openModal)">
+      <div :class="`modal cursor-default ${modalStyle}`">
+        <header class="modal-header">
+          <slot name="header" />
+          <Icon
+            close
+            class="modal-close fixed top-5 right-5"
+            tag="button"
+            size="w-6"
+            @click.native.stop="$emit('update:openModal', !openModal)"
+          />
+        </header>
+        <section class="modal-body">
+          <slot name="body" />
+        </section>
+        <footer class="modal-footer">
+          <slot name="footer" />
+        </footer>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 <script>
 export default {
   props: {
+    openModal: {
+      type: Boolean,
+      required: true
+    },
     modalStyle: {
       type: String,
       default: ''
     }
   },
   watch: {
-    '$store.state.data.modal': { handler () { this.checkModal() } }
+    openModal: { handler () { this.checkModal() } }
   },
   methods: {
     checkModal () {
-      if (this.$store.state.data.modal) {
+      if (this.openModal) {
         this.$nextTick(function () {
           this.$el.focus()
         })
-        window.scrollTo(0, 0)
         document.body.classList.add('noscroll')
       } else {
         document.body.classList.remove('noscroll')

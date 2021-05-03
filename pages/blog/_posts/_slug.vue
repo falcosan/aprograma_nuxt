@@ -24,7 +24,7 @@ export default {
     this.story = data.story
   },
   watch: {
-    '$store.state.language.language': { handler () { this.$nuxt.refresh() } }
+    '$store.state.language.language': '$fetch'
   }
 }
 </script>

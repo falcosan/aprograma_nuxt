@@ -4,9 +4,19 @@
       {{ blok.title }}
     </h1>
     <div class="project-intro grid gap-5 col-start-1 col-end-4">
-      <div v-if="blok.image.filename" class="image-container w-full row-start-1 row-end-1 lg:col-start-1 lg:col-end-3">
-        <img class="intro-image h-auto w-full max-w-md my-0 mx-auto border-2 object-contain" :src="blok.image.filename" :alt="blok.image.alt" :style="`border-color: ${blok.project_background_color.color}`" @click="$store.commit('data/modalMutation', true)">
+      <div v-if="blok.image.filename" class="image-container w-full max-w-lg my-0 mx-auto row-start-1 row-end-1 xl:col-start-1 xl:col-end-3">
+        <img class="intro-image h-auto w-full border-2 object-contain" :src="blok.image.filename" :alt="blok.image.alt" :style="`border-color: ${blok.project_background_color.color}`" @click="$store.commit('data/modalMutation', true)">
       </div>
+      <component
+        :is="blok.url_project ? 'a' : 'span'"
+        v-if="$store.state.data.windowWidth >= 1024"
+        :class="`project-url xl:row-start-2 xl:row-end-2 xl:col-start-3 xl:col-end-3 ${blok.url_project ? ' font-semibold' : ' italic'} text-center truncate`"
+        :href="blok.url_project ? blok.url_project : false"
+        :target="blok.url_project ? '_blank' : false"
+        :rel="blok.url_project ? 'noopener noreferrer' : false"
+      >
+        {{ blok.url_project ? `${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}` : $languageCase('private project', 'proyecto privado', 'progetto privato') }}
+      </component>
       <div class="project-containe p-5" :style="`background-color: ${blok.project_background_color.color};`">
         <span
           :style="`color: ${blok.project_text_color.color};`"
@@ -14,7 +24,7 @@
           v-text="blok.intro"
         />
       </div>
-      <div class="project-date flex items-center justify-around lg:col-start-1 lg:col-end-3">
+      <div class="project-date flex items-center justify-around xl:col-start-1 xl:col-end-3">
         <h4 class="date-start text-right text-sm sm:text-base">
           {{ changeDate(blok.start_date) }}
         </h4>
@@ -25,16 +35,6 @@
           {{ !blok.current_project ? changeDate(blok.end_date) : $languageCase('present', 'presente', 'presente') }}
         </h4>
       </div>
-      <component
-        :is="blok.url_project ? 'a' : 'span'"
-        v-if="$store.state.data.windowWidth >= 1024"
-        :class="`project-url col-start-3 col-end-3 ${blok.url_project ? ' font-semibold' : ' italic'} text-center truncate`"
-        :href="blok.url_project ? blok.url_project : false"
-        :target="blok.url_project ? '_blank' : false"
-        :rel="blok.url_project ? 'noopener noreferrer' : false"
-      >
-        {{ blok.url_project ? `${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}` : $languageCase('private project', 'proyecto privado', 'progetto privato') }}
-      </component>
     </div>
     <Modal class="modal-image bg-gray-200 bg-opacity-90" modal-style="shadow-sm">
       <template #body>

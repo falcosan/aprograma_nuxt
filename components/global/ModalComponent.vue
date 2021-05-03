@@ -1,11 +1,11 @@
 <template>
-  <div v-if="$store.state.data.modal" class="modal-backdrop fixed flex justify-center items-center inset-0 z-40" tabindex="0" @click.self="$store.commit('data/modalMutation', false)" @keydown.esc="$store.commit('data/modalMutation', false)">
+  <div v-if="$store.state.data.modal" class="modal-backdrop fixed inset-0 flex justify-center items-center p-5 z-40" tabindex="0" @click.self="$store.commit('data/modalMutation', false)" @keydown.esc="$store.commit('data/modalMutation', false)">
     <div :class="`modal ${modalStyle}`">
       <header class="modal-header">
         <slot name="header" />
         <Icon
           close
-          :class="`post-close fixed top-16 right-0 transform -translate-x-full ${$device.isDesktop ? 'md:top-5' : ''}`"
+          class="modal-close fixed top-5 right-5"
           tag="button"
           size="w-6"
           @click.native="$store.commit('data/modalMutation', false)"

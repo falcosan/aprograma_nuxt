@@ -1,5 +1,5 @@
 <template>
-  <div class="post max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl my-0 mx-auto pb-16 pt-10 md:pt-0 md:px-6">
+  <div class="post max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl my-0 mx-auto py-20 md:px-6">
     <Icon
       v-if="$store.state.data.windowWidth >= 768"
       back

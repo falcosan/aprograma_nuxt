@@ -6,7 +6,7 @@
       class="post-close fixed top-5 right-5"
       tag="button"
       size="w-6"
-      @click.native="$router.push('/blog')"
+      @click.native="$router.push(`/${$route.name.split('-')[0]}`)"
     />
     <Icon
       v-else
@@ -15,7 +15,7 @@
       tag="button"
       size="w-6"
       :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
-      @click.native.passive="$router.push('/blog')"
+      @click.native.passive="$router.push(`/${$route.name.split('-')[0]}`)"
     />
     <div class="post-head w-full max-h-full my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
       <component

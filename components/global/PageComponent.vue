@@ -32,18 +32,7 @@ export default {
       required: true
     }
   },
-  data () {
-    return {
-      rowComponent: 0
-    }
-  },
-  mounted () {
-    this.setRow()
-  },
   methods: {
-    setRow () {
-      this.rowComponent = this.$children.map(component => component.blok.row_container).filter(Boolean).length
-    },
     setComponent (condition) {
       if (condition) {
         return this.blok.body.filter(function (item) { return item.row_container })

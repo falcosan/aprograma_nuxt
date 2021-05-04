@@ -9,6 +9,13 @@
 </template>
 <script>
 export default {
+  asyncData (context) {
+    return context.app.$storyapi
+      .get(`cdn/stories${context.store.state.language.language ? `/${context.store.state.language.language}` : context.store.state.language.language}${context.route.path}`)
+      .then((res) => {
+        return res.data
+      })
+  },
   data () {
     return {
       story: {
@@ -26,7 +33,7 @@ export default {
   },
   head () {
     return {
-      title: this.$fetchState.pending ? 'Aprograma' : `${this.story.name} - Aprograma`,
+      title: `${this.story.name} - Aprograma`,
       meta: [
         {
           hid: 'description',

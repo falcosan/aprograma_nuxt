@@ -4,9 +4,9 @@
       {{ blok.title }}
     </h1>
     <div
-      :class="`${blok.name.toLowerCase()}-content grid gap-10`"
+      :class="`${blok.name.toLowerCase()}-content grid gap-5 md:gap-10`"
     >
-      <div class="content-row grid gap-10 lg:grid-flow-col">
+      <div v-if="blok.body.map(component => component.row_container).filter(Boolean).length > 0" class="content-row grid gap-5 md:gap-10 lg:grid-flow-col">
         <component
           :is="component.component"
           v-for="component in setComponent(true)"

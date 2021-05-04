@@ -1,5 +1,5 @@
 <template>
-  <div class="post max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl my-0 mx-auto py-16 md:px-6 prose prose-sm lg:prose-lg xl:prose-xl">
+  <div class="post max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl my-0 mx-auto py-16 md:pt-0 md:px-6">
     <Icon
       v-if="$store.state.data.windowWidth >= 768"
       back
@@ -10,11 +10,6 @@
       @click.native="$router.push(`/${$route.name.split('-')[0]}`)"
     />
     <div class="post-head w-full">
-      <h1
-        :style="`color: ${blok.post_text_color.color};`"
-        class="post-title px-5 pt-5 lg:px-10 lg:pt-10"
-        v-text="blok.title"
-      />
       <Icon
         v-if="$store.state.data.windowWidth < 768"
         back
@@ -26,13 +21,18 @@
       />
       <component
         :is="lookFile()"
-        class="post-file w-full h-full max-h-2xl object-cover object-center"
+        class="post-file w-full h-full max-h-3xl object-cover object-center"
         :alt="`${blok.file.alt} project`"
         :src="blok.file.filename"
       />
     </div>
     <div class="post-body w-full flex justify-center mx-auto break-words" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full px-5 pb-10 sm:px-10 sm:pb-10 max-w-prose">
+      <div class="post-article w-full p-5 sm:p-10 max-w-prose prose prose-sm lg:prose-lg xl:prose-xl">
+        <h1
+          :style="`color: ${blok.post_text_color.color};`"
+          class="post-title"
+          v-text="blok.title"
+        />
         <h2
           :style="`color: ${blok.post_text_color.color};`"
           class="post-intro"

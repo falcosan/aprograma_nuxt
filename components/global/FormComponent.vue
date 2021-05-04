@@ -65,9 +65,6 @@ export default {
       return Object.assign(...this.$contentByName(this.blok.body, 'Field').map(({ title }, index) => ({ [title.toLowerCase()]: Object.values(this.fields)[index] })))
     }
   },
-  watch: {
-    submitting: { handler () { this.onSubmiting() } }
-  },
   destroyed () {
     this.clearFields()
   },
@@ -91,14 +88,6 @@ export default {
       this.alert.message = null
       this.alert.color = ''
       this.$store.dispatch('validator/clearValues')
-    },
-    onSubmiting () {
-      if (this.submitting) {
-        window.scrollTo(0, 0)
-        document.body.classList.add('noscroll')
-      } else {
-        document.body.classList.remove('noscroll')
-      }
     },
     async submit () {
       if (this.blok.type === 'contact_form') {

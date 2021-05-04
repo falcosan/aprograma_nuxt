@@ -1,37 +1,38 @@
 <template>
-  <div :class="`post sm:w-10/12 md:w-9/12 lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-0 mx-auto py-16 sm:px-6 ${$device.isDesktop ? '2xl:pt-0' : ''}`">
+  <div class="post sm:w-10/12 md:w-9/12 lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-0 mx-auto py-16 sm:px-6 max-w-none prose prose-sm lg:prose-lg xl:prose-xl">
     <Icon
       v-if="$store.state.data.windowWidth >= 768"
-      close
-      class="post-close fixed top-5 right-5"
+      back
+      :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
+      :class="`post-close fixed right-6 p-3 ${$device.isDesktop ? 'top-6' : 'top-16'}`"
       tag="button"
       size="w-6"
       @click.native="$router.push(`/${$route.name.split('-')[0]}`)"
     />
-    <Icon
-      v-else
-      close
-      class="post-back flex justify-center absolute p-3 transform translate-x-3 translate-y-3"
-      tag="button"
-      size="w-6"
-      :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
-      @click.native.passive="$router.push(`/${$route.name.split('-')[0]}`)"
-    />
-    <div class="post-head w-full max-h-full my-0 mx-auto row-start-1 row-end-1 col-start-1 col-end-1">
+    <div class="post-head w-full">
+      <h1
+        :style="`color: ${blok.post_text_color.color};`"
+        class="post-title px-5 pt-5 lg:px-10 lg:pt-10"
+        v-text="blok.title"
+      />
+      <Icon
+        v-if="$store.state.data.windowWidth < 768"
+        back
+        class="post-back flex justify-center absolute p-3 transform translate-x-3 translate-y-3"
+        tag="button"
+        size="w-6"
+        :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
+        @click.native.passive="$router.push(`/${$route.name.split('-')[0]}`)"
+      />
       <component
         :is="lookFile()"
-        class="post-file w-full h-full row-start-1 row-end-3 object-cover"
+        class="post-file w-full h-full max-h-2xl object-cover object-center"
         :alt="`${blok.file.alt} project`"
         :src="blok.file.filename"
       />
     </div>
     <div class="post-body w-full flex justify-center mx-auto break-words" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full prose max-w-prose prose-sm lg:prose-lg xl:prose-xl p-5 sm:p-10">
-        <h1
-          :style="`color: ${blok.post_text_color.color};`"
-          class="post-title"
-          v-text="blok.title"
-        />
+      <div class="post-article w-full p-5 sm:p-10 max-w-prose">
         <h2
           :style="`color: ${blok.post_text_color.color};`"
           class="post-intro"

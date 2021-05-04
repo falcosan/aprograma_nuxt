@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 *::-webkit-scrollbar {
     width: 0.2rem;
     height: 0.2rem;
@@ -16,6 +15,9 @@
 }
 
 .noscroll {
+    height: 100%;
+    width: 100%;
+    position: fixed;
     overflow: hidden;
 }
 

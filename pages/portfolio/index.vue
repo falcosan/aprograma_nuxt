@@ -5,7 +5,6 @@
     :key="story.content._uid"
     :blok="story.content"
   />
-  <div v-else class="h-screen" />
 </template>
 <script>
 import Project from '@/components/portfolio/ProjectComponent'

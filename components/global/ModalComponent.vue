@@ -7,7 +7,7 @@
           <Icon
             v-if="close"
             close
-            class="modal-close fixed top-5 right-5"
+            class="modal-close fixed top-5 right-5 p-3"
             tag="button"
             size="w-6"
             @click.native.stop="$emit('update:open', !open)"

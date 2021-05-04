@@ -5,8 +5,7 @@
     :style="`background-color: ${randomBackgroundColor}; color: ${randomTextColor};`"
     :class="`text-container max-w-full
     ${customClass('index', 'all', 'w-max')}
-    ${customClass('index', blok.name === 'text_home_2', 'transition-colors duration-700 ease-in-out')}
-    ${customClass('contact', blok.name === 'text_contact_1', 'lg:col-start-2 lg:col-end-2')}`"
+    ${customClass('index', blok.name === 'text_home_2', 'transition-colors duration-700 ease-in-out')}`"
   >
     <span
       :class="`text-content h-full block p-5 md:p-10 prose-sm md:prose-lg xl:prose-xl break-words`"

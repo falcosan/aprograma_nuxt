@@ -4,11 +4,19 @@
       {{ blok.title }}
     </h1>
     <div
-      :class="`${blok.name.toLowerCase()}-content grid gap-x-10 gap-y-5`"
+      :class="`${blok.name.toLowerCase()}-content grid gap-10`"
     >
+      <div class="content-row grid gap-10 lg:grid-flow-col">
+        <component
+          :is="component.component"
+          v-for="component in setComponent(true)"
+          :key="component._uid"
+          :blok="component"
+        />
+      </div>
       <component
         :is="component.component"
-        v-for="component in blok.body"
+        v-for="component in setComponent(false)"
         :key="component._uid"
         :blok="component"
       />
@@ -24,7 +32,25 @@ export default {
       required: true
     }
   },
+  data () {
+    return {
+      rowComponent: 0
+    }
+  },
+  mounted () {
+    this.setRow()
+  },
   methods: {
+    setRow () {
+      this.rowComponent = this.$children.map(component => component.blok.row_container).filter(Boolean).length
+    },
+    setComponent (condition) {
+      if (condition) {
+        return this.blok.body.filter(function (item) { return item.row_container })
+      } else {
+        return this.blok.body.filter(function (item) { return !item.row_container })
+      }
+    },
     customClass (page, component, style) {
       if (this.$route.name === page && component) {
         return style

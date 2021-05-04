@@ -1,7 +1,7 @@
 
 <template>
   <div
-    class="form"
+    :class="`form ${customClass('contact', blok.name === 'form_contact_1', 'lg:col-start-1 lg:col-end-1')}`"
   >
     <transition
       enter-active-class="duration-200 in-out"
@@ -75,6 +75,13 @@ export default {
     this.clearFields()
   },
   methods: {
+    customClass (page, component, style) {
+      if (this.$route.name === page && component) {
+        return style
+      } else {
+        return ''
+      }
+    },
     setAlert (message, color) {
       this.alert.message = message
       this.alert.color = color

@@ -4,7 +4,7 @@
       {{ blok.title }}
     </h1>
     <div
-      :class="`${blok.name.toLowerCase()}-content grid gap-x-10 gap-y-5 ${$store.state.data.windowWidth >= 1024 ? blok.page_direction === 'column' ? 'grid-flow-col' : 'grid-flow-row' : 'grid-flow-row'}`"
+      :class="`${blok.name.toLowerCase()}-content grid gap-x-10 gap-y-5`"
     >
       <component
         :is="component.component"

@@ -32,7 +32,7 @@
       />
     </div>
     <div class="post-body w-full flex justify-center mx-auto break-words" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full p-5 sm:p-10 max-w-prose">
+      <div class="post-article w-full px-5 pb-10 sm:px-10 sm:pb-10 max-w-prose">
         <h2
           :style="`color: ${blok.post_text_color.color};`"
           class="post-intro"

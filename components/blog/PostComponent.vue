@@ -1,16 +1,16 @@
 <template>
-  <div :class="`post max-w-lg md:max-w-none md:w-9/12 lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl relative my-0 mx-auto py-16 px-6 ${$device.isDesktop ? '2xl:pt-0' : ''}`">
+  <div :class="`post sm:w-10/12 md:w-9/12 lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-0 mx-auto py-16 sm:px-6 ${$device.isDesktop ? '2xl:pt-0' : ''}`">
     <Icon
       v-if="$store.state.data.windowWidth >= 768"
       close
-      :class="`post-close fixed top-16 right-0 transform -translate-x-full ${$device.isDesktop ? 'md:top-5' : ''}`"
+      class="post-close fixed top-5 right-5"
       tag="button"
       size="w-6"
       @click.native="goBack"
     />
     <Icon
       v-else
-      back
+      close
       class="post-back flex justify-center absolute p-3 transform translate-x-3 translate-y-3"
       tag="button"
       size="w-6"
@@ -26,7 +26,7 @@
       />
     </div>
     <div class="post-body w-full flex justify-center mx-auto break-words" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full prose max-w-prose prose-sm lg:prose-lg xl:prose-xl p-10">
+      <div class="post-article w-full prose max-w-prose prose-sm lg:prose-lg xl:prose-xl p-5 sm:p-10">
         <h1
           :style="`color: ${blok.post_text_color.color};`"
           class="post-title"

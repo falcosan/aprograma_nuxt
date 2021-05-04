@@ -17,7 +17,7 @@
         />
         <div class="teaser-text w-full grid gap-y-5 p-5 lg:p-10" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <span
-            class="teaser-title self-end py-1 text-xl md:text-3xl overflow-hidden"
+            class="teaser-title self-end py-1 text-xl md:text-3xl font-medium overflow-hidden"
           >
             {{ postContent.title }}
           </span>

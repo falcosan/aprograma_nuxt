@@ -1,5 +1,5 @@
 <template>
-  <div class="project max-w-lg md:max-w-none md:w-9/12 lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl grid gap-5 my-0 mx-auto py-16 px-8">
+  <div class="project max-w-lg md:max-w-none md:w-9/12 lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl grid gap-5 my-0 mx-auto py-16 px-6">
     <h1 class="project-title flex justify-center lg:justify-start items-center col-start-1 col-end-4 lg:col-end-3 text-xl lg:text-2xl text-center lg:text-left break-words">
       {{ blok.title }}
     </h1>

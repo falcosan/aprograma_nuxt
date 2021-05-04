@@ -1,15 +1,16 @@
 <template>
   <transition enter-active-class="duration-300 in-out" leave-active-class="duration-300 out-in" enter-class="-translate-y-full opacity-0" leave-to-class="-translate-y-full opacity-0">
-    <div v-if="openModal" class="modal-backdrop fixed inset-0 flex justify-center items-center z-40 p-2 sm:p-7 md:p-14 xl:p-16 cursor-pointer" tabindex="0" @click.self.stop="$emit('update:openModal', !openModal)" @keydown.esc="$emit('update:openModal', !openModal)">
+    <div v-if="open" :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 p-2 sm:p-7 md:p-14 xl:p-16${close ? ' cursor-pointer' : ''}`" tabindex="0" @click.self.stop="close ? $emit('update:open', !open) : false" @keydown.esc="close ? $emit('update:open', !open) : false">
       <div :class="`modal cursor-default ${modalStyle}`">
         <header class="modal-header">
           <slot name="header" />
           <Icon
+            v-if="close"
             close
             class="modal-close fixed top-5 right-5"
             tag="button"
             size="w-6"
-            @click.native.stop="$emit('update:openModal', !openModal)"
+            @click.native.stop="$emit('update:open', !open)"
           />
         </header>
         <section class="modal-body">
@@ -25,9 +26,13 @@
 <script>
 export default {
   props: {
-    openModal: {
+    open: {
       type: Boolean,
       required: true
+    },
+    close: {
+      type: Boolean,
+      default: false
     },
     modalStyle: {
       type: String,
@@ -35,11 +40,11 @@ export default {
     }
   },
   watch: {
-    openModal: { handler () { this.checkModal() } }
+    open: { handler () { this.checkModal() } }
   },
   methods: {
     checkModal () {
-      if (this.openModal) {
+      if (this.open) {
         this.$nextTick(function () {
           this.$el.focus()
         })

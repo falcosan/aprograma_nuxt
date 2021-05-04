@@ -3,20 +3,16 @@
   <div
     class="form"
   >
-    <transition
-      enter-active-class="duration-200 in-out"
-      leave-active-class="duration-200 out-in"
-      enter-class="opacity-0"
-      leave-to-class="opacity-0"
-    >
-      <Icon
-        v-if="submitting"
-        tag="span"
-        loader
-        class="form-loader w-screen h-screen fixed flex justify-center inset-0 z-30 pointer-events-none bg-opacity-80 bg-white"
-        size="w-32"
-      />
-    </transition>
+    <Modal :open.sync="submitting" class="modal-submit bg-gray-200 bg-opacity-90">
+      <template #body>
+        <Icon
+          tag="span"
+          loader
+          class="form-loader"
+          size="w-32"
+        />
+      </template>
+    </Modal>
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
       <div v-if="alert.message" :class="`form-alert fixed z-20 w-full top-0 left-0 p-5 opacity-90 text-center text-sm md:text-base transform ${alert.color} text-white`" v-text="alert.message" />
     </transition>
@@ -44,8 +40,9 @@
 <script>
 import axios from 'axios'
 import Field from '../global/FieldComponent'
+import Modal from '../global/ModalComponent'
 export default {
-  components: { Field },
+  components: { Field, Modal },
   props: {
     blok: {
       type: Object,

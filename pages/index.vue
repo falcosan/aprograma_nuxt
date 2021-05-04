@@ -15,6 +15,10 @@ export default {
       .get(`cdn/stories${context.store.state.language.language ? `/${context.store.state.language.language}` : context.store.state.language.language}${slug}`)
       .then((res) => {
         return res.data
+      }).catch((res) => {
+        context.$errorMessage(res.response,
+          'Sorry but this content doesn\'t extist', `Sorry, but the content called: "${context.route.name}" has a problem or doesn't exist`
+        )
       })
   },
   data () {
@@ -26,12 +30,8 @@ export default {
   },
   async fetch () {
     const slug = (this.$route.path === '/' || this.$route.path === '') ? '/home' : this.$route.path
-    try {
-      const { data } = await this.$storyapi.get(`cdn/stories${this.$store.state.language.language ? `/${this.$store.state.language.language}` : this.$store.state.language.language}${slug}`)
-      this.story = data.story
-    } catch (err) {
-      this.$errorMessage(err, 'Sorry, but this content doesn\'t exist', 'Sorry, but this content has a problem or doesn\'t exist')
-    }
+    const { data } = await this.$storyapi.get(`cdn/stories${this.$store.state.language.language ? `/${this.$store.state.language.language}` : this.$store.state.language.language}${slug}`)
+    this.story = data.story
   },
   watch: {
     '$store.state.language.language': '$fetch'

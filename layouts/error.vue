@@ -23,7 +23,7 @@
 export default {
   props: {
     error: {
-      tpye: Object,
+      type: Object,
       required: true
     }
   }

@@ -3,13 +3,13 @@
     <ul :class="`image-container description-container grid${blok.image.length > 1 ? ' sm:grid-cols-2' : ' grid-cols-1'} col-start-1 col-end-1 lg:col-end-3 gap-5`" :style="inlineImageStyle">
       <li v-for="(image, index) in blok.image" :key="index" class="image-item" @click="showModal = true">
         <img
-          class="description-image w-full max-h-96 lg:max-h-full object-contain cursor-pointer"
+          class="description-image w-full max-h-96 lg:max-h-full object-contain cursor-pointer select-none"
           :src="image.filename"
           :alt="image.alt"
         >
         <Modal :open-modal.sync="showModal" class="modal-image bg-gray-200 bg-opacity-90" modal-style="shadow-sm">
           <template #body>
-            <img class="image-detail" :src="image.filename" :alt="image.alt">
+            <img class="image-description select-none" :src="image.filename" :alt="image.alt">
           </template>
         </Modal>
       </li>

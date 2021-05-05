@@ -65,7 +65,7 @@ export default {
       return Object.assign(...this.$contentByName(this.blok.body, 'Field').map(({ title }, index) => ({ [title.toLowerCase()]: Object.values(this.fields)[index] })))
     }
   },
-  destroyed () {
+  beforeDestroy () {
     this.clearFields()
   },
   methods: {

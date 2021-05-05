@@ -24,7 +24,7 @@
             </h2>
           </div>
           <div :class="`image-container flex row-start-1 row-end-1 ${index % 2 == 0 ? 'col-start-2 col-end-2' : 'col-start-1 col-end-1'}`">
-            <img class="item-image w-full object-cover object-center pointer-events-none" :src="item.content.image.filename" :alt="item.content.image.alt">
+            <img class="item-image w-full object-cover object-center pointer-events-none select-none" :src="item.content.image.filename" :alt="item.content.image.alt">
           </div>
         </NuxtLink>
       </li>
@@ -90,12 +90,11 @@ export default {
   updated () {
     this.focusSlide()
   },
-  destroyed () {
+  beforeDestroy () {
     this.resetData()
   },
   methods: {
     next () {
-      this.focusSlide()
       if (this.blok.length - 1 > this.frame.up && this.blok.length > this.frame.down) {
         this.indexControls++
         this.frame.up++
@@ -111,7 +110,6 @@ export default {
       }
     },
     prev () {
-      this.focusSlide()
       if (this.frame.up !== 0 && this.frame.down !== 1) {
         this.indexControls--
         this.frame.up--
@@ -129,7 +127,9 @@ export default {
       this.translation.leave = ''
     },
     focusSlide () {
-      return this.$refs.slide[0].focus({ preventScroll: true })
+      this.$nextTick(function () {
+        this.$refs.slide[0].focus({ preventScroll: true })
+      })
     }
   }
 }

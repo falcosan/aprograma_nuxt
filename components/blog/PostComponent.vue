@@ -21,7 +21,7 @@
       />
       <component
         :is="lookFile()"
-        class="post-file w-full h-full max-h-3xl object-cover object-center"
+        class="post-file w-full h-full max-h-3xl object-cover object-center select-none"
         :alt="`${blok.file.alt} project`"
         :src="blok.file.filename"
       />

@@ -94,7 +94,7 @@ export default {
     }
   },
   build: {
-    babel:{
+    babel: {
       plugins: [
         ['@babel/plugin-proposal-private-methods', { loose: true }]
       ]

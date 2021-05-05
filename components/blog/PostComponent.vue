@@ -4,7 +4,7 @@
       v-if="$store.state.data.windowWidth >= 768"
       back
       :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
-      :class="`post-close fixed right-6 p-3 ${$device.isDesktop ? 'top-6' : 'top-16'}`"
+      :class="`post-close fixed right-6 ${$device.isDesktop ? 'top-6' : 'top-16'}`"
       tag="button"
       size="w-6"
       @click.native="$router.push(`/${$route.name.split('-')[0]}`)"
@@ -13,7 +13,7 @@
       <Icon
         v-if="$store.state.data.windowWidth < 768"
         back
-        class="post-back flex justify-center absolute p-3 transform translate-x-3 translate-y-3"
+        class="post-back flex justify-center absolute transform translate-x-3 translate-y-3"
         tag="button"
         size="w-6"
         :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"

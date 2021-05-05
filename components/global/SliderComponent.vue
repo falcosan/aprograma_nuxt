@@ -10,10 +10,14 @@
     <template v-for="(item, index) in blok">
       <li
         v-if="index === frame.up || index === frame.down"
+        ref="slide"
         :key="item.uuid"
-        :class="`slide slide-item w-full h-80 flex col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'}`"
+        tabindex="0"
+        :class="`slide slide-item w-full h-80 flex col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} outline-none`"
+        @keydown.right.prevent="next"
+        @keydown.left.prevent="prev"
       >
-        <NuxtLink :to="`${parent}/${item.slug}`" class="item-link w-full grid grid-rows-1 grid-cols-2">
+        <NuxtLink v-click-outside="focusSlide" :to="`${parent}/${item.slug}`" class="item-link w-full grid grid-rows-1 grid-cols-2">
           <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1`" :style="`background-color: ${item.content.teaser_background_color.color};`">
             <h2 class="item-text text-xl xl:text-2xl px-5 lg:px-10 overflow-hidden" :style="`color: ${item.content.teaser_text_color.color};`">
               {{ item.content.title }}
@@ -38,6 +42,24 @@
 </template>
 <script>
 export default {
+  directives: {
+    'click-outside': {
+      bind (el, binding) {
+        const handler = (e) => {
+          if (binding.modifiers.bubble || (!el.contains(e.target) && el !== e.target)) {
+            binding.value(e)
+          }
+        }
+        el.outsideClick = handler
+        document.addEventListener('click', handler)
+      },
+
+      unbind (el) {
+        document.removeEventListener('click', el.outsideClick)
+        el.outsideClick = null
+      }
+    }
+  },
   props: {
     blok: {
       type: Array,
@@ -62,11 +84,18 @@ export default {
       }
     }
   },
+  mounted () {
+    this.focusSlide()
+  },
+  updated () {
+    this.focusSlide()
+  },
   destroyed () {
     this.resetData()
   },
   methods: {
     next () {
+      this.focusSlide()
       if (this.blok.length - 1 > this.frame.up && this.blok.length > this.frame.down) {
         this.indexControls++
         this.frame.up++
@@ -82,6 +111,7 @@ export default {
       }
     },
     prev () {
+      this.focusSlide()
       if (this.frame.up !== 0 && this.frame.down !== 1) {
         this.indexControls--
         this.frame.up--
@@ -97,6 +127,9 @@ export default {
       this.transitionActive = ''
       this.translation.enter = ''
       this.translation.leave = ''
+    },
+    focusSlide () {
+      return this.$refs.slide[0].focus({ preventScroll: true })
     }
   }
 }

@@ -94,9 +94,12 @@ export default {
     }
   },
   build: {
+    babel:{
+      plugins: [
+        ['@babel/plugin-proposal-private-methods', { loose: true }]
+      ]
+    },
     postcss: {
-      plugins: {
-      },
       preset: {
         autoprefixer: {
           grid: 'autoplace'

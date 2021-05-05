@@ -1,10 +1,10 @@
 {
   "name": "aprograma",
   "version": "1.0.0",
-  "description": "aprograma",
+  "description": "Aprograma",
   "contributors": [
     "Daniele Falchetti <danielefalche@gmail.com>",
-    "aprograma"
+    "Aprograma"
   ],
   "private": true,
   "scripts": {

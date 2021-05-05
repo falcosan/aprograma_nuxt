@@ -1,5 +1,5 @@
 <template>
-  <div :class="`post max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl my-0 mx-auto pt-10 ${$device.isDesktop ? 'md:pt-0 pb-20' : 'pb-20'} md:px-6`">
+  <div :class="`post max-w-lg md:max-w-none md:w-9/12 2xl:max-w-7xl my-0 mx-auto py-20 px-6 prose prose-sm lg:prose-lg xl:prose-xl`">
     <Icon
       v-if="$store.state.data.windowWidth >= 768"
       back
@@ -10,10 +10,15 @@
       @click.native="$router.push(`/${$route.name.split('-')[0]}`)"
     />
     <div class="post-head w-full">
+      <h1
+        :style="`color: ${blok.post_text_color.color};`"
+        class="post-title"
+        v-text="blok.title"
+      />
       <Icon
         v-if="$store.state.data.windowWidth < 768"
         back
-        class="post-back flex justify-center absolute transform translate-x-3 translate-y-3"
+        class="post-back absolute"
         tag="button"
         size="w-6"
         :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
@@ -21,26 +26,21 @@
       />
       <component
         :is="lookFile()"
-        class="post-file w-full h-full lg:h-lg xl:h-xl 2xl:h-2xl object-cover object-center select-none"
+        class="post-file w-full select-none"
         :alt="`${blok.file.alt} project`"
         :src="blok.file.filename"
       />
     </div>
-    <div class="post-body w-full flex justify-center mx-auto break-words" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full p-5 sm:p-10 max-w-prose prose prose-sm lg:prose-lg xl:prose-xl">
-        <h1
-          :style="`color: ${blok.post_text_color.color};`"
-          class="post-title"
-          v-text="blok.title"
-        />
+    <div class="post-body w-full flex justify-center break-words" :style="`background-color: ${blok.post_background_color.color};`">
+      <div class="post-article w-full p-5 sm:p-10 max-w-prose">
         <h2
           :style="`color: ${blok.post_text_color.color};`"
           class="post-intro"
           v-text="blok.intro"
         />
         <h3
-          :style="`color: ${blok.post_text_color.color}; border-color: ${blok.post_text_color.color};`"
-          class="post-author border-t border-b py-8 italic"
+          :style="`color: ${blok.post_text_color.color};`"
+          class="post-author border-b-4 border-dotted py-3 italic"
         >
           {{ $languageCase('by', 'de', 'di') }} {{ blok.author }}
         </h3>

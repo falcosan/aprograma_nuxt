@@ -1,5 +1,5 @@
 <template>
-  <div class="post max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl my-0 mx-auto py-20 md:px-6">
+  <div :class="`post max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl my-0 mx-auto pt-10 ${$device.isDesktop ? 'md:pt-0 pb-20' : 'pb-20'} md:px-6`">
     <Icon
       v-if="$store.state.data.windowWidth >= 768"
       back
@@ -21,7 +21,7 @@
       />
       <component
         :is="lookFile()"
-        class="post-file w-full h-full max-h-3xl object-cover object-center select-none"
+        class="post-file w-full h-full lg:h-lg xl:h-xl 2xl:h-2xl object-cover object-center select-none"
         :alt="`${blok.file.alt} project`"
         :src="blok.file.filename"
       />

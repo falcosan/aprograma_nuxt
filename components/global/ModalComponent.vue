@@ -1,6 +1,13 @@
 <template>
   <transition enter-active-class="duration-300 in-out" leave-active-class="duration-300 out-in" enter-class="-translate-y-full opacity-0" leave-to-class="-translate-y-full opacity-0">
-    <div v-if="open" :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 p-2 sm:p-7 md:p-14 xl:p-20${close ? ' cursor-pointer' : ''}`" tabindex="0" @click.self.passive.once.stop="close ? $emit('update:open', !open) : false" @keydown.esc="close ? $emit('update:open', !open) : false">
+    <div
+      v-if="open"
+      ref="modal"
+      :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 p-2 sm:p-7 md:p-14 xl:p-20${close ? ' cursor-pointer' : ''}`"
+      tabindex="0"
+      @click.self.passive.stop="close ? $emit('update:open', !open) : false"
+      @keydown.esc="close ? $emit('update:open', !open) : false"
+    >
       <div :class="`modal h-full ${modalStyle} cursor-default`">
         <header class="modal-header">
           <slot name="header" />
@@ -10,10 +17,10 @@
             class="modal-close fixed top-5 right-5"
             tag="button"
             size="w-6"
-            @click.native.passive.once.stop="$emit('update:open', !open)"
+            @click.native.passive.stop="$emit('update:open', !open)"
           />
         </header>
-        <section class="modal-body h-full flex flex-col justify-center" @click.self.passive.once.stop="close ? $emit('update:open', !open) : false">
+        <section class="modal-body h-full flex flex-col justify-center" @click.self.passive.stop="close ? $emit('update:open', !open) : false">
           <slot name="body" />
         </section>
         <footer class="modal-footer">
@@ -46,7 +53,7 @@ export default {
     checkModal () {
       if (this.open) {
         this.$nextTick(function () {
-          this.$el.focus({ preventScroll: true })
+          this.$refs.modal.focus({ preventScroll: true })
         })
         document.body.classList.add('noscroll')
       } else {

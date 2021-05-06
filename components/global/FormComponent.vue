@@ -24,6 +24,7 @@
       class="form-fields"
       novalidate="true"
       autocomplete="off"
+      autocorrect="off"
       @submit.prevent="submit"
     >
       <Field

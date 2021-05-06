@@ -23,24 +23,24 @@
         © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
       </h4>
       <div
-        class="social-links flex flex-1 row-start-1 row-end-1 col-start-2 col-end-2 w-max justify-end"
+        class="social-links grid grid-flow-col gap-3 mr-3 flex-1 row-start-1 row-end-1 col-start-2 col-end-2 justify-end"
       >
         <Icon
           v-for="iconLink in $contentByName(blok.body, 'Icon')"
           :key="iconLink._uid"
           size="w-6"
           :blok="iconLink"
-          class="social-icon w-6 mr-4"
+          class="social-icon"
         />
       </div>
     </div>
   </footer>
   <footer
     v-else
-    class="footer h-48 my-12 mx-auto"
+    class="footer h-48 my-12 mx-auto px-2"
   >
     <div class="footer-content h-full flex flex-col items-center text-center">
-      <span class="input-dot relative bottom-10 text-center animate-bounce text-xl" :style="`color: ${blok.text_color.color};`">•</span>
+      <span class="input-dot relative bottom-10 animate-bounce text-center text-xl" :style="`color: ${blok.text_color.color};`">•</span>
       <div
         class="messages-container flex-1"
       >
@@ -55,14 +55,14 @@
         © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
       </h4>
       <div
-        class="social-links flex flex-1"
+        class="social-links grid grid-flow-col gap-3 flex-1"
       >
         <Icon
           v-for="iconLink in $contentByName(blok.body, 'Icon')"
           :key="iconLink._uid"
           size="w-6"
           :blok="iconLink"
-          class="social-icon mr-4"
+          class="social-icon"
         />
       </div>
     </div>

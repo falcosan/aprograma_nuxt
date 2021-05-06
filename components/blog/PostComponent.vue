@@ -1,5 +1,5 @@
 <template>
-  <div :class="`post max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl my-0 mx-auto py-20 px-6 prose prose-sm lg:prose-lg xl:prose-xl`">
+  <div :class="`post max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl my-0 mx-auto pb-10 ${$device.isDesktop ? 'pt-32 md:pt-20' : 'pt-24'} px-6 prose prose-sm lg:prose-lg xl:prose-xl`">
     <Icon
       v-if="$store.state.data.windowWidth >= 768"
       back
@@ -9,7 +9,7 @@
       size="w-6"
       @click.native="$router.push(`/${$route.name.split('-')[0]}`)"
     />
-    <div class="post-head w-full flex flex-col">
+    <div class="post-head w-full">
       <h1
         :style="`color: ${blok.post_text_color.color};`"
         class="post-title"
@@ -26,7 +26,7 @@
       />
       <component
         :is="lookFile()"
-        class="post-file w-full h-full max-h-2xl object-cover object-center select-none"
+        class="post-file w-full h-full max-h-3xl object-cover object-center select-none"
         :alt="`${blok.file.alt} project`"
         :src="blok.file.filename"
       />

@@ -20,7 +20,7 @@
       <h4
         class="footer-copyright text-sm text-center flex-1 row-start-1 row-end-1 col-start-1 col-end-3"
       >
-        © 2020 - {{ currentYear }}, Aprograma
+        © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
       </h4>
       <div
         class="social-links flex flex-1 row-start-1 row-end-1 col-start-2 col-end-2 w-max justify-end"
@@ -52,7 +52,7 @@
         class="footer-copyright flex-1 text-sm text-center"
         :style="`color: ${blok.text_color.color};`"
       >
-        © 2020 - {{ currentYear }}, Aprograma
+        © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
       </h4>
       <div
         class="social-links flex flex-1"

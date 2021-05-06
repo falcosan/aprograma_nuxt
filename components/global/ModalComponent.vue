@@ -13,7 +13,7 @@
             @click.native.passive.stop="$emit('update:open', !open)"
           />
         </header>
-        <section class="modal-body h-full flex flex-col justify-center">
+        <section class="modal-body h-full flex flex-col justify-center" @click.self.passive.stop="close ? $emit('update:open', !open) : false">
           <slot name="body" />
         </section>
         <footer class="modal-footer">

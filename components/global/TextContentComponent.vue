@@ -8,7 +8,7 @@
     ${customClass('index', blok.name === 'text_home_2', 'transition-colors duration-700 ease-in-out')}`"
   >
     <span
-      :class="`text-content h-full block p-5 md:p-10 prose-sm md:prose-lg xl:prose-xl break-words`"
+      :class="`text-content h-full block p-5 md:p-10 prose-sm md:prose-lg xl:prose-xl break-all ss:break-normal`"
       v-html="blok.text.content"
     />
   </div>

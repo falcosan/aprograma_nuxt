@@ -5,30 +5,33 @@
   >
     <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link grid">
       <div
-        class="teaser-content lg:h-64 xl:h-72 lg:relative lg:z-10 flex flex-col lg:flex-row row-start-1 row-end-1 col-start-1 col-end-3"
+        class="teaser-content lg:h-64 lg:relative lg:z-10 flex flex-col lg:flex-row row-start-1 row-end-1 col-start-1 col-end-3"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
         <component
           :is="lookFile()"
-          class="teaser-file w-full max-h-72 lg:max-w-xs lg:w-screen xl:max-w-sm object-cover select-none"
+          class="teaser-file w-full h-full lg:max-w-xs lg:w-screen xl:max-w-sm object-cover select-none"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div class="teaser-text w-full grid gap-y-5 p-5 lg:p-10" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
-          <span
-            class="teaser-title self-end py-1 text-xl md:text-3xl font-medium overflow-hidden"
-          >
-            {{ postContent.title }}
-          </span>
-          <span
-            class="teaser-intro text-base md:text-md overflow-hidden"
-          >
-            {{ postContent.intro }}
-          </span>
+        <div :class="`teaser-text w-full grid gap-5 auto-rows-min${$device.isDesktop ? ' lg:content-center' : ' content-between'} p-5 lg:p-10`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+          <div class="text-description">
+            <span
+              class="teaser-title mb-5 text-xl md:text-3xl font-medium overflow-hidden"
+            >
+              {{ postContent.title }}
+            </span>
+            <span
+              :style="`-webkit-line-clamp: ${$device.isDesktop ? '3' : '2'};`"
+              class="teaser-intro text-base md:text-md overflow-hidden"
+            >
+              {{ postContent.intro }}
+            </span>
+          </div>
           <span
             v-if=" $store.state.data.windowWidth < 1024 || !$device.isDesktop"
-            class="date-text text-right text-lg"
+            class="text-date text-right text-lg"
             v-text="changeDate(postContent.date)"
           />
         </div>
@@ -98,7 +101,6 @@ export default {
 .teaser-intro{
    display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
 }
 
 </style>

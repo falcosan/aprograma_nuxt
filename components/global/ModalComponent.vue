@@ -46,7 +46,7 @@ export default {
     checkModal () {
       if (this.open) {
         this.$nextTick(function () {
-          this.$el.focus()
+          this.$el.focus({ preventScroll: true })
         })
         document.body.classList.add('noscroll')
       } else {

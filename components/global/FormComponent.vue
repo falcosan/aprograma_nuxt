@@ -8,7 +8,7 @@
         <Icon
           tag="span"
           loader
-          class="form-loader"
+          class="form-loader max-h-full"
           size="w-32"
         />
       </template>
@@ -23,6 +23,7 @@
       :name="blok.title.toLowerCase().replace(/ /g,'-')"
       class="form-fields"
       novalidate="true"
+      autocomplete="off"
       @submit.prevent="submit"
     >
       <Field

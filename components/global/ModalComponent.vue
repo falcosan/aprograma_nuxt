@@ -1,7 +1,7 @@
 <template>
   <transition enter-active-class="duration-300 in-out" leave-active-class="duration-300 out-in" enter-class="-translate-y-full opacity-0" leave-to-class="-translate-y-full opacity-0">
-    <div v-if="open" :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 p-2 sm:p-7 md:p-14 xl:p-20${close ? ' cursor-pointer' : ''}`" tabindex="0" @click.self.stop="close ? $emit('update:open', !open) : false" @keydown.esc="close ? $emit('update:open', !open) : false">
-      <div :class="`modal cursor-default ${modalStyle}`">
+    <div v-if="open" :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 p-2 sm:p-7 md:p-14 xl:p-20${close ? ' cursor-pointer' : ''}`" tabindex="0" @click.self.passive.stop="close ? $emit('update:open', !open) : false" @keydown.esc="close ? $emit('update:open', !open) : false">
+      <div :class="`modal h-full ${modalStyle} cursor-default`">
         <header class="modal-header">
           <slot name="header" />
           <Icon
@@ -10,10 +10,10 @@
             class="modal-close fixed top-5 right-5"
             tag="button"
             size="w-6"
-            @click.native.stop="$emit('update:open', !open)"
+            @click.native.passive.stop="$emit('update:open', !open)"
           />
         </header>
-        <section class="modal-body">
+        <section class="modal-body h-full flex flex-col justify-center">
           <slot name="body" />
         </section>
         <footer class="modal-footer">

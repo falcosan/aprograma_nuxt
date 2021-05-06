@@ -38,7 +38,7 @@
     </div>
     <Modal class="modal-image bg-gray-200 bg-opacity-90" close :open.sync="showModal" modal-style="shadow-sm">
       <template #body>
-        <img class="image-project select-none" :src="blok.image.filename" :alt="blok.image.alt">
+        <img class="image-project max-h-full select-none" :src="blok.image.filename" :alt="blok.image.alt">
       </template>
     </Modal>
     <div v-if="$contentByName(blok.body, 'ProjectDescription').length > 0" class="project-details grid gap-5 col-start-1 col-end-4 mt-10">

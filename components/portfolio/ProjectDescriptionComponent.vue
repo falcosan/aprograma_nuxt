@@ -9,7 +9,7 @@
         >
         <Modal :open-modal.sync="showModal" class="modal-image bg-gray-200 bg-opacity-90" modal-style="shadow-sm">
           <template #body>
-            <img class="image-description select-none" :src="image.filename" :alt="image.alt">
+            <img class="image-description max-h-full select-none" :src="image.filename" :alt="image.alt">
           </template>
         </Modal>
       </li>

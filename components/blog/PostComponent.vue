@@ -9,7 +9,7 @@
       size="w-6"
       @click.native="$router.push(`/${$route.name.split('-')[0]}`)"
     />
-    <div class="post-head w-full">
+    <div class="post-head w-full flex flex-col">
       <h1
         :style="`color: ${blok.post_text_color.color};`"
         class="post-title"
@@ -26,16 +26,16 @@
       />
       <component
         :is="lookFile()"
-        class="post-file w-full h-full max-h-3xl object-cover object-center select-none"
+        class="post-file w-full h-full max-h-2xl object-cover object-center select-none"
         :alt="`${blok.file.alt} project`"
         :src="blok.file.filename"
       />
     </div>
-    <div class="post-body w-full flex justify-center break-words" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full p-5 sm:p-10 max-w-prose">
+    <div class="post-body w-full flex justify-center" :style="`background-color: ${blok.post_background_color.color};`">
+      <div class="post-article w-full pb-5 px-5 pt-0 max-w-prose">
         <h2
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-intro"
+          class="post-intro m-0"
           v-text="blok.intro"
         />
         <h3

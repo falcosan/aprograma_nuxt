@@ -36,7 +36,7 @@
         </h4>
       </div>
     </div>
-    <Modal class="modal-image bg-gray-200 bg-opacity-90" close :open.sync="showModal" modal-style="shadow-sm">
+    <Modal class="modal-image bg-gray-200 bg-opacity-90" close-mode :open="showModal" modal-style="shadow-sm" @close="showModal = false">
       <template #body>
         <img class="image-project max-h-full select-none cursor-default" :src="blok.image.filename" :alt="blok.image.alt">
       </template>

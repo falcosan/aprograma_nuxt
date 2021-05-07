@@ -3,7 +3,7 @@
     <div
       v-if="open"
       ref="modal"
-      :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 p-2 sm:p-14 xl:p-20${closeMode ? ' cursor-pointer' : ''}`"
+      :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 p-2 sm:p-14 xl:p-20 ${closeMode ? 'cursor-pointer' : ''}`"
       tabindex="0"
       @click.self.passive.once.stop="closeMode ? $emit('close') : false"
       @keydown.esc="closeMode ? $emit('close') : false"
@@ -20,7 +20,7 @@
             @click.native.passive.once.stop="$emit('close')"
           />
         </header>
-        <section :class="`modal-body h-full flex flex-col justify-center ${closeMode ? ' cursor-pointer' : ''}`" @click.self.passive.once.stop="closeMode ? $emit('close') : false">
+        <section :class="`modal-body h-full flex flex-col justify-center ${closeMode ? 'cursor-pointer' : ''}`" @click.self.passive.once.stop="closeMode ? $emit('close') : false">
           <slot name="body" />
         </section>
         <footer class="modal-footer">

@@ -43,12 +43,7 @@ export default {
   },
   data () {
     return {
-      showModal: null
-    }
-  },
-  methods: {
-    setModal (id) {
-      this.showModal = id
+      showModal: false
     }
   }
 }

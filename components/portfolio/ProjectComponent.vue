@@ -1,10 +1,10 @@
 <template>
-  <div :class="`project max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl grid gap-5 my-0 mx-auto pb-10 ${$device.isDesktop ? 'pt-32 md:pt-20' : 'pt-24'} px-6`">
+  <div :class="`project max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl grid gap-5 my-0 mx-auto pb-10 pt-24 ${$device.isDesktop ? 'md:pt-20' : ''} px-6`">
     <h1 class="project-title flex justify-center lg:justify-start items-center col-start-1 col-end-4 lg:col-end-3 text-xl lg:text-2xl text-center lg:text-left break-words">
       {{ blok.title }}
     </h1>
     <div class="project-intro grid gap-5 col-start-1 col-end-4">
-      <div v-if="blok.image.filename" class="image-container w-full my-0 mx-auto row-start-1 row-end-1 xl:col-start-1 xl:col-end-3 cursor-pointer" @click="showModal = true">
+      <div v-if="blok.image.filename" class="image-container w-full max-w-lg xl:max-w-full my-0 mx-auto row-start-1 row-end-1 xl:col-start-1 xl:col-end-3 cursor-pointer" @click="showModal = true">
         <img class="intro-image h-auto w-full border-2 object-contain select-none" :src="blok.image.filename" :alt="blok.image.alt" :style="`border-color: ${blok.project_background_color.color}`">
       </div>
       <component
@@ -38,7 +38,7 @@
     </div>
     <Modal class="modal-image bg-gray-200 bg-opacity-90" close :open.sync="showModal" modal-style="shadow-sm">
       <template #body>
-        <img class="image-project max-h-full select-none" :src="blok.image.filename" :alt="blok.image.alt">
+        <img class="image-project max-h-full select-none cursor-default" :src="blok.image.filename" :alt="blok.image.alt">
       </template>
     </Modal>
     <div v-if="$contentByName(blok.body, 'ProjectDescription').length > 0" class="project-details grid gap-5 col-start-1 col-end-4 mt-10">

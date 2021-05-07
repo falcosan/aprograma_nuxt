@@ -3,24 +3,24 @@
     <div
       v-if="open"
       ref="modal"
-      :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 p-2 sm:p-14 xl:p-20${close ? ' cursor-pointer' : ''}`"
+      :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 p-2 sm:p-14 xl:p-20${closeMode ? ' cursor-pointer' : ''}`"
       tabindex="0"
-      @click.self.passive.stop="close ? $emit('update:open', !open) : false"
-      @keydown.esc="close ? $emit('update:open', !open) : false"
+      @click.self.passive.once.stop="closeMode ? $emit('close') : false"
+      @keydown.esc="closeMode ? $emit('close') : false"
     >
       <div :class="`modal h-full ${modalStyle} cursor-default`">
         <header class="modal-header">
           <slot name="header" />
           <Icon
-            v-if="close"
+            v-if="closeMode"
             close
             class="modal-close fixed top-0 right-0 md:top-5 md:right-5"
             tag="button"
             size="w-6"
-            @click.native.passive.stop="$emit('update:open', !open)"
+            @click.native.passive.once.stop="$emit('close')"
           />
         </header>
-        <section class="modal-body h-full flex flex-col justify-center" @click.self.passive.stop="close ? $emit('update:open', !open) : false">
+        <section :class="`modal-body h-full flex flex-col justify-center ${closeMode ? ' cursor-pointer' : ''}`" @click.self.passive.once.stop="closeMode ? $emit('close') : false">
           <slot name="body" />
         </section>
         <footer class="modal-footer">
@@ -37,7 +37,7 @@ export default {
       type: Boolean,
       required: true
     },
-    close: {
+    closeMode: {
       type: Boolean,
       default: false
     },

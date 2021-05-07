@@ -3,7 +3,7 @@
     <div
       v-if="open"
       ref="modal"
-      :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 p-2 sm:p-14 xl:p-20 ${closeMode ? 'cursor-pointer' : ''}`"
+      :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 py-12 px-2 sm:py-2 sm:px-12 xl:p-20 ${closeMode ? 'cursor-pointer' : ''}`"
       tabindex="0"
       @click.self.stop="closeMode ? $emit('close') : false"
       @keydown.esc="closeMode ? $emit('close') : false"
@@ -14,7 +14,7 @@
           <Icon
             v-if="closeMode"
             close
-            class="modal-close fixed top-0 right-0 md:top-5 md:right-5"
+            class="modal-close fixed top-0 right-0 lg:top-5 lg:right-5"
             tag="button"
             size="w-6"
             @click.native.stop="$emit('close')"

@@ -11,7 +11,7 @@
               :transition-a="moved.a"
               :transition-p="moved.p"
               style-logo-container="w-24"
-              :blok="$contentByName(blok.body, 'Logo')[0]"
+              :blok="blok.body[blok.body.component === 'Logo']"
               @click.native="play"
             />
           </NuxtLink>

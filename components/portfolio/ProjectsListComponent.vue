@@ -2,7 +2,6 @@
   <Slider
     v-if="sortedProject && ($store.state.data.windowWidth >= 1024 && $device.isDesktop)"
     :blok="sortedProject"
-    :parent="$route.path"
   />
   <ul v-else-if="sortedProject" class="project-list w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-5 md:gap-10">
     <ProjectTeaser

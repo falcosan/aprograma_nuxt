@@ -17,7 +17,7 @@
         @keydown.right.prevent="next"
         @keydown.left.prevent="prev"
       >
-        <NuxtLink v-click-outside="focusSlide" :to="`${parent}/${item.slug}`" class="item-link w-full grid grid-rows-1 grid-cols-2">
+        <NuxtLink v-click-outside="focusSlide" :to="`${$route.path}/${item.slug}`" class="item-link w-full grid grid-rows-1 grid-cols-2">
           <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1`" :style="`background-color: ${item.content.teaser_background_color.color};`">
             <h2 class="item-text text-xl xl:text-2xl px-5 lg:px-10 overflow-hidden" :style="`color: ${item.content.teaser_text_color.color};`">
               {{ item.content.title }}
@@ -63,10 +63,6 @@ export default {
   props: {
     blok: {
       type: Array,
-      required: true
-    },
-    parent: {
-      type: String,
       required: true
     }
   },

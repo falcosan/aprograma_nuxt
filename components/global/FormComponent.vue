@@ -20,11 +20,9 @@
       {{ blok.title }}
     </h2>
     <form
-      :name="blok.title.toLowerCase().replace(/ /g,'-')"
+      :name="blok.name.toLowerCase().replace(/ /g,'_')"
       class="form-fields"
       novalidate="true"
-      autocomplete="off"
-      autocorrect="off"
       @submit.prevent="submit"
     >
       <Field

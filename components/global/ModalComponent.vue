@@ -1,34 +1,55 @@
 <template>
-  <transition enter-active-class="duration-300 in-out" leave-active-class="duration-300 out-in" enter-class="-translate-y-full opacity-0" leave-to-class="-translate-y-full opacity-0">
-    <div
-      v-if="open"
-      ref="modal"
-      :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 py-12 px-2 sm:py-2 sm:px-12 xl:p-20 ${closeMode ? 'cursor-pointer' : ''}`"
-      tabindex="0"
-      @click.self.stop="closeMode ? $emit('close') : false"
-      @keydown.esc="closeMode ? $emit('close') : false"
-    >
-      <div :class="`modal h-full ${modalStyle} cursor-default`">
-        <header class="modal-header">
-          <slot name="header" />
+  <div
+    v-if="open"
+    ref="modal"
+    :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 py-12 px-2 sm:py-2 sm:px-12 xl:p-20 ${closeMode ? 'cursor-pointer' : ''}`"
+    tabindex="0"
+    @click.self.stop="closeMode ? closeModal() : false"
+    @keydown.esc="closeMode ? closeModal() : false"
+  >
+    <div :class="`modal h-full ${modalStyle} cursor-default`">
+      <header class="modal-header">
+        <slot name="header" />
+        <Icon
+          v-if="closeMode"
+          close
+          class="modal-close fixed top-0 right-0 lg:top-5 lg:right-5"
+          tag="button"
+          size="w-6"
+          @click.native.stop="closeModal()"
+        />
+      </header>
+      <section
+        :class="`modal-body h-full flex flex-col justify-center ${closeMode ? 'cursor-pointer' : ''}`"
+        @click.self.stop="closeMode ? closeModal() : false"
+        @keydown.right.prevent="$emit('next')"
+        @keydown.left.prevent="$emit('previous')"
+      >
+        <transition appear appear-active-class="duration-300 in-out" appear-class="opacity-0">
+          <slot name="body" />
+        </transition>
+        <div v-if="slideMode" class="controls-container flex justify-around mt-5">
           <Icon
-            v-if="closeMode"
-            close
-            class="modal-close fixed top-0 right-0 lg:top-5 lg:right-5"
+            previous
+            class="modal-previous"
             tag="button"
             size="w-6"
-            @click.native.stop="$emit('close')"
+            @click.native.prevent="$emit('next')"
           />
-        </header>
-        <section :class="`modal-body h-full flex flex-col justify-center ${closeMode ? 'cursor-pointer' : ''}`" @click.self.stop="closeMode ? $emit('close') : false">
-          <slot name="body" />
-        </section>
-        <footer class="modal-footer">
-          <slot name="footer" />
-        </footer>
-      </div>
+          <Icon
+            next
+            class="modal-next"
+            tag="button"
+            size="w-6"
+            @click.native.prevent="$emit('previous')"
+          />
+        </div>
+      </section>
+      <footer class="modal-footer">
+        <slot name="footer" />
+      </footer>
     </div>
-  </transition>
+  </div>
 </template>
 <script>
 export default {
@@ -41,6 +62,10 @@ export default {
       type: Boolean,
       default: false
     },
+    slideMode: {
+      type: Boolean,
+      default: false
+    },
     modalStyle: {
       type: String,
       default: ''
@@ -50,14 +75,21 @@ export default {
     open: { handler () { this.checkModal() } }
   },
   methods: {
+    nextModal (event) {
+      this.$emit('next', event.stopPropagation())
+    },
+    previousModal (event) {
+      this.$emit('previous', event.stopPropagation())
+    },
+    closeModal () {
+      this.$emit('close', document.body.classList.remove('noscroll'))
+    },
     checkModal () {
       if (this.open) {
         this.$nextTick(function () {
           this.$refs.modal.focus({ preventScroll: true })
         })
         document.body.classList.add('noscroll')
-      } else {
-        document.body.classList.remove('noscroll')
       }
     }
   }

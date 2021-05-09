@@ -4,9 +4,21 @@
       {{ blok.title }}
     </h1>
     <div class="project-intro grid gap-5 col-start-1 col-end-4">
-      <div v-if="blok.image.filename" class="image-container w-full max-w-lg xl:max-w-full my-0 mx-auto row-start-1 row-end-1 xl:col-start-1 xl:col-end-3 cursor-pointer" @click="showModal = true">
-        <img class="intro-image h-auto w-full border-2 object-contain select-none" :src="blok.image.filename" :alt="blok.image.alt" :style="`border-color: ${blok.project_background_color.color}`">
-      </div>
+      <Modal
+        v-if="blok.image.filename"
+        class="modal-project"
+        close-mode
+        modal-style="bg-gray-200 bg-opacity-90"
+      >
+        <template #activator="props">
+          <div class="image-container w-full max-w-lg xl:max-w-full my-0 mx-auto row-start-1 row-end-1 xl:col-start-1 xl:col-end-3 cursor-pointer" @click="props.open()">
+            <img class="intro-image h-auto w-full border-2 object-contain select-none" :src="blok.image.filename" :alt="blok.image.alt" :style="`border-color: ${blok.project_background_color.color}`">
+          </div>
+        </template>
+        <template #body>
+          <img class="image-project max-h-full select-none cursor-default" :src="blok.image.filename" :alt="blok.image.alt">
+        </template>
+      </Modal>
       <component
         :is="blok.url_project ? 'a' : 'span'"
         v-if="$store.state.data.windowWidth >= 1024"
@@ -36,11 +48,6 @@
         </h4>
       </div>
     </div>
-    <Modal class="modal-image bg-gray-200 bg-opacity-90" close-mode :open="showModal" modal-style="shadow-sm" @close="showModal = false">
-      <template #body>
-        <img class="image-project max-h-full select-none cursor-default" :src="blok.image.filename" :alt="blok.image.alt">
-      </template>
-    </Modal>
     <div v-if="$contentByName(blok.body, 'ProjectDescription').length > 0" class="project-details grid gap-5 col-start-1 col-end-4 mt-10">
       <h1>
         {{ $languageCase('Project description', 'Descripción del proyecto', 'Descrizione del progetto') }}
@@ -84,11 +91,6 @@ export default {
     blok: {
       type: Object,
       required: true
-    }
-  },
-  data () {
-    return {
-      showModal: false
     }
   },
   methods: {

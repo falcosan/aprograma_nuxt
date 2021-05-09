@@ -22,8 +22,6 @@
       <section
         :class="`modal-body h-full flex flex-col justify-center ${closeMode ? 'cursor-pointer' : ''}`"
         @click.self.stop="closeMode ? closeModal() : false"
-        @keydown.right.prevent="$emit('next')"
-        @keydown.left.prevent="$emit('previous')"
       >
         <transition appear appear-active-class="duration-300 in-out" appear-class="opacity-0">
           <slot name="body" />
@@ -75,12 +73,6 @@ export default {
     open: { handler () { this.checkModal() } }
   },
   methods: {
-    nextModal (event) {
-      this.$emit('next', event.stopPropagation())
-    },
-    previousModal (event) {
-      this.$emit('previous', event.stopPropagation())
-    },
     closeModal () {
       this.$emit('close', document.body.classList.remove('noscroll'))
     },

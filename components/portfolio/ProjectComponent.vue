@@ -10,8 +10,8 @@
         close-mode
         modal-style="bg-gray-200 bg-opacity-90"
       >
-        <template #activator="props">
-          <div class="image-container w-full max-w-lg xl:max-w-full my-0 mx-auto row-start-1 row-end-1 xl:col-start-1 xl:col-end-3 cursor-pointer" @click="props.open()">
+        <template #activator="action">
+          <div class="image-container w-full max-w-lg xl:max-w-full my-0 mx-auto row-start-1 row-end-1 xl:col-start-1 xl:col-end-3 cursor-pointer" @click="action.open()">
             <img class="intro-image h-auto w-full border-2 object-contain select-none" :src="blok.image.filename" :alt="blok.image.alt" :style="`border-color: ${blok.project_background_color.color}`">
           </div>
         </template>

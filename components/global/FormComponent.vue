@@ -3,7 +3,7 @@
   <div
     class="form"
   >
-    <Modal :open.sync="submitting" class="modal-submit bg-gray-200 bg-opacity-90">
+    <Modal class="modal-submit" :open="submitting" modal-style="bg-opacity-90 bg-gray-200">
       <template #body>
         <Icon
           tag="span"

@@ -3,18 +3,17 @@
     <slot name="activator" :open="openModal" />
     <transition enter-active-class="duration-500 in-out" enter-class="opacity-0" leave-active-class="duration-500 out-in" leave-to-class="opacity-0">
       <div
-        v-if="open"
+        v-if="openEvent || open"
         ref="modal"
         :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 py-12 px-2 sm:py-2 sm:px-12 xl:p-20 ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
         tabindex="0"
         @click.self.stop="closeMode ? closeModal() : false"
         @keydown.esc="closeMode ? closeModal() : false"
       >
-        <div class="modal-container h-full flex flex-col justify-center" @click.self.stop="closeMode ? closeModal() : false">
-          <header class="modal-header">
+        <div class="modal-container h-full flex flex-col justify-center">
+          <header v-if="hasSlot('header') || closeMode" class="modal-header">
             <slot name="header" />
             <Icon
-              v-if="closeMode"
               close
               class="modal-close fixed top-0 right-0 lg:top-5 lg:right-5"
               tag="button"
@@ -23,7 +22,9 @@
             />
           </header>
           <section
-            :class="`modal-body flex flex-col justify-center shadow-lg ${closeMode ? 'cursor-pointer' : ''}`"
+            v-if="hasSlot('body')"
+            :class="`modal-body h-full flex flex-col justify-center ${closeMode ? 'cursor-pointer' : ''}`"
+            @click.self.stop="closeMode ? closeModal() : false"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
               <slot name="body" />
@@ -37,6 +38,10 @@
 <script>
 export default {
   props: {
+    open: {
+      type: Boolean,
+      default: false
+    },
     closeMode: {
       type: Boolean,
       default: false
@@ -48,21 +53,22 @@ export default {
   },
   data () {
     return {
-      open: false
+      openEvent: false
     }
   },
   watch: {
+    openEvent: { handler () { this.checkModal() } },
     open: { handler () { this.checkModal() } }
   },
   methods: {
     openModal () {
-      this.open = true
+      this.openEvent = true
     },
     closeModal () {
-      this.open = false
+      this.openEvent = false
     },
     checkModal () {
-      if (this.open) {
+      if (this.openEvent || this.open) {
         this.$nextTick(function () {
           this.$refs.modal.focus({ preventScroll: true })
         })
@@ -70,6 +76,9 @@ export default {
       } else {
         document.body.classList.remove('noscroll')
       }
+    },
+    hasSlot (name = 'default') {
+      return !!this.$slots[name] || !!this.$scopedSlots[name]
     }
   }
 }

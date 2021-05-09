@@ -7,12 +7,12 @@
           class="modal-project_description"
           modal-style="bg-opacity-90 bg-gray-200"
         >
-          <template #activator="props">
+          <template #activator="action">
             <img
               class="description-image w-full max-h-96 lg:max-h-full object-contain cursor-pointer select-none"
               :src="image.filename"
               :alt="image.alt"
-              @click="props.open()"
+              @click="action.open()"
             >
           </template>
           <template #body>

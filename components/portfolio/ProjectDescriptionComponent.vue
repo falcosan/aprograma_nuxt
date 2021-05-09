@@ -1,7 +1,7 @@
 <template>
   <div :class="`project-description grid ${blok.text ? 'lg:grid-cols-3' : ''} gap-5 col-start-1 col-end-4`">
-    <ul :class="`image-container description-container grid ${blok.image.length > 1 ? 'sm:grid-cols-2' : 'grid-cols-1'} col-start-1 col-end-1 lg:col-end-3 items-center gap-5`" :style="inlineImageStyle">
-      <li v-for="image in blok.image" :key="image.id" class="image-item">
+    <ul :class="`image-container description-container grid col-start-1 col-end-1 lg:col-end-3 items-center justify-items-center gap-5 ${blok.image.length > 1 ? 'sm:grid-cols-2' : 'grid-cols-1'}`" :style="inlineImageStyle">
+      <li v-for="image in blok.image" :key="image.id" class="image-item max-w-lg md:max-xl lg:max-w-full ">
         <Modal
           close-mode
           class="modal-project_description"

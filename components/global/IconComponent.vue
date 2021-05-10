@@ -4,7 +4,7 @@
     :style="blok && blok.size ? `max-width: ${blok.size}px` : false "
     :title="blok && blok.tooltip ? blok.tooltip : false"
     :href="blok && blok.path ? blok.path : tag === 'a' ? to : false"
-    :class="`icon-container${blok ? '' : ' p-3'} select-none`"
+    class="icon-container select-none"
     :target="blok && blok.tag === 'a' || tag === 'a' ? '_blank' : false"
     :rel="blok && blok.tag === 'a' || tag === 'a' ? 'noopener noreferrer' : false"
   >

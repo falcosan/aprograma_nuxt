@@ -1,16 +1,15 @@
 <template>
   <div
     class="container"
-    :style="`background-color: ${blok.background_color.color}`"
   >
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-10 text-xl">
       {{ blok.title }}
     </h1>
-    <div class="container-content flex flex-row flex-wrap flex-gap">
+    <div class="container-content flex flex-row flex-wrap flex-gap" :style="`background-color: ${blok.background_color.color}`">
       <div
         v-for="component in blok.body"
         :key="component._uid"
-        :class="`component-container flex justify-center items-center ${component.row_container ? 'flex-grow' : 'w-full'}`"
+        :class="`container-component flex justify-center items-center ${component.row_container ? 'flex-grow' : 'w-full'}`"
       >
         <component
           :is="component.component"

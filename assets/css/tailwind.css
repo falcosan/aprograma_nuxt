@@ -4,11 +4,11 @@
 @layer base {
     .flex-gap {
         --gap: 20px;
-        margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
-        width: calc(100% + var(--gap));
+        margin: calc(-1 * var(--gap)) 0 0;
+        padding-bottom: var(--gap);
     }
     .flex-gap>* {
-        margin: var(--gap) 0 0 var(--gap);
+        margin: var(--gap) 0 0;
     }
 }
 

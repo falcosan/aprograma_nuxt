@@ -1,5 +1,5 @@
 <template>
-  <div :class="`project max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl grid gap-5 my-0 mx-auto pb-10 pt-24 ${$device.isDesktop ? 'md:pt-20' : ''} px-6`">
+  <div class="project max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl grid gap-5 my-0 mx-auto pb-10 pt-20 px-6">
     <h1 class="project-title flex justify-center lg:justify-start items-center col-start-1 col-end-4 lg:col-end-3 text-xl lg:text-2xl text-center lg:text-left break-words">
       {{ blok.title }}
     </h1>

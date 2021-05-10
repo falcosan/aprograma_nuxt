@@ -5,7 +5,7 @@
     :leave-active-class="`${transitionActive} out-in`"
     :enter-class="`opacity-0 transform ${translation.enter}`"
     :leave-to-class="`opacity-0 transform ${translation.leave}`"
-    class="slider w-full relative grid grid-cols-1 grid-rows-2 gap-y-10"
+    class="slider w-full relative grid grid-cols-1 grid-rows-2 gap-y-5"
   >
     <template v-for="(item, index) in blok">
       <li

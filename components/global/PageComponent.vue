@@ -4,20 +4,13 @@
       {{ blok.title }}
     </h1>
     <div
-      :class="`${blok.name.toLowerCase()}-content grid gap-5 ${customClass('index', 'all', 'justify-center')}`"
+      :class="`${blok.name.toLowerCase()}-content grid gap-5 ${rowComponent.length === blok.body.length ? 'grid-flow-col' : ''} ${customClass('index', 'all', 'justify-center')}`"
     >
-      <div v-if="blok.body.map(component => component.row_container).filter(Boolean).length > 0" class="content-row grid gap-5 lg:grid-flow-col">
-        <component
-          :is="component.component"
-          v-for="component in setComponent(true)"
-          :key="component._uid"
-          :blok="component"
-        />
-      </div>
       <component
         :is="component.component"
-        v-for="component in setComponent(false)"
+        v-for="component in blok.body"
         :key="component._uid"
+        :class="component.row_container ? '' : `lg:col-start-1 lg:col-end-${rowComponent.length + 1}`"
         :blok="component"
       />
     </div>
@@ -32,14 +25,12 @@ export default {
       required: true
     }
   },
+  computed: {
+    rowComponent () {
+      return this.blok.body.filter(function (item) { return item.row_container })
+    }
+  },
   methods: {
-    setComponent (condition) {
-      if (condition) {
-        return this.blok.body.filter(function (item) { return item.row_container })
-      } else {
-        return this.blok.body.filter(function (item) { return !item.row_container })
-      }
-    },
     customClass (page, component, style) {
       if (this.$route.name === page && component) {
         return style

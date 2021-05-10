@@ -53,9 +53,9 @@
         {{ $languageCase('Project details', 'Detalles del proyecto', 'Dettaglio del progetto') }}
       </h1>
       <ProjectDescription
-        v-for="description in blok.body"
+        v-for="(description, index) in blok.body"
         :key="description._uid"
-        class="grid gap-5"
+        :class="`${index === blok.body.length - 1 ? '' : 'border-b-8 border-dotted pb-10 mb-10'}`"
         :inline-text-style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
         :blok="description"
       />

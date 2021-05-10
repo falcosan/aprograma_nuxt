@@ -11,7 +11,7 @@
         modal-style="bg-gray-200 bg-opacity-90"
       >
         <template #activator="action">
-          <div class="image-container max-w-lg md:max-xl lg:max-w-full my-0 mx-auto cursor-pointer" @click="action.open()">
+          <div class="image-container my-0 mx-auto cursor-pointer" @click="action.open()">
             <img class="intro-image h-auto w-full border-2 object-contain select-none" :src="blok.image.filename" :alt="blok.image.alt" :style="`border-color: ${blok.project_background_color.color}`">
           </div>
         </template>

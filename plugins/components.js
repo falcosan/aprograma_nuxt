@@ -7,6 +7,7 @@ import Field from '@/components/global/FieldComponent'
 import Button from '@/components/global/ButtonComponent'
 import Slider from '@/components/global/SliderComponent'
 import PostsList from '@/components/blog/PostsListComponent'
+import Container from '@/components/global/ContainerComponent'
 import TextContent from '@/components/global/TextContentComponent'
 import ProjectsList from '@/components/portfolio/ProjectsListComponent'
 
@@ -18,6 +19,7 @@ Vue.component('Icon', Icon)
 Vue.component('Field', Field)
 Vue.component('Button', Button)
 Vue.component('Slider', Slider)
+Vue.component('Container', Container)
 Vue.component('TextContent', TextContent)
 
 // PORTFOLIO

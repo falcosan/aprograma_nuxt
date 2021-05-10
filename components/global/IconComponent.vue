@@ -1,6 +1,7 @@
 <template>
   <component
     :is="blok ? blok.tag : tag"
+    :style="blok && blok.size ? `max-width: ${blok.size}px` : false "
     :title="blok && blok.tooltip ? blok.tooltip : false"
     :href="blok && blok.path ? blok.path : tag === 'a' ? to : false"
     :class="`icon-container${blok ? '' : ' p-3'} select-none`"
@@ -12,7 +13,7 @@
       :class="`icon ${blok.icon_image.filename
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-icon ${size} cursor-pointer`"
+        .replace(/\.[^/.]+$/, '')}-icon ${size}`"
       :src="blok.icon_image.filename"
       alt=""
       :name="blok.name"

@@ -4,7 +4,7 @@
       {{ blok.title }}
     </h1>
     <div
-      :class="`${blok.name.toLowerCase()}-content grid gap-5 auto-cols-fr ${rowComponent.length === blok.body.length ? 'grid-flow-col' : ''} ${customClass('index', 'all', 'justify-center')}`"
+      :class="`${blok.name.toLowerCase()}-content grid gap-5 ${rowComponent.length === blok.body.length ? 'lg:grid-flow-col' : ''} ${customClass('index', 'all', 'justify-center')}`"
     >
       <component
         :is="component.component"

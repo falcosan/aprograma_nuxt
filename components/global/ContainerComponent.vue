@@ -10,7 +10,7 @@
       <div
         v-for="component in blok.body"
         :key="component._uid"
-        :class="`component-container flex justify-center items-center p-5 ${component.row_container ? 'flex-grow bg-red-700' : 'w-full'}`"
+        :class="`component-container flex justify-center items-center ${component.row_container ? 'flex-grow' : 'w-full'}`"
       >
         <component
           :is="component.component"

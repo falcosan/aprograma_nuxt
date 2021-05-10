@@ -4,8 +4,8 @@
     :class="`project-teaser w-full`"
   >
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
-      <div class="teaser-content grid p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
-        <img class="project-image w-full h-60 sm:h-80 md:h-96 lg:h-64 xl:h-80 2xl:h-80 object-cover select-none" :src="projectContent.image.filename" :alt="projectContent.image.alt">
+      <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
+        <img class="project-image w-full h-full ss:h-72 sm:h-80 md:h-56 lg:h-80 xl:h-64 2xl:h-96 object-cover select-none" :src="projectContent.image.filename" :alt="projectContent.image.alt">
         <span
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
           class="teaser-title w-full p-5 truncate text-base sm:text-lg"

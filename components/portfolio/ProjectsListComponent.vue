@@ -3,7 +3,7 @@
     v-if="sortedProject && ($store.state.data.windowWidth >= 1024 && $device.isDesktop)"
     :blok="sortedProject"
   />
-  <ul v-else-if="sortedProject" class="project-list w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-x-5 gap-y-5 md:gap-x-10">
+  <ul v-else-if="sortedProject" class="project-list w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
     <ProjectTeaser
       v-for="project in sortedProject"
       :key="project._uid"

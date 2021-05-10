@@ -4,14 +4,14 @@
       {{ blok.title }}
     </h1>
     <div
-      :class="`${blok.name.toLowerCase()}-content grid gap-5 ${rowComponent.length === blok.body.length ? 'lg:grid-flow-col' : ''} ${customClass('index', 'all', 'justify-center')}`"
+      :class="`${blok.name.toLowerCase()}-content grid gap-5 ${rowComponent.length === blok.body.length ? 'sm:auto-cols-fr grid-flow-col' : ''} ${customClass('index', 'all', 'justify-center')}`"
     >
       <component
         :is="component.component"
         v-for="component in blok.body"
         :key="component._uid"
         :style="component.row_container || $store.state.data.windowWidth < 1024 ? false : `grid-column-end: ${rowComponent.length + 1}`"
-        :class="`${blok.name.toLowerCase()}-component ${component.row_container ? '' : 'lg:col-start-1'}`"
+        :class="`${blok.name.toLowerCase()}-component ${component.row_container ? 'block' : 'col-start-1'}`"
         :blok="component"
       />
     </div>

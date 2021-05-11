@@ -2,10 +2,7 @@
   <component
     :is="blok ? blok.tag : tag"
     :title="blok && blok.title && !blok.show_title ? blok.title : false"
-    :href="blok && blok.path ? blok.path : tag === 'a' ? to : false"
     class="icon-container select-none"
-    :target="blok && blok.tag === 'a' || tag === 'a' ? '_blank' : false"
-    :rel="blok && blok.tag === 'a' || tag === 'a' ? 'noopener noreferrer' : false"
   >
     <img
       v-if="blok && blok.icon_image.filename"

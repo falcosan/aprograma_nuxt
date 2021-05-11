@@ -1,10 +1,10 @@
 <template>
   <NuxtLink
-    :active-class="`${!iconItem ? 'bg-gray-300' : 'filter invert grayscale bg-gray-300'}`"
+    :active-class="`${!iconItem && !blok.icon_item ? 'bg-gray-300' : 'filter invert grayscale bg-gray-300'}`"
     :to="blok.path"
     class="item-link h-full block"
   >
-    <span v-if="!iconItem" class="item-text" :style="`color: ${blok.text_color.color};`">{{ blok.title }}</span>
+    <span v-if="!iconItem && !blok.icon_item" class="item-text" :style="`color: ${blok.text_color.color};`">{{ blok.title }}</span>
     <Icon
       v-else
       :class="`item-icon ${iconStyle}`"
@@ -23,7 +23,7 @@ export default {
     },
     iconItem: {
       type: Boolean,
-      required: true
+      default: false
     },
     iconStyle: {
       type: String,

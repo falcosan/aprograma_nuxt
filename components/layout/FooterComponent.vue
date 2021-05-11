@@ -22,17 +22,18 @@
       >
         © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
       </h4>
-      <div
+      <ul
         class="social-links grid grid-flow-col gap-3 mr-3 flex-1 row-start-1 row-end-1 col-start-2 col-end-2 justify-end"
       >
-        <Icon
-          v-for="iconLink in $contentByName(blok.body, 'Icon')"
-          :key="iconLink._uid"
-          size="w-6"
-          :blok="iconLink"
-          class="social-icon"
-        />
-      </div>
+        <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid">
+          <Link
+            icon-item
+            icon-size="w-5"
+            :blok="iconLink"
+            class="social-icon"
+          />
+        </li>
+      </ul>
     </div>
   </footer>
   <footer
@@ -54,17 +55,18 @@
       >
         © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
       </h4>
-      <div
+      <ul
         class="social-links grid grid-flow-col gap-3 flex-1"
       >
-        <Icon
-          v-for="iconLink in $contentByName(blok.body, 'Icon')"
-          :key="iconLink._uid"
-          size="w-6"
-          :blok="iconLink"
-          class="social-icon"
-        />
-      </div>
+        <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid">
+          <Link
+            icon-item
+            icon-size="w-5"
+            :blok="iconLink"
+            class="social-icon"
+          />
+        </li>
+      </ul>
     </div>
   </footer>
 </template>

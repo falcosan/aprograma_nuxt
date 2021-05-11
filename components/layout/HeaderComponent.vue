@@ -17,11 +17,11 @@
           </NuxtLink>
         </li>
         <li
-          v-for="item in $contentByName(blok.body, 'ItemNavbar')"
+          v-for="item in $contentByName(blok.body, 'Link')"
           :key="item._uid"
           class="link-menu"
         >
-          <ItemNavbar class="py-2 px-3" :icon-item="false" :blok="item" />
+          <Link class="py-2 px-3" :icon-item="false" :blok="item" />
         </li>
       </ul>
     </nav>
@@ -78,11 +78,11 @@
     <nav class="navbar-down w-full h-12 flex items-center justify-center fixed bottom-0 z-20 drop-shadow-2xl" :style="`background-color: ${blok.background_color.color};`">
       <ul class="menu-wrapper wrapper-down w-full h-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl grid grid-cols-4">
         <li
-          v-for="item in $contentByName(blok.body, 'ItemNavbar')"
+          v-for="item in $contentByName(blok.body, 'Link')"
           :key="item._uid"
           class="link-menu no-underline"
         >
-          <ItemNavbar icon-item icon-style="w-full h-full flex justify-center items-center" icon-size="w-5" :blok="item" />
+          <Link icon-item icon-style="w-full h-full flex justify-center items-center" icon-size="w-5" :blok="item" />
         </li>
       </ul>
     </nav>
@@ -91,9 +91,8 @@
 
 <script>
 import Translate from './TranslateComponent'
-import ItemNavbar from './ItemNavbarComponent'
 export default {
-  components: { Translate, ItemNavbar },
+  components: { Translate },
   props: {
     blok: {
       type: Object,

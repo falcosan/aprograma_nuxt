@@ -1,7 +1,7 @@
 <template>
   <component
     :is="blok ? blok.tag : tag"
-    :style="blok && blok.size ? `max-width: ${blok.size}px; padding: ${blok.size / 5}px` : false "
+    :style="blok && blok.size ? `max-width: ${blok.size}px;` : false "
     :title="blok && blok.tooltip ? blok.tooltip : false"
     :href="blok && blok.path ? blok.path : tag === 'a' ? to : false"
     :class="`icon-container ${blok ? '' : 'px-5'} select-none`"

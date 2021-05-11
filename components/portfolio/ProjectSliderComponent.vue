@@ -33,10 +33,10 @@
       <Icon class="w-full h-full flex projects-center justify-center" restart size="w-14" tag="button" @click.native="next" />
     </li>
     <li v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control control absolute top-1/2 -right-32 transform">
-      <Icon next size="w-8" tag="button" @click.native="next" />
+      <Icon next class="next p-3" size="w-8" tag="button" @click.native="next" />
     </li>
     <li v-if="blok.length > 2 && frame.up != 0" :key="`${indexControls}-2`" class="previous-control control absolute top-1/2 -left-32">
-      <Icon previous size="w-8" tag="button" @click.native="prev" />
+      <Icon previous class="previous p-3" size="w-8" tag="button" @click.native="prev" />
     </li>
   </transition-group>
 </template>

@@ -39,8 +39,8 @@
 
 <script>
 import axios from 'axios'
-import Field from '../global/FieldComponent'
-import Modal from '../global/ModalComponent'
+import Field from './FieldComponent'
+import Modal from './ModalComponent'
 export default {
   components: { Field, Modal },
   props: {

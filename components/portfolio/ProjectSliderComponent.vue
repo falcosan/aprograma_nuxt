@@ -1,44 +1,55 @@
 <template>
-  <transition-group
-    tag="ul"
-    :enter-active-class="`${transitionActive} in-out`"
-    :leave-active-class="`${transitionActive} out-in`"
-    :enter-class="`opacity-0 transform ${translation.enter}`"
-    :leave-to-class="`opacity-0 transform ${translation.leave}`"
-    class="slider w-full relative grid grid-cols-1 grid-rows-2 gap-y-5"
-  >
-    <template v-for="(project, index) in blok">
-      <li
-        v-if="index === frame.up || index === frame.down"
-        ref="slide"
-        :key="project.uuid"
-        tabindex="0"
-        :class="`slide slide-project w-full h-80 flex col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} outline-none`"
-        @keydown.right.prevent="next"
-        @keydown.left.prevent="prev"
-      >
-        <NuxtLink v-click-outside="focusSlide" :to="`${$route.path}/${project.slug}`" class="project-link w-full grid grid-rows-1 grid-cols-2">
-          <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1`" :style="`background-color: ${project.content.teaser_background_color.color};`">
-            <h2 class="project-text text-xl xl:text-2xl px-5 lg:px-10 overflow-hidden" :style="`color: ${project.content.teaser_text_color.color};`">
-              {{ project.content.title }}
-            </h2>
-          </div>
-          <div :class="`image-container flex row-start-1 row-end-1 ${index % 2 == 0 ? 'col-start-2 col-end-2' : 'col-start-1 col-end-1'}`">
-            <img class="project-image w-full object-cover object-center pointer-events-none select-none" :src="project.content.image.filename" :alt="project.content.image.alt">
-          </div>
-        </NuxtLink>
+  <div class="project-slider">
+    <transition-group
+      tag="ul"
+      :enter-active-class="`${transitionActive} in-out`"
+      :leave-active-class="`${transitionActive} out-in`"
+      :enter-class="`opacity-0 transform ${translation.enter}`"
+      :leave-to-class="`opacity-0 transform ${translation.leave}`"
+      class="slider-wrapper w-full relative grid grid-cols-1 grid-rows-2 gap-y-5 overflow-hidden"
+    >
+      <template v-for="(project, index) in blok">
+        <li
+          v-if="index === frame.up || index === frame.down"
+          ref="slide"
+          :key="project.uuid"
+          tabindex="0"
+          :class="`slide slide-project w-full h-80 flex col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} outline-none`"
+          @keydown.right.prevent="next"
+          @keydown.left.prevent="prev"
+        >
+          <NuxtLink v-click-outside="focusSlide" :to="`${$route.path}/${project.slug}`" class="project-link w-full grid grid-rows-1 grid-cols-2">
+            <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1`" :style="`background-color: ${project.content.teaser_background_color.color};`">
+              <h2 class="project-text text-xl xl:text-2xl px-5 lg:px-10 overflow-hidden" :style="`color: ${project.content.teaser_text_color.color};`">
+                {{ project.content.title }}
+              </h2>
+            </div>
+            <div :class="`image-container flex row-start-1 row-end-1 ${index % 2 == 0 ? 'col-start-2 col-end-2' : 'col-start-1 col-end-1'}`">
+              <img class="project-image w-full object-cover object-center pointer-events-none select-none" :src="project.content.image.filename" :alt="project.content.image.alt">
+            </div>
+          </NuxtLink>
+        </li>
+      </template>
+      <li v-if="frame.down === blok.length && blok.length > 2" :key="`${indexControls}-0`" :class="`restart-control control h-full flex justify-center projects-center col-start-1 col-end-1 ${blok.length % 2 == 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} cursor-pointer`">
+        <Icon class="w-full h-full flex projects-center justify-center" restart size="w-14" tag="button" @click.native="next" />
       </li>
-    </template>
-    <li v-if="frame.down === blok.length && blok.length > 2" :key="`${indexControls}-0`" :class="`restart-control control h-full flex justify-center projects-center col-start-1 col-end-1 ${blok.length % 2 == 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} cursor-pointer`">
-      <Icon class="w-full h-full flex projects-center justify-center" restart size="w-14" tag="button" @click.native="next" />
-    </li>
-    <li v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control control absolute top-1/2 -right-32 transform">
-      <Icon next class="next p-3" size="w-8" tag="button" @click.native="next" />
-    </li>
-    <li v-if="blok.length > 2 && frame.up != 0" :key="`${indexControls}-2`" class="previous-control control absolute top-1/2 -left-32">
-      <Icon previous class="previous p-3" size="w-8" tag="button" @click.native="prev" />
-    </li>
-  </transition-group>
+    </transition-group>
+    <transition-group
+      tag="div"
+      enter-active-class="duration-300 in-out"
+      leave-active-class="duration-300 out-in"
+      enter-class="opacity-0"
+      leave-to-class="opacity-0"
+      class="controls"
+    >
+      <span v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control absolute top-1/2 -right-32 transform -translate-y-1/2">
+        <Icon next class="next p-3" size="w-8" tag="button" @click.native="next" />
+      </span>
+      <span v-if="blok.length > 2 && frame.up != 0" :key="`${indexControls}-2`" class="previous-control absolute top-1/2 -left-32 transform -translate-y-1/2">
+        <Icon previous class="previous p-3" size="w-8" tag="button" @click.native="prev" />
+      </span>
+    </transition-group>
+  </div>
 </template>
 <script>
 export default {

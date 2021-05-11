@@ -4,7 +4,7 @@
       {{ blok.title }}
     </h1>
     <div
-      :class="`${blok.name.toLowerCase()}-content grid gap-5 auto-cols-fr ${rowComponent.length === blok.body.length ? 'lg:grid-flow-col-dense' : ''} ${customClass('index', 'all', 'justify-center')}`"
+      :class="`${blok.name.toLowerCase()}-content grid gap-5 auto-cols-fr ${rowComponent.length === blok.body.length ? 'lg:grid-flow-col-dense' : ''}`"
     >
       <component
         :is="component.component"
@@ -29,15 +29,6 @@ export default {
   computed: {
     rowComponent () {
       return this.blok.body.filter(function (item) { return item.row_container })
-    }
-  },
-  methods: {
-    customClass (page, component, style) {
-      if (this.$route.name === page && component) {
-        return style
-      } else {
-        return ''
-      }
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <section :class="`${blok.name.toLowerCase()}-page max-w-sm sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-0 mx-auto pb-10 pt-20 px-6`">
-    <h1 v-if="blok.show_title" class="page-title mb-10 text-xl">
+    <h1 v-if="blok.title && blok.show_title" class="page-title mb-10 text-xl">
       {{ blok.title }}
     </h1>
     <div

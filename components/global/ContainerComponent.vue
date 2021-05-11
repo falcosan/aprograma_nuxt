@@ -1,15 +1,19 @@
 <template>
   <div
-    class="container"
+    class=""
   >
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-10 text-xl">
       {{ blok.title }}
     </h1>
-    <div class="container-content flex flex-row flex-wrap" :style="`background-color: ${blok.background_color.color}`">
+    <div
+      :class="`grid gap-5 ${rowComponent.length === blok.body.length ? 'lg:grid-flow-col' : ''}`"
+      :style="`background-color: ${blok.background_color_container.color}`"
+    >
       <div
         v-for="component in blok.body"
         :key="component._uid"
-        :class="`container-component flex justify-center items-center ${component.row_container ? 'flex-grow' : 'w-full'}`"
+        :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 1024 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
+        :class="`flex justify-center p-5 md:p-10 ${component.row_container ? '' : 'col-start-1'}`"
       >
         <component
           :is="component.component"

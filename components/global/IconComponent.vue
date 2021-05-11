@@ -1,15 +1,15 @@
 <template>
   <component
     :is="blok ? blok.tag : tag"
-    :style="blok && blok.size ? `max-width: ${blok.size}px;` : false "
-    :title="blok && blok.tooltip ? blok.tooltip : false"
+    :title="blok && blok.title && !blok.show_title ? blok.title : false"
     :href="blok && blok.path ? blok.path : tag === 'a' ? to : false"
-    :class="`icon-container ${blok ? '' : 'px-5'} select-none`"
+    class="icon-container select-none"
     :target="blok && blok.tag === 'a' || tag === 'a' ? '_blank' : false"
     :rel="blok && blok.tag === 'a' || tag === 'a' ? 'noopener noreferrer' : false"
   >
     <img
       v-if="blok && blok.icon_image.filename"
+      :style="blok && blok.size ? `width: ${blok.size}px;` : false"
       :class="`icon ${blok.icon_image.filename
         .split(/[\\/]/)
         .pop()
@@ -134,6 +134,7 @@
 
       </circle>
     </svg>
+    <span v-if="blok && blok.title && blok.show_title" class="icon-title flex justify-center mt-5">{{ blok.title }}</span>
   </component>
 </template>
 
@@ -187,8 +188,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-img svg{
-  fill: inherit;
-}
-</style>

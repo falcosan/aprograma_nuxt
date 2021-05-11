@@ -115,6 +115,7 @@ export default {
         this.playTypeText = setTimeout(this.typeText, 50)
       } else {
         if (this.typewriterIndex >= this.blok.message.length) { this.typewriterIndex = 0 }
+        this.playTypeText = 0
         this.playEraseText = setTimeout(this.eraseText, 1500)
       }
     },
@@ -125,13 +126,14 @@ export default {
         this.playEraseText = setTimeout(this.eraseText, 50)
       } else {
         this.typewriterIndex++
+        this.playEraseText = 0
         if (this.typewriterIndex >= this.blok.message.length) { this.typewriterIndex = 0 }
         this.playTypeText = setTimeout(this.typeText, 50)
       }
     },
     restartTypewriter () {
-      clearInterval(this.playTypeText)
-      clearInterval(this.playEraseText)
+      clearTimeout(this.playTypeText)
+      clearTimeout(this.playEraseText)
       this.typewriter = ''
       this.charIndex = 0
       this.typewriterIndex = 0

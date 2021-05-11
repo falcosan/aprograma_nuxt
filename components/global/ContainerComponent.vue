@@ -13,11 +13,11 @@
         v-for="component in blok.body"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 1024 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
-        :class="`${component.component.toLowerCase()}-container${blok.space_element ? ' p-5 md:p-10' : ''}${$device.isDesktop && blok.effects ? ' transform transition duration-200 hover:shadow-lg hover:scale-105' : ''}${component.row_container ? '' : ' col-start-1'} ${customClass('index', blok.name === 'container_home', ' flex justify-center')}`"
+        :class="`${component.component.toLowerCase()}-container flex justify-center${blok.space_element ? ' p-5 md:p-10' : ''}${$device.isDesktop && blok.effects ? ' transform transition duration-200 hover:shadow-lg hover:scale-105' : ''}${component.row_container ? '' : ' col-start-1'}`"
       >
         <component
           :is="component.component"
-          :class="`${component.component.toLowerCase()}-component w-full h-full`"
+          :class="`${component.component.toLowerCase()}-component h-full`"
           :blok="component"
         />
       </div>
@@ -36,15 +36,6 @@ export default {
   computed: {
     rowComponent () {
       return this.blok.body.filter(function (item) { return item.row_container })
-    }
-  },
-  methods: {
-    customClass (page, component, style) {
-      if (this.$route.name === page && component) {
-        return style
-      } else {
-        return ''
-      }
     }
   }
 }

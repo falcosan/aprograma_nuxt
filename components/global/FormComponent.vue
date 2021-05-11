@@ -1,7 +1,7 @@
 
 <template>
   <div
-    class="form"
+    class="form w-full"
   >
     <Modal class="modal-submit" :open="submitting" modal-style="bg-opacity-90 bg-gray-200">
       <template #body>

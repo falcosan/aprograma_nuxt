@@ -3,9 +3,9 @@
     v-if="blok.text.content"
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor}; color: ${randomTextColor};`"
-    :class="`text-container max-w-full
+    :class="`text-container w-full max-w-full
     ${customClass('index', 'all', 'md:w-max')}
-    ${customClass('index', blok.name === 'text_home_2', 'transition-colors duration-700 ease-in-out')}`"
+    ${customClass('index', blok.name === 'text_phrase', 'transition-colors duration-700 ease-in-out')}`"
   >
     <span
       :class="`text-content h-full block p-5 md:p-10 prose-sm md:prose-lg xl:prose-xl break-all ss:break-normal`"

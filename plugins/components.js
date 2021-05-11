@@ -6,7 +6,6 @@ import Form from '@/components/global/FormComponent'
 import Link from '@/components/global/LinkComponent'
 import Field from '@/components/global/FieldComponent'
 import Button from '@/components/global/ButtonComponent'
-import Slider from '@/components/global/SliderComponent'
 import PostsList from '@/components/blog/PostsListComponent'
 import Container from '@/components/global/ContainerComponent'
 import TextContent from '@/components/global/TextContentComponent'
@@ -20,7 +19,6 @@ Vue.component('Icon', Icon)
 Vue.component('Link', Link)
 Vue.component('Field', Field)
 Vue.component('Button', Button)
-Vue.component('Slider', Slider)
 Vue.component('Container', Container)
 Vue.component('TextContent', TextContent)
 

@@ -1,5 +1,5 @@
 <template>
-  <Slider
+  <ProjectSlider
     v-if="sortedProject && ($store.state.data.windowWidth >= 1024 && $device.isDesktop)"
     :blok="sortedProject"
   />
@@ -13,9 +13,10 @@
   </ul>
 </template>
 <script>
+import ProjectSlider from './ProjectSliderComponent'
 import ProjectTeaser from './ProjectTeaserComponent'
 export default {
-  components: { ProjectTeaser },
+  components: { ProjectSlider, ProjectTeaser },
   props: {
     blok: {
       type: Object,

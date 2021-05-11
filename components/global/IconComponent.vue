@@ -13,7 +13,7 @@
       :class="`icon ${blok.icon_image.filename
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-icon ${size}`"
+        .replace(/\.[^/.]+$/, '')}-icon my-0 mx-auto ${size}`"
       :src="blok.icon_image.filename"
       alt=""
       :name="blok.name"

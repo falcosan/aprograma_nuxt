@@ -35,7 +35,7 @@
       <div class="post-article w-full pb-5 px-5 pt-0 max-w-prose">
         <h2
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-intro m-0"
+          class="post-intro"
           v-text="blok.intro"
         />
         <h3

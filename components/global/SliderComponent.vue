@@ -7,30 +7,30 @@
     :leave-to-class="`opacity-0 transform ${translation.leave}`"
     class="slider w-full relative grid grid-cols-1 grid-rows-2 gap-y-5"
   >
-    <template v-for="(item, index) in blok">
+    <template v-for="(project, index) in blok">
       <li
         v-if="index === frame.up || index === frame.down"
         ref="slide"
-        :key="item.uuid"
+        :key="project.uuid"
         tabindex="0"
-        :class="`slide slide-item w-full h-80 flex col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} outline-none`"
+        :class="`slide slide-project w-full h-80 flex col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} outline-none`"
         @keydown.right.prevent="next"
         @keydown.left.prevent="prev"
       >
-        <NuxtLink v-click-outside="focusSlide" :to="`${$route.path}/${item.slug}`" class="item-link w-full grid grid-rows-1 grid-cols-2">
-          <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1`" :style="`background-color: ${item.content.teaser_background_color.color};`">
-            <h2 class="item-text text-xl xl:text-2xl px-5 lg:px-10 overflow-hidden" :style="`color: ${item.content.teaser_text_color.color};`">
-              {{ item.content.title }}
+        <NuxtLink v-click-outside="focusSlide" :to="`${$route.path}/${project.slug}`" class="project-link w-full grid grid-rows-1 grid-cols-2">
+          <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1`" :style="`background-color: ${project.content.teaser_background_color.color};`">
+            <h2 class="project-text text-xl xl:text-2xl px-5 lg:px-10 overflow-hidden" :style="`color: ${project.content.teaser_text_color.color};`">
+              {{ project.content.title }}
             </h2>
           </div>
           <div :class="`image-container flex row-start-1 row-end-1 ${index % 2 == 0 ? 'col-start-2 col-end-2' : 'col-start-1 col-end-1'}`">
-            <img class="item-image w-full object-cover object-center pointer-events-none select-none" :src="item.content.image.filename" :alt="item.content.image.alt">
+            <img class="project-image w-full object-cover object-center pointer-events-none select-none" :src="project.content.image.filename" :alt="project.content.image.alt">
           </div>
         </NuxtLink>
       </li>
     </template>
-    <li v-if="frame.down === blok.length && blok.length > 2" :key="`${indexControls}-0`" :class="`restart-control control h-full flex justify-center items-center col-start-1 col-end-1 ${blok.length % 2 == 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} cursor-pointer`">
-      <Icon class="w-full h-full flex items-center justify-center" restart size="w-14" tag="button" @click.native="next" />
+    <li v-if="frame.down === blok.length && blok.length > 2" :key="`${indexControls}-0`" :class="`restart-control control h-full flex justify-center projects-center col-start-1 col-end-1 ${blok.length % 2 == 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} cursor-pointer`">
+      <Icon class="w-full h-full flex projects-center justify-center" restart size="w-14" tag="button" @click.native="next" />
     </li>
     <li v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control control absolute top-1/2 -right-32 transform">
       <Icon next size="w-8" tag="button" @click.native="next" />
@@ -132,7 +132,7 @@ export default {
 </script>
 <style scoped>
 
-.item-text{
+.project-text{
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;

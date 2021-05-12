@@ -1,22 +1,23 @@
 <template>
-  <div class="slider">
+  <div v-if="blok.slider_mode && blok.body.length > blok.max_slides" class="slider">
     <Icon
-      v-if="blok.body.length > 4 && blok.slider_mode"
       class="previous-control control absolute top-1/2 -left-20 transform -translate-y-1/2"
       previous
       size="p-3 w-12"
       tag="button"
       @click.native="previous"
     />
-
+    <slot name="slider" />
     <Icon
-      v-if="blok.body.length > 4 && blok.slider_mode"
       class="next-control control absolute top-1/2 -right-20 transform -translate-y-1/2"
       next
       size="p-3 w-12"
       tag="button"
       @click.native="next"
     />
+  </div>
+  <div v-else class="no-slider">
+    <slot name="no_slider" />
   </div>
 </template>
 <script>
@@ -35,9 +36,7 @@ export default {
     }
   },
   computed: {
-    sliderContainer () {
-      return this.blok.body.length > 4 && this.blok.slider_mode ? this.blok.body.slice(this.minSlice, this.maxSlice) : this.blok.body
-    }
+
   },
   methods: {
 

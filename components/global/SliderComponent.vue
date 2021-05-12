@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blok.slider_mode && blok.body.length > blok.max_slides" class="slider">
+  <div v-if="blok.slider_mode && blok.body.length > blok.max_slides && hasSlot('slider')" class="slider">
     <Icon
       class="previous-control control absolute top-1/2 -left-20 transform -translate-y-1/2"
       previous
@@ -7,7 +7,12 @@
       tag="button"
       @click.native="previous"
     />
-    <slot name="slider" />
+    <div
+      v-for="component in blok.body"
+      :key="component._uid"
+    >
+      <slot name="slider" :component="component" />
+    </div>
     <Icon
       class="next-control control absolute top-1/2 -right-20 transform -translate-y-1/2"
       next
@@ -16,8 +21,13 @@
       @click.native="next"
     />
   </div>
-  <div v-else class="no-slider">
-    <slot name="no_slider" />
+  <div v-else-if="hasSlot('no_slider')" class="no-slider">
+    <div
+      v-for="component in blok.body"
+      :key="component._uid"
+    >
+      <slot name="no_slider" :component="component" />
+    </div>
   </div>
 </template>
 <script>
@@ -39,7 +49,9 @@ export default {
 
   },
   methods: {
-
+    hasSlot (name = 'default') {
+      return !!this.$slots[name] || !!this.$scopedSlots[name]
+    }
   }
 }
 </script>

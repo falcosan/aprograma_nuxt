@@ -10,31 +10,27 @@
       :blok="blok"
       :style="`background-color: ${blok.background_color_container.color}`"
     >
-      <template #slider>
+      <template #slider="component">
         <div
-          v-for="(component) in blok.body"
-          :key="component._uid"
           :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 1024 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
-          :class="`${component.component.toLowerCase()}-container flex justify-center${$device.isDesktop && blok.effects ? ' transform transition duration-200 hover:shadow-lg hover:scale-105' : ''}${component.row_container ? '' : ' col-start-1'}`"
+          :class="`${component.component.component.toLowerCase()}-container flex justify-center${$device.isDesktop && blok.effects ? ' transform transition duration-200 hover:shadow-lg hover:scale-105' : ''}${component.row_container ? '' : ' col-start-1'}`"
         >
           <component
-            :is="component.component"
-            :class="`${component.component.toLowerCase()}-component h-full`"
-            :blok="component"
+            :is="component.component.component"
+            :class="`${component.component.component.toLowerCase()}-component h-full`"
+            :blok="component.component"
           />
         </div>
       </template>
-      <template #no_slider>
+      <template #no_slider="component">
         <div
-          v-for="(component) in blok.body"
-          :key="component._uid"
           :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 1024 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
-          :class="`${component.component.toLowerCase()}-container flex justify-center${$device.isDesktop && blok.effects ? ' transform transition duration-200 hover:shadow-lg hover:scale-105' : ''}${component.row_container ? '' : ' col-start-1'}`"
+          :class="`${component.component.component.toLowerCase()}-container flex justify-center${$device.isDesktop && blok.effects ? ' transform transition duration-200 hover:shadow-lg hover:scale-105' : ''}${component.row_container ? '' : ' col-start-1'}`"
         >
           <component
-            :is="component.component"
-            :class="`${component.component.toLowerCase()}-component h-full`"
-            :blok="component"
+            :is="component.component.component"
+            :class="`${component.component.component.toLowerCase()}-component h-full`"
+            :blok="component.component"
           />
         </div>
       </template>
@@ -43,9 +39,7 @@
 </template>
 
 <script>
-import SliderComponent from './SliderComponent'
 export default {
-  components: { SliderComponent },
   props: {
     blok: {
       type: Object,

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blok.slider_mode && blok.body.length > blok.max_slides && hasSlot('slider')" class="slider">
+  <div v-if="blok.slider_mode && hasSlot('slider')" class="slider">
     <Icon
       class="previous-control control absolute top-1/2 -left-20 transform -translate-y-1/2"
       previous
@@ -11,7 +11,7 @@
       v-for="component in blok.body"
       :key="component._uid"
     >
-      <slot name="slider" :component="component" />
+      <slot name="slider" :component="component" :index="slidesShow" />
     </div>
     <Icon
       class="next-control control absolute top-1/2 -right-20 transform -translate-y-1/2"
@@ -41,14 +41,36 @@ export default {
   },
   data () {
     return {
-      maxSlice: 4,
+      maxSlice: this.blok.max_slides,
       minSlice: 0
     }
   },
+
   computed: {
+    sliderContainer () {
+      return this.blok.body.slice(this.minSlice, this.maxSlice)
+    },
+    slidesShow () {
+      return Array.from({ length: this.maxSlice - this.minSlice }, (_, i) => this.minSlice + i)
+    }
 
   },
   methods: {
+    next () {
+      if (this.maxSlice < this.blok.body.length) {
+        this.maxSlice++
+        this.minSlice++
+      } else {
+        this.maxSlice = this.blok.max_slides
+        this.minSlice = 0
+      }
+    },
+    previous () {
+      if (this.minSlice > 0) {
+        this.maxSlice--
+        this.minSlice--
+      }
+    },
     hasSlot (name = 'default') {
       return !!this.$slots[name] || !!this.$scopedSlots[name]
     }

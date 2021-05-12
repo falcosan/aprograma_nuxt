@@ -43,10 +43,10 @@
       class="controls"
     >
       <span v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control absolute top-1/2 -right-32 transform -translate-y-1/2">
-        <Icon next class="next p-3" size="w-8" tag="button" @click.native="next" />
+        <Icon next class="next p-3" size="w-6" tag="button" @click.native="next" />
       </span>
       <span v-if="blok.length > 2 && frame.up != 0" :key="`${indexControls}-2`" class="previous-control absolute top-1/2 -left-32 transform -translate-y-1/2">
-        <Icon previous class="previous p-3" size="w-8" tag="button" @click.native="prev" />
+        <Icon previous class="previous p-3" size="w-6" tag="button" @click.native="prev" />
       </span>
     </transition-group>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <span :class="`icon-container grid gap-5 ${blok && blok.tag === 'button' || tag === 'button' ? ' cursor-pointer' : ''}${blok && !blok.remove_space ? ' p-5 md:p-10' : ''}`">
+  <span :class="`icon-container h-auto grid gap-5 ${blok && blok.tag === 'button' || tag === 'button' ? ' cursor-pointer' : ''}${blok && !blok.remove_space ? ' p-5 md:p-10' : ''}`">
     <component
       :is="blok ? blok.tag : tag"
       :title="blok && blok.title && !blok.show_title ? blok.title : false"
@@ -7,11 +7,11 @@
     >
       <img
         v-if="blok && blok.icon_image.filename"
-        :style="blok && blok.size ? `width: ${blok.size}px; height: ${blok.size}px;` : false"
+        :style="blok && blok.size ? `width: ${blok.size}px;` : false"
         :class="`icon ${blok.icon_image.filename
           .split(/[\\/]/)
           .pop()
-          .replace(/\.[^/.]+$/, '')}-icon my-0 mx-auto ${size}`"
+          .replace(/\.[^/.]+$/, '')}-icon h-auto my-0 mx-auto ${size}`"
         :src="blok.icon_image.filename"
         alt=""
         :name="blok.name"
@@ -24,7 +24,7 @@
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        :class="`back-icon h-auto fill-current ${size}`"
+        :class="`back-icon h-auto fill-current my-0 mx-auto ${size}`"
         xmlns="http://www.w3.org/2000/svg"
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -36,7 +36,7 @@
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        :class="`back-icon h-auto fill-current ${size}`"
+        :class="`back-icon h-auto fill-current my-0 mx-auto ${size}`"
         xmlns="http://www.w3.org/2000/svg"
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -45,7 +45,7 @@
       <!--CLOSE-->
       <svg
         v-else-if="close"
-        :class="`close-icon h-auto fill-current ${size}`"
+        :class="`close-icon h-auto fill-current my-0 mx-auto ${size}`"
         width="24"
         height="24"
         viewBox="0 0 24 24"
@@ -57,7 +57,7 @@
       <!--NEXT-->
       <svg
         v-else-if="next"
-        :class="`next-icon h-auto fill-current ${size}`"
+        :class="`next-icon h-auto fill-current my-0 mx-auto ${size}`"
         width="24"
         height="24"
         viewBox="0 0 24 24"
@@ -69,7 +69,7 @@
       <!--PREVIOUS-->
       <svg
         v-else-if="previous"
-        :class="`previous-icon h-auto fill-current ${size}`"
+        :class="`previous-icon h-auto fill-current my-0 mx-auto ${size}`"
         width="24"
         height="24"
         viewBox="0 0 24 24"
@@ -84,7 +84,7 @@
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        :class="`restart-icon h-auto fill-current ${size}`"
+        :class="`restart-icon h-auto fill-current my-0 mx-auto ${size}`"
         xmlns="http://www.w3.org/2000/svg"
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -94,7 +94,7 @@
       <svg
         v-else-if="loader"
         key="loader"
-        :class="`loader-icon ${size}`"
+        :class="`loader-icon my-0 mx-auto ${size}`"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"

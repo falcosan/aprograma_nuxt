@@ -30,7 +30,7 @@
         translate-transition
         class="translate-header"
         style-current-language="p-3 transition-all bg-gray-800 text-white filter grayscale"
-        :style-translate-list="`transform transition-transform duration-200 esase-out  ${expanded ? 'translate-x-0' : '-translate-x-full'} bg-gray-800 filter grayscale text-white`"
+        :style-translate-list="`transform transition-transform duration-200 esase-out ${expanded ? 'translate-x-0' : '-translate-x-full'} bg-gray-800 filter grayscale text-white`"
         style-translate-item="w-full p-3"
         :blok="$contentByName(blok.body, 'Translate')"
         @mouseleave.native="expandOut"
@@ -51,7 +51,7 @@
             home
             tag="button"
             size="w-5"
-            class="home-link h-full w-full flex items-center justify-center"
+            class="home-link h-full w-full"
           />
         </NuxtLink>
         <Logo
@@ -82,7 +82,7 @@
           :key="item._uid"
           class="link-menu no-underline"
         >
-          <Link icon-item icon-style="w-full h-full flex justify-center items-center" icon-size="w-5" :blok="item" />
+          <Link icon-item icon-style="w-full h-full" icon-size="w-5" :blok="item" />
         </li>
       </ul>
     </nav>

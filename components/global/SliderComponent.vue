@@ -1,8 +1,7 @@
 <template>
-  <div v-if="blok.slider_mode && hasSlot('slider') && $store.state.data.windowWidth >= 1024" class="slider relative">
+  <div v-if="blok.slider_mode && hasSlot('slider') && $store.state.data.windowWidth >= 1024 && blok.body.length > max && max" class="slider relative">
     <Icon
-
-      class="previous-control control absolute top-1/2 -left-20 transform -translate-y-1/2"
+      class="previous-control control absolute top-1/2 -left-2 transform -translate-y-1/2 -translate-x-full"
       previous
       size="p-3 w-12"
       tag="button"
@@ -14,7 +13,7 @@
       enter-active-class="duration-500 in-out transform"
       leave-active-class="duration-500 out-in transform"
       enter-class="translate-y-full absolute"
-      :leave-to-class="`absolute h-full w-full top-0 ${transitionLeave}`"
+      :leave-to-class="`absolute h-full w-full inset-0 ${transitionLeave}`"
       class="relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden "
     >
       <template
@@ -24,7 +23,7 @@
       </template>
     </transition-group>
     <Icon
-      class="next-control control absolute top-1/2 -right-20 transform -translate-y-1/2"
+      class="next-control control absolute top-1/2 -right-2 transform -translate-y-1/2 translate-x-full"
       next
       size="p-3 w-12"
       tag="button"

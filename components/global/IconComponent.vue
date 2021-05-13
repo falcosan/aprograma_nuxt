@@ -7,15 +7,15 @@
     >
       <img
         v-if="blok && blok.icon_image.filename"
-        :style="blok && blok.size ? `width: ${blok.size}px;` : false"
+        :style="blok && blok.size ? `width: ${blok.size}px; height: ${blok.size}px;` : false"
         :class="`icon ${blok.icon_image.filename
           .split(/[\\/]/)
           .pop()
-          .replace(/\.[^/.]+$/, '')}-icon h-auto my-0 mx-auto ${size}`"
+          .replace(/\.[^/.]+$/, '')}-icon h-auto my-0 mx-auto ${size} object-contain object-center`"
         :src="blok.icon_image.filename"
         alt=""
         :name="blok.name"
-        type="image/svg+xml"
+        :type="`image/${lookFile()}`"
       >
 
       <!-- HOME-->
@@ -183,6 +183,22 @@ export default {
     loader: {
       type: Boolean,
       default: false
+    }
+  },
+  methods: {
+    lookFile () {
+      if (this.blok) {
+        switch (this.blok.icon_image.filename.toLowerCase().split('.').pop()) {
+          case 'jpg':
+            return 'jpeg'
+          case 'png':
+            return 'png'
+          case 'svg':
+            return 'svg+xml'
+          case 'gif':
+            return 'gif'
+        }
+      }
     }
   }
 }

@@ -1,12 +1,12 @@
 <template>
-  <div class="project-slider">
+  <div class="project-slider relative">
     <transition-group
       tag="ul"
       :enter-active-class="`${transitionActive} in-out`"
       :leave-active-class="`${transitionActive} out-in`"
       :enter-class="`opacity-0 transform ${translation.enter}`"
       :leave-to-class="`opacity-0 transform ${translation.leave}`"
-      class="slider-wrapper relative w-full grid grid-cols-1 grid-rows-2 gap-y-5 overflow-hidden"
+      class="slider-wrapper w-full grid grid-cols-1 grid-rows-2 gap-y-5 overflow-hidden"
     >
       <template v-for="(project, index) in blok">
         <li
@@ -40,12 +40,12 @@
       leave-active-class="duration-300 out-in"
       enter-class="opacity-0"
       leave-to-class="opacity-0"
-      class="controls"
+      class="controls w-full h-full absolute inset-0"
     >
-      <span v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control absolute right-11 top-3/4 transform -translate-y-1/2 -translate-x-full ">
+      <span v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control absolute -right-2 top-1/2 transform -translate-y-1/2 translate-x-full">
         <Icon next class="next" size="p-3 w-12" tag="button" @click.native="next" />
       </span>
-      <span v-if="blok.length > 2 && frame.up != 0" :key="`${indexControls}-2`" class="previous-control absolute left-11 top-3/4 transform -translate-y-1/2 translate-x-full">
+      <span v-if="blok.length > 2 && frame.up != 0" :key="`${indexControls}-2`" class="previous-control absolute -left-2 top-1/2 transform -translate-y-1/2 -translate-x-full">
         <Icon previous class="previous" size="p-3 w-12" tag="button" @click.native="prev" />
       </span>
     </transition-group>

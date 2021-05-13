@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blok.slider_mode && hasSlot('slider')" class="slider lg:grid-flow-col-dense">
+  <div v-if="blok.slider_mode && hasSlot('slider')" class="slider">
     <Icon
 
       class="previous-control control absolute top-1/2 -left-20 transform -translate-y-1/2"
@@ -11,7 +11,7 @@
     <template
       v-for="(component, index) in rowComponent"
     >
-      <slot v-if="(index < max)" name="slider" :component="component" />
+      <slot v-if="index < max" name="slider" :component="component" />
     </template>
     <Icon
       class="next-control control absolute top-1/2 -right-20 transform -translate-y-1/2"
@@ -66,10 +66,10 @@ export default {
       return arr
     },
     next () {
-      this.sliderMove(this.blok.body, -this.rowComponent.length, 0)
+      this.sliderMove(this.blok.body, 0, -this.rowComponent.length)
     },
     previous () {
-      this.sliderMove(this.blok.body, 0, -this.rowComponent.length)
+      this.sliderMove(this.blok.body, -this.rowComponent.length, 0)
     },
     hasSlot (name = 'default') {
       return !!this.$slots[name] || !!this.$scopedSlots[name]

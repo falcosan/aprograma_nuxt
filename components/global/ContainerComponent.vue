@@ -8,7 +8,6 @@
     <Slider
       :class="`container-wrapper relative grid gap-5 auto-cols-fr ${rowComponent.length === blok.body.length ? 'lg:grid-flow-col-dense' : ''}`"
       :blok="blok"
-      :row="rowComponent"
       :style="`background-color: ${blok.background_color_container.color}`"
     >
       <template #slider="{component}">

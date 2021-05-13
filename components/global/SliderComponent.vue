@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blok.slider_mode && hasSlot('slider')" class="slider">
+  <div v-if="blok.slider_mode && hasSlot('slider')" class="slider lg:grid-flow-col-dense ">
     <Icon
 
       class="previous-control control absolute top-1/2 -left-20 transform -translate-y-1/2"
@@ -57,7 +57,7 @@ export default {
         newIndex += arr.length
       }
       if (newIndex >= arr.length) {
-        let slide = newIndex - arr.length + 1
+        let slide = newIndex - arr.length
         while (slide--) {
           arr.push(undefined)
         }

@@ -6,26 +6,27 @@
       {{ blok.title }}
     </h1>
     <Slider
-      :class="`container-wrapper relative grid gap-5 auto-cols-fr ${rowComponent.length === blok.body.length ? 'lg:grid-flow-col-dense' : ''}`"
+      :class="`container-wrapper grid gap-5 auto-cols-fr ${rowComponent.length === blok.body.length ? 'lg:grid-flow-col-dense' : ''}`"
       :blok="blok"
       :style="`background-color: ${blok.background_color_container.color}`"
     >
       <template #slider="{component}">
-        <div
-          :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 1024 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
-          :class="`${component.component.toLowerCase()}-container flex justify-center${$device.isDesktop && blok.effects ? ' transform transition duration-200 hover:shadow-lg hover:scale-105' : ''}${component.row_container ? '' : ' col-start-1'}`"
+        <li
+          :key="component._uid"
+          :style="`background-color: ${blok.background_color_component.color};`"
+          :class="`${component.component.toLowerCase()}-container flex justify-center`"
         >
           <component
             :is="component.component"
             :class="`${component.component.toLowerCase()}-component h-full`"
             :blok="component"
           />
-        </div>
+        </li>
       </template>
       <template #no_slider="{component}">
         <div
           :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 1024 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
-          :class="`${component.component.toLowerCase()}-container flex justify-center${$device.isDesktop && blok.effects ? ' transform transition duration-200 hover:shadow-lg hover:scale-105' : ''}${component.row_container ? '' : ' col-start-1'}`"
+          :class="`${component.component.toLowerCase()}-container flex justify-center${component.row_container ? '' : ' col-start-1'}`"
         >
           <component
             :is="component.component"

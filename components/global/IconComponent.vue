@@ -1,5 +1,5 @@
 <template>
-  <div :class="`icon-container grid gap-5 ${blok && blok.tag === 'button' || tag === 'button' ? ' cursor-pointer' : ''}${blok && !blok.remove_space ? ' p-5 md:p-10' : ''}`">
+  <span :class="`icon-container grid gap-5 ${blok && blok.tag === 'button' || tag === 'button' ? ' cursor-pointer' : ''}${blok && !blok.remove_space ? ' p-5 md:p-10' : ''}`">
     <component
       :is="blok ? blok.tag : tag"
       :title="blok && blok.title && !blok.show_title ? blok.title : false"
@@ -134,7 +134,7 @@
       </svg>
     </component>
     <span v-if="blok && blok.title && blok.show_title" class="icon-title text-center">{{ blok.title }}</span>
-  </div>
+  </span>
 </template>
 
 <script>

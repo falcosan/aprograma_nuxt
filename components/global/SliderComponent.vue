@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blok.slider_mode && hasSlot('slider')" class="slider lg:grid-flow-col-dense">
+  <div v-if="blok.slider_mode && hasSlot('slider')" class="slider relative">
     <Icon
 
       class="previous-control control absolute top-1/2 -left-20 transform -translate-y-1/2"
@@ -8,11 +8,21 @@
       tag="button"
       @click.native="previous"
     />
-    <template
-      v-for="(component, index) in rowComponent"
+    <transition-group
+      id="slider"
+      tag="ul"
+      enter-active-class="duration-500 in-out transform"
+      leave-active-class="duration-500 out-in transform"
+      enter-class="translate-y-full absolute w-full top-0"
+      leave-to-class="-translate-x-full absolute w-full top-0"
+      class="relative grid gap-5 auto-cols-fr lg:grid-flow-col-dense overflow-hidden "
     >
-      <slot v-if="index < max" name="slider" :component="component" />
-    </template>
+      <template
+        v-for="(component, index) in blok.body"
+      >
+        <slot v-if="index < max" name="slider" :component="component" />
+      </template>
+    </transition-group>
     <Icon
       class="next-control control absolute top-1/2 -right-20 transform -translate-y-1/2"
       next
@@ -40,12 +50,8 @@ export default {
   },
   data () {
     return {
-      max: Number(this.blok.max_slides)
-    }
-  },
-  computed: {
-    rowComponent () {
-      return this.blok.body.filter(function (item) { return item.row_container })
+      max: Number(this.blok.max_slides),
+      transition: ''
     }
   },
   methods: {
@@ -66,18 +72,10 @@ export default {
       return arr
     },
     next () {
-      if (this.blok.body.length === this.rowComponent.length) {
-        this.sliderMove(this.blok.body, this.rowComponent.length - 1, -this.blok.body.length)
-      } else {
-        this.sliderMove(this.blok.body, this.rowComponent.length, -this.blok.body.length)
-      }
+      this.sliderMove(this.blok.body, -1, -this.blok.body.length)
     },
     previous () {
-      if (this.blok.body.length === this.rowComponent.length) {
-        this.sliderMove(this.blok.body, -this.blok.body.length, this.rowComponent.length - 1)
-      } else {
-        this.sliderMove(this.blok.body, -this.blok.body.length, this.rowComponent.length)
-      }
+      this.sliderMove(this.blok.body, -this.blok.body.length, -1)
     },
     hasSlot (name = 'default') {
       return !!this.$slots[name] || !!this.$scopedSlots[name]

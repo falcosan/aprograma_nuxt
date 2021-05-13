@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blok.slider_mode && hasSlot('slider')" class="slider">
+  <div v-if="blok.slider_mode && hasSlot('slider')" class="slider lg:grid-flow-col-dense">
     <Icon
 
       class="previous-control control absolute top-1/2 -left-20 transform -translate-y-1/2"
@@ -9,10 +9,9 @@
       @click.native="previous"
     />
     <template
-      v-for="(component, index) in blok.body"
+      v-for="(component, index) in rowComponent"
     >
-      <slot v-if="(row ? blok.body.length === row.length ? index < max : index <= max : index < max ) && component.row_container" name="slider" :component="component" />
-      <slot v-else-if="!component.row_container" name="slider" :component="component" />
+      <slot v-if="(index < max)" name="slider" :component="component" />
     </template>
     <Icon
       class="next-control control absolute top-1/2 -right-20 transform -translate-y-1/2"
@@ -37,15 +36,16 @@ export default {
     blok: {
       type: Object,
       required: true
-    },
-    row: {
-      type: Array,
-      default: undefined
     }
   },
   data () {
     return {
       max: Number(this.blok.max_slides)
+    }
+  },
+  computed: {
+    rowComponent () {
+      return this.blok.body.filter(function (item) { return item.row_container })
     }
   },
   methods: {
@@ -66,10 +66,10 @@ export default {
       return arr
     },
     next () {
-      this.sliderMove(this.blok.body, -1, -this.blok.body.length)
+      this.sliderMove(this.blok.body, -1, -this.rowComponent.length)
     },
     previous () {
-      this.sliderMove(this.blok.body, 0, this.blok.body.length)
+      this.sliderMove(this.blok.body, 0, -this.rowComponent.length)
     },
     hasSlot (name = 'default') {
       return !!this.$slots[name] || !!this.$scopedSlots[name]

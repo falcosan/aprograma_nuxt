@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blok.slider_mode && hasSlot('slider')" class="slider lg:grid-flow-col-dense ">
+  <div v-if="blok.slider_mode && hasSlot('slider')" class="slider lg:grid-flow-col-dense">
     <Icon
 
       class="previous-control control absolute top-1/2 -left-20 transform -translate-y-1/2"

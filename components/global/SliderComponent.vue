@@ -66,7 +66,7 @@ export default {
       return arr
     },
     next () {
-      this.sliderMove(this.blok.body, -1, -this.rowComponent.length)
+      this.sliderMove(this.blok.body, -this.rowComponent.length, 0)
     },
     previous () {
       this.sliderMove(this.blok.body, 0, -this.rowComponent.length)

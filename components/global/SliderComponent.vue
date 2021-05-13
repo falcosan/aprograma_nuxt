@@ -57,7 +57,7 @@ export default {
         newIndex += arr.length
       }
       if (newIndex >= arr.length) {
-        let slide = newIndex - arr.length
+        let slide = newIndex - arr.length + 1
         while (slide--) {
           arr.push(undefined)
         }
@@ -66,10 +66,18 @@ export default {
       return arr
     },
     next () {
-      this.sliderMove(this.blok.body, this.rowComponent.length - 1, -this.rowComponent.length)
+      if (this.blok.body.length === this.rowComponent.length) {
+        this.sliderMove(this.blok.body, this.rowComponent.length - 1, -this.blok.body.length)
+      } else {
+        this.sliderMove(this.blok.body, this.rowComponent.length, -this.blok.body.length)
+      }
     },
     previous () {
-      this.sliderMove(this.blok.body, -this.rowComponent.length, this.rowComponent.length - 1)
+      if (this.blok.body.length === this.rowComponent.length) {
+        this.sliderMove(this.blok.body, -this.blok.body.length, this.rowComponent.length - 1)
+      } else {
+        this.sliderMove(this.blok.body, -this.blok.body.length, this.rowComponent.length)
+      }
     },
     hasSlot (name = 'default') {
       return !!this.$slots[name] || !!this.$scopedSlots[name]

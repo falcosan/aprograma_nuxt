@@ -11,8 +11,8 @@
     <template
       v-for="(component, index) in blok.body"
     >
-      <slot v-if="index <= max && component.row_container" class="slide row-in" name="slider" :component="component" />
-      <slot v-else class="slide row-out" name="slider" :component="component" />
+      <slot v-if="(row ? blok.body.length === row.length ? index < max : index <= max : index < max ) && component.row_container" name="slider" :component="component" />
+      <slot v-else-if="!component.row_container" name="slider" :component="component" />
     </template>
     <Icon
       class="next-control control absolute top-1/2 -right-20 transform -translate-y-1/2"
@@ -37,16 +37,15 @@ export default {
     blok: {
       type: Object,
       required: true
+    },
+    row: {
+      type: Array,
+      default: undefined
     }
   },
   data () {
     return {
       max: Number(this.blok.max_slides)
-    }
-  },
-  computed: {
-    rowComponent () {
-      return this.blok.body.filter(function (item) { return item.row_container })
     }
   },
   methods: {

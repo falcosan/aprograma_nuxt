@@ -7,12 +7,13 @@
       tag="button"
       @click.native="previous"
     />
-    <div
-      v-for="component in blok.body"
-      :key="component._uid"
+    <template
+      v-for="(component, index) in blok.body"
     >
-      <slot name="slider" :component="component" :index="slidesShow" />
-    </div>
+      <div v-show="index < max" :key="component._uid" class="slide">
+        <slot name="slider" :component="component" />
+      </div>
+    </template>
     <Icon
       class="next-control control absolute top-1/2 -right-20 transform -translate-y-1/2"
       next
@@ -22,12 +23,15 @@
     />
   </div>
   <div v-else-if="hasSlot('no_slider')" class="no-slider">
-    <div
+    <template
       v-for="component in blok.body"
-      :key="component._uid"
     >
-      <slot name="no_slider" :component="component" />
-    </div>
+      <div
+        :key="component._uid"
+      >
+        <slot name="no_slider" :component="component" />
+      </div>
+    </template>
   </div>
 </template>
 <script>
@@ -41,35 +45,32 @@ export default {
   },
   data () {
     return {
-      maxSlice: this.blok.max_slides,
-      minSlice: 0
+      max: Number(this.blok.max_slides),
+      min: 0
     }
-  },
-
-  computed: {
-    sliderContainer () {
-      return this.blok.body.slice(this.minSlice, this.maxSlice)
-    },
-    slidesShow () {
-      return Array.from({ length: this.maxSlice - this.minSlice }, (_, i) => this.minSlice + i)
-    }
-
   },
   methods: {
-    next () {
-      if (this.maxSlice < this.blok.body.length) {
-        this.maxSlice++
-        this.minSlice++
-      } else {
-        this.maxSlice = this.blok.max_slides
-        this.minSlice = 0
+    sliderMove (arr, oldIndex, newIndex) {
+      while (oldIndex < 0) {
+        oldIndex += arr.length
       }
+      while (newIndex < 0) {
+        newIndex += arr.length
+      }
+      if (newIndex >= arr.length) {
+        let k = newIndex - arr.length
+        while (k--) {
+          arr.push(undefined)
+        }
+      }
+      arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0])
+      return arr
+    },
+    next () {
+      this.sliderMove(this.blok.body, -1, -this.blok.body.length)
     },
     previous () {
-      if (this.minSlice > 0) {
-        this.maxSlice--
-        this.minSlice--
-      }
+      this.sliderMove(this.blok.body, 0, this.blok.body.length)
     },
     hasSlot (name = 'default') {
       return !!this.$slots[name] || !!this.$scopedSlots[name]

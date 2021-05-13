@@ -65,8 +65,8 @@
         back
         tag="button"
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        class="project-back h-full flex justify-center items-center p-5"
-        size="w-6"
+        class="project-back h-full"
+        size="w-16 p-5"
         @click.native="$router.push(`/${$route.name.split('-')[0]}`)"
       />
       <component

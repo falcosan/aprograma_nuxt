@@ -6,7 +6,7 @@
       :leave-active-class="`${transitionActive} out-in`"
       :enter-class="`opacity-0 transform ${translation.enter}`"
       :leave-to-class="`opacity-0 transform ${translation.leave}`"
-      class="slider-wrapper w-full relative grid grid-cols-1 grid-rows-2 gap-y-5 overflow-hidden"
+      class="slider-wrapper relative w-full grid grid-cols-1 grid-rows-2 gap-y-5 overflow-hidden"
     >
       <template v-for="(project, index) in blok">
         <li
@@ -30,8 +30,8 @@
           </NuxtLink>
         </li>
       </template>
-      <li v-if="frame.down === blok.length && blok.length > 2" :key="`${indexControls}-0`" :class="`restart-control control h-full flex justify-center projects-center col-start-1 col-end-1 ${blok.length % 2 == 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} cursor-pointer`">
-        <Icon class="w-full h-full flex projects-center justify-center" restart size="w-14" tag="button" @click.native="next" />
+      <li v-if="frame.down === blok.length && blok.length > 2" :key="`${indexControls}-0`" :class="`restart-control control h-full projects-center col-start-1 col-end-1 ${blok.length % 2 == 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} cursor-pointer`">
+        <Icon class="w-full h-full" restart size="w-14" tag="button" @click.native="next" />
       </li>
     </transition-group>
     <transition-group
@@ -42,11 +42,11 @@
       leave-to-class="opacity-0"
       class="controls"
     >
-      <span v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control absolute top-1/2 -right-32 transform -translate-y-1/2">
-        <Icon next class="next p-3" size="w-6" tag="button" @click.native="next" />
+      <span v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control absolute right-11 top-3/4 transform -translate-y-1/2 -translate-x-full ">
+        <Icon next class="next" size="p-3 w-12" tag="button" @click.native="next" />
       </span>
-      <span v-if="blok.length > 2 && frame.up != 0" :key="`${indexControls}-2`" class="previous-control absolute top-1/2 -left-32 transform -translate-y-1/2">
-        <Icon previous class="previous p-3" size="w-6" tag="button" @click.native="prev" />
+      <span v-if="blok.length > 2 && frame.up != 0" :key="`${indexControls}-2`" class="previous-control absolute left-11 top-3/4 transform -translate-y-1/2 translate-x-full">
+        <Icon previous class="previous" size="p-3 w-12" tag="button" @click.native="prev" />
       </span>
     </transition-group>
   </div>

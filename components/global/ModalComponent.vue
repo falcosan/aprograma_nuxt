@@ -15,9 +15,9 @@
             <slot name="header" />
             <Icon
               close
-              class="modal-close fixed top-0 right-0 lg:top-5 lg:right-5"
+              class="modal-close fixed top-0 right-0"
               tag="button"
-              size="w-6"
+              size="w-14 p-4"
               @click.native.stop="closeModal()"
             />
           </header>

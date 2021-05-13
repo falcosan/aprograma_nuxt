@@ -66,10 +66,10 @@ export default {
       return arr
     },
     next () {
-      this.sliderMove(this.blok.body, 0, -this.rowComponent.length)
+      this.sliderMove(this.blok.body, this.rowComponent.length - 1, -this.rowComponent.length)
     },
     previous () {
-      this.sliderMove(this.blok.body, -this.rowComponent.length, 0)
+      this.sliderMove(this.blok.body, -this.rowComponent.length, this.rowComponent.length - 1)
     },
     hasSlot (name = 'default') {
       return !!this.$slots[name] || !!this.$scopedSlots[name]

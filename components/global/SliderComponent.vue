@@ -1,6 +1,7 @@
 <template>
   <div v-if="blok.slider_mode && hasSlot('slider')" class="slider">
     <Icon
+
       class="previous-control control absolute top-1/2 -left-20 transform -translate-y-1/2"
       previous
       size="p-3 w-12"
@@ -10,9 +11,8 @@
     <template
       v-for="(component, index) in blok.body"
     >
-      <div v-show="index < max" :key="component._uid" class="slide">
-        <slot name="slider" :component="component" />
-      </div>
+      <slot v-if="index <= max && component.row_container" class="slide row-in" name="slider" :component="component" />
+      <slot v-else class="slide row-out" name="slider" :component="component" />
     </template>
     <Icon
       class="next-control control absolute top-1/2 -right-20 transform -translate-y-1/2"
@@ -26,11 +26,7 @@
     <template
       v-for="component in blok.body"
     >
-      <div
-        :key="component._uid"
-      >
-        <slot name="no_slider" :component="component" />
-      </div>
+      <slot name="no_slider" :component="component" />
     </template>
   </div>
 </template>
@@ -45,8 +41,12 @@ export default {
   },
   data () {
     return {
-      max: Number(this.blok.max_slides),
-      min: 0
+      max: Number(this.blok.max_slides)
+    }
+  },
+  computed: {
+    rowComponent () {
+      return this.blok.body.filter(function (item) { return item.row_container })
     }
   },
   methods: {
@@ -58,8 +58,8 @@ export default {
         newIndex += arr.length
       }
       if (newIndex >= arr.length) {
-        let k = newIndex - arr.length
-        while (k--) {
+        let slide = newIndex - arr.length
+        while (slide--) {
           arr.push(undefined)
         }
       }

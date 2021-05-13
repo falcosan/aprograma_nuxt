@@ -1,7 +1,11 @@
 <template>
-  <NuxtLink
+  <component
+    :is="blok.external_link ? 'a' : 'NuxtLink'"
     :active-class="`${!iconItem && !blok.icon_item ? 'bg-gray-300' : 'filter invert grayscale bg-gray-300'}`"
-    :to="blok.path"
+    :to="blok.external_link ? false : blok.path"
+    :href="blok.external_link ? blok.path : false"
+    :rel="blok.external_link ? 'noopener noreferrer' : false"
+    :target="blok.external_link ? '_blank' : false"
     class="item-link h-full block"
   >
     <span v-if="!iconItem && !blok.icon_item" class="item-text" :style="`color: ${blok.text_color.color};`">{{ blok.title }}</span>
@@ -12,7 +16,7 @@
       :blok="blok.body[0]"
       :size="iconSize"
     />
-  </NuxtLink>
+  </component>
 </template>
 <script>
 export default {

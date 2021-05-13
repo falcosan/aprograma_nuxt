@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blok.slider_mode && hasSlot('slider')" class="slider relative">
+  <div v-if="blok.slider_mode && hasSlot('slider') && $store.state.data.windowWidth >= 1024" class="slider relative">
     <Icon
 
       class="previous-control control absolute top-1/2 -left-20 transform -translate-y-1/2"
@@ -13,9 +13,9 @@
       tag="ul"
       enter-active-class="duration-500 in-out transform"
       leave-active-class="duration-500 out-in transform"
-      enter-class="translate-y-full absolute w-full top-0"
-      leave-to-class="-translate-x-full absolute w-full top-0"
-      class="relative grid gap-5 auto-cols-fr lg:grid-flow-col-dense overflow-hidden "
+      enter-class="translate-y-full absolute"
+      :leave-to-class="`absolute h-full w-full top-0 ${transitionLeave}`"
+      class="relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden "
     >
       <template
         v-for="(component, index) in blok.body"
@@ -51,7 +51,7 @@ export default {
   data () {
     return {
       max: Number(this.blok.max_slides),
-      transition: ''
+      transitionLeave: ''
     }
   },
   methods: {
@@ -73,9 +73,11 @@ export default {
     },
     next () {
       this.sliderMove(this.blok.body, -1, -this.blok.body.length)
+      this.transitionLeave = 'translate-x-full'
     },
     previous () {
       this.sliderMove(this.blok.body, -this.blok.body.length, -1)
+      this.transitionLeave = '-translate-x-full'
     },
     hasSlot (name = 'default') {
       return !!this.$slots[name] || !!this.$scopedSlots[name]

@@ -23,11 +23,11 @@
         </li>
       </template>
       <template #no_slider>
-        <div class="container-components grid gap-5 auto-cols-fr" :style="`grid-template-columns:repeat(${$store.state.data.windowWidth >= 768 ? maxComponents : '1'}, 1fr);`">
+        <div class="container-components grid gap-5 auto-cols-fr" :style="`grid-template-columns:repeat(${$store.state.data.windowWidth >= 1024 ? maxComponents : '1'}, 1fr);`">
           <div
             v-for="component in blok.body"
             :key="component._uid"
-            :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
+            :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 1024 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
             :class="`${component.component.toLowerCase()}-container flex justify-center${component.row_container ? '' : ' col-start-1'}`"
           >
             <component

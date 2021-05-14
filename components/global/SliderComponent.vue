@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blok.slider_mode && hasSlot('slider') && $store.state.data.windowWidth >= 1024 && blok.body.length > max && max" class="slider relative">
+  <div v-if="blok.slider_mode && hasSlot('slider') && $store.state.data.windowWidth >= 1024" class="slider relative">
     <Icon
       class="previous-control control absolute top-1/2 -left-2 transform -translate-y-1/2 -translate-x-full"
       previous
@@ -13,17 +13,17 @@
       enter-active-class="duration-500 in-out transform"
       leave-active-class="duration-500 out-in transform"
       enter-class="translate-y-full absolute"
-      :leave-to-class="`absolute h-full w-full inset-0 ${transitionLeave}`"
+      :leave-to-class="`absolute h-full w-full inset-0 z-10 ${transitionLeave}`"
       class="relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden "
     >
       <template
         v-for="(component, index) in blok.body"
       >
-        <slot v-if="index < max" name="slider" :component="component" />
+        <slot v-if="index < (max >= blok.body.length ? defaultMax : maxSlides)" name="slider" :component="component" />
       </template>
     </transition-group>
     <Icon
-      class="next-control control absolute top-1/2 -right-2 transform -translate-y-1/2 translate-x-full"
+      class="next-control control absolute top-1/2 -right-2 transform -translate-y-1/2 translate-x-full 2xl:block"
       next
       size="p-3 w-12"
       tag="button"
@@ -50,10 +50,33 @@ export default {
   data () {
     return {
       max: Number(this.blok.max_slides),
+      defaultMax: this.blok.body.length - 1,
       transitionLeave: ''
     }
   },
+  computed: {
+    maxSlides () {
+      if (this.max) {
+        if (this.$store.state.data.windowWidth >= 1536) {
+          return this.rangeSlide(Number(this.blok.max_slides), 5)
+        } else if (this.$store.state.data.windowWidth >= 1280) {
+          return this.rangeSlide(Number(this.blok.max_slides), 4)
+        }
+        return this.rangeSlide(Number(this.blok.max_slides), 3)
+      } else {
+        if (this.$store.state.data.windowWidth >= 1536) {
+          return this.rangeSlide(this.defaultMax, 5)
+        } else if (this.$store.state.data.windowWidth >= 1280) {
+          return this.rangeSlide(this.defaultMax, 4)
+        }
+        return this.rangeSlide(this.defaultMax, 3)
+      }
+    }
+  },
   methods: {
+    rangeSlide (val, max) {
+      return val < 1 ? 1 : (val > max ? max : val)
+    },
     sliderMove (arr, oldIndex, newIndex) {
       while (oldIndex < 0) {
         oldIndex += arr.length
@@ -70,6 +93,7 @@ export default {
       arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0])
       return arr
     },
+
     next () {
       this.sliderMove(this.blok.body, -1, -this.blok.body.length)
       this.transitionLeave = 'translate-x-full'

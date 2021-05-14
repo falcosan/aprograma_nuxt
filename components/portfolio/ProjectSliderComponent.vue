@@ -10,7 +10,7 @@
     >
       <template v-for="(project, index) in blok">
         <li
-          v-show="index === frame.up || index === frame.down"
+          v-if="index === frame.up || index === frame.down"
           ref="slide"
           :key="project.uuid"
           tabindex="0"

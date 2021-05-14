@@ -1,7 +1,7 @@
 <template>
   <component
     :is="blok.external_link ? 'a' : 'NuxtLink'"
-    :active-class="`${!iconItem && !blok.icon_item ? 'bg-gray-300' : 'filter invert grayscale bg-gray-300'}`"
+    :active-class="blok.external_link ? false : !iconItem && !blok.icon_item ? 'bg-gray-300' : 'filter invert grayscale bg-gray-300'"
     :to="blok.external_link ? false : blok.path"
     :href="blok.external_link ? blok.path : false"
     :rel="blok.external_link ? 'noopener noreferrer' : false"

@@ -8,13 +8,12 @@
       @click.native="previous"
     />
     <transition-group
-      id="slider"
       tag="ul"
       enter-active-class="duration-500 in-out transform"
       leave-active-class="duration-500 out-in transform"
       enter-class="translate-y-full absolute"
       :leave-to-class="`absolute h-full w-full inset-0 z-10 ${transitionLeave}`"
-      class="relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden "
+      class="slider-list relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden "
     >
       <template
         v-for="(component, index) in blok.body"
@@ -30,12 +29,8 @@
       @click.native="next"
     />
   </div>
-  <div v-else-if="hasSlot('no_slider')" class="no-slider">
-    <template
-      v-for="component in blok.body"
-    >
-      <slot name="no_slider" :component="component" />
-    </template>
+  <div v-else-if="hasSlot('no_slider')" class="container-wrapper">
+    <slot name="no_slider" />
   </div>
 </template>
 <script>

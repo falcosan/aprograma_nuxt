@@ -1,20 +1,19 @@
 <template>
   <div
-    class="container-element"
+    class="container-cover"
   >
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-10 text-xl">
       {{ blok.title }}
     </h1>
     <Slider
-      :class="`container-wrapper grid gap-5 auto-cols-fr ${rowComponent.length === blok.body.length ? 'lg:grid-flow-col-dense' : ''}`"
       :blok="blok"
-      :style="`background-color: ${blok.background_color_container.color}`"
+      :style="`background-color: ${blok.background_color_container.color};`"
     >
       <template #slider="{component}">
         <li
           :key="component._uid"
           :style="`background-color: ${blok.background_color_component.color};`"
-          :class="`${component.component.toLowerCase()}-container flex justify-center`"
+          :class="`${component.component.toLowerCase()}-slide flex justify-center`"
         >
           <component
             :is="component.component"
@@ -23,16 +22,20 @@
           />
         </li>
       </template>
-      <template #no_slider="{component}">
-        <div
-          :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 1024 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
-          :class="`${component.component.toLowerCase()}-container flex justify-center${component.row_container ? '' : ' col-start-1'}`"
-        >
-          <component
-            :is="component.component"
-            :class="`${component.component.toLowerCase()}-component h-full`"
-            :blok="component"
-          />
+      <template #no_slider>
+        <div class="container-components grid gap-5" :style="`grid-template-columns:repeat(${$store.state.data.windowWidth >= 1024 ? maxComponents : '1'}, 1fr);`">
+          <div
+            v-for="component in blok.body"
+            :key="component._uid"
+            :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 1024 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
+            :class="`${component.component.toLowerCase()}-container flex justify-center${component.row_container ? '' : ' col-start-1'}`"
+          >
+            <component
+              :is="component.component"
+              :class="`${component.component.toLowerCase()}-component h-full`"
+              :blok="component"
+            />
+          </div>
         </div>
       </template>
     </Slider>
@@ -50,6 +53,19 @@ export default {
   computed: {
     rowComponent () {
       return this.blok.body.filter(function (item) { return item.row_container })
+    },
+    maxComponents () {
+      if (this.$store.state.data.windowWidth >= 1536) {
+        return this.rangeComponent(this.rowComponent.length, 5)
+      } else if (this.$store.state.data.windowWidth >= 1280) {
+        return this.rangeComponent(this.rowComponent.length, 4)
+      }
+      return this.rangeComponent(this.rowComponent.length, 3)
+    }
+  },
+  methods: {
+    rangeComponent (val, max) {
+      return val < 1 ? 1 : (val > max ? max : val)
     }
   }
 }

@@ -13,7 +13,7 @@ export default {
   components: { Post },
   asyncData (context) {
     return context.app.$storyapi
-      .get(`cdn/stories/${context.route.path}`, {
+      .get(`cdn/stories${context.route.path}`, {
         language: context.store.state.language.language
       })
       .then((res) => {
@@ -33,7 +33,7 @@ export default {
   },
   async fetch () {
     this.$store.dispatch('list/addItems', this.$route.name)
-    const { data } = await this.$storyapi.get(`cdn/stories/${this.$route.path}`, {
+    const { data } = await this.$storyapi.get(`cdn/stories${this.$route.path}`, {
       language: this.$store.state.language.language
     })
     this.story = data.story

@@ -23,7 +23,7 @@
         </li>
       </template>
       <template #no_slider>
-        <div class="container-components grid gap-5" :style="`grid-template-columns:repeat(${$store.state.data.windowWidth >= 768 ? maxComponents : '1'}, 1fr);`">
+        <div class="container-components grid gap-5 auto-cols-fr" :style="`grid-template-columns:repeat(${$store.state.data.windowWidth >= 768 ? maxComponents : '1'}, 1fr);`">
           <div
             v-for="component in blok.body"
             :key="component._uid"

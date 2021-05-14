@@ -4,7 +4,6 @@
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor}; color: ${randomTextColor};`"
     :class="`text-container w-full max-w-full
-    ${customClass('index', 'all', 'lg:w-max')}
     ${customClass('index', blok.name === 'text_phrase', 'transition-colors duration-700 ease-in-out')}`"
   >
     <span

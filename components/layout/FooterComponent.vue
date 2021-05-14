@@ -28,7 +28,6 @@
         <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid">
           <Link
             icon-item
-            icon-size="w-5"
             :blok="iconLink"
             class="social-icon"
           />
@@ -61,7 +60,6 @@
         <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid">
           <Link
             icon-item
-            icon-size="w-5"
             :blok="iconLink"
             class="social-icon"
           />

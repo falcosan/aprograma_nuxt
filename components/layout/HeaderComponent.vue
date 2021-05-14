@@ -82,7 +82,7 @@
           :key="item._uid"
           class="link-menu no-underline"
         >
-          <Link icon-item icon-style="w-full h-full" icon-size="w-5" :blok="item" />
+          <Link icon-item icon-style="w-full h-full" :blok="item" />
         </li>
       </ul>
     </nav>

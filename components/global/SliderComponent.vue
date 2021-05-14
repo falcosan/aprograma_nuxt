@@ -13,7 +13,7 @@
       leave-active-class="duration-500 out-in transform"
       enter-class="translate-y-full absolute"
       :leave-to-class="`absolute h-full w-full inset-0 z-10 ${transitionLeave}`"
-      class="slider-list relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden "
+      class="slider-list relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden"
     >
       <template
         v-for="(component, index) in blok.body"

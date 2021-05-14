@@ -14,7 +14,6 @@
       :class="`item-icon ${iconStyle}`"
       :tag="blok.body[0].tag"
       :blok="blok.body[0]"
-      :size="iconSize"
     />
   </component>
 </template>
@@ -30,10 +29,6 @@ export default {
       default: false
     },
     iconStyle: {
-      type: String,
-      default: ''
-    },
-    iconSize: {
       type: String,
       default: ''
     }

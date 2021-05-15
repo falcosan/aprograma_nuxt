@@ -8,7 +8,7 @@
       tag="button"
       @click.native="previous"
     />
-    <div v-else class="cursor-previous control h-full w-1/2 absolute left-0 top-0 z-20" @click="previous" />
+    <div v-else class="cursor-previous control h-full w-1/2 absolute left-0 top-0 z-20 cursor-previous" @click="previous" />
     <transition-group
       tag="ul"
       enter-active-class="duration-500 in-out transform"
@@ -31,7 +31,7 @@
       tag="button"
       @click.native="next"
     />
-    <div v-else class="cursor-next control h-full w-1/2 absolute right-0 top-0" @click="next" />
+    <div v-else class="cursor-next control h-full w-1/2 absolute right-0 top-0 z-20 cursor-next" @click="next" />
   </div>
   <div v-else-if="hasSlot('no_slider')" class="container-wrapper">
     <slot name="no_slider" />

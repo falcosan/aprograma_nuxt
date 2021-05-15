@@ -3,7 +3,7 @@
   <div
     class="form w-full"
   >
-    <Modal class="modal-submit" :open="submitting" modal-style="bg-opacity-90 bg-gray-200">
+    <Modal class="modal-submit" :open="submitting" modal-style="bg-opacity-90 bg-gray-200 cursor-wait">
       <template #body>
         <Icon
           tag="span"

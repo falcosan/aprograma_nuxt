@@ -1,7 +1,7 @@
 <template>
   <div v-if="blok.slider_mode && hasSlot('slider') && $store.state.data.windowWidth >= 1024 && blok.body.length > 1" class="slider relative">
     <Icon
-      v-if="blok.slider_mode !== 'carousel' || !$device.isDesktop"
+      v-if="blok.slider_mode === 'slider' || !$device.isDesktop"
       class="previous-control control absolute top-1/2 -left-2 transform -translate-y-1/2 -translate-x-full"
       previous
       size="p-3 w-12"
@@ -20,17 +20,17 @@
       <template
         v-for="(component, index) in blok.body"
       >
-        <slot v-if="index < (max >= blok.body.length ? defaultMax : maxSlides) && blok.slider_mode !== 'carousel'" name="slider" :component="component" />
-        <slot v-else-if="blok.slider_mode === 'carousel' && index === currentSlide" name="slider" :component="component" />
+        <slot v-if="index < (max >= blok.body.length ? defaultMax : maxSlides) && blok.slider_mode === 'slider'" name="slider" :component="component" />
+        <slot v-else-if="index === currentSlide" name="slider" :component="component" />
       </template>
     </transition-group>
     <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-5 justify-center my-5 md:my-10">
       <template v-for="dot in blok.body.length">
-        <span :key="dot" :class="`dot-${dot} ${dot === currentSlide + 1 ? 'transform -translate-y-3 duration-500 transition-transform' : ''}`" v-text="`•`" />
+        <span :key="dot" :class="`dot-${dot} ${dot === currentSlide + 1 ? 'transform -translate-y-1 duration-500' : ''} transition-transform`" v-text="`•`" />
       </template>
     </div>
     <Icon
-      v-if="blok.slider_mode !== 'carousel' || !$device.isDesktop"
+      v-if="blok.slider_mode === 'slider' || !$device.isDesktop"
       class="next-control control absolute top-1/2 -right-2 transform -translate-y-1/2 translate-x-full"
       next
       size="p-3 w-12"
@@ -101,7 +101,7 @@ export default {
     },
 
     next () {
-      if (this.blok.slider_mode !== 'carousel') {
+      if (this.blok.slider_mode === 'slider') {
         this.sliderMove(this.blok.body, -1, -this.blok.body.length)
       } else if (this.blok.slider_mode === 'carousel' && this.blok.body.length - 1 > this.currentSlide) {
         this.currentSlide++
@@ -111,7 +111,7 @@ export default {
       this.transitionLeave = 'translate-x-full'
     },
     previous () {
-      if (this.blok.slider_mode !== 'carousel') {
+      if (this.blok.slider_mode === 'slider') {
         this.sliderMove(this.blok.body, -this.blok.body.length, -1)
       } else if (this.blok.slider_mode === 'carousel' && this.currentSlide > 0) {
         this.currentSlide--

@@ -4,6 +4,7 @@ import Logo from '@/components/global/LogoComponent'
 import Page from '@/components/global/PageComponent'
 import Form from '@/components/global/FormComponent'
 import Link from '@/components/global/LinkComponent'
+import Media from '@/components/global/MediaComponent'
 import Field from '@/components/global/FieldComponent'
 import Button from '@/components/global/ButtonComponent'
 import Slider from '@/components/global/SliderComponent'
@@ -18,6 +19,7 @@ Vue.component('Page', Page)
 Vue.component('Form', Form)
 Vue.component('Icon', Icon)
 Vue.component('Link', Link)
+Vue.component('Media', Media)
 Vue.component('Field', Field)
 Vue.component('Button', Button)
 Vue.component('Slider', Slider)

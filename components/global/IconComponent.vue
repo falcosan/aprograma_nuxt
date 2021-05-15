@@ -144,10 +144,6 @@ export default {
       type: Object,
       default: undefined
     },
-    to: {
-      type: String,
-      default: ''
-    },
     tag: {
       type: String,
       default: ''

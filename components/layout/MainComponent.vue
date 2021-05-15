@@ -14,6 +14,7 @@
         :src="blok.background_media.filename"
         :alt="blok.background_media.alt"
         class="media-image object-cover object-center"
+        :type="`image/${imageType()}`"
       >
       <video
         v-else
@@ -41,6 +42,22 @@ export default {
   computed: {
     lookFile () {
       return (/(gif|jpe?g|tiff?|png|webp|bmp)/gi).test(this.blok.background_media.filename.toLowerCase().split('.').pop()) ? 'image' : 'video'
+    }
+  },
+  methods: {
+    imageType () {
+      if (this.lookFile === 'image') {
+        switch (this.blok.background_media.filename.toLowerCase().split('.').pop()) {
+          case 'jpg':
+            return 'jpeg'
+          case 'png':
+            return 'png'
+          case 'svg':
+            return 'svg+xml'
+          case 'gif':
+            return 'gif'
+        }
+      }
     }
   }
 }

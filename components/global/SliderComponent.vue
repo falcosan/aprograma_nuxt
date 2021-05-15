@@ -1,6 +1,7 @@
 <template>
-  <div v-if="blok.slider_mode && hasSlot('slider') && $store.state.data.windowWidth >= 1024" class="slider relative">
+  <div v-if="blok.slider_mode && hasSlot('slider') && $store.state.data.windowWidth >= 1024 && blok.body.length > 1" class="slider relative">
     <Icon
+      v-if="blok.slider_mode !== 'carousel'"
       class="previous-control control absolute top-1/2 -left-2 transform -translate-y-1/2 -translate-x-full"
       previous
       size="p-3 w-12"
@@ -22,6 +23,7 @@
       </template>
     </transition-group>
     <Icon
+      v-if="blok.slider_mode !== 'carousel'"
       class="next-control control absolute top-1/2 -right-2 transform -translate-y-1/2 translate-x-full 2xl:block"
       next
       size="p-3 w-12"

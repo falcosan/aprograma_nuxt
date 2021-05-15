@@ -1,14 +1,14 @@
 <template>
   <div v-if="blok.slider_mode && hasSlot('slider') && $store.state.data.windowWidth >= 1024 && blok.body.length > 1" class="slider relative">
     <Icon
-      v-if="blok.slider_mode !== 'carousel'"
+      v-if="blok.slider_mode !== 'carousel' || !$device.isDesktop"
       class="previous-control control absolute top-1/2 -left-2 transform -translate-y-1/2 -translate-x-full"
       previous
       size="p-3 w-12"
       tag="button"
       @click.native="previous"
     />
-    <div v-else class="cursor-previous control h-full w-1/2 absolute left-0 top-0 z-20 cursor-previous" @click="previous" />
+    <div v-else class="previous-control control h-full w-1/2 absolute left-0 top-0 z-20 cursor-previous" @click="previous" />
     <transition-group
       tag="ul"
       enter-active-class="duration-500 in-out transform"
@@ -24,14 +24,14 @@
       </template>
     </transition-group>
     <Icon
-      v-if="blok.slider_mode !== 'carousel'"
+      v-if="blok.slider_mode !== 'carousel' || !$device.isDesktop"
       class="next-control control absolute top-1/2 -right-2 transform -translate-y-1/2 translate-x-full"
       next
       size="p-3 w-12"
       tag="button"
       @click.native="next"
     />
-    <div v-else class="cursor-next control h-full w-1/2 absolute right-0 top-0 z-20 cursor-next" @click="next" />
+    <div v-else class="next-control control h-full w-1/2 absolute right-0 top-0 z-20 cursor-next" @click="next" />
   </div>
   <div v-else-if="hasSlot('no_slider')" class="container-wrapper">
     <slot name="no_slider" />

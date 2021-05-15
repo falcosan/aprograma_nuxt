@@ -7,7 +7,7 @@
       :class="`media ${blok && blok.media.filename ? blok.media.filename : source
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-media media-image my-0 mx-auto object-contain object-center pointer-events-none select-none`"
+        .replace(/\.[^/.]+$/, '')}-media lg:h-screen media-image my-0 mx-auto object-contain object-center pointer-events-none select-none`"
       :src="blok && blok.media.filename ? blok.media.filename : source"
       :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
       :type="`image/${imageType()}`"
@@ -17,7 +17,7 @@
       :class="`${blok && blok.media.filename ? blok.media.filename : source
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-media media-video my-0 mx-auto object-contain object-center pointer-events-none select-none`"
+        .replace(/\.[^/.]+$/, '')}-media lg:h-screen media-video my-0 mx-auto object-contain object-center pointer-events-none select-none`"
       :width="blok && blok.width ? `${blok.width}${blok.unit}`: blok && blok.width && blok.full_space ? 100 : width ? width : false"
       :height="blok && blok.height ? `${blok.height}${blok.unit}` : blok && blok.width && blok.full_space ? 100 : height ? height : false"
       playsinline

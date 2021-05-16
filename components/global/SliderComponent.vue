@@ -2,9 +2,9 @@
   <div v-if="blok.slider_mode && hasSlot('slider') && blok.body.length > 1" class="slider relative">
     <Icon
       v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop"
-      class="previous-control control absolute top-1/2 -left-2 transform -translate-y-1/2 -translate-x-full"
+      :class="`previous-control control absolute z-10 md:z-auto top-1/2 left-0 md:-left-2 transform ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'} md:-translate-x-full filter md:filter-none invert md:invert-0 grayscale md:grayscale-0 bg-gray-300 md:bg-transparent`"
       previous
-      size="p-3 w-12"
+      size="p-2 md:p-3 w-9 md:w-12"
       tag="button"
       @click.native="previous"
     />
@@ -14,7 +14,7 @@
       enter-active-class="duration-500 in-out transform"
       leave-active-class="duration-500 out-in transform"
       enter-class="translate-y-full absolute"
-      :leave-to-class="`absolute h-full w-full inset-0 z-10 ${transitionLeave}`"
+      :leave-to-class="`absolute h-full w-full inset-0 ${transitionLeave}`"
       class="slider-list relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden"
     >
       <template
@@ -31,9 +31,9 @@
     </div>
     <Icon
       v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop"
-      class="next-control control absolute top-1/2 -right-2 transform -translate-y-1/2 translate-x-full"
+      :class="`next-control control absolute z-10 md:z-auto top-1/2 right-0 md:-right-2 transform ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'} md:translate-x-full filter md:filter-none invert md:invert-0 grayscale md:grayscale-0 bg-gray-300 md:bg-transparent`"
       next
-      size="p-3 w-12"
+      size="p-2 md:p-3 w-9 md:w-12"
       tag="button"
       @click.native="next"
     />

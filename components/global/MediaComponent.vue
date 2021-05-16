@@ -7,7 +7,7 @@
       :class="`media ${blok && blok.media.filename ? blok.media.filename : source
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-medi lg:h-2xl xl:h-3xl media-image my-0 mx-auto object-contain object-center pointer-events-none select-none`"
+        .replace(/\.[^/.]+$/, '')}-medi h-xs xs:h-sm sm:h-md md:h-lg lg:h-2xl xl:h-3xl media-image my-0 mx-auto object-contain object-center pointer-events-none select-none`"
       :src="blok && blok.media.filename ? blok.media.filename : source"
       :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
       :type="`image/${imageType()}`"
@@ -17,7 +17,7 @@
       :class="`${blok && blok.media.filename ? blok.media.filename : source
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-medi lg:h-2xl xl:h-3xl media-video my-0 mx-auto object-contain object-center pointer-events-none select-none`"
+        .replace(/\.[^/.]+$/, '')}-medi h-xs xs:h-sm sm:h-md md:h-lg lg:h-2xl xl:h-3xl media-video my-0 mx-auto object-contain object-center pointer-events-none select-none`"
       :width="blok && blok.width ? `${blok.width}${blok.unit}`: blok && blok.width && blok.full_space ? 100 : width ? width : false"
       :height="blok && blok.height ? `${blok.height}${blok.unit}` : blok && blok.width && blok.full_space ? 100 : height ? height : false"
       playsinline

@@ -1,7 +1,7 @@
 <template>
   <span class="media-container relative grid gap-5 w-full">
     <img
-      v-if="(blok && blok.media.filename && lookFile === 'image') || image || (!image && !video)"
+      v-if="(blok && blok.media.filename && lookFile === 'image') || image"
       :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
       :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
       :class="`media ${blok && blok.media.filename ? blok.media.filename : src

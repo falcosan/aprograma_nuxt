@@ -9,6 +9,7 @@
         >
           <template #activator="action">
             <Media
+              image
               class="description-image max-h-96 md:max-h-full cursor-pointer"
               :src="image.filename"
               :alt="image.alt"
@@ -16,7 +17,7 @@
             />
           </template>
           <template #body>
-            <Media class="image-description cursor-default" :src="image.filename" :alt="image.alt" />
+            <Media image class="image-description cursor-default" :src="image.filename" :alt="image.alt" />
           </template>
         </Modal>
       </li>

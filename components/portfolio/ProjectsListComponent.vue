@@ -7,7 +7,7 @@
     <ProjectTeaser
       v-for="project in sortedProject"
       :key="project._uid"
-      :project-link="`${$route.path}/${project.slug}`"
+      :project-link="`portfolio/${project.slug}`"
       :project-content="project.content"
     />
   </ul>

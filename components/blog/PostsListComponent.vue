@@ -3,7 +3,7 @@
     <PostTeaser
       v-for="post in sortedPosts"
       :key="post._uid"
-      :post-link="`${$route.path}/${post.slug}`"
+      :post-link="`blog/${post.slug}`"
       :post-content="post.content"
     />
   </ul>

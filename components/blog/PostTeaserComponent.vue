@@ -15,7 +15,7 @@
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div :class="`teaser-text w-full grid gap-5 auto-rows-min${$device.isDesktop ? ' lg:content-center' : ' content-between'} p-5 lg:p-10`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full grid gap-5 auto-rows-min${$device.isDesktop ? ' lg:content-center' : ' content-between'} p-5 md:p-10`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               class="teaser-title mb-5 text-xl md:text-3xl font-medium overflow-hidden"

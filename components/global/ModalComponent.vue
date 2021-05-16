@@ -60,7 +60,7 @@ export default {
     openEvent: { handler () { this.checkModal() } },
     open: { handler () { this.checkModal() } }
   },
-  destroyed () {
+  beforeDestroy () {
     document.body.classList.remove('noscroll')
   },
   methods: {

@@ -1,31 +1,31 @@
 <template>
   <span class="media-container relative grid gap-5 w-full">
     <img
-      v-if="(blok && blok.media.filename && lookFile === 'image') || image"
-      :width="blok && blok.width ? `${blok.width}${blok.unit}`: blok && blok.width && blok.full_space ? 100 : width ? width : false"
-      :height="blok && blok.height ? `${blok.height}${blok.unit}` : blok && blok.width && blok.full_space ? 100 : height ? height : false"
-      :class="`media ${blok && blok.media.filename ? blok.media.filename : source
+      v-if="(blok && blok.media.filename && lookFile === 'image') || image || (!image && !video)"
+      :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
+      :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
+      :class="`media ${blok && blok.media.filename ? blok.media.filename : src
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-media h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl media-image my-0 mx-auto object-contain object-center pointer-events-none select-none`"
-      :src="blok && blok.media.filename ? blok.media.filename : source"
+        .replace(/\.[^/.]+$/, '')}-media media-image my-0 mx-auto object-contain object-center pointer-events-none select-none`"
+      :src="blok && blok.media.filename ? blok.media.filename : src"
       :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
       :type="`image/${imageType()}`"
     >
     <video
       v-else-if="(blok && blok.media.filename) || video"
-      :class="`${blok && blok.media.filename ? blok.media.filename : source
+      :class="`${blok && blok.media.filename ? blok.media.filename : src
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-media h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl media-video my-0 mx-auto object-contain object-center pointer-events-none select-none`"
-      :width="blok && blok.width ? `${blok.width}${blok.unit}`: blok && blok.width && blok.full_space ? 100 : width ? width : false"
-      :height="blok && blok.height ? `${blok.height}${blok.unit}` : blok && blok.width && blok.full_space ? 100 : height ? height : false"
+        .replace(/\.[^/.]+$/, '')}-media media-video my-0 mx-auto object-contain object-center pointer-events-none select-none`"
+      :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
+      :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
       playsinline
       autoplay
       muted
       loop
     >
-      <source :src="blok && blok.media.filename ? blok.media.filename : source" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : source.toLowerCase().split('.').pop()}`">
+      <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
     </video>
     <p v-if="(blok && blok.title && blok.show_title) || title" class="media-title text-center" v-text="blok && blok.title ? blok.title : title" />
   </span>
@@ -42,7 +42,7 @@ export default {
       type: String,
       default: ''
     },
-    source: {
+    src: {
       type: String,
       default: ''
     },
@@ -86,7 +86,7 @@ export default {
             return 'gif'
         }
       } else if (this.image) {
-        switch (this.source.toLowerCase().split('.').pop()) {
+        switch (this.src.toLowerCase().split('.').pop()) {
           case 'jpg':
             return 'jpeg'
           case 'png':

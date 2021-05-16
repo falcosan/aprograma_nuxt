@@ -12,11 +12,17 @@
       >
         <template #activator="action">
           <div class="image-container my-0 mx-auto cursor-pointer" @click="action.open()">
-            <img class="intro-image h-auto w-full border-2 object-contain select-none" :src="blok.image.filename" :alt="blok.image.alt" :style="`border-color: ${blok.project_background_color.color}`">
+            <Media
+              image
+              class="intro-image border-2"
+              :src="blok.image.filename"
+              :alt="blok.image.alt"
+              :style="`border-color: ${blok.project_background_color.color}`"
+            />
           </div>
         </template>
         <template #body>
-          <img class="image-project max-h-full select-none cursor-default" :src="blok.image.filename" :alt="blok.image.alt">
+          <Media image class="intro-image cursor-default" :src="blok.image.filename" :alt="blok.image.alt" />
         </template>
       </Modal>
       <component

@@ -20,7 +20,7 @@
         back
         class="post-back absolute"
         tag="button"
-        size="w-12 p-3"
+        size="p-2 w-9"
         :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
         @click.native.passive="$router.push(`/${$route.name.split('-')[0]}`)"
       />

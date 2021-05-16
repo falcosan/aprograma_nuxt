@@ -28,7 +28,8 @@ export default {
   plugins: [
     '~/plugins/components',
     '~/plugins/injects',
-    '~/plugins/persistedState.client.js'
+    '~/plugins/persistedState.client.js',
+    '~/plugins/touchScreen.client.js'
   ],
 
   buildModules: [

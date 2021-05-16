@@ -9,9 +9,11 @@
       :blok="blok"
       :style="`background-color: ${blok.background_color_container.color};`"
     >
-      <template #slider="{component}">
+      <template #slider="{component, previous, next}">
         <li
           :key="component._uid"
+          v-touch:swipe.right="next"
+          v-touch:swipe.left="previous"
           :style="`background-color: ${blok.background_color_component.color};`"
           :class="`${component.component.toLowerCase()}-slide flex justify-center`"
         >

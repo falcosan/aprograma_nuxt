@@ -20,8 +20,8 @@
       <template
         v-for="(component, index) in blok.body"
       >
-        <slot v-if="index < (max >= blok.body.length ? defaultMax : maxSlides) && blok.slider_mode === 'slider' && $store.state.data.windowWidth >= 640" name="slider" :component="component" />
-        <slot v-else-if="index === currentSlide" name="slider" :component="component" />
+        <slot v-if="index < (max >= blok.body.length ? defaultMax : maxSlides) && blok.slider_mode === 'slider' && $store.state.data.windowWidth >= 640" name="slider" :previous="previous" :next="next" :component="component" />
+        <slot v-else-if="index === currentSlide" name="slider" :previous="previous" :next="next" :component="component" />
       </template>
     </transition-group>
     <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-5 justify-center my-5 md:my-10">

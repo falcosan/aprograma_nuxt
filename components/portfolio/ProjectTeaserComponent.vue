@@ -33,9 +33,6 @@ export default {
     return {
       expanded: false
     }
-  },
-  methods: {
-
   }
 }
 </script>

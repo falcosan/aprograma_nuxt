@@ -8,16 +8,15 @@
           modal-style="bg-opacity-90 bg-gray-200"
         >
           <template #activator="action">
-            <Media
-              image
-              class="description-image max-h-96 md:max-h-full cursor-pointer"
+            <img
+              class="description-image w-full h-full max-h-96 md:max-h-full cursor-pointer object-contain select-none"
               :src="image.filename"
               :alt="image.alt"
-              @click.native="action.open()"
-            />
+              @click="action.open()"
+            >
           </template>
           <template #body>
-            <Media image class="image-description cursor-default" :src="image.filename" :alt="image.alt" />
+            <img class="image-description max-h-full select-none cursor-default" :src="image.filename" :alt="image.alt">
           </template>
         </Modal>
       </li>

@@ -1,7 +1,7 @@
 <template>
-  <div v-if="blok.slider_mode && hasSlot('slider') && $store.state.data.windowWidth >= 1024 && blok.body.length > 1" class="slider relative">
+  <div v-if="blok.slider_mode && hasSlot('slider') && blok.body.length > 1" class="slider relative">
     <Icon
-      v-if="blok.slider_mode === 'slider' || !$device.isDesktop"
+      v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop"
       class="previous-control control absolute top-1/2 -left-2 transform -translate-y-1/2 -translate-x-full"
       previous
       size="p-3 w-12"
@@ -20,7 +20,7 @@
       <template
         v-for="(component, index) in blok.body"
       >
-        <slot v-if="index < (max >= blok.body.length ? defaultMax : maxSlides) && blok.slider_mode === 'slider'" name="slider" :component="component" />
+        <slot v-if="index < (max >= blok.body.length ? defaultMax : maxSlides) && blok.slider_mode === 'slider' && $store.state.data.windowWidth >= 768" name="slider" :component="component" />
         <slot v-else-if="index === currentSlide" name="slider" :component="component" />
       </template>
     </transition-group>
@@ -30,7 +30,7 @@
       </template>
     </div>
     <Icon
-      v-if="blok.slider_mode === 'slider' || !$device.isDesktop"
+      v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop"
       class="next-control control absolute top-1/2 -right-2 transform -translate-y-1/2 translate-x-full"
       next
       size="p-3 w-12"
@@ -67,15 +67,19 @@ export default {
           return this.rangeSlide(Number(this.blok.max_slides), 5)
         } else if (this.$store.state.data.windowWidth >= 1280) {
           return this.rangeSlide(Number(this.blok.max_slides), 4)
+        } else if (this.$store.state.data.windowWidth >= 1024) {
+          return this.rangeSlide(Number(this.blok.max_slides), 3)
         }
-        return this.rangeSlide(Number(this.blok.max_slides), 3)
+        return this.rangeSlide(Number(this.blok.max_slides), 2)
       } else {
         if (this.$store.state.data.windowWidth >= 1536) {
           return this.rangeSlide(this.defaultMax, 5)
         } else if (this.$store.state.data.windowWidth >= 1280) {
           return this.rangeSlide(this.defaultMax, 4)
+        } else if (this.$store.state.data.windowWidth >= 1024) {
+          return this.rangeSlide(this.defaultMax, 3)
         }
-        return this.rangeSlide(this.defaultMax, 3)
+        return this.rangeSlide(this.defaultMax, 2)
       }
     }
   },

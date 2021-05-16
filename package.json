@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "@nuxtjs/sitemap": "^2.4.0",
-    "@sendgrid/mail": "^7.4.2",
+    "@sendgrid/mail": "^7.4.4",
     "@tailwindcss/typography": "^0.4.0",
-    "core-js": "^3.11.2",
+    "core-js": "^3.12.1",
     "netlify-lambda": "^2.0.6",
-    "nuxt": "^2.15.4",
+    "nuxt": "^2.15.6",
     "nuxt-compress": "^5.0.0",
     "storyblok-nuxt": "^2.0.1",
     "vuex-persistedstate": "*"
@@ -27,8 +27,8 @@
   "devDependencies": {
     "@nuxtjs/device": "^2.1.0",
     "@nuxtjs/eslint-config": "^6.0.0",
-    "@nuxtjs/tailwindcss": "^4.0.3",
-    "eslint": "^7.25.0"
+    "@nuxtjs/tailwindcss": "^4.1.2",
+    "eslint": "^7.26.0"
   },
   "main": ".eslintrc.js",
   "repository": {

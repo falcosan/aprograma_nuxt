@@ -29,6 +29,18 @@ export default {
       })
       return featuredPosts
     }
+  },
+  created () {
+    this.getPosts()
+  },
+  beforeDestroy () {
+    this.$store.dispatch('list/deleteItems')
+  },
+  methods: {
+    async getPosts () {
+      await this.$store.dispatch('list/addItems', 'blog')
+    }
+
   }
 }
 </script>

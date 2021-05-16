@@ -33,6 +33,17 @@ export default {
       })
       return featuredProjects
     }
+  },
+  created () {
+    this.getProjects()
+  },
+  beforeDestroy () {
+    this.$store.dispatch('list/deleteItems')
+  },
+  methods: {
+    async getProjects () {
+      await this.$store.dispatch('list/addItems', 'portfolio')
+    }
   }
 }
 </script>

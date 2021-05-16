@@ -2,7 +2,6 @@ export const state = () => ({
   items: [],
   itemRoute: ''
 })
-
 export const mutations = {
   setItems (state, entries) {
     state.items = entries
@@ -11,7 +10,6 @@ export const mutations = {
     state.itemRoute = route
   }
 }
-
 export const actions = {
   async addItems ({ commit, state, rootState }, currentRoute) {
     commit('setItemsRoute', currentRoute)
@@ -19,5 +17,9 @@ export const actions = {
       starts_with: rootState.language.language === '' ? `[default]/${state.itemRoute}` : `${rootState.language.language}/${state.itemRoute}`
     })
     commit('setItems', listItems.data.stories)
+  },
+  deleteItems ({ commit }) {
+    commit('setItemsRoute', '')
+    commit('setItems', [])
   }
 }

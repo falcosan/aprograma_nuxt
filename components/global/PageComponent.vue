@@ -3,17 +3,19 @@
     <h1 v-if="blok.title && blok.show_title" class="page-title mb-10 text-xl">
       {{ blok.title }}
     </h1>
-    <div
-      :class="`${blok.name.toLowerCase()}-content grid gap-5 auto-cols-fr ${rowComponent.length === blok.body.length ? 'lg:grid-flow-col-dense' : ''}`"
-    >
-      <component
-        :is="component.component"
+    <div class="container-components grid gap-5 auto-cols-fr" :style="`grid-template-columns:repeat(${$store.state.data.windowWidth >= 768 ? maxComponents : '1'}, 1fr);`">
+      <div
         v-for="component in blok.body"
         :key="component._uid"
-        :style="component.row_container || $store.state.data.windowWidth < 1024 ? false : `grid-column-end: ${rowComponent.length + 1}`"
-        :class="`${blok.name.toLowerCase()}-component ${component.row_container ? '' : 'col-start-1'}`"
-        :blok="component"
-      />
+        :style="`${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
+        :class="`${component.component.toLowerCase()}-content ${component.row_container ? '' : ' col-start-1'}`"
+      >
+        <component
+          :is="component.component"
+          :class="`${component.component.toLowerCase()}-component h-full`"
+          :blok="component"
+        />
+      </div>
     </div>
   </section>
 </template>
@@ -29,6 +31,18 @@ export default {
   computed: {
     rowComponent () {
       return this.blok.body.filter(function (item) { return item.row_container })
+    },
+    maxComponents () {
+      if (this.$store.state.data.windowWidth >= 1536) {
+        return this.$rangeItems(this.rowComponent.length, 5)
+      } else if (this.$store.state.data.windowWidth >= 1280) {
+        return this.$rangeItems(this.rowComponent.length, 4)
+      } else if (this.$store.state.data.windowWidth >= 1024) {
+        return this.$rangeItems(this.rowComponent.length, 3)
+      } else if (this.$store.state.data.windowWidth >= 768) {
+        return this.$rangeItems(this.rowComponent.length, 2)
+      }
+      return this.$rangeItems(this.rowComponent.length, 1)
     }
   }
 }

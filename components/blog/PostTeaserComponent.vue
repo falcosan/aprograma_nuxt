@@ -66,7 +66,7 @@ export default {
   },
   data () {
     return {
-      width: '',
+      width: Number,
       expanded: false
     }
   },

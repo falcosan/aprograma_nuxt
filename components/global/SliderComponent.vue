@@ -11,8 +11,8 @@
     <div v-else class="previous-control control h-full w-1/2 absolute left-0 top-0 z-20 cursor-previous" @click="previous" />
     <transition-group
       tag="ul"
-      enter-active-class="duration-500 in-out transform"
-      leave-active-class="duration-500 out-in transform"
+      enter-active-class="duration-300 in-out transform"
+      leave-active-class="duration-300 out-in transform"
       enter-class="translate-y-full absolute"
       :leave-to-class="`absolute h-full w-full md:z-10 inset-0 ${transitionLeave}`"
       class="slider-list relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden"
@@ -26,7 +26,7 @@
     </transition-group>
     <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-5 justify-center my-5 md:my-10">
       <template v-for="dot in blok.body.length">
-        <span :key="dot" :class="`dot-${dot} ${dot === currentSlide + 1 ? 'transform -translate-y-1 duration-500' : ''} transition-transform`" v-text="`•`" />
+        <span :key="dot" :class="`dot-${dot} ${dot === currentSlide + 1 ? 'transform -translate-y-1 duration-300' : ''} transition-transform`" v-text="`•`" />
       </template>
     </div>
     <Icon
@@ -116,7 +116,7 @@ export default {
       } else {
         this.currentSlide = 0
       }
-      this.transitionLeave = 'translate-x-full'
+      this.transitionLeave = 'translate-x-full skew-x-12'
     },
     previous () {
       if (this.blok.slider_mode === 'slider') {
@@ -126,7 +126,7 @@ export default {
       } else {
         this.currentSlide = this.blok.body.length - 1
       }
-      this.transitionLeave = '-translate-x-full'
+      this.transitionLeave = '-translate-x-full -skew-x-12'
     },
     hasSlot (name = 'default') {
       return !!this.$slots[name] || !!this.$scopedSlots[name]

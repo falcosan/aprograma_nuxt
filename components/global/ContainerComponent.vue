@@ -14,6 +14,8 @@
           :key="component._uid"
           v-touch:swipe.right="next"
           v-touch:swipe.left="previous"
+          v-touch:start="$noscroll(true)"
+          v-touch:end="$noscroll(false)"
           :style="`background-color: ${blok.background_color_component.color};`"
           :class="`${component.component.toLowerCase()}-slide flex justify-center`"
         >

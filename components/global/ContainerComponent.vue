@@ -12,10 +12,10 @@
       <template #slider="{component, previous, next}">
         <li
           :key="component._uid"
-          v-touch:swipe.right="next"
-          v-touch:swipe.left="previous"
-          v-touch:start="$noscroll(true)"
-          v-touch:end="$noscroll(false)"
+          v-touch:swipe.prevent.right="next"
+          v-touch:swipe.prevent.left="previous"
+          v-touch:start.prevent="$noscroll(true)"
+          v-touch:end.prevent="$noscroll(false)"
           :style="`background-color: ${blok.background_color_component.color};`"
           :class="`${component.component.toLowerCase()}-slide flex justify-center`"
         >

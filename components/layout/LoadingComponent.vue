@@ -1,15 +1,18 @@
 <template>
-  <div
-    v-if="loading"
-    class="indeterminate w-full h-screen flex items-center bg-gray-200 fixed inset-0 z-50 overflow-hidden"
-  >
+  <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="opacity-0" leave-to-class="opacity-0">
     <div
-      class="progressbar w-full h-px bg-black"
-      role="progressbar"
-      aria-valuenow="100"
-      aria-valuemin="0"
-      aria-valuemax="100"
-    />
+      v-if="loading"
+      class="indeterminate w-full h-screen flex items-center bg-gray-200 fixed inset-0 z-50 overflow-hidden"
+    >
+      <div
+        class="progressbar w-full h-px bg-black"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      />
+    </div>
+  </transition>
   </div>
 </template>
 <script>

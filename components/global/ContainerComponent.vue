@@ -60,20 +60,15 @@ export default {
     },
     maxComponents () {
       if (this.$store.state.data.windowWidth >= 1536) {
-        return this.rangeComponent(this.rowComponent.length, 5)
+        return this.$rangeItems(this.rowComponent.length, 5)
       } else if (this.$store.state.data.windowWidth >= 1280) {
-        return this.rangeComponent(this.rowComponent.length, 4)
+        return this.$rangeItems(this.rowComponent.length, 4)
       } else if (this.$store.state.data.windowWidth >= 1024) {
-        return this.rangeComponent(this.rowComponent.length, 3)
+        return this.$rangeItems(this.rowComponent.length, 3)
       } else if (this.$store.state.data.windowWidth >= 640) {
-        return this.rangeComponent(this.rowComponent.length, 2)
+        return this.$rangeItems(this.rowComponent.length, 2)
       }
-      return this.rangeComponent(this.rowComponent.length, 1)
-    }
-  },
-  methods: {
-    rangeComponent (val, max) {
-      return val < 1 ? 1 : (val > max ? max : val)
+      return this.$rangeItems(this.rowComponent.length, 1)
     }
   }
 }

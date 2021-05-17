@@ -64,33 +64,30 @@ export default {
     maxSlides () {
       if (this.max) {
         if (this.$store.state.data.windowWidth >= 1536) {
-          return this.rangeSlide(Number(this.blok.max_slides), 5)
+          return this.$rangeItems(Number(this.blok.max_slides), 5)
         } else if (this.$store.state.data.windowWidth >= 1280) {
-          return this.rangeSlide(Number(this.blok.max_slides), 4)
+          return this.$rangeItems(Number(this.blok.max_slides), 4)
         } else if (this.$store.state.data.windowWidth >= 1024) {
-          return this.rangeSlide(Number(this.blok.max_slides), 3)
+          return this.$rangeItems(Number(this.blok.max_slides), 3)
         } else if (this.$store.state.data.windowWidth >= 640) {
-          return this.rangeSlide(Number(this.blok.max_slides), 2)
+          return this.$rangeItems(Number(this.blok.max_slides), 2)
         }
-        return this.rangeSlide(Number(this.blok.max_slides), 1)
+        return this.$rangeItems(Number(this.blok.max_slides), 1)
       } else {
         if (this.$store.state.data.windowWidth >= 1536) {
-          return this.rangeSlide(this.defaultMax, 5)
+          return this.$rangeItems(this.defaultMax, 5)
         } else if (this.$store.state.data.windowWidth >= 1280) {
-          return this.rangeSlide(this.defaultMax, 4)
+          return this.$rangeItems(this.defaultMax, 4)
         } else if (this.$store.state.data.windowWidth >= 1024) {
-          return this.rangeSlide(this.defaultMax, 3)
+          return this.$rangeItems(this.defaultMax, 3)
         } else if (this.$store.state.data.windowWidth >= 640) {
-          return this.rangeSlide(this.defaultMax, 2)
+          return this.$rangeItems(this.defaultMax, 2)
         }
-        return this.rangeSlide(this.defaultMax, 1)
+        return this.$rangeItems(this.defaultMax, 1)
       }
     }
   },
   methods: {
-    rangeSlide (val, max) {
-      return val < 1 ? 1 : (val > max ? max : val)
-    },
     sliderMove (arr, oldIndex, newIndex) {
       while (oldIndex < 0) {
         oldIndex += arr.length

@@ -15,6 +15,9 @@ export default ({ app }, inject) => {
         return italian
     }
   })
+  inject('rangeItems', (val, max) => {
+    return val < 1 ? 1 : (val > max ? max : val)
+  })
   inject('noscroll', (condition) => {
     if (condition) {
       document.body.classList.add('noscroll')

@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     sortedProject () {
-      const featuredProjects = this.$store.state.list.items.filter((project) => {
+      const featuredProjects = this.$store.state.list.projects.items.filter((project) => {
         return this.blok.projects.includes(project.uuid)
       })
       featuredProjects.sort((a, b) => {
@@ -40,11 +40,11 @@ export default {
     }
   },
   beforeDestroy () {
-    this.$store.dispatch('list/deleteItems')
+    this.$store.dispatch('list/projects/deleteProjects')
   },
   methods: {
     async getProjects () {
-      await this.$store.dispatch('list/addItems', 'portfolio')
+      await this.$store.dispatch('list/projects/addProjects')
     }
   }
 }

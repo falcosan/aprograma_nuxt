@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     sortedPosts () {
-      const featuredPosts = this.$store.state.list.items.filter((post) => {
+      const featuredPosts = this.$store.state.list.posts.items.filter((post) => {
         return this.blok.posts.includes(post.uuid)
       })
       featuredPosts.sort((a, b) => {
@@ -36,11 +36,11 @@ export default {
     }
   },
   beforeDestroy () {
-    this.$store.dispatch('list/deleteItems')
+    this.$store.dispatch('list/posts/deletePosts')
   },
   methods: {
     async getPosts () {
-      await this.$store.dispatch('list/addItems', 'blog')
+      await this.$store.dispatch('list/posts/addPosts')
     }
 
   }

@@ -5,7 +5,7 @@
       class="indeterminate w-full h-screen flex items-center bg-gray-200 fixed inset-0 z-40 overflow-hidden"
     >
       <div
-        class="progressbar w-full h-px absolute top-1/2 bg-black"
+        class="progressbar w-full h-px absolute top-1/2 transform -translate-y-full bg-black"
         role="progressbar"
         aria-valuenow="0"
         aria-valuemin="0"

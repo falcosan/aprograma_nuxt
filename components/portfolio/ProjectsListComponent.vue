@@ -35,7 +35,9 @@ export default {
     }
   },
   created () {
-    this.getProjects()
+    if (this.$route.name !== 'portfolio') {
+      this.getProjects()
+    }
   },
   beforeDestroy () {
     this.$store.dispatch('list/deleteItems')

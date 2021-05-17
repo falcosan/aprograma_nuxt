@@ -31,7 +31,9 @@ export default {
     }
   },
   created () {
-    this.getPosts()
+    if (this.$route.name !== 'blog') {
+      this.getPosts()
+    }
   },
   beforeDestroy () {
     this.$store.dispatch('list/deleteItems')

@@ -1,6 +1,6 @@
 <template>
   <ProjectSlider
-    v-if="sortedProject && width >= 640 && blok.show_slider"
+    v-if="sortedProject && width >= 640 && blok.show_slider && blok.show_slider"
     :blok="sortedProject"
   />
   <ul v-else-if="sortedProject" :class="`project-list w-full grid ${projectGrid} gap-5`">
@@ -59,23 +59,18 @@ export default {
       this.getProjects()
     }
   },
-  beforeDestroy () {
-    this.$store.dispatch('list/projects/deleteProjects')
-  },
   mounted () {
     this.projectWidth()
   },
-  updated () {
-    this.projectWidth()
+  beforeDestroy () {
+    this.$store.dispatch('list/projects/deleteProjects')
   },
   methods: {
     async getProjects () {
       await this.$store.dispatch('list/projects/addProjects')
     },
     projectWidth () {
-      this.$nextTick(function () {
-        this.width = this.$el.clientWidth
-      })
+      this.width = this.$el.clientWidth
     }
   }
 }

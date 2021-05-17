@@ -5,13 +5,13 @@
   >
     <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link h-full grid">
       <div
-        :class="`teaser-content lg:relative lg:z-10 flex ${width >= 640 ? 'flex-row lg:h-64' : 'flex-col'} row-start-1 row-end-1 col-start-1 col-end-3`"
+        :class="`teaser-content lg:relative lg:z-10 flex flex-col lg:flex-row row-start-1 row-end-1 col-start-1 col-end-3`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file h-full ${width >= 640 ? 'lg:max-w-xs lg:w-screen xl:max-w-sm' : 'w-full'} object-cover select-none`"
+          :class="`teaser-file h-full lg:max-w-xs lg:w-screen xl:max-w-sm object-cover select-none`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
@@ -30,7 +30,7 @@
             </span>
           </div>
           <span
-            v-if="width < 640 || !$device.isDesktop"
+            v-if="$store.state.data.windowWidth < 1024 || !$device.isDesktop"
             class="text-date text-right text-lg"
             v-text="changeDate(postContent.date)"
           />
@@ -43,7 +43,7 @@
         leave-to-class="-translate-x-full"
       >
         <span
-          v-if="expanded && (width >= 640 && $device.isDesktop)"
+          v-if="expanded && $store.state.data.windowWidth >= 1024 && $device.isDesktop"
           class="date-text justify-self-end row-start-1 row-end-1 col-start-2 col-end-2 -mr-10 text-3xl transform rotate-90 whitespace-nowrap pointer-events-none"
           v-text="changeDate(postContent.date)"
         />
@@ -66,25 +66,10 @@ export default {
   },
   data () {
     return {
-      width: Number,
       expanded: false
     }
   },
-  watch: {
-    '$store.state.data.windowWidth': { handler () { this.postWidth() } }
-  },
-  mounted () {
-    this.postWidth()
-  },
-  updated () {
-    this.postWidth()
-  },
   methods: {
-    postWidth () {
-      this.$nextTick(function () {
-        this.width = this.$el.clientWidth
-      })
-    },
     changeDate (date) {
       const currentDateTime = new Date(date.replace(' ', 'T'))
       const formattedDate = `${currentDateTime.getDate()} / ${
@@ -117,5 +102,4 @@ export default {
    display: -webkit-box;
   -webkit-box-orient: vertical;
 }
-
 </style>

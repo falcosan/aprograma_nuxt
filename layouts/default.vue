@@ -25,7 +25,6 @@ export default {
   watch: {
     '$store.state.language.language': { handler () { this.getLayout() } }
   },
-
   beforeMount () {
     this.$store.commit('data/responsiveMutation', window.innerWidth)
   },

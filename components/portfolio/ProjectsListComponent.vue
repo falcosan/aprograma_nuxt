@@ -1,6 +1,6 @@
 <template>
   <ProjectSlider
-    v-if="sortedProject && ($store.state.data.windowWidth >= 1024 && $device.isDesktop)"
+    v-if="sortedProject && ($store.state.data.windowWidth >= 1024 && $device.isDesktop) && blok.show_slider"
     :blok="sortedProject"
   />
   <ul v-else-if="sortedProject" class="project-list w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">

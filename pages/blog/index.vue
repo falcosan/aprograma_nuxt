@@ -5,6 +5,7 @@
     :key="story.content._uid"
     :blok="story.content"
   />
+  <div v-else class="loading h-screen" />
 </template>
 <script>
 import Post from '@/components/blog/PostComponent'

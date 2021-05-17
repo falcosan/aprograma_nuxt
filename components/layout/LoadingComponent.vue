@@ -2,10 +2,10 @@
   <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="opacity-0" leave-to-class="opacity-0">
     <div
       v-if="loading"
-      class="indeterminate w-full h-screen flex items-center bg-gray-200 fixed inset-0 z-40 overflow-hidden"
+      class="indeterminatefixed top-0 z-40 overflow-hidden"
     >
       <div
-        class="progressbar w-full h-px absolute top-1/2 transform -translate-y-full bg-black"
+        class="progressbar w-full h-px bg-black"
         role="progressbar"
         aria-valuenow="0"
         aria-valuemin="0"

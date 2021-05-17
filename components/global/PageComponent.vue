@@ -3,11 +3,11 @@
     <h1 v-if="blok.title && blok.show_title" class="page-title mb-10 text-xl">
       {{ blok.title }}
     </h1>
-    <div class="container-components grid gap-5 auto-cols-fr" :style="`grid-template-columns:repeat(${$store.state.data.windowWidth >= 768 ? maxComponents : '1'}, 1fr);`">
+    <div class="container-components grid gap-5 auto-cols-fr" :style="`grid-template-columns:repeat(${maxComponents}, 1fr);`">
       <div
         v-for="component in blok.body"
         :key="component._uid"
-        :style="`${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
+        :style="`${component.row_container || $store.state.data.windowWidth < 640 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
         :class="`${component.component.toLowerCase()}-content ${component.row_container ? '' : ' col-start-1'}`"
       >
         <component
@@ -39,7 +39,7 @@ export default {
         return this.$rangeItems(this.rowComponent.length, 4)
       } else if (this.$store.state.data.windowWidth >= 1024) {
         return this.$rangeItems(this.rowComponent.length, 3)
-      } else if (this.$store.state.data.windowWidth >= 768) {
+      } else if (this.$store.state.data.windowWidth >= 640) {
         return this.$rangeItems(this.rowComponent.length, 2)
       }
       return this.$rangeItems(this.rowComponent.length, 1)

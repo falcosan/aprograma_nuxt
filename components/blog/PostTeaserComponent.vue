@@ -3,7 +3,7 @@
     v-if="postContent"
     class="post-teaser"
   >
-    <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link grid">
+    <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link h-full grid">
       <div
         :class="`teaser-content lg:relative lg:z-10 flex ${width >= 640 ? 'flex-row lg:h-64' : 'flex-col'} row-start-1 row-end-1 col-start-1 col-end-3`"
         @mouseover="expanded = true"

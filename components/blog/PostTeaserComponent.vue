@@ -3,19 +3,19 @@
     v-if="postContent"
     class="post-teaser"
   >
-    <NuxtLink :key="postContent._uid" :to="postLink" class="teaser-link grid">
+    <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link grid">
       <div
-        class="teaser-content lg:h-64 lg:relative lg:z-10 flex flex-col lg:flex-row row-start-1 row-end-1 col-start-1 col-end-3"
+        :class="`teaser-content lg:relative lg:z-10 flex ${width >= 640 ? 'flex-row lg:h-64' : 'flex-col'} row-start-1 row-end-1 col-start-1 col-end-3`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
         <component
           :is="lookFile()"
-          class="teaser-file w-full h-full lg:max-w-xs lg:w-screen xl:max-w-sm object-cover select-none"
+          :class="`teaser-file h-full ${width >= 640 ? 'lg:max-w-xs lg:w-screen xl:max-w-sm' : 'w-full'} object-cover select-none`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div :class="`teaser-text w-full grid gap-5 auto-rows-min${$device.isDesktop ? ' lg:content-center' : ' content-between'} p-5 md:p-10`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div class="teaser-text w-full grid gap-5 auto-rows-min content-center p-5 md:p-10" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               class="teaser-title mb-5 text-xl md:text-3xl font-medium overflow-hidden"
@@ -30,7 +30,7 @@
             </span>
           </div>
           <span
-            v-if=" $store.state.data.windowWidth < 1024 || !$device.isDesktop"
+            v-if="width < 640 || !$device.isDesktop"
             class="text-date text-right text-lg"
             v-text="changeDate(postContent.date)"
           />
@@ -43,7 +43,7 @@
         leave-to-class="-translate-x-full"
       >
         <span
-          v-if="expanded && ($store.state.data.windowWidth >= 1024 && $device.isDesktop)"
+          v-if="expanded && (width >= 640 && $device.isDesktop)"
           class="date-text justify-self-end row-start-1 row-end-1 col-start-2 col-end-2 -mr-10 text-3xl transform rotate-90 whitespace-nowrap pointer-events-none"
           v-text="changeDate(postContent.date)"
         />
@@ -66,10 +66,22 @@ export default {
   },
   data () {
     return {
+      width: '',
       expanded: false
     }
   },
+  watch: {
+    '$store.state.data.windowWidth': { handler () { this.postWidth() } }
+  },
+  mounted () {
+    this.postWidth()
+  },
   methods: {
+    postWidth () {
+      this.$nextTick(function () {
+        this.width = this.$el.clientWidth
+      })
+    },
     changeDate (date) {
       const currentDateTime = new Date(date.replace(' ', 'T'))
       const formattedDate = `${currentDateTime.getDate()} / ${

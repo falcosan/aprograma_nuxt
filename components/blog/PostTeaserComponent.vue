@@ -76,6 +76,9 @@ export default {
   mounted () {
     this.postWidth()
   },
+  updated () {
+    this.postWidth()
+  },
   methods: {
     postWidth () {
       this.$nextTick(function () {

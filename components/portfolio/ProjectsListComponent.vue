@@ -1,6 +1,6 @@
 <template>
   <ProjectSlider
-    v-if="sortedProject && ($store.state.data.windowWidth >= 1024 && $device.isDesktop) && blok.show_slider"
+    v-if="sortedProject && width >= 640 && blok.show_slider"
     :blok="sortedProject"
   />
   <ul v-else-if="sortedProject" :class="`project-list w-full grid ${projectGrid} gap-5`">
@@ -63,6 +63,9 @@ export default {
     this.$store.dispatch('list/projects/deleteProjects')
   },
   mounted () {
+    this.projectWidth()
+  },
+  updated () {
     this.projectWidth()
   },
   methods: {

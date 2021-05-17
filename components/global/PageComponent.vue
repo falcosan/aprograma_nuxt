@@ -30,6 +30,13 @@ export default {
     rowComponent () {
       return this.blok.body.filter(function (item) { return item.row_container })
     }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+
+      setTimeout(() => this.$nuxt.$loading.finish(), 500000000)
+    })
   }
 }
 </script>

@@ -1,6 +1,5 @@
 <template>
   <Post v-if="!$fetchState.pending" :blok="story.content" />
-  <div v-else class="loading h-screen" />
 </template>
 <script>
 import Post from '@/components/blog/PostComponent'

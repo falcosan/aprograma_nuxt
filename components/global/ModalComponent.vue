@@ -61,7 +61,7 @@ export default {
     open: { handler () { this.checkModal() } }
   },
   beforeDestroy () {
-    document.body.classList.remove('noscroll')
+    this.$noscroll(false)
   },
   methods: {
     openModal () {
@@ -75,9 +75,9 @@ export default {
         this.$nextTick(function () {
           this.$refs.modal.focus({ preventScroll: true })
         })
-        document.body.classList.add('noscroll')
+        this.$noscroll(true)
       } else {
-        document.body.classList.remove('noscroll')
+        this.$noscroll(false)
       }
     },
     hasSlot (name = 'default') {

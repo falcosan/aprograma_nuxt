@@ -15,6 +15,13 @@ export default ({ app }, inject) => {
         return italian
     }
   })
+  inject('noscroll', (condition) => {
+    if (condition) {
+      document.body.classList.add('noscroll')
+    } else {
+      document.body.classList.remove('noscroll')
+    }
+  })
   inject('errorMessage', (res, message404, message500) => {
     if (!res) {
       app.context.error({

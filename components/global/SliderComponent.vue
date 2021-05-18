@@ -2,7 +2,7 @@
   <div v-if="blok.slider_mode && hasSlot('slider') && blok.body.length > 1" class="slider relative">
     <Icon
       v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop"
-      :class="`previous-control control absolute z-10 md:z-auto top-1/2 left-0 md:-left-2 transform ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'} md:-translate-x-full`"
+      :class="`previous-control control absolute z-20 top-1/2 left-0 transform ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'}`"
       previous
       size="p-2 md:p-3 w-9 md:w-12"
       tag="button"
@@ -31,7 +31,7 @@
     </div>
     <Icon
       v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop"
-      :class="`next-control control absolute z-10 md:z-auto top-1/2 right-0 md:-right-2 transform ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'} md:translate-x-full`"
+      :class="`next-control control absolute z-20 top-1/2 right-0 transform ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'}`"
       next
       size="p-2 md:p-3 w-9 md:w-12"
       tag="button"

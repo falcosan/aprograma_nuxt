@@ -1,7 +1,7 @@
 <template>
   <div v-if="blok.slider_mode && hasSlot('slider') && blok.body.length > 1" class="slider relative">
     <Icon
-      v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
+      v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop"
       :class="`previous-control control absolute z-10 md:z-auto top-1/2 left-0 md:-left-2 transform ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'} md:-translate-x-full`"
       previous
       size="p-2 md:p-3 w-9 md:w-12"
@@ -20,7 +20,7 @@
       <template
         v-for="(component, index) in blok.body"
       >
-        <slot v-if="index < (max >= blok.body.length ? defaultMax : maxSlides) && blok.slider_mode === 'slider' && $store.state.data.windowWidth >= 640" name="slider" :previous="previous" :next="next" :component="component" />
+        <slot v-if="index < (max >= blok.body.length ? defaultMax : maxSlides) && blok.slider_mode === 'slider' && $store.state.data.windowWidth >= 768" name="slider" :previous="previous" :next="next" :component="component" />
         <slot v-else-if="index === currentSlide" name="slider" :previous="previous" :next="next" :component="component" />
       </template>
     </transition-group>
@@ -30,7 +30,7 @@
       </template>
     </div>
     <Icon
-      v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
+      v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop"
       :class="`next-control control absolute z-10 md:z-auto top-1/2 right-0 md:-right-2 transform ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'} md:translate-x-full`"
       next
       size="p-2 md:p-3 w-9 md:w-12"
@@ -69,7 +69,7 @@ export default {
           return this.$rangeItems(Number(this.blok.max_slides), 4)
         } else if (this.$store.state.data.windowWidth >= 1024) {
           return this.$rangeItems(Number(this.blok.max_slides), 3)
-        } else if (this.$store.state.data.windowWidth >= 640) {
+        } else if (this.$store.state.data.windowWidth >= 768) {
           return this.$rangeItems(Number(this.blok.max_slides), 2)
         }
         return this.$rangeItems(Number(this.blok.max_slides), 1)
@@ -80,7 +80,7 @@ export default {
           return this.$rangeItems(this.defaultMax, 4)
         } else if (this.$store.state.data.windowWidth >= 1024) {
           return this.$rangeItems(this.defaultMax, 3)
-        } else if (this.$store.state.data.windowWidth >= 640) {
+        } else if (this.$store.state.data.windowWidth >= 768) {
           return this.$rangeItems(this.defaultMax, 2)
         }
         return this.$rangeItems(this.defaultMax, 1)

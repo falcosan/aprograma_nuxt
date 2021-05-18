@@ -7,7 +7,7 @@
       :class="`post-close fixed right-6 ${$device.isDesktop ? 'top-6' : 'top-16'}`"
       tag="button"
       size="w-12 p-3"
-      @click.native="$router.push(`/${$route.name.split('-')[0]}`)"
+      @click.native="goBack"
     />
     <div class="post-head w-full">
       <h1
@@ -22,7 +22,7 @@
         tag="button"
         size="p-2 w-9"
         :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
-        @click.native.passive="$router.push(`/${$route.name.split('-')[0]}`)"
+        @click.native.passive="goBack"
       />
       <component
         :is="lookFile()"
@@ -84,6 +84,9 @@ export default {
         case 'pdf':
           return 'embed'
       }
+    },
+    goBack () {
+      this.$nuxt.context.from ? this.$router.go(-1) : this.$router.push(`/${this.$route.name.split('-')[0]}`)
     }
   }
 }

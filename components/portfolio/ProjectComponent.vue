@@ -67,7 +67,7 @@
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
         class="project-back h-full"
         size="w-16 p-5"
-        @click.native="$router.push(`/${$route.name.split('-')[0]}`)"
+        @click.native="goBack"
       />
       <component
         :is="blok.url_project ? 'a' : 'span'"
@@ -101,6 +101,9 @@ export default {
         currentDateTime.getMonth() + 1
       } / ${currentDateTime.getFullYear()}`
       return formattedDate.toString()
+    },
+    goBack () {
+      this.$nuxt.context.from ? this.$router.go(-1) : this.$router.push(`/${this.$route.name.split('-')[0]}`)
     }
   }
 }

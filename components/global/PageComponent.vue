@@ -7,7 +7,7 @@
       <div
         v-for="component in blok.body"
         :key="component._uid"
-        :style="`${component.row_container || $store.state.data.windowWidth < 640 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
+        :style="`${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
         :class="`${component.component.toLowerCase()}-content ${component.row_container ? '' : ' col-start-1'}`"
       >
         <component
@@ -39,7 +39,7 @@ export default {
         return this.$rangeItems(this.rowComponent.length, 4)
       } else if (this.$store.state.data.windowWidth >= 1024) {
         return this.$rangeItems(this.rowComponent.length, 3)
-      } else if (this.$store.state.data.windowWidth >= 640) {
+      } else if (this.$store.state.data.windowWidth >= 768) {
         return this.$rangeItems(this.rowComponent.length, 2)
       }
       return this.$rangeItems(this.rowComponent.length, 1)

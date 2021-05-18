@@ -1,9 +1,9 @@
 <template>
   <ProjectSlider
-    v-if="sortedProject && width >= 640 && blok.show_slider && blok.show_slider"
+    v-if="sortedProject && $store.state.data.windowWidth >= 1024 && blok.show_slider"
     :blok="sortedProject"
   />
-  <ul v-else-if="sortedProject" :class="`project-list w-full grid ${projectGrid} gap-5`">
+  <ul v-else-if="sortedProject" :class="`project-list grid gap-5 auto-cols-fr ${blok.row_container ? '' : 'md:grid-cols-2'}`">
     <ProjectTeaser
       v-for="project in sortedProject"
       :key="project._uid"
@@ -23,11 +23,6 @@ export default {
       required: true
     }
   },
-  data () {
-    return {
-      width: Number
-    }
-  },
   computed: {
     sortedProject () {
       const featuredProjects = this.$store.state.list.projects.items.filter((project) => {
@@ -37,30 +32,12 @@ export default {
         return this.blok.projects.indexOf(a.uuid) - this.blok.projects.indexOf(b.uuid)
       })
       return featuredProjects
-    },
-    projectGrid () {
-      if (this.width >= 1536) {
-        return 'grid-cols-5'
-      } else if (this.width >= 1280) {
-        return 'grid-cols-4'
-      } else if (this.width >= 1024) {
-        return 'grid-cols-3'
-      } else if (this.width >= 640) {
-        return 'grid-cols-2'
-      }
-      return 'grid-cols-1'
     }
-  },
-  watch: {
-    '$store.state.data.windowWidth': { handler () { this.projectWidth() } }
   },
   created () {
     if (this.$route.name !== 'portfolio') {
       this.getProjects()
     }
-  },
-  mounted () {
-    this.projectWidth()
   },
   beforeDestroy () {
     this.$store.dispatch('list/projects/deleteProjects')
@@ -68,9 +45,6 @@ export default {
   methods: {
     async getProjects () {
       await this.$store.dispatch('list/projects/addProjects')
-    },
-    projectWidth () {
-      this.width = this.$el.clientWidth
     }
   }
 }

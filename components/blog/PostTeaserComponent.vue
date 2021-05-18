@@ -5,13 +5,13 @@
   >
     <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link h-full grid">
       <div
-        :class="`teaser-content lg:relative lg:z-10 flex flex-col lg:flex-row row-start-1 row-end-1 col-start-1 col-end-3`"
+        :class="`teaser-content flex flex-col ${$parent.blok.row_container ? '' : 'lg:flex-row lg:h-64 lg:relative lg:z-10'} row-start-1 row-end-1 col-start-1 col-end-3`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file h-full lg:max-w-xs lg:w-screen xl:max-w-sm object-cover select-none`"
+          :class="`teaser-file h-full ${$parent.blok.row_container ? '' : 'lg:max-w-xs lg:w-screen xl:max-w-sm'} object-cover select-none`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
@@ -30,7 +30,7 @@
             </span>
           </div>
           <span
-            v-if="$store.state.data.windowWidth < 1024 || !$device.isDesktop"
+            v-if="$store.state.data.windowWidth < 1024 || !$device.isDesktop || $parent.blok.row_container"
             class="text-date text-right text-lg"
             v-text="changeDate(postContent.date)"
           />
@@ -43,7 +43,7 @@
         leave-to-class="-translate-x-full"
       >
         <span
-          v-if="expanded && $store.state.data.windowWidth >= 1024 && $device.isDesktop"
+          v-if="expanded && $store.state.data.windowWidth >= 1024 && $device.isDesktop && !$parent.blok.row_container"
           class="date-text justify-self-end row-start-1 row-end-1 col-start-2 col-end-2 -mr-10 text-3xl transform rotate-90 whitespace-nowrap pointer-events-none"
           v-text="changeDate(postContent.date)"
         />

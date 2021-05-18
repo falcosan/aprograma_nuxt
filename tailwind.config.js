@@ -38,7 +38,7 @@ module.exports = {
         '-10': '-10'
       },
       gridTemplateColumns: {
-        container: 'repeat(auto-fit, minmax(300px, 1fr))'
+        container: 'repeat(auto-fit, minmax(252px, 1fr))'
       },
       transitionProperty: {
         height: 'height'

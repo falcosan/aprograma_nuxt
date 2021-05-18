@@ -11,20 +11,20 @@
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file h-full w-full ${$parent.blok.row_container ? '' : 'md:w-64 lg:w-96 xl:max-w-sm'} object-cover select-none`"
+          :class="`teaser-file w-full ${$parent.blok.row_container ? 'h-full' : 'h-full md:w-64 lg:w-96 xl:max-w-sm'} object-cover select-none`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div :class="`teaser-text w-full grid gap-5 auto-rows-min content-center p-5 ${$parent.blok.row_container ? '' : 'md:p-10'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full grid gap-5 p-5 ${$parent.blok.row_container ? 'h-64' : 'md:p-10 auto-rows-min content-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
-              class="teaser-title mb-5 text-2xl text-center md:text-left font-medium overflow-hidden"
+              class="teaser-title mb-5 text-2xl font-medium overflow-hidden"
             >
               {{ postContent.title }}
             </span>
             <span
               :style="`-webkit-line-clamp: ${$device.isDesktop ? '3' : '2'};`"
-              class="teaser-intro text-lg text-center md:text-left overflow-hidden"
+              class="teaser-intro text-lg overflow-hidden"
             >
               {{ postContent.intro }}
             </span>

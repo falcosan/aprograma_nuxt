@@ -2,9 +2,9 @@
   <div v-if="blok.slider_mode && hasSlot('slider') && blok.body.length > 1" class="slider relative">
     <Icon
       v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop"
-      :class="`previous-control control absolute z-20 top-1/2 left-0 transform ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'}`"
+      :class="`previous-control control absolute z-20 top-1/2 left-0 lg:-left-1.5 transform ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'} lg:-translate-x-full filter invert grayscale bg-gray-300`"
       previous
-      size="p-2 md:p-3 w-9 md:w-12"
+      size="p-2 lg:p-3 w-9 lg:w-12"
       tag="button"
       @click.native="previous"
     />
@@ -31,9 +31,9 @@
     </div>
     <Icon
       v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop"
-      :class="`next-control control absolute z-20 top-1/2 right-0 transform ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'}`"
+      :class="`next-control control absolute z-20 top-1/2 right-0 lg:-right-1.5 transform ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'} lg:translate-x-full filter invert grayscale bg-gray-300`"
       next
-      size="p-2 md:p-3 w-9 md:w-12"
+      size="p-2 lg:p-3 w-9 lg:w-12"
       tag="button"
       @click.native="next"
     />

@@ -11,19 +11,18 @@
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file w-full ${$parent.blok.row_container ? 'h-full' : 'h-full md:w-64 lg:w-96 xl:max-w-sm'} object-cover select-none`"
+          :class="`teaser-file w-full h-full ${$parent.blok.row_container ? '' : 'md:w-64 lg:w-96 xl:max-w-sm'} object-cover select-none`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div :class="`teaser-text w-full grid gap-5 p-5 ${$parent.blok.row_container ? 'h-64' : 'md:p-10 auto-rows-min content-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full h-full grid gap-2 lg:gap-5 p-5 auto-rows-min content-evenly ${$parent.blok.row_container ? '' : 'md:p-10'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
-              class="teaser-title mb-5 text-2xl font-medium overflow-hidden"
+              class="teaser-title mb-2 lg:mb-5 text-xl lg:text-2xl font-medium overflow-hidden"
             >
               {{ postContent.title }}
             </span>
             <span
-              :style="`-webkit-line-clamp: ${$device.isDesktop ? '3' : '2'};`"
               class="teaser-intro text-lg overflow-hidden"
             >
               {{ postContent.intro }}
@@ -31,7 +30,7 @@
           </div>
           <span
             v-if="$store.state.data.windowWidth < 768 || !$device.isDesktop || $parent.blok.row_container"
-            class="text-date text-right text-base lg:text-lg"
+            class="text-date self-center text-right text-sm lg:text-lg"
             v-text="changeDate(postContent.date)"
           />
         </div>
@@ -101,5 +100,6 @@ export default {
 .teaser-intro{
    display: -webkit-box;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 </style>

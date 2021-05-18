@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="postContent"
-    class="post-teaser relative z-20"
+    class="post-teaser relative z-10"
   >
     <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link h-full grid">
       <div

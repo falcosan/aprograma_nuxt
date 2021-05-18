@@ -8,7 +8,7 @@
       tag="button"
       @click.native="previous"
     />
-    <div v-else class="controls w-full h-full absolute top-0 z-20">
+    <div v-else class="controls w-full h-full absolute top-0 z-10">
       <div class="previous-control control h-full w-full absolute -left-1/2 cursor-previous" @click="previous" />
       <div class="next-control control h-full w-full absolute -right-1/2 cursor-next" @click="next" />
     </div>

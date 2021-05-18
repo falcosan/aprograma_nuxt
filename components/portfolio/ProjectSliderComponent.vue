@@ -1,5 +1,5 @@
 <template>
-  <div class="project-slider relative z-20">
+  <div class="project-slider relative z-10">
     <transition-group
       tag="ul"
       :enter-active-class="`${transitionActive} in-out`"

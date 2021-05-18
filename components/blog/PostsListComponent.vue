@@ -1,8 +1,9 @@
 <template>
-  <ul :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container ? 'md:grid-cols-container' : 'md:grid-cols-2 lg:grid-cols-2'}`">
+  <ul ref="container" :class="`post-list w-full ${blok.row_container ? 'grid gap-5 auto-cols-fr md:grid-cols-container' : 'flex flex-col'}`">
     <PostTeaser
-      v-for="post in sortedPosts"
+      v-for="(post, index) in sortedPosts"
       :key="post._uid"
+      :class="`${index === 0 ? '' : 'mt-5'}`"
       :post-link="`blog/${post.slug}`"
       :post-content="post.content"
     />
@@ -17,6 +18,14 @@ export default {
     blok: {
       type: Object,
       required: true
+    }
+  },
+  data () {
+    return {
+      dims: {
+        width: null,
+        height: null
+      }
     }
   },
   computed: {

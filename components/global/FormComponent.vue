@@ -14,7 +14,7 @@
       </template>
     </Modal>
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
-      <div v-if="alert.message" :class="`form-alert fixed z-20 w-full top-0 left-0 p-5 opacity-90 text-center text-sm md:text-base transform ${alert.color} text-white`" v-text="alert.message" />
+      <div v-if="alert.message" :class="`form-alert fixed z-50 w-full top-0 left-0 p-5 opacity-90 text-center text-sm md:text-base transform ${alert.color} text-white`" v-text="alert.message" />
     </transition>
     <h2 v-if="blok.show_title && blok.title" :class="`form-title mb-10 text-4xl`">
       {{ blok.title }}

@@ -8,13 +8,17 @@
       tag="button"
       @click.native="previous"
     />
-    <div v-else class="previous-control control h-full w-1/2 absolute left-0 top-0 z-20 cursor-previous" @click="previous" />
+    <div v-else class="controls w-full h-full absolute top-0 z-20">
+      <div class="previous-control control h-full w-full absolute -left-1/2 cursor-previous" @click="previous" />
+      <div class="next-control control h-full w-full absolute -right-1/2 cursor-next" @click="next" />
+    </div>
     <transition-group
+      id="slider"
       tag="ul"
       enter-active-class="duration-500 in-out transform"
       leave-active-class="duration-300 out-in transform"
       enter-class="translate-y-full absolute opacity-0"
-      :leave-to-class="`absolute h-full w-full md:z-10 inset-0 ${transitionLeave}`"
+      :leave-to-class="`absolute h-full w-full z-10 inset-0 ${transitionLeave}`"
       class="slider-list relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden"
     >
       <template
@@ -37,7 +41,6 @@
       tag="button"
       @click.native="next"
     />
-    <div v-else class="next-control control h-full w-1/2 absolute right-0 top-0 z-20 cursor-next" @click="next" />
   </div>
   <div v-else-if="hasSlot('no_slider')" class="container-wrapper">
     <slot name="no_slider" />

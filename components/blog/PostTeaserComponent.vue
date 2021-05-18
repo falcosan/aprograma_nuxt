@@ -5,20 +5,20 @@
   >
     <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link h-full grid">
       <div
-        :class="`teaser-content flex flex-col ${$parent.blok.row_container ? '' : 'md:flex-row md:h-56 lg:h-64 md:relative md:z-10'} row-start-1 row-end-1 col-start-1 col-end-3`"
+        :class="`teaser-content flex flex-col ${$parent.blok.row_container ? '' : 'lg:flex-row lg:h-60 lg:relative lg:z-10'} row-start-1 row-end-1 col-start-1 col-end-3`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file w-full h-full ${$parent.blok.row_container ? '' : 'md:w-64 lg:w-96 xl:max-w-sm'} object-cover select-none`"
+          :class="`teaser-file w-full h-full ${$parent.blok.row_container ? '' : 'lg:w-80 xl:max-w-sm'} object-cover select-none`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div :class="`teaser-text w-full h-full grid gap-2 lg:gap-5 p-5 auto-rows-min content-evenly ${$parent.blok.row_container ? '' : 'md:p-10'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full h-full grid gap-3 p-5 auto-rows-min content-evenly ${$parent.blok.row_container ? '' : 'lg:p-10'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
-              class="teaser-title mb-2 lg:mb-5 text-xl lg:text-2xl font-medium overflow-hidden"
+              class="teaser-title mb-2 text-xl font-bold overflow-hidden"
             >
               {{ postContent.title }}
             </span>
@@ -29,24 +29,11 @@
             </span>
           </div>
           <span
-            v-if="$store.state.data.windowWidth < 768 || !$device.isDesktop || $parent.blok.row_container"
-            class="text-date self-center text-right text-sm lg:text-lg"
+            class="text-date self-center text-right text-base font-semibold"
             v-text="changeDate(postContent.date)"
           />
         </div>
       </div>
-      <transition
-        enter-active-class="duration-200 linear"
-        leave-active-class="duration-200 linear"
-        enter-class="-translate-x-full"
-        leave-to-class="-translate-x-full"
-      >
-        <span
-          v-if="expanded && $store.state.data.windowWidth >= 768 && $device.isDesktop && !$parent.blok.row_container"
-          class="date-text justify-self-end row-start-1 row-end-1 col-start-2 col-end-2 -mr-5 lg:-mr-10 text-xl lg:text-3xl transform rotate-90 whitespace-nowrap pointer-events-none"
-          v-text="changeDate(postContent.date)"
-        />
-      </transition>
     </NuxtLink>
   </li>
 </template>

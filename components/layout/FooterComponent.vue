@@ -132,6 +132,8 @@ export default {
     restartTypewriter () {
       clearTimeout(this.playTypeText)
       clearTimeout(this.playEraseText)
+      this.playTypeText = 0
+      this.playEraseText = 0
       this.typewriter = ''
       this.charIndex = 0
       this.typewriterIndex = 0

@@ -60,7 +60,7 @@ export default {
       defaultMax: this.blok.body.length - 1,
       currentSlide: 0,
       transitionLeave: '',
-      setAutoPlay: undefined
+      setAutoPlay: 0
     }
   },
   computed: {
@@ -118,6 +118,7 @@ export default {
     next () {
       if (this.blok.auto_play) {
         clearTimeout(this.setAutoPlay)
+        this.setAutoPlay = 0
         this.autoPlay()
       }
       if (this.blok.slider_mode === 'slider') {
@@ -132,6 +133,7 @@ export default {
     previous () {
       if (this.blok.auto_play) {
         clearTimeout(this.setAutoPlay)
+        this.setAutoPlay = 0
         this.autoPlay()
       }
       if (this.blok.slider_mode === 'slider') {

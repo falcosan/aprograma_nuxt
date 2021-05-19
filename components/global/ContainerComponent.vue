@@ -39,8 +39,8 @@
             v-if="blok.slider_mode === 'slider' && $store.state.data.windowWidth >= 768"
             v-show="index < (max >= blok.body.length ? defaultMax : maxElements)"
             :key="component._uid"
-            v-touch:swipe.prevent.right="next"
-            v-touch:swipe.prevent.left="previous"
+            v-touch:swipe.stop.right="next"
+            v-touch:swipe.stop.left="previous"
             class="slider-slide"
           >
             <component
@@ -54,8 +54,8 @@
             v-else
             v-show="index === currentSlide"
             :key="component._uid"
-            v-touch:swipe.prevent.right="next"
-            v-touch:swipe.prevent.left="previous"
+            v-touch:swipe.stop.right="next"
+            v-touch:swipe.stop.left="previous"
             class="carousel-slide"
           >
             <component
@@ -71,20 +71,18 @@
         <span v-for="dot in blok.body.length" :key="dot" :class="`dot-${dot} ${dot === currentSlide + 1 ? 'transform -translate-y-1 duration-500' : ''} transition-transform select-none`" v-text="`•`" />
       </div>
     </div>
-    <div v-else class="container-wrapper">
-      <div class="container-components grid gap-5 auto-cols-fr" :style="`grid-template-columns:repeat(${$store.state.data.windowWidth >= 768 ? maxElements : '1'}, 1fr);`">
-        <div
-          v-for="component in blok.body"
-          :key="component._uid"
-          :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
-          :class="`${component.component.toLowerCase()}-container h-max flex justify-center ${component.row_container ? '' : 'col-start-1'}`"
-        >
-          <component
-            :is="component.component"
-            :class="`${component.component.toLowerCase()}-component`"
-            :blok="component"
-          />
-        </div>
+    <div v-else class="container-components grid gap-5 auto-cols-fr" :style="`grid-template-columns:repeat(${$store.state.data.windowWidth >= 768 ? maxElements : '1'}, 1fr);`">
+      <div
+        v-for="component in blok.body"
+        :key="component._uid"
+        :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
+        :class="`${component.component.toLowerCase()}-container h-max flex justify-center ${component.row_container ? '' : 'col-start-1'}`"
+      >
+        <component
+          :is="component.component"
+          :class="`${component.component.toLowerCase()}-component`"
+          :blok="component"
+        />
       </div>
     </div>
   </div>
@@ -113,28 +111,41 @@ export default {
       return this.blok.body.filter(function (item) { return item.row_container })
     },
     maxElements () {
-      if (this.max) {
-        if (this.$store.state.data.windowWidth >= 1536) {
-          return this.$rangeItems(Number(this.blok.max_slides), 5)
-        } else if (this.$store.state.data.windowWidth >= 1280) {
-          return this.$rangeItems(Number(this.blok.max_slides), 4)
-        } else if (this.$store.state.data.windowWidth >= 1024) {
-          return this.$rangeItems(Number(this.blok.max_slides), 3)
-        } else if (this.$store.state.data.windowWidth >= 768) {
-          return this.$rangeItems(Number(this.blok.max_slides), 2)
+      if (this.blok.slider_mode && this.blok.body.length > 1) {
+        if (this.max) {
+          if (this.$store.state.data.windowWidth >= 1536) {
+            return this.$rangeItems(Number(this.blok.max_slides), 5)
+          } else if (this.$store.state.data.windowWidth >= 1280) {
+            return this.$rangeItems(Number(this.blok.max_slides), 4)
+          } else if (this.$store.state.data.windowWidth >= 1024) {
+            return this.$rangeItems(Number(this.blok.max_slides), 3)
+          } else if (this.$store.state.data.windowWidth >= 768) {
+            return this.$rangeItems(Number(this.blok.max_slides), 2)
+          }
+          return this.$rangeItems(Number(this.blok.max_slides), 1)
+        } else {
+          if (this.$store.state.data.windowWidth >= 1536) {
+            return this.$rangeItems(this.defaultMax, 5)
+          } else if (this.$store.state.data.windowWidth >= 1280) {
+            return this.$rangeItems(this.defaultMax, 4)
+          } else if (this.$store.state.data.windowWidth >= 1024) {
+            return this.$rangeItems(this.defaultMax, 3)
+          } else if (this.$store.state.data.windowWidth >= 768) {
+            return this.$rangeItems(this.defaultMax, 2)
+          }
+          return this.$rangeItems(this.defaultMax, 1)
         }
-        return this.$rangeItems(Number(this.blok.max_slides), 1)
       } else {
         if (this.$store.state.data.windowWidth >= 1536) {
-          return this.$rangeItems(this.defaultMax, 5)
+          return this.$rangeItems(this.rowComponent.length, 5)
         } else if (this.$store.state.data.windowWidth >= 1280) {
-          return this.$rangeItems(this.defaultMax, 4)
+          return this.$rangeItems(this.rowComponent.length, 4)
         } else if (this.$store.state.data.windowWidth >= 1024) {
-          return this.$rangeItems(this.defaultMax, 3)
+          return this.$rangeItems(this.rowComponent.length, 3)
         } else if (this.$store.state.data.windowWidth >= 768) {
-          return this.$rangeItems(this.defaultMax, 2)
+          return this.$rangeItems(this.rowComponent.length, 2)
         }
-        return this.$rangeItems(this.defaultMax, 1)
+        return this.$rangeItems(this.rowComponent.length, 1)
       }
     }
   },

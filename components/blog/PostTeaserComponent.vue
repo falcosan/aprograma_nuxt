@@ -18,20 +18,18 @@
         <div class="teaser-text w-full h-full grid gap-3 p-5 lg:p-10 content-between" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
-              :style="`-webkit-line-clamp: ${$parent.blok.row_container ? '1' : '2'};`"
-              :class="`teaser-title mb-2 ${$route.name === 'blog' ? 'text-3xl font-medium' :'text-xl font-semibold'} overflow-hidden`"
+              :class="`teaser-title mb-2 ${$route.name === 'blog' ? 'text-2xl font-medium' :'text-xl font-semibold'} overflow-hidden`"
             >
               {{ postContent.title }}
             </span>
             <span
-              :style="`-webkit-line-clamp: ${$parent.blok.row_container ? '2' : '3'};`"
-              :class="`teaser-intro ${$route.name === 'blog' ? 'text-xl' :'text-lg'}  overflow-hidden`"
+              class="teaser-intro overflow-hidden"
             >
               {{ postContent.intro }}
             </span>
           </div>
           <span
-            class="text-date self-center text-right text-base font-semibold"
+            class="text-date self-center text-right font-semibold"
             v-text="changeDate(postContent.date)"
           />
         </div>
@@ -84,9 +82,11 @@ export default {
 .teaser-title{
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .teaser-intro{
    display: -webkit-box;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 </style>

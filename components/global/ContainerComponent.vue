@@ -36,7 +36,8 @@
       >
         <template v-for="(component, index) in blok.body">
           <li
-            v-if="index < (max >= blok.body.length ? defaultMax : maxElements) && blok.slider_mode === 'slider' && $store.state.data.windowWidth >= 768"
+            v-if="blok.slider_mode === 'slider' && $store.state.data.windowWidth >= 768"
+            v-show="index < (max >= blok.body.length ? defaultMax : maxElements)"
             :key="component._uid"
             v-touch:swipe.prevent.right="next"
             v-touch:swipe.prevent.left="previous"
@@ -50,7 +51,8 @@
             />
           </li>
           <li
-            v-else-if="index === currentSlide"
+            v-else
+            v-show="index === currentSlide"
             :key="component._uid"
             v-touch:swipe.prevent.right="next"
             v-touch:swipe.prevent.left="previous"

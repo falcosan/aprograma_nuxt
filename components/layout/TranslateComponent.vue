@@ -1,5 +1,5 @@
 <template>
-  <div id="translate" class="translate-container">
+  <div class="translate-container">
     <div
       v-if="translateTransition"
       :class="`current-language cursor-pointer ${styleCurrentLanguage}`"
@@ -12,7 +12,6 @@
       </template>
     </div>
     <ul
-      id="translate-list"
       :class="`translate-list ${styleTranslateList}`"
     >
       <template v-for="language in blok">

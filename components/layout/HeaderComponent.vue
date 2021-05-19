@@ -30,7 +30,7 @@
         translate-transition
         class="translate-header"
         style-current-language="p-3 transition-all bg-gray-800 text-white filter grayscale"
-        :style-translate-list="`transform transition-transform duration-200 esase-out ${expanded ? 'translate-x-0' : '-translate-x-full'} bg-gray-800 filter grayscale text-white`"
+        :style-translate-list="`absolute w-full transform transition-transform duration-200 esase-out ${expanded ? 'translate-x-0' : '-translate-x-full'} bg-gray-800 filter grayscale text-white`"
         style-translate-item="w-full p-3"
         :blok="$contentByName(blok.body, 'Translate')"
         @mouseleave.native="expandOut"
@@ -67,7 +67,7 @@
           translate-transition
           class="translate-header w-2/12 bg-gray-800 text-white filter grayscale"
           :style-current-language="`h-full flex items-center justify-center relative z-10 bg-gray-800 text-white ${expanded ? 'drop-shadow-2xl' : ''}`"
-          :style-translate-list="`md:absolute w-full transform transition-transform duration-200 esase-out ${expanded ? 'translate-y-0' : '-translate-y-full'} bg-gray-800`"
+          :style-translate-list="`transform transition-transform duration-200 esase-out ${expanded ? 'translate-y-0' : '-translate-y-full'} bg-gray-800`"
           style-translate-item="p-3 text-center"
           :blok="$contentByName(blok.body, 'Translate')"
           @translateListAction.passive="expanded = false"

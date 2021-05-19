@@ -30,7 +30,7 @@
             v-for="component in blok.body"
             :key="component._uid"
             :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
-            :class="`${component.component.toLowerCase()}-container flex justify-center${component.row_container ? '' : ' col-start-1'}`"
+            :class="`${component.component.toLowerCase()}-container flex justify-center ${component.row_container ? '' : 'col-start-1'}`"
           >
             <component
               :is="component.component"

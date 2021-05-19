@@ -1,8 +1,8 @@
 <template>
-  <transition enter-active-class="duration-500 linear" leave-active-class="duration-500 linear" enter-class="opacity-0" leave-to-class="opacity-0">
+  <transition enter-active-class="duration-300 linear" leave-active-class="duration-300 linear" enter-class="opacity-0" leave-to-class="opacity-0">
     <div
       v-if="loading"
-      class="loading-container fixed h-full w-full flex justify-center items-center inset-0 z-50 overflow-hidden filter grayscale bg-gray-300"
+      class="loading-container fixed h-full w-full flex justify-center items-center inset-0 z-50 overflow-hidden filter grayscale bg-gray-200"
     >
       <Logo
         transition-a="loading-logo origin-center-left"

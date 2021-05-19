@@ -1,15 +1,15 @@
 <template>
   <div v-if="blok.slider_mode && hasSlot('slider') && blok.body.length > 1" class="slider relative">
-    <div v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop" :class="`slider-controls w-full absolute top-1/2 z-20  ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'}`">
+    <div v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop" class="slider-controls w-full absolute top-1/2 z-20 filter invert grayscale">
       <Icon
-        :class="`previous-control control absolute left-0 lg:-left-1.5 transform lg:-translate-x-full filter invert grayscale bg-gray-300`"
+        :class="`previous-control control absolute left-0 transform bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
         previous
         size="p-2 lg:p-3 w-9 lg:w-12"
         tag="button"
         @click.native="previous"
       />
       <Icon
-        :class="`next-control control absolute right-0 lg:-right-1.5 transform lg:translate-x-full filter invert grayscale bg-gray-300`"
+        :class="`next-control control absolute right-0 transform bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
         next
         size="p-2 lg:p-3 w-9 lg:w-12"
         tag="button"

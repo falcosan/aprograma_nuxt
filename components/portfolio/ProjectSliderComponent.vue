@@ -40,12 +40,12 @@
       leave-active-class="duration-300 out-in"
       enter-class="opacity-0"
       leave-to-class="opacity-0"
-      class="controls w-full absolute top-1/2"
+      class="controls w-full absolute top-1/2 filter invert grayscale"
     >
-      <span v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control absolute right-0 top-1/2 transform -translate-y-1/2 filter invert grayscale bg-gray-300">
+      <span v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control absolute right-0 transform -translate-y-1/2 bg-gray-300">
         <Icon next class="next" size="p-2 lg:p-3 w-9 lg:w-12" tag="button" @click.native="next" />
       </span>
-      <span v-if="blok.length > 2 && frame.up != 0" :key="`${indexControls}-2`" class="previous-control absolute left-0 top-1/2 transform -translate-y-1/2 filter invert grayscale bg-gray-300">
+      <span v-if="blok.length > 2 && frame.up != 0" :key="`${indexControls}-2`" class="previous-control absolute left-0 transform -translate-y-1/2 bg-gray-300">
         <Icon previous class="previous" size="p-2 lg:p-3 w-9 lg:w-12" tag="button" @click.native="prev" />
       </span>
     </transition-group>

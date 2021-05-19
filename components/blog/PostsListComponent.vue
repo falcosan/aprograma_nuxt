@@ -1,9 +1,9 @@
 <template>
-  <ul ref="container" :class="`post-list w-full ${blok.row_container ? 'grid gap-5 auto-cols-fr md:grid-cols-container' : 'flex flex-col'}`">
+  <ul ref="container" :class="`post-list w-full ${blok.row_container ? 'grid gap-5 auto-cols-fr md:grid-cols-container' : 'grid gap-5 auto-cols-fr'}`">
     <PostTeaser
       v-for="(post, index) in sortedPosts"
       :key="post._uid"
-      :class="`${index === 0 ? '' : 'mt-5'}`"
+      :class="`${index === 0 ? '' : ''}`"
       :post-link="`blog/${post.slug}`"
       :post-content="post.content"
     />

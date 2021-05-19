@@ -3,26 +3,28 @@
     v-if="postContent"
     class="post-teaser relative z-10"
   >
-    <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link h-full grid">
+    <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link">
       <div
-        :class="`teaser-content flex flex-col ${$parent.blok.row_container ? '' : 'lg:flex-row lg:h-60 lg:relative lg:z-10'} row-start-1 row-end-1 col-start-1 col-end-3`"
+        :class="`teaser-content h-full grid grid-flow-row-dense ${$parent.blok.row_container ? '' : 'lg:auto-cols-fr lg:grid-flow-col-dense lg:auto-rows-fr lg:h-64'}`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file w-full h-full ${$parent.blok.row_container ? '' : 'lg:w-80 xl:max-w-sm'} object-cover select-none`"
+          class="teaser-file w-full h-full object-cover select-none"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div :class="`teaser-text w-full h-full grid gap-3 p-5 lg:p-10 content-between ${$parent.blok.row_container ? '' : ''}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
-          <div class="text-description h-36">
+        <div class="teaser-text w-full h-full grid gap-3 p-5 lg:p-10 content-between" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+          <div class="text-description">
             <span
+              :style="`-webkit-line-clamp: ${$parent.blok.row_container ? '1' : '2'};`"
               class="teaser-title mb-2 text-xl font-bold overflow-hidden"
             >
               {{ postContent.title }}
             </span>
             <span
+              :style="`-webkit-line-clamp: ${$parent.blok.row_container ? '2' : '3'};`"
               class="teaser-intro text-lg overflow-hidden"
             >
               {{ postContent.intro }}
@@ -82,11 +84,9 @@ export default {
 .teaser-title{
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
 }
 .teaser-intro{
    display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
 }
 </style>

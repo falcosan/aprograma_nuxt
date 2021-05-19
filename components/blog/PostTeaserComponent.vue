@@ -1,21 +1,21 @@
 <template>
   <li
     v-if="postContent"
-    class="post-teaser relative z-10"
+    class="post-teaser relative z-10 "
   >
     <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link">
       <div
-        :class="`teaser-content grid grid-flow-row ${$parent.blok.row_container ? '' : 'lg:auto-cols-fr lg:grid-flow-col'}`"
+        :class="`teaser-content grid grid-flow-row ${$parent.blok.row_container ? 'lg:auto-rows-min' : 'lg:auto-cols-fr lg:grid-flow-col'}`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file w-full object-cover object-center select-none h-60 lg:h-64 ${$parent.blok.row_container ? 'row-start-1 row-end-3' : ''}`"
+          :class="`teaser-file w-full object-cover object-center select-none ${$parent.blok.row_container ? 'h-44 xs:h-56 sm:h-72 2xl:h-96' : ''}`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div :class="`teaser-text w-full h-full grid gap-3 content-center p-5 lg:p-10  ${$parent.blok.row_container ? 'row-start-3 row-end-3' : ''}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full grid gap-3 content-center p-5 md:p-10 ${$parent.blok.row_container ? 'h-32 md:h-44' : 'h-full'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               class="teaser-title mb-2 text-xl font-semibold overflow-hidden"

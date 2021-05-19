@@ -56,7 +56,7 @@
         </NuxtLink>
         <Logo
           class="absolute top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full drop-shadow-2xl bg-white"
-          size="w-14"
+          size="w-12"
           :transition-a="moved.a"
           :transition-p="moved.p"
           style-logo-container="w-14"

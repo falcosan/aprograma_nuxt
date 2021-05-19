@@ -11,11 +11,11 @@
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file w-full object-cover object-center select-none h-56 lg:h-64 ${$parent.blok.row_container ? 'row-start-1 row-end-3' : ''}`"
+          :class="`teaser-file w-full object-cover object-center select-none h-60 lg:h-64 ${$parent.blok.row_container ? 'row-start-1 row-end-3' : ''}`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div :class="`teaser-text w-full h-full grid gap-3 content-between p-5 lg:p-10  ${$parent.blok.row_container ? 'row-start-3 row-end-3' : ''}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full h-full grid gap-3 content-center p-5 lg:p-10  ${$parent.blok.row_container ? 'row-start-3 row-end-3' : ''}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               class="teaser-title mb-2 text-xl font-semibold overflow-hidden"
@@ -31,6 +31,7 @@
             </span>
           </div>
           <span
+            v-if="$route.name === 'blog'"
             class="text-date self-center text-right text-sm font-semibold"
             v-text="changeDate(postContent.date)"
           />

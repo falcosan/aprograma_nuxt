@@ -3,11 +3,10 @@
     v-if="blok.text.content"
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor}; color: ${randomTextColor};`"
-    :class="`text-container w-full max-w-full
-    ${customClass('index', blok.name === 'text_phrase', 'transition-colors duration-700 ease-in-out')}`"
+    :class="`text-container w-full max-w-full ${customClass('index', blok.name === 'text_phrase', 'transition-colors duration-700 ease-in-out')}`"
   >
     <span
-      :class="`text-content h-full block p-5 md:p-10 prose-sm md:prose-lg xl:prose-xl break-all ss:break-normal`"
+      :class="`text-content h-full block p-5 md:p-10 prose-sm lg:prose-lg xl:prose-xl break-all ss:break-normal`"
       v-html="blok.text.content"
     />
   </div>

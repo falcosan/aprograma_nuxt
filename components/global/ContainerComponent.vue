@@ -15,11 +15,11 @@
           v-touch:swipe.prevent.right="next"
           v-touch:swipe.prevent.left="previous"
           :style="`background-color: ${blok.background_color_component.color};`"
-          :class="`${component.component.toLowerCase()}-slide flex justify-center`"
+          :class="`${component.component.toLowerCase()}-slide h-max flex justify-center`"
         >
           <component
             :is="component.component"
-            :class="`${component.component.toLowerCase()}-component h-full`"
+            :class="`${component.component.toLowerCase()}-component`"
             :blok="component"
           />
         </li>
@@ -30,11 +30,11 @@
             v-for="component in blok.body"
             :key="component._uid"
             :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
-            :class="`${component.component.toLowerCase()}-container flex justify-center ${component.row_container ? '' : 'col-start-1'}`"
+            :class="`${component.component.toLowerCase()}-container h-max flex justify-center ${component.row_container ? '' : 'col-start-1'}`"
           >
             <component
               :is="component.component"
-              :class="`${component.component.toLowerCase()}-component h-full`"
+              :class="`${component.component.toLowerCase()}-component`"
               :blok="component"
             />
           </div>

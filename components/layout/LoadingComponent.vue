@@ -8,7 +8,7 @@
         transition-a="loading-logo origin-center-left"
         transition-p="loading-logo origin-center"
         class="loading-logo w-full flex justify-center"
-        size="w-60"
+        size="w-32"
         role="loading-logo"
         aria-valuenow="0"
         aria-valuemin="0"

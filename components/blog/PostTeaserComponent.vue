@@ -18,7 +18,7 @@
         <div :class="`teaser-text w-full h-full grid gap-3 content-between p-5 lg:p-10  ${$parent.blok.row_container ? 'row-start-3 row-end-3' : ''}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
-              :class="`teaser-title mb-2 ${$route.name === 'blog' ? 'text-2xl font-medium' :'text-xl font-semibold'} overflow-hidden`"
+              class="teaser-title mb-2 text-xl font-semibold overflow-hidden"
               :style="`-webkit-line-clamp: ${$parent.blok.row_container ? '1' : '2'};`"
             >
               {{ postContent.title }}

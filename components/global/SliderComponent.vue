@@ -112,12 +112,12 @@ export default {
       return this.elements
     },
     autoPlay () {
-      if (this.blok.auto_play) {
+      if (this.blok.slider_mode && this.blok.auto_play) {
         this.setAutoPlay = setTimeout(this.next, 5000)
       }
     },
     next () {
-      if (this.blok.auto_play) {
+      if (this.blok.slider_mode && this.blok.auto_play) {
         clearTimeout(this.setAutoPlay)
         this.setAutoPlay = 0
         this.autoPlay()
@@ -132,7 +132,7 @@ export default {
       this.transitionLeave = 'translate-x-full'
     },
     previous () {
-      if (this.blok.auto_play) {
+      if (this.blok.slider_mode && this.blok.auto_play) {
         clearTimeout(this.setAutoPlay)
         this.setAutoPlay = 0
         this.autoPlay()

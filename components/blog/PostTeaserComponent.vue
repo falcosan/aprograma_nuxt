@@ -19,13 +19,13 @@
           <div class="text-description">
             <span
               :style="`-webkit-line-clamp: ${$parent.blok.row_container ? '1' : '2'};`"
-              class="teaser-title mb-2 text-xl font-bold overflow-hidden"
+              :class="`teaser-title mb-2 ${$route.name === 'blog' ? 'text-3xl font-medium' :'text-xl font-semibold'} overflow-hidden`"
             >
               {{ postContent.title }}
             </span>
             <span
               :style="`-webkit-line-clamp: ${$parent.blok.row_container ? '2' : '3'};`"
-              class="teaser-intro text-lg overflow-hidden"
+              :class="`teaser-intro ${$route.name === 'blog' ? 'text-xl' :'text-lg'}  overflow-hidden`"
             >
               {{ postContent.intro }}
             </span>

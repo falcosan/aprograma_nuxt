@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body {
+    touch-action: manipulation;
+}
 *::-webkit-scrollbar {
     width: 0.2rem;
     height: 0.2rem;

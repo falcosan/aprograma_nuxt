@@ -23,7 +23,7 @@
           </header>
           <section
             v-if="hasSlot('body')"
-            :class="`modal-body h-full flex flex-col justify-center items-center ${closeMode ? 'cursor-pointer' : ''}`"
+            :class="`modal-body h-full flex flex-col justify-center ${closeMode ? 'cursor-pointer' : ''}`"
             @click.self.stop="closeMode ? closeModal() : false"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">

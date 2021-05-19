@@ -59,7 +59,8 @@ export default {
       max: Number(this.blok.max_slides),
       defaultMax: this.blok.body.length - 1,
       currentSlide: 0,
-      transitionLeave: ''
+      transitionLeave: '',
+      setAutoPlay: undefined
     }
   },
   computed: {
@@ -89,6 +90,9 @@ export default {
       }
     }
   },
+  mounted () {
+    this.autoPlay()
+  },
   methods: {
     sliderMove (arr, oldIndex, newIndex) {
       while (oldIndex < 0) {
@@ -106,8 +110,16 @@ export default {
       arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0])
       return arr
     },
-
+    autoPlay () {
+      if (this.blok.auto_play) {
+        this.setAutoPlay = setTimeout(this.next, 5000)
+      }
+    },
     next () {
+      if (this.blok.auto_play) {
+        clearTimeout(this.setAutoPlay)
+        this.autoPlay()
+      }
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(this.blok.body, -1, -this.blok.body.length)
       } else if (this.blok.slider_mode === 'carousel' && this.blok.body.length - 1 > this.currentSlide) {
@@ -118,6 +130,10 @@ export default {
       this.transitionLeave = 'translate-x-full'
     },
     previous () {
+      if (this.blok.auto_play) {
+        clearTimeout(this.setAutoPlay)
+        this.autoPlay()
+      }
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(this.blok.body, -this.blok.body.length, -1)
       } else if (this.blok.slider_mode === 'carousel' && this.currentSlide > 0) {

@@ -15,9 +15,9 @@
             <slot name="header" />
             <Icon
               close
-              class="modal-close fixed top-0 right-0"
+              class="modal-close fixed top-0 right-0 filter invert grayscale bg-gray-300"
               tag="button"
-              size="w-14 p-4"
+              size="p-2 lg:p-3 w-9 lg:w-12"
               @click.native.stop="closeModal()"
             />
           </header>

@@ -1,19 +1,26 @@
 <template>
   <div v-if="blok.slider_mode && hasSlot('slider') && blok.body.length > 1" class="slider relative">
-    <Icon
-      v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop"
-      :class="`previous-control control absolute z-20 top-1/2 left-0 lg:-left-1.5 transform ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'} lg:-translate-x-full filter invert grayscale bg-gray-300`"
-      previous
-      size="p-2 lg:p-3 w-9 lg:w-12"
-      tag="button"
-      @click.native="previous"
-    />
-    <div v-else class="controls w-full h-full absolute top-0 z-10">
+    <div v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop" :class="`slider-controls w-full absolute top-1/2 z-20  ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'}`">
+      <Icon
+        :class="`previous-control control absolute left-0 lg:-left-1.5 transform lg:-translate-x-full filter invert grayscale bg-gray-300`"
+        previous
+        size="p-2 lg:p-3 w-9 lg:w-12"
+        tag="button"
+        @click.native="previous"
+      />
+      <Icon
+        :class="`next-control control absolute right-0 lg:-right-1.5 transform lg:translate-x-full filter invert grayscale bg-gray-300`"
+        next
+        size="p-2 lg:p-3 w-9 lg:w-12"
+        tag="button"
+        @click.native="next"
+      />
+    </div>
+    <div v-else class="carousel-controls w-full h-full absolute top-0 z-10">
       <div class="previous-control control h-full w-full absolute -left-1/2 cursor-previous" @click="previous" />
       <div class="next-control control h-full w-full absolute -right-1/2 cursor-next" @click="next" />
     </div>
     <transition-group
-      id="slider"
       tag="ul"
       enter-active-class="duration-500 in-out transform"
       leave-active-class="duration-300 out-in transform"
@@ -33,14 +40,6 @@
         <span :key="dot" :class="`dot-${dot} ${dot === currentSlide + 1 ? 'transform -translate-y-1 duration-500' : ''} transition-transform select-none`" v-text="`•`" />
       </template>
     </div>
-    <Icon
-      v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop"
-      :class="`next-control control absolute z-20 top-1/2 right-0 lg:-right-1.5 transform ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-3/4'} lg:translate-x-full filter invert grayscale bg-gray-300`"
-      next
-      size="p-2 lg:p-3 w-9 lg:w-12"
-      tag="button"
-      @click.native="next"
-    />
   </div>
   <div v-else-if="hasSlot('no_slider')" class="container-wrapper">
     <slot name="no_slider" />

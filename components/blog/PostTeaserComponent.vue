@@ -15,8 +15,8 @@
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div :class="`teaser-text w-full h-full grid gap-3 p-5 auto-rows-min content-between ${$parent.blok.row_container ? '' : 'lg:p-10'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
-          <div class="text-description">
+        <div :class="`teaser-text w-full h-full grid gap-3 p-5 lg:p-10 content-between ${$parent.blok.row_container ? '' : ''}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+          <div class="text-description h-36">
             <span
               class="teaser-title mb-2 text-xl font-bold overflow-hidden"
             >

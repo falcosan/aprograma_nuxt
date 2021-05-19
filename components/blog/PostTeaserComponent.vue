@@ -5,13 +5,13 @@
   >
     <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link">
       <div
-        :class="`teaser-content grid grid-flow-row-dense lg:auto-rows-fr ${$parent.blok.row_container ? 'max-w-2xl lg:max-h-md my-0 mx-auto' : 'lg:h-64 lg:auto-cols-fr lg:grid-flow-col-dense'}`"
+        :class="`teaser-content grid grid-flow-row-dense ${$parent.blok.row_container ? 'max-w-2xl md:max-h-md my-0 mx-auto' : 'lg:h-64 lg:auto-cols-fr lg:auto-rows-fr lg:grid-flow-col-dense'}`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file w-full h-full object-cover select-none ${$parent.blok.row_container ? 'row-start-1 row-end-3' : ''}`"
+          :class="`teaser-file w-full h-full object-cover select-none max-h-72 ${$parent.blok.row_container ? 'row-start-1 row-end-3' : 'lg:h-64'}`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />

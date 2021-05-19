@@ -19,14 +19,6 @@ export default {
       required: true
     }
   },
-  data () {
-    return {
-      dims: {
-        width: null,
-        height: null
-      }
-    }
-  },
   computed: {
     sortedPosts () {
       const featuredPosts = this.$store.state.list.posts.items.filter((post) => {

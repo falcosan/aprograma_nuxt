@@ -56,11 +56,12 @@ export default {
   },
   data () {
     return {
+      elements: this.blok.body,
       max: Number(this.blok.max_slides),
       defaultMax: this.blok.body.length - 1,
       currentSlide: 0,
-      transitionLeave: '',
-      setAutoPlay: 0
+      setAutoPlay: 0,
+      transitionLeave: ''
     }
   },
   computed: {
@@ -94,21 +95,21 @@ export default {
     this.autoPlay()
   },
   methods: {
-    sliderMove (arr, oldIndex, newIndex) {
+    sliderMove (oldIndex, newIndex) {
       while (oldIndex < 0) {
-        oldIndex += arr.length
+        oldIndex += this.elements.length
       }
       while (newIndex < 0) {
-        newIndex += arr.length
+        newIndex += this.elements.length
       }
-      if (newIndex >= arr.length) {
-        let slide = newIndex - arr.length
+      if (newIndex >= this.elements.length) {
+        let slide = newIndex - this.elements.length
         while (slide--) {
-          arr.push(undefined)
+          this.elements.push(undefined)
         }
       }
-      arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0])
-      return arr
+      this.elements.splice(newIndex, 0, this.elements.splice(oldIndex, 1)[0])
+      return this.elements
     },
     autoPlay () {
       if (this.blok.auto_play) {
@@ -122,8 +123,8 @@ export default {
         this.autoPlay()
       }
       if (this.blok.slider_mode === 'slider') {
-        this.sliderMove(this.blok.body, -1, -this.blok.body.length)
-      } else if (this.blok.slider_mode === 'carousel' && this.blok.body.length - 1 > this.currentSlide) {
+        this.sliderMove(-1, -this.elements.length)
+      } else if (this.blok.slider_mode === 'carousel' && this.defaultMax > this.currentSlide) {
         this.currentSlide++
       } else {
         this.currentSlide = 0
@@ -137,11 +138,11 @@ export default {
         this.autoPlay()
       }
       if (this.blok.slider_mode === 'slider') {
-        this.sliderMove(this.blok.body, -this.blok.body.length, -1)
+        this.sliderMove(-this.elements.length, -1)
       } else if (this.blok.slider_mode === 'carousel' && this.currentSlide > 0) {
         this.currentSlide--
       } else {
-        this.currentSlide = this.blok.body.length - 1
+        this.currentSlide = this.defaultMax
       }
       this.transitionLeave = '-translate-x-full'
     },

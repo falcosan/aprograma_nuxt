@@ -1,11 +1,11 @@
 <template>
   <div
-    :class="`logo-container ${styleLogoContainer}`"
+    class="logo-container"
   >
     <svg
       id="logo"
       key="logo-svg"
-      class="logo-svg w-full h-auto cursor-pointer"
+      :class="`logo-svg  h-auto cursor-pointer ${size}`"
       version="1.1"
       baseProfile="basic"
       xmlns="http://www.w3.org/2000/svg"
@@ -68,11 +68,7 @@
 <script>
 export default {
   props: {
-    styleLogoContainer: {
-      type: String,
-      default: ''
-    },
-    styleLogo: {
+    size: {
       type: String,
       default: ''
     },

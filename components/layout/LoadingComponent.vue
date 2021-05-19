@@ -2,11 +2,14 @@
   <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="opacity-0" leave-to-class="opacity-0">
     <div
       v-if="loading"
-      class="indeterminatefixed top-0 z-40 overflow-hidden"
+      class="loading-container fixed h-full w-full flex justify-center items-center inset-0 z-50 overflow-hidden filter grayscale bg-gray-800"
     >
-      <div
-        class="progressbar w-full h-px bg-black"
-        role="progressbar"
+      <Logo
+        transition-a="loading-logo origin-center-left"
+        transition-p="loading-logo origin-center"
+        class="loading-logo w-full flex justify-center"
+        size="w-60"
+        role="loading-logo"
         aria-valuenow="0"
         aria-valuemin="0"
         aria-valuemax="100"
@@ -34,25 +37,20 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 @keyframes progress-indeterminate {
-  0% {
-    width: 0%;
-    left: -100%;
-  }
-  60% {
-    right: -100%;
-    width: 100%;
-  }
-  to {
-    left: 100%;
-    width: 0;
-  }
+    from {
+      transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -moz-transform:rotate(0deg)
+      }
+    to {
+      transform: rotate(359deg);
+      -webkit-transform: rotate(359deg);
+      -moz-transform:rotate(359deg)
+      }
 }
-.progressbar {
-  transition: width 0.25s ease;
-}
-.indeterminate .progressbar {
-  animation: progress-indeterminate 1.4s ease infinite;
+ .loading-logo {
+  animation: progress-indeterminate 1.5s linear infinite;
 }
 </style>

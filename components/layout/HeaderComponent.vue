@@ -10,7 +10,7 @@
             <Logo
               :transition-a="moved.a"
               :transition-p="moved.p"
-              style-logo-container="w-24"
+              size="w-24"
               :blok="blok.body[blok.body.component === 'Logo']"
               @click.native="play"
             />
@@ -56,6 +56,7 @@
         </NuxtLink>
         <Logo
           class="absolute top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full drop-shadow-2xl bg-white"
+          size="w-14"
           :transition-a="moved.a"
           :transition-p="moved.p"
           style-logo-container="w-14"

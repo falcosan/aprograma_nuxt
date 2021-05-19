@@ -5,7 +5,7 @@
       <div
         v-if="openEvent || open"
         ref="modal"
-        :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 py-12 px-2 sm:py-2 sm:px-12 xl:p-20 ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
+        :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 py-20 px-6 lg:py-6 lg:px-20 ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
         tabindex="0"
         @click.self.stop="closeMode ? closeModal() : false"
         @keydown.esc="closeMode ? closeModal() : false"
@@ -15,7 +15,7 @@
             <slot name="header" />
             <Icon
               close
-              class="modal-close fixed top-0 right-0 filter invert grayscale bg-gray-300"
+              class="modal-close fixed top-6 right-6 filter invert grayscale bg-gray-300"
               tag="button"
               size="p-2 lg:p-3 w-9 lg:w-12"
               @click.native.stop="closeModal()"

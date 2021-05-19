@@ -20,7 +20,7 @@
         back
         class="post-back absolute"
         tag="button"
-        size="p-2 w-9"
+        size="w-9 p-2"
         :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
         @click.native.passive="goBack"
       />

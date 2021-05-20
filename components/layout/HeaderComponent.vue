@@ -124,7 +124,7 @@ export default {
       this.moved.a = 'transform origin-center-left translate rotate-360 transition duration-700 ease-out'
       this.moved.p = 'transform origin-center translate rotate-360 transition duration-700 ease-out'
       this.$store.commit('data/moveMutation', true)
-      document.getElementById('logo').ontransitionend = () => {
+      document.querySelector('.logo').ontransitionend = () => {
         this.moved.p = ''
         this.moved.a = ''
         this.$store.commit('data/moveMutation', false)

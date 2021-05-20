@@ -7,7 +7,7 @@
       <Logo
         transition-a="loading-logo origin-center-left"
         transition-p="loading-logo origin-center"
-        class="loading-logo w-full flex justify-center filter drop-shadow-xl"
+        class="loading-logo w-full flex justify-center transform -rotate-180 filter drop-shadow-xl"
         size="w-24"
         role="loading-logo"
         aria-valuenow="0"

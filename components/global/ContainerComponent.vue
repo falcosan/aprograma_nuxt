@@ -151,7 +151,14 @@ export default {
     }
   },
   mounted () {
-    this.autoPlay()
+    if (this.blok.slider_mode && this.blok.auto_play) {
+      this.autoPlay()
+    }
+  },
+  beforeDestroy () {
+    if (this.blok.slider_mode && this.blok.auto_play) {
+      this.clearAutoPlay()
+    }
   },
   methods: {
     sliderMove (oldIndex, newIndex) {
@@ -170,12 +177,8 @@ export default {
       this.elements.splice(newIndex, 0, this.elements.splice(oldIndex, 1)[0])
       return this.elements
     },
-    autoPlay () {
-      if (this.blok.slider_mode && this.blok.auto_play) {
-        this.setAutoPlay = setTimeout(this.next, 5000)
-      }
-    },
-    next () {
+
+    setNext () {
       if (this.blok.slider_mode === 'slider') {
         if (this.defaultMax > this.currentSlide) { this.sliderMove(-1, -this.elements.length) } else { this.currentSlide = 0 }
         this.transitionEnter = 'right-0 translate-y-full scale-150'
@@ -185,13 +188,8 @@ export default {
         this.transitionEnter = '-translate-x-full'
         this.transitionLeave = 'translate-x-full'
       }
-      if (this.blok.auto_play) {
-        clearTimeout(this.setAutoPlay)
-        this.setAutoPlay = 0
-        this.autoPlay()
-      }
     },
-    previous () {
+    setPrevious () {
       if (this.blok.slider_mode === 'slider') {
         if (this.currentSlide > 0) { this.sliderMove(-this.elements.length, -1) } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = 'left-0 translate-y-full scale-150'
@@ -201,11 +199,31 @@ export default {
         this.transitionEnter = 'translate-x-full'
         this.transitionLeave = '-translate-x-full'
       }
-      if (this.blok.auto_play) {
-        clearTimeout(this.setAutoPlay)
-        this.setAutoPlay = 0
+    },
+    next () {
+      if (this.blok.slider_mode && this.blok.auto_play) {
+        this.setNext()
+        this.clearAutoPlay()
         this.autoPlay()
+      } else {
+        this.setNext()
       }
+    },
+    previous () {
+      if (this.blok.slider_mode && this.blok.auto_play) {
+        this.setPrevious()
+        this.clearAutoPlay()
+        this.autoPlay()
+      } else {
+        this.setPrevious()
+      }
+    },
+    autoPlay () {
+      this.setAutoPlay = setTimeout(this.next, 5000)
+    },
+    clearAutoPlay () {
+      clearTimeout(this.setAutoPlay)
+      this.setAutoPlay = 0
     }
   }
 }

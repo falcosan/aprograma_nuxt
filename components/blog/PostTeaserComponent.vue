@@ -5,7 +5,7 @@
   >
     <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link">
       <div
-        :class="`teaser-content h-full flex flex-col ${$parent.blok.row_container ? '' : 'lg:flex-row lg:h-64'}`"
+        :class="`teaser-content h-full flex flex-col ${$parent.blok.row_container ? '' : 'lg:flex-row lg:h-56'}`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
@@ -15,7 +15,7 @@
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div class="teaser-text w-full h-full flex flex-col justify-between p-5 md:p-10" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full flex flex-col p-5 md:p-10 ${$parent.blok.row_container ? 'lg:h-48 ' : 'h-full'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               class="teaser-title mb-2 text-xl font-semibold overflow-hidden"

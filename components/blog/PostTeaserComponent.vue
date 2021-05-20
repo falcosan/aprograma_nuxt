@@ -5,17 +5,17 @@
   >
     <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link">
       <div
-        :class="`teaser-content h-full flex flex-col ${$parent.blok.row_container ? '' : 'lg:flex-row lg:h-56'}`"
+        :class="`teaser-content h-full flex flex-col ${$parent.blok.row_container ? '' : 'lg:flex-row lg:h-64'}`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
         <component
           :is="lookFile()"
-          class="teaser-file h-full w-full object-cover select-none"
+          class="teaser-file h-full w-screen lg:max-w-xs xl:max-w-md 2xl:max-w-xl object-cover select-none"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div :class="`teaser-text w-full flex flex-col p-5 md:p-10 ${$parent.blok.row_container ? 'lg:h-48 ' : 'h-full'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full flex flex-col p-5 md:p-10 ${$parent.blok.row_container ? 'lg:h-48 ' : 'h-max lg:h-full'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               class="teaser-title mb-2 text-xl font-semibold overflow-hidden"
@@ -32,7 +32,7 @@
           </div>
           <span
             v-if="$route.name === 'blog'"
-            class="text-date w-full text-right text-sm font-semibold"
+            class="text-date w-full mt-5 text-right text-sm font-semibold"
             v-text="changeDate(postContent.date)"
           />
         </div>

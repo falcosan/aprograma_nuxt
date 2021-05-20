@@ -5,17 +5,17 @@
   >
     <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link">
       <div
-        :class="`teaser-content grid grid-flow-row ${$parent.blok.row_container ? 'lg:auto-rows-min' : 'lg:h-56 lg:auto-rows-fr lg:auto-cols-fr lg:grid-flow-col'}`"
+        :class="`teaser-content h-full grid grid-flow-row ${$parent.blok.row_container ? '' : 'lg:grid-flow-col auto-rows-fr lg:auto-cols-fr lg:h-64'}`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file w-full object-cover object-center select-none ${$parent.blok.row_container ? 'h-44 xs:h-56 md:h-48 lg:h-64 2xl:h-96' : 'h-full'}`"
+          :class="`teaser-file h-full w-full object-cover object-center select-none`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div :class="`teaser-text w-full grid gap-3 content-center p-5 ${$parent.blok.row_container ? 'h-32 lg:h-44 lg:p-10' : 'h-full md:p-10'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full h-full flex flex-col justify-between p-5 md:p-10`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               class="teaser-title mb-2 text-xl font-semibold overflow-hidden"
@@ -32,7 +32,7 @@
           </div>
           <span
             v-if="$route.name === 'blog'"
-            class="text-date self-center text-right text-sm font-semibold"
+            class="text-date w-full text-right text-sm font-semibold"
             v-text="changeDate(postContent.date)"
           />
         </div>

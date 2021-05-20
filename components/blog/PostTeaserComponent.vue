@@ -11,7 +11,7 @@
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file w-full h-full object-cover select-none ${$parent.blok.row_container ? '' : 'h-full lg:w-1/2'}`"
+          :class="`teaser-file w-full object-cover object-center select-none ${$parent.blok.row_container ? 'h-full' : 'lg:w-1/2'}`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />

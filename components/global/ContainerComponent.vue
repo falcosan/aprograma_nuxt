@@ -29,7 +29,7 @@
       <transition-group
         tag="ul"
         enter-active-class="duration-500 in-out transform"
-        leave-active-class="duration-200 out-in transform"
+        leave-active-class="duration-500 out-in transform"
         :enter-class="`absolute opacity-0 ${transitionEnter}`"
         :leave-to-class="`absolute h-full w-full z-10 ${transitionLeave}`"
         class="slider relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden"

@@ -29,9 +29,9 @@
       <transition-group
         tag="ul"
         enter-active-class="duration-500 in-out transform"
-        leave-active-class="duration-300 out-in transform"
-        enter-class="translate-y-full absolute opacity-0"
-        :leave-to-class="`absolute h-full w-full z-10 inset-0 ${transitionLeave}`"
+        leave-active-class="duration-100 out-in transform"
+        :enter-class="`absolute opacity-0 ${transitionEnter}`"
+        :leave-to-class="`absolute h-full w-full z-10 ${transitionLeave}`"
         class="slider relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden"
       >
         <template v-for="(component, index) in blok.body">
@@ -41,7 +41,7 @@
             :key="component._uid"
             v-touch:swipe.stop.right="next"
             v-touch:swipe.stop.left="previous"
-            class="slider-slide"
+            class="slider-slide slide"
           >
             <component
               :is="component.component"
@@ -56,7 +56,7 @@
             :key="component._uid"
             v-touch:swipe.stop.right="next"
             v-touch:swipe.stop.left="previous"
-            class="carousel-slide"
+            class="carousel-slide slide"
           >
             <component
               :is="component.component"
@@ -103,6 +103,7 @@ export default {
       defaultMax: this.blok.body.length - 1,
       currentSlide: 0,
       setAutoPlay: 0,
+      transitionEnter: '',
       transitionLeave: ''
     }
   },
@@ -182,12 +183,15 @@ export default {
       }
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-1, -this.elements.length)
+        this.transitionEnter = 'right-0 translate-y-full'
+        this.transitionLeave = 'translate-x-full'
       } else if (this.blok.slider_mode === 'carousel' && this.defaultMax > this.currentSlide) {
         this.currentSlide++
+        this.transitionEnter = '-translate-x-full'
+        this.transitionLeave = 'translate-x-full opacity-0'
       } else {
         this.currentSlide = 0
       }
-      this.transitionLeave = 'translate-x-full'
     },
     previous () {
       if (this.blok.slider_mode && this.blok.auto_play) {
@@ -197,12 +201,15 @@ export default {
       }
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-this.elements.length, -1)
+        this.transitionEnter = 'left-0 translate-y-full'
+        this.transitionLeave = '-translate-x-full'
       } else if (this.blok.slider_mode === 'carousel' && this.currentSlide > 0) {
         this.currentSlide--
+        this.transitionEnter = 'translate-x-full'
+        this.transitionLeave = '-translate-x-full opacity-0'
       } else {
         this.currentSlide = this.defaultMax
       }
-      this.transitionLeave = '-translate-x-full'
     },
     hasSlot (name = 'default') {
       return !!this.$slots[name] || !!this.$scopedSlots[name]

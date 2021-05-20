@@ -1,5 +1,5 @@
 <template>
-  <div class="font-sans overflow-x-hidden">
+  <div class="font-sans">
     <component
       :is="layout.component"
       v-for="layout in story.content.body"

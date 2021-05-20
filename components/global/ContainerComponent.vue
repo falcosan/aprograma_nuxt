@@ -6,7 +6,7 @@
       {{ blok.title }}
     </h1>
     <div v-if="blok.slider_mode && blok.body.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">
-      <div v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 768 || !$device.isDesktop" class="slider-controls w-full absolute top-1/2 z-20 filter invert grayscale">
+      <div v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop" class="slider-controls w-full absolute top-1/2 z-20 filter invert grayscale">
         <Icon
           :class="`previous-control control absolute left-0 transform bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
           previous
@@ -36,7 +36,7 @@
       >
         <template v-for="(component, index) in blok.body">
           <li
-            v-if="blok.slider_mode === 'slider' && $store.state.data.windowWidth >= 768"
+            v-if="blok.slider_mode === 'slider' && $store.state.data.windowWidth >= 640"
             v-show="index < (max >= blok.body.length ? defaultMax : maxElements)"
             :key="component._uid"
             v-touch:swipe.stop.right="next"
@@ -120,7 +120,7 @@ export default {
             return this.$rangeItems(Number(this.blok.max_slides), 4)
           } else if (this.$store.state.data.windowWidth >= 1024) {
             return this.$rangeItems(Number(this.blok.max_slides), 3)
-          } else if (this.$store.state.data.windowWidth >= 768) {
+          } else if (this.$store.state.data.windowWidth >= 640) {
             return this.$rangeItems(Number(this.blok.max_slides), 2)
           }
           return this.$rangeItems(Number(this.blok.max_slides), 1)
@@ -131,7 +131,7 @@ export default {
             return this.$rangeItems(this.defaultMax, 4)
           } else if (this.$store.state.data.windowWidth >= 1024) {
             return this.$rangeItems(this.defaultMax, 3)
-          } else if (this.$store.state.data.windowWidth >= 768) {
+          } else if (this.$store.state.data.windowWidth >= 640) {
             return this.$rangeItems(this.defaultMax, 2)
           }
           return this.$rangeItems(this.defaultMax, 1)

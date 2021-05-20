@@ -7,7 +7,7 @@
     name="page"
     class="main"
   >
-    <Nuxt v-if="blok.view" key="page" keep-alive />
+    <Nuxt v-if="blok.view" key="page" />
     <div v-if="blok.background_media.filename" key="background-media" class="background-media flex fixed -z-10 top-1/2 right-1/2 min-w-full min-h-full w-auto h-auto transform translate-x-1/2 -translate-y-1/2">
       <img
         v-if="lookFile === 'image'"

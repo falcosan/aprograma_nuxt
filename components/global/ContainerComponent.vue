@@ -176,47 +176,36 @@ export default {
       }
     },
     next () {
-      if (this.blok.slider_mode && this.blok.auto_play) {
-        clearTimeout(this.setAutoPlay)
-        this.setAutoPlay = 0
-        this.autoPlay()
-      }
       if (this.blok.slider_mode === 'slider') {
-        this.sliderMove(-1, -this.elements.length)
+        if (this.defaultMax > this.currentSlide) { this.sliderMove(-1, -this.elements.length) } else { this.currentSlide = 0 }
         this.transitionEnter = 'right-0 translate-y-full scale-150'
         this.transitionLeave = 'translate-x-full scale-150'
       } else if (this.blok.slider_mode === 'carousel') {
+        if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = '-translate-x-full'
         this.transitionLeave = 'translate-x-full'
-        if (this.defaultMax > this.currentSlide) {
-          this.currentSlide++
-        } else {
-          this.currentSlide = 0
-        }
       }
-    },
-    previous () {
-      if (this.blok.slider_mode && this.blok.auto_play) {
+      if (this.blok.auto_play) {
         clearTimeout(this.setAutoPlay)
         this.setAutoPlay = 0
         this.autoPlay()
       }
+    },
+    previous () {
       if (this.blok.slider_mode === 'slider') {
-        this.sliderMove(-this.elements.length, -1)
+        if (this.currentSlide > 0) { this.sliderMove(-this.elements.length, -1) } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = 'left-0 translate-y-full scale-150'
         this.transitionLeave = '-translate-x-full scale-150'
       } else if (this.blok.slider_mode === 'carousel') {
+        if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = 'translate-x-full'
         this.transitionLeave = '-translate-x-full'
-        if (this.currentSlide > 0) {
-          this.currentSlide--
-        } else {
-          this.currentSlide = this.defaultMax
-        }
       }
-    },
-    hasSlot (name = 'default') {
-      return !!this.$slots[name] || !!this.$scopedSlots[name]
+      if (this.blok.auto_play) {
+        clearTimeout(this.setAutoPlay)
+        this.setAutoPlay = 0
+        this.autoPlay()
+      }
     }
   }
 }

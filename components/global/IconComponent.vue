@@ -1,9 +1,9 @@
 <template>
-  <span :class="`icon-container grid gap-5${blok && !blok.remove_space ? ' p-5 md:p-10' : ''} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : ''}`">
+  <span :class="`icon-container grid gap-5 ${blok && !blok.remove_space ? 'p-5 md:p-10' : ''} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : ''}`">
     <component
       :is="blok ? blok.tag : tag"
       :title="blok && blok.title && !blok.show_title ? blok.title : false"
-      class="icon-wrapper select-none"
+      class="icon-wrapper select-none focus-within:outline-none focus:outline-none"
     >
       <img
         v-if="blok && blok.icon_image.filename"

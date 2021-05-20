@@ -29,7 +29,7 @@
       <transition-group
         tag="ul"
         enter-active-class="duration-500 in-out transform"
-        leave-active-class="duration-100 out-in transform"
+        leave-active-class="duration-200 out-in transform"
         :enter-class="`absolute opacity-0 ${transitionEnter}`"
         :leave-to-class="`absolute h-full w-full z-10 ${transitionLeave}`"
         class="slider relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden"
@@ -185,12 +185,14 @@ export default {
         this.sliderMove(-1, -this.elements.length)
         this.transitionEnter = 'right-0 translate-y-full'
         this.transitionLeave = 'translate-x-full'
-      } else if (this.blok.slider_mode === 'carousel' && this.defaultMax > this.currentSlide) {
-        this.currentSlide++
+      } else if (this.blok.slider_mode === 'carousel') {
         this.transitionEnter = '-translate-x-full'
         this.transitionLeave = 'translate-x-full opacity-0'
-      } else {
-        this.currentSlide = 0
+        if (this.defaultMax > this.currentSlide) {
+          this.currentSlide++
+        } else {
+          this.currentSlide = 0
+        }
       }
     },
     previous () {
@@ -203,12 +205,14 @@ export default {
         this.sliderMove(-this.elements.length, -1)
         this.transitionEnter = 'left-0 translate-y-full'
         this.transitionLeave = '-translate-x-full'
-      } else if (this.blok.slider_mode === 'carousel' && this.currentSlide > 0) {
-        this.currentSlide--
+      } else if (this.blok.slider_mode === 'carousel') {
         this.transitionEnter = 'translate-x-full'
         this.transitionLeave = '-translate-x-full opacity-0'
-      } else {
-        this.currentSlide = this.defaultMax
+        if (this.currentSlide > 0) {
+          this.currentSlide--
+        } else {
+          this.currentSlide = this.defaultMax
+        }
       }
     },
     hasSlot (name = 'default') {

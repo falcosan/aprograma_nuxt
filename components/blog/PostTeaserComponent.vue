@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="postContent"
-    class="post-teaser relative z-10 "
+    class="post-teaser relative z-10"
   >
     <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link">
       <div
@@ -11,11 +11,11 @@
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file w-full object-cover select-none ${$parent.blok.row_container ? '' : 'h-full lg:w-1/2'}`"
+          :class="`teaser-file w-full h-full object-cover select-none ${$parent.blok.row_container ? '' : 'h-full lg:w-1/2'}`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
         />
-        <div :class="`teaser-text w-full flex flex-col p-5 md:p-10 ${$parent.blok.row_container ? 'lg:h-48' : 'h-max lg:h-full lg:w-1/2'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full flex flex-col p-5 ${$parent.blok.row_container ? 'lg:h-48 lg:p-10' : 'h-max lg:h-full lg:w-1/2 md:p-10'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               class="teaser-title mb-2 text-xl font-semibold overflow-hidden"

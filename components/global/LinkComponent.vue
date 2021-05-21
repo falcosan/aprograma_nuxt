@@ -2,13 +2,13 @@
   <component
     :is="blok.external_link ? 'a' : 'NuxtLink'"
     class="item-link h-full block cursor-pointer"
-    :active-class="blok.external_link ? false : !iconLink || !blok.icon_item ? 'bg-gray-300' : 'filter invert grayscale bg-gray-300'"
+    :active-class="blok.external_link ? false : !iconItem || !blok.icon_item ? 'bg-gray-300' : 'filter invert grayscale bg-gray-300'"
     :to="blok.external_link ? false : blok.path"
     :href="blok.external_link ? blok.path : false"
     :rel="blok.external_link ? 'noopener noreferrer' : false"
     :target="blok.external_link ? '_blank' : false"
   >
-    <span v-if="!iconLink && !blok.icon_item" class="item-text break-words" :style="`color: ${blok.text_color.color};`">{{ blok.title }}</span>
+    <span v-if="!iconItem && !blok.icon_item" class="item-text break-words" :style="`color: ${blok.text_color.color};`">{{ blok.title }}</span>
     <Icon
       v-else
       :class="`item-icon ${iconStyle}`"
@@ -24,7 +24,7 @@ export default {
       type: Object,
       required: true
     },
-    iconLink: {
+    iconItem: {
       type: Boolean,
       default: false
     },

@@ -17,7 +17,6 @@
 </template>
 <script>
 export default {
-  inheritAttrs: false,
   data () {
     return {
       loading: false

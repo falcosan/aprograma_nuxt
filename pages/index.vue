@@ -31,6 +31,7 @@ export default {
   },
   async fetch () {
     const slug = (this.$route.path === '/' || this.$route.path === '') ? '/home' : this.$route.path
+    this.$pageState(this.$route.path)
     const { data } = await this.$storyapi.get(`cdn/stories${slug}`, {
       language: this.$store.state.language.language
     })

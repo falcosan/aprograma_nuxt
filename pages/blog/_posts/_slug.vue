@@ -11,6 +11,7 @@ export default {
       .get(`cdn/stories${context.route.path}`, {
         language: context.store.state.language.language
       }).then((res) => {
+        context.$pageState(context.route.path)
         return res.data
       })
   },

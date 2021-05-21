@@ -10,11 +10,13 @@
 <script>
 export default {
   asyncData (context) {
+    context.$pageState(context.route.path)
     const slug = (context.route.path === '/' || context.route.path === '') ? '/home' : context.route.path
     return context.app.$storyapi
       .get(`cdn/stories${slug}`, {
         language: context.store.state.language.language
       }).then((res) => {
+        context.$pageState(context.route.path)
         return res.data
       }).catch((res) => {
         context.$errorMessage(res.response,

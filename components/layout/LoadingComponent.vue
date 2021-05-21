@@ -5,7 +5,7 @@
       class="loading-container fixed h-full w-full flex justify-center items-center inset-0 z-50 overflow-hidden filter grayscale bg-gray-200"
     >
       <Logo
-        class="loading-logo w-full flex justify-center filter drop-shadow-xl"
+        class="loading-logo w-full flex justify-center filter opacity-50 contrast-50 drop-shadow-md"
         size="w-24"
         role="loading-logo"
         aria-valuenow="0"

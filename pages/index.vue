@@ -10,7 +10,6 @@
 <script>
 export default {
   asyncData (context) {
-    context.$pageState(context.route.path)
     const slug = (context.route.path === '/' || context.route.path === '') ? '/home' : context.route.path
     return context.app.$storyapi
       .get(`cdn/stories${slug}`, {
@@ -36,6 +35,7 @@ export default {
     const { data } = await this.$storyapi.get(`cdn/stories${slug}`, {
       language: this.$store.state.language.language
     })
+
     this.story = data.story
   },
   watch: {

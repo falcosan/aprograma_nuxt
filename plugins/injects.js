@@ -1,7 +1,4 @@
 export default ({ app }, inject) => {
-  inject('pageState', (page) => {
-    if (!app.store.state.data.pages.includes(page)) { app.store.commit('data/pageMutation', page) }
-  })
   inject('contentByName', (from, nameComponent) => {
     return from.filter(function (item) { return item.component === `${nameComponent}` })
   })

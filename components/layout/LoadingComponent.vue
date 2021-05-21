@@ -24,10 +24,8 @@ export default {
   },
   methods: {
     start () {
-      if (!this.$store.state.data.pages.includes(this.$route.path)) {
-        this.loading = true
-        this.$noscroll(true)
-      }
+      this.loading = true
+      this.$noscroll(true)
     },
     finish () {
       if (this.loading) {

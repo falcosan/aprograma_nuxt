@@ -17,7 +17,6 @@ export default {
         language: context.store.state.language.language
       })
       .then((res) => {
-        context.$pageState(context.route.path)
         return res.data
       }).catch((res) => {
         context.$errorMessage(res.response,

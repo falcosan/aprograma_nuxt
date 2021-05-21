@@ -1,7 +1,7 @@
 <template>
   <transition enter-active-class="duration-200 linear" leave-active-class="duration-300 linear" enter-class="opacity-0" leave-to-class="opacity-0">
     <div
-      v-if="loading && !$store.state.data.pages.includes($route.path)"
+      v-if="loading"
       class="loading-container fixed h-full w-full flex justify-center items-center inset-0 z-50 overflow-hidden filter grayscale bg-gray-200"
     >
       <Logo

@@ -6,7 +6,7 @@
     :class="`text-container w-full max-w-full ${customClass('index', blok.name === 'text_phrase', 'transition-colors duration-700 ease-in-out')}`"
   >
     <span
-      :class="`text-content h-full block p-5 sm:p-10 prose-sm lg:prose-lg xl:prose-xl break-all ss:break-normal`"
+      :class="`text-content h-full block p-5 sm:p-10 prose-sm lg:prose-lg break-all ss:break-normal`"
       v-html="blok.text.content"
     />
   </div>

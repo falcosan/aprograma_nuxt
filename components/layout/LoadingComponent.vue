@@ -5,9 +5,7 @@
       class="loading-container fixed h-full w-full flex justify-center items-center inset-0 z-50 overflow-hidden filter grayscale bg-gray-200"
     >
       <Logo
-        transition-a="loading-logo origin-center-left"
-        transition-p="loading-logo origin-center"
-        class="loading-logo w-full flex justify-center transform -rotate-180 filter drop-shadow-xl"
+        class="loading-logo w-full flex justify-center filter drop-shadow-xl"
         size="w-24"
         role="loading-logo"
         aria-valuenow="0"
@@ -37,20 +35,3 @@ export default {
   }
 }
 </script>
-<style>
-@keyframes progress-indeterminate {
-    from {
-      transform: rotate(0deg);
-      -webkit-transform: rotate(0deg);
-      -moz-transform:rotate(0deg)
-      }
-    to {
-      transform: rotate(359deg);
-      -webkit-transform: rotate(359deg);
-      -moz-transform:rotate(359deg)
-      }
-}
- .loading-logo {
-  animation: progress-indeterminate 1.5s linear infinite;
-}
-</style>

@@ -8,16 +8,16 @@
     <div v-if="blok.slider_mode && blok.body.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">
       <div v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop" class="slider-controls w-full absolute top-1/2 z-20 filter invert grayscale">
         <Icon
-          :class="`previous-control control absolute left-0 transform bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
+          :class="`previous-control control absolute left-2 transform rounded-full opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
           previous
-          size="p-2 lg:p-3 w-9 lg:w-12"
+          size="p-2 w-7 lg:p-3 lg:w-9"
           tag="button"
           @click.native="previous"
         />
         <Icon
-          :class="`next-control control absolute right-0 transform bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
+          :class="`next-control control absolute right-2 transform rounded-full opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
           next
-          size="p-2 lg:p-3 w-9 lg:w-12"
+          size="p-2 w-7 lg:p-3 lg:w-9"
           tag="button"
           @click.native="next"
         />

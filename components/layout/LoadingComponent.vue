@@ -25,12 +25,16 @@ export default {
   },
   methods: {
     start () {
-      this.loading = true
-      this.$noscroll(true)
+      if (this.$store.state.data.pages.includes(this.$route.path)) {
+        this.loading = true
+        this.$noscroll(true)
+      }
     },
     finish () {
-      this.loading = false
-      this.$noscroll(false)
+      if (this.loading) {
+        this.loading = false
+        this.$noscroll(false)
+      }
     }
   }
 }

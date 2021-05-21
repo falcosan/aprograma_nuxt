@@ -6,33 +6,32 @@
       {{ blok.title }}
     </h1>
     <div v-if="blok.slider_mode && blok.body.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">
-      <div v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop" class="slider-controls w-full absolute top-1/2 z-20 filter invert grayscale">
-        <Icon
-          :class="`previous-control control absolute left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
-          previous
-          size="p-2 w-7"
-          tag="button"
-          @click.native="previous"
-        />
-        <Icon
-          :class="`next-control control absolute right-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
-          next
-          size="p-2 w-7"
-          tag="button"
-          @click.native="next"
-        />
-      </div>
-      <div v-else class="carousel-controls w-full h-full absolute top-0 z-10">
-        <div class="previous-control control h-full w-full absolute -left-1/2 cursor-previous" @click="previous" />
-        <div class="next-control control h-full w-full absolute -right-1/2 cursor-next" @click="next" />
-      </div>
+      <Icon
+        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
+        :class="`previous-control control absolute h-full top-1/2 left-0 z-20 px-2 transform filter invert grayscale ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
+        previous
+        size="p-2 w-7 bg-opacity-70 bg-gray-300 rounded-full"
+        tag="button"
+        @click.native="previous"
+      />
+      <div v-else class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
+      <Icon
+        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
+        :class="`next-control control absolute h-full top-1/2 right-0 z-20 px-2 transform filter invert grayscale ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
+        next
+        size="p-2 w-7 bg-opacity-70 bg-gray-300 rounded-full"
+        tag="button"
+        @click.native="next"
+      />
+      <div v-else class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
+
       <transition-group
         tag="ul"
         enter-active-class="duration-500 in-out transform"
         leave-active-class="duration-300 out-in transform"
-        :enter-class="`absolute inset-0 opacity-0 pointer-events-none ${transitionEnter}`"
+        :enter-class="`absolute h-full w-full inset-0 opacity-0 pointer-events-none ${transitionEnter}`"
         :leave-to-class="`absolute h-full w-full inset-0 opacity-0 pointer-events-none ${transitionLeave}`"
-        class="slider relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden"
+        class="slider relative grid gap-5 auto-cols-fr grid-flow-col overflow-hidden"
       >
         <template v-for="(component, index) in blok.body">
           <li
@@ -178,24 +177,24 @@ export default {
       return this.elements
     },
 
-    setNext () {
+    setPrevious () {
       if (this.blok.slider_mode === 'slider') {
         if (this.defaultMax > this.currentSlide) { this.sliderMove(-1, -this.elements.length) } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-y-full scale-150'
         this.transitionLeave = 'translate-x-full scale-150'
       } else if (this.blok.slider_mode === 'carousel') {
-        if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
+        if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = '-translate-x-full'
         this.transitionLeave = 'translate-x-full'
       }
     },
-    setPrevious () {
+    setNext () {
       if (this.blok.slider_mode === 'slider') {
         if (this.currentSlide > 0) { this.sliderMove(-this.elements.length, -1) } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = 'translate-y-full scale-150'
         this.transitionLeave = '-translate-x-full scale-150'
       } else if (this.blok.slider_mode === 'carousel') {
-        if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
+        if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'
         this.transitionLeave = '-translate-x-full'
       }

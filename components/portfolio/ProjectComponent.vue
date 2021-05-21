@@ -32,7 +32,7 @@
 
       <span
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        class="intro-text p-5 text-base prose prose-sm lg:prose-lg"
+        class="intro-text max-w-none p-5 text-base prose prose-sm lg:prose-lg"
         v-text="blok.intro"
       />
 

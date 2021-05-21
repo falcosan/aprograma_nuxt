@@ -8,16 +8,16 @@
     <div v-if="blok.slider_mode && blok.body.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">
       <div v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop" class="slider-controls w-full absolute top-1/2 z-20 filter invert grayscale">
         <Icon
-          :class="`previous-control control absolute left-2 transform rounded-full opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
+          :class="`previous-control control absolute left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
           previous
-          size="p-2 w-7 lg:p-3 lg:w-9"
+          size="p-2 w-7"
           tag="button"
           @click.native="previous"
         />
         <Icon
-          :class="`next-control control absolute right-2 transform rounded-full opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
+          :class="`next-control control absolute right-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
           next
-          size="p-2 w-7 lg:p-3 lg:w-9"
+          size="p-2 w-7"
           tag="button"
           @click.native="next"
         />
@@ -30,8 +30,8 @@
         tag="ul"
         enter-active-class="duration-500 in-out transform"
         leave-active-class="duration-300 out-in transform"
-        :enter-class="`absolute inset-0 opacity-0 ${transitionEnter}`"
-        :leave-to-class="`absolute h-full w-full inset-0 opacity-0 ${transitionLeave}`"
+        :enter-class="`absolute inset-0 opacity-0 pointer-events-none ${transitionEnter}`"
+        :leave-to-class="`absolute h-full w-full inset-0 opacity-0 pointer-events-none ${transitionLeave}`"
         class="slider relative grid gap-5 auto-cols-fr grid-flow-col-dense overflow-hidden"
       >
         <template v-for="(component, index) in blok.body">
@@ -41,12 +41,12 @@
             :key="component._uid"
             v-touch:swipe.stop.right="next"
             v-touch:swipe.stop.left="previous"
+            :style="`background-color: ${blok.background_color_component.color};`"
             class="slider-slide slide"
           >
             <component
               :is="component.component"
-              :style="`background-color: ${blok.background_color_component.color};`"
-              :class="`${component.component.toLowerCase()}-component`"
+              :class="`${component.component.toLowerCase()}-component my-0 mx-auto`"
               :blok="component"
             />
           </li>

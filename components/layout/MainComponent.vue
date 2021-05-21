@@ -1,10 +1,11 @@
 <template>
   <transition-group
-    tag="main"
     appear
-    appear-active-class="page-appear-active"
-    appear-class="page-appear"
-    name="page"
+    tag="main"
+    enter-active-class="duration-500 in-out"
+    leave-active-class="duration-500 out-in"
+    enter-class="opacity-0"
+    leave-to-class="opacity-0"
     class="main overflow-x-hidden"
   >
     <Nuxt v-if="blok.view" key="page" />
@@ -27,7 +28,7 @@
         <source :src="blok.background_media.filename" :type="`video/${blok.background_media.filename.toLowerCase().split('.').pop()}`">
       </video>
     </div>
-    <div v-else key="background-color" class="background-color fixed -z-10 top-1/2 right-1/2 min-w-full min-h-full w-auto h-auto transform translate-x-1/2 -translate-y-1/2 scale-105" :style="`background-color: ${blok.background_color.color};`" />
+    <div v-else key="background-color" class="background-color fixed w-full h-full -z-10 inset-0" :style="`background-color: ${blok.background_color.color};`" />
   </transition-group>
 </template>
 

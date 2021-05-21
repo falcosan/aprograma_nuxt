@@ -37,7 +37,6 @@ export default {
     'nuxt-compress',
     '@nuxtjs/device'
   ],
-  loading: '~/components/layout/LoadingComponent.vue',
   device: {
     refreshOnResize: true
   },

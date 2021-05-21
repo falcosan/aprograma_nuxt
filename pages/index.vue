@@ -15,7 +15,6 @@ export default {
       .get(`cdn/stories${slug}`, {
         language: context.store.state.language.language
       }).then((res) => {
-        context.$pageState(context.route.path)
         return res.data
       }).catch((res) => {
         context.$errorMessage(res.response,
@@ -35,7 +34,6 @@ export default {
     const { data } = await this.$storyapi.get(`cdn/stories${slug}`, {
       language: this.$store.state.language.language
     })
-
     this.story = data.story
   },
   watch: {

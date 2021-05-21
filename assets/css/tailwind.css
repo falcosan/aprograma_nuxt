@@ -4,6 +4,7 @@
 body {
     touch-action: manipulation;
 }
+
 *::-webkit-scrollbar {
     width: 0.2rem;
     height: 0.2rem;
@@ -21,24 +22,4 @@ body {
     height: 100%;
     width: 100%;
     overflow: hidden;
-}
-
-.page-appear-active {
-    transition-property: opacity;
-    transition-timing-function: ease-in-out;
-    transition-duration: 500ms;
-}
-
-.page-appear {
-    opacity: 0;
-}
-
-.page-enter-active, .page-leave-active {
-    transition-property: opacity;
-    transition-timing-function: ease-in-out;
-    transition-duration: 500ms;
-}
-
-.page-enter, .page-leave-to {
-    opacity: 0;
 }

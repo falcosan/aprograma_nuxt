@@ -20,7 +20,7 @@
         <source :src="blok.background_media.filename" :type="`video/${blok.background_media.filename.toLowerCase().split('.').pop()}`">
       </video>
     </div>
-    <div v-else class="background-color fixed -z-10 top-1/2 right-1/2 min-w-full min-h-full w-auto h-auto transform translate-x-1/2 -translate-y-1/2 scale-105" :style="`background-color: ${blok.background_color.color};`" />
+    <div v-else class="background-color fixed inset-0 -z-10" :style="`background-color: ${blok.background_color.color};`" />
   </main>
 </template>
 

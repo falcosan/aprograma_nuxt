@@ -35,12 +35,11 @@ body {
 }
 
 .page-enter-active, .page-leave-active {
-    transition: all .5s ease;
+    transition: all .2s cubic-bezier(0.755, 0.05, 0.855, 0.06);
 }
 
 .page-enter {
     opacity: 0;
-    transform: translateX(-100%)
 }
 
 .page-leave-to {

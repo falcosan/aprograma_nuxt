@@ -1,14 +1,7 @@
 <template>
-  <transition-group
-    tag="main"
-    appear
-    appear-active-class="page-appear-active"
-    appear-class="page-appear"
-    name="page"
-    class="main"
-  >
-    <Nuxt v-if="blok.view" key="page" />
-    <div v-if="blok.background_media.filename" key="background-media" class="background-media flex fixed -z-10 top-1/2 right-1/2 min-w-full min-h-full w-auto h-auto transform translate-x-1/2 -translate-y-1/2">
+  <main class="main overflow-x-hidden">
+    <Nuxt v-if="blok.view" />
+    <div v-if="blok.background_media.filename" class="background-media flex fixed -z-10 top-1/2 right-1/2 min-w-full min-h-full w-auto h-auto transform translate-x-1/2 -translate-y-1/2">
       <img
         v-if="lookFile === 'image'"
         :src="blok.background_media.filename"
@@ -27,8 +20,8 @@
         <source :src="blok.background_media.filename" :type="`video/${blok.background_media.filename.toLowerCase().split('.').pop()}`">
       </video>
     </div>
-    <div v-else key="background-color" class="background-color fixed -z-10 top-1/2 right-1/2 min-w-full min-h-full w-auto h-auto transform translate-x-1/2 -translate-y-1/2 scale-105" :style="`background-color: ${blok.background_color.color};`" />
-  </transition-group>
+    <div v-else class="background-color fixed -z-10 top-1/2 right-1/2 min-w-full min-h-full w-auto h-auto transform translate-x-1/2 -translate-y-1/2 scale-105" :style="`background-color: ${blok.background_color.color};`" />
+  </main>
 </template>
 
 <script>

@@ -8,18 +8,18 @@
     <div v-if="blok.slider_mode && blok.body.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
-        :class="`previous-control control absolute h-full top-1/2 left-0 z-20 px-2 transform filter invert grayscale ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
+        :class="`previous-control control absolute  top-1/2 z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
         previous
-        size="p-2 w-7 bg-opacity-70 bg-gray-300 rounded-full"
+        size="p-2 w-7"
         tag="button"
         @click.native="previous"
       />
       <div v-else class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
-        :class="`next-control control absolute h-full top-1/2 right-0 z-20 px-2 transform filter invert grayscale ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
+        :class="`next-control control absolute  top-1/2 z-20 filter invert grayscale right-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
         next
-        size="p-2 w-7 bg-opacity-70 bg-gray-300 rounded-full"
+        size="p-2 w-7"
         tag="button"
         @click.native="next"
       />

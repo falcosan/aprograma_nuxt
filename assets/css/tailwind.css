@@ -4,6 +4,7 @@
 body {
     touch-action: manipulation;
 }
+
 *::-webkit-scrollbar {
     width: 0.2rem;
     height: 0.2rem;
@@ -34,11 +35,15 @@ body {
 }
 
 .page-enter-active, .page-leave-active {
-    transition-property: opacity;
-    transition-timing-function: ease-in-out;
-    transition-duration: 500ms;
+    transition: all .5s ease;
 }
 
-.page-enter, .page-leave-to {
+.page-enter {
     opacity: 0;
+    transform: translateX(-100%)
+}
+
+.page-leave-to {
+    opacity: 0;
+    transform: translateX(100%)
 }

@@ -1,17 +1,17 @@
 <template>
-  <main class="main overflow-x-hidden">
+  <main class="main overflow-x-hidden" :style="!blok.background_media.filename ? `background-color: ${blok.background_color.color};` : false">
     <Nuxt v-if="blok.view" />
-    <div v-if="blok.background_media.filename" class="background-media flex fixed -z-10 top-1/2 right-1/2 min-w-full min-h-full w-auto h-auto transform translate-x-1/2 -translate-y-1/2">
+    <div v-if="blok.background_media.filename" class="background-media fixed inset-0 -z-10">
       <img
         v-if="lookFile === 'image'"
         :src="blok.background_media.filename"
         :alt="blok.background_media.alt"
-        class="media-image object-cover object-center"
+        class="media-image w-full h-full object-cover object-center"
         :type="`image/${imageType()}`"
       >
       <video
         v-else
-        class="media-video w-full h-full absolute object-cover object-center"
+        class="media-video w-full h-full object-cover object-center"
         playsinline
         autoplay
         muted
@@ -20,7 +20,6 @@
         <source :src="blok.background_media.filename" :type="`video/${blok.background_media.filename.toLowerCase().split('.').pop()}`">
       </video>
     </div>
-    <div v-else class="background-color fixed inset-0 -z-10" :style="`background-color: ${blok.background_color.color};`" />
   </main>
 </template>
 

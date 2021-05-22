@@ -1,5 +1,5 @@
 <template>
-  <main class="main overflow-x-hidden" :style="!blok.background_media.filename ? `background-color: ${blok.background_color.color};` : false">
+  <main class="main overflow-x-hidden">
     <Nuxt v-if="blok.view" />
     <div v-if="blok.background_media.filename" class="background-media fixed inset-0 -z-10">
       <img
@@ -20,6 +20,7 @@
         <source :src="blok.background_media.filename" :type="`video/${blok.background_media.filename.toLowerCase().split('.').pop()}`">
       </video>
     </div>
+    <div v-else class="background-color fixed inset-0 -z-10" :style="`background-color: ${blok.background_color.color};`" />
   </main>
 </template>
 

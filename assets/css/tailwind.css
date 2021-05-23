@@ -24,16 +24,6 @@ body {
     overflow: hidden;
 }
 
-.page-appear-active {
-    transition-property: opacity;
-    transition-timing-function: ease-in-out;
-    transition-duration: 500ms;
-}
-
-.page-appear {
-    opacity: 0;
-}
-
 .page-enter-active, .page-leave-active {
     transition: all .2s cubic-bezier(0.755, 0.05, 0.855, 0.06);
 }
@@ -43,6 +33,11 @@ body {
 }
 
 .page-leave-to {
-    opacity: 0;
-    transform: translateX(100%)
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    transform: translateY(100%)
 }

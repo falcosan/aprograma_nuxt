@@ -180,8 +180,8 @@ export default {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
         if (this.defaultMax > this.currentSlide) { this.sliderMove(-1, -this.elements.length) } else { this.currentSlide = 0 }
-        this.transitionEnter = 'translate-y-full scale-150'
-        this.transitionLeave = 'translate-x-full scale-150'
+        this.transitionEnter = '-translate-x-full scale-150'
+        this.transitionLeave = 'translate-x-full scale-150 z-10'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = '-translate-x-full'
@@ -191,8 +191,8 @@ export default {
     setNext () {
       if (this.blok.slider_mode === 'slider') {
         if (this.currentSlide > 0) { this.sliderMove(-this.elements.length, -1) } else { this.currentSlide = this.defaultMax }
-        this.transitionEnter = 'translate-y-full scale-150'
-        this.transitionLeave = '-translate-x-full scale-150'
+        this.transitionEnter = 'translate-x-full scale-150'
+        this.transitionLeave = '-translate-x-full scale-150 z-10'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'

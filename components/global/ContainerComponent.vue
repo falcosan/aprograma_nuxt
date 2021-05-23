@@ -29,8 +29,8 @@
         tag="ul"
         enter-active-class="duration-500 in-out transform"
         leave-active-class="duration-300 out-in transform"
-        :enter-class="`absolute h-full w-full inset-0 opacity-0 pointer-events-none ${transitionEnter}`"
-        :leave-to-class="`absolute h-full w-full inset-0 opacity-0 pointer-events-none ${transitionLeave}`"
+        :enter-class="`absolute h-full w-full inset-0 opacity-0 ${transitionEnter}`"
+        :leave-to-class="`absolute h-full w-full inset-0 opacity-0 ${transitionLeave}`"
         class="slider relative grid gap-5 auto-cols-fr grid-flow-col overflow-hidden"
       >
         <template v-for="(component, index) in blok.body">
@@ -45,7 +45,7 @@
           >
             <component
               :is="component.component"
-              :class="`${component.component.toLowerCase()}-component my-0 mx-auto`"
+              :class="`${component.component.toLowerCase()}-component max-w-max my-0 mx-auto`"
               :blok="component"
             />
           </li>

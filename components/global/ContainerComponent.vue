@@ -8,7 +8,7 @@
     <div v-if="blok.slider_mode && blok.body.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
-        :class="`previous-control control absolute  top-1/2 z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
+        :class="`previous-control control absolute top-1/2 z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
         previous
         size="p-2 w-7"
         tag="button"
@@ -17,7 +17,7 @@
       <div v-else class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
-        :class="`next-control control absolute  top-1/2 z-20 filter invert grayscale right-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
+        :class="`next-control control absolute top-1/2 z-20 filter invert grayscale right-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
         next
         size="p-2 w-7"
         tag="button"
@@ -179,7 +179,7 @@ export default {
 
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (this.defaultMax > this.currentSlide) { this.sliderMove(-1, -this.elements.length) } else { this.currentSlide = 0 }
+        this.sliderMove(-1, -this.elements.length)
         this.transitionEnter = '-translate-x-full scale-150'
         this.transitionLeave = 'translate-x-full scale-150 z-10'
       } else if (this.blok.slider_mode === 'carousel') {
@@ -190,7 +190,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (this.currentSlide > 0) { this.sliderMove(-this.elements.length, -1) } else { this.currentSlide = this.defaultMax }
+        this.sliderMove(-this.elements.length, -1)
         this.transitionEnter = 'translate-x-full scale-150'
         this.transitionLeave = '-translate-x-full scale-150 z-10'
       } else if (this.blok.slider_mode === 'carousel') {

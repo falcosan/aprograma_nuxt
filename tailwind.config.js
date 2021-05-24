@@ -35,7 +35,10 @@ module.exports = {
         '7xl': '80rem'
       },
       zIndex: {
-        '-10': '-10'
+        '-10': '-10',
+        '-20': '-20',
+        '-30': '-30',
+        '-40': '-40'
       },
       gridTemplateColumns: {
         container: 'repeat(auto-fit, minmax(300px, 1fr))'

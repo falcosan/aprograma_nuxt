@@ -2,11 +2,12 @@
   <main class="main overflow-x-hidden">
     <Nuxt v-if="blok.view" />
     <div v-if="blok.background_media.filename" class="background-media fixed inset-0 -z-10">
+      <div class="background-main h-full w-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-0 mx-auto opacity-40 bg-white" />
       <img
         v-if="lookFile === 'image'"
         :src="blok.background_media.filename"
         :alt="blok.background_media.alt"
-        class="media-image w-full h-full object-cover object-center"
+        class="media-image fixed w-full h-full inset-0 -z-10 object-cover object-center"
         :type="`image/${imageType()}`"
       >
       <video
@@ -20,7 +21,10 @@
         <source :src="blok.background_media.filename" :type="`video/${blok.background_media.filename.toLowerCase().split('.').pop()}`">
       </video>
     </div>
-    <div v-else class="background-color fixed inset-0 -z-10" :style="`background-color: ${blok.background_color.color};`" />
+    <div v-else class="fixed inset-0 -z-10">
+      <div v-if=" $store.state.data.windowWidth < 768" class="background-main w-full h-full max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl my-0 mx-auto border-r border-l shadow-xl" :style="`border-color: ${blok.background_color.color};`" />
+      <div class="background-color relative h-full w-full" :style="`background-color: ${blok.background_color.color};`" />
+    </div>
   </main>
 </template>
 

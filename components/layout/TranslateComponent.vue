@@ -16,9 +16,9 @@
     >
       <template v-for="language in blok">
         <li
-          v-if="translateTransition ? (cutLanguage(language) !== $store.state.language.language && $store.state.language.language !== '' || cutLanguage(language) !== 'en' && $store.state.language.language === '') : true"
+          v-if="translateTransition ? cutLanguage(language) !== $store.state.language.language && $store.state.language.language !== '' || cutLanguage(language) !== 'en' && $store.state.language.language === '' : true"
           :key="language._uid"
-          :class="`translate-item ${styleTranslateItem} cursor-pointer`"
+          :class="`translate-item cursor-pointer hover:bg-opacity-60 ${styleTranslateItem} ${!translateTransition && (cutLanguage(language) === $store.state.language.language || cutLanguage(language) === 'en' && $store.state.language.language === '') ? 'underline' : ''}`"
           @click="changeLanguage(language.language); $emit('translateListAction')"
         >
           <span

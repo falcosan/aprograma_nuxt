@@ -21,13 +21,13 @@
           <div v-if="expanded" class="menu-expanded">
             <ul class="link-list" :style="`background-color: ${blok.background_color.color};`">
               <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu">
-                <Link class="py-2 px-3 font-light" :icon-item="false" :blok="item" />
+                <Link scroll-top class="py-2 px-3 font-light" :blok="item" />
               </li>
             </ul>
             <div class="language-navbar">
               <Translate
-                class="translate-header font-light filter grayscale text-white bg-gray-800"
-                style-translate-item="w-full p-3"
+                class="translate-header font-light filter grayscale text-white"
+                style-translate-item="w-full p-3 bg-gray-800"
                 :blok="$contentByName(blok.body, 'Translate')"
               />
             </div>
@@ -80,7 +80,7 @@
           :key="item._uid"
           class="link-menu no-underline"
         >
-          <Link icon-item icon-style="w-full h-full" :blok="item" />
+          <Link scroll-top icon-item icon-style="w-full h-full" :blok="item" />
         </li>
       </ul>
     </nav>
@@ -126,6 +126,7 @@ export default {
       }
     },
     play () {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       this.moved.a = 'transform origin-center-left translate rotate-360 transition duration-700 ease-out'
       this.moved.p = 'transform origin-center translate rotate-360 transition duration-700 ease-out'
       this.$store.commit('data/moveMutation', true)

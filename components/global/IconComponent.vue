@@ -6,7 +6,7 @@
     <component
       :is="blok ? blok.tag : tag"
       :title="blok && blok.title && !blok.show_title ? blok.title : false"
-      class="icon-wrapper select-none focus-within:outline-none focus:outline-none"
+      class="icon-wrapper select-none"
     >
       <img
         v-if="blok && blok.icon_image.filename"

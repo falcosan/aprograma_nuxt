@@ -16,7 +16,7 @@
             />
           </NuxtLink>
         </div>
-        <Icon animate-menu :class="`open-menu relative w-full z-10 p-3 cursor-pointer transition-shadow duration-300 bg-white ${expanded ? 'shadow-md' : ''}`" size="w-6" @click.native="expanded = !expanded" />
+        <Icon animate-menu :class="`open-menu relative h-12 w-full z-10 cursor-pointer transition-shadow duration-300 bg-white ${expanded ? 'shadow-md' : ''}`" size="w-6" @click.native="expanded = !expanded" />
         <transition enter-active-class="duration-300 transform" leave-active-class="duration-300 transform" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
           <div v-if="expanded" class="menu-expanded">
             <ul class="link-list" :style="`background-color: ${blok.background_color.color};`">

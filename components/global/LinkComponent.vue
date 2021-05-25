@@ -9,9 +9,9 @@
     :rel="blok.external_link ? 'noopener noreferrer' : false"
     :target="blok.external_link ? '_blank' : false"
   >
-    <p v-if="!iconItem && !blok.icon_item" class="item-text break-words" :style="`color: ${blok.text_color.color};`">
+    <span v-if="!iconItem && !blok.icon_item" class="item-text break-words" :style="`color: ${blok.text_color.color};`">
       {{ blok.title }}
-    </p>
+    </span>
     <Icon
       v-else
       :class="`item-icon ${iconStyle}`"

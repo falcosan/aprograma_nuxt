@@ -5,7 +5,7 @@
       <div
         v-if="openEvent || open"
         ref="modal"
-        :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-40 py-12 px-2 sm:py-2 sm:px-12 ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
+        :class="`modal-backdrop fixed inset-0 flex justify-center items-center z-50 py-12 px-2 sm:py-2 sm:px-12 ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
         tabindex="0"
         @click.self.stop="closeMode ? closeModal() : false"
         @keydown.esc="closeMode ? closeModal() : false"

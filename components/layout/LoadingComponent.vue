@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loading" :class="`loader fixed w-full h-0.5 ${!$device.isDesktop || $store.state.data.windowWidth < 768 ? 'top-10' : ''}`">
+  <div v-if="loading" :class="`loader fixed w-full h-0.5 z-40 ${!$device.isDesktop || $store.state.data.windowWidth < 768 ? 'top-10' : ''}`">
     <div class="loader-bar absolute h-full flex justify-center filter drop-shadow-2xl grayscale bg-gray-800" />
   </div>
 </template>

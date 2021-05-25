@@ -1,13 +1,12 @@
 <template>
   <header
     v-if="$store.state.data.windowWidth >= 768 && $device.isDesktop"
-    class="header fixed h-full border-r shadow-xl z-40"
-    :style="`background-color: ${blok.background_color.color};`"
+    class="header fixed z-40"
   >
     <nav class="navbar">
-      <ul class="menu-wrapper">
-        <li class="logo-home">
-          <NuxtLink exact-active-class="filter invert grayscale bg-gray-300" class="home-link flex items-center" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
+      <div class="menu-wrapper">
+        <div :class="`logo-home relative z-20`">
+          <NuxtLink :class="`home-link flex bg-white transition-shadow duration-300 ${expanded ? '' : 'shadow-md'}`" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
             <Logo
               :transition-a="moved.a"
               :transition-p="moved.p"
@@ -16,29 +15,25 @@
               @click.native="play"
             />
           </NuxtLink>
-        </li>
-        <li
-          v-for="item in $contentByName(blok.body, 'Link')"
-          :key="item._uid"
-          class="link-menu"
-        >
-          <Link class="py-2 px-3 font-light" :icon-item="false" :blok="item" />
-        </li>
-      </ul>
-    </nav>
-    <nav class="language-navbar">
-      <Translate
-        translate-transition
-        class="translate-header font-light"
-        style-current-language="p-3 transition-all bg-gray-800 text-white filter grayscale"
-        :style-translate-list="`absolute w-full transform transition-transform duration-200 esase-out ${expanded ? 'translate-x-0' : '-translate-x-full'} bg-gray-800 filter grayscale text-white`"
-        style-translate-item="w-full p-3"
-        :blok="$contentByName(blok.body, 'Translate')"
-        @mouseleave.native="expandOut"
-        @mouseover.native="expandStill"
-        @currentLangAction="expanded = !expanded"
-        @translateListAction="expanded = false"
-      />
+        </div>
+        <Icon animate-menu :class="`open-menu relative w-full z-10 p-3 cursor-pointer transition-shadow duration-300 bg-white ${expanded ? 'shadow-md' : ''}`" size="w-6" @click.native="expanded = !expanded" />
+        <transition enter-active-class="duration-300 transform" leave-active-class="duration-300 transform" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
+          <div v-if="expanded" class="menu-expanded">
+            <ul class="link-list" :style="`background-color: ${blok.background_color.color};`">
+              <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu">
+                <Link class="py-2 px-3 font-light" :icon-item="false" :blok="item" />
+              </li>
+            </ul>
+            <div class="language-navbar">
+              <Translate
+                class="translate-header font-light filter grayscale text-white bg-gray-800"
+                style-translate-item="w-full p-3"
+                :blok="$contentByName(blok.body, 'Translate')"
+              />
+            </div>
+          </div>
+        </transition>
+      </div>
     </nav>
   </header>
   <header
@@ -73,7 +68,7 @@
           :blok="$contentByName(blok.body, 'Translate')"
           @translateListAction.passive="expanded = false"
           @currentLangAction.passive="expanded = !expanded"
-          @mouseleave.native.passive="$device.isDesktop ? expandOut() : expanded = false"
+          @mouseleave.native.passive="expanded = false"
         />
       </div>
     </nav>
@@ -112,15 +107,6 @@ export default {
     }
   },
   methods: {
-    expandStill () {
-      clearTimeout(this.timer)
-      this.timer = 0
-    },
-    expandOut () {
-      this.timer = setTimeout(() => {
-        this.expanded = false
-      }, 700)
-    },
     play () {
       this.moved.a = 'transform origin-center-left translate rotate-360 transition duration-700 ease-out'
       this.moved.p = 'transform origin-center translate rotate-360 transition duration-700 ease-out'

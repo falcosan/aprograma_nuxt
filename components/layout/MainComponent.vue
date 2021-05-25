@@ -2,7 +2,6 @@
   <main class="main overflow-x-hidden">
     <Nuxt v-if="blok.view" />
     <div v-if="blok.background_media.filename" class="background-media fixed inset-0 -z-10">
-      <div class="background-main h-full w-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-0 mx-auto opacity-40 bg-white" />
       <img
         v-if="lookFile === 'image'"
         :src="blok.background_media.filename"

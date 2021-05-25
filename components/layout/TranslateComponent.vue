@@ -40,7 +40,7 @@ export default {
     },
     translateTransition: {
       type: Boolean,
-      required: true
+      default: false
     },
     styleTranslateItem: {
       type: String,

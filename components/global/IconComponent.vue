@@ -1,5 +1,8 @@
 <template>
-  <span @click="$emit('iconClick')" :class="`icon-container grid gap-5 ${blok && !blok.remove_space ? 'p-5 sm:p-10' : ''} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : ''}`">
+  <span
+    :class="`icon-container grid gap-5 ${blok && !blok.remove_space ? 'p-5 sm:p-10' : ''} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : ''}`"
+    @click="animateMenu ? open = !open : false"
+  >
     <component
       :is="blok ? blok.tag : tag"
       :title="blok && blok.title && !blok.show_title ? blok.title : false"
@@ -90,10 +93,26 @@
         clip-rule="evenodd"
       ><path d="M7 9h-7v-7h1v5.2c1.853-4.237 6.083-7.2 11-7.2 6.623 0 12 5.377 12 12s-5.377 12-12 12c-6.286 0-11.45-4.844-11.959-11h1.004c.506 5.603 5.221 10 10.955 10 6.071 0 11-4.929 11-11s-4.929-11-11-11c-4.66 0-8.647 2.904-10.249 7h5.249v1z" /></svg>
 
+      <!-- MENU -->
+      <div v-else-if="animateMenu" :class="`animate-menu relative w-6 h-6 my-0 mx-auto cursor-pointer ${open ? 'open' : ''}`">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <svg
+        v-else-if="menu"
+        :class="`menu-icon ${size}`"
+        width="24"
+        height="24"
+        xmlns="http://www.w3.org/2000/svg"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+      ><path d="M24 18v1h-24v-1h24zm0-6v1h-24v-1h24zm0-6v1h-24v-1h24z" fill="#1040e2" /><path d="M24 19h-24v-1h24v1zm0-6h-24v-1h24v1zm0-6h-24v-1h24v1z" /></svg>
+
       <!--LOADER-->
       <svg
         v-else-if="loader"
-        key="loader"
         :class="`loader-icon my-0 mx-auto ${size}`"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +152,7 @@
         </circle>
       </svg>
     </component>
-    <span v-if="blok && blok.title && blok.show_title" class="icon-title text-center">{{ blok.title }}</span>
+    <span v-if="(blok && blok.title && blok.show_title) || title" class="icon-title text-center">{{ blok ? blok.title : title }}</span>
   </span>
 </template>
 
@@ -146,7 +165,7 @@ export default {
     },
     tag: {
       type: String,
-      default: ''
+      default: 'button'
     },
     size: {
       type: String,
@@ -176,9 +195,26 @@ export default {
       type: Boolean,
       default: false
     },
+    menu: {
+      type: Boolean,
+      default: false
+    },
+    animateMenu: {
+      type: Boolean,
+      default: false
+    },
     loader: {
       type: Boolean,
       default: false
+    },
+    title: {
+      type: String,
+      default: ''
+    }
+  },
+  data () {
+    return {
+      open: false
     }
   },
   methods: {
@@ -199,3 +235,73 @@ export default {
   }
 }
 </script>
+<style scoped>
+.animate-menu{
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+}
+
+.animate-menu span{
+  display: block;
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background-color: #000;
+  border-radius: 5px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .25s ease-in-out;
+  -moz-transition: .25s ease-in-out;
+  -o-transition: .25s ease-in-out;
+  transition: .25s ease-in-out;
+}
+
+.animate-menu span:nth-child(1) {
+  top: 6px;
+}
+
+.animate-menu span:nth-child(2),.animate-menu span:nth-child(3) {
+  top: 12px;
+}
+
+.animate-menu span:nth-child(4) {
+  top: 18px;
+}
+
+.animate-menu.open span:nth-child(1) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+.animate-menu.open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.animate-menu.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.animate-menu.open span:nth-child(4) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+</style>

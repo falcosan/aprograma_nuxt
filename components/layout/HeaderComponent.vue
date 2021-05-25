@@ -68,7 +68,7 @@
           :blok="$contentByName(blok.body, 'Translate')"
           @translateListAction.passive="expanded = false"
           @currentLangAction.passive="expanded = !expanded"
-          @mouseenter.native.prevent="$device.isDesktop ? expandStill() : false "
+          @mouseenter.native="$device.isDesktop ? expandStill() : false "
           @mouseleave.native.passive="$device.isDesktop ? expandOut() : expanded = false"
         />
       </div>

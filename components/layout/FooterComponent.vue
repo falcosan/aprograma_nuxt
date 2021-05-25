@@ -94,7 +94,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.language.language': { handler () { this.restartTypewriter() } }
+    '$store.state.language.language' () { this.restartTypewriter() }
   },
   created () {
     this.typeText()

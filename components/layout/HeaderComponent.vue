@@ -106,6 +106,10 @@ export default {
       }
     }
   },
+  watch: {
+    '$device.isDesktop' () { this.expanded = false },
+    '$store.state.data.windowWidth' () { if (this.$store.state.data.windowWidth < 768) { this.expanded = false } }
+  },
   methods: {
     play () {
       this.moved.a = 'transform origin-center-left translate rotate-360 transition duration-700 ease-out'

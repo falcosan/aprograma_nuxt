@@ -23,7 +23,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.language.language': { handler () { this.getLayout() } }
+    '$store.state.language.language' () { this.getLayout() }
   },
   beforeMount () {
     this.$store.commit('data/responsiveMutation', window.innerWidth)

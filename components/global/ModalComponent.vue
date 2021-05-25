@@ -57,8 +57,8 @@ export default {
     }
   },
   watch: {
-    openEvent: { handler () { this.checkModal() } },
-    open: { handler () { this.checkModal() } }
+    openEvent () { this.checkModal() },
+    open () { this.checkModal() }
   },
   beforeDestroy () {
     this.$noscroll(false)

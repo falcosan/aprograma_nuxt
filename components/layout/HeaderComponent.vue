@@ -20,7 +20,7 @@
         <transition enter-active-class="duration-300 transform" leave-active-class="duration-300 transform" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
           <div v-if="expanded" class="menu-expanded">
             <ul class="link-list" :style="`background-color: ${blok.background_color.color};`">
-              <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu">
+              <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu hover:bg-gray-300" @click="goUp">
                 <Link scroll-top class="py-2 px-3 font-light" :blok="item" />
               </li>
             </ul>
@@ -79,6 +79,7 @@
           v-for="item in $contentByName(blok.body, 'Link')"
           :key="item._uid"
           class="link-menu no-underline"
+          @click="goUp"
         >
           <Link scroll-top icon-item icon-style="w-full h-full" :blok="item" />
         </li>
@@ -135,6 +136,9 @@ export default {
         this.moved.a = ''
         this.$store.commit('data/moveMutation', false)
       }
+    },
+    goUp () {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 }

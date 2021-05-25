@@ -1,13 +1,11 @@
 <template>
-  <div v-if="story.content && !$fetchState.pending" class="font-sans">
-    <client-only>
-      <component
-        :is="layout.component"
-        v-for="layout in story.content.body"
-        :key="layout._uid"
-        :blok="layout"
-      />
-    </client-only>
+  <div v-if="story.content" class="font-sans">
+    <component
+      :is="layout.component"
+      v-for="layout in story.content.body"
+      :key="layout._uid"
+      :blok="layout"
+    />
   </div>
 </template>
 
@@ -24,18 +22,26 @@ export default {
       }
     }
   },
-  async fetch () {
-    const { data } = await this.$storyapi.get('cdn/stories/layout', {
-      language: this.$store.state.language.language
-    })
-    this.story = data.story
-  },
   watch: {
-    '$store.state.language.language': '$fetch'
+    '$store.state.language.language' () { this.getLayout() }
   },
   beforeMount () {
     this.$store.commit('data/responsiveMutation', window.innerWidth)
+  },
+  mounted () {
+    this.getLayout()
     this.$store.dispatch('data/responsiveAction')
+  },
+  methods: {
+    refresh () {
+      this.$fetch()
+    },
+    async getLayout () {
+      const { data } = await this.$storyapi.get('cdn/stories/layout', {
+        language: this.$store.state.language.language
+      })
+      this.story = data.story
+    }
   }
 }
 </script>

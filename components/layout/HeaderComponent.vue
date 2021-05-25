@@ -68,7 +68,8 @@
           :blok="$contentByName(blok.body, 'Translate')"
           @translateListAction.passive="expanded = false"
           @currentLangAction.passive="expanded = !expanded"
-          @mouseleave.native.passive="expanded = false"
+          @mouseenter.native.prevent="$device.isDesktop ? expandStill() : false "
+          @mouseleave.native.passive="$device.isDesktop ? expandOut() : expanded = false"
         />
       </div>
     </nav>
@@ -111,6 +112,19 @@ export default {
     '$store.state.data.windowWidth' () { if (this.$store.state.data.windowWidth < 768) { this.expanded = false } }
   },
   methods: {
+    expandOut () {
+      if (this.expanded) {
+        this.timer = setTimeout(() => {
+          this.expanded = false
+        }, 700)
+      }
+    },
+    expandStill () {
+      if (this.expanded) {
+        clearTimeout(this.timer)
+        this.timer = 0
+      }
+    },
     play () {
       this.moved.a = 'transform origin-center-left translate rotate-360 transition duration-700 ease-out'
       this.moved.p = 'transform origin-center translate rotate-360 transition duration-700 ease-out'

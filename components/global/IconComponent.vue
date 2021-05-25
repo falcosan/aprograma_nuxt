@@ -4,7 +4,7 @@
     @click="animateMenu ? open = !open : false"
   >
     <component
-      :is="blok ? blok.tag : tag"
+      :is="blok ? blok.tag ? blok.tag : 'button' : tag ? tag : 'button'"
       :title="blok && blok.title && !blok.show_title ? blok.title : false"
       class="icon-wrapper select-none"
     >
@@ -94,11 +94,11 @@
       ><path d="M7 9h-7v-7h1v5.2c1.853-4.237 6.083-7.2 11-7.2 6.623 0 12 5.377 12 12s-5.377 12-12 12c-6.286 0-11.45-4.844-11.959-11h1.004c.506 5.603 5.221 10 10.955 10 6.071 0 11-4.929 11-11s-4.929-11-11-11c-4.66 0-8.647 2.904-10.249 7h5.249v1z" /></svg>
 
       <!-- MENU -->
-      <div v-else-if="animateMenu" :class="`animate-menu relative w-6 h-6 my-0 mx-auto cursor-pointer ${open ? 'open' : ''} ${size}`">
-        <span />
-        <span />
-        <span />
-        <span />
+      <div v-else-if="animateMenu" :class="`animate-menu my-0 mx-auto ${open ? 'open' : ''} ${size}`">
+        <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
+        <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
+        <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
+        <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
       </div>
       <svg
         v-else-if="menu"
@@ -165,7 +165,7 @@ export default {
     },
     tag: {
       type: String,
-      default: 'button'
+      default: ''
     },
     size: {
       type: String,
@@ -248,14 +248,6 @@ export default {
 }
 
 .animate-menu span{
-  display: block;
-  position: absolute;
-  height: 1px;
-  width: 100%;
-  background-color: #000;
-  border-radius: 5px;
-  opacity: 1;
-  left: 0;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -284,6 +276,12 @@ export default {
   left: 50%;
 }
 
+.animate-menu.open span:nth-child(4) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
 .animate-menu.open span:nth-child(2) {
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
@@ -296,12 +294,6 @@ export default {
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
-}
-
-.animate-menu.open span:nth-child(4) {
-  top: 18px;
-  width: 0%;
-  left: 50%;
 }
 
 </style>

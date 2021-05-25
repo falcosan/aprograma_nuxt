@@ -30,11 +30,7 @@
     :target="externalLink ? '_blank' : false"
   >
     <span v-if="!iconItem" class="item-text break-words">{{ title }}</span>
-    <Icon
-      v-else
-      :class="`item-icon ${iconStyle}`"
-      :tag="iconTag"
-    />
+    <slot v-else name="icon" />
   </component>
 </template>
 <script>

@@ -2,9 +2,9 @@
   <div class="post max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl my-0 mx-auto pb-10 pt-20 px-6 prose prose-sm lg:prose-lg">
     <Icon
       v-if="$store.state.data.windowWidth >= 768"
-      back
+      arrow
       :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
-      :class="`post-close fixed right-6 ${$device.isDesktop ? 'top-6' : 'top-16'}`"
+      :class="`post-close fixed right-0 ${$device.isDesktop ? 'top-0' : 'top-10'}`"
       tag="button"
       size="w-12 p-3"
       @click.native="goBack"
@@ -17,7 +17,7 @@
       />
       <Icon
         v-if="$store.state.data.windowWidth < 768"
-        back
+        arrow
         class="post-back absolute bottom-0 right-0"
         tag="button"
         size="w-9 p-2"

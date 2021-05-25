@@ -6,8 +6,13 @@
     @mouseleave="expandOut"
     @mouseover="expandIn"
   >
-    <div class="input-footer flex justify-center transform -translate-y-7">
-      <span class="input-dot text-center animate-bounce text-xl" :style="`color: ${blok.text_color.color};`">•</span>
+    <div class="input-container flex justify-between px-5 text-center text-xl transform -translate-y-7">
+      <span class="input-footer animate-bounce" :style="`color: ${blok.text_color.color};`">
+        <span v-for="(input, index) in 3" :key="index" class="input-dots">•</span>
+      </span>
+      <span class="input-footer animate-bounce" :style="`color: ${blok.text_color.color};`">
+        <span v-for="(input, index) in 3" :key="index" class="input-dots">•</span>
+      </span>
     </div>
     <div class="footer-content h-1/2 flex items-center">
       <div
@@ -40,7 +45,9 @@
     class="footer h-48 my-12 mx-auto px-2"
   >
     <div class="footer-content h-full flex flex-col items-center text-center">
-      <span class="input-dot relative bottom-10 animate-bounce text-center text-xl" :style="`color: ${blok.text_color.color};`">•</span>
+      <span class="input-footer relative bottom-10 animate-bounce text-center text-xl" :style="`color: ${blok.text_color.color};`">
+        <span v-for="(input, index) in 3" :key="index" class="input-dots">•</span>
+      </span>
       <div
         class="messages-container flex-1"
       >

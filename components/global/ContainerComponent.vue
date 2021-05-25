@@ -8,8 +8,8 @@
     <div v-if="blok.slider_mode && blok.body.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
-        :class="`previous-control control absolute top-1/2 z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
         previous
+        :class="`previous-control control absolute top-1/2 z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
         size="p-2 w-7"
         tag="button"
         @click.native="previous"
@@ -17,8 +17,8 @@
       <div v-else class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
-        :class="`next-control control absolute top-1/2 z-20 filter invert grayscale right-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
         next
+        :class="`next-control control absolute top-1/2 z-20 filter invert grayscale right-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
         size="p-2 w-7"
         tag="button"
         @click.native="next"
@@ -35,11 +35,11 @@
       >
         <template v-for="(component, index) in blok.body">
           <li
-            v-if="blok.slider_mode === 'slider' && $store.state.data.windowWidth >= 640"
+            v-if="blok.slider_mode === 'slider'"
             v-show="index < (max >= blok.body.length ? defaultMax : maxElements)"
             :key="component._uid"
-            v-touch:swipe.stop.right="next"
-            v-touch:swipe.stop.left="previous"
+            v-touch:swipe.stop.left="next"
+            v-touch:swipe.stop.right="previous"
             :style="`background-color: ${blok.background_color_component.color};`"
             class="slider-slide slide"
           >
@@ -53,21 +53,21 @@
             v-else
             v-show="index === currentSlide"
             :key="component._uid"
-            v-touch:swipe.stop.right="next"
-            v-touch:swipe.stop.left="previous"
+            v-touch:swipe.stop.left="next"
+            v-touch:swipe.stop.right="previous"
             class="carousel-slide slide"
+            :style="`background-color: ${blok.background_color_component.color};`"
           >
             <component
               :is="component.component"
-              :style="`background-color: ${blok.background_color_component.color};`"
-              :class="`${component.component.toLowerCase()}-component`"
+              :class="`${component.component.toLowerCase()}-component my-0 mx-auto`"
               :blok="component"
             />
           </li>
         </template>
       </transition-group>
       <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-5 justify-center my-5 md:my-10">
-        <span v-for="dot in blok.body.length" :key="dot" :class="`dot-${dot} ${dot === currentSlide + 1 ? 'transform -translate-y-1 duration-500' : ''} transition-transform select-none`" v-text="`•`" />
+        <span v-for="dot in blok.body.length" :key="dot" :class="`dot-${dot} transition-all select-none text-xl ${dot === currentSlide + 1 ? 'transform -translate-y-1 duration-500' : ''}`" v-text="`•`" />
       </div>
     </div>
     <div v-else class="container-components grid gap-5 auto-cols-fr" :style="`grid-template-columns:repeat(${$store.state.data.windowWidth >= 768 ? maxElements : '1'}, 1fr);`">

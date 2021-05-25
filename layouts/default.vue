@@ -29,11 +29,13 @@ export default {
       language: this.$store.state.language.language
     })
     this.story = data.story
-    this.$store.commit('data/responsiveMutation', window.innerWidth)
-    this.$store.dispatch('data/responsiveAction')
   },
   watch: {
     '$store.state.language.language': '$fetch'
+  },
+  beforeMount () {
+    this.$store.commit('data/responsiveMutation', window.innerWidth)
+    this.$store.dispatch('data/responsiveAction')
   }
 }
 </script>

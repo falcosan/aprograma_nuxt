@@ -25,6 +25,7 @@ export default {
       { rel: 'manifest', href: '/icon/site.webmanifest' }
     ]
   },
+  loading: '~/components/layout/LoadingComponent.vue',
   plugins: [
     '~/plugins/components',
     '~/plugins/injects',

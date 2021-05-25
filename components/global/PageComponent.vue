@@ -44,6 +44,13 @@ export default {
       }
       return this.$rangeItems(this.rowComponent.length, 1)
     }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+
+      setTimeout(() => this.$nuxt.$loading.finish(), 5000000000)
+    })
   }
 }
 </script>

@@ -26,10 +26,10 @@
       <div v-else class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
       <transition-group
         tag="ul"
-        :enter-active-class="`transform in-out ${blok.slider_mode === 'slider' ? 'duration-200' : 'duration-300'}`"
-        :leave-active-class="`transform out-in ${blok.slider_mode === 'slider' ? 'duration-200' : 'duration-200'}`"
-        :enter-class="`absolute w-full ${transitionEnter}`"
-        :leave-to-class="`absolute w-full opacity-0 ${transitionLeave}`"
+        :enter-active-class="`transform in-out ${blok.slider_mode === 'slider' ? 'duration-300' : 'duration-300'}`"
+        :leave-active-class="`transform out-in ${blok.slider_mode === 'slider' ? 'duration-300' : 'duration-200'}`"
+        :enter-class="`absolute w-full h-full opacity-0 ${transitionEnter}`"
+        :leave-to-class="`absolute w-full h-full opacity-0 ${transitionLeave}`"
         :class="`${blok.slider_mode === 'slider' ? 'slider relative overflow-hidden' : 'carousel'} grid gap-5 auto-cols-fr grid-flow-col`"
       >
         <template v-for="(component, index) in blok.body">
@@ -179,7 +179,7 @@ export default {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-1, -this.elements.length)
-        this.transitionLeave = 'z-10 shadow-xl ontransition'
+        this.transitionLeave = 'z-10 ontransition'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = '-translate-x-full'
@@ -189,7 +189,7 @@ export default {
     setNext () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-this.elements.length, -1)
-        this.transitionLeave = 'z-10 shadow-xl ontransition'
+        this.transitionLeave = 'z-10 ontransition'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'

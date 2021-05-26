@@ -1,6 +1,8 @@
 <template>
   <main class="main overflow-x-hidden">
-    <Nuxt v-if="blok.view" />
+    <transition enter-active-class="duration-500 in-out" enter-class="opacity-0" mode="out-in">
+      <Nuxt v-if="blok.view" />
+    </transition>
     <div v-if="blok.background_media.filename" class="background-media fixed inset-0 -z-10">
       <img
         v-if="lookFile === 'image'"

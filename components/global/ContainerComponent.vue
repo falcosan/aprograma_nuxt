@@ -26,9 +26,9 @@
       <div v-else class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
       <transition-group
         tag="ul"
-        :enter-active-class="`transform in-out ${blok.slider_mode === 'slider' ? 'duration-200' : 'duration-200'}`"
-        :leave-active-class="`transform out-in ${blok.slider_mode === 'slider' ? 'duration-200 absolute w-full top-0 bottom-0' : 'duration-200'}`"
-        :enter-class="`absolute w-full opacity-0 ${transitionEnter}`"
+        :enter-active-class="`transform in-out ${blok.slider_mode === 'slider' ? 'duration-200' : 'duration-300'}`"
+        :leave-active-class="`transform out-in ${blok.slider_mode === 'slider' ? 'duration-200' : 'duration-200'}`"
+        :enter-class="`absolute w-full ${transitionEnter}`"
         :leave-to-class="`absolute w-full opacity-0 ${transitionLeave}`"
         :class="`${blok.slider_mode === 'slider' ? 'slider relative overflow-hidden' : 'carousel'} grid gap-5 auto-cols-fr grid-flow-col`"
       >
@@ -179,8 +179,7 @@ export default {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-1, -this.elements.length)
-        this.transitionEnter = 'opacity-0'
-        this.transitionLeave = 'translate-x-full z-10 shadow-xl ontransition'
+        this.transitionLeave = 'z-10 shadow-xl ontransition'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = '-translate-x-full'
@@ -190,8 +189,7 @@ export default {
     setNext () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-this.elements.length, -1)
-        this.transitionEnter = 'opacity-0'
-        this.transitionLeave = '-translate-x-full z-10 shadow-xl ontransition'
+        this.transitionLeave = 'z-10 shadow-xl ontransition'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'

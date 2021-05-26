@@ -23,9 +23,10 @@
     :is="externalLink ? 'a' : 'NuxtLink'"
     v-else
     class="item-link h-full block cursor-pointer"
-    :active-class="externalLink ? false : !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300'"
-    :to="externalLink ? false : path"
-    :href="externalLink ? path : false"
+    :active-class="active === 'active' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : ''"
+    :exact-active-class="active === 'exact' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : ''"
+    :to="externalLink ? false : to"
+    :href="externalLink ? to : false"
     :rel="externalLink ? 'noopener noreferrer' : false"
     :target="externalLink ? '_blank' : false"
   >
@@ -44,13 +45,17 @@ export default {
       type: Boolean,
       default: false
     },
-    path: {
+    to: {
+      type: String,
+      default: ''
+    },
+    active: {
       type: String,
       default: ''
     },
     iconTag: {
       type: String,
-      default: 'a'
+      default: ''
     },
     title: {
       type: String,

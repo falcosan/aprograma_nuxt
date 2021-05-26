@@ -67,7 +67,7 @@
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
         class="project-back h-full"
         size="w-16 p-5"
-        @click.native="goBack"
+        @click.native="goBack(), $scrollUp()"
       />
       <component
         :is="blok.url_project ? 'a' : 'span'"

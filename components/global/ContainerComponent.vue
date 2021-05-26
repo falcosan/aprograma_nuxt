@@ -66,8 +66,8 @@
           </li>
         </template>
       </transition-group>
-      <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-5 justify-center my-5 md:my-10">
-        <span v-for="dot in blok.body.length" :key="dot" :class="`dot-${dot} transition-all select-none text-xl ${dot === currentSlide + 1 ? 'transform -translate-y-1 duration-500' : ''}`" v-text="`•`" />
+      <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-2 justify-center my-5 md:my-10">
+        <span v-for="dot in blok.body.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 rounded-full select-none text-xl transition-all ${dot === currentSlide + 1 ? 'ring-2 ring-gray-500 transform -translate-y-1 duration-200' : 'bg-black'}`" />
       </div>
     </div>
     <div v-else class="container-components grid gap-5 auto-cols-fr" :style="`grid-template-columns:repeat(${$store.state.data.windowWidth >= 768 ? maxElements : '1'}, 1fr);`">

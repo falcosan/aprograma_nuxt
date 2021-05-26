@@ -24,46 +24,47 @@
         @click.native="next"
       />
       <div v-else class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
+      <ul v-if="blok.slider_mode === 'slider'" class="slider relative overflow-hidden grid gap-5 auto-cols-fr grid-flow-col">
+        <li
+          v-for="(component, index) in blok.body"
+          v-show="index < (max >= blok.body.length ? defaultMax : maxElements)"
+          :key="component._uid"
+          v-touch:swipe.stop.left="next"
+          v-touch:swipe.stop.right="previous"
+          :style="`background-color: ${blok.background_color_component.color};`"
+          class="slider-slide slide"
+        >
+          <component
+            :is="component.component"
+            :class="`${component.component.toLowerCase()}-component max-w-max my-0 mx-auto`"
+            :blok="component"
+          />
+        </li>
+      </ul>
       <transition-group
+        v-else
         tag="ul"
-        :enter-active-class="`transform in-out ${blok.slider_mode === 'slider' ? 'duration-300' : 'duration-300'}`"
-        :leave-active-class="`transform out-in ${blok.slider_mode === 'slider' ? 'duration-300' : 'duration-200'}`"
-        :enter-class="`absolute w-full h-full opacity-0 ${transitionEnter}`"
-        :leave-to-class="`absolute w-full h-full opacity-0 ${transitionLeave}`"
-        :class="`${blok.slider_mode === 'slider' ? 'slider relative overflow-hidden' : 'carousel'} grid gap-5 auto-cols-fr grid-flow-col`"
+        enter-active-class="`in-out duration-200"
+        leave-active-class="out-in duration-200"
+        :enter-class="`absolute inset-0 w-screen opacity-0 transform ${transitionEnter}`"
+        :leave-to-class="`absolute inset-0 w-screen opacity-0 transform ${transitionLeave}`"
+        class="carousel grid gap-5 auto-cols-fr grid-flow-col"
       >
-        <template v-for="(component, index) in blok.body">
-          <li
-            v-if="blok.slider_mode === 'slider'"
-            v-show="index < (max >= blok.body.length ? defaultMax : maxElements)"
-            :key="component._uid"
-            v-touch:swipe.stop.left="next"
-            v-touch:swipe.stop.right="previous"
-            :style="`background-color: ${blok.background_color_component.color};`"
-            class="slider-slide slide"
-          >
-            <component
-              :is="component.component"
-              :class="`${component.component.toLowerCase()}-component max-w-max my-0 mx-auto`"
-              :blok="component"
-            />
-          </li>
-          <li
-            v-else
-            v-show="index === currentSlide"
-            :key="component._uid"
-            v-touch:swipe.stop.left="next"
-            v-touch:swipe.stop.right="previous"
-            class="carousel-slide slide"
-            :style="`background-color: ${blok.background_color_component.color};`"
-          >
-            <component
-              :is="component.component"
-              :class="`${component.component.toLowerCase()}-component my-0 mx-auto`"
-              :blok="component"
-            />
-          </li>
-        </template>
+        <li
+          v-for="(component, index) in blok.body"
+          v-show="index === currentSlide"
+          :key="component._uid"
+          v-touch:swipe.stop.left="next"
+          v-touch:swipe.stop.right="previous"
+          class="carousel-slide slide"
+          :style="`background-color: ${blok.background_color_component.color};`"
+        >
+          <component
+            :is="component.component"
+            :class="`${component.component.toLowerCase()}-component my-0 mx-auto`"
+            :blok="component"
+          />
+        </li>
       </transition-group>
       <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-2 justify-center my-5 md:my-10">
         <span v-for="dot in blok.body.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 rounded-full select-none text-xl transition-all ${dot === currentSlide + 1 ? 'ring-2 ring-gray-500 transform -translate-y-1 duration-200' : 'bg-black'}`" />
@@ -179,7 +180,6 @@ export default {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-1, -this.elements.length)
-        this.transitionLeave = 'z-10 ontransition'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = '-translate-x-full'
@@ -189,7 +189,6 @@ export default {
     setNext () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-this.elements.length, -1)
-        this.transitionLeave = 'z-10 ontransition'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'

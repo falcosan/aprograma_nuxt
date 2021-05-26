@@ -29,6 +29,7 @@ export default {
   plugins: [
     '~/plugins/injects',
     '~/plugins/components',
+    '~/plugins/polyfill.client.js',
     '~/plugins/touchScreen.client.js',
     '~/plugins/persistedState.client.js'
   ],

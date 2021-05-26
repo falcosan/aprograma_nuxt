@@ -6,7 +6,7 @@
     <nav class="navbar">
       <div class="menu-wrapper">
         <div :class="`logo-home relative z-20`">
-          <Link icon-item class="home-link flex bg-white transition-shadow duration-300 shadow-md" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)" @click.native="$scrollUp()">
+          <Link icon-item class="home-link flex bg-white transition-shadow duration-300 shadow-md" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
             <template #icon>
               <Logo
                 :transition-a="moved.a"
@@ -22,7 +22,7 @@
         <transition enter-active-class="duration-300 transform" leave-active-class="duration-300 transform" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
           <div v-if="expanded" class="menu-expanded">
             <ul class="link-list" :style="`background-color: ${blok.background_color.color};`">
-              <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu hover:bg-gray-300" @click="$scrollUp()">
+              <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu hover:bg-gray-300">
                 <Link scroll-top class="py-2 px-3 font-light" :blok="item" />
               </li>
             </ul>
@@ -50,7 +50,6 @@
           class="home-link w-2/12"
           :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)"
           to="/"
-          @click.native="$scrollUp()"
         >
           <template #icon>
             <Icon
@@ -90,7 +89,6 @@
           v-for="item in $contentByName(blok.body, 'Link')"
           :key="item._uid"
           class="link-menu no-underline"
-          @click="$scrollUp()"
         >
           <Link scroll-top icon-item icon-style="w-full h-full" :blok="item" />
         </li>

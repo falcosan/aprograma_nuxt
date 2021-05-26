@@ -18,9 +18,6 @@ export default ({ app }, inject) => {
   inject('rangeItems', (val, max) => {
     return val < 1 ? 1 : (val > max ? max : val)
   })
-  inject('scrollUp', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  })
   inject('noscroll', (condition) => {
     if (condition) {
       document.body.classList.add('noscroll')

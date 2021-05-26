@@ -27,10 +27,10 @@
       <transition-group
         tag="ul"
         :enter-active-class="`transform in-out ${blok.slider_mode === 'slider' ? 'duration-200' : 'duration-300'}`"
-        :leave-active-class="`absolute w-full h-full transform out-in ${blok.slider_mode === 'slider' ? 'duration-200' : 'duration-300'}`"
+        :leave-active-class="`transform out-in ${blok.slider_mode === 'slider' ? 'duration-200 absolute w-full top-0 bottom-0' : 'duration-300'}`"
         :enter-class="transitionEnter"
         :leave-to-class="transitionLeave"
-        :class="`${blok.slider_mode === 'slider' ? 'slider' : 'carousel'} relative grid gap-5 auto-cols-fr grid-flow-col overflow-hidden`"
+        :class="`${blok.slider_mode === 'slider' ? 'slider relative overflow-hidden' : 'carousel'} grid gap-5 auto-cols-fr grid-flow-col`"
       >
         <template v-for="(component, index) in blok.body">
           <li
@@ -183,8 +183,8 @@ export default {
         this.transitionLeave = 'translate-x-full z-10 shadow-xl ontransition'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
-        this.transitionEnter = '-translate-x-full opacity-0'
-        this.transitionLeave = 'translate-x-full opacity-0'
+        this.transitionEnter = '-translate-x-full opacity-0 absolute w-full top-0 bottom-0'
+        this.transitionLeave = 'translate-x-full opacity-0 absolute w-full top-0 bottom-0'
       }
     },
     setNext () {
@@ -194,8 +194,8 @@ export default {
         this.transitionLeave = '-translate-x-full z-10 shadow-xl ontransition'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
-        this.transitionEnter = 'translate-x-full opacity-0'
-        this.transitionLeave = '-translate-x-full opacity-0'
+        this.transitionEnter = 'translate-x-full opacity-0 absolute w-full top-0 bottom-0'
+        this.transitionLeave = '-translate-x-full opacity-0 absolute w-full top-0 bottom-0'
       }
     },
     next () {

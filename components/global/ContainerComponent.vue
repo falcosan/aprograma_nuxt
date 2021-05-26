@@ -26,11 +26,11 @@
       <div v-else class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
       <transition-group
         tag="ul"
-        :enter-active-class="`transform in-out ${blok.slider_mode === 'slider' ? 'duration-200' : 'duration-500'}`"
-        :leave-active-class="`transform out-in ${blok.slider_mode === 'slider' ? 'duration-200 absolute w-full top-0 bottom-0' : 'duration-500'}`"
-        :enter-class="`absolute w-full top-0 bottom-0 ${transitionEnter}`"
-        :leave-to-class="`absolute w-full top-0 bottom-0 ${transitionLeave}`"
-        :class="`${blok.slider_mode === 'slider' ? 'slider relative overflow-hidden' : 'carousel'} grid gap-5 auto-cols-fr grid-flow-col`"
+        enter-active-class="duration-200 in-out transform"
+        leave-active-class="duration-200 out-in transform"
+        :enter-class="`absolute w-full top-0 bottom-0 opacity-0 ${transitionEnter}`"
+        :leave-to-class="`absolute w-full top-0 bottom-0 shadow-2xl ${blok.slider_mode === 'carousel' ? 'opacity-0' : ''} ${transitionLeave}`"
+        class="slider relative grid gap-5 auto-cols-fr grid-flow-col overflow-hidden"
       >
         <template v-for="(component, index) in blok.body">
           <li

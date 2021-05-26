@@ -6,7 +6,7 @@
     <nav class="navbar">
       <div class="menu-wrapper">
         <div :class="`logo-home relative z-20`">
-          <NuxtLink :class="`home-link flex bg-white transition-shadow duration-300 ${expanded ? '' : 'shadow-md'}`" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
+          <NuxtLink class="home-link flex bg-white transition-shadow duration-300 shadow-md" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
             <Logo
               :transition-a="moved.a"
               :transition-p="moved.p"
@@ -16,7 +16,7 @@
             />
           </NuxtLink>
         </div>
-        <Icon animate-menu tag="button" :class="`open-menu relative h-12 w-full z-10 cursor-pointer transition-shadow duration-300 bg-white ${expanded ? 'shadow-md' : ''}`" size="w-6 h-6" @click.native="expanded = !expanded" />
+        <Icon animate-menu tag="button" :class="`open-menu relative h-12 w-full z-10 cursor-pointer transition-shadow duration-300 bg-white ${expanded ? 'border-b' : ''}`" size="w-6 h-6" @click.native="expanded = !expanded" />
         <transition enter-active-class="duration-300 transform" leave-active-class="duration-300 transform" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
           <div v-if="expanded" class="menu-expanded">
             <ul class="link-list" :style="`background-color: ${blok.background_color.color};`">

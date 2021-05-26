@@ -27,10 +27,11 @@ export default {
   },
   loading: '~/components/layout/LoadingComponent.vue',
   plugins: [
-    '~/plugins/components',
     '~/plugins/injects',
-    '~/plugins/persistedState.client.js',
-    '~/plugins/touchScreen.client.js'
+    '~/plugins/components',
+    '~/plugins/polyfill.client.js',
+    '~/plugins/touchScreen.client.js',
+    '~/plugins/persistedState.client.js'
   ],
 
   buildModules: [

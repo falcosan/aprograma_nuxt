@@ -3,7 +3,7 @@
     v-if="postContent"
     class="post-teaser relative z-10"
   >
-    <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link" @click.native="$scrollUp()">
+    <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link">
       <div
         :class="`teaser-content h-full flex flex-col ${$parent.blok.row_container ? '' : 'lg:flex-row lg:h-64'}`"
         @mouseover="expanded = true"

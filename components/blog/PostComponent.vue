@@ -7,7 +7,7 @@
       :class="`post-close fixed right-0 ${$device.isDesktop ? 'top-0' : 'top-10'}`"
       tag="button"
       size="w-12 p-3"
-      @click.native="goBack(), $scrollUp()"
+      @click.native="goBack()"
     />
     <div class="post-head relative w-full">
       <h1
@@ -22,7 +22,7 @@
         tag="button"
         size="w-9 p-2"
         :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
-        @click.native.passive="goBack(), $scrollUp()"
+        @click.native.passive="goBack()"
       />
       <component
         :is="lookFile()"

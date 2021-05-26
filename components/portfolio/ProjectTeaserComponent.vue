@@ -3,7 +3,7 @@
     v-if="projectContent"
     class="project-teaser relative z-10"
   >
-    <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link" @click.native="$scrollUp()">
+    <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
       <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
         <img class="project-image w-full h-full object-cover object-center select-none" :src="projectContent.image.filename" :alt="projectContent.image.alt">
         <span

@@ -3,7 +3,7 @@
     <h1 v-if="blok.title && blok.show_title" class="page-title mb-10 text-xl">
       {{ blok.title }}
     </h1>
-    <div class="container-components grid gap-5 auto-cols-fr" :style="`grid-template-columns:repeat(${maxComponents}, 1fr);`">
+    <div class="page-components grid gap-5 auto-cols-fr" :style="`grid-template-columns:repeat(${maxComponents}, 1fr);`">
       <div
         v-for="component in blok.body"
         :key="component._uid"

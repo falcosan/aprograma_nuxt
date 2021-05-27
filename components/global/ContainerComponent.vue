@@ -28,9 +28,10 @@
         v-if="blok.slider_mode === 'slider'"
         tag="ul"
         enter-active-class="`in-out duration-200"
-        :leave-active-class="`out-in duration-200 ${max >= blok.body.length ? defaultMax > 1 ? 'absolute' : '' : maxElements > 1 ? 'absolute' : ''}`"
+        mode=""
+        :leave-active-class="`out-in ${max >= blok.body.length ? defaultMax > 1 ? 'absolute duration-300 -top-full' : 'duration-200' : maxElements > 1 ? 'absolute duration-300 -top-full' : 'duration-200'}`"
         :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
-        :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
+        :leave-to-class="`absolute inset-0 w-full transform shadow-xl ontransition ${transitionLeave}`"
         class="slider relative grid gap-5 auto-cols-fr grid-flow-col overflow-hidden"
       >
         <li
@@ -189,7 +190,7 @@ export default {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-1, -this.elements.length)
-        this.transitionEnter = '-translate-x-full'
+        this.transitionEnter = '-translate-y-full'
         this.transitionLeave = 'translate-x-full'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
@@ -200,7 +201,7 @@ export default {
     setNext () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-this.elements.length, -1)
-        this.transitionEnter = 'translate-x-full'
+        this.transitionEnter = 'translate-y-full'
         this.transitionLeave = '-translate-x-full'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }

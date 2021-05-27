@@ -24,7 +24,15 @@
         @click.native="next"
       />
       <div v-else class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-      <ul v-if="blok.slider_mode === 'slider'" class="slider relative overflow-hidden grid gap-5 auto-cols-fr grid-flow-col">
+      <transition-group
+        v-if="blok.slider_mode === 'slider'"
+        tag="ul"
+        enter-active-class="`in-out duration-200"
+        :leave-active-class="`out-in duration-200 ${max >= blok.body.length ? defaultMax > 1 ? 'absolute' : '' : maxElements > 1 ? 'absolute' : ''}`"
+        :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
+        :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
+        class="slider relative grid gap-5 auto-cols-fr grid-flow-col overflow-hidden"
+      >
         <li
           v-for="(component, index) in blok.body"
           v-show="index < (max >= blok.body.length ? defaultMax : maxElements)"
@@ -40,34 +48,35 @@
             :blok="component"
           />
         </li>
-      </ul>
-      <transition-group
-        v-else
-        tag="ul"
-        enter-active-class="`in-out duration-200"
-        leave-active-class="out-in duration-200"
-        :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
-        :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
-        class="carousel grid gap-5 auto-cols-fr grid-flow-col"
-      >
-        <li
-          v-for="(component, index) in blok.body"
-          v-show="index === currentSlide"
-          :key="component._uid"
-          v-touch:swipe.stop.left="next"
-          v-touch:swipe.stop.right="previous"
-          class="carousel-slide slide"
-          :style="`background-color: ${blok.background_color_component.color};`"
-        >
-          <component
-            :is="component.component"
-            :class="`${component.component.toLowerCase()}-component my-0 mx-auto`"
-            :blok="component"
-          />
-        </li>
       </transition-group>
-      <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-2 justify-center my-5 md:my-10">
-        <span v-for="dot in blok.body.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 rounded-full select-none text-xl transition-all ${dot === currentSlide + 1 ? 'ring-2 ring-gray-500 transform -translate-y-1 duration-200' : 'bg-black'}`" />
+      <div v-else class="carousel-container">
+        <transition-group
+          tag="ul"
+          enter-active-class="`in-out duration-200"
+          leave-active-class="out-in duration-200"
+          :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
+          :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
+          class="carousel grid gap-5 auto-cols-fr grid-flow-col"
+        >
+          <li
+            v-for="(component, index) in blok.body"
+            v-show="index === currentSlide"
+            :key="component._uid"
+            v-touch:swipe.stop.left="next"
+            v-touch:swipe.stop.right="previous"
+            class="carousel-slide slide"
+            :style="`background-color: ${blok.background_color_component.color};`"
+          >
+            <component
+              :is="component.component"
+              :class="`${component.component.toLowerCase()}-component my-0 mx-auto`"
+              :blok="component"
+            />
+          </li>
+        </transition-group>
+        <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-2 justify-center my-5 md:my-10">
+          <span v-for="dot in blok.body.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 rounded-full select-none text-xl transition-all ${dot === currentSlide + 1 ? 'ring-2 ring-gray-500 transform -translate-y-1 duration-200' : 'bg-black'}`" />
+        </div>
       </div>
     </div>
     <div v-else class="container-components grid gap-5 auto-cols-fr" :style="`grid-template-columns:repeat(${$store.state.data.windowWidth >= 768 ? maxElements : '1'}, 1fr);`">
@@ -180,6 +189,8 @@ export default {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-1, -this.elements.length)
+        this.transitionEnter = '-translate-x-full'
+        this.transitionLeave = 'translate-x-full'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = '-translate-x-full'
@@ -189,6 +200,8 @@ export default {
     setNext () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-this.elements.length, -1)
+        this.transitionEnter = 'translate-x-full'
+        this.transitionLeave = '-translate-x-full'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'

@@ -73,14 +73,12 @@ export default {
       this.alert.message = message
       this.alert.color = color
       clearInterval(this.alert.timer)
-      this.removeAlert()
+      this.alert.timer = setTimeout(() => { this.removeAlert() }, 5000)
     },
     removeAlert () {
-      this.alert.timer = setTimeout(() => {
-        this.alert.timer = 0
-        this.alert.message = null
-        this.alert.color = ''
-      }, 5000)
+      clearInterval(this.alert.timer)
+      this.alert.message = null
+      this.alert.color = ''
     },
     clearFields () {
       this.fields = {}
@@ -93,6 +91,7 @@ export default {
       if (this.blok.type === 'contact_form') {
         this.$store.dispatch('validator/checkValues')
         if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.$contentByName(this.blok.body, 'Field').length && Object.values(this.fields).every(text => text.length > 0)) {
+          this.removeAlert()
           this.submitting = true
           try {
             await axios.post(

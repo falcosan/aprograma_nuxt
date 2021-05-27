@@ -57,7 +57,7 @@
           leave-active-class="out-in duration-200"
           :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
           :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
-          class="carousel grid gap-5 auto-cols-fr grid-flow-col"
+          class="carousel relative grid gap-5 auto-cols-fr grid-flow-col overflow-hidden"
         >
           <li
             v-for="(component, index) in blok.body"

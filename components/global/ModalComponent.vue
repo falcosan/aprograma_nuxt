@@ -26,8 +26,9 @@
             :class="`modal-body h-full ${closeMode ? 'cursor-pointer' : ''}`"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
-              <div class="body-container h-full grid gap-5" @click.self.stop="closeMode ? closeModal() : false">
+              <div class="body-container h-full flex flex-col space-y-5" @click.self.stop="closeMode ? closeModal() : false">
                 <slot name="body" />
+                <br>
               </div>
             </transition>
           </section>
@@ -90,7 +91,6 @@ export default {
 <style>
 .body-container > * {
   max-height: calc(100vh - 5rem);
-  box-sizing: content-box;
   margin: auto 0;
 }
 @media screen and (min-width: 1024px) {

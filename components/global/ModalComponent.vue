@@ -23,11 +23,13 @@
           </header>
           <section
             v-if="hasSlot('body')"
-            :class="`modal-body flex items-center ${closeMode ? 'cursor-pointer' : ''}`"
+            :class="`modal-body flex flex-col justify-center items-center ${closeMode ? 'cursor-pointer' : ''}`"
             @click.self.stop="closeMode ? closeModal() : false"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
-              <slot name="body" />
+              <div class="modal-body_container max-h-full flex justify-center">
+                <slot name="body" />
+              </div>
             </transition>
           </section>
         </div>

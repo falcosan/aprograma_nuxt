@@ -16,7 +16,7 @@
             >
           </template>
           <template #body>
-            <img class="image-description max-h-full max-w-full self-center select-none cursor-default" :src="image.filename" :alt="image.alt">
+            <img class="image-description select-none cursor-default" :src="image.filename" :alt="image.alt">
           </template>
         </Modal>
       </li>

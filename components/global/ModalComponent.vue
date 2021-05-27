@@ -24,10 +24,9 @@
           <section
             v-if="hasSlot('body')"
             :class="`modal-body h-full ${closeMode ? 'cursor-pointer' : ''}`"
-            @click.self.stop="closeMode ? closeModal() : false"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
-              <div class="body-container h-full grid gap-5">
+              <div class="body-container h-full grid gap-5" @click.self.stop="closeMode ? closeModal() : false">
                 <slot name="body" />
               </div>
             </transition>
@@ -90,7 +89,7 @@ export default {
 </script>
 <style>
 .body-container > *{
-  max-height: calc(100vh - 1.3rem);
+  max-height: calc(100vh - 2.5rem);
   margin: auto 0;
   box-sizing: content-box;
 }

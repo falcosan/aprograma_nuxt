@@ -9,11 +9,9 @@
           <Link icon-item class="home-link flex bg-white transition-shadow duration-300 shadow-md" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
             <template #icon>
               <Logo
-                :transition-a="moved.a"
-                :transition-p="moved.p"
+                transition
                 size="w-24"
                 :blok="blok.body[blok.body.component === 'Logo']"
-                @click.native="play"
               />
             </template>
           </Link>
@@ -61,12 +59,10 @@
           </template>
         </Link>
         <Logo
+          transition
           class="absolute top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full filter drop-shadow-md bg-white"
           size="w-12"
-          :transition-a="moved.a"
-          :transition-p="moved.p"
           style-logo-container="w-14"
-          @click.native="play"
         />
 
         <Translate
@@ -110,11 +106,7 @@ export default {
   data () {
     return {
       expanded: false,
-      timer: 0,
-      moved: {
-        a: '',
-        p: ''
-      }
+      timer: 0
     }
   },
   watch: {
@@ -133,16 +125,6 @@ export default {
       if (this.expanded) {
         clearTimeout(this.timer)
         this.timer = 0
-      }
-    },
-    play () {
-      this.moved.a = 'transform origin-center-left translate rotate-360 transition duration-700 ease-out'
-      this.moved.p = 'transform origin-center translate rotate-360 transition duration-700 ease-out'
-      this.$store.commit('data/moveMutation', true)
-      document.querySelector('.logo').ontransitionend = () => {
-        this.moved.p = ''
-        this.moved.a = ''
-        this.$store.commit('data/moveMutation', false)
       }
     }
   }

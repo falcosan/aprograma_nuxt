@@ -1,6 +1,7 @@
 <template>
   <div
     class="logo-container"
+    @click="transition ? play() : null"
   >
     <svg
       key="logo"
@@ -16,7 +17,7 @@
       viewBox="0 0 710.8732 710.8732"
       xml:space="preserve"
     >
-      <g :class="`transition-logo logo-a ${transitionA}`">
+      <g :class="`transition-logo logo-a ${moved.a}`">
         <path
           fill="#999999"
           d="M255.8788,165.9017c-83.6324,0-151.4281,69.7552-151.4281,153.3876
@@ -33,7 +34,7 @@
           C406.9996,452.4832,387.2071,472.2758,362.7918,472.2758z"
         />
       </g>
-      <g :class="`transition-logo logo-p ${transitionP}`">
+      <g :class="`transition-logo logo-p ${moved.p}`">
         <path
           d="M606.4182,314.8502c-1.7396-92.0206-73.0146-151.8879-149.2385-151.878c-25.4046,0-51.3691,6.6486-75.4841,20.9756
           c-29.9037,16.8764-66.7359,59.2875-73.1945,110.9466c-0.9298,6.9985-1.2198,13.4971-1.2198,19.9458
@@ -56,13 +57,29 @@ export default {
       type: String,
       default: ''
     },
-    transitionA: {
-      type: String,
-      default: ''
-    },
-    transitionP: {
-      type: String,
-      default: ''
+    transition: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data () {
+    return {
+      moved: {
+        a: '',
+        p: ''
+      }
+    }
+  },
+  methods: {
+    play () {
+      this.moved.a = 'transform origin-center-left translate rotate-360 transition duration-700 ease-out'
+      this.moved.p = 'transform origin-center translate rotate-360 transition duration-700 ease-out'
+      this.$store.commit('data/moveMutation', true)
+      document.querySelector('.logo').ontransitionend = () => {
+        this.moved.p = ''
+        this.moved.a = ''
+        this.$store.commit('data/moveMutation', false)
+      }
     }
   }
 }

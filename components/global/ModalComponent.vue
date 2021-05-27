@@ -5,7 +5,7 @@
       <div
         v-if="openEvent || open"
         ref="modal"
-        :class="`modal-backdrop fixed flex justify-center inset-0 px-5 pt-12 lg:pt-5 lg:px-12 z-50 overflow-auto ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
+        :class="`modal-backdrop fixed flex justify-center inset-0 px-5 pt-10 lg:pt-5 lg:px-12 z-50 overflow-auto ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
         tabindex="0"
         @click.self.stop="closeMode ? closeModal() : false"
         @keydown.esc="closeMode ? closeModal() : false"
@@ -89,14 +89,17 @@ export default {
 </script>
 <style>
 .body-container > *{
-  max-height: calc(100vh - 2.5rem);
+  max-height: calc(100vh - 5rem);
   margin: auto 0;
   box-sizing: content-box;
 }
 .body-container > *:last-child{
-  padding-bottom: 3rem;
+  padding-bottom: 2.5rem;
 }
 @media screen and (min-width: 1024px) {
+  .body-container > *{
+    max-height: calc(100vh - 2.5rem);
+  }
   .body-container > *:last-child{
     padding-bottom: 1.25rem;
   }

@@ -39,8 +39,6 @@
           :key="component._uid"
           v-touch:swipe.stop.left="next"
           v-touch:swipe.stop.right="previous"
-          v-touch:start="$noscroll(true)"
-          v-touch:end="$noscroll(true)"
           :style="`background-color: ${blok.background_color_component.color};`"
           class="slider-slide slide"
         >
@@ -66,8 +64,6 @@
             :key="component._uid"
             v-touch:swipe.stop.left="next"
             v-touch:swipe.stop.right="previous"
-            v-touch:start="$noscroll(true)"
-            v-touch:end="$noscroll(true)"
             class="carousel-slide slide"
             :style="`background-color: ${blok.background_color_component.color};`"
           >

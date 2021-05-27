@@ -5,7 +5,7 @@
       <div
         v-if="openEvent || open"
         ref="modal"
-        :class="`modal-backdrop fixed flex justify-center inset-0 z-50 px-2 sm:px-12 overflow-auto ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
+        :class="`modal-backdrop fixed flex justify-center inset-0 px-5 pt-12 sm:pt-5 sm:px-12 z-50 overflow-auto ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
         tabindex="0"
         @click.self.stop="closeMode ? closeModal() : false"
         @keydown.esc="closeMode ? closeModal() : false"
@@ -23,11 +23,11 @@
           </header>
           <section
             v-if="hasSlot('body')"
-            :class="`modal-body h-auto flex ${closeMode ? 'cursor-pointer' : ''}`"
+            :class="`modal-body h-full ${closeMode ? 'cursor-pointer' : ''}`"
             @click.self.stop="closeMode ? closeModal() : false"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
-              <div class="body-container h-screen flex flex-col">
+              <div class="body-container h-full grid gap-5">
                 <slot name="body" />
               </div>
             </transition>
@@ -90,15 +90,16 @@ export default {
 </script>
 <style>
 .body-container > *{
-  max-height: 100vh;
-  margin: auto;
-  padding-top: 3rem;
+  max-height: calc(100vh - 1.3rem);
+  margin: auto 0;
+  box-sizing: content-box;
+}
+.body-container > *:last-child{
   padding-bottom: 3rem;
 }
 @media screen and (min-width: 640px) {
-  .body-container > *{
-    padding-top: .5rem;
-    padding-bottom: .5rem;
+  .body-container > *:last-child{
+    padding-bottom: 1.25rem;
   }
 }
 </style>

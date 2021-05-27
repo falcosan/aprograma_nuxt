@@ -17,7 +17,6 @@
         </template>
         <template #body>
           <img class="image-project select-none cursor-default" :src="blok.image.filename" :alt="blok.image.alt">
-          <img class="image-project select-none cursor-default" :src="blok.image.filename" :alt="blok.image.alt">
         </template>
       </Modal>
       <component

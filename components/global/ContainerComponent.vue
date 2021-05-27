@@ -28,7 +28,6 @@
         v-if="blok.slider_mode === 'slider'"
         tag="ul"
         enter-active-class="`in-out duration-200"
-        mode=""
         :leave-active-class="`out-in ${max >= blok.body.length ? defaultMax > 1 ? 'absolute duration-300 -top-full' : 'duration-200' : maxElements > 1 ? 'absolute duration-300 -top-full' : 'duration-200'}`"
         :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
         :leave-to-class="`absolute inset-0 w-full transform shadow-xl ontransition ${transitionLeave}`"
@@ -40,6 +39,8 @@
           :key="component._uid"
           v-touch:swipe.stop.left="next"
           v-touch:swipe.stop.right="previous"
+          v-touch:start="$noscroll(true)"
+          v-touch:end="$noscroll(true)"
           :style="`background-color: ${blok.background_color_component.color};`"
           class="slider-slide slide"
         >
@@ -65,6 +66,8 @@
             :key="component._uid"
             v-touch:swipe.stop.left="next"
             v-touch:swipe.stop.right="previous"
+            v-touch:start="$noscroll(true)"
+            v-touch:end="$noscroll(true)"
             class="carousel-slide slide"
             :style="`background-color: ${blok.background_color_component.color};`"
           >

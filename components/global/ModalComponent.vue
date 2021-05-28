@@ -26,8 +26,9 @@
             :class="`modal-body h-full ${closeMode ? 'cursor-pointer' : ''}`"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
-              <div class="body-container h-full grid space-y-5" @click.self.stop="closeMode ? closeModal() : false">
+              <div class="body-container h-full flex flex-col space-y-5" @click.self.stop="closeMode ? closeModal() : false">
                 <slot name="body" />
+                <br>
               </div>
             </transition>
           </section>

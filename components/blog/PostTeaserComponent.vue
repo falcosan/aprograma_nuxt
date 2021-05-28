@@ -14,6 +14,8 @@
           :class="`teaser-file w-full object-cover object-center select-none ${$parent.blok.row_container ? 'h-full' : 'lg:w-1/2'}`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
+          :width="lookImage ? '100%' : false "
+          :height="lookImage ? '100%' : false "
         />
         <div :class="`teaser-text w-full flex flex-col p-5 ${$parent.blok.row_container ? 'lg:h-48 lg:p-10' : 'h-max lg:h-full lg:w-1/2 sm:p-10'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
@@ -56,6 +58,11 @@ export default {
   data () {
     return {
       expanded: false
+    }
+  },
+  computed: {
+    lookImage () {
+      return !!(/(gif|jpe?g|tiff?|png|webp|bmp)/gi).test(this.postContent.file.filename.toLowerCase().split('.').pop())
     }
   },
   methods: {

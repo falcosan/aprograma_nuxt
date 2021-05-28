@@ -6,6 +6,7 @@
     <component
       :is="blok ? blok.tag ? blok.tag : 'button' : tag ? tag : 'button'"
       :title="blok && blok.title && !blok.show_title ? blok.title : false"
+      :name="blok && blok.tag === 'button' || tag === 'button' ? `icon-button` : false"
       class="icon-wrapper select-none"
     >
       <img

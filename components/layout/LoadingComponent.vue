@@ -35,7 +35,7 @@ export default {
       this.loadingLogo = true
     },
     finish () {
-      setTimeout(() => { this.loading = false }, 2000)
+      setTimeout(() => { this.loading = false }, 1500)
       this.loadingBar = false
       this.loadingLogo = false
     }

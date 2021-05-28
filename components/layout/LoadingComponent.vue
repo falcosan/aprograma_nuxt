@@ -6,7 +6,7 @@
     <transition
       enter-active-class="duration-300 in-out"
       enter-class="opacity-0"
-      leave-active-class="duration-300 out-in"
+      leave-active-class="duration-500 out-in"
       leave-to-class="opacity-0"
     >
       <div v-show="loadingLogo" :class="`loader-logo fixed z-50 overflow-hidden bg-white ${!$device.isDesktop || $store.state.data.windowWidth < 768 ? 'top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full' : 'h-24 w-24'}`">
@@ -35,7 +35,7 @@ export default {
       this.loadingLogo = true
     },
     finish () {
-      setTimeout(() => { this.loading = false }, 1500)
+      setTimeout(() => { this.loading = false }, 2000)
       this.loadingBar = false
       this.loadingLogo = false
     }

@@ -5,7 +5,7 @@
       <div
         v-if="openEvent || open"
         ref="modal"
-        :class="`modal-backdrop fixed flex justify-center inset-0 px-10 py-10 lg:py-12 lg:px-12 z-50 overflow-auto ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
+        :class="`modal-backdrop fixed flex justify-center inset-0 px-5 pt-10 lg:pt-5 lg:px-12 z-50 overflow-auto ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
         tabindex="0"
         @click.self.stop="closeMode ? closeModal() : false"
         @keydown.esc="closeMode ? closeModal() : false"
@@ -26,9 +26,8 @@
             :class="`modal-body h-full ${closeMode ? 'cursor-pointer' : ''}`"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
-              <div class="body-container h-full flex flex-col space-y-5" @click.self.stop="closeMode ? closeModal() : false">
+              <div class="body-container h-full grid space-y-5" @click.self.stop="closeMode ? closeModal() : false">
                 <slot name="body" />
-                <br>
               </div>
             </transition>
           </section>
@@ -91,11 +90,18 @@ export default {
 <style>
 .body-container > * {
   max-height: calc(100vh - 5rem);
+  box-sizing: content-box;
   margin: auto 0;
+}
+.body-container > *:last-child {
+  padding-bottom: 2.5rem;
 }
 @media screen and (min-width: 1024px) {
   .body-container > * {
     max-height: calc(100vh - 2.5rem);
+  }
+  .body-container > *:last-child {
+    padding-bottom: 1.25rem;
   }
 }
 </style>

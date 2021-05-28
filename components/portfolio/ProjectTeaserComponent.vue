@@ -8,7 +8,7 @@
         <img class="project-image w-full h-full object-cover object-center select-none" width="100%" height="100%" :src="projectContent.image.filename" :alt="projectContent.image.alt">
         <span
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
-          :class="`teaser-title relative ${$route.name === 'portfolio' ? 'md:h-20 p-5 md:truncate' : 'truncate py-3 px-5 bottom-2'} text-lg`"
+          :class="`teaser-title relative ${$route.name === 'portfolio' ? 'md:h-20 p-5 md:truncate' : 'truncate pt-3 pb-5 px-5 leading-10'} text-lg`"
         >
           {{ projectContent.title }}
         </span>

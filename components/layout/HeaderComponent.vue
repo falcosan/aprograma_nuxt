@@ -41,7 +41,7 @@
     class="header flex justify-center"
   >
     <nav class="navbar-up w-full h-10 fixed flex justify-center top-0 z-40 shadow-sm" :style="`background-color: ${blok.background_color.color};`">
-      <div class="menu-wrapper wrapper-up w-full h-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl flex justify-between">
+      <div class="menu-wrapper wrapper-up w-full h-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl flex justify-between">
         <Link
           active="exact"
           icon-item
@@ -80,7 +80,7 @@
       </div>
     </nav>
     <nav class="navbar-down w-full h-10 flex items-center justify-center fixed bottom-0 z-40 filter drop-shadow-2xl" :style="`background-color: ${blok.background_color.color};`">
-      <ul class="menu-wrapper wrapper-down w-full h-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl grid grid-cols-4">
+      <ul class="menu-wrapper wrapper-down w-full h-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl grid grid-cols-4">
         <li
           v-for="item in $contentByName(blok.body, 'Link')"
           :key="item._uid"

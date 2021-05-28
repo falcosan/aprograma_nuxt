@@ -8,7 +8,7 @@
         <img class="project-image w-full h-full object-cover object-center select-none" :src="projectContent.image.filename" :alt="projectContent.image.alt">
         <span
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
-          class="teaser-title h-20 p-5 md:truncate text-base sm:text-lg"
+          class="teaser-title md:h-20 p-5 md:truncate text-lg"
         >
           {{ projectContent.title }}
         </span>

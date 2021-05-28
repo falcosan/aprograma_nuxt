@@ -32,7 +32,7 @@
       />
     </div>
     <div class="post-body w-full flex justify-center" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full pb-5 px-5 pt-0 max-w-prose">
+      <div class="post-article w-full pb-14 px-5 pt-0 max-w-prose">
         <h2
           :style="`color: ${blok.post_text_color.color};`"
           class="post-intro"
@@ -51,7 +51,7 @@
         />
         <h4
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-date text-right"
+          class="post-date pt-5 lg:pt-8 border-t-4 border-dotted text-right"
           v-text="changeDate(blok.date)"
         />
       </div>

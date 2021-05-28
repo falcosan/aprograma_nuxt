@@ -5,7 +5,7 @@
       <div
         v-if="openEvent || open"
         ref="modal"
-        :class="`modal-backdrop fixed flex justify-center inset-0 px-5 pt-10 lg:pt-5 lg:px-12 z-50 overflow-auto ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
+        :class="`modal-backdrop fixed flex justify-center inset-0 px-5 pt-9 lg:pt-5 lg:px-12 z-50 overflow-auto ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
         tabindex="0"
         @click.self.stop="closeMode ? closeModal() : false"
         @keydown.esc="closeMode ? closeModal() : false"
@@ -26,9 +26,9 @@
             :class="`modal-body h-full ${closeMode ? 'cursor-pointer' : ''}`"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
-              <div class="body-container h-full flex flex-col space-y-5" @click.self.stop="closeMode ? closeModal() : false">
+              <div class="body-container h-full grid gap-5 grid-flow-row-dense" @click.self.stop="closeMode ? closeModal() : false">
                 <slot name="body" />
-                <br>
+                <hr>
               </div>
             </transition>
           </section>
@@ -89,12 +89,13 @@ export default {
 }
 </script>
 <style>
-.body-container > * {
-  max-height: calc(100vh - 5rem);
+.body-container > *:not(hr) {
+  max-height: calc(100vh - 3.8rem);
+  align-self: center;
   margin: auto 0;
 }
 @media screen and (min-width: 1024px) {
-  .body-container > * {
+  .body-container > *:not(hr) {
     max-height: calc(100vh - 2.8rem);
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div v-if="loading" class="loader">
-    <div v-show="loadingBar" :class="`bar-container fixed w-full h-0.5 z-40 ${!$device.isDesktop || $store.state.data.windowWidth < 768 ? 'bottom-10' : ''}`">
+    <div v-show="loadingBar" :class="`bar-container fixed w-full h-0.5 z-40 bg-white ${!$device.isDesktop || $store.state.data.windowWidth < 768 ? 'bottom-10' : ''}`">
       <div class="loader-bar absolute h-full filter grayscale bg-gray-800" />
     </div>
     <transition

@@ -25,8 +25,7 @@ export default {
     return {
       loading: false,
       loadingBar: false,
-      loadingLogo: false,
-      loadingTimer: false
+      loadingLogo: false
     }
   },
   methods: {
@@ -36,7 +35,7 @@ export default {
       this.loadingLogo = true
     },
     finish () {
-      this.loadingTimer = setTimeout(() => { this.loading = false }, 2000)
+      setTimeout(() => { this.loading = false }, 2000)
       this.loadingBar = false
       this.loadingLogo = false
     }

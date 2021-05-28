@@ -190,23 +190,21 @@ export default {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-1, -this.elements.length)
         this.transitionEnter = '-translate-y-full'
-        this.transitionLeave = 'translate-x-full'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = '-translate-x-full'
-        this.transitionLeave = 'translate-x-full'
       }
+      this.transitionLeave = 'translate-x-full'
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-this.elements.length, -1)
         this.transitionEnter = 'translate-y-full'
-        this.transitionLeave = '-translate-x-full'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'
-        this.transitionLeave = '-translate-x-full'
       }
+      this.transitionLeave = '-translate-x-full'
     },
     next () {
       if (this.blok.slider_mode && this.blok.auto_play) {

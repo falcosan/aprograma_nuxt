@@ -91,18 +91,11 @@ export default {
 <style>
 .body-container > * {
   max-height: calc(100vh - 5rem);
-  box-sizing: content-box;
   margin: auto 0;
-}
-.body-container > *:last-child {
-  padding-bottom: 2.5rem;
 }
 @media screen and (min-width: 1024px) {
   .body-container > * {
-    max-height: calc(100vh - 2.5rem);
-  }
-  .body-container > *:last-child {
-    padding-bottom: 1.25rem;
+    max-height: calc(100vh - 2.8rem);
   }
 }
 </style>

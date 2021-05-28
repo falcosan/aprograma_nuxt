@@ -1,6 +1,6 @@
 <template>
   <main class="main overflow-x-hidden">
-    <transition enter-active-class="duration-500 in-out" enter-class="opacity-0" mode="out-in">
+    <transition enter-active-class="duration-300 in-out" enter-class="opacity-0 filter blur-sm" mode="out-in">
       <Nuxt v-if="blok.view" />
     </transition>
     <div v-if="blok.background_media.filename" class="background-media fixed inset-0 -z-10">

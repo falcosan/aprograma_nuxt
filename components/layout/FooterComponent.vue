@@ -22,11 +22,11 @@
           Aprograma {{ typewriter }}
         </span>
       </div>
-      <h4
+      <span
         class="footer-copyright text-sm text-center flex-1 row-start-1 row-end-1 col-start-1 col-end-3"
       >
         © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
-      </h4>
+      </span>
       <ul
         class="social-links grid grid-flow-col gap-3 mr-3 flex-1 row-start-1 row-end-1 col-start-2 col-end-2 justify-end"
       >
@@ -55,12 +55,12 @@
           Aprograma {{ typewriter }}
         </span>
       </div>
-      <h4
+      <span
         class="footer-copyright flex-1 text-sm text-center"
         :style="`color: ${blok.text_color.color};`"
       >
         © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
-      </h4>
+      </span>
       <ul
         class="social-links grid grid-flow-col gap-3 flex-1"
       >

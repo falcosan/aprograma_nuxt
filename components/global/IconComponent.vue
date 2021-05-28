@@ -7,6 +7,7 @@
       :is="blok ? blok.tag ? blok.tag : 'button' : tag ? tag : 'button'"
       :title="blok && blok.title && !blok.show_title ? blok.title : false"
       :name="blok && blok.tag === 'button' || tag === 'button' ? `icon-button` : false"
+      :aria-label="blok && blok.tag === 'button' || tag === 'button' ? `icon-button-reader` : false"
       class="icon-wrapper select-none"
     >
       <img

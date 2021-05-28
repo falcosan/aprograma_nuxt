@@ -52,7 +52,7 @@ export default {
 }
 
 .loader-bar {
-  animation:looping 2s linear infinite;
+  animation:looping 1s linear infinite;
 }
 
 @keyframes looping {

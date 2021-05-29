@@ -3,7 +3,7 @@
     v-if="postContent"
     class="post-teaser relative z-10"
   >
-    <NuxtLink key="postContent._uid" :to="postLink" class="teaser-link">
+    <NuxtLink :to="postLink" class="teaser-link">
       <div
         :class="`teaser-content h-full flex flex-col ${$parent.blok.row_container ? '' : 'lg:flex-row lg:h-64'}`"
         @mouseover="expanded = true"
@@ -11,7 +11,7 @@
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file w-full object-cover object-center select-none ${$parent.blok.row_container ? 'h-full' : 'lg:w-1/2'}`"
+          :class="`teaser-file w-full object-cover object-center select-none ${$parent.blok.row_container ? 'h-60 sm:h-72 md:h-60 lg:h-full lg:max-h-full' : 'h-60 sm:h-72 md:h-80 lg:h-full lg:w-1/2'}`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
           :width="lookImage ? '100%' : false "

@@ -1,5 +1,5 @@
 <template>
-  <ul :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container ? 'md:grid-rows-md-container lg:grid-rows-lg-container xl:grid-rows-xl-container lg:grid-cols-container md:auto-rows-fr' : 'lg:grid-flow-row lg:auto-rows-fr'}`">
+  <ul :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container ? 'lg:grid-cols-container md:auto-rows-max' : 'lg:grid-flow-row lg:auto-rows-fr'}`">
     <PostTeaser
       v-for="post in sortedPosts"
       :key="post._uid"

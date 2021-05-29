@@ -40,11 +40,6 @@ module.exports = {
         '-30': '-30',
         '-40': '-40'
       },
-      gridTemplateRows: {
-        'md-container': 'repeat(auto-fill, minmax(350px, 1fr))',
-        'lg-container': 'repeat(auto-fill, minmax(440px, 1fr))',
-        'xl-container': 'repeat(auto-fill, minmax(555px, 1fr))'
-      },
       gridTemplateColumns: {
         container: 'repeat(auto-fit, minmax(300px, 1fr))'
       },

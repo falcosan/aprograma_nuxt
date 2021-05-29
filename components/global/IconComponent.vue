@@ -12,7 +12,8 @@
     >
       <img
         v-if="blok && blok.icon_image.filename"
-        :style="blok && blok.size ? `width: ${blok.size}px; height: ${blok.size}px;` : false"
+        :width="blok && blok.size ?`${blok.size}px` : 100"
+        :height="blok && blok.size ?`${blok.size}px` : 100"
         :class="`icon ${blok.icon_image.filename
           .split(/[\\/]/)
           .pop()

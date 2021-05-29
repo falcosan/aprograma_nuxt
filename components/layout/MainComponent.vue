@@ -6,9 +6,11 @@
     <div v-if="blok.background_media.filename" class="background-media fixed inset-0 -z-10">
       <img
         v-if="lookFile === 'image'"
+        class="media-image fixed inset-0 -z-10 object-cover object-center"
         :src="blok.background_media.filename"
         :alt="blok.background_media.alt"
-        class="media-image fixed w-full h-full inset-0 -z-10 object-cover object-center"
+        width="100%"
+        height="100%"
         :type="`image/${imageType()}`"
       >
       <video

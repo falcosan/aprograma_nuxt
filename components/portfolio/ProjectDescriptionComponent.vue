@@ -9,14 +9,16 @@
         >
           <template #activator="action">
             <img
-              class="description-image w-full h-full max-h-96 md:max-h-full cursor-pointer object-contain select-none"
+              height="100%"
+              width="100%"
+              class="description-image max-h-96 md:max-h-full cursor-pointer object-contain select-none"
               :src="image.filename"
               :alt="image.alt"
               @click="action.open()"
             >
           </template>
           <template #body>
-            <img class="image-description select-none cursor-default" :src="image.filename" :alt="image.alt">
+            <img class="image-description select-none cursor-default" height="auto" width="auto" :src="image.filename" :alt="image.alt">
           </template>
         </Modal>
       </li>

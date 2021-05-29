@@ -6,12 +6,12 @@
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
       <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
         <img class="project-image w-full h-full object-cover object-center select-none" width="100%" height="100%" :src="projectContent.image.filename" :alt="projectContent.image.alt">
-        <span
+        <div
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
-          :class="`teaser-title relative ${$route.name === 'portfolio' ? 'md:h-20 p-5 md:truncate' : 'truncate pt-3 pb-5 px-5 leading-10'} text-lg`"
+          class="title-container flex flex-row flex-wrap p-5 text-lg"
         >
-          {{ projectContent.title }}
-        </span>
+          <span :class="`title-teaser ${$route.name === 'portfolio' ? 'md:min-w-0 md:truncate' : 'min-w-0 truncate'}`"> {{ projectContent.title }}</span>
+        </div>
       </div>
     </NuxtLink>
   </li>

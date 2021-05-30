@@ -1,11 +1,11 @@
 <template>
-  <ul :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container && parentRow.filter(item => item.row_container).length > 1 ? 'md:auto-rows-max' : 'lg:grid-flow-row lg:auto-rows-fr'}`">
+  <ul :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container && parentRow ? 'md:auto-rows-max' : 'lg:grid-flow-row lg:auto-rows-fr'}`">
     <PostTeaser
       v-for="post in sortedPosts"
       :key="post._uid"
       :post-link="`blog/${post.slug}`"
       :post-content="post.content"
-      :row-container="parentRow"
+      :row-container="parentRow && blok.row_container"
     />
   </ul>
 </template>
@@ -18,11 +18,19 @@ export default {
     blok: {
       type: Object,
       required: true
+    },
+    containerMode: {
+      type: Boolean,
+      default: false
+    },
+    sliderMode: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
     parentRow () {
-      return this.$parent.blok ? this.$parent.blok.body : []
+      return !!(this.containerMode || this.sliderMode)
     },
     sortedPosts () {
       const featuredPosts = this.$store.state.list.posts.items.filter((post) => {

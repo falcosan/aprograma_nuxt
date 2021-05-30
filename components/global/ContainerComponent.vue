@@ -46,6 +46,7 @@
             :is="component.component"
             :class="`${component.component.toLowerCase()}-component max-w-max my-0 mx-auto`"
             :blok="component"
+            slider-mode
           />
         </li>
       </transition-group>
@@ -91,6 +92,7 @@
           :is="component.component"
           :class="`${component.component.toLowerCase()}-component`"
           :blok="component"
+          :container-mode="blok.body.filter(item => item.row_container).length > 1"
         />
       </div>
     </div>

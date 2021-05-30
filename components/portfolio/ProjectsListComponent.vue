@@ -3,13 +3,13 @@
     v-if="sortedProject && $store.state.data.windowWidth >= 1024 && blok.show_slider && !blok.row_container"
     :blok="sortedProject"
   />
-  <ul v-else-if="sortedProject" :class="`project-list grid gap-5 auto-cols-fr ${blok.row_container && $parent.blok.body.filter(item => item.row_container).length > 1 ? 'md:auto-rows-max' : 'md:grid-cols-2 lg:grid-cols-3'}`">
+  <ul v-else-if="sortedProject" :class="`project-list grid gap-5 auto-cols-fr ${parentRow.filter(item => item.row_container).length > 1 ? 'md:auto-rows-max' : 'md:grid-cols-2 lg:grid-cols-3'}`">
     <ProjectTeaser
       v-for="project in sortedProject"
       :key="project._uid"
       :project-link="`portfolio/${project.slug}`"
       :project-content="project.content"
-      :row-container="$parent.blok.body ? $parent.blok.body : []"
+      :row-container="parentRow"
     />
   </ul>
 </template>
@@ -25,6 +25,9 @@ export default {
     }
   },
   computed: {
+    parentRow () {
+      return this.$parent.blok ? this.$parent.blok.body : []
+    },
     sortedProject () {
       const featuredProjects = this.$store.state.list.projects.items.filter((project) => {
         return this.blok.projects.includes(project.uuid)

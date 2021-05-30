@@ -34,10 +34,6 @@ export default {
     },
     maxComponents () {
       if (this.$store.state.data.windowWidth >= 1536) {
-        return this.$rangeItems(this.rowComponent.length, 5)
-      } else if (this.$store.state.data.windowWidth >= 1280) {
-        return this.$rangeItems(this.rowComponent.length, 4)
-      } else if (this.$store.state.data.windowWidth >= 1024) {
         return this.$rangeItems(this.rowComponent.length, 3)
       } else if (this.$store.state.data.windowWidth >= 768) {
         return this.$rangeItems(this.rowComponent.length, 2)

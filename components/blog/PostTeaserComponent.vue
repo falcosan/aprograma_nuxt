@@ -11,7 +11,7 @@
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file w-full object-cover object-center select-none ${$parent.blok.row_container && rowContainer.filter(item => item.row_container).length > 1 ? 'h-60 sm:h-72 md:h-60 lg:h-72 xl:h-80' : 'h-60 sm:h-72 md:h-80 lg:h-full lg:w-1/2'}`"
+          :class="`teaser-file w-full h-60 sm:h-72 object-cover object-center select-none ${$parent.blok.row_container && rowContainer.filter(item => item.row_container).length > 1 ? 'md:h-48 lg:h-72 xl:h-80' : 'md:h-80 lg:h-full lg:w-1/2'}`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
           :width="lookImage ? '100%' : false "

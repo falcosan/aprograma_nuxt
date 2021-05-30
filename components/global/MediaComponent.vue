@@ -1,13 +1,13 @@
 <template>
-  <span class="media-container relative grid gap-5 w-full">
+  <span class="media relative w-full h-full grid gap-5">
     <img
       v-if="(blok && blok.media.filename && lookFile === 'image') || image"
-      :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
-      :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
+      :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'"
+      :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'"
       :class="`media ${blok && blok.media.filename ? blok.media.filename : src
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-media media-image h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl my-0 mx-auto object-contain object-center pointer-events-none select-none`"
+        .replace(/\.[^/.]+$/, '')}-media media-image my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'absolute h-full inset-0' : ''}`"
       :src="blok && blok.media.filename ? blok.media.filename : src"
       :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
       :type="`image/${imageType()}`"
@@ -17,7 +17,7 @@
       :class="`${blok && blok.media.filename ? blok.media.filename : src
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-media media-video h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl my-0 mx-auto object-contain object-center pointer-events-none select-none`"
+        .replace(/\.[^/.]+$/, '')}-media media-video my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'absolute h-full inset-0' : ''}`"
       :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
       :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
       playsinline
@@ -37,6 +37,10 @@ export default {
     blok: {
       type: Object,
       default: undefined
+    },
+    carouselMode: {
+      type: Boolean,
+      default: false
     },
     title: {
       type: String,

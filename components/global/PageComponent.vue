@@ -7,7 +7,7 @@
       <div
         v-for="component in blok.body"
         :key="component._uid"
-        :style="`${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${rowComponent.length + 1}`}`"
+        :style="`${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${maxComponents + 1}`}`"
         :class="`${component.component.toLowerCase()}-content ${component.row_container ? '' : 'col-start-1'}`"
       >
         <component

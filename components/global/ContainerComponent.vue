@@ -5,78 +5,98 @@
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-10 text-xl">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && blok.body.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && blok.body.length > 1" class="slider-wrapper relative overflow-hidden" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
-        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
+        v-if="blok.slider_mode.includes('slider') || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         previous
         :class="`previous-control control absolute top-1/2 z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
         size="p-2 w-7"
         tag="button"
         @click.native="previous"
       />
-      <div v-else class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
+      <div v-else-if="blok.slider_mode === 'carousel'" class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
       <Icon
-        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
+        v-if="blok.slider_mode.includes('slider') || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         next
         :class="`next-control control absolute top-1/2 z-20 filter invert grayscale right-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
         size="p-2 w-7"
         tag="button"
         @click.native="next"
       />
-      <div v-else class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-      <ul
-        v-if="blok.slider_mode === 'slider'"
-        class="slider relative grid gap-5 auto-cols-fr grid-flow-col overflow-hidden"
-      >
-        <li
-          v-for="(component, index) in blok.body"
-          v-show="index < (max >= blok.body.length ? defaultMax : maxElements)"
-          :key="component._uid"
-          v-touch:swipe.stop.left="next"
-          v-touch:swipe.stop.right="previous"
-          :style="`background-color: ${blok.background_color_component.color};`"
-          class="slider-slide slide"
-        >
-          <component
-            :is="component.component"
-            :class="`${component.component.toLowerCase()}-component max-w-max my-0 mx-auto`"
-            :blok="component"
-            slider-mode
-          />
-        </li>
-      </ul>
-      <div v-else class="carousel-container">
-        <transition-group
-          tag="ul"
-          enter-active-class="in-out duration-200"
-          leave-active-class="out-in duration-200"
-          :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
-          :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
-          class="carousel relative h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-5xl grid gap-5 auto-cols-fr grid-flow-col overflow-y-scroll overflow-x-hidden"
+      <div v-else-if="blok.slider_mode === 'carousel'" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
+      <div class="slider-box overflow-auto">
+        <ul
+          v-if="blok.slider_mode === 'slider'"
+          class="slider relative grid gap-5 auto-cols-fr grid-flow-col"
         >
           <li
             v-for="(component, index) in blok.body"
-            v-show="index === currentSlide"
+            v-show="index < (max >= blok.body.length ? defaultMax : maxElements)"
             :key="component._uid"
             v-touch:swipe.stop.left="next"
             v-touch:swipe.stop.right="previous"
-            class="carousel-slide slide"
             :style="`background-color: ${blok.background_color_component.color};`"
+            class="slider-slide slide"
           >
             <component
               :is="component.component"
-              :class="`${component.component.toLowerCase()}-component my-0 mx-auto`"
+              :class="`${component.component.toLowerCase()}-component max-w-max my-0 mx-auto`"
               :blok="component"
-              carousel-mode
+              slider-mode
             />
           </li>
-        </transition-group>
-        <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-3 justify-center my-5 md:my-10">
-          <span v-for="dot in blok.body.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 rounded-full select-none text-xl transition-all ${dot === currentSlide + 1 ? 'ring-1 transform -translate-y-1 duration-200 ring-black bg-black' : 'bg-black'}`" />
+        </ul>
+        <ul
+          v-else-if="blok.slider_mode === 'scrollable-slider'"
+          class="scrollable-slider relative w-screen grid gap-5 grid-flow-col"
+        >
+          <li
+            v-for="component in blok.body"
+            :key="component._uid"
+            :style="`width: calc(100vw / ${blok.body.length}); background-color: ${blok.background_color_component.color};`"
+            class="slider-slide slide"
+          >
+            <component
+              :is="component.component"
+              :class="`${component.component.toLowerCase()}-component max-w-max my-0 mx-auto`"
+              :blok="component"
+              slider-mode
+            />
+          </li>
+        </ul>
+        <div v-else class="carousel-container">
+          <transition-group
+            tag="ul"
+            enter-active-class="in-out duration-200"
+            leave-active-class="out-in duration-200"
+            :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
+            :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
+            class="carousel relative h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-5xl grid gap-5 auto-cols-fr grid-flow-col overflow-y-scroll overflow-x-hidden"
+          >
+            <li
+              v-for="(component, index) in blok.body"
+              v-show="index === currentSlide"
+              :key="component._uid"
+              v-touch:swipe.stop.left="next"
+              v-touch:swipe.stop.right="previous"
+              class="carousel-slide slide"
+              :style="`background-color: ${blok.background_color_component.color};`"
+            >
+              <component
+                :is="component.component"
+                :class="`${component.component.toLowerCase()}-component my-0 mx-auto`"
+                :blok="component"
+                carousel-mode
+              />
+            </li>
+          </transition-group>
+          <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-3 justify-center my-5 md:my-10">
+            <span v-for="dot in blok.body.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 rounded-full select-none text-xl transition-all ${dot === currentSlide + 1 ? 'ring-1 transform -translate-y-1 duration-200 ring-black bg-black' : 'bg-black'}`" />
+          </div>
         </div>
       </div>
     </div>
-    <div v-else class="container-components grid gap-5 auto-cols-fr lg:grid-cols-container" :style="`grid-template-columns:repeat(${maxElements}, 1fr);`">
+    <div v-else class="container-components grid gap-5 auto-cols-fr lg:grid-cols-container" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : false">
       <div
         v-for="component in blok.body"
         :key="component._uid"
@@ -126,10 +146,7 @@ export default {
             return this.$rangeItems(Number(this.blok.max_slides), 4)
           } else if (this.$store.state.data.windowWidth >= 1024) {
             return this.$rangeItems(Number(this.blok.max_slides), 3)
-          } else if (this.$store.state.data.windowWidth >= 640) {
-            return this.$rangeItems(Number(this.blok.max_slides), 2)
-          }
-          return this.$rangeItems(Number(this.blok.max_slides), 1)
+          } return this.$store.state.data.windowWidth >= 640 ? this.$rangeItems(Number(this.blok.max_slides), 2) : false
         } else {
           if (this.$store.state.data.windowWidth >= 1536) {
             return this.$rangeItems(this.defaultMax, 5)
@@ -137,18 +154,12 @@ export default {
             return this.$rangeItems(this.defaultMax, 4)
           } else if (this.$store.state.data.windowWidth >= 1024) {
             return this.$rangeItems(this.defaultMax, 3)
-          } else if (this.$store.state.data.windowWidth >= 640) {
-            return this.$rangeItems(this.defaultMax, 2)
-          }
-          return this.$rangeItems(this.defaultMax, 1)
+          } return this.$store.state.data.windowWidth >= 640 ? this.$rangeItems(this.defaultMax, 2) : false
         }
       } else {
         if (this.$store.state.data.windowWidth >= 1536) {
           return this.$rangeItems(this.rowComponent.length, 3)
-        } else if (this.$store.state.data.windowWidth >= 768) {
-          return this.$rangeItems(this.rowComponent.length, 2)
-        }
-        return this.$rangeItems(this.rowComponent.length, 1)
+        } return this.$store.state.data.windowWidth >= 768 ? this.$rangeItems(this.rowComponent.length, 2) : false
       }
     }
   },
@@ -183,6 +194,9 @@ export default {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-1, -this.elements.length)
+      } else if (this.blok.slider_mode === 'scrollable-slider') {
+        const slider = document.querySelector('.slider-box')
+        slider.scrollLeft -= 50
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = '-translate-x-full'
@@ -192,6 +206,9 @@ export default {
     setNext () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-this.elements.length, -1)
+      } else if (this.blok.slider_mode === 'scrollable-slider') {
+        const slider = document.querySelector('.slider-box')
+        slider.scrollLeft += 50
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'

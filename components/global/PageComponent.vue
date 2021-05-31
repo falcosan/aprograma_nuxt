@@ -3,7 +3,7 @@
     <h1 v-if="blok.title && blok.show_title" class="page-title mb-10 text-xl">
       {{ blok.title }}
     </h1>
-    <div class="page-components grid gap-5 auto-cols-fr" :style="`grid-template-columns:repeat(${maxComponents}, 1fr);`">
+    <div class="page-components grid gap-5 auto-cols-fr" :style="maxComponents > 1 ? `grid-template-columns:repeat(${maxComponents}, 1fr);` : false">
       <div
         v-for="component in blok.body"
         :key="component._uid"
@@ -35,10 +35,7 @@ export default {
     maxComponents () {
       if (this.$store.state.data.windowWidth >= 1536) {
         return this.$rangeItems(this.rowComponent.length, 3)
-      } else if (this.$store.state.data.windowWidth >= 768) {
-        return this.$rangeItems(this.rowComponent.length, 2)
-      }
-      return this.$rangeItems(this.rowComponent.length, 1)
+      } return this.$store.state.data.windowWidth >= 768 ? this.$rangeItems(this.rowComponent.length, 2) : false
     }
   }
 }

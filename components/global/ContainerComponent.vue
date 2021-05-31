@@ -167,22 +167,6 @@ export default {
     }
   },
   methods: {
-    sliderMove (oldIndex, newIndex) {
-      while (oldIndex < 0) {
-        oldIndex += this.elements.length
-      }
-      while (newIndex < 0) {
-        newIndex += this.elements.length
-      }
-      if (newIndex >= this.elements.length) {
-        let slide = newIndex - this.elements.length
-        while (slide--) {
-          this.elements.push(undefined)
-        }
-      }
-      this.elements.splice(newIndex, 0, this.elements.splice(oldIndex, 1)[0])
-      return this.elements
-    },
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
         if (this.transitionTransform + this.slideWidth <= 1) { this.transitionTransform += this.slideWidth + this.spaceFix }

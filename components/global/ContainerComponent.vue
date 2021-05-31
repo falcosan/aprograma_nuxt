@@ -10,7 +10,7 @@
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         previous
         :class="`previous-control control absolute top-1/2 z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
-        size="p-2 lg:p-3 w-9 lg:w-10"
+        size="p-2 w-7"
         tag="button"
         @click.native="previous"
       />
@@ -19,18 +19,13 @@
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         next
         :class="`next-control control absolute top-1/2 z-20 filter invert grayscale right-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
-        size="p-2 lg:p-3 w-9 lg:w-10"
+        size="p-2 w-7"
         tag="button"
         @click.native="next"
       />
       <div v-else class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-      <transition-group
+      <ul
         v-if="blok.slider_mode === 'slider'"
-        tag="ul"
-        enter-active-class="`in-out duration-200"
-        :leave-active-class="`out-in ${max >= blok.body.length ? defaultMax > 1 ? 'absolute duration-300 -top-full' : 'duration-200' : maxElements > 1 ? 'absolute duration-300 -top-full' : 'duration-200'}`"
-        :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
-        :leave-to-class="`absolute inset-0 w-full transform shadow-xl ontransition ${transitionLeave}`"
         class="slider relative grid gap-5 auto-cols-fr grid-flow-col overflow-hidden"
       >
         <li
@@ -49,11 +44,11 @@
             slider-mode
           />
         </li>
-      </transition-group>
+      </ul>
       <div v-else class="carousel-container">
         <transition-group
           tag="ul"
-          enter-active-class="`in-out duration-200"
+          enter-active-class="in-out duration-200"
           leave-active-class="out-in duration-200"
           :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
           :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
@@ -188,22 +183,20 @@ export default {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-1, -this.elements.length)
-        this.transitionEnter = '-translate-y-full'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = '-translate-x-full'
+        this.transitionLeave = 'translate-x-full'
       }
-      this.transitionLeave = 'translate-x-full'
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-this.elements.length, -1)
-        this.transitionEnter = 'translate-y-full'
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'
+        this.transitionLeave = '-translate-x-full'
       }
-      this.transitionLeave = '-translate-x-full'
     },
     next () {
       if (this.blok.slider_mode && this.blok.auto_play) {

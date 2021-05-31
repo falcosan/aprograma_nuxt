@@ -8,7 +8,7 @@
       :title="blok && blok.title && !blok.show_title ? blok.title : false"
       :name="blok && blok.tag === 'button' || tag === 'button' ? `icon-button` : false"
       :aria-label="blok && blok.tag === 'button' || tag === 'button' ? `icon-button-reader` : false"
-      class="icon-wrapper select-none"
+      class="icon-wrapper select-none pointer-events-none"
     >
       <img
         v-if="blok && blok.icon_image.filename"

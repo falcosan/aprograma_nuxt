@@ -227,9 +227,6 @@ export default {
 }
 </script>
 <style scoped>
-.slide.ontransition > * {
-  visibility: hidden;
-}
 .carousel::-webkit-scrollbar {
   display: none;
 }

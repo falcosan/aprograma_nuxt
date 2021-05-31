@@ -27,8 +27,8 @@
       <div ref="sliderBox" class="slider-box">
         <ul
           v-if="blok.slider_mode === 'slider'"
-          :style="`transform: translateX(${transitionTransform}px)`"
-          class="slider relative w-max grid grid-flow-col transition-transform"
+          :style="`transform: translateX(${transitionTransform}px); margin-left: ${spaceFix / 2}px;`"
+          class="slider relative w-max grid grid-flow-col gap-5 transition-transform"
         >
           <li
             v-for="component in blok.body"
@@ -114,8 +114,8 @@ export default {
       slideWidth: 0,
       transitionEnter: '',
       transitionLeave: '',
-      slideLimit: 0,
-      transitionTransform: 0
+      transitionTransform: 0,
+      spaceFix: 20
     }
   },
   computed: {
@@ -149,7 +149,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.data.windowWidth' () { if (this.blok.slider_mode && this.blok.slider_mode === 'slider') { this.sliderWidth() } }
+    '$store.state.data.windowWidth' () { if (this.blok.slider_mode && this.blok.slider_mode === 'slider') { this.getSliderWidth() } }
   },
   mounted () {
     if (this.blok.slider_mode) {
@@ -157,7 +157,7 @@ export default {
         this.autoPlay()
       }
       if (this.blok.slider_mode === 'slider') {
-        this.sliderWidth()
+        this.getSliderWidth()
       }
     }
   },
@@ -185,7 +185,7 @@ export default {
     },
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (this.transitionTransform + this.slideWidth <= 1) { this.transitionTransform += this.slideWidth }
+        if (this.transitionTransform + this.slideWidth <= 1) { this.transitionTransform += this.slideWidth + this.spaceFix }
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = '-translate-x-full'
@@ -194,7 +194,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (this.transitionTransform + this.slideWidth >= (this.maxElements > 1 ? 1 : 0)) { this.transitionTransform -= this.slideWidth }
+        if (this.transitionTransform + this.slideWidth >= (this.maxElements > 1 ? 1 : 0)) { this.transitionTransform -= this.slideWidth + this.spaceFix }
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'
@@ -226,8 +226,8 @@ export default {
       clearTimeout(this.setAutoPlay)
       this.setAutoPlay = 0
     },
-    sliderWidth () {
-      this.slideWidth = this.$refs.sliderBox.clientWidth / this.maxElements
+    getSliderWidth () {
+      this.slideWidth = this.$refs.sliderBox.clientWidth / this.maxElements - this.spaceFix
     }
   }
 }

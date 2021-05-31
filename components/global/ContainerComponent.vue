@@ -27,15 +27,15 @@
       <div ref="sliderBox" class="slider-box overflow-hidden">
         <ul
           v-if="blok.slider_mode === 'slider'"
-          :style="`transform: translateX(${transitionTransform}px); margin-left: ${spaceFix / 2}px; gap: ${spaceFix}px;`"
+          :style="`transform: translateX(${transitionTransform}px);`"
           class="slider relative w-max grid grid-flow-col transition-transform"
         >
           <li
-            v-for="component in blok.body"
+            v-for="(component, index) in blok.body"
             :key="component._uid"
             v-touch:swipe.stop.left="next"
             v-touch:swipe.stop.right="previous"
-            :style="`width: ${slideWidth}px; background-color: ${blok.background_color_component.color};`"
+            :style="`width: ${slideWidth}px; margin-left: ${index === 0 ? '' : `${spaceFix}px`}; background-color: ${blok.background_color_component.color};`"
             class="slider-slide slide"
           >
             <component
@@ -151,6 +151,11 @@ export default {
   watch: {
     '$store.state.data.windowWidth' () { if (this.blok.slider_mode && this.blok.slider_mode === 'slider') { this.getSliderWidth() } }
   },
+  updated () {
+    if (this.blok.slider_mode && this.blok.slider_mode === 'slider') {
+      this.getSliderWidth()
+    }
+  },
   mounted () {
     if (this.blok.slider_mode) {
       if (this.blok.auto_play) {
@@ -211,7 +216,7 @@ export default {
       this.setAutoPlay = 0
     },
     getSliderWidth () {
-      this.slideWidth = this.$refs.sliderBox.clientWidth / this.maxElements - this.spaceFix
+      this.slideWidth = this.$refs.sliderBox.clientWidth / this.maxElements - this.spaceFix / 2
     }
   }
 }

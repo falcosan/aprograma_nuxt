@@ -27,8 +27,8 @@
       <div ref="sliderBox" class="slider-box">
         <ul
           v-if="blok.slider_mode === 'slider'"
-          :style="`transform: translateX(${transitionTransform}px); margin-left: ${spaceFix / 2}px;`"
-          class="slider relative w-max grid grid-flow-col gap-5 transition-transform"
+          :style="`transform: translateX(${transitionTransform}px); margin-left: ${spaceFix / 2}px; gap: ${spaceFix}px;`"
+          class="slider relative w-max grid grid-flow-col transition-transform"
         >
           <li
             v-for="component in blok.body"

@@ -24,7 +24,7 @@
         @click.native="next"
       />
       <div v-else-if="blok.slider_mode === 'carousel'" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-      <div class="slider-box overflow-auto">
+      <div ref="sliderBox" class="slider-box">
         <ul
           v-if="blok.slider_mode === 'slider'"
           class="slider relative grid gap-5 auto-cols-fr grid-flow-col"
@@ -48,12 +48,13 @@
         </ul>
         <ul
           v-else-if="blok.slider_mode === 'scrollable-slider'"
-          class="scrollable-slider relative w-screen grid gap-5 grid-flow-col"
+          :style="`transform: translateX(${transitionTransform}px)`"
+          class="scrollable-slider relative grid grid-flow-col"
         >
           <li
             v-for="component in blok.body"
             :key="component._uid"
-            :style="`width: calc(100vw / ${blok.body.length}); background-color: ${blok.background_color_component.color};`"
+            :style="`width: ${slideWidth}px; background-color: ${blok.background_color_component.color};`"
             class="slider-slide slide"
           >
             <component
@@ -129,16 +130,19 @@ export default {
       defaultMax: this.blok.body.length - 1,
       currentSlide: 0,
       setAutoPlay: 0,
+      slideWidth: 0,
       transitionEnter: '',
-      transitionLeave: ''
+      transitionLeave: '',
+      slideLimit: 0,
+      transitionTransform: 0
     }
   },
   computed: {
     rowComponent () {
-      return this.blok.body.filter(function (item) { return item.row_container })
+      return this.elements.filter(function (item) { return item.row_container })
     },
     maxElements () {
-      if (this.blok.slider_mode && this.blok.body.length > 1) {
+      if (this.blok.slider_mode && this.elements.length > 1) {
         if (this.max) {
           if (this.$store.state.data.windowWidth >= 1536) {
             return this.$rangeItems(Number(this.blok.max_slides), 5)
@@ -146,7 +150,7 @@ export default {
             return this.$rangeItems(Number(this.blok.max_slides), 4)
           } else if (this.$store.state.data.windowWidth >= 1024) {
             return this.$rangeItems(Number(this.blok.max_slides), 3)
-          } return this.$store.state.data.windowWidth >= 640 ? this.$rangeItems(Number(this.blok.max_slides), 2) : false
+          } return this.$store.state.data.windowWidth >= 640 ? this.$rangeItems(Number(this.blok.max_slides), 2) : 1
         } else {
           if (this.$store.state.data.windowWidth >= 1536) {
             return this.$rangeItems(this.defaultMax, 5)
@@ -154,18 +158,26 @@ export default {
             return this.$rangeItems(this.defaultMax, 4)
           } else if (this.$store.state.data.windowWidth >= 1024) {
             return this.$rangeItems(this.defaultMax, 3)
-          } return this.$store.state.data.windowWidth >= 640 ? this.$rangeItems(this.defaultMax, 2) : false
+          } return this.$store.state.data.windowWidth >= 640 ? this.$rangeItems(this.defaultMax, 2) : 1
         }
       } else {
         if (this.$store.state.data.windowWidth >= 1536) {
           return this.$rangeItems(this.rowComponent.length, 3)
-        } return this.$store.state.data.windowWidth >= 768 ? this.$rangeItems(this.rowComponent.length, 2) : false
+        } return this.$store.state.data.windowWidth >= 768 ? this.$rangeItems(this.rowComponent.length, 2) : 1
       }
     }
   },
+  watch: {
+    '$store.state.data.windowWidth' () { if (this.blok.slider_mode && this.blok.slider_mode === 'scrollable-slider') { this.sliderWidth() } }
+  },
   mounted () {
-    if (this.blok.slider_mode && this.blok.auto_play) {
-      this.autoPlay()
+    if (this.blok.slider_mode) {
+      if (this.blok.auto_play) {
+        this.autoPlay()
+      }
+      if (this.blok.slider_mode === 'scrollable-slider') {
+        this.sliderWidth()
+      }
     }
   },
   beforeDestroy () {
@@ -195,8 +207,7 @@ export default {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-1, -this.elements.length)
       } else if (this.blok.slider_mode === 'scrollable-slider') {
-        const slider = document.querySelector('.slider-box')
-        slider.scrollLeft -= 50
+        if (this.slideLimit === 0) { this.slideLimit = (this.maxElements > 1 ? this.maxElements : this.elements.length) - 1; this.transitionTransform = -this.slideWidth * ((this.maxElements > 1 ? this.maxElements : this.elements.length) - 1) } else { this.slideLimit--; this.transitionTransform += this.slideWidth }
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = '-translate-x-full'
@@ -207,8 +218,7 @@ export default {
       if (this.blok.slider_mode === 'slider') {
         this.sliderMove(-this.elements.length, -1)
       } else if (this.blok.slider_mode === 'scrollable-slider') {
-        const slider = document.querySelector('.slider-box')
-        slider.scrollLeft += 50
+        if (this.slideLimit + 1 >= (this.maxElements > 1 ? this.maxElements : this.elements.length)) { this.slideLimit = 0; this.transitionTransform = 0 } else { this.slideLimit++; this.transitionTransform -= this.slideWidth }
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'
@@ -239,6 +249,9 @@ export default {
     clearAutoPlay () {
       clearTimeout(this.setAutoPlay)
       this.setAutoPlay = 0
+    },
+    sliderWidth () {
+      this.slideWidth = this.$refs.sliderBox.clientWidth / this.maxElements
     }
   }
 }

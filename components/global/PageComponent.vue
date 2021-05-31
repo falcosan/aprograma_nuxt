@@ -35,7 +35,7 @@ export default {
     maxComponents () {
       if (this.$store.state.data.windowWidth >= 1536) {
         return this.$rangeItems(this.rowComponent.length, 3)
-      } return this.$store.state.data.windowWidth >= 768 ? this.$rangeItems(this.rowComponent.length, 2) : false
+      } return this.$store.state.data.windowWidth >= 768 ? this.$rangeItems(this.rowComponent.length, 2) : 1
     }
   }
 }

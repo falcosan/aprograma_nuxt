@@ -5,7 +5,7 @@
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-10 text-xl">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && blok.body.length > 1" class="slider-wrapper relative overflow-hidden" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && blok.body.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         previous
@@ -24,7 +24,7 @@
         @click.native="next"
       />
       <div v-else-if="blok.slider_mode === 'carousel'" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-      <div ref="sliderBox" class="slider-box">
+      <div ref="sliderBox" class="slider-box overflow-hidden">
         <ul
           v-if="blok.slider_mode === 'slider'"
           :style="`transform: translateX(${transitionTransform}px); margin-left: ${spaceFix / 2}px; gap: ${spaceFix}px;`"
@@ -178,7 +178,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (this.transitionTransform + this.slideWidth >= (this.maxElements > 1 ? 1 : 0)) { this.transitionTransform -= this.slideWidth + this.spaceFix }
+        if (this.transitionTransform - this.slideWidth >= -(this.slideWidth * this.elements.length)) { this.transitionTransform -= this.slideWidth + this.spaceFix } else { this.transitionTransform = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'

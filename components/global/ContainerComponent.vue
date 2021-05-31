@@ -7,7 +7,7 @@
     </h1>
     <div v-if="blok.slider_mode && blok.body.length > 1" class="slider-wrapper relative overflow-hidden" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
-        v-if="blok.slider_mode.includes('slider') || $store.state.data.windowWidth < 640 || !$device.isDesktop"
+        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         previous
         :class="`previous-control control absolute top-1/2 z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
         size="p-2 w-7"
@@ -16,7 +16,7 @@
       />
       <div v-else-if="blok.slider_mode === 'carousel'" class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
       <Icon
-        v-if="blok.slider_mode.includes('slider') || $store.state.data.windowWidth < 640 || !$device.isDesktop"
+        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         next
         :class="`next-control control absolute top-1/2 z-20 filter invert grayscale right-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
         size="p-2 w-7"
@@ -27,33 +27,14 @@
       <div ref="sliderBox" class="slider-box">
         <ul
           v-if="blok.slider_mode === 'slider'"
-          class="slider relative grid gap-5 auto-cols-fr grid-flow-col"
-        >
-          <li
-            v-for="(component, index) in blok.body"
-            v-show="index < (max >= blok.body.length ? defaultMax : maxElements)"
-            :key="component._uid"
-            v-touch:swipe.stop.left="next"
-            v-touch:swipe.stop.right="previous"
-            :style="`background-color: ${blok.background_color_component.color};`"
-            class="slider-slide slide"
-          >
-            <component
-              :is="component.component"
-              :class="`${component.component.toLowerCase()}-component max-w-max my-0 mx-auto`"
-              :blok="component"
-              slider-mode
-            />
-          </li>
-        </ul>
-        <ul
-          v-else-if="blok.slider_mode === 'scrollable-slider'"
           :style="`transform: translateX(${transitionTransform}px)`"
-          class="scrollable-slider relative grid grid-flow-col"
+          class="slider relative w-max grid grid-flow-col transition-transform"
         >
           <li
             v-for="component in blok.body"
             :key="component._uid"
+            v-touch:swipe.stop.left="next"
+            v-touch:swipe.stop.right="previous"
             :style="`width: ${slideWidth}px; background-color: ${blok.background_color_component.color};`"
             class="slider-slide slide"
           >
@@ -168,14 +149,14 @@ export default {
     }
   },
   watch: {
-    '$store.state.data.windowWidth' () { if (this.blok.slider_mode && this.blok.slider_mode === 'scrollable-slider') { this.sliderWidth() } }
+    '$store.state.data.windowWidth' () { if (this.blok.slider_mode && this.blok.slider_mode === 'slider') { this.sliderWidth() } }
   },
   mounted () {
     if (this.blok.slider_mode) {
       if (this.blok.auto_play) {
         this.autoPlay()
       }
-      if (this.blok.slider_mode === 'scrollable-slider') {
+      if (this.blok.slider_mode === 'slider') {
         this.sliderWidth()
       }
     }
@@ -202,12 +183,9 @@ export default {
       this.elements.splice(newIndex, 0, this.elements.splice(oldIndex, 1)[0])
       return this.elements
     },
-
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        this.sliderMove(-1, -this.elements.length)
-      } else if (this.blok.slider_mode === 'scrollable-slider') {
-        if (this.slideLimit === 0) { this.slideLimit = (this.maxElements > 1 ? this.maxElements : this.elements.length) - 1; this.transitionTransform = -this.slideWidth * ((this.maxElements > 1 ? this.maxElements : this.elements.length) - 1) } else { this.slideLimit--; this.transitionTransform += this.slideWidth }
+        if (this.transitionTransform + this.slideWidth <= 1) { this.transitionTransform += this.slideWidth }
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = '-translate-x-full'
@@ -216,9 +194,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        this.sliderMove(-this.elements.length, -1)
-      } else if (this.blok.slider_mode === 'scrollable-slider') {
-        if (this.slideLimit + 1 >= (this.maxElements > 1 ? this.maxElements : this.elements.length)) { this.slideLimit = 0; this.transitionTransform = 0 } else { this.slideLimit++; this.transitionTransform -= this.slideWidth }
+        if (this.transitionTransform + this.slideWidth >= 1) { this.transitionTransform -= this.slideWidth }
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'

@@ -43,7 +43,7 @@
         v-text="blok.intro"
       />
 
-      <div class="project-date flex items-center justify-around xl:col-start-1 xl:col-end-3">
+      <div class="project-date flex items-baseline justify-around xl:col-start-1 xl:col-end-3">
         <h4 class="date-start text-right text-sm sm:text-base">
           {{ changeDate(blok.start_date) }}
         </h4>

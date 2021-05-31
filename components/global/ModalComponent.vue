@@ -7,8 +7,8 @@
         ref="modal"
         :class="`modal-backdrop fixed flex justify-center inset-0 z-50 overflow-auto ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
         tabindex="0"
-        @click.self.stop="closeMode ? closeModal() : false"
         @keydown.esc="closeMode ? closeModal() : false"
+        @click.self.stop="closeModal()"
       >
         <div class="modal-container flex items-center">
           <header v-if="hasSlot('header') || closeMode" class="modal-header">
@@ -17,13 +17,14 @@
               close
               class="modal-close fixed top-0 right-0 filter invert grayscale bg-gray-300"
               tag="button"
-              size="p-2 lg:p-3 w-9 lg:w-12"
+              size="p-2 lg:p-3 w-9 lg:w-10"
               @click.native.stop="closeModal()"
             />
           </header>
           <section
             v-if="hasSlot('body')"
             :class="`modal-body h-auto px-5 pt-6 lg:pt-9 lg:px-12 ${closeMode ? 'cursor-pointer' : ''}`"
+            @click.self.stop="closeMode ? closeModal() : false"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
               <div class="body-container h-screen grid gap-5 grid-flow-row-dense" @click.self.stop="closeMode ? closeModal() : false">

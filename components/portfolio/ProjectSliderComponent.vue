@@ -43,10 +43,10 @@
       class="controls w-full absolute top-1/2 filter invert grayscale"
     >
       <span v-if="blok.length > 2 && frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control absolute right-2 transform -translate-y-1/2 rounded-full bg-opacity-70 bg-gray-300">
-        <Icon next class="next" size="p-2 w-7" tag="button" @click.native="next" />
+        <Icon next class="next" size="p-2 lg:p-3 w-9 lg:w-10" tag="button" @click.native="next" />
       </span>
       <span v-if="blok.length > 2 && frame.up != 0" :key="`${indexControls}-2`" class="previous-control absolute left-2 transform -translate-y-1/2 rounded-full bg-opacity-70 bg-gray-300">
-        <Icon previous class="previous" size="p-2 w-7" tag="button" @click.native="prev" />
+        <Icon previous class="previous" size="p-2 lg:p-3 w-9 lg:w-10" tag="button" @click.native="prev" />
       </span>
     </transition-group>
   </div>

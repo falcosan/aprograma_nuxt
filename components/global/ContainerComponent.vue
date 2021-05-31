@@ -10,7 +10,7 @@
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         previous
         :class="`previous-control control absolute top-1/2 z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
-        size="p-2 w-7"
+        size="p-2 lg:p-3 w-9 lg:w-10"
         tag="button"
         @click.native="previous"
       />
@@ -19,7 +19,7 @@
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         next
         :class="`next-control control absolute top-1/2 z-20 filter invert grayscale right-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
-        size="p-2 w-7"
+        size="p-2 lg:p-3 w-9 lg:w-10"
         tag="button"
         @click.native="next"
       />
@@ -57,7 +57,7 @@
           leave-active-class="out-in duration-200"
           :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
           :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
-          class="carousel relative h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-5xl grid gap-5 auto-cols-fr grid-flow-col overflow-hidden"
+          class="carousel relative h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-5xl grid gap-5 auto-cols-fr grid-flow-col overflow-y-scroll overflow-x-hidden"
         >
           <li
             v-for="(component, index) in blok.body"
@@ -234,7 +234,14 @@ export default {
 }
 </script>
 <style scoped>
-.slide.ontransition > *{
+.slide.ontransition > * {
   visibility: hidden;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+.carousel {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 </style>

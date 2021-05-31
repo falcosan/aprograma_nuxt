@@ -11,13 +11,13 @@
       >
         <component
           :is="lookFile()"
-          :class="`teaser-file w-full h-60 sm:h-72 object-cover object-center select-none ${rowContainer ? 'md:h-48 lg:h-72 xl:h-80' : 'md:h-80 lg:h-full lg:w-1/2'}`"
+          :class="`teaser-file w-full h-60 sm:h-72 object-cover object-center select-none ${rowContainer ? 'md:h-44 lg:h-64 xl:h-80' : 'md:h-80 lg:h-full lg:w-1/2'}`"
           :alt="postContent.file.alt"
           :src="postContent.file.filename"
           :width="lookImage ? '100%' : false "
           :height="lookImage ? '100%' : false "
         />
-        <div :class="`teaser-text w-full flex flex-col p-5 ${rowContainer ? 'lg:h-40 lg:p-10' : 'h-max lg:h-full lg:w-1/2 sm:p-10'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full flex flex-col p-5 ${rowContainer ? 'lg:p-10' : 'h-max lg:h-full lg:w-1/2 sm:p-10'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               :class="`teaser-title mb-2 font-semibold overflow-hidden ${$route.name === 'blog' ? 'text-xl sm:text-2xl' : 'text-xl'}`"

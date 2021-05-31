@@ -17,6 +17,7 @@
       :class="`item-icon ${iconStyle}`"
       :tag="blok.body[0].tag"
       :blok="blok.body[0]"
+      :slider-mode="sliderMode"
     />
   </component>
   <component
@@ -68,6 +69,10 @@ export default {
     iconStyle: {
       type: String,
       default: ''
+    },
+    sliderMode: {
+      type: Boolean,
+      default: false
     }
   }
 }

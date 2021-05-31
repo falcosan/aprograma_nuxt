@@ -1,6 +1,6 @@
 <template>
   <span
-    :class="`icon-container grid gap-5 ${blok && !blok.remove_space ? 'p-5 sm:p-10' : ''} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : ''}`"
+    :class="`icon-container grid gap-5 ${blok && !blok.remove_space ? 'p-5 sm:p-10' : ''} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : ''} ${sliderMode ? 'h-full content-between' : ''}`"
     @click="animateMenu ? open = !open : false"
   >
     <component
@@ -213,6 +213,10 @@ export default {
     title: {
       type: String,
       default: ''
+    },
+    sliderMode: {
+      type: Boolean,
+      default: false
     }
   },
   data () {

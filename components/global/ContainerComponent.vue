@@ -194,7 +194,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (this.transitionTransform + this.slideWidth >= 1) { this.transitionTransform -= this.slideWidth }
+        if (this.transitionTransform + this.slideWidth >= (this.maxElements > 1 ? 1 : 0)) { this.transitionTransform -= this.slideWidth }
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'

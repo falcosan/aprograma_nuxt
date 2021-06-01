@@ -151,7 +151,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.data.windowWidth' () { if (this.blok.slider_mode && this.blok.slider_mode === 'slider') { this.getSliderWidth() } }
+    '$store.state.data.windowWidth' () { if (this.blok.slider_mode && this.blok.slider_mode === 'slider') { this.getSliderWidth(); this.sliderKey++ } }
   },
   mounted () {
     if (this.blok.slider_mode) {
@@ -213,7 +213,6 @@ export default {
       this.setAutoPlay = 0
     },
     getSliderWidth () {
-      this.sliderKey++
       this.slideWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
     }
   }

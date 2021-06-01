@@ -24,18 +24,18 @@
         @click.native="next"
       />
       <div v-else-if="blok.slider_mode === 'carousel'" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-      <div ref="sliderBox" class="slider-box overflow-hidden">
+      <div class="slider-box overflow-hidden">
         <ul
           v-if="blok.slider_mode === 'slider'"
-          :style="`transform: translateX(${transitionTransform}px);`"
+          :style="`transform: translateX(${transitionTransform}px); margin-left: ${spaceFix / 2}px; gap: ${spaceFix}px;`"
           class="slider relative w-max grid grid-flow-col transition-transform"
         >
           <li
-            v-for="(component, index) in blok.body"
+            v-for="component in blok.body"
             :key="component._uid"
             v-touch:swipe.stop.left="next"
             v-touch:swipe.stop.right="previous"
-            :style="`width: ${slideWidth}px; margin-left: ${index === 0 ? '' : `${spaceFix}px`}; background-color: ${blok.background_color_component.color};`"
+            :style="`width: ${slideWidth}px; background-color: ${blok.background_color_component.color};`"
             class="slider-slide slide"
           >
             <component
@@ -151,11 +151,6 @@ export default {
   watch: {
     '$store.state.data.windowWidth' () { if (this.blok.slider_mode && this.blok.slider_mode === 'slider') { this.getSliderWidth() } }
   },
-  updated () {
-    if (this.blok.slider_mode && this.blok.slider_mode === 'slider') {
-      this.getSliderWidth()
-    }
-  },
   mounted () {
     if (this.blok.slider_mode) {
       if (this.blok.auto_play) {
@@ -164,6 +159,11 @@ export default {
       if (this.blok.slider_mode === 'slider') {
         this.getSliderWidth()
       }
+    }
+  },
+  updated () {
+    if (this.blok.slider_mode && this.blok.slider_mode === 'slider') {
+      this.getSliderWidth()
     }
   },
   beforeDestroy () {
@@ -183,7 +183,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (this.transitionTransform - this.$refs.sliderBox.clientWidth >= -(this.slideWidth * this.elements.length)) { this.transitionTransform -= this.slideWidth + this.spaceFix } else { this.transitionTransform = 0 }
+        if (this.transitionTransform - this.$el.clientWidth >= -(this.slideWidth * this.elements.length)) { this.transitionTransform -= this.slideWidth + this.spaceFix } else { this.transitionTransform = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'
@@ -216,7 +216,7 @@ export default {
       this.setAutoPlay = 0
     },
     getSliderWidth () {
-      this.slideWidth = this.$refs.sliderBox.clientWidth / this.maxElements - this.spaceFix / 2
+      this.slideWidth = this.$el.clientWidth / this.maxElements - this.spaceFix
     }
   }
 }

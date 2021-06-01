@@ -5,7 +5,7 @@
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-10 text-xl">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && blok.body.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         previous
@@ -27,15 +27,15 @@
       <div class="slider-box overflow-hidden">
         <ul
           v-if="blok.slider_mode === 'slider'"
-          :style="`transform: translateX(${transitionTransform}px);`"
+          :style="`transform: translateX(${transitionTransform}px); gap: ${spaceFix}px;`"
           class="slider relative w-max grid grid-flow-col transition-transform"
         >
           <li
-            v-for="(component, index) in blok.body"
+            v-for="component in elements"
             :key="component._uid"
             v-touch:swipe.stop.left="next"
             v-touch:swipe.stop.right="previous"
-            :style="`width: ${slideWidth}px; margin-left: ${index === 0 ? '' : spaceFix}px; background-color: ${blok.background_color_component.color};`"
+            :style="`width: ${slideWidth}px; background-color: ${blok.background_color_component.color};`"
             class="slider-slide slide"
           >
             <component
@@ -56,7 +56,7 @@
             class="carousel relative h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-5xl grid gap-5 auto-cols-fr grid-flow-col overflow-y-scroll overflow-x-hidden"
           >
             <li
-              v-for="(component, index) in blok.body"
+              v-for="(component, index) in elements"
               v-show="index === currentSlide"
               :key="component._uid"
               v-touch:swipe.stop.left="next"
@@ -73,14 +73,14 @@
             </li>
           </transition-group>
           <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-3 justify-center my-5 md:my-10">
-            <span v-for="dot in blok.body.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 rounded-full select-none text-xl transition-all ${dot === currentSlide + 1 ? 'ring-1 transform -translate-y-1 duration-200 ring-black bg-black' : 'bg-black'}`" />
+            <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 rounded-full select-none text-xl transition-all ${dot === currentSlide + 1 ? 'ring-1 transform -translate-y-1 duration-200 ring-black bg-black' : 'bg-black'}`" />
           </div>
         </div>
       </div>
     </div>
     <div v-else class="container-components grid gap-5 auto-cols-fr lg:grid-cols-container" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : false">
       <div
-        v-for="component in blok.body"
+        v-for="component in elements"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${maxElements + 1}`}`"
         :class="`${component.component.toLowerCase()}-container flex justify-center ${component.row_container ? '' : 'col-start-1'}`"
@@ -89,7 +89,7 @@
           :is="component.component"
           :class="`${component.component.toLowerCase()}-component`"
           :blok="component"
-          :container-mode="blok.body.filter(item => item.row_container).length > 1"
+          :container-mode="elements.filter(item => item.row_container).length > 1"
         />
       </div>
     </div>
@@ -216,7 +216,7 @@ export default {
       this.setAutoPlay = 0
     },
     getSliderWidth () {
-      this.slideWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix * (this.maxElements % this.maxElements))
+      this.slideWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
     }
   }
 }

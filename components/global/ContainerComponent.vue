@@ -27,6 +27,7 @@
       <div class="slider-box overflow-hidden">
         <ul
           v-if="blok.slider_mode === 'slider'"
+          :key="sliderKey"
           :style="`transform: translateX(${transitionTransform}px); gap: ${spaceFix}px;`"
           class="slider relative w-max grid grid-flow-col transition-transform"
         >
@@ -109,6 +110,7 @@ export default {
       elements: this.blok.body,
       max: Number(this.blok.max_slides),
       defaultMax: this.blok.body.length - 1,
+      sliderKey: 0,
       currentSlide: 0,
       setAutoPlay: 0,
       slideWidth: 0,
@@ -161,11 +163,6 @@ export default {
       }
     }
   },
-  updated () {
-    if (this.blok.slider_mode && this.blok.slider_mode === 'slider') {
-      this.getSliderWidth()
-    }
-  },
   beforeDestroy () {
     if (this.blok.slider_mode && this.blok.auto_play) {
       this.clearAutoPlay()
@@ -216,6 +213,7 @@ export default {
       this.setAutoPlay = 0
     },
     getSliderWidth () {
+      this.sliderKey++
       this.slideWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
     }
   }

@@ -91,7 +91,7 @@ export default {
 </script>
 <style>
 .body-container{
-  max-height: calc(100vh - 32px);
+  max-height: calc(100vh - 36px);
 }
 .body-container > *:not(hr) {
   max-height: calc(100vh - 55px);

@@ -1,6 +1,6 @@
 <template>
   <main class="main overflow-x-hidden">
-    <div class="max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-10 md:my-12 mx-auto rounded-b-xl md:rounded-xl shadow-xl bg-opacity-60 bg-white">
+    <div class="max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-10 md:my-12 mx-auto rounded-b-xl md:rounded-xl shadow-xl overflow-hidden bg-opacity-60 bg-white">
       <transition enter-active-class="duration-300 in-out" enter-class="opacity-0" mode="out-in">
         <Nuxt v-if="blok.view" />
       </transition>

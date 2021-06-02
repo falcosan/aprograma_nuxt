@@ -1,5 +1,5 @@
 <template>
-  <div class="post max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl my-0 mx-auto pb-10 pt-20 px-6 prose prose-sm lg:prose-lg">
+  <div class="post max-w-none prose prose-sm lg:prose-lg">
     <Icon
       v-if="$store.state.data.windowWidth >= 768"
       arrow
@@ -12,7 +12,7 @@
     <div class="post-head relative w-full">
       <h1
         :style="`color: ${blok.post_text_color.color};`"
-        class="post-title"
+        class="post-title px-5 pt-5"
         v-text="blok.title"
       />
       <Icon

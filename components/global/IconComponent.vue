@@ -5,7 +5,7 @@
   >
     <component
       :is="blok ? blok.tag ? blok.tag : 'button' : tag ? tag : 'button'"
-      :title="blok && blok.title && !blok.show_title ? blok.title : false"
+      :title="blok && blok.title && !blok.show_title || tooltip ? blok ? blok.title : tooltip : false"
       :name="blok && blok.tag === 'button' || tag === 'button' ? `icon-button` : false"
       :aria-label="blok && blok.tag === 'button' || tag === 'button' ? `icon-button-reader` : false"
       class="icon-wrapper select-none pointer-events-none"
@@ -155,7 +155,7 @@
         </circle>
       </svg>
     </component>
-    <span v-if="(blok && blok.title && blok.show_title) || title" class="icon-title text-center">{{ blok ? blok.title : title }}</span>
+    <span v-if="blok && blok.title && blok.show_title || title" class="icon-title text-center">{{ blok ? blok.title : title }}</span>
   </span>
 </template>
 
@@ -211,6 +211,10 @@ export default {
       default: false
     },
     title: {
+      type: String,
+      default: ''
+    },
+    tooltip: {
       type: String,
       default: ''
     },

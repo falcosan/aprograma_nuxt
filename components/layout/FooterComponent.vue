@@ -31,8 +31,8 @@
         class="social-links grid grid-flow-col gap-3 mr-3 flex-1 row-start-1 row-end-1 col-start-2 col-end-2 justify-end"
       >
         <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid">
-          <Link
-            icon-item
+          <component
+            :is="iconLink.component"
             :blok="iconLink"
             class="social-icon"
           />
@@ -65,8 +65,8 @@
         class="social-links grid grid-flow-col gap-3 flex-1"
       >
         <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid">
-          <Link
-            icon-item
+          <component
+            :is="iconLink.component"
             :blok="iconLink"
             class="social-icon"
           />

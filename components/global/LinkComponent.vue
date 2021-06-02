@@ -8,8 +8,9 @@
     :href="blok.external_link ? blok.path : false"
     :rel="blok.external_link ? 'noopener noreferrer' : false"
     :target="blok.external_link ? '_blank' : false"
+    :title="blok.title && blok.icon_item ? blok.title : false"
   >
-    <span v-if="!iconItem && !blok.icon_item" class="item-text break-words" :style="`color: ${blok.text_color.color};`">
+    <span v-if="blok.title && !iconItem && !blok.icon_item" class="item-text break-words" :style="`color: ${blok.text_color.color};`">
       {{ blok.title }}
     </span>
     <Icon
@@ -18,6 +19,7 @@
       :tag="blok.body[0].tag"
       :blok="blok.body[0]"
       :slider-mode="sliderMode"
+      :tooltip="blok.title ? blok.title : ''"
     />
   </component>
   <component
@@ -30,6 +32,7 @@
     :href="externalLink ? to : false"
     :rel="externalLink ? 'noopener noreferrer' : false"
     :target="externalLink ? '_blank' : false"
+    :title="title && iconItem ? title : false"
   >
     <span v-if="!iconItem" class="item-text break-words">{{ title }}</span>
     <slot v-else name="icon" />

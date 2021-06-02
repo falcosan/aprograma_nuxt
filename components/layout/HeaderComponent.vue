@@ -21,7 +21,7 @@
           <div v-if="expanded" class="menu-expanded">
             <ul class="link-list" :style="`background-color: ${blok.background_color.color};`">
               <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu hover:bg-gray-300">
-                <Link scroll-top class="py-2 px-3 font-light" :blok="item" />
+                <Link class="py-2 px-3 font-light" :blok="item" />
               </li>
             </ul>
             <div class="language-navbar">
@@ -86,7 +86,7 @@
           :key="item._uid"
           class="link-menu no-underline"
         >
-          <Link scroll-top icon-item icon-style="w-full h-full" :blok="item" />
+          <Link icon-item icon-style="w-full h-full" :blok="item" />
         </li>
       </ul>
     </nav>

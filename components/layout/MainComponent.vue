@@ -1,8 +1,10 @@
 <template>
   <main class="main overflow-x-hidden">
-    <transition enter-active-class="duration-300 in-out" enter-class="opacity-0" mode="out-in">
-      <Nuxt v-if="blok.view" />
-    </transition>
+    <div class="max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-10 md:my-12 mx-auto rounded-b-xl md:rounded-xl shadow-xl bg-opacity-60 bg-white">
+      <transition enter-active-class="duration-300 in-out" enter-class="opacity-0" mode="out-in">
+        <Nuxt v-if="blok.view" />
+      </transition>
+    </div>
     <div v-if="blok.background_media.filename" class="background-media fixed inset-0 -z-10">
       <img
         v-if="lookFile === 'image'"
@@ -24,10 +26,7 @@
         <source :src="blok.background_media.filename" :type="`video/${blok.background_media.filename.toLowerCase().split('.').pop()}`">
       </video>
     </div>
-    <div v-else class="fixed inset-0 -z-10">
-      <div v-if=" $store.state.data.windowWidth < 768" class="background-main w-full h-full max-w-xl md:max-w-none md:w-9/12 2xl:max-w-7xl my-0 mx-auto border-r border-l shadow-xl" :style="`border-color: ${blok.background_color.color};`" />
-      <div class="background-color relative h-full w-full" :style="`background-color: ${blok.background_color.color};`" />
-    </div>
+    <div v-else class="background-main fixed inset-0 -z-10" :style="`background-color: ${blok.background_color.color};`" />
   </main>
 </template>
 

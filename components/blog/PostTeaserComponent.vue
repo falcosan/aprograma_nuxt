@@ -5,7 +5,7 @@
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div
-        :class="`teaser-content h-full flex flex-col ${rowContainer ? '' : 'lg:flex-row lg:h-64'}`"
+        :class="`teaser-content h-full flex flex-col ${rowContainer ? '' : 'lg:flex-row lg:h-64 2xl:h-56'}`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >

@@ -9,19 +9,17 @@
 </template>
 <script>
 import Project from '@/components/portfolio/ProjectComponent'
-import Post from '@/components/blog/PostComponent'
 export default {
-  components: { Project, Post },
+  components: { Project },
   asyncData (context) {
-    const slug = (context.route.path === '/' || context.route.path === '' || context.route.path === '*') ? '/home' : context.route.path
     return context.app.$storyapi
-      .get(`cdn/stories${slug}`, {
+      .get(`cdn/stories${context.route.path}`, {
         language: context.store.state.language.language
       }).then((res) => {
         return res.data
       }).catch((res) => {
         context.$errorMessage(res.response,
-          'Sorry but this content doesn\'t extist', `Sorry, but the content called: "${context.route.name}" has a problem or doesn't exist`
+          `Sorry but this project: ${context.route.name} doesn't extist`, `Sorry, but this project: "${context.route.name}" has a problem or doesn't exist`
         )
       })
   },
@@ -33,8 +31,8 @@ export default {
     }
   },
   async fetch () {
-    const slug = (this.$route.path === '/' || this.$route.path === '' || this.$route.path === '*') ? '/home' : this.$route.path
-    const { data } = await this.$storyapi.get(`cdn/stories${slug}`, {
+    this.$store.dispatch('list/projects/addProjects', this.$route.name)
+    const { data } = await this.$storyapi.get(`cdn/stories${this.$route.path}`, {
       language: this.$store.state.language.language
     })
     this.story = data.story
@@ -46,18 +44,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content () {
-            switch (this.$route.name) {
-              case 'about':
-                return 'About the Aprograma project'
-              case 'portfolio':
-                return 'Blog with last news of Aprograma'
-              case 'contact':
-                return 'Contact the Aprograma'
-              case 'blog':
-                return 'Blog with last news of Aprograma'
-            }
-          }
+          content: 'Projects make experience'
         }
       ]
     }

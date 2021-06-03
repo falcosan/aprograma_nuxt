@@ -1,6 +1,6 @@
 <template>
   <main class="main overflow-x-hidden">
-    <div ref="mainWrapper" :class="`main-wrapper max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-10 md:my-12 mx-auto rounded-b-xl md:rounded-xl overflow-hidden transform transition duration-300 ease-out bg-opacity-60 bg-white ${transitionMain}`">
+    <div class="main-wrapper max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-10 md:my-12 mx-auto rounded-b-xl md:rounded-xl overflow-hidden transform transition duration-300 ease-out bg-opacity-60 bg-white">
       <transition enter-class="transform translate-y-full opacity-0" enter-active-class="duration-500" mode="out-in">
         <Nuxt v-if="blok.view" />
       </transition>
@@ -46,14 +46,6 @@ export default {
   computed: {
     lookFile () {
       return this.blok.background_media.filename ? (/(gif|jpe?g|tiff?|png|webp|bmp)/gi).test(this.blok.background_media.filename.toLowerCase().split('.').pop()) ? 'image' : 'video' : false
-    }
-  },
-  watch: {
-    $route () {
-      this.transitionMain = 'scale-110 opacity-0 shadow-2xl'
-      this.$refs.mainWrapper.ontransitionend = () => {
-        this.transitionMain = 'scale-100 opacity-100 shadow-lg'
-      }
     }
   },
   methods: {

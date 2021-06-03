@@ -9,17 +9,19 @@
 </template>
 <script>
 import Project from '@/components/portfolio/ProjectComponent'
+import Post from '@/components/blog/PostComponent'
 export default {
-  components: { Project },
+  components: { Project, Post },
   asyncData (context) {
+    const slug = (context.route.path === '/' || context.route.path === '') ? '/home' : context.route.path
     return context.app.$storyapi
-      .get(`cdn/stories${context.route.path}`, {
+      .get(`cdn/stories${slug}`, {
         language: context.store.state.language.language
       }).then((res) => {
         return res.data
       }).catch((res) => {
         context.$errorMessage(res.response,
-          `Sorry but this project: ${context.route.name} doesn't extist`, `Sorry, but this project: "${context.route.name}" has a problem or doesn't exist`
+          'Sorry but this content doesn\'t extist', `Sorry, but the content called: "${context.route.name}" has a problem or doesn't exist`
         )
       })
   },
@@ -31,23 +33,18 @@ export default {
     }
   },
   async fetch () {
-    this.$store.dispatch('list/projects/addProjects', this.$route.name)
-    const { data } = await this.$storyapi.get(`cdn/stories${this.$route.path}`, {
+    const slug = (this.$route.path === '/' || this.$route.path === '') ? '/home' : this.$route.path
+    switch (this.$route.name) {
+      case 'portfolio':
+        this.$store.dispatch('list/projects/addProjects', 'portfolio')
+        break
+      case 'blog':
+        this.$store.dispatch('list/posts/addPosts', 'blog')
+    }
+    const { data } = await this.$storyapi.get(`cdn/stories${slug}`, {
       language: this.$store.state.language.language
     })
     this.story = data.story
-  },
-  head () {
-    return {
-      title: `${this.story.name} - Aprograma`,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Projects make experience'
-        }
-      ]
-    }
   },
   watch: {
     '$store.state.language.language': '$fetch'

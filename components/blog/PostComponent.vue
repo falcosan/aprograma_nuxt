@@ -1,14 +1,5 @@
 <template>
   <div class="post max-w-none prose prose-sm lg:prose-lg">
-    <Icon
-      v-if="$store.state.data.windowWidth >= 768"
-      arrow
-      :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
-      :class="`post-close fixed right-0 ${$device.isDesktop ? 'top-0' : 'top-10'}`"
-      tag="button"
-      size="p-3 w-10"
-      @click.native="goBack()"
-    />
     <div class="post-head relative w-full">
       <h1
         :style="`color: ${blok.post_text_color.color};`"
@@ -16,11 +7,20 @@
         v-text="blok.title"
       />
       <Icon
-        v-if="$store.state.data.windowWidth < 768"
+        v-if="$store.state.data.windowWidth >= 768"
+        arrow
+        :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
+        class="post-close absolute right-0"
+        tag="button"
+        size="p-3 w-10"
+        @click.native="goBack()"
+      />
+      <Icon
+        v-else
         arrow
         class="post-back absolute bottom-0 right-0"
         tag="button"
-        size="w-9 p-2"
+        size="w-8 p-2"
         :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
         @click.native.passive="goBack()"
       />

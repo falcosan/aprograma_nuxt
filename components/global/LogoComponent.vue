@@ -5,6 +5,7 @@
   >
     <svg
       key="logo"
+      ref="logo"
       :class="`logo h-auto cursor-pointer ${size}`"
       version="1.1"
       baseProfile="basic"
@@ -72,10 +73,10 @@ export default {
   },
   methods: {
     play () {
-      this.moved.a = 'transform origin-center-left translate rotate-360 transition duration-700 ease-out'
-      this.moved.p = 'transform origin-center translate rotate-360 transition duration-700 ease-out'
+      this.moved.a = 'transform origin-center-left rotate-360 transition duration-700 ease-out'
+      this.moved.p = 'transform origin-center rotate-360 transition duration-700 ease-out'
       this.$store.commit('data/moveMutation', true)
-      document.querySelector('.logo').ontransitionend = () => {
+      this.$refs.logo.ontransitionend = () => {
         this.moved.p = ''
         this.moved.a = ''
         this.$store.commit('data/moveMutation', false)

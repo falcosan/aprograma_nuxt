@@ -1,6 +1,7 @@
 
 <template>
   <div
+    ref="form"
     class="form w-full"
   >
     <Modal class="modal-submit" :open="submitting" modal-style="bg-opacity-90 bg-gray-200 cursor-wait">
@@ -90,9 +91,9 @@ export default {
     async submit () {
       if (this.blok.type === 'contact_form') {
         this.$store.dispatch('validator/checkValues')
+          this.submitting = true
         if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.$contentByName(this.blok.body, 'Field').length && Object.values(this.fields).every(text => text.length > 0)) {
           this.removeAlert()
-          this.submitting = true
           try {
             await axios.post(
               '/.netlify/functions/sendmail',
@@ -103,7 +104,7 @@ export default {
               }
             )
             this.submitting = false
-            document.querySelector('form').reset()
+            this.$refs.form.reset()
             this.clearFields()
             this.setAlert(this.blok.passed_message, 'bg-green-400')
           } catch {

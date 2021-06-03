@@ -15,7 +15,7 @@
             <slot name="header" />
             <Icon
               close
-              class="modal-close absolute top-0 left-0 filter invert grayscale bg-gray-300"
+              class="modal-close fixed top-0 right-0 filter invert grayscale bg-gray-300"
               tag="button"
               size="p-2 lg:p-3 w-8 lg:w-10"
               @click.native.stop="closeModal()"
@@ -27,7 +27,7 @@
             @click.self.stop="closeMode ? closeModal() : false"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
-              <div class="body-container h-full grid gap-5 grid-flow-row-dense" @click.self.stop="closeMode ? closeModal() : false">
+              <div class="body-container h-screen grid gap-5 grid-flow-row-dense" @click.self.stop="closeMode ? closeModal() : false">
                 <slot name="body" />
                 <hr class="invisible">
               </div>
@@ -90,6 +90,9 @@ export default {
 }
 </script>
 <style>
+.body-container{
+  max-height: calc(100vh - 36px);
+}
 .body-container > *:not(hr) {
   max-height: calc(100vh - 55px);
   align-self: flex-end;

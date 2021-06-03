@@ -91,9 +91,9 @@ export default {
     async submit () {
       if (this.blok.type === 'contact_form') {
         this.$store.dispatch('validator/checkValues')
-          this.submitting = true
         if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.$contentByName(this.blok.body, 'Field').length && Object.values(this.fields).every(text => text.length > 0)) {
           this.removeAlert()
+          this.submitting = true
           try {
             await axios.post(
               '/.netlify/functions/sendmail',

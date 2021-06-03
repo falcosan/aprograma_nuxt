@@ -13,7 +13,7 @@ import Post from '@/components/blog/PostComponent'
 export default {
   components: { Project, Post },
   asyncData (context) {
-    const slug = (context.route.path === '/' || context.route.path === '') ? '/home' : context.route.path
+    const slug = (context.route.path === '/' || context.route.path === '' || context.route.path === '*') ? '/home' : context.route.path
     return context.app.$storyapi
       .get(`cdn/stories${slug}`, {
         language: context.store.state.language.language
@@ -33,7 +33,7 @@ export default {
     }
   },
   async fetch () {
-    const slug = (this.$route.path === '/' || this.$route.path === '') ? '/home' : this.$route.path
+    const slug = (this.$route.path === '/' || this.$route.path === '' || this.$route.path === '*') ? '/home' : this.$route.path
     const { data } = await this.$storyapi.get(`cdn/stories${slug}`, {
       language: this.$store.state.language.language
     })

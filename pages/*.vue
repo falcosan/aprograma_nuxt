@@ -36,10 +36,10 @@ export default {
     const slug = (this.$route.path === '/' || this.$route.path === '') ? '/home' : this.$route.path
     switch (this.$route.name) {
       case 'portfolio':
-        this.$store.dispatch('list/projects/addProjects', 'portfolio')
+        this.$store.dispatch('list/projects/addProjects', this.$route.name)
         break
       case 'blog':
-        this.$store.dispatch('list/posts/addPosts', 'blog')
+        this.$store.dispatch('list/posts/addPosts', this.$route.name)
     }
     const { data } = await this.$storyapi.get(`cdn/stories${slug}`, {
       language: this.$store.state.language.language

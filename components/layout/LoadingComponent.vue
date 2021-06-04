@@ -1,8 +1,5 @@
 <template>
   <div v-if="loading" class="loader">
-    <div v-show="loadingBar" :class="`bar-container fixed w-full h-0.5 z-40 bg-white ${!$device.isDesktop || $store.state.data.windowWidth < 768 ? 'bottom-10' : 'top-10'}`">
-      <div class="loader-bar absolute h-full filter grayscale bg-gray-800" />
-    </div>
     <transition
       enter-active-class="duration-300 in-out"
       enter-class="opacity-0"
@@ -24,7 +21,6 @@ export default {
   data () {
     return {
       loading: false,
-      loadingBar: false,
       loadingLogo: false,
       loadingTimer: 0
     }
@@ -33,12 +29,10 @@ export default {
     start () {
       clearTimeout(this.loadingTimer)
       this.loading = true
-      this.loadingBar = true
       this.loadingLogo = true
     },
     finish () {
       this.loadingTimer = setTimeout(() => { this.loading = false }, 1000)
-      this.loadingBar = false
       this.loadingLogo = false
     }
   }

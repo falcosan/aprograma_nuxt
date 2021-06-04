@@ -7,10 +7,10 @@
     @mouseover="expandIn"
   >
     <div class="input-container flex justify-between px-5 text-center text-xl transform -translate-y-7">
-      <span class="input-footer animate-bounce" :style="`color: ${blok.text_color.color};`">
+      <span :class="`input-footer animate-bounce transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`">
         <span v-for="(input, index) in 3" :key="index" class="input-dots">•</span>
       </span>
-      <span class="input-footer animate-bounce" :style="`color: ${blok.text_color.color};`">
+      <span :class="`input-footer animate-bounce transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`">
         <span v-for="(input, index) in 3" :key="index" class="input-dots">•</span>
       </span>
     </div>
@@ -18,12 +18,12 @@
       <div
         class="messages-container flex-1 row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
       >
-        <span class="footer-messages text-sm">
+        <span :class="`footer-messages text-sm ${$themeColor(blok.background_color.color) ? 'text-white' : 'text-black'}`">
           Aprograma {{ typewriter }}
         </span>
       </div>
       <span
-        class="footer-copyright text-sm text-center flex-1 row-start-1 row-end-1 col-start-1 col-end-3"
+        :class="`footer-copyright text-sm text-center flex-1 row-start-1 row-end-1 col-start-1 col-end-3 ${$themeColor(blok.background_color.color) ? 'text-white' : 'text-black'}`"
       >
         © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
       </span>
@@ -34,7 +34,7 @@
           <component
             :is="iconLink.component"
             :blok="iconLink"
-            class="social-icon"
+            :class="`social-icon ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`"
           />
         </li>
       </ul>
@@ -45,19 +45,18 @@
     class="footer h-48 my-12 mx-auto px-2"
   >
     <div class="footer-content h-full flex flex-col items-center text-center">
-      <span class="input-footer relative bottom-10 animate-bounce text-center text-xl" :style="`color: ${blok.text_color.color};`">
+      <span :class="`input-footer relative bottom-10 animate-bounce text-center text-xl transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`">
         <span v-for="(input, index) in 3" :key="index" class="input-dots">•</span>
       </span>
       <div
         class="messages-container flex-1"
       >
-        <span class="footer-messages text-sm" :style="`color: ${blok.text_color.color};`">
+        <span :class="`footer-messages text-sm transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`">
           Aprograma {{ typewriter }}
         </span>
       </div>
       <span
-        class="footer-copyright flex-1 text-sm text-center"
-        :style="`color: ${blok.text_color.color};`"
+        :class="`footer-copyright flex-1 text-sm text-center transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`"
       >
         © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
       </span>
@@ -68,7 +67,7 @@
           <component
             :is="iconLink.component"
             :blok="iconLink"
-            class="social-icon"
+            :class="`social-icon transition duration-700 ${$themeColor($store.state.data.themeColor) ? 'filter invert' : ''}`"
           />
         </li>
       </ul>

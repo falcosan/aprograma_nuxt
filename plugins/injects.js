@@ -15,6 +15,9 @@ export default ({ app }, inject) => {
         return italian
     }
   })
+  inject('themeColor', (color) => {
+    return !((parseInt(color.replace('#', ''), 16) > 0xFFFFFF / 2))
+  })
   inject('rangeItems', (val, max) => {
     return val < 1 ? 1 : (val > max ? max : val)
   })

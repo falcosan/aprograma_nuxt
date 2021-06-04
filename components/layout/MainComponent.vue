@@ -26,7 +26,7 @@
         <source :src="blok.background_media.filename" :type="`video/${blok.background_media.filename.toLowerCase().split('.').pop()}`">
       </video>
     </div>
-    <div v-else class="background-main fixed inset-0 -z-10" :style="`background-color: ${blok.background_color.color};`" />
+    <div v-else class="background-main fixed inset-0 -z-10 transition-colors duration-700" :style="`background-color: ${randomBackgroundColor};`" />
   </main>
 </template>
 
@@ -38,12 +38,30 @@ export default {
       required: true
     }
   },
+  data () {
+    return {
+      index: 0
+    }
+  },
   computed: {
     lookFile () {
       return this.blok.background_media.filename ? (/(gif|jpe?g|tiff?|png|webp|bmp)/gi).test(this.blok.background_media.filename.toLowerCase().split('.').pop()) ? 'image' : 'video' : false
+    },
+    randomBackgroundColor () {
+      return this.blok.background_color.color.split('; ')[this.index]
     }
   },
+  watch: {
+    $route () { this.setBackgroundColor() }
+  },
+  created () {
+    this.setBackgroundColor()
+  },
   methods: {
+    setBackgroundColor () {
+      this.index = ~~(Math.random() * (this.blok.background_color.color.split('; ').length - 0)) + 0
+      this.$store.commit('data/themeColorMutation', this.randomBackgroundColor)
+    },
     imageType () {
       if (this.lookFile === 'image') {
         switch (this.blok.background_media.filename.toLowerCase().split('.').pop()) {

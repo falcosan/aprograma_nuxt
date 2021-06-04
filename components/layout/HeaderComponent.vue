@@ -17,7 +17,7 @@
           </Link>
         </div>
         <transition enter-active-class="duration-300 transform" leave-active-class="duration-300 transform" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
-          <div v-if="expanded" class="menu-expanded h-10 w-full grid grid-flow-col auto-cols-fr overflow-hidden rounded-b-xl transition opacity-70 hover:opacity-100 shadow-md">
+          <div v-if="expanded" class="menu-expanded absolute h-10 w-full grid grid-flow-col px-20 overflow-hidden transition shadow hover:shadow-md">
             <ul class="link-list grid grid-flow-col auto-cols-fr" :style="`background-color: ${blok.background_color.color};`">
               <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu hover:bg-gray-300">
                 <Link class="flex items-center justify-center py-2 px-3 text-sm truncate" :blok="item" />

@@ -7,10 +7,14 @@
     @mouseover="expandIn"
   >
     <div class="input-container flex justify-between text-center text-xl transform -translate-y-20">
-      <Icon animate-menu tag="button" class="open-menu relative w-20 h-20 z-10 cursor-pointer rounded-tr-xl shadow-md bg-white" size="w-5 h-5" />
-      <Icon animate-menu tag="button" class="open-menu relative w-20 h-20 z-10 cursor-pointer rounded-tl-xl shadow-md bg-white" size="w-5 h-5" />
+      <div class="open-menu relative w-20 h-20 flex items-center justify-center rounded-tr-xl shadow-md bg-white">
+        <span v-for="(input, index) in 3" :key="index" class="input-dots mt-2 transform animate-bounce">•</span>
+      </div>
+      <div class="open-menu relative w-20 h-20 flex items-center justify-center rounded-tl-xl shadow-md bg-white">
+        <span v-for="(input, index) in 3" :key="index" class="input-dots mt-2 transform animate-bounce">•</span>
+      </div>
     </div>
-    <div :class="`footer-content h-full w-full flex items-center transition duration-500 transform  ${expanded ? '-translate-y-20' : ''} ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`">
+    <div :class="`footer-content h-full w-full flex items-center overflow-hidden transition duration-500 transform ${expanded ? '-translate-y-20' : ''} ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`">
       <div
         class="messages-container flex-1 row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
       >

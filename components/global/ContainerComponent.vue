@@ -54,7 +54,7 @@
             leave-active-class="out-in duration-200"
             :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
             :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
-            class="carousel relative h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-5xl grid gap-5 auto-cols-fr grid-flow-col overflow-y-scroll overflow-x-hidden"
+            class="carousel relative h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl grid gap-5 auto-cols-fr grid-flow-col overflow-y-scroll overflow-x-hidden"
           >
             <li
               v-for="(component, index) in elements"
@@ -74,7 +74,7 @@
             </li>
           </transition-group>
           <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-3 justify-center my-5 md:my-10">
-            <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 rounded-full select-none text-xl transition-all ${dot === currentSlide + 1 ? 'ring-1 transform -translate-y-1 duration-200 ring-black bg-black' : 'bg-black'}`" />
+            <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1 w-1 rounded-full select-none text-xl transition-all ${dot === currentSlide + 1 ? 'ring-1 transform -translate-y-1 duration-200 ring-black bg-black' : 'bg-black'}`" />
           </div>
         </div>
       </div>

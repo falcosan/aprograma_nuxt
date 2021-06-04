@@ -5,12 +5,12 @@
   >
     <nav class="navbar">
       <div class="menu-wrapper flex">
-        <div class="logo-home relative w-18 z-20 rounded-br-lg">
+        <div class="logo-home relative w-20 z-20">
           <Link icon-item class="home-link flex transition-shadow duration-300 shadow-md bg-white" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
             <template #icon>
               <Logo
                 transition
-                size="w-18"
+                size="w-20"
                 :blok="blok.body[blok.body.component === 'Logo']"
               />
             </template>
@@ -18,20 +18,18 @@
         </div>
         <!-- <Icon animate-menu tag="button" :class="`open-menu relative h-12 z-10 cursor-pointer transition-shadow duration-300 bg-white ${expanded ? 'border-b' : ''}`" size="w-5 h-5" @click.native="expanded = !expanded" /> -->
         <transition enter-active-class="duration-300 transform" leave-active-class="duration-300 transform" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
-          <div class="menu-expanded h-10 w-full grid grid-flow-col">
+          <div class="menu-expanded h-20 w-full grid grid-flow-col opacity-80 shadow-md">
             <ul class="link-list grid grid-flow-col auto-cols-fr" :style="`background-color: ${blok.background_color.color};`">
               <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu hover:bg-gray-300">
-                <Link class="py-2 px-3 text-sm font-light truncate" :blok="item" />
+                <Link class="py-2 px-3 text-sm text-center truncate" :blok="item" />
               </li>
             </ul>
-            <div class="language-navbar">
-              <Translate
-                style-translate-list="grid grid-flow-col auto-cols-fr"
-                class="translate-header text-sm font-light filter grayscale text-white"
-                style-translate-item="w-full py-2 px-3 bg-gray-800"
-                :blok="$contentByName(blok.body, 'Translate')"
-              />
-            </div>
+            <Translate
+              class="translate-header grid h-full text-sm font-light filter grayscale text-white"
+              style-translate-list="grid grid-flow-col auto-cols-fr"
+              style-translate-item="w-full py-2 px-3 text-right bg-gray-800"
+              :blok="$contentByName(blok.body, 'Translate')"
+            />
           </div>
         </transition>
       </div>
@@ -65,7 +63,6 @@
           size="w-12"
           style-logo-container="w-14"
         />
-
         <Translate
           translate-transition
           class="translate-header w-2/12 bg-gray-800 text-white filter grayscale"

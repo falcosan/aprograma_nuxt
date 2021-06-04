@@ -1,6 +1,6 @@
 <template>
-  <main class="main md:py-20">
-    <div class="main-wrapper max-w-sm xs:max-w-md sm:max-w-lg md:max-w-full min-h-screen overflow-hidden my-10 md:my-auto mx-auto rounded-b-xl md:rounded-xl shadow-xl bg-opacity-60 bg-white">
+  <main class="main">
+    <div class="main-wrapper max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl min-h-screen overflow-hidden my-10 md:my-14 mx-auto rounded-b-xl md:rounded-xl shadow-xl bg-opacity-60 bg-white">
       <transition enter-active-class="duration-1000 in-out" leave-active-class="duration-0 in-out" leave-to-class="opacity-0" enter-class="opacity-0" mode="out-in">
         <Nuxt v-if="blok.view" />
       </transition>

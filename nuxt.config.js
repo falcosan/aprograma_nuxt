@@ -28,6 +28,7 @@ export default {
   loading: '~/components/layout/LoadingComponent.vue',
   plugins: [
     '~/plugins/injects',
+    '~/plugins/polyfill',
     '~/plugins/components',
     '~/plugins/touchScreen.client.js',
     '~/plugins/persistedState.client.js'

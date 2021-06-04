@@ -7,7 +7,6 @@
         v-text="blok.title"
       />
       <Icon
-        v-if="$store.state.data.windowWidth >= 768"
         arrow
         :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
         class="post-close absolute right-0"
@@ -15,18 +14,9 @@
         size="p-3 w-10"
         @click.native="goBack()"
       />
-      <Icon
-        v-else
-        arrow
-        class="post-back absolute bottom-0 right-0"
-        tag="button"
-        size="w-8 p-2"
-        :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
-        @click.native.passive="goBack()"
-      />
       <component
         :is="lookFile()"
-        class="post-file w-full h-full max-h-3xl object-cover object-center select-none"
+        class="post-file w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl object-cover object-center select-none"
         :alt="`${blok.file.alt} project`"
         :src="blok.file.filename"
       />

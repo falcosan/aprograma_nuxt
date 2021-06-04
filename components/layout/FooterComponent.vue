@@ -2,19 +2,15 @@
   <footer
     v-if="$store.state.data.windowWidth >= 768 && $device.isDesktop"
     :style="`background-color: ${blok.background_color.color};`"
-    :class="`footer ${expanded} w-full fixed z-40 bottom-0 transition-height duration-200 ease-in-out`"
+    :class="`footer w-full fixed z-40 bottom-0 transition-height duration-200 ease-in-out ${expanded ? 'h-28' : 'h-0'}`"
     @mouseleave="expandOut"
     @mouseover="expandIn"
   >
-    <div class="input-container flex justify-between px-5 text-center text-xl transform -translate-y-7">
-      <span :class="`input-footer animate-bounce transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`">
-        <span v-for="(input, index) in 3" :key="index" class="input-dots">•</span>
-      </span>
-      <span :class="`input-footer animate-bounce transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`">
-        <span v-for="(input, index) in 3" :key="index" class="input-dots">•</span>
-      </span>
+    <div class="input-container flex justify-between text-center text-xl transform -translate-y-20">
+      <Icon animate-menu tag="button" class="open-menu relative w-20 h-20 z-10 cursor-pointer rounded-tr-xl shadow-md bg-white" size="w-5 h-5" />
+      <Icon animate-menu tag="button" class="open-menu relative w-20 h-20 z-10 cursor-pointer rounded-tl-xl shadow-md bg-white" size="w-5 h-5" />
     </div>
-    <div :class="`footer-content h-1/2 flex items-center ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`">
+    <div :class="`footer-content h-full w-full flex items-center transition duration-500 transform  ${expanded ? '-translate-y-20' : ''} ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`">
       <div
         class="messages-container flex-1 row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
       >
@@ -85,7 +81,7 @@ export default {
   },
   data () {
     return {
-      expanded: 'not-expanded h-0',
+      expanded: false,
       currentYear: new Date().getFullYear(),
       typewriter: '',
       playTypeText: undefined,
@@ -107,10 +103,10 @@ export default {
   },
   methods: {
     expandIn () {
-      this.expanded = 'expandend h-28'
+      this.expanded = true
     },
     expandOut () {
-      this.expanded = 'not-expanded h-0'
+      this.expanded = false
     },
     typeText () {
       if (this.charIndex < this.words.length) {

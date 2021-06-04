@@ -1,33 +1,34 @@
 <template>
   <header
     v-if="$store.state.data.windowWidth >= 768 && $device.isDesktop"
-    class="header fixed z-40"
+    class="header fixed w-full top-0 z-40"
   >
     <nav class="navbar">
-      <div class="menu-wrapper">
-        <div :class="`logo-home relative z-20`">
-          <Link icon-item class="home-link flex bg-white transition-shadow duration-300 shadow-md" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
+      <div class="menu-wrapper flex">
+        <div class="logo-home relative w-18 z-20 rounded-br-lg">
+          <Link icon-item class="home-link flex transition-shadow duration-300 shadow-md bg-white" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
             <template #icon>
               <Logo
                 transition
-                size="w-24"
+                size="w-18"
                 :blok="blok.body[blok.body.component === 'Logo']"
               />
             </template>
           </Link>
         </div>
-        <Icon animate-menu tag="button" :class="`open-menu relative h-12 w-full z-10 cursor-pointer transition-shadow duration-300 bg-white ${expanded ? 'border-b' : ''}`" size="w-6 h-6" @click.native="expanded = !expanded" />
+        <!-- <Icon animate-menu tag="button" :class="`open-menu relative h-12 z-10 cursor-pointer transition-shadow duration-300 bg-white ${expanded ? 'border-b' : ''}`" size="w-5 h-5" @click.native="expanded = !expanded" /> -->
         <transition enter-active-class="duration-300 transform" leave-active-class="duration-300 transform" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
-          <div v-if="expanded" class="menu-expanded">
-            <ul class="link-list" :style="`background-color: ${blok.background_color.color};`">
+          <div class="menu-expanded h-10 w-full grid grid-flow-col">
+            <ul class="link-list grid grid-flow-col auto-cols-fr" :style="`background-color: ${blok.background_color.color};`">
               <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu hover:bg-gray-300">
-                <Link class="py-2 px-3 font-light" :blok="item" />
+                <Link class="py-2 px-3 text-sm font-light truncate" :blok="item" />
               </li>
             </ul>
             <div class="language-navbar">
               <Translate
-                class="translate-header font-light filter grayscale text-white"
-                style-translate-item="w-full p-3 bg-gray-800"
+                style-translate-list="grid grid-flow-col auto-cols-fr"
+                class="translate-header text-sm font-light filter grayscale text-white"
+                style-translate-item="w-full py-2 px-3 bg-gray-800"
                 :blok="$contentByName(blok.body, 'Translate')"
               />
             </div>

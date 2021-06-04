@@ -22,7 +22,6 @@
     "netlify-lambda": "^2.0.8",
     "nuxt": "^2.15.6",
     "nuxt-compress": "^5.0.0",
-    "smoothscroll-polyfill": "^0.4.4",
     "storyblok-nuxt": "^2.0.1",
     "vue2-touch-events": "^3.2.2",
     "vuex-persistedstate": "*"

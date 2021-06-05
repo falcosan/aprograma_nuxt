@@ -4,7 +4,7 @@
     ref="form"
     class="form w-full"
   >
-    <Modal class="modal-submit" :open="submitting" modal-style="bg-opacity-90 bg-gray-200 cursor-wait">
+    <Modal v-if="submitting" class="modal-submit" :open="submitting" modal-style="bg-opacity-90 bg-gray-200 cursor-wait">
       <template #body>
         <Icon
           tag="span"
@@ -33,6 +33,9 @@
         :field-value.sync="fields[index]"
         :blok="input"
       />
+      <div class="from-controls grid gap-5 grid-cols-medium">
+        <Input v-for="input in $contentByName(blok.body, 'Input')" :key="input._uid" class="buttons py-3 px-10" :blok="input" />
+      </div>
     </form>
   </div>
 </template>

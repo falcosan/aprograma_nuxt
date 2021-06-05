@@ -79,7 +79,7 @@
         </div>
       </div>
     </div>
-    <div v-else class="container-components grid gap-5 auto-cols-fr lg:grid-cols-container" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : false">
+    <div v-else class="container-components grid gap-5 auto-cols-fr lg:grid-cols-big" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : false">
       <div
         v-for="component in elements"
         :key="component._uid"

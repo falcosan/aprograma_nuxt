@@ -42,7 +42,9 @@ module.exports = {
         '-40': '-40'
       },
       gridTemplateColumns: {
-        container: 'repeat(auto-fit, minmax(300px, 1fr))'
+        big: 'repeat(auto-fit, minmax(300px, 1fr))',
+        medium: 'repeat(auto-fit, minmax(190px, 1fr))'
+
       },
       transitionProperty: {
         height: 'height'

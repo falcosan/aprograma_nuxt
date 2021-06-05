@@ -1,6 +1,6 @@
 <template>
-  <div class="max-w-sm sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-0 mx-auto pb-10 pt-20 px-6">
-    <div v-if="error.statusCode === 404" class="max-h-screen grid gap-y-5 grid-flow-row text-center py-10 bg-gray-300">
+  <div class="h-screen">
+    <div v-if="error.statusCode === 404" class="h-full flex flex-col justify-center items-center space-y-5 text-center py-10 bg-gray-300">
       <span class="text-9xl font-bold">{{ error.statusCode }}</span>
       <span class="w-max h-max justify-self-center transform rotate-90"> = ( </span>
       <span class="text-2xl"> {{ error.message }}</span>
@@ -8,7 +8,7 @@
         Home
       </NuxtLink>
     </div>
-    <div v-else class="max-h-screen grid gap-y-5 grid-flow-row text-center py-10 bg-gray-300">
+    <div v-else class="h-full flex flex-col justify-center items-center space-y-5 text-center py-10 bg-gray-300">
       <span class="text-9xl font-bold">{{ error.statusCode }}</span>
       <span class="w-max h-max justify-self-center transform rotate-90">= (</span>
       <span class="text-2xl"> {{ error.message }}</span>

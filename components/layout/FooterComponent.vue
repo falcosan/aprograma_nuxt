@@ -38,6 +38,7 @@
           />
         </li>
       </ul>
+      <Form :blok="$contentByName(blok.body, 'Form')" />
     </div>
   </footer>
   <footer

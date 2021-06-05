@@ -11,7 +11,6 @@
               <Logo
                 transition
                 size="w-16"
-                :blok="blok.body[blok.body.component === 'Logo']"
               />
             </template>
           </Link>

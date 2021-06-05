@@ -33,7 +33,6 @@
         :field-value.sync="fields[index]"
         :blok="input"
       />
-      <Button v-for="button in $contentByName(blok.body, 'Button')" :key="button._uid" class="submit-button float-right py-3 px-10" :blok="button" />
     </form>
   </div>
 </template>

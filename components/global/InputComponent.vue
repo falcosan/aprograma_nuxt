@@ -1,6 +1,14 @@
 <template>
-  <input v-if="blok" :class="`input cursor-pointer ${$themeColor(blok.background_color.color) ? 'text-white' : ''}`" :style="`background-color: ${blok.background_color.color};`" :type="blok.type" :value="blok.text">
-  <input v-else class="input cursor-pointer" :type="type" :value="text">
+  <input
+    v-if="blok"
+    :id="`${blok.type}-input`"
+    :class="`input cursor-pointer ${$themeColor(blok.background_color.color) ? 'text-white' : ''}`"
+    :style="`background-color: ${blok.background_color.color};`"
+    :type="blok.type"
+    :value="blok.text"
+    @click="blok.type === 'reset' ? $emit('resetInput') : false"
+  >
+  <input v-else :id="`${text}-input`" class="input cursor-pointer" :type="type" :value="text">
 </template>
 <script>
 export default {

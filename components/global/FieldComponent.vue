@@ -1,8 +1,9 @@
 <template>
   <div class="field-item relative grid mb-5 md:mb-10" :style="`background-color: ${blok.background_color.color};`">
-    <label :class="`field-label my-2 ${fieldError() ? 'text-red-600' : 'text-black'}`" :style="`color: ${blok.text_color.color};`">{{ blok.label }} *</label>
+    <label :class="`field-label my-2 ${fieldError() ? 'text-red-600' : 'text-black'}`" :for="blok.label.toLowerCase().replace(/ /g,'')" :style="`color: ${blok.text_color.color};`">{{ blok.label }} *</label>
     <component
       :is="blok.tag"
+      :id="`${blok.type}-field`"
       :name="blok.label.toLowerCase().replace(/ /g,'')"
       :type="blok.type"
       :class="`field-input w-full relative z-20 p-2 resize-none ${isMessage ? 'h-40' : 'h-10 leading-10'} ${fieldError() ? 'border-dotted border-2 border-red-600' : 'border border-black'}`"

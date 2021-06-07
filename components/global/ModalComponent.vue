@@ -23,7 +23,7 @@
           </header>
           <section
             v-if="hasSlot('body')"
-            :class="`modal-body h-auto px-5 pt-5 lg:px-12 ${closeMode ? 'cursor-pointer' : ''}`"
+            :class="`modal-body h-auto px-5 lg:px-12 ${closeMode ? 'cursor-pointer' : ''}`"
             @click.self.stop="closeMode ? closeModal() : false"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
@@ -91,7 +91,7 @@ export default {
 </script>
 <style>
 .body-container{
-  max-height: calc(100vh - 100px);
+  max-height: calc(100vh - 90px);
 }
 .body-container > *:not(hr) {
   max-height: inherit;

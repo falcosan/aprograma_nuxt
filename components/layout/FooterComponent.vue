@@ -3,42 +3,52 @@
     v-if="$store.state.data.windowWidth >= 768 && $device.isDesktop"
     :style="`background-color: ${blok.background_color.color};`"
     :class="`footer w-full fixed z-40 bottom-0 transition-height duration-200 ease-in-out ${expanded ? 'h-28' : 'h-0'}`"
-    @mouseleave="expandOut"
-    @mouseover="expandIn"
   >
-    <div class="input-container flex justify-between text-center text-xl transform -translate-y-20">
-      <div class="open-menu relative w-20 h-20 flex items-center justify-center rounded-tr-xl shadow-md bg-white">
-        <span v-for="(input, index) in 3" :key="index" class="input-dots mt-2 transform animate-bounce">•</span>
-      </div>
-      <div class="open-menu relative w-20 h-20 flex items-center justify-center rounded-tl-xl shadow-md bg-white">
-        <span v-for="(input, index) in 3" :key="index" class="input-dots mt-2 transform animate-bounce">•</span>
-      </div>
+    <div
+      :style="`background-color: ${expanded ? blok.background_color.color : '#fff'};`"
+      class="top-kick absolute w-20 h-20 right-0 -top-20 flex items-center justify-center transition-all duration-200 rounded-tl-xl shadow-md"
+      @click="scrollTop();"
+    >
+      <Icon arrow tag="button" size="w-full" :class="`w-full h-full flex justify-center transform rotate-90 ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`" />
     </div>
-    <div :class="`footer-content h-full w-full flex items-center overflow-hidden transition duration-500 transform ${expanded ? '-translate-y-20' : ''} ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`">
+    <div
+      class="content-container h-full overflow-hidden"
+      @mouseleave="expandOut"
+      @mouseover="expandIn"
+    >
       <div
-        class="messages-container flex-1 row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
+        :style="`background-color: ${expanded ? blok.background_color.color : '#fff'};`"
+        class="open-footer absolute w-20 h-20 left-0 -top-20 flex items-center justify-center transition-all duration-200 rounded-tr-xl shadow-md"
       >
-        <span class="footer-messages text-sm">
-          Aprograma {{ typewriter }}
-        </span>
+        <span v-for="(input, index) in 3" :key="index" :class="`input-dots mt-2 transform animate-bounce ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`">•</span>
       </div>
-      <span
-        class="footer-copyright text-sm text-center flex-1 row-start-1 row-end-1 col-start-1 col-end-3"
+      <div
+        :class="`footer-content h-full w-full flex items-center transition-opacity duration-200 ${expanded ? '' : 'opacity-0'} ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`"
       >
-        © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
-      </span>
-      <ul
-        class="social-links grid grid-flow-col gap-3 mr-3 flex-1 row-start-1 row-end-1 col-start-2 col-end-2 justify-end"
-      >
-        <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid">
-          <component
-            :is="iconLink.component"
-            :blok="iconLink"
-            class="social-icon"
-          />
-        </li>
-      </ul>
-      <Form :blok="$contentByName(blok.body, 'Form')[0]" />
+        <div
+          class="messages-container flex-1 row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
+        >
+          <span class="footer-messages text-sm">
+            Aprograma {{ typewriter }}
+          </span>
+        </div>
+        <span
+          class="footer-copyright text-sm text-center flex-1 row-start-1 row-end-1 col-start-1 col-end-3"
+        >
+          © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
+        </span>
+        <ul
+          class="social-links grid grid-flow-col gap-3 mr-3 flex-1 row-start-1 row-end-1 col-start-2 col-end-2 justify-end"
+        >
+          <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid">
+            <component
+              :is="iconLink.component"
+              :blok="iconLink"
+              class="social-icon"
+            />
+          </li>
+        </ul>
+      </div>
     </div>
   </footer>
   <footer
@@ -87,6 +97,7 @@ export default {
   data () {
     return {
       expanded: false,
+      showChat: false,
       currentYear: new Date().getFullYear(),
       typewriter: '',
       playTypeText: undefined,
@@ -145,6 +156,9 @@ export default {
       this.charIndex = 0
       this.typewriterIndex = 0
       setTimeout(this.typeText, 400)
+    },
+    scrollTop () {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 }

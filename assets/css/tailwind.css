@@ -3,6 +3,7 @@
 @tailwind utilities;
 body {
     touch-action: manipulation;
+    scroll-behavior: smooth;
 }
 
 *::-webkit-scrollbar {

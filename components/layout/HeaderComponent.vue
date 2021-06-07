@@ -4,7 +4,7 @@
     class="header fixed w-full top-0 z-40"
   >
     <nav class="navbar">
-      <div class="menu-wrapper grid grid-flow-col-dense justify-between">
+      <div class="menu-wrapper h-0 grid grid-flow-col-dense justify-between">
         <div class="logo-home relative w-20 h-20 z-20">
           <Link icon-item class="home-link flex items-center justify-center transition-shadow duration-300 rounded-br-xl shadow-md bg-white" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
             <template #icon>

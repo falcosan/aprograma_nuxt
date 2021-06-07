@@ -6,7 +6,7 @@
     <nav class="navbar">
       <div class="menu-wrapper h-0 grid grid-flow-col-dense justify-between">
         <div class="logo-home relative w-20 h-20 z-20">
-          <Link icon-item class="home-link flex items-center justify-center transition-shadow duration-300 rounded-br-xl shadow-md bg-white" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
+          <Link icon-item class="home-link flex items-center justify-center transition-shadow duration-300 rounded-br-xl bg-white" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
             <template #icon>
               <Logo
                 transition
@@ -16,7 +16,7 @@
           </Link>
         </div>
         <transition enter-active-class="duration-300" leave-active-class="duration-300" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
-          <div v-if="expanded" class="menu-expanded h-10 grid grid-flow-col overflow-hidden rounded-b-xl transition transform shadow-md opacity-80 hover:opacity-100">
+          <div v-if="expanded" class="menu-expanded h-10 grid grid-flow-col overflow-hidden rounded-b-xl transition transform opacity-80 hover:opacity-100">
             <ul class="link-list grid grid-flow-col auto-cols-fr" :style="`background-color: ${blok.background_color.color};`">
               <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu hover:bg-gray-300">
                 <Link class="flex items-center justify-center py-2 px-3 text-sm font-light truncate" :blok="item" />
@@ -30,7 +30,7 @@
             />
           </div>
         </transition>
-        <Icon animate-menu tag="button" class="open-menu relative w-20 h-20 z-10 cursor-pointer rounded-bl-xl shadow-md bg-white" size="w-5 h-5" @click.native="expanded = !expanded" />
+        <Icon animate-menu tag="button" class="open-menu relative w-20 h-20 z-10 cursor-pointer rounded-bl-xl bg-white" size="w-5 h-5" @click.native="expanded = !expanded" />
       </div>
     </nav>
   </header>

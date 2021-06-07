@@ -17,7 +17,7 @@
         :class="`icon ${blok.icon_image.filename
           .split(/[\\/]/)
           .pop()
-          .replace(/\.[^/.]+$/, '')}-icon h-auto my-0 mx-auto ${size} object-contain object-center`"
+          .replace(/\.[^/.]+$/, '')}-icon h-auto my-0 mx-auto fill-current ${size} object-contain object-center`"
         :src="blok.icon_image.filename"
         alt=""
         :name="blok.name"
@@ -30,7 +30,7 @@
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        :class="`home-icon h-auto fill-current my-0 mx-auto ${size}`"
+        :class="`home-icon h-auto my-0 mx-auto fill-current ${size}`"
         xmlns="http://www.w3.org/2000/svg"
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -42,7 +42,7 @@
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        :class="`arrow-icon h-auto fill-current my-0 mx-auto ${size}`"
+        :class="`arrow-icon h-auto my-0 mx-auto fill-current ${size}`"
         xmlns="http://www.w3.org/2000/svg"
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -51,7 +51,7 @@
       <!--CLOSE-->
       <svg
         v-else-if="close"
-        :class="`close-icon h-auto fill-current my-0 mx-auto ${size}`"
+        :class="`close-icon h-auto my-0 mx-auto fill-current ${size}`"
         width="24"
         height="24"
         viewBox="0 0 24 24"
@@ -63,7 +63,7 @@
       <!--NEXT-->
       <svg
         v-else-if="next"
-        :class="`next-icon h-auto fill-current my-0 mx-auto ${size}`"
+        :class="`next-icon h-auto my-0 mx-auto fill-current ${size}`"
         width="24"
         height="24"
         viewBox="0 0 24 24"
@@ -75,7 +75,7 @@
       <!--PREVIOUS-->
       <svg
         v-else-if="previous"
-        :class="`previous-icon h-auto fill-current my-0 mx-auto ${size}`"
+        :class="`previous-icon h-auto my-0 mx-auto fill-current ${size}`"
         width="24"
         height="24"
         viewBox="0 0 24 24"
@@ -90,7 +90,7 @@
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        :class="`restart-icon h-auto fill-current my-0 mx-auto ${size}`"
+        :class="`restart-icon h-auto my-0 mx-auto fill-current ${size}`"
         xmlns="http://www.w3.org/2000/svg"
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -113,21 +113,20 @@
         clip-rule="evenodd"
       ><path d="M24 18v1h-24v-1h24zm0-6v1h-24v-1h24zm0-6v1h-24v-1h24z" fill="#1040e2" /><path d="M24 19h-24v-1h24v1zm0-6h-24v-1h24v1zm0-6h-24v-1h24v1z" /></svg>
 
-      <!--CHAT-->
+      <!--EYE-->
       <svg
-        v-else-if="chat"
-        :class="`chat-icon ${size}`"
+        v-else-if="eye"
+        :class="`eye-icon h-auto my-0 mx-auto fill-current ${size}`"
         width="24"
         height="24"
         xmlns="http://www.w3.org/2000/svg"
         fill-rule="evenodd"
         clip-rule="evenodd"
-      ><path d="M12 1c-6.338 0-12 4.226-12 10.007 0 2.05.739 4.063 2.047 5.625l-1.993 6.368 6.946-3c1.705.439 3.334.641 4.864.641 7.174 0 12.136-4.439 12.136-9.634 0-5.812-5.701-10.007-12-10.007m0 1c6.065 0 11 4.041 11 9.007 0 4.922-4.787 8.634-11.136 8.634-1.881 0-3.401-.299-4.946-.695l-5.258 2.271 1.505-4.808c-1.308-1.564-2.165-3.128-2.165-5.402 0-4.966 4.935-9.007 11-9.007" /></svg>
-
+      ><path d="M12.01 20c-5.065 0-9.586-4.211-12.01-8.424 2.418-4.103 6.943-7.576 12.01-7.576 5.135 0 9.635 3.453 11.999 7.564-2.241 4.43-6.726 8.436-11.999 8.436zm-10.842-8.416c.843 1.331 5.018 7.416 10.842 7.416 6.305 0 10.112-6.103 10.851-7.405-.772-1.198-4.606-6.595-10.851-6.595-6.116 0-10.025 5.355-10.842 6.584zm10.832-4.584c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0 1c2.208 0 4 1.792 4 4s-1.792 4-4 4-4-1.792-4-4 1.792-4 4-4z" /></svg>
       <!--LOADER-->
       <svg
         v-else-if="loader"
-        :class="`loader-icon my-0 mx-auto ${size}`"
+        :class="`loader-icon h-auto my-0 mx-auto fill-current ${size}`"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -217,7 +216,7 @@ export default {
       type: Boolean,
       default: false
     },
-    chat: {
+    eye: {
       type: Boolean,
       default: false
     },

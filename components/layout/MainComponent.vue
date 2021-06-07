@@ -1,6 +1,6 @@
 <template>
-  <main class="main pb-10 md:pb-32">
-    <div class="main-wrapper max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl min-h-screen overflow-hidden mt-10 md:mt-14 mx-auto rounded-b-xl md:rounded-xl shadow-xl bg-opacity-60 bg-white">
+  <main class="main">
+    <div :class="`main-wrapper max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl min-h-screen overflow-hidden mx-auto mt-10 shadow-lg bg-opacity-60 bg-white ${!$device.isDesktop ? '' : 'md:mt-14'}`">
       <transition enter-active-class="duration-500 in-out" leave-active-class="duration-0 in-out" leave-to-class="opacity-0" enter-class="opacity-0" mode="out-in">
         <Nuxt v-if="blok.view" />
       </transition>

@@ -6,7 +6,7 @@
   >
     <div
       :style="`background-color: ${expanded ? blok.background_color.color : '#fff'};`"
-      class="top-kick absolute w-20 h-20 right-0 -top-20 flex items-center justify-center transition-all duration-200 rounded-tl-xl shadow-md"
+      class="top-kick absolute w-20 h-20 right-0 -top-20 flex items-center justify-center transition-all duration-200 rounded-tl-xl"
       @click="scrollTop();"
     >
       <Icon arrow tag="button" size="w-full" :class="`w-full h-full flex justify-center transform rotate-90 ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`" />
@@ -18,9 +18,9 @@
     >
       <div
         :style="`background-color: ${expanded ? blok.background_color.color : '#fff'};`"
-        class="open-footer absolute w-20 h-20 left-0 -top-20 flex items-center justify-center transition-all duration-200 rounded-tr-xl shadow-md"
+        class="open-footer absolute w-20 h-20 left-0 -top-20 flex items-center justify-center transition-all duration-200 rounded-tr-xl"
       >
-        <span v-for="(input, index) in 3" :key="index" :class="`input-dots mt-2 transform animate-bounce ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`">•</span>
+        <Icon eye tag="span" size="w-full" :class="` ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`" />
       </div>
       <div
         :class="`footer-content h-full w-full flex items-center transition-opacity duration-200 ${expanded ? '' : 'opacity-0'} ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`"
@@ -55,19 +55,19 @@
     v-else
     class="footer h-48 my-20 mx-auto px-2"
   >
-    <div class="footer-content h-full flex flex-col items-center text-center">
-      <span :class="`input-footer relative bottom-10 animate-bounce text-center text-xl transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`">
-        <span v-for="(input, index) in 3" :key="index" class="input-dots">•</span>
+    <div :class="`footer-content h-full flex flex-col items-center text-center transition-all duration-700 ${$themeColor($store.state.data.themeColor) ? 'filter invert' : ''}`">
+      <span class="input-footer relative grid grid-flow-col-dense gap-5 items-center bottom-10 text-xl font-thin transition-colors duration-700">
+        - <Icon eye tag="span" size="w-full" class="eye-footer animate-pulse" /> -
       </span>
       <div
         class="messages-container flex-1"
       >
-        <span :class="`footer-messages text-sm transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`">
+        <span class="footer-messages text-sm transition-colors duration-700">
           Aprograma {{ typewriter }}
         </span>
       </div>
       <span
-        :class="`footer-copyright flex-1 text-sm text-center transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`"
+        class="footer-copyright flex-1 text-sm text-center transition-colors duration-700"
       >
         © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
       </span>
@@ -78,7 +78,7 @@
           <component
             :is="iconLink.component"
             :blok="iconLink"
-            :class="`social-icon transition duration-700 ${$themeColor($store.state.data.themeColor) ? 'filter invert' : ''}`"
+            class="social-icon transition duration-700"
           />
         </li>
       </ul>

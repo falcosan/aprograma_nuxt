@@ -91,10 +91,10 @@ export default {
 </script>
 <style>
 .body-container{
-  height: calc(100vh - 72px);
+  max-height: calc(100vh - 100px);
 }
 .body-container > *:not(hr) {
-  max-height: calc(100vh - 72px);
+  max-height: inherit;
   align-self: flex-end;
 }
 .body-container > *:first-child{

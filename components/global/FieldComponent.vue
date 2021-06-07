@@ -1,5 +1,5 @@
 <template>
-  <div class="field-item relative grid mb-5 md:mb-10" :style="`background-color: ${blok.background_color.color};`">
+  <div class="field-item relative grid mb-5" :style="`background-color: ${blok.background_color.color};`">
     <label :class="`field-label my-2 ${fieldError() ? 'text-red-600' : 'text-black'}`" :for="blok.label.toLowerCase().replace(/ /g,'')" :style="`color: ${blok.text_color.color};`">{{ blok.label }} *</label>
     <component
       :is="blok.tag"

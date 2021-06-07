@@ -5,14 +5,14 @@
   >
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
       <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
-        <img :class="`project-image w-full object-cover object-center select-none ${rowContainer ? 'h-60 sm:h-72 md:h-60 lg:h-80 xl:h-96 2xl:h-sm' : 'h-5/6 md:h-full'}`" width="100%" height="100%" :src="projectContent.image.filename" :alt="projectContent.image.alt">
+        <img :class="`project-image w-full object-cover object-center select-none ${rowContainer ? 'h-60 sm:h-72 md:h-60 lg:h-80 xl:h-96 2xl:h-sm' : 'h-full'}`" width="100%" height="100%" :src="projectContent.image.filename" :alt="projectContent.image.alt">
         <div
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
-          :class="`title-container flex flex-row flex-wrap items-center p-5 ${rowContainer ? '' : 'h-1/6 md:h-auto xl:h-28'}`"
+          :class="`title-container flex flex-row flex-wrap items-center p-5 ${rowContainer ? '' : 'h-16 sm:h-28 md:h-16 xl:h-28'}`"
         >
           <span
             class="teaser-title min-w-0 overflow-hidden"
-            :style="`-webkit-line-clamp: ${rowContainer ? '1' : $store.state.data.windowWidth >= 1280 || $store.state.data.windowWidth < 768 ? '2' : '1'};`"
+            :style="`-webkit-line-clamp: ${rowContainer ? '1' : $store.state.data.windowWidth >= 1280 || ($store.state.data.windowWidth < 768 && $store.state.data.windowWidth >= 640) ? '2' : '1'};`"
           > {{ projectContent.title }}</span>
         </div>
       </div>

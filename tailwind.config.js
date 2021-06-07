@@ -43,7 +43,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         big: 'repeat(auto-fit, minmax(300px, 1fr))',
-        medium: 'repeat(auto-fit, minmax(190px, 1fr))'
+        medium: 'repeat(auto-fit, minmax(167px, 1fr))'
 
       },
       transitionProperty: {

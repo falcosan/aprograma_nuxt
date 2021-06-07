@@ -23,11 +23,11 @@
           </header>
           <section
             v-if="hasSlot('body')"
-            :class="`modal-body h-auto px-5 pt-10 lg:px-12 ${closeMode ? 'cursor-pointer' : ''}`"
+            :class="`modal-body h-auto px-5 pt-5 lg:px-12 ${closeMode ? 'cursor-pointer' : ''}`"
             @click.self.stop="closeMode ? closeModal() : false"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
-              <div class="body-container h-screen grid gap-5 grid-flow-row-dense" @click.self.stop="closeMode ? closeModal() : false">
+              <div class="body-container grid gap-5 grid-flow-row-dense" @click.self.stop="closeMode ? closeModal() : false">
                 <slot name="body" />
                 <hr class="invisible">
               </div>
@@ -91,7 +91,7 @@ export default {
 </script>
 <style>
 .body-container{
-  height: calc(100vh - 40px);
+  height: calc(100vh - 72px);
 }
 .body-container > *:not(hr) {
   max-height: calc(100vh - 72px);

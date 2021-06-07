@@ -5,12 +5,15 @@
   >
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
       <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
-        <img :class="`project-image w-full object-cover object-center select-none ${rowContainer ? 'h-60 sm:h-72 md:h-60 lg:h-80 xl:h-96 2xl:h-sm' : 'h-full'}`" width="100%" height="100%" :src="projectContent.image.filename" :alt="projectContent.image.alt">
+        <img :class="`project-image w-full object-cover object-center select-none ${rowContainer ? 'h-60 sm:h-72 md:h-60 lg:h-80 xl:h-96 2xl:h-sm' : 'h-5/6 md:h-full'}`" width="100%" height="100%" :src="projectContent.image.filename" :alt="projectContent.image.alt">
         <div
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
-          class="title-container flex flex-row flex-wrap p-5 text-lg"
+          :class="`title-container flex flex-row flex-wrap items-center p-5 ${rowContainer ? '' : 'h-1/6 md:h-auto xl:h-28'}`"
         >
-          <span :class="`title-teaser ${$route.name === 'portfolio' ? 'md:min-w-0 md:truncate' : 'min-w-0 truncate'}`"> {{ projectContent.title }}</span>
+          <span
+            class="teaser-title min-w-0 overflow-hidden"
+            :style="`-webkit-line-clamp: ${rowContainer ? '1' : $store.state.data.windowWidth >= 1280 || $store.state.data.windowWidth < 768 ? '2' : '1'};`"
+          > {{ projectContent.title }}</span>
         </div>
       </div>
     </NuxtLink>
@@ -40,3 +43,10 @@ export default {
   }
 }
 </script>
+<style scoped>
+
+.teaser-title{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+</style>

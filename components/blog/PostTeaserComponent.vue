@@ -93,12 +93,8 @@ export default {
 </script>
 <style scoped>
 
-.teaser-title{
+.teaser-title, .teaser-intro{
   display: -webkit-box;
-  -webkit-box-orient: vertical;
-}
-.teaser-intro{
-   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
 </style>

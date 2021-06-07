@@ -55,19 +55,19 @@
     v-else
     class="footer h-48 my-20 mx-auto px-2"
   >
-    <div :class="`footer-content h-full flex flex-col items-center text-center transition-all duration-700 ${$themeColor($store.state.data.themeColor) ? 'filter invert' : ''}`">
-      <span class="input-footer relative grid grid-flow-col-dense gap-5 items-center bottom-10 text-xl font-thin transition-colors duration-700">
-        - <Icon eye tag="span" size="w-full" class="eye-footer animate-pulse" /> -
+    <div class="footer-content h-full flex flex-col items-center text-center">
+      <span :class="`input-footer relative flex space-x-5 items-center bottom-10 text-xl font-thin transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`">
+        <span class="footer-dash"> - </span> <Icon eye tag="span" size="w-full" class="eye-footer animate-pulse" /><span class="footer-dash"> - </span>
       </span>
       <div
         class="messages-container flex-1"
       >
-        <span class="footer-messages text-sm transition-colors duration-700">
+        <span :class="`footer-messages text-sm transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`">
           Aprograma {{ typewriter }}
         </span>
       </div>
       <span
-        class="footer-copyright flex-1 text-sm text-center transition-colors duration-700"
+        :class="`footer-copyright flex-1 text-sm text-center transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`"
       >
         © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
       </span>
@@ -78,7 +78,7 @@
           <component
             :is="iconLink.component"
             :blok="iconLink"
-            class="social-icon transition duration-700"
+            :class="`social-icon transition-all duration-700 ${$themeColor($store.state.data.themeColor) ? 'filter invert' : ''}`"
           />
         </li>
       </ul>

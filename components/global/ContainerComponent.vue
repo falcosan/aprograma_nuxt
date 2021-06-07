@@ -184,7 +184,7 @@ export default {
           this.transitionTransform = 0
         }
       } else if (this.blok.slider_mode === 'carousel') {
-        if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
+        if (this.defaultMax > this.currentSlide) { this.currentSlide++ }
         this.transitionEnter = 'translate-x-full'
         this.transitionLeave = '-translate-x-full'
       }

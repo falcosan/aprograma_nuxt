@@ -10,7 +10,7 @@
         @keydown.esc="closeMode ? closeModal() : false"
         @click.self.stop="closeModal()"
       >
-        <div class="modal-container flex items-center">
+        <div class="modal-container flex items-center" @click.self.stop="closeMode ? closeModal() : false">
           <header v-if="hasSlot('header') || closeMode" class="modal-header">
             <slot name="header" />
             <Icon

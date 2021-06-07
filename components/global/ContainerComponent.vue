@@ -74,7 +74,7 @@
             </li>
           </transition-group>
           <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-3 justify-center my-5 md:my-10">
-            <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1 w-1 rounded-full select-none text-xl transition-all ${dot === currentSlide + 1 ? 'ring-1 transform -translate-y-1 duration-200 ring-black bg-black' : 'bg-black'}`" />
+            <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1 w-1 rounded-full select-none text-xl transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-black bg-black' : 'bg-black'}`" />
           </div>
         </div>
       </div>

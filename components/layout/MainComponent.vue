@@ -1,6 +1,6 @@
 <template>
-  <main :class="`main my-10 md:my-14 ${$store.state.data.windowWidth < 768 || !$device.isDesktop ? 'overflow-hidden min-h-screen' : 'main-desktop overflow-x-hidden overflow-y-auto'}`">
-    <div class="main-wrapper min-h-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-0 mx-auto shadow-xl bg-opacity-60 bg-white">
+  <main class="main pb-10 md:pb-32">
+    <div class="main-wrapper max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl min-h-screen overflow-hidden mt-10 md:mt-14 mx-auto rounded-b-xl md:rounded-xl shadow-xl bg-opacity-60 bg-white">
       <transition enter-active-class="duration-500 in-out" leave-active-class="duration-0 in-out" leave-to-class="opacity-0" enter-class="opacity-0" mode="out-in">
         <Nuxt v-if="blok.view" />
       </transition>
@@ -79,8 +79,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-.main-desktop {
-  height: calc(100vh - 7rem);
-}
-</style>

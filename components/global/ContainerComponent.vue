@@ -6,14 +6,22 @@
       {{ blok.title }}
     </h1>
     <div v-if="blok.slider_mode && elements.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">
-      <Icon
+      <transition
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
-        previous
-        :class="`previous-control control absolute top-1/2 z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
-        size="p-2 w-7"
-        tag="button"
-        @click.native="previous"
-      />
+        enter-active-class="duration-200"
+        leave-active-class="duration-200"
+        enter-class="opacity-0"
+        leave-to-class="opacity-0"
+      >
+        <Icon
+          v-show="transitionTransform + slideWidth <= 1"
+          previous
+          :class="`previous-control control absolute top-1/2 z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
+          size="p-2 w-7"
+          tag="button"
+          @click.native="previous"
+        />
+      </transition>
       <div v-else-if="blok.slider_mode === 'carousel'" class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"

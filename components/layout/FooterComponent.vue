@@ -56,7 +56,7 @@
     class="footer h-48 my-20 mx-auto px-2"
   >
     <div class="footer-content h-full flex flex-col items-center text-center">
-      <span :class="`input-footer relative flex space-x-5 items-center bottom-10 text-xl font-thin transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`">
+      <span :class="`input-footer relative flex space-x-5 items-end bottom-10 text-xl font-thin transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`">
         <span class="footer-dash"> - </span> <Icon eye tag="span" size="w-6" class="eye-footer animate-pulse" /><span class="footer-dash"> - </span>
       </span>
       <div

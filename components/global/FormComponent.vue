@@ -1,7 +1,6 @@
 
 <template>
   <div
-    ref="form"
     class="form w-full"
   >
     <Modal v-if="submitting" class="modal-submit" :open="submitting" modal-style="bg-opacity-90 bg-gray-200 cursor-wait">
@@ -106,7 +105,7 @@ export default {
               }
             )
             this.submitting = false
-            this.$refs.form.reset()
+            document.querySelector('form').reset()
             this.clearFields()
             this.setAlert(this.blok.passed_message, 'bg-green-400')
           } catch {

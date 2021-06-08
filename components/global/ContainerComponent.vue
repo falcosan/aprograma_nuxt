@@ -180,7 +180,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (this.transitionTransform - this.$el.clientWidth >= -(this.slideWidth * this.elements.length)) { this.transitionTransform -= this.slideWidth + this.spaceFix }
+        if (this.transitionTransform - this.$el.clientWidth >= -(this.slideWidth * this.elements.length)) { this.transitionTransform -= this.slideWidth + this.spaceFix } else { this.transitionTransform = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'

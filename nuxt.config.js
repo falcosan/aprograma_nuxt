@@ -79,9 +79,15 @@ export default {
         }
       }
     ],
-    ['@nuxtjs/markdownit', { html: true, injected: true }],
+    '@nuxtjs/markdownit',
     '@nuxtjs/sitemap'
   ],
+  markdownit: {
+    html: true,
+    linkify: true,
+    runtime: true,
+    typographer: true
+  },
   sitemap: {
     hostname: 'https://aprograma.co',
     routes: async () => {

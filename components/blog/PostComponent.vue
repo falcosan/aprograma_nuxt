@@ -36,12 +36,12 @@
         </h3>
         <article
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-description"
-          v-html="blok.long_text.content"
+          class="post-article"
+          v-html="$md.render(blok.long_text)"
         />
         <h4
           :style="`color: ${blok.post_text_color.color};`"
-          :class="`post-date text-right ${blok.long_text.content ? 'pt-5 lg:pt-8 border-t-4 border-dotted' : ''}`"
+          :class="`post-date text-right ${blok.long_text ? 'pt-5 lg:pt-8 border-t-4 border-dotted' : ''}`"
           v-text="changeDate(blok.date)"
         />
       </div>
@@ -81,3 +81,9 @@ export default {
   }
 }
 </script>
+<style>
+.post-article img{
+  margin: 0 auto;
+  max-width: 24rem;
+}
+</style>

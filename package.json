@@ -15,10 +15,11 @@
     "test": "nuxt generate && nuxt start"
   },
   "dependencies": {
+    "@nuxtjs/markdownit": "^2.0.0",
     "@nuxtjs/sitemap": "^2.4.0",
     "@sendgrid/mail": "^7.4.4",
     "@tailwindcss/typography": "^0.4.1",
-    "core-js": "^3.13.1",
+    "core-js": "^3.14.0",
     "netlify-lambda": "^2.0.8",
     "nuxt": "^2.15.6",
     "nuxt-compress": "^5.0.0",
@@ -29,8 +30,8 @@
   "devDependencies": {
     "@nuxtjs/device": "^2.1.0",
     "@nuxtjs/eslint-config": "^6.0.1",
-    "@nuxtjs/tailwindcss": "^4.1.2",
-    "eslint": "^7.27.0"
+    "@nuxtjs/tailwindcss": "^4.1.3",
+    "eslint": "^7.28.0"
   },
   "main": ".eslintrc.js",
   "repository": {

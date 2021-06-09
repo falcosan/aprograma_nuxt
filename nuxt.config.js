@@ -79,6 +79,7 @@ export default {
         }
       }
     ],
+    ['@nuxtjs/markdownit', { html: true, injected: true }],
     '@nuxtjs/sitemap'
   ],
   sitemap: {

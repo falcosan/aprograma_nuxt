@@ -1,11 +1,20 @@
 <template>
-  <div v-if="story.content" class="font-sans">
+  <div v-if="story.content && story.content.view" class="aprograma-theme font-sans">
     <component
       :is="layout.component"
       v-for="layout in story.content.body"
       :key="layout._uid"
       :blok="layout"
     />
+  </div>
+  <div class="aprograma-maintenance" v-else>
+    <Logo
+    class="max-w-lg my-0 mx-auto"
+      size="w-full"
+    />
+    <h1 class="text-center text-base sm:text-lg font-bold uppercase italic">
+   - site under maintenance -
+    </h1>
   </div>
 </template>
 

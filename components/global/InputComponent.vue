@@ -2,7 +2,7 @@
   <input
     v-if="blok"
     :id="`${blok.type}-input`"
-    :class="`input cursor-pointer ${$themeColor(blok.background_color.color) ? 'text-white' : ''}`"
+    :class="`input cursor-pointer hover:opacity-80 ${$themeColor(blok.background_color.color) ? 'text-white' : ''}`"
     :style="`background-color: ${blok.background_color.color};`"
     :type="blok.type"
     :value="blok.text"

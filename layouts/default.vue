@@ -1,15 +1,13 @@
 <template>
-  <div v-if="story.content.view && !$fetchState.pending" class="aprograma-theme font-sans">
-    <client-only>
-      <component
-        :is="layout.component"
-        v-for="layout in story.content.body"
-        :key="layout._uid"
-        :blok="layout"
-      />
-    </client-only>
+  <div v-if="story.content.body && story.content.view" class="aprograma-theme font-sans">
+    <component
+      :is="layout.component"
+      v-for="layout in story.content.body"
+      :key="layout._uid"
+      :blok="layout"
+    />
   </div>
-  <div v-else-if="!$fetchState.pending" class="aprograma-maintenance h-screen flex flex-col justify-center p-10 sm:p-20">
+  <div v-else-if="story.content.body" class="aprograma-maintenance h-screen flex flex-col justify-center p-10 sm:p-20">
     <Logo
       transition
       class="max-w-lg my-0 mx-auto shadow-lg rounded-md"
@@ -34,21 +32,25 @@ export default {
       }
     }
   },
-  async fetch () {
-    const { data } = await this.$storyapi.get('cdn/stories/layout', {
-      language: this.$store.state.language.language
-    })
-    this.story = data.story
-  },
   watch: {
-    '$store.state.language.language': '$fetch'
+    '$store.state.language.language' () { this.getLayout() }
+  },
+  created () {
+    this.getLayout()
   },
   beforeMount () {
     this.$store.commit('data/responsiveMutation', window.innerWidth)
   },
   mounted () {
-    this.$fetch()
     this.$store.dispatch('data/responsiveAction')
+  },
+  methods: {
+    async getLayout () {
+      const { data } = await this.$storyapi.get('cdn/stories/layout', {
+        language: this.$store.state.language.language
+      })
+      this.story = data.story
+    }
   }
 }
 </script>

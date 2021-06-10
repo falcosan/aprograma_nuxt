@@ -1,9 +1,11 @@
 <template>
   <main class="main">
-    <div :class="`main-wrapper relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl overflow-hidden mx-auto mt-10 shadow-lg bg-opacity-60 bg-white ${!$device.isDesktop ? '' : 'md:mt-14'}`">
-      <transition enter-active-class="duration-500 in-out" leave-active-class="duration-0 in-out" leave-to-class="opacity-0" enter-class="opacity-0" mode="out-in">
-        <Nuxt />
-      </transition>
+    <div class="main-wrapper relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl overflow-hidden mx-auto mt-10 transition-colors duration-1000" :style="`background-color: ${randomBackgroundColor};`">
+      <div class="main-mask shadow-md bg-opacity-60 bg-white">
+        <transition enter-active-class="duration-500 in-out" leave-active-class="duration-0 in-out" leave-to-class="opacity-0" enter-class="opacity-0" mode="out-in">
+          <Nuxt />
+        </transition>
+      </div>
     </div>
     <div v-if="blok.background_media.filename" class="background-media fixed inset-0 -z-10">
       <img
@@ -26,7 +28,6 @@
         <source :src="blok.background_media.filename" :type="`video/${blok.background_media.filename.toLowerCase().split('.').pop()}`">
       </video>
     </div>
-    <div v-else class="background-main fixed inset-0 -z-10 transition-colors duration-700" :style="`background-color: ${randomBackgroundColor};`" />
   </main>
 </template>
 
@@ -80,7 +81,7 @@ export default {
 }
 </script>
 <style scoped>
-.main-wrapper{
+.main-mask{
   min-height: calc(100vh - 3.5rem);
 }
 </style>

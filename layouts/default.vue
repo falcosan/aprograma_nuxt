@@ -47,6 +47,7 @@ export default {
     this.$store.commit('data/responsiveMutation', window.innerWidth)
   },
   mounted () {
+    this.$fetch()
     this.$store.dispatch('data/responsiveAction')
   }
 }

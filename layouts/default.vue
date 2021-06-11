@@ -1,6 +1,6 @@
 <template>
   <transition appear enter-active-class="duration-1000" enter-class="opacity-0">
-    <div v-if="story.content.body && story.content.view" class="aprograma-theme absolute w-full font-sans bg-white">
+    <div v-if="story.content.body && story.content.view" class="aprograma-theme">
       <component
         :is="layout.component"
         v-for="layout in story.content.body"

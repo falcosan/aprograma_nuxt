@@ -1,5 +1,5 @@
 <template>
-  <div v-if="story.content.body && story.content.view" class="aprograma-theme font-sans">
+  <div v-if="story.content.body && story.content.view" class="aprograma-theme font-sans bg-white">
     <component
       :is="layout.component"
       v-for="layout in story.content.body"

@@ -38,7 +38,7 @@
     v-else
     class="header flex justify-center"
   >
-    <nav class="navbar-up w-full h-10 fixed flex justify-center top-0 z-40 border-t shadow-sm" :style="`background-color: ${blok.background_color.color};`">
+    <nav class="navbar-up w-full h-10 fixed flex justify-center top-0 z-40 shadow-sm" :style="`background-color: ${blok.background_color.color};`">
       <div class="menu-wrapper wrapper-up w-full h-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl flex justify-between">
         <Link
           active="exact"

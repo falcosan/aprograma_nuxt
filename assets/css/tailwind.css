@@ -5,11 +5,12 @@ body {
     overflow-y: scroll;
     touch-action: manipulation;
     scroll-behavior: smooth;
+    background-color: #f3f3f3;
 }
 
 *::-webkit-scrollbar {
-    width: 0.2rem;
-    height: 0.2rem;
+    width: 0.4rem;
+    height: 0.4rem;
 }
 
 *::-webkit-scrollbar-track {

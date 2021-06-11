@@ -1,22 +1,24 @@
 <template>
-  <div v-if="story.content.body && story.content.view" class="aprograma-theme font-sans bg-white">
-    <component
-      :is="layout.component"
-      v-for="layout in story.content.body"
-      :key="layout._uid"
-      :blok="layout"
-    />
-  </div>
-  <div v-else-if="story.content.body" class="aprograma-maintenance h-screen flex flex-col justify-center p-10 sm:p-20">
-    <Logo
-      transition
-      class="max-w-lg my-0 mx-auto shadow-lg rounded-md"
-      size="w-full"
-    />
-    <h1 class="maintenance-text mt-10 sm:mt-20 text-center text-xs xs:text-base sm:text-lg xs:whitespace-nowrap font-bold uppercase italic">
-      under maintenance
-    </h1>
-  </div>
+  <transition appear enter-active-class="duration-1000" enter-class="opacity-0">
+    <div v-if="story.content.body && story.content.view" class="aprograma-theme absolute w-full font-sans bg-white">
+      <component
+        :is="layout.component"
+        v-for="layout in story.content.body"
+        :key="layout._uid"
+        :blok="layout"
+      />
+    </div>
+    <div v-else-if="story.content.body" class="aprograma-maintenance h-screen flex flex-col justify-center p-10 sm:p-20">
+      <Logo
+        transition
+        class="max-w-lg my-0 mx-auto shadow-lg rounded-md"
+        size="w-full"
+      />
+      <h1 class="maintenance-text mt-10 sm:mt-20 text-center text-xs xs:text-base sm:text-lg xs:whitespace-nowrap font-bold uppercase italic">
+        under maintenance
+      </h1>
+    </div>
+  </transition>
 </template>
 
 <script>

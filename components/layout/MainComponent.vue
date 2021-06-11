@@ -1,6 +1,6 @@
 <template>
-  <main class="main">
-    <div :class="`main-wrapper relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl mx-auto mt-10 overflow-x-hidden shadow-md rounded-t-md transition-colors duration-1000 ${!$device.isDesktop ? '' : 'md:mt-14'}`" :style="`background-color: ${randomBackgroundColor};`">
+  <main class="main bg-white">
+    <div :class="`main-wrapper relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl mx-auto mt-10 overflow-x-hidden shadow-md rounded-b-md transition-colors duration-1000 ${!$device.isDesktop ? '' : 'md:mt-14 md:rounded-b-none md:rounded-t-md'}`" :style="`background-color: ${randomBackgroundColor};`">
       <div class="main-mask bg-opacity-60 bg-white">
         <transition enter-active-class="duration-500 in-out" leave-active-class="duration-0 in-out" leave-to-class="opacity-0" enter-class="opacity-0" mode="out-in">
           <Nuxt />

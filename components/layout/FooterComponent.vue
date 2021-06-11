@@ -56,18 +56,18 @@
     class="footer h-48 my-20 mx-auto px-2"
   >
     <div class="footer-content h-full flex flex-col items-center text-center">
-      <span :class="`input-footer relative flex space-x-5 items-end bottom-10 text-xl font-thin transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`">
+      <span class="input-footer relative flex space-x-5 items-end bottom-10 text-xl font-thin text-black">
         <span class="footer-dash"> - </span> <Icon eye tag="span" size="w-6" class="eye-footer animate-pulse" /><span class="footer-dash"> - </span>
       </span>
       <div
         class="messages-container flex-1"
       >
-        <span :class="`footer-messages text-sm transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`">
+        <span class="footer-messages text-sm text-black">
           Aprograma {{ typewriter }}
         </span>
       </div>
       <span
-        :class="`footer-copyright flex-1 text-sm text-center transition-colors duration-700 ${$themeColor($store.state.data.themeColor) ? 'text-white' : 'text-black'}`"
+        class="footer-copyright flex-1 text-sm text-center text-black"
       >
         © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
       </span>
@@ -78,7 +78,7 @@
           <component
             :is="iconLink.component"
             :blok="iconLink"
-            :class="`social-icon transition-all duration-700 ${$themeColor($store.state.data.themeColor) ? 'filter invert' : ''}`"
+            class="social-icon transition-all duration-700"
           />
         </li>
       </ul>

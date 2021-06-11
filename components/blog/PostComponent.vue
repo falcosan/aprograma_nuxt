@@ -3,7 +3,7 @@
     <div class="post-head relative w-full">
       <h1
         :style="`color: ${blok.post_text_color.color};`"
-        class="post-title px-5 pt-5"
+        class="post-title pt-5 px-5"
         v-text="blok.title"
       />
       <Icon
@@ -22,7 +22,7 @@
       />
     </div>
     <div class="post-body w-full flex justify-center" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full pb-14 px-5 pt-0 max-w-prose">
+      <div class="post-article w-full max-w-prose pb-14 px-5">
         <h2
           :style="`color: ${blok.post_text_color.color};`"
           class="post-intro"

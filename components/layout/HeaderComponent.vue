@@ -59,8 +59,7 @@
         <Logo
           transition
           class="absolute top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full filter drop-shadow-md bg-white"
-          size="w-12"
-          style-logo-container="w-14"
+          size="w-11"
         />
         <Translate
           translate-transition

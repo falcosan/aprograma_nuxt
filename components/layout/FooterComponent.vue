@@ -53,7 +53,7 @@
   </footer>
   <footer
     v-else
-    class="footer pt-24 pb-28 px-2 bg-white"
+    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl mb-0 mt-5 mx-auto pt-16 pb-32 px-2 rounded-t-md backdrop-filter backdrop-blur bg-opacity-70 bg-white"
   >
     <div class="footer-content h-48 flex flex-col items-center space-y-5 text-center">
       <span class="input-footer relative flex space-x-5 items-end bottom-10 text-xl font-thin text-black">

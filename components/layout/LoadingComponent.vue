@@ -9,7 +9,7 @@
       <div v-show="loadingLogo" :class="`loader-logo fixed flex items-center justify-center top-0 z-50 overflow-hidden bg-white ${!$device.isDesktop || $store.state.data.windowWidth < 768 ? 'top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full' : 'h-20 w-20 rounded-br-lg'}`">
         <Logo
           class="logo-spin filter opacity-50 contrast-0 brightness-50"
-          :size="`${!$device.isDesktop || $store.state.data.windowWidth < 768 ? 'w-12' : 'w-16'}`"
+          :size="`${!$device.isDesktop || $store.state.data.windowWidth < 768 ? 'w-11' : 'w-16'}`"
         />
       </div>
     </transition>

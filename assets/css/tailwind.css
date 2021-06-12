@@ -5,7 +5,6 @@ body {
     overflow-y: scroll;
     touch-action: manipulation;
     scroll-behavior: smooth;
-    background-color: #f3f3f3;
 }
 
 *::-webkit-scrollbar {

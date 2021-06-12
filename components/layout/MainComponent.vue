@@ -1,6 +1,6 @@
 <template>
-  <main :class="`main pt-10 mt-10 ${!$device.isDesktop ? '' : 'md:mt-0 md:pt-14'} ${blok.background_media.filename ? '' : 'bg-white'}`">
-    <div class="main-wrapper relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl mx-auto overflow-x-hidden shadow-md rounded-md transition-colors duration-1000 backdrop-filter backdrop-blur" :style="`background-color: ${blok.background_media.filename ? 'transparent' : randomBackgroundColor};`">
+  <main :class="`main mt-10 ${!$device.isDesktop ? '' : 'md:mt-0 md:pt-14'} ${blok.background_media.filename ? '' : 'bg-white'}`">
+    <div :class="`main-wrapper relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-0 mx-auto overflow-x-hidden shadow-md rounded-b-md transition-colors duration-1000 backdrop-filter backdrop-blur ${!$device.isDesktop ? '' : 'md:rounded-b-none md:rounded-t-md'}`" :style="`background-color: ${blok.background_media.filename ? 'transparent' : randomBackgroundColor};`">
       <div class="main-mask bg-opacity-70 bg-white">
         <transition enter-active-class="duration-500 in-out" leave-active-class="duration-0 in-out" leave-to-class="opacity-0" enter-class="opacity-0" mode="out-in">
           <Nuxt />

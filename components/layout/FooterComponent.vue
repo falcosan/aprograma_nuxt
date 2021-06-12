@@ -53,9 +53,9 @@
   </footer>
   <footer
     v-else
-    class="footer h-48 pb-72 pt-24 px-2"
+    class="footer pt-24 pb-28 px-2 bg-white"
   >
-    <div class="footer-content h-full flex flex-col items-center space-y-5 text-center">
+    <div class="footer-content h-48 flex flex-col items-center space-y-5 text-center">
       <span class="input-footer relative flex space-x-5 items-end bottom-10 text-xl font-thin text-black">
         <span class="footer-dash"> - </span> <Icon eye tag="span" size="w-6" class="eye-footer animate-pulse" /><span class="footer-dash"> - </span>
       </span>

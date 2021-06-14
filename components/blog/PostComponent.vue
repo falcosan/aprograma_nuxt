@@ -1,9 +1,9 @@
 <template>
-  <div class="post max-w-none prose prose-sm lg:prose-lg">
+  <div class="post">
     <div class="post-head relative w-full">
       <h1
         :style="`color: ${blok.post_text_color.color};`"
-        class="post-title pt-5 px-5"
+        class="post-title p-5 font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl"
         v-text="blok.title"
       />
       <Icon
@@ -22,7 +22,7 @@
       />
     </div>
     <div class="post-body w-full flex justify-center" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full max-w-prose pb-10 md:pb-14 px-5">
+      <div class="post-article w-full prose prose-sm lg:prose-lg py-10 md:py-14 px-5">
         <h2
           :style="`color: ${blok.post_text_color.color};`"
           class="post-intro"

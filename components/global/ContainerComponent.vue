@@ -14,7 +14,7 @@
         leave-to-class="opacity-0"
       >
         <Icon
-          v-show="transitionTransform + slideWidth <= 1"
+          v-show="-((slideWidth + spaceFix) * sliderIndex) + slideWidth <= 1"
           previous
           :class="`previous-control control absolute top-1/2 z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
           size="p-2 w-7"
@@ -36,7 +36,7 @@
         <ul
           v-if="blok.slider_mode === 'slider'"
           :key="sliderKey"
-          :style="`transform: translateX(${transitionTransform}px); gap: ${spaceFix}px;`"
+          :style="`transform: translateX(${-((slideWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
           class="slider relative w-max grid grid-flow-col transition-transform"
         >
           <li
@@ -119,12 +119,12 @@ export default {
       max: Number(this.blok.max_slides),
       defaultMax: this.blok.body.length - 1,
       sliderKey: 0,
+      sliderIndex: 0,
       currentSlide: 0,
       setAutoPlay: 0,
       slideWidth: 0,
       transitionEnter: '',
       transitionLeave: '',
-      transitionTransform: 0,
       spaceFix: 20
     }
   },
@@ -159,7 +159,8 @@ export default {
     }
   },
   watch: {
-    '$store.state.data.windowWidth' () { if (this.blok.slider_mode && this.blok.slider_mode === 'slider') { this.getSliderWidth(); this.sliderKey++ } }
+    '$store.state.data.windowWidth' () { if (this.blok.slider_mode && this.blok.slider_mode === 'slider') { this.getSliderWidth(); this.sliderKey++ } },
+    slideWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
   },
   mounted () {
     if (this.blok.slider_mode) {
@@ -179,7 +180,7 @@ export default {
   methods: {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (this.transitionTransform + this.slideWidth <= 1) { this.transitionTransform += this.slideWidth + this.spaceFix }
+        if (-((this.slideWidth + this.spaceFix) * this.sliderIndex) + this.slideWidth <= 1) { this.sliderIndex-- } else { this.sliderIndex = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
         this.transitionEnter = '-translate-x-full'
@@ -188,7 +189,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (this.transitionTransform - this.$el.clientWidth >= -(this.slideWidth * this.elements.length)) { this.transitionTransform -= this.slideWidth + this.spaceFix } else { this.transitionTransform = 0 }
+        if (-((this.slideWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -(this.slideWidth * this.elements.length)) { this.sliderIndex++ } else { this.sliderIndex = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
         if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
         this.transitionEnter = 'translate-x-full'
@@ -228,10 +229,10 @@ export default {
 </script>
 <style scoped>
 .carousel::-webkit-scrollbar {
-  display: none;
+ display: none;
 }
 .carousel {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+ -ms-overflow-style: none;
+ scrollbar-width: none;
 }
 </style>

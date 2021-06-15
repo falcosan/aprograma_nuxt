@@ -62,7 +62,7 @@
             leave-active-class="out-in duration-200"
             :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
             :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
-            class="carousel relative h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl grid gap-5 auto-cols-fr grid-flow-col overflow-y-scroll overflow-x-hidden"
+            class="carousel relative grid gap-5 auto-cols-fr grid-flow-col overflow-y-scroll overflow-x-hidden"
           >
             <li
               v-for="(component, index) in elements"

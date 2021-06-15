@@ -16,7 +16,7 @@
         <Icon
           v-show="-((slideWidth + spaceFix) * sliderIndex) + slideWidth <= 1"
           previous
-          :class="`previous-control control absolute top-1/2 z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
+          :class="`previous-control control absolute z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2 md:bottom-7'}`"
           size="p-2 w-7"
           tag="button"
           @click.native="previous"
@@ -26,7 +26,7 @@
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         next
-        :class="`next-control control absolute top-1/2 z-20 filter invert grayscale right-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? '-translate-y-1/2' : '-translate-y-full'}`"
+        :class="`next-control control absolute z-20 filter invert grayscale right-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2 md:bottom-7'}`"
         size="p-2 w-7"
         tag="button"
         @click.native="next"
@@ -58,11 +58,13 @@
         <div v-else class="carousel-container">
           <transition-group
             tag="ul"
-            enter-active-class="in-out duration-200"
-            leave-active-class="out-in duration-200"
+            class="carousel relative grid gap-5 auto-cols-fr grid-flow-col overflow-y-scroll overflow-x-hidden"
+            enter-active-class="in-out duration-500"
+            leave-active-class="out-in duration-500"
             :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
             :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
-            class="carousel relative grid gap-5 auto-cols-fr grid-flow-col overflow-y-scroll overflow-x-hidden"
+            @before-enter="disabled = true"
+            @after-leave="disabled = false"
           >
             <li
               v-for="(component, index) in elements"
@@ -125,7 +127,8 @@ export default {
       slideWidth: 0,
       transitionEnter: '',
       transitionLeave: '',
-      spaceFix: 20
+      spaceFix: 20,
+      disabled: false
     }
   },
   computed: {
@@ -182,7 +185,9 @@ export default {
       if (this.blok.slider_mode === 'slider') {
         if (-((this.slideWidth + this.spaceFix) * this.sliderIndex) + this.slideWidth <= 1) { this.sliderIndex-- } else { this.sliderIndex = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
-        if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
+        if (!this.disabled) {
+          if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
+        }
         this.transitionEnter = '-translate-x-full'
         this.transitionLeave = 'translate-x-full'
       }
@@ -191,7 +196,9 @@ export default {
       if (this.blok.slider_mode === 'slider') {
         if (-((this.slideWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -(this.slideWidth * this.elements.length)) { this.sliderIndex++ } else { this.sliderIndex = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
-        if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
+        if (!this.disabled) {
+          if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
+        }
         this.transitionEnter = 'translate-x-full'
         this.transitionLeave = '-translate-x-full'
       }

@@ -6,7 +6,7 @@
   >
     <div
       :style="`background-color: ${expanded ? blok.background_color.color : '#fff'};`"
-      class="top-kick absolute w-20 h-20 right-0 -top-20 flex items-center justify-center rounded-tl-xl transition-all duration-200"
+      class="top-kick absolute w-20 h-20 flex right-0 -top-20 items-center justify-center z-10 rounded-tl-xl transition-all duration-200"
       @click="scrollTop();"
     >
       <Icon arrow tag="button" size="w-auto" :class="`justify-center transform rotate-90 ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`" />
@@ -17,10 +17,19 @@
       @mouseover="expandIn"
     >
       <div
-        :style="`background-color: ${expanded ? blok.background_color.color : '#fff'};`"
-        class="open-footer absolute w-20 h-20 left-0 -top-20 flex items-center justify-center rounded-tr-xl transition-all duration-200"
+        :class="`open-footer absolute left-0 -top-20 ${expanded ? 'w-full' : 'w-20'}`"
       >
-        <Icon eye tag="span" size="w-auto" :class="`justify-center ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`" />
+        <div
+          class="icon-open w-20 h-20 flex justify-center items-center rounded-tr-xl transition-all duration-200"
+          :style="`background-color: ${expanded ? blok.background_color.color : '#fff'};`"
+        >
+          <Icon
+            eye
+            tag="span"
+            size="w-auto"
+            :class="`${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`"
+          />
+        </div>
       </div>
       <div
         :class="`footer-content h-full w-full flex items-center transition-opacity duration-200 ${expanded ? '' : 'opacity-0'} ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`"

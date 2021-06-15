@@ -7,9 +7,8 @@
     <div
       :style="`background-color: ${expanded ? blok.background_color.color : '#fff'};`"
       class="top-kick absolute w-20 h-20 flex right-0 -top-20 items-center justify-center z-10 rounded-tl-xl transition-all duration-200"
-      @click="scrollTop();"
     >
-      <Icon arrow tag="button" size="w-auto" :class="`justify-center transform rotate-90 ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`" />
+      <Icon arrow tag="button" size="w-auto" :class="`justify-center transform rotate-90 ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`" @click="scrollTop();" />
     </div>
     <div
       class="content-container h-full overflow-hidden"

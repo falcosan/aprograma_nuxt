@@ -1,6 +1,7 @@
 
 export const state = () => ({
   moved: false,
+  error: false,
   windowWidth: 0,
   themeColor: []
 })
@@ -14,6 +15,9 @@ export const mutations = {
   },
   themeColorMutation (state, newThemeColor) {
     state.themeColor = newThemeColor
+  },
+  errorMutation (state, newError) {
+    state.error = newError
   }
 }
 export const actions = {

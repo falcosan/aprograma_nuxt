@@ -1,9 +1,9 @@
 <template>
   <section :class="`${blok.name.toLowerCase()}-page p-5`">
-    <h1 v-if="blok.title && blok.show_title" class="page-title mb-10 text-xl">
+    <h1 v-if="blok.title && blok.show_title" class="page-title mb-10 text-lg font-semibold">
       {{ blok.title }}
     </h1>
-    <div class="page-components grid gap-10 auto-cols-fr divide-y-4 divide-dotted divide-black divide-opacity-30" :style="maxComponents > 1 ? `grid-template-columns:repeat(${maxComponents}, 1fr);` : false">
+    <div class="page-components grid gap-10 auto-cols-fr divide-y-4 divide-dotted" :style="maxComponents > 1 ? `grid-template-columns:repeat(${maxComponents}, 1fr);` : false">
       <div
         v-for="(component, index) in blok.body"
         :key="component._uid"

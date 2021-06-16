@@ -26,6 +26,12 @@ export default {
       type: Object,
       required: true
     }
+  },
+  created () {
+    this.$store.commit('data/errorMutation', true)
+  },
+  beforeDestroy () {
+    this.$store.commit('data/errorMutation', false)
   }
 }
 </script>

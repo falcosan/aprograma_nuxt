@@ -58,7 +58,7 @@
         <div v-else class="carousel-container">
           <transition-group
             tag="ul"
-            class="carousel relative grid gap-5 auto-cols-fr grid-flow-col overflow-y-scroll overflow-x-hidden"
+            class="carousel relative"
             enter-active-class="in-out duration-500"
             leave-active-class="out-in duration-500"
             :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
@@ -125,6 +125,7 @@ export default {
       currentSlide: 0,
       setAutoPlay: 0,
       slideWidth: 0,
+      carouselWidth: 0,
       transitionEnter: '',
       transitionLeave: '',
       spaceFix: 20,
@@ -162,7 +163,11 @@ export default {
     }
   },
   watch: {
-    '$store.state.data.windowWidth' () { if (this.blok.slider_mode && this.blok.slider_mode === 'slider') { this.getSliderWidth(); this.sliderKey++ } },
+    '$store.state.data.windowWidth' () {
+      if (this.blok.slider_mode && this.blok.slider_mode === 'slider') {
+        this.getSliderWidth(); this.sliderKey++
+      }
+    },
     slideWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
   },
   mounted () {
@@ -172,6 +177,9 @@ export default {
       }
       if (this.blok.slider_mode === 'slider') {
         this.getSliderWidth()
+      }
+      if (this.blok.slider_mode === 'carousel') {
+        this.getCarouselWidth()
       }
     }
   },
@@ -230,6 +238,9 @@ export default {
     },
     getSliderWidth () {
       this.slideWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+    },
+    getCarouselWidth () {
+      this.carouselWidth = 0
     }
   }
 }

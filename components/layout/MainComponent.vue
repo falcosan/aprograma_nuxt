@@ -82,14 +82,7 @@ export default {
 }
 </script>
 <style scoped>
-.main-wrapper{
-    min-height: calc(100vh - 4.5rem);
-  }
-@media screen and (min-width:768px){
-.main-wrapper{
-    min-height: calc(100vh - 3.5rem);
-  }
-}
+
 .colorAnimation{
     -webkit-animation: changeColor 10s infinite;
     -moz-animation:    changeColor 10s infinite;

@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen">
+  <div class="error">
     <div v-if="error.statusCode === 404" class="h-full flex flex-col justify-center items-center space-y-5 text-center py-10 bg-gray-300">
       <span class="text-9xl font-bold">{{ error.statusCode }}</span>
       <span class="w-max h-max justify-self-center transform rotate-90"> = ( </span>
@@ -29,3 +29,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.error{
+     height: calc(100vh - 7rem);
+  }
+</style>

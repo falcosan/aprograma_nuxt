@@ -8,7 +8,7 @@
         <Nuxt :class="`relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl overflow-x-hidden my-0 mx-auto rounded-b-md ${!$device.isDesktop ? '' : 'md:rounded-t-md'}`" />
       </transition>
     </div>
-    <div v-if="blok.background_media.filename" class="background-media fixed inset-0 -z-10">
+    <div v-if="blok.background_media.filename" :class="`background-media fixed inset-0 -z-10 ${blok.color_animation ? 'colorAnimation' : ''}`">
       <img
         v-if="lookFile === 'image'"
         class="media-image w-full h-full object-cover object-center"
@@ -88,6 +88,76 @@ export default {
 @media screen and (min-width:768px){
 .main-wrapper{
     min-height: calc(100vh - 3.5rem);
+  }
+}
+.colorAnimation{
+    -webkit-animation: changeColor 10s infinite;
+    -moz-animation:    changeColor 10s infinite;
+    -o-animation:      changeColor 10s infinite;
+    animation:         changeColor 10s infinite;
+}
+
+@-webkit-keyframes changeColor {
+  0%   {
+    -webkit-filter: hue-rotate(0deg);
+    -moz-filter: hue-rotate(0deg);
+    -o-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    -webkit-filter: hue-rotate(360deg);
+    -moz-filter: hue-rotate(360deg);
+    -o-filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg);
+  }
+}
+
+@-moz-keyframes changeColor {
+  0%   {
+    -webkit-filter: hue-rotate(0deg);
+    -moz-filter: hue-rotate(0deg);
+    -o-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    -webkit-filter: hue-rotate(360deg);
+    -moz-filter: hue-rotate(360deg);
+    -o-filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg);
+  }
+}
+
+@-o-keyframes changeColor {
+  0%   {
+    -webkit-filter: hue-rotate(0deg);
+    -moz-filter: hue-rotate(0deg);
+    -o-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    -webkit-filter: hue-rotate(360deg);
+    -moz-filter: hue-rotate(360deg);
+    -o-filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes changeColor {
+  0%   {
+    -webkit-filter: hue-rotate(0deg);
+    -moz-filter: hue-rotate(0deg);
+    -o-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    -webkit-filter: hue-rotate(360deg);
+    -moz-filter: hue-rotate(360deg);
+    -o-filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg);
   }
 }
 </style>

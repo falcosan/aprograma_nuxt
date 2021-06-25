@@ -63,15 +63,13 @@
             leave-active-class="out-in duration-500"
             :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
             :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
-            :style="`height: ${slideMeasure}px`"
             @before-enter="disabled = true"
             @after-leave="disabled = false"
           >
             <li
               v-for="(component, index) in elements"
-              v-show="check ? true : index === currentSlide"
-              ref="carouselSlide"
               :key="component._uid"
+              v-hide="index === currentSlide"
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
               class="carousel-slide slide"
@@ -111,6 +109,11 @@
 <script>
 
 export default {
+  directives: {
+    hide (el, bind) {
+      el.style.visibility = (bind.value) ? 'visible' : 'hidden'
+    }
+  },
   props: {
     blok: {
       type: Object,
@@ -130,7 +133,6 @@ export default {
       transitionEnter: '',
       transitionLeave: '',
       spaceFix: 20,
-      check: true,
       disabled: false
     }
   },
@@ -179,10 +181,6 @@ export default {
       }
       if (this.blok.slider_mode === 'slider') {
         this.getSliderWidth()
-      }
-      if (this.blok.slider_mode === 'carousel') {
-        setTimeout(() => { this.check = false }, 10)
-        this.getCarouselHeight()
       }
     }
   },
@@ -241,10 +239,6 @@ export default {
     },
     getSliderWidth () {
       this.slideMeasure = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
-    },
-    getCarouselHeight () {
-      this.slideMeasure = Math.max(...this.$refs.carouselSlide.map(slide => slide.clientHeight))
-      console.log(Math.max(...this.$refs.carouselSlide.map(slide => slide.clientHeight)))
     }
   }
 }

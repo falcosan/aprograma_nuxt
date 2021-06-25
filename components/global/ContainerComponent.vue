@@ -56,15 +56,8 @@
           </li>
         </ul>
         <div v-else class="carousel-container">
-          <transition-group
-            tag="ul"
-            class="carousel relative"
-            enter-active-class="in-out duration-500"
-            leave-active-class="out-in duration-500"
-            :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
-            :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
-            @before-enter="disabled = true"
-            @after-leave="disabled = false"
+          <ul
+            class="carousel relative grid"
           >
             <li
               v-for="(component, index) in elements"
@@ -72,7 +65,7 @@
               v-hide="index === currentSlide"
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
-              class="carousel-slide slide"
+              class="carousel-slide slide row-start-1 row-end-1 col-start-1 col-end-1"
               :style="`background-color: ${blok.background_color_component.color};`"
             >
               <component
@@ -82,7 +75,7 @@
                 carousel-mode
               />
             </li>
-          </transition-group>
+          </ul>
           <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-3 justify-center my-5 md:my-10">
             <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1 w-1 rounded-full select-none text-xl transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-black bg-black' : 'bg-black'}`" />
           </div>
@@ -132,8 +125,7 @@ export default {
       slideMeasure: 0,
       transitionEnter: '',
       transitionLeave: '',
-      spaceFix: 20,
-      disabled: false
+      spaceFix: 20
     }
   },
   computed: {
@@ -194,22 +186,14 @@ export default {
       if (this.blok.slider_mode === 'slider') {
         if (-((this.slideMeasure + this.spaceFix) * this.sliderIndex) + this.slideMeasure <= 1) { this.sliderIndex-- } else { this.sliderIndex = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
-        if (!this.disabled) {
-          if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
-        }
-        this.transitionEnter = '-translate-x-full'
-        this.transitionLeave = 'translate-x-full'
+        if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
       }
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
         if (-((this.slideMeasure + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -(this.slideMeasure * this.elements.length)) { this.sliderIndex++ } else { this.sliderIndex = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
-        if (!this.disabled) {
-          if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
-        }
-        this.transitionEnter = 'translate-x-full'
-        this.transitionLeave = '-translate-x-full'
+        if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
       }
     },
     next () {

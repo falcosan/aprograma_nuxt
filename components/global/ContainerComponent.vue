@@ -14,7 +14,7 @@
         leave-to-class="opacity-0"
       >
         <Icon
-          v-show="-((slideWidth + spaceFix) * sliderIndex) + slideWidth <= 1"
+          v-show="-((slideMeasure + spaceFix) * sliderIndex) + slideMeasure <= 1"
           previous
           :class="`previous-control control absolute z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2 md:bottom-7'}`"
           size="p-2 w-7"
@@ -36,7 +36,7 @@
         <ul
           v-if="blok.slider_mode === 'slider'"
           :key="sliderKey"
-          :style="`transform: translateX(${-((slideWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
+          :style="`transform: translateX(${-((slideMeasure + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
           class="slider relative w-max grid grid-flow-col transition-transform"
         >
           <li
@@ -44,7 +44,7 @@
             :key="component._uid"
             v-touch:swipe.stop.left="next"
             v-touch:swipe.stop.right="previous"
-            :style="`width: ${slideWidth}px; background-color: ${blok.background_color_component.color};`"
+            :style="`width: ${slideMeasure}px; background-color: ${blok.background_color_component.color};`"
             class="slider-slide slide"
           >
             <component
@@ -63,12 +63,14 @@
             leave-active-class="out-in duration-500"
             :enter-class="`absolute inset-0 w-full opacity-0 transform ${transitionEnter}`"
             :leave-to-class="`absolute inset-0 w-full opacity-0 transform ${transitionLeave}`"
+            :style="`height: ${slideMeasure}px`"
             @before-enter="disabled = true"
             @after-leave="disabled = false"
           >
             <li
               v-for="(component, index) in elements"
-              v-show="index === currentSlide"
+              v-show="check ? true : index === currentSlide"
+              ref="carouselSlide"
               :key="component._uid"
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
@@ -124,11 +126,11 @@ export default {
       sliderIndex: 0,
       currentSlide: 0,
       setAutoPlay: 0,
-      slideWidth: 0,
-      carouselWidth: 0,
+      slideMeasure: 0,
       transitionEnter: '',
       transitionLeave: '',
       spaceFix: 20,
+      check: true,
       disabled: false
     }
   },
@@ -168,7 +170,7 @@ export default {
         this.getSliderWidth(); this.sliderKey++
       }
     },
-    slideWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
+    slideMeasure () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
   },
   mounted () {
     if (this.blok.slider_mode) {
@@ -179,7 +181,8 @@ export default {
         this.getSliderWidth()
       }
       if (this.blok.slider_mode === 'carousel') {
-        this.getCarouselWidth()
+        setTimeout(() => { this.check = false }, 10)
+        this.getCarouselHeight()
       }
     }
   },
@@ -191,7 +194,7 @@ export default {
   methods: {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.slideWidth + this.spaceFix) * this.sliderIndex) + this.slideWidth <= 1) { this.sliderIndex-- } else { this.sliderIndex = 0 }
+        if (-((this.slideMeasure + this.spaceFix) * this.sliderIndex) + this.slideMeasure <= 1) { this.sliderIndex-- } else { this.sliderIndex = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
           if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
@@ -202,7 +205,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.slideWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -(this.slideWidth * this.elements.length)) { this.sliderIndex++ } else { this.sliderIndex = 0 }
+        if (-((this.slideMeasure + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -(this.slideMeasure * this.elements.length)) { this.sliderIndex++ } else { this.sliderIndex = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
           if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
@@ -237,10 +240,11 @@ export default {
       this.setAutoPlay = 0
     },
     getSliderWidth () {
-      this.slideWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+      this.slideMeasure = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
     },
-    getCarouselWidth () {
-      this.carouselWidth = 0
+    getCarouselHeight () {
+      this.slideMeasure = Math.max(...this.$refs.carouselSlide.map(slide => slide.clientHeight))
+      console.log(Math.max(...this.$refs.carouselSlide.map(slide => slide.clientHeight)))
     }
   }
 }

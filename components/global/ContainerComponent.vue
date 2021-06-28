@@ -65,7 +65,7 @@
               v-hide="index === currentSlide"
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
-              class="carousel-slide slide row-start-1 row-end-1 col-start-1 col-end-1"
+              class="carousel-slide slide row-start-1 row-end-1 col-start-1 col-end-1 transition-opacity duration-700"
               :style="`background-color: ${blok.background_color_component.color};`"
             >
               <component
@@ -105,6 +105,7 @@ export default {
   directives: {
     hide (el, bind) {
       el.style.visibility = (bind.value) ? 'visible' : 'hidden'
+      el.style.opacity = (bind.value) ? '1' : '0'
     }
   },
   props: {

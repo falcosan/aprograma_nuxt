@@ -14,7 +14,7 @@
         leave-to-class="opacity-0"
       >
         <Icon
-          v-show="-((slideMeasure + spaceFix) * sliderIndex) + slideMeasure <= 1"
+          v-show="-((slideWidth + spaceFix) * sliderIndex) + slideWidth <= 1"
           previous
           :class="`previous-control control absolute z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2 md:bottom-7'}`"
           size="p-2 w-7"
@@ -36,7 +36,7 @@
         <ul
           v-if="blok.slider_mode === 'slider'"
           :key="sliderKey"
-          :style="`transform: translateX(${-((slideMeasure + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
+          :style="`transform: translateX(${-((slideWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
           class="slider relative w-max grid grid-flow-col transition-transform"
         >
           <li
@@ -44,7 +44,7 @@
             :key="component._uid"
             v-touch:swipe.stop.left="next"
             v-touch:swipe.stop.right="previous"
-            :style="`width: ${slideMeasure}px; background-color: ${blok.background_color_component.color};`"
+            :style="`width: ${slideWidth}px; background-color: ${blok.background_color_component.color};`"
             class="slider-slide slide"
           >
             <component
@@ -56,16 +56,23 @@
           </li>
         </ul>
         <div v-else class="carousel-container">
-          <ul
+          <transition-group
+            tag="ul"
             class="carousel relative grid"
+            enter-active-class="in-out duration-500"
+            leave-active-class="out-in duration-500"
+            :enter-class="`opacity-0 transform ${transitionEnter}`"
+            :leave-to-class="`opacity-0 transform ${transitionLeave}`"
+            @before-enter="disabled = true"
+            @after-leave="disabled = false"
           >
             <li
               v-for="(component, index) in elements"
+              v-show="index === currentSlide"
               :key="component._uid"
-              v-hide="index === currentSlide"
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
-              class="carousel-slide slide row-start-1 row-end-1 col-start-1 col-end-1 transition-opacity duration-700"
+              class="carousel-slide slide row-start-1 row-end-1 col-start-1 col-end-1"
               :style="`background-color: ${blok.background_color_component.color};`"
             >
               <component
@@ -75,7 +82,7 @@
                 carousel-mode
               />
             </li>
-          </ul>
+          </transition-group>
           <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-3 justify-center my-5 md:my-10">
             <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1 w-1 rounded-full select-none text-xl transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-black bg-black' : 'bg-black'}`" />
           </div>
@@ -102,12 +109,6 @@
 <script>
 
 export default {
-  directives: {
-    hide (el, bind) {
-      el.style.visibility = (bind.value) ? 'visible' : 'hidden'
-      el.style.opacity = (bind.value) ? '1' : '0'
-    }
-  },
   props: {
     blok: {
       type: Object,
@@ -123,10 +124,12 @@ export default {
       sliderIndex: 0,
       currentSlide: 0,
       setAutoPlay: 0,
-      slideMeasure: 0,
+      slideWidth: 0,
+      carouselWidth: 0,
       transitionEnter: '',
       transitionLeave: '',
-      spaceFix: 20
+      spaceFix: 20,
+      disabled: false
     }
   },
   computed: {
@@ -161,11 +164,14 @@ export default {
   },
   watch: {
     '$store.state.data.windowWidth' () {
-      if (this.blok.slider_mode && this.blok.slider_mode === 'slider') {
-        this.getSliderWidth(); this.sliderKey++
+      if (this.blok.slider_mode) {
+        this.sliderKey++
+        if (this.blok.slider_mode === 'slider') {
+          this.getSliderWidth()
+        }
       }
     },
-    slideMeasure () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
+    slideWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
   },
   mounted () {
     if (this.blok.slider_mode) {
@@ -185,16 +191,24 @@ export default {
   methods: {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.slideMeasure + this.spaceFix) * this.sliderIndex) + this.slideMeasure <= 1) { this.sliderIndex-- } else { this.sliderIndex = 0 }
+        if (-((this.slideWidth + this.spaceFix) * this.sliderIndex) + this.slideWidth <= 1) { this.sliderIndex-- } else { this.sliderIndex = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
-        if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
+        if (!this.disabled) {
+          if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
+        }
+        this.transitionEnter = '-translate-x-full'
+        this.transitionLeave = 'translate-x-full'
       }
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.slideMeasure + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -(this.slideMeasure * this.elements.length)) { this.sliderIndex++ } else { this.sliderIndex = 0 }
+        if (-((this.slideWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -(this.slideWidth * this.elements.length)) { this.sliderIndex++ } else { this.sliderIndex = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
-        if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
+        if (!this.disabled) {
+          if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
+        }
+        this.transitionEnter = 'translate-x-full'
+        this.transitionLeave = '-translate-x-full'
       }
     },
     next () {
@@ -223,7 +237,7 @@ export default {
       this.setAutoPlay = 0
     },
     getSliderWidth () {
-      this.slideMeasure = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+      this.slideWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
     }
   }
 }

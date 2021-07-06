@@ -1,17 +1,17 @@
 <template>
-  <div class="error">
-    <div v-if="error.statusCode === 404" class="h-full flex flex-col justify-center items-center space-y-5 text-center p-10 bg-gray-300">
+  <div :class="`error ${$themeColor($store.state.data.themeColor) ? 'text-white' : ''}`" :style="`background-color: ${$store.state.data.themeColor};`">
+    <div v-if="error.statusCode === 404" :class="`error-404 h-full flex flex-col justify-center items-center p-10 space-y-5 text-center rounded-b-md ${!$device.isDesktop ? '' : 'md:rounded-t-md'}`">
       <span class="text-7xl font-bold">{{ error.statusCode }}</span>
-      <span class="w-max h-max justify-self-center transform rotate-90"> = ( </span>
-      <span class="text-2xl"> {{ error.message }}</span>
+      <span class="w-max h-max justify-self-center transform rotate-90">=(</span>
+      <span class="text-lg sm:text-2xl"> {{ error.message }}</span>
       <NuxtLink class=" w-max justify-self-center py-3 px-10 filter grayscale bg-gray-600 text-white" to="/">
         Home
       </NuxtLink>
     </div>
-    <div v-else class="h-full flex flex-col justify-center items-center space-y-5 text-center py-10 bg-gray-300">
+    <div v-else :class="`error-500 h-full flex flex-col justify-center items-center p-10 space-y-5 text-center rounded-b-md ${!$device.isDesktop ? '' : 'md:rounded-t-md'}`">
       <span class="text-7xl font-bold">{{ error.statusCode }}</span>
-      <span class="w-max h-max justify-self-center transform rotate-90">= (</span>
-      <span class="text-2xl"> {{ error.message }}</span>
+      <span class="w-max h-max justify-self-center transform rotate-90">=(</span>
+      <span class="text-lg sm:text-2xl"> {{ error.message }}</span>
       <NuxtLink class=" w-max justify-self-center py-3 px-10 filter grayscale bg-gray-600 text-white" to="/">
         Home
       </NuxtLink>

@@ -58,11 +58,11 @@
         <div v-else class="carousel-container">
           <transition-group
             tag="ul"
-            class="carousel relative grid"
+            class="carousel relative grid items-center"
             enter-active-class="in-out duration-500"
             leave-active-class="out-in duration-500"
-            :enter-class="`opacity-0 transform ${transitionEnter}`"
-            :leave-to-class="`opacity-0 transform ${transitionLeave}`"
+            :enter-class="`transform ${transitionEnter}`"
+            :leave-to-class="`transform ${transitionLeave}`"
             @before-enter="disabled = true"
             @after-leave="disabled = false"
           >
@@ -72,7 +72,7 @@
               :key="component._uid"
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
-              class="carousel-slide slide row-start-1 row-end-1 col-start-1 col-end-1"
+              :class="`carousel-slide slide row-start-1 row-end-1 col-start-1 col-end-1 ${index === currentSlide ? 'show' : 'hidden'}`"
               :style="`background-color: ${blok.background_color_component.color};`"
             >
               <component
@@ -243,11 +243,12 @@ export default {
 }
 </script>
 <style scoped>
-.carousel::-webkit-scrollbar {
- display: none;
+.hidden{
+  display: flex !important;
+  opacity: 0;
 }
-.carousel {
- -ms-overflow-style: none;
- scrollbar-width: none;
+.show {
+  transition: opacity .5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
 }
 </style>

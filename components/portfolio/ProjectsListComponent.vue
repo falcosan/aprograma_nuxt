@@ -6,7 +6,7 @@
   <ul v-else-if="sortedProject" :class="`project-list grid gap-5 auto-cols-fr ${blok.row_container && parentRow ? 'md:auto-rows-max' : 'md:grid-cols-big auto-rows-fr'}`">
     <ProjectTeaser
       v-for="project in sortedProject"
-      :key="project._uid"
+      :key="project.uuid"
       :project-link="`portfolio/${project.slug}`"
       :project-content="project.content"
       :row-container="parentRow && blok.row_container"

@@ -4,15 +4,25 @@
       <label class="search-label">{{ $languageCase('Search the post', 'Busca el post', 'Cerca il post') }}</label>
       <input v-model="searchTerm" class="search-bar w-full h-10 p-2 mt-2.5 md:mt-5 border border-black" type="text">
     </div>
-    <ul :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container && parentRow ? 'md:auto-rows-max' : 'lg:grid-flow-row lg:auto-rows-fr'}`">
+
+    <transition-group
+      tag="ul"
+      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container && parentRow ? 'md:auto-rows-max' : 'lg:grid-flow-row lg:auto-rows-fr'}`"
+      appear
+      enter-active-class="duration-200"
+      leave-active-class="duration-200"
+      enter-class="opacity-0"
+      leave-to-class="opacity-0"
+    >
       <PostTeaser
         v-for="post in searchTerm && blok.search_action ? filterByTerm : sortedPosts"
-        :key="post._uid"
+        :key="post.uuid"
+        class="transition-all duration-200"
         :post-link="`blog/${post.slug}`"
         :post-content="post.content"
         :row-container="parentRow && blok.row_container"
       />
-    </ul>
+    </transition-group>
   </div>
 </template>
 

@@ -86,4 +86,11 @@ export default {
   margin: 0 auto;
   max-width: 24rem;
 }
+.post-article *::-webkit-scrollbar {
+ display: none;
+}
+.post-article * {
+ -ms-overflow-style: none;
+ scrollbar-width: none;
+}
 </style>

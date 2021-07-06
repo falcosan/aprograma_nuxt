@@ -54,7 +54,8 @@ export default {
     },
     filterByTerm () {
       return this.sortedPosts.filter((post) => {
-        return post.content.title.toLowerCase().includes(this.searchTerm)
+        const textContent = post.content.title.toLowerCase() + post.content.intro.toLowerCase()
+        return textContent.includes(this.searchTerm)
       })
     }
   },

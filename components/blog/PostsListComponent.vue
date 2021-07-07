@@ -64,7 +64,7 @@ export default {
     },
     filterByTerm () {
       return this.sortedPosts.filter((post) => {
-        const textContent = post.content.title.toLowerCase() + post.content.intro.toLowerCase()
+        const textContent = post.content.title.toLowerCase()
         return textContent.includes(this.searchTerm)
       })
     }

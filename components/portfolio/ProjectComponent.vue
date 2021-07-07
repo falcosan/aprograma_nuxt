@@ -39,7 +39,7 @@
 
       <span
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        class="intro-text max-w-none p-5 text-base prose prose-sm lg:prose-lg"
+        class="intro-text max-w-none p-5 text-base rounded-md prose prose-sm lg:prose-lg"
         v-text="blok.intro"
       />
 
@@ -56,7 +56,7 @@
       </div>
     </div>
     <div v-if="$contentByName(blok.body, 'ProjectDescription').length > 0" class="project-details col-start-1 col-end-4 mt-10">
-      <h1 class="detail-title mb-10 text-xl">
+      <h1 class="detail-title mb-5 text-lg font-light">
         {{ $languageCase('Project details', 'Detalles del proyecto', 'Dettaglio del progetto') }}
       </h1>
       <ProjectDescription
@@ -72,7 +72,7 @@
         arrow
         tag="button"
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        class="project-back h-full"
+        class="project-back h-full rounded-md"
         size="w-16 p-5"
         @click.native="goBack()"
       />
@@ -80,7 +80,7 @@
         :is="blok.url_project ? 'a' : 'span'"
         v-if="$store.state.data.windowWidth < 1024"
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        :class="`project-url p-5${blok.url_project ? ' font-semibold' : ' italic'} text-center truncate`"
+        :class="`project-url p-5 rounded-md text-center truncate ${blok.url_project ? ' font-semibold' : ' italic'}`"
         :href="blok.url_project ? blok.url_project : false"
         :target="blok.url_project ? '_blank' : false"
         :rel="blok.url_project ? 'noopener noreferrer' : false"

@@ -1,10 +1,9 @@
 <template>
   <div class="posts">
-    <div v-if="blok.search_action" class="post-search border-b-4 border-dotted mb-2.5 pb-2.5 md:pb-5 md:mb-5">
+    <div v-if="blok.search_action" class="post-search mb-2.5 pb-2.5 md:pb-5 md:mb-5 border-b-4 border-dotted">
       <label class="search-label">{{ $languageCase('Search the post', 'Busca el post', 'Cerca il post') }}</label>
-      <input v-model="searchTerm" class="search-bar w-full h-10 p-2 mt-2.5 md:mt-5 border border-black" type="text">
+      <input v-model="searchTerm" class="search-bar w-full h-10 p-2 mt-2.5 md:mt-5 rounded-md border border-black" type="text">
     </div>
-
     <transition-group
       tag="ul"
       :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container && parentRow ? 'md:auto-rows-max' : 'lg:grid-flow-row lg:auto-rows-fr'}`"
@@ -17,7 +16,6 @@
       <PostTeaser
         v-for="post in searchTerm && blok.search_action ? filterByTerm : sortedPosts"
         :key="post.uuid"
-        class="transition-all duration-200"
         :post-link="`blog/${post.slug}`"
         :post-content="post.content"
         :row-container="parentRow && blok.row_container"

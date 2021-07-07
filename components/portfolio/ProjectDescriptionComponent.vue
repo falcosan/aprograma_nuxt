@@ -23,7 +23,7 @@
         </Modal>
       </li>
     </ul>
-    <span v-if="blok.text" class="description-text h-max p-5 break-words" :style="inlineTextStyle" v-text="blok.text" />
+    <span v-if="blok.text" class="text-description h-max p-5 rounded-md break-words" :style="inlineTextStyle" v-text="blok.text" />
   </div>
 </template>
 <script>

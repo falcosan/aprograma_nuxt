@@ -45,7 +45,7 @@
             v-touch:swipe.stop.left="next"
             v-touch:swipe.stop.right="previous"
             :style="`width: ${slideWidth}px; background-color: ${blok.background_color_component.color};`"
-            class="slider-slide slide"
+            class="slider-slide slide rounded-md"
           >
             <component
               :is="component.component"
@@ -72,7 +72,7 @@
               :key="component._uid"
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
-              :class="`carousel-slide slide row-start-1 row-end-1 col-start-1 col-end-1 ${index === currentSlide ? 'show' : 'hidden'}`"
+              :class="`carousel-slide slide row-start-1 row-end-1 col-start-1 col-end-1 rounded-md ${index === currentSlide ? 'show' : 'hidden'}`"
               :style="`background-color: ${blok.background_color_component.color};`"
             >
               <component

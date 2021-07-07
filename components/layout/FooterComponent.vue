@@ -6,9 +6,10 @@
   >
     <div
       :style="`background-color: ${expanded ? blok.background_color.color : '#fff'};`"
-      class="top-kick absolute w-20 h-20 flex right-0 -top-20 items-center justify-center z-10 rounded-tl-xl transition-all duration-200"
+      class="top-kick absolute w-20 h-20 flex right-0 -top-20 items-center justify-center z-10 rounded-tl-md cursor-pointer transition-all duration-200"
+      @click="scrollTop();"
     >
-      <Icon arrow tag="button" size="w-auto" :class="`justify-center transform rotate-90 ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`" @click.native="scrollTop();" />
+      <Icon arrow tag="button" size="w-auto" :class="`justify-center transform rotate-90 ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`" />
     </div>
     <div
       class="content-container h-full overflow-hidden"
@@ -19,7 +20,7 @@
         :class="`open-footer absolute left-0 -top-20 ${expanded ? 'w-full' : 'w-20'}`"
       >
         <div
-          class="icon-open w-20 h-20 flex justify-center items-center rounded-tr-xl transition-all duration-200"
+          class="icon-open w-20 h-20 flex justify-center items-center rounded-tr-md transition-all duration-200"
           :style="`background-color: ${expanded ? blok.background_color.color : '#fff'};`"
         >
           <Icon
@@ -61,10 +62,10 @@
   </footer>
   <footer
     v-else
-    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl mb-0 mt-5 mx-auto pt-16 pb-32 px-2 rounded-t-md backdrop-filter backdrop-blur bg-opacity-70 bg-white"
+    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-md lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl mb-0 mt-5 mx-auto pt-16 pb-32 px-2 rounded-t-md backdrop-filter backdrop-blur bg-opacity-70 bg-white"
   >
     <div class="footer-content h-48 flex flex-col items-center space-y-5 text-center">
-      <span class="input-footer relative flex space-x-5 items-end bottom-10 text-xl font-thin text-black">
+      <span class="input-footer relative flex space-x-5 items-end bottom-10 text-md font-thin text-black">
         <span class="footer-dash"> - </span> <Icon eye tag="span" size="w-6" class="eye-footer animate-pulse" /><span class="footer-dash"> - </span>
       </span>
       <div

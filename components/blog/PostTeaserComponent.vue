@@ -11,12 +11,15 @@
       >
         <component
           :is="postContent.file.filename ? lookFile() : 'img'"
+          v-show="!wait"
           :class="`teaser-file w-full h-44 xs:h-56 sm:h-72 object-cover object-center select-none ${rowContainer ? 'md:h-44 lg:h-64 xl:h-80' : 'md:h-80 lg:h-full lg:w-1/2'}`"
           :alt="postContent.file.alt"
           :src="setFile"
-          :width="lookImage || !postContent.file.filename ? '100%' : false "
-          :height="lookImage || !postContent.file.filename ? '100%' : false "
+          :width="lookImage || !postContent.file.filename ? '100%' : false"
+          :height="lookImage || !postContent.file.filename ? '100%' : false"
+          @load="wait = false"
         />
+        <Skeleton :class="`w-full h-44 xs:h-56 sm:h-72 ${rowContainer ? 'md:h-44 lg:h-64 xl:h-80' : 'md:h-80 lg:h-full lg:w-1/2'}`" :wait="wait" />
         <div :class="`teaser-text w-full flex flex-col p-5 ${rowContainer ? 'lg:p-10' : 'h-max lg:h-full lg:w-1/2 sm:p-10'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
@@ -61,7 +64,8 @@ export default {
   },
   data () {
     return {
-      expanded: false
+      expanded: false,
+      wait: true
     }
   },
   computed: {

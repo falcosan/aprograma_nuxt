@@ -1,6 +1,6 @@
 <template>
-  <div v-show="wait" class="skeleton p-5 opacity-80">
-    <div class="h-full flex items-center justify-center rounded-md bg-white">
+  <div v-show="wait" class="skeleton p-5 bg-gray-100">
+    <div class="h-full flex items-center justify-center rounded-md shadow opacity-80 bg-white">
       <Icon
         tag="span"
         loader

@@ -14,7 +14,7 @@
 export default {
   props: {
     wait: {
-      type: Object,
+      type: Boolean,
       required: true
     }
   }

@@ -2,7 +2,7 @@
   <div
     class="container-cover"
   >
-    <h1 v-if="blok.show_title && blok.title" class="container-title mb-10 text-lg font-extralight">
+    <h1 v-if="blok.show_title && blok.title" class="container-title mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
     <div v-if="blok.slider_mode && elements.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">

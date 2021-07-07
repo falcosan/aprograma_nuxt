@@ -10,12 +10,12 @@
         @mouseleave="expanded = false"
       >
         <component
-          :is="lookFile()"
+          :is="postContent.file.filename ? lookFile() : 'img'"
           :class="`teaser-file w-full h-60 sm:h-72 object-cover object-center select-none ${rowContainer ? 'md:h-44 lg:h-64 xl:h-80' : 'md:h-80 lg:h-full lg:w-1/2'}`"
           :alt="postContent.file.alt"
-          :src="postContent.file.filename"
-          :width="lookImage ? '100%' : false "
-          :height="lookImage ? '100%' : false "
+          :src="setFile"
+          :width="lookImage || !postContent.file.filename ? '100%' : false "
+          :height="lookImage || !postContent.file.filename ? '100%' : false "
         />
         <div :class="`teaser-text w-full flex flex-col p-5 ${rowContainer ? 'lg:p-10' : 'h-max lg:h-full lg:w-1/2 sm:p-10'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
@@ -67,6 +67,9 @@ export default {
   computed: {
     lookImage () {
       return !!(/(gif|jpe?g|tiff?|png|webp|bmp)/gi).test(this.postContent.file.filename.toLowerCase().split('.').pop())
+    },
+    setFile () {
+      return this.postContent.file.filename ? this.postContent.file.filename : 'https://picsum.photos/428/256'
     }
   },
   methods: {

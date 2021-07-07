@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <div class="post-head relative w-full">
+    <div class="post-head relative w-full mb-5 md:mb-10">
       <h1
         :style="`color: ${blok.post_text_color.color};`"
         class="post-title p-5 font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl"
@@ -15,13 +15,15 @@
         @click.native="goBack()"
       />
       <component
-        :is="lookFile()"
+        :is="blok.file.filename ? lookFile() : 'img'"
         class="post-file w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl object-cover object-center select-none"
         :alt="`${blok.file.alt} project`"
-        :src="blok.file.filename"
+        :src="setFile"
+        :width="lookImage || !blok.file.filename ? '100%' : false "
+        :height="lookImage || !blok.file.filename ? '100%' : false "
       />
     </div>
-    <div class="post-body w-full flex justify-center rounded-md" :style="`background-color: ${blok.post_background_color.color};`">
+    <div class="post-body w-full flex justify-center rounded-b-md" :style="`background-color: ${blok.post_background_color.color};`">
       <div class="post-article w-full prose prose-sm lg:prose-lg py-10 md:py-14 px-5">
         <h2
           :style="`color: ${blok.post_text_color.color};`"
@@ -54,6 +56,14 @@ export default {
     blok: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    lookImage () {
+      return !!(/(gif|jpe?g|tiff?|png|webp|bmp)/gi).test(this.blok.file.filename.toLowerCase().split('.').pop())
+    },
+    setFile () {
+      return this.blok.file.filename ? this.blok.file.filename : 'https://picsum.photos/896/576'
     }
   },
   methods: {

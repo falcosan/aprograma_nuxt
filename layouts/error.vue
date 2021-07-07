@@ -1,5 +1,5 @@
 <template>
-  <div :class="`error ${$themeColor($store.state.data.themeColor) ? 'text-white' : ''}`" :style="`background-color: ${$store.state.data.themeColor};`">
+  <div class="error h-full">
     <div v-if="error.statusCode === 404" :class="`error-404 h-full flex flex-col justify-center items-center p-10 space-y-5 text-center rounded-b-md ${!$device.isDesktop ? '' : 'md:rounded-t-md'}`">
       <span class="text-7xl font-bold">{{ error.statusCode }}</span>
       <span class="w-max h-max justify-self-center transform rotate-90">=(</span>
@@ -35,8 +35,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-.error{
-     height: calc(100vh - 7rem);
-  }
-</style>

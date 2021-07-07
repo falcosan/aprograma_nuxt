@@ -84,21 +84,13 @@ export default {
 <style scoped>
 .main-error{
   height: calc(100vh - 4.5rem);
-  min-height: 100%;
 }
 @media screen and (min-width:768px){
   .main-error{
     height: calc(100vh - 7rem);
   }
 }
-.main-regular{
-    min-height: calc(100vh - 4.5rem);
-  }
-@media screen and (min-width:768px){
-.main-regular{
-    min-height: calc(100vh - 3.5rem);
-  }
-}
+
 .colorAnimation{
     -webkit-animation: changeColor 10s infinite;
     -moz-animation:    changeColor 10s infinite;

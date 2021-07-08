@@ -1,6 +1,6 @@
 <template>
   <div class="project-description ">
-    <h1 class="description-title mb-5 font-semibold" v-text="blok.title"/>
+    <h1 class="description-title mb-5 font-semibold" v-text="blok.title" />
     <div :class="`description-content grid gap-5 ${blok.text ? 'md:grid-cols-3' : ''}`">
       <ul :class="`image-container description-container grid col-start-1 col-end-1 md:col-end-3 justify-items-center gap-5 ${blok.image.length > 1 ? 'md:grid-cols-2' : 'grid-cols-1'}`" :style="inlineImageStyle">
         <li v-for="image in blok.image" :key="image.id" class="image-item">
@@ -25,7 +25,7 @@
           </Modal>
         </li>
       </ul>
-      <span v-if="blok.text" class="description-text- h-max p-5 rounded-md break-words" :style="inlineTextStyle" v-text="blok.text" />
+      <span v-if="blok.text" class="description-text- h-max p-5 rounded-md break-words" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-text="blok.text" />
     </div>
   </div>
 </template>

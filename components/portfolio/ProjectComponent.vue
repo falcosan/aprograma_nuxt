@@ -55,11 +55,11 @@
         </h4>
       </div>
     </div>
-    <div v-if="$contentByName(blok.body, 'ProjectDescription').length > 0" class="project-details col-start-1 col-end-4 mt-12">
+    <div v-if="$contentByName(blok.body, 'Detail').length > 0" class="project-details col-start-1 col-end-4 mt-12">
       <h1 class="detail-title mb-10 text-lg font-light">
         {{ $languageCase('Project details', 'Detalles del proyecto', 'Dettaglio del progetto') }}
       </h1>
-      <ProjectDescription
+      <Detail
         v-for="(description, index) in blok.body"
         :key="description._uid"
         :class="`${index === blok.body.length - 1 ? '' : 'border-b-8 border-dotted pb-10 mb-10'}`"
@@ -92,9 +92,8 @@
 </template>
 <script>
 import Modal from '../global/ModalComponent'
-import ProjectDescription from './ProjectDescriptionComponent'
 export default {
-  components: { Modal, ProjectDescription },
+  components: { Modal },
   props: {
     blok: {
       type: Object,

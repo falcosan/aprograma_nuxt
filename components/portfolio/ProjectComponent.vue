@@ -55,8 +55,8 @@
         </h4>
       </div>
     </div>
-    <div v-if="$contentByName(blok.body, 'ProjectDescription').length > 0" class="project-details col-start-1 col-end-4 mt-10">
-      <h1 class="detail-title mb-5 text-lg font-light">
+    <div v-if="$contentByName(blok.body, 'ProjectDescription').length > 0" class="project-details col-start-1 col-end-4 mt-20">
+      <h1 class="detail-title mb-10 text-lg font-light">
         {{ $languageCase('Project details', 'Detalles del proyecto', 'Dettaglio del progetto') }}
       </h1>
       <ProjectDescription

@@ -55,7 +55,7 @@
         </h4>
       </div>
     </div>
-    <div v-if="$contentByName(blok.body, 'ProjectDescription').length > 0" class="project-details col-start-1 col-end-4 mt-20">
+    <div v-if="$contentByName(blok.body, 'ProjectDescription').length > 0" class="project-details col-start-1 col-end-4 mt-12">
       <h1 class="detail-title mb-10 text-lg font-light">
         {{ $languageCase('Project details', 'Detalles del proyecto', 'Dettaglio del progetto') }}
       </h1>
@@ -72,7 +72,7 @@
         arrow
         tag="button"
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        class="project-back h-full rounded-md"
+        class="project-back h-full rounded-md hover:shadow transition-shadow duration-100"
         size="w-16 p-5"
         @click.native="goBack()"
       />

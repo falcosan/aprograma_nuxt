@@ -9,7 +9,7 @@
       <Icon
         arrow
         :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
-        class="post-close absolute right-0 z-10 rounded-bl-md"
+        class="post-close absolute right-0 z-10 rounded-bl-md hover:shadow transition-shadow duration-100"
         tag="button"
         size="p-3 w-10"
         @click.native="goBack()"
@@ -33,18 +33,18 @@
           class="post-intro"
           v-text="blok.intro"
         />
-        <h3
+        <h4
           :style="`color: ${blok.post_text_color.color};`"
           class="post-author border-b-4 border-dotted py-3 italic"
         >
           {{ $languageCase('by', 'de', 'di') }} {{ blok.author }}
-        </h3>
+        </h4>
         <article
           :style="`color: ${blok.post_text_color.color};`"
           class="post-article"
           v-html="$md.render(blok.long_text)"
         />
-        <h4
+        <h5
           :style="`color: ${blok.post_text_color.color};`"
           :class="`post-date text-right ${blok.long_text ? 'pt-5 lg:pt-8 border-t-4 border-dotted' : ''}`"
           v-text="changeDate(blok.date)"

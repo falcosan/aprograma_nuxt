@@ -96,6 +96,9 @@ export default {
 .body-container > *:not(hr) {
   max-height: inherit;
   align-self: flex-end;
+  width: auto;
+  min-width: 30vw;
+  object-fit: contain;
 }
 .body-container > *:first-child{
   box-sizing: content-box;

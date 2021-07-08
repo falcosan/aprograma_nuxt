@@ -11,7 +11,7 @@
             <img
               height="100%"
               width="100%"
-              class="description-image max-h-96 md:max-h-full cursor-pointer object-contain select-none"
+              class="description-image max-h-96 w-screen md:max-h-full cursor-pointer object-contain select-none"
               :src="image.filename"
               :alt="image.alt"
               @click="action.open()"

@@ -1,6 +1,10 @@
 export default ({ app }, inject) => {
-  inject('contentByName', (from, nameComponent) => {
-    return from.filter(function (item) { return item.component === `${nameComponent}` })
+  inject('contentByName', (from, nameComponent, is = true) => {
+    if (is) {
+      return from.filter(function (item) { return item.component === `${nameComponent}` })
+    } else {
+      return from.filter(function (item) { return item.component !== `${nameComponent}` })
+    }
   })
   inject('emailValidator', (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)

@@ -32,22 +32,23 @@
         </div>
       </div>
       <div
-        :class="`footer-content h-full w-full flex items-center transition-opacity duration-200 ${expanded ? '' : 'opacity-0'} ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`"
+        :class="`footer-content h-full w-full grid grid-flow-col auto-cols-fr gap-5 items-center transition-opacity duration-200 ${expanded ? '' : 'opacity-0'}`"
       >
         <div
-          class="messages-container flex-1 row-start-1 row-end-1 col-start-1 col-end-1 ml-4"
+          class="messages-container ml-4"
         >
-          <span class="footer-messages text-sm">
+          <span :class="`footer-messages text-xs ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`">
             Aprograma {{ typewriter }}
           </span>
         </div>
-        <span
-          class="footer-copyright text-sm text-center flex-1 row-start-1 row-end-1 col-start-1 col-end-3"
+        <div
+          :class="`footer-info justify-self-center text-sm leading-loose text-center ${$themeColor(blok.background_color.color) ? 'text-white' : ''}`"
         >
-          © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
-        </span>
+          <span class="footer-copyright">
+            © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span><br><span class="footer-powered whitespace-nowrap">{ {{ $languageCase('powered by', 'creado con', 'creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span><span class="nuxtjs-hearth"> 💚</span></a> - {{ $languageCase('hosted by', 'alojado con', 'distribuito da') }} <a class="nuxtjs underline" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a> }</span>
+        </div>
         <ul
-          class="social-links grid grid-flow-col gap-3 mr-3 flex-1 row-start-1 row-end-1 col-start-2 col-end-2 justify-end"
+          :class="`social-links grid grid-flow-col gap-3 justify-end mr-3 ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`"
         >
           <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid">
             <component
@@ -62,26 +63,28 @@
   </footer>
   <footer
     v-else
-    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-md lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl mb-0 mt-5 mx-auto pt-16 pb-32 px-2 rounded-t-md backdrop-filter backdrop-blur bg-opacity-70 bg-white"
+    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-md lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl mx-auto p-10 mb-20 rounded-t-md backdrop-filter backdrop-blur bg-opacity-70 bg-white"
   >
-    <div class="footer-content h-48 flex flex-col items-center space-y-5 text-center">
-      <span class="input-footer relative flex space-x-5 items-end bottom-10 text-md font-thin text-black">
+    <div class="footer-content h-52 grid gap-5 text-center">
+      <span class="input-footer relative flex space-x-5 items-end justify-center bottom-7 text-md font-thin">
         <span class="footer-dash"> - </span> <Icon eye tag="span" size="w-6" class="eye-footer animate-pulse" /><span class="footer-dash"> - </span>
       </span>
       <div
-        class="messages-container flex-1"
+        class="messages-container"
       >
-        <span class="footer-messages text-sm text-black">
+        <span class="footer-messages text-xs">
           Aprograma {{ typewriter }}
         </span>
       </div>
-      <span
-        class="footer-copyright flex-1 text-sm text-center text-black"
+      <div
+        class="footer-info text-sm leading-loose"
       >
-        © 2020 - {{ currentYear }}, <strong>Aprograma</strong>
-      </span>
+        <span class="footer-copyright">
+          © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span><br><span class="footer-powered">{ {{ $languageCase('powered by', 'creado con', 'creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span><span class="nuxtjs-hearth"> 💚</span></a> - {{ $languageCase('hosted by', 'alojado con', 'distribuito da') }} <a class="nuxtjs underline" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a> }</span>
+      </div>
+
       <ul
-        class="social-links grid grid-flow-col gap-3 flex-1"
+        class="social-links grid grid-flow-col auto-cols-max gap-3 justify-center"
       >
         <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid">
           <component

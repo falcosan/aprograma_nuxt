@@ -1,8 +1,8 @@
 <template>
   <div class="project-description">
     <h1 v-if="blok.title" class="description-title mb-5 font-semibold" v-text="blok.title" />
-    <div :class="`description-content ${blok.text ? 'grid gap-5 grid-flow-col auto-cols-fr' : 'flex'}`">
-      <ul :class="`image-container description-container justify-items-center ${blok.text ? `grid gap-5 ${blok.image.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}` : ''}`" :style="inlineImageStyle">
+    <div :class="`description-content p-5 rounded-md shadow border ${blok.text ? 'grid gap-5 grid-flow-col auto-cols-fr' : 'flex justify-center'}`">
+      <ul :class="`image-container description-container justify-items-center ${blok.text ? `grid gap-5 ${blok.image.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} ${blok.invert_direction ? 'col-start-2 col-end-2' : ''}` : ''}`" :style="inlineImageStyle">
         <li v-for="image in blok.image" :key="image.id" class="image-item">
           <Modal
             close-mode
@@ -13,7 +13,7 @@
               <img
                 height="100%"
                 width="100%"
-                class="description-image max-h-96 w-screen md:max-h-2xl cursor-pointer object-contain select-none"
+                :class="`description-image max-h-96 md:max-h-xl cursor-pointer object-contain select-none ${blok.text ? 'w-screen' : ''}`"
                 :src="image.filename"
                 :alt="image.alt"
                 @click="action.open()"

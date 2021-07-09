@@ -63,10 +63,10 @@
   </footer>
   <footer
     v-else
-    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-md lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl mx-auto p-10 mb-20 rounded-t-md backdrop-filter backdrop-blur bg-opacity-70 bg-white"
+    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl mx-auto px-10 py-20 mb-12 rounded-t-md backdrop-filter backdrop-blur bg-opacity-70 bg-white"
   >
     <div class="footer-content h-52 grid gap-5 text-center">
-      <span class="input-footer relative flex space-x-5 items-end justify-center bottom-7 text-md font-thin">
+      <span class="input-footer relative flex space-x-5 items-end justify-center bottom-6 text-md font-thin">
         <span class="footer-dash"> - </span> <Icon eye tag="span" size="w-6" class="eye-footer animate-pulse" /><span class="footer-dash"> - </span>
       </span>
       <div

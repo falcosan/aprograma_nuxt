@@ -11,7 +11,7 @@
         modal-style="bg-gray-200 bg-opacity-90"
       >
         <template #activator="action">
-          <div class="image-container my-0 mx-auto cursor-pointer" @click="action.open()">
+          <div class="image-container max-w-xs md:max-w-xl xl:max-w-2xl my-0 mx-auto cursor-pointer" @click="action.open()">
             <img
               class="intro-image border-2 object-contain select-none"
               height="auto"
@@ -36,11 +36,10 @@
       >
         {{ blok.url_project ? `${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}` : $languageCase('private project', 'proyecto privado', 'progetto privato') }}
       </component>
-
       <span
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        class="intro-text max-w-none p-5 text-base rounded-md prose prose-sm lg:prose-lg"
-        v-text="blok.intro"
+        class="intro-text max-w-none p-5 rounded-md"
+        v-html="$md.render(blok.intro)"
       />
       <div class="project-date flex items-baseline justify-around xl:col-start-1 xl:col-end-3">
         <h4 class="date-start text-right text-sm sm:text-base">

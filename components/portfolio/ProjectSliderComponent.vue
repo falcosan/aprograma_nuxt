@@ -1,5 +1,5 @@
 <template>
-  <div class="project-slider relative z-10">
+  <div class="project-slider relative w-full z-10">
     <transition-group
       tag="ul"
       :enter-active-class="`${transitionActive} in-out`"
@@ -25,7 +25,16 @@
               </h2>
             </div>
             <div :class="`image-container flex row-start-1 row-end-1 ${index % 2 == 0 ? 'col-start-2 col-end-2' : 'col-start-1 col-end-1'}`">
-              <img class="project-image object-cover object-center pointer-events-none select-none" width="100%" height="auto" :src="project.content.image.filename" :alt="project.content.image.alt">
+              <img
+                v-show="!wait"
+                class="project-image object-cover object-center pointer-events-none select-none"
+                width="100%"
+                height="auto"
+                :src="project.content.image.filename"
+                :alt="project.content.image.alt"
+                @load="wait = false"
+              >
+              <Skeleton class="w-full" :wait="wait" />
             </div>
           </NuxtLink>
         </li>
@@ -88,7 +97,8 @@ export default {
       translation: {
         enter: '',
         leave: ''
-      }
+      },
+      wait: true
     }
   },
   updated () {

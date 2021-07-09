@@ -42,7 +42,6 @@
         class="intro-text max-w-none p-5 text-base rounded-md prose prose-sm lg:prose-lg"
         v-text="blok.intro"
       />
-
       <div class="project-date flex items-baseline justify-around xl:col-start-1 xl:col-end-3">
         <h4 class="date-start text-right text-sm sm:text-base">
           {{ changeDate(blok.start_date) }}
@@ -55,14 +54,14 @@
         </h4>
       </div>
     </div>
-    <div v-if="$contentByName(blok.body, 'Detail').length > 0" class="project-details col-start-1 col-end-4 mt-12">
-      <h1 class="detail-title mb-10 text-lg font-light">
+    <div v-if="$contentByName(blok.body, 'Detail').length > 0" class="project-details col-start-1 col-end-4 mt-5 border-t-8 border-dotted">
+      <h1 class="detail-title mb-10 pt-10 text-lg font-light">
         {{ $languageCase('Project details', 'Detalles del proyecto', 'Dettaglio del progetto') }}
       </h1>
       <Detail
         v-for="(description, index) in blok.body"
         :key="description._uid"
-        :class="`${index === blok.body.length - 1 ? '' : 'border-b-8 border-dotted pb-10 mb-10'}`"
+        :class="`${index === blok.body.length - 1 ? '' : 'border-b-4 border-dotted pb-10 mb-10'}`"
         :inline-text-style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
         :blok="description"
       />

@@ -45,7 +45,7 @@
           :class="`footer-info justify-self-center leading-relaxed text-center ${$themeColor(blok.background_color.color) ? 'text-white' : ''}`"
         >
           <span class="footer-copyright text-sm">
-            © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span><br><span class="footer-powered text-xs whitespace-nowrap">{ {{ $languageCase('powered by', 'creado con', 'creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span><span class="nuxtjs-hearth"> 💚</span></a> - {{ $languageCase('hosted by', 'alojado con', 'distribuito da') }} <a class="nuxtjs underline" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a> }</span>
+            © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span><br><span class="footer-powered text-xs whitespace-nowrap">{ {{ $languageCase('powered by', 'creado con', 'creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span><span class="nuxtjs-hearth"> 💚</span></a> - &nbsp;{{ $languageCase('hosted by', 'alojado con', 'distribuito da') }} <a class="nuxtjs underline" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a> }</span>
         </div>
         <ul
           :class="`social-links grid grid-flow-col gap-3 justify-end mr-3 ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`"
@@ -80,7 +80,7 @@
         class="footer-info flex flex-col"
       >
         <span class="footer-copyright text-sm">
-          © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span><br><span class="footer-powered text-xs">{ {{ $languageCase('powered by', 'creado con', 'creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span><span class="nuxtjs-hearth"> 💚</span></a> - {{ $languageCase('hosted by', 'alojado con', 'distribuito da') }} <a class="nuxtjs underline" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a> }</span>
+          © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span><br><span class="footer-powered text-xs">{ {{ $languageCase('powered by', 'creado con', 'creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span><span class="nuxtjs-hearth"> 💚</span></a> - &nbsp;{{ $languageCase('hosted by', 'alojado con', 'distribuito da') }} <a class="nuxtjs underline" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a> }</span>
       </div>
 
       <ul

@@ -11,7 +11,7 @@
         modal-style="bg-gray-200 bg-opacity-90"
       >
         <template #activator="action">
-          <div class="image-container max-w-xs md:max-w-xl xl:max-w-2xl my-0 mx-auto cursor-pointer" @click="action.open()">
+          <div class="image-container max-w-xs md:max-w-xl xl:max-w-full my-0 mx-auto cursor-pointer" @click="action.open()">
             <img
               class="intro-image border-2 object-contain select-none"
               height="auto"

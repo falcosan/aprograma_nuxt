@@ -9,9 +9,10 @@
       />
     </div>
     <div v-else-if="story.content.body" class="aprograma-maintenance h-screen flex flex-col justify-center p-10 sm:p-20">
+      <div class="maintenance-line absolute h-px w-full left-0 top-1/2 -z-10 bg-black" />
       <Logo
         transition
-        class="max-w-lg my-0 mx-auto shadow-lg rounded-md"
+        class="max-w-lg my-0 mx-auto border border-black rounded-md bg-white"
         size="w-full"
       />
       <h1 class="maintenance-text mt-10 sm:mt-20 text-center text-xs xs:text-base sm:text-lg xs:whitespace-nowrap font-bold uppercase italic">

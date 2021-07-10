@@ -5,7 +5,7 @@
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" class="slider-wrapper relative flex justify-center" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">
       <transition
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         enter-active-class="duration-200"

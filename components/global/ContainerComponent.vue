@@ -1,6 +1,6 @@
 <template>
   <div
-    class="container-cover"
+    class="container-cover w-full"
   >
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-10 text-2xl font-extralight">
       {{ blok.title }}

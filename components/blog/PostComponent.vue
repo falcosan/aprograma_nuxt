@@ -102,7 +102,7 @@ export default {
 <style>
 .post-article img{
   margin: 0 auto;
-  max-width: 24rem;
+  max-width: 28rem;
 }
 .post-article *::-webkit-scrollbar {
  display: none;

@@ -1,6 +1,6 @@
 <template>
   <span
-    :class="`icon-container grid gap-5 ${blok && !blok.remove_space ? 'p-5 sm:p-10' : ''} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : ''} ${sliderMode ? 'h-full content-between' : ''}`"
+    :class="`icon-container grid gap-5 ${blok && !blok.remove_space ? 'p-5 sm:p-10' : ''} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : ''} ${blok ? 'h-full content-between' : ''}`"
     @click="animateMenu ? open = !open : false"
   >
     <component
@@ -17,7 +17,7 @@
         :class="`icon ${blok.icon_image.filename
           .split(/[\\/]/)
           .pop()
-          .replace(/\.[^/.]+$/, '')}-icon h-auto my-0 mx-auto fill-current ${size} object-contain object-center`"
+          .replace(/\.[^/.]+$/, '')}-icon my-0 mx-auto fill-current ${size} object-contain object-center`"
         :src="blok.icon_image.filename"
         alt=""
         :name="blok.name"

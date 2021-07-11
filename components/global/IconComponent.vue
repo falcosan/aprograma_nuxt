@@ -1,6 +1,6 @@
 <template>
   <span
-    :class="`icon-container grid gap-5 ${blok && !blok.remove_space ? 'p-5 sm:p-10' : ''} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : ''} ${blok ? 'h-full content-between items-end' : ''}`"
+    :class="`icon-container grid gap-5 ${blok && !blok.remove_space ? 'p-5 sm:p-10' : ''} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : ''} ${sliderMode ? 'h-full content-between' : ''}`"
     @click="animateMenu ? open = !open : false"
   >
     <component

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="container-cover w-full"
+    :class="`container-cover ${check.attr ? 'w-9/12' : 'w-full'}`"
   >
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-10 text-2xl font-extralight">
       {{ blok.title }}
@@ -37,7 +37,7 @@
           v-if="blok.slider_mode === 'slider'"
           :key="sliderKey"
           :style="`transform: translateX(${-((slideWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
-          class="slider relative w-max grid grid-flow-col transition-transform"
+          class="slider relative w-full grid grid-flow-col transition-transform"
         >
           <li
             v-for="component in elements"
@@ -49,7 +49,7 @@
           >
             <component
               :is="component.component"
-              :class="`${component.component.toLowerCase()}-component max-w-max my-0 mx-auto`"
+              :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() === 'slider' ? 'h-full flex flex-col justify-around' : ''}`"
               :blok="component"
               slider-mode
             />
@@ -120,6 +120,9 @@ export default {
       elements: this.blok.body,
       max: Number(this.blok.max_slides),
       defaultMax: this.blok.body.length - 1,
+      check: {
+        attr: false
+      },
       sliderKey: 0,
       sliderIndex: 0,
       currentSlide: 0,
@@ -166,8 +169,9 @@ export default {
     '$store.state.data.windowWidth' () {
       if (this.blok.slider_mode) {
         this.sliderKey++
+        this.checkAttr()
         if (this.blok.slider_mode === 'slider') {
-          this.getSliderWidth()
+          this.getSlideWidth()
         }
       }
     },
@@ -175,11 +179,12 @@ export default {
   },
   mounted () {
     if (this.blok.slider_mode) {
+      this.checkAttr()
       if (this.blok.auto_play) {
         this.autoPlay()
       }
       if (this.blok.slider_mode === 'slider') {
-        this.getSliderWidth()
+        this.getSlideWidth()
       }
     }
   },
@@ -236,8 +241,19 @@ export default {
       clearTimeout(this.setAutoPlay)
       this.setAutoPlay = 0
     },
-    getSliderWidth () {
-      this.slideWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+    checkAttr () {
+      if (this.$el.hasAttribute('slider-mode')) {
+        this.check.attr = true
+      }
+    },
+    getSlideWidth () {
+      if (this.check.attr) {
+        this.$nextTick(function () {
+          this.slideWidth = this.$el.clientWidth
+        })
+      } else {
+        this.slideWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+      }
     }
   }
 }

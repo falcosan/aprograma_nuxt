@@ -1,11 +1,11 @@
 <template>
   <div
-    :class="`container-cover ${check.attr ? 'w-9/12' : 'w-full'}`"
+    :class="`container-cover ${check.sliderAttr ? 'w-9/12' : 'w-full'}`"
   >
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" class="slider-wrapper relative" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${check.sliderAttr ? 'h-full flex' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
       <transition
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         enter-active-class="duration-200"
@@ -16,8 +16,8 @@
         <Icon
           v-show="-((slideWidth + spaceFix) * sliderIndex) + slideWidth <= 1"
           previous
-          :class="`previous-control control absolute z-20 filter invert grayscale left-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-1 md:bottom-5'}`"
-          size="p-2 w-7"
+          :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-1 md:bottom-5'} ${check.sliderAttr ? 'left-3' : 'left-2'}`"
+          :size="`${check.sliderAttr ? 'p-1.5 w-5' : 'p-2 w-7'}`"
           tag="button"
           @click.native="previous"
         />
@@ -26,8 +26,8 @@
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         next
-        :class="`next-control control absolute z-20 filter invert grayscale right-2 transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-1 md:bottom-5'}`"
-        size="p-2 w-7"
+        :class="`next-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-1 md:bottom-5'} ${check.sliderAttr ? 'right-3' : 'right-2'}`"
+        :size="`${check.sliderAttr ? 'p-1.5 w-5' : 'p-2 w-7'}`"
         tag="button"
         @click.native="next"
       />
@@ -37,7 +37,7 @@
           v-if="blok.slider_mode === 'slider'"
           :key="sliderKey"
           :style="`transform: translateX(${-((slideWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
-          class="slider relative w-full grid grid-flow-col transition-transform"
+          :class="`slider relative w-full grid grid-flow-col transition-transform ${check.sliderAttr ? 'h-full' : ''}`"
         >
           <li
             v-for="component in elements"
@@ -49,7 +49,7 @@
           >
             <component
               :is="component.component"
-              :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() === 'slider' ? 'h-full flex flex-col justify-around' : ''}`"
+              :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() === 'slider' ? 'h-full' : ''}`"
               :blok="component"
               slider-mode
             />
@@ -121,7 +121,7 @@ export default {
       max: Number(this.blok.max_slides),
       defaultMax: this.blok.body.length - 1,
       check: {
-        attr: false
+        sliderAttr: false
       },
       sliderKey: 0,
       sliderIndex: 0,
@@ -243,11 +243,11 @@ export default {
     },
     checkAttr () {
       if (this.$el.hasAttribute('slider-mode')) {
-        this.check.attr = true
+        this.check.sliderAttr = true
       }
     },
     getSlideWidth () {
-      if (this.check.attr) {
+      if (this.check.sliderAttr) {
         this.$nextTick(function () {
           this.slideWidth = this.$el.clientWidth
         })

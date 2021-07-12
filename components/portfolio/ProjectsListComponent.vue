@@ -30,11 +30,15 @@ export default {
     sliderMode: {
       type: Boolean,
       default: false
+    },
+    carouselMode: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
     parentRow () {
-      return !!(this.containerMode || this.sliderMode)
+      return !!(this.containerMode || this.sliderMode || this.carouselMode)
     },
     sortedProject () {
       const featuredProjects = this.$store.state.list.projects.items.filter((project) => {

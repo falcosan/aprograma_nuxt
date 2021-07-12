@@ -40,6 +40,10 @@ export default {
     sliderMode: {
       type: Boolean,
       default: false
+    },
+    carouselMode: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -49,7 +53,7 @@ export default {
   },
   computed: {
     parentRow () {
-      return !!(this.containerMode || this.sliderMode)
+      return !!(this.containerMode || this.sliderMode || this.carouselMode)
     },
     sortedPosts () {
       const featuredPosts = this.$store.state.list.posts.items.filter((post) => {

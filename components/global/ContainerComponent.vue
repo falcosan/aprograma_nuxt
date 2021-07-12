@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`container-cover w-full ${sliderMode ? 'grid content-center' : ''}`"
+    :class="`container-cover w-full h-full ${sliderMode ? 'grid content-center' : ''}`"
   >
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
@@ -81,7 +81,7 @@
         </div>
       </div>
     </div>
-    <div v-else :class="`container-components grid gap-5 auto-cols-fr ${carouselMode || sliderMode ? '' : 'lg:grid-cols-big'}`" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : false">
+    <div v-else :class="`container-components ${carouselMode || sliderMode ? 'h-full flex flex-col' : 'grid gap-5 auto-cols-fr lg:grid-cols-big'}`" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : false">
       <div
         v-for="component in elements"
         :key="component._uid"

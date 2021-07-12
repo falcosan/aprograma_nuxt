@@ -9,7 +9,7 @@
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || check.sliderAttr || check.carouselAttr"
         previous
-        :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2 md:bottom-8'} ${check.sliderAttr ? 'left-3' : 'left-2'}`"
+        :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-3 md:bottom-8'} ${check.sliderAttr ? 'left-3' : 'left-2'}`"
         :size="`${check.sliderAttr ? 'p-1.5 w-5' : 'p-2 w-7'}`"
         tag="button"
         @click.native="previous"
@@ -18,7 +18,7 @@
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || check.sliderAttr || check.carouselAttr"
         next
-        :class="`next-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2 md:bottom-8'} ${check.sliderAttr ? 'right-3' : 'right-2'}`"
+        :class="`next-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-3 md:bottom-8'} ${check.sliderAttr ? 'right-3' : 'right-2'}`"
         :size="`${check.sliderAttr ? 'p-1.5 w-5' : 'p-2 w-7'}`"
         tag="button"
         @click.native="next"
@@ -162,7 +162,6 @@ export default {
     '$store.state.data.windowWidth' () {
       if (this.blok.slider_mode) {
         this.sliderKey++
-        this.checkAttr()
         this.getSlideWidth()
       }
     },

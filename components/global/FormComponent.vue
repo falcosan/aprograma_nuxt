@@ -83,6 +83,7 @@ export default {
       this.alert.color = ''
     },
     clearFields () {
+      clearInterval(this.alert.timer)
       this.fields = {}
       this.alert.timer = 0
       this.alert.message = null

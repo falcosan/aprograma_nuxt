@@ -1,8 +1,8 @@
 <template>
   <main :class="`main py-10 overflow-x-hidden ${!$device.isDesktop ? '' : 'md:py-14'} ${blok.background_media.filename ? '' : 'bg-white'}`">
-    <div :class="`main-wrapper relative min-h-screen ${$store.state.data.error ? 'main-error' : 'main-regular'}`">
+    <div :class="`main-wrapper relative min-h-screen overflow-hidden ${$store.state.data.error ? 'main-error' : 'main-regular'}`">
       <div
-        :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl inset-0 overflow-hidden my-0 mx-auto rounded-b-md shadow-sm transition-colors duration-500 backdrop-filter backdrop-blur ${!$device.isDesktop ? '' : 'md:rounded-t-md'}`"
+        :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl inset-0 my-0 mx-auto rounded-b-md transition-colors duration-500 backdrop-filter backdrop-blur ${!$device.isDesktop ? '' : 'md:rounded-t-md'}`"
         :style="`background-color: ${blok.background_media.filename ? 'transparent' : randomBackgroundColor};`"
       >
         <div class="main-mask h-full w-full bg-opacity-70 bg-white" />

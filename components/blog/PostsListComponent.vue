@@ -6,7 +6,7 @@
     </div>
     <transition-group
       tag="ul"
-      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container && parentRow ? 'md:auto-rows-max' : 'lg:grid-flow-row lg:auto-rows-fr'}`"
+      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || parentContainer ? 'md:auto-rows-max' : 'lg:grid-flow-row lg:auto-rows-fr'}`"
       appear
       enter-active-class="duration-200"
       leave-active-class="duration-200"
@@ -18,7 +18,7 @@
         :key="post.uuid"
         :post-link="`blog/${post.slug}`"
         :post-content="post.content"
-        :row-container="parentRow && blok.row_container"
+        :row-container="parentContainer && blok.row_container"
       />
     </transition-group>
   </div>
@@ -52,8 +52,8 @@ export default {
     }
   },
   computed: {
-    parentRow () {
-      return !!(this.containerMode || this.sliderMode || this.carouselMode)
+    parentContainer () {
+      return !!(this.containerMode || this.sliderMode || this.carouselMode || this.$parent.sliderMode)
     },
     sortedPosts () {
       const featuredPosts = this.$store.state.list.posts.items.filter((post) => {

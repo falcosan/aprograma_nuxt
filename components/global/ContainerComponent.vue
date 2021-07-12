@@ -121,7 +121,6 @@ export default {
       currentSlide: 0,
       setAutoPlay: 0,
       slideWidth: 0,
-      carouselWidth: 0,
       transitionEnter: '',
       transitionLeave: '',
       spaceFix: 20,
@@ -184,7 +183,7 @@ export default {
   methods: {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.slideWidth + this.spaceFix) * this.sliderIndex) + this.slideWidth <= 1) { this.sliderIndex-- } else { this.sliderIndex = this.defaultMax }
+        if (-((this.slideWidth + this.spaceFix) * this.sliderIndex) + this.slideWidth <= 1) { this.sliderIndex-- } else { this.sliderIndex = this.elements.length - this.maxElements }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
           if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }

@@ -98,7 +98,7 @@
       >
         <component
           :is="component.component"
-          :class="`${component.component.toLowerCase()}-component`"
+          :class="`${component.component.toLowerCase()}-component ${component.component.toLowerCase() === 'container' && component.slider_mode ? '' : 'flex justify-center'}`"
           :blok="component"
           :container-mode="elements.filter(item => item.row_container).length > 1"
         />

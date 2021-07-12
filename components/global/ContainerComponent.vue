@@ -5,7 +5,7 @@
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${check.sliderAttr ? 'h-full flex' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${check.sliderAttr ? 'h-full flex justify-center' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
       <transition
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
         enter-active-class="duration-200"
@@ -14,24 +14,24 @@
         leave-to-class="opacity-0"
       >
         <Icon
-          v-show="blok.slider_mode === 'slider' ? -((slideWidth + spaceFix) * sliderIndex) + slideWidth <= 1 : $store.state.data.windowWidth < 640 || !$device.isDesktop"
+          v-show="-((slideWidth + spaceFix) * sliderIndex) + slideWidth <= 1"
           previous
-          :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-1 md:bottom-5'} ${check.sliderAttr ? 'left-3' : 'left-2'}`"
+          :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2 md:bottom-8'} ${check.sliderAttr ? 'left-3' : 'left-2'}`"
           :size="`${check.sliderAttr ? 'p-1.5 w-5' : 'p-2 w-7'}`"
           tag="button"
           @click.native="previous"
         />
       </transition>
-      <div v-else-if="blok.slider_mode === 'carousel'" class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
+      <div v-else-if="blok.slider_mode === 'carousel' && !check.sliderAttr" class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
       <Icon
-        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
+        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || check.sliderAttr"
         next
-        :class="`next-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-1 md:bottom-5'} ${check.sliderAttr ? 'right-3' : 'right-2'}`"
+        :class="`next-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2 md:bottom-8'} ${check.sliderAttr ? 'right-3' : 'right-2'}`"
         :size="`${check.sliderAttr ? 'p-1.5 w-5' : 'p-2 w-7'}`"
         tag="button"
         @click.native="next"
       />
-      <div v-else-if="blok.slider_mode === 'carousel'" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
+      <div v-else-if="blok.slider_mode === 'carousel' && !check.sliderAttr" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
       <div class="slider-box overflow-hidden">
         <ul
           v-if="blok.slider_mode === 'slider'"
@@ -45,7 +45,7 @@
             v-touch:swipe.stop.left="next"
             v-touch:swipe.stop.right="previous"
             :style="`width: ${slideWidth}px; background-color: ${blok.background_color_component.color};`"
-            class="slider-slide slide flex my-0 mx-auto rounded-md"
+            class="slider-slide slide my-0 mx-auto rounded-md"
           >
             <component
               :is="component.component"
@@ -94,7 +94,7 @@
         v-for="component in elements"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${maxElements + 1}`}`"
-        :class="`${component.component.toLowerCase()}-container w-full flex justify-center items-center rounded-md ${component.row_container ? '' : 'col-start-1'}`"
+        :class="`${component.component.toLowerCase()}-container w-full rounded-md ${component.row_container ? '' : 'col-start-1'}`"
       >
         <component
           :is="component.component"

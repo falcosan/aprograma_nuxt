@@ -6,7 +6,7 @@
     </div>
     <transition-group
       tag="ul"
-      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || parentContainer ? 'md:auto-rows-max' : 'lg:grid-flow-row lg:auto-rows-fr'}`"
+      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || parentContainer ? 'md:auto-rows-max' : containerMode ? 'md:grid-cols-big p-5' : 'lg:grid-flow-row lg:auto-rows-fr'}`"
       appear
       enter-active-class="duration-200"
       leave-active-class="duration-200"

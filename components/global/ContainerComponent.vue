@@ -1,35 +1,35 @@
 <template>
   <div
-    :class="`container-cover ${check.sliderAttr ? 'w-9/12' : 'w-full'}`"
+    :class="`container-cover w-full ${sliderMode ? 'grid content-center' : ''}`"
   >
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${check.sliderAttr ? 'h-full flex justify-center' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${sliderMode ? 'flex justify-center' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
-        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || check.sliderAttr || check.carouselAttr"
+        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode"
         previous
-        :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2.5 md:bottom-8'} ${check.sliderAttr ? 'left-3' : 'left-2'}`"
-        :size="`${check.sliderAttr ? 'p-1.5 w-5' : 'p-2 w-7'}`"
+        :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2.5 md:bottom-8'} ${sliderMode ? 'left-3' : 'left-2'}`"
+        :size="`${sliderMode ? 'p-1.5 w-5' : 'p-2 w-7'}`"
         tag="button"
         @click.native="previous"
       />
-      <div v-else-if="blok.slider_mode === 'carousel' && (!check.sliderAttr || !check.carouselAttr)" class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
+      <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode)" class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
       <Icon
-        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || check.sliderAttr || check.carouselAttr"
+        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode"
         next
-        :class="`next-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2.5 md:bottom-8'} ${check.sliderAttr ? 'right-3' : 'right-2'}`"
-        :size="`${check.sliderAttr ? 'p-1.5 w-5' : 'p-2 w-7'}`"
+        :class="`next-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2.5 md:bottom-8'} ${sliderMode ? 'right-3' : 'right-2'}`"
+        :size="`${sliderMode ? 'p-1.5 w-5' : 'p-2 w-7'}`"
         tag="button"
         @click.native="next"
       />
-      <div v-else-if="blok.slider_mode === 'carousel' && (!check.sliderAttr || !check.carouselAttr)" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
+      <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode)" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
       <div class="slider-box overflow-hidden">
         <ul
           v-if="blok.slider_mode === 'slider'"
           :key="sliderKey"
           :style="`transform: translateX(${-((slideWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
-          :class="`slider relative w-full grid grid-flow-col transition-transform ${check.sliderAttr ? 'h-full' : ''}`"
+          :class="`slider relative w-full grid grid-flow-col transition-transform ${sliderMode ? 'h-full' : ''}`"
         >
           <li
             v-for="component in elements"
@@ -41,7 +41,7 @@
           >
             <component
               :is="component.component"
-              :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'h-full' : 'w-max'}`"
+              :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'h-full' : ''}`"
               :blok="component"
               slider-mode
             />
@@ -69,7 +69,7 @@
             >
               <component
                 :is="component.component"
-                :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'w-full' : 'w-max'}`"
+                :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'grid items-center' : ''}`"
                 :blok="component"
                 carousel-mode
               />
@@ -81,7 +81,7 @@
         </div>
       </div>
     </div>
-    <div v-else class="container-components grid gap-5 auto-cols-fr lg:grid-cols-big" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : false">
+    <div v-else :class="`container-components grid gap-5 auto-cols-fr ${carouselMode || sliderMode ? '' : 'lg:grid-cols-big'}`" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : false">
       <div
         v-for="component in elements"
         :key="component._uid"
@@ -92,7 +92,7 @@
           :is="component.component"
           :class="`${component.component.toLowerCase()}-component`"
           :blok="component"
-          :container-mode="elements.filter(item => item.row_container).length > 1"
+          container-mode
         />
       </div>
     </div>
@@ -105,6 +105,18 @@ export default {
     blok: {
       type: Object,
       required: true
+    },
+    sliderMode: {
+      type: Boolean,
+      default: false
+    },
+    carouselMode: {
+      type: Boolean,
+      default: false
+    },
+    containerMode: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -112,10 +124,6 @@ export default {
       elements: this.blok.body,
       max: Number(this.blok.max_slides),
       defaultMax: this.blok.body.length - 1,
-      check: {
-        sliderAttr: false,
-        carouselAttr: false
-      },
       sliderKey: 0,
       sliderIndex: 0,
       currentSlide: 0,
@@ -168,7 +176,6 @@ export default {
   },
   mounted () {
     if (this.blok.slider_mode) {
-      this.checkAttr()
       this.getSlideWidth()
       if (this.blok.auto_play) {
         this.autoPlay()
@@ -228,15 +235,8 @@ export default {
       clearTimeout(this.setAutoPlay)
       this.setAutoPlay = 0
     },
-    checkAttr () {
-      if (this.$el.hasAttribute('slider-mode')) {
-        this.check.sliderAttr = true
-      } else if (this.$el.hasAttribute('carousel-mode')) {
-        this.check.carouselAttr = true
-      }
-    },
     getSlideWidth () {
-      if (this.check.sliderAttr || this.check.carouselAttr) {
+      if (this.sliderMode || this.carouselMode) {
         this.$nextTick(function () {
           this.slideWidth = this.$el.clientWidth
         })

@@ -2,7 +2,7 @@
   <component
     :is="blok.external_link ? 'a' : 'NuxtLink'"
     v-if="blok"
-    class="item-link h-full block cursor-pointer"
+    :class="`item-link block cursor-pointer ${sliderMode || carouselMode ? '' : 'h-full'}`"
     :active-class="blok.external_link ? false : !iconItem && !blok.icon_item ? 'filter invert grayscale bg-gray-500' : 'filter invert grayscale bg-gray-300'"
     :to="blok.external_link ? false : blok.path"
     :href="blok.external_link ? blok.path : false"
@@ -25,7 +25,7 @@
   <component
     :is="externalLink ? 'a' : 'NuxtLink'"
     v-else
-    class="item-link h-full block cursor-pointer"
+    :class="`item-link h-full block cursor-pointer ${sliderMode || carouselMode ? '' : 'h-full'}`"
     :active-class="active === 'active' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : ''"
     :exact-active-class="active === 'exact' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : ''"
     :to="externalLink ? false : to"
@@ -74,6 +74,10 @@ export default {
       default: ''
     },
     sliderMode: {
+      type: Boolean,
+      default: false
+    },
+    carouselMode: {
       type: Boolean,
       default: false
     }

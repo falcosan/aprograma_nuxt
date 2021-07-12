@@ -86,7 +86,7 @@
         v-for="component in elements"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${maxElements + 1}`}`"
-        :class="`${component.component.toLowerCase()}-container w-full rounded-md ${component.row_container ? '' : 'col-start-1'}`"
+        :class="`${component.component.toLowerCase()}-container w-full rounded-md ${carouselMode || sliderMode ? 'p-5' : ''} ${component.row_container ? '' : 'col-start-1'}`"
       >
         <component
           :is="component.component"

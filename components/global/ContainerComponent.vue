@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`container-cover ${check.sliderAttr ? 'w-9/12' : 'w-full'}`"
+    :class="`container-cover ${check.sliderAttr ? 'w-9/12' : ''}`"
   >
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-10 text-2xl font-extralight">
       {{ blok.title }}
@@ -14,7 +14,7 @@
         leave-to-class="opacity-0"
       >
         <Icon
-          v-show="-((slideWidth + spaceFix) * sliderIndex) + slideWidth <= 1"
+          v-show="blok.slider_mode === 'slider' ? -((slideWidth + spaceFix) * sliderIndex) + slideWidth <= 1 : $store.state.data.windowWidth < 640 || !$device.isDesktop"
           previous
           :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-1 md:bottom-5'} ${check.sliderAttr ? 'left-3' : 'left-2'}`"
           :size="`${check.sliderAttr ? 'p-1.5 w-5' : 'p-2 w-7'}`"
@@ -49,7 +49,7 @@
           >
             <component
               :is="component.component"
-              :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() === 'slider' ? 'h-full' : ''}`"
+              :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'h-full' : 'w-max'}`"
               :blok="component"
               slider-mode
             />
@@ -72,12 +72,12 @@
               :key="component._uid"
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
-              :class="`carousel-slide slide row-start-1 row-end-1 col-start-1 col-end-1 overflow-hidden rounded-md ${index === currentSlide ? 'show' : 'hidden'}`"
+              :class="`carousel-slide slide w-full row-start-1 row-end-1 col-start-1 col-end-1 overflow-hidden rounded-md ${index === currentSlide ? 'show' : 'hidden'}`"
               :style="`background-color: ${blok.background_color_component.color};`"
             >
               <component
                 :is="component.component"
-                :class="`${component.component.toLowerCase()}-component my-0 mx-auto`"
+                :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'w-full' : 'w-max'}`"
                 :blok="component"
                 carousel-mode
               />
@@ -121,7 +121,8 @@ export default {
       max: Number(this.blok.max_slides),
       defaultMax: this.blok.body.length - 1,
       check: {
-        sliderAttr: false
+        sliderAttr: false,
+        carouselAttr: false
       },
       sliderKey: 0,
       sliderIndex: 0,
@@ -170,9 +171,7 @@ export default {
       if (this.blok.slider_mode) {
         this.sliderKey++
         this.checkAttr()
-        if (this.blok.slider_mode === 'slider') {
-          this.getSlideWidth()
-        }
+        this.getSlideWidth()
       }
     },
     slideWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
@@ -180,11 +179,9 @@ export default {
   mounted () {
     if (this.blok.slider_mode) {
       this.checkAttr()
+      this.getSlideWidth()
       if (this.blok.auto_play) {
         this.autoPlay()
-      }
-      if (this.blok.slider_mode === 'slider') {
-        this.getSlideWidth()
       }
     }
   },
@@ -244,10 +241,13 @@ export default {
     checkAttr () {
       if (this.$el.hasAttribute('slider-mode')) {
         this.check.sliderAttr = true
+      } else if (this.$el.hasAttribute('carousel-mode')) {
+        this.check.carouselAttr = true
+        console.log(this)
       }
     },
     getSlideWidth () {
-      if (this.check.sliderAttr) {
+      if (this.check.sliderAttr || this.blok.slider_mode === 'carousel') {
         this.$nextTick(function () {
           this.slideWidth = this.$el.clientWidth
         })
@@ -263,8 +263,13 @@ export default {
   display: block !important;
   opacity: 0;
 }
+
 .show {
   transition: opacity .5s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 1;
+}
+.show > * {
+  position: relative;
+  z-index: 10;
 }
 </style>

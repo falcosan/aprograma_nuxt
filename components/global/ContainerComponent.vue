@@ -6,22 +6,14 @@
       {{ blok.title }}
     </h1>
     <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${check.sliderAttr ? 'h-full flex justify-center' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
-      <transition
-        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop"
-        enter-active-class="duration-200"
-        leave-active-class="duration-200"
-        enter-class="opacity-0"
-        leave-to-class="opacity-0"
-      >
-        <Icon
-          v-show="-((slideWidth + spaceFix) * sliderIndex) + slideWidth <= 1"
-          previous
-          :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2 md:bottom-8'} ${check.sliderAttr ? 'left-3' : 'left-2'}`"
-          :size="`${check.sliderAttr ? 'p-1.5 w-5' : 'p-2 w-7'}`"
-          tag="button"
-          @click.native="previous"
-        />
-      </transition>
+      <Icon
+        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || check.sliderAttr"
+        previous
+        :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2 md:bottom-8'} ${check.sliderAttr ? 'left-3' : 'left-2'}`"
+        :size="`${check.sliderAttr ? 'p-1.5 w-5' : 'p-2 w-7'}`"
+        tag="button"
+        @click.native="previous"
+      />
       <div v-else-if="blok.slider_mode === 'carousel' && !check.sliderAttr" class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || check.sliderAttr"
@@ -193,7 +185,7 @@ export default {
   methods: {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.slideWidth + this.spaceFix) * this.sliderIndex) + this.slideWidth <= 1) { this.sliderIndex-- } else { this.sliderIndex = 0 }
+        if (-((this.slideWidth + this.spaceFix) * this.sliderIndex) + this.slideWidth <= 1) { this.sliderIndex-- } else { this.sliderIndex = this.elements.length - 1 }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
           if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }

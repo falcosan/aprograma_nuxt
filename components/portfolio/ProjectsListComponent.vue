@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     parentContainer () {
-      return !!(this.containerMode || this.sliderMode || this.carouselMode || this.$parent.sliderMode)
+      return !!(this.sliderMode || this.carouselMode || this.$parent.sliderMode)
     },
     sortedProject () {
       const featuredProjects = this.$store.state.list.projects.items.filter((project) => {

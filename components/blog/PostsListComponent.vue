@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     parentContainer () {
-      return !!(this.containerMode || this.sliderMode || this.carouselMode || this.$parent.sliderMode)
+      return !!(this.sliderMode || this.carouselMode || this.$parent.sliderMode)
     },
     sortedPosts () {
       const featuredPosts = this.$store.state.list.posts.items.filter((post) => {

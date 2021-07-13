@@ -41,7 +41,7 @@
           >
             <component
               :is="component.component"
-              :class="`${component.component.toLowerCase()}-component ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'h-full' : ''}`"
+              :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'h-full' : ''}`"
               :blok="component"
               slider-mode
               :container-width="containerWidth"
@@ -70,7 +70,7 @@
             >
               <component
                 :is="component.component"
-                :class="`${component.component.toLowerCase()}-component ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'grid items-center' : ''}`"
+                :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'grid items-center' : ''}`"
                 :blok="component"
                 carousel-mode
                 :container-width="containerWidth"

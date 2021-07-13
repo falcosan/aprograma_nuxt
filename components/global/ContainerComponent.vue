@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`container-cover w-full ${sliderMode || containerMode || carouselMode ? ' self-center' : 'h-full'}`"
+    :class="`container-cover w-full ${sliderMode || containerMode || carouselMode ? 'self-center' : 'h-full'}`"
   >
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
@@ -28,7 +28,7 @@
         <ul
           v-if="blok.slider_mode === 'slider'"
           :key="sliderKey"
-          :style="`transform: translateX(${-((slideWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
+          :style="`transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
           :class="`slider relative w-full grid grid-flow-col transition-transform ${sliderMode ? 'h-full' : ''}`"
         >
           <li
@@ -36,7 +36,7 @@
             :key="component._uid"
             v-touch:swipe.stop.left="next"
             v-touch:swipe.stop.right="previous"
-            :style="`width: ${slideWidth}px; background-color: ${blok.background_color_component.color};`"
+            :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
             class="slider-slide slide flex my-0 mx-auto rounded-md"
           >
             <component
@@ -81,12 +81,12 @@
         </div>
       </div>
     </div>
-    <div v-else :class="`container-components grid gap-5 auto-cols-fr ${carouselMode ? 'md:grid-cols-big' : ''}`" :style="maxElements > 1 && !containerMode && !sliderMode && !carouselMode ? `grid-template-columns:repeat(${maxElements}, 1fr);` : false">
+    <div v-else :class="`container-components grid gap-5 auto-cols-fr`" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : false">
       <div
         v-for="component in elements"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${maxElements + 1}`}`"
-        :class="`${component.component.toLowerCase()}-container w-full rounded-md ${component.row_container ? '' : 'col-start-1'}`"
+        :class="`${component.component.toLowerCase()}-container w-full rounded-md ${component.row_container ? '' : 'col-start-1'} ${component.component.toLowerCase() === 'container' ? 'flex' : ''}`"
       >
         <component
           :is="component.component"
@@ -128,7 +128,7 @@ export default {
       sliderIndex: 0,
       currentSlide: 0,
       setAutoPlay: 0,
-      slideWidth: 0,
+      containerWidth: 0,
       transitionEnter: '',
       transitionLeave: '',
       spaceFix: 20,
@@ -140,7 +140,17 @@ export default {
       return this.elements.filter(function (item) { return item.row_container })
     },
     maxElements () {
-      if (this.blok.slider_mode && this.elements.length > 1) {
+      if ((this.sliderMode || this.carouselMode) && this.blok.slider_mode && this.elements.length > 1) {
+        if (this.max) {
+          if (this.containerWidth >= 1240) {
+            return this.$rangeItems(Number(this.blok.max_slides), 3)
+          } return this.containerWidth >= 610 ? this.$rangeItems(Number(this.blok.max_slides), 2) : 1
+        } else {
+          if (this.containerWidth >= 1240) {
+            return this.$rangeItems(this.defaultMax, 3)
+          } return this.containerWidth >= 610 ? this.$rangeItems(this.defaultMax, 2) : 1
+        }
+      } else if (this.blok.slider_mode && this.elements.length > 1) {
         if (this.max) {
           if (this.$store.state.data.windowWidth >= 1536) {
             return this.$rangeItems(Number(this.blok.max_slides), 5)
@@ -167,19 +177,17 @@ export default {
   },
   watch: {
     '$store.state.data.windowWidth' () {
+      this.getContainerWidth()
       if (this.blok.slider_mode) {
         this.sliderKey++
-        this.getSlideWidth()
       }
     },
-    slideWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
+    containerWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
   },
   mounted () {
-    if (this.blok.slider_mode) {
-      this.getSlideWidth()
-      if (this.blok.auto_play) {
-        this.autoPlay()
-      }
+    this.getContainerWidth()
+    if (this.blok.slider_mode && this.blok.auto_play) {
+      this.autoPlay()
     }
   },
   beforeDestroy () {
@@ -190,7 +198,7 @@ export default {
   methods: {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.slideWidth + this.spaceFix) * this.sliderIndex) + this.slideWidth <= 1) { this.sliderIndex-- } else { this.sliderIndex = this.elements.length - this.maxElements }
+        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) + this.containerWidth <= 1) { this.sliderIndex-- } else { this.sliderIndex = this.elements.length - this.maxElements }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
           if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
@@ -201,7 +209,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.slideWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -(this.slideWidth * this.elements.length)) { this.sliderIndex++ } else { this.sliderIndex = 0 }
+        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -(this.containerWidth * this.elements.length)) { this.sliderIndex++ } else { this.sliderIndex = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
           if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
@@ -235,13 +243,13 @@ export default {
       clearTimeout(this.setAutoPlay)
       this.setAutoPlay = 0
     },
-    getSlideWidth () {
+    getContainerWidth () {
       if (this.sliderMode || this.carouselMode) {
         this.$nextTick(function () {
-          this.slideWidth = this.$el.clientWidth
+          this.containerWidth = this.$el.clientWidth
         })
       } else {
-        this.slideWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+        this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
       }
     }
   }

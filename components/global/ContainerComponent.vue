@@ -140,16 +140,10 @@ export default {
       return this.elements.filter(function (item) { return item.row_container })
     },
     maxElements () {
-      if ((this.sliderMode || this.carouselMode) && this.blok.slider_mode && this.elements.length > 1) {
-        if (this.max) {
-          if (this.containerWidth >= 1240) {
-            return this.$rangeItems(Number(this.blok.max_slides), 3)
-          } return this.containerWidth >= 610 ? this.$rangeItems(Number(this.blok.max_slides), 2) : 1
-        } else {
-          if (this.containerWidth >= 1240) {
-            return this.$rangeItems(this.defaultMax, 3)
-          } return this.containerWidth >= 610 ? this.$rangeItems(this.defaultMax, 2) : 1
-        }
+      if (this.sliderMode || this.carouselMode || this.containerMode) {
+        if (this.containerWidth >= 1240) {
+          return this.$rangeItems(this.elements.length, 3)
+        } return this.containerWidth >= 610 ? this.$rangeItems(this.elements.length, 2) : 1
       } else if (this.blok.slider_mode && this.elements.length > 1) {
         if (this.max) {
           if (this.$store.state.data.windowWidth >= 1536) {

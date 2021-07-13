@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`container-cover w-full h-full ${sliderMode || containerMode ? 'grid content-center' : ''}`"
+    :class="`container-cover w-full h-full ${sliderMode || containerMode || carouselMode ? 'flex justify-center items-center' : ''}`"
   >
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
@@ -37,7 +37,7 @@
             v-touch:swipe.stop.left="next"
             v-touch:swipe.stop.right="previous"
             :style="`width: ${slideWidth}px; background-color: ${blok.background_color_component.color};`"
-            class="slider-slide slide my-0 mx-auto rounded-md"
+            class="slider-slide slide flex my-0 mx-auto rounded-md"
           >
             <component
               :is="component.component"
@@ -64,7 +64,7 @@
               :key="component._uid"
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
-              :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 overflow-hidden rounded-md ${index === currentSlide ? 'show' : 'hidden'}`"
+              :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded-md ${index === currentSlide ? 'show' : 'hidden'}`"
               :style="`background-color: ${blok.background_color_component.color};`"
             >
               <component

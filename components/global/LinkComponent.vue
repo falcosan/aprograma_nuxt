@@ -2,7 +2,7 @@
   <component
     :is="blok.external_link ? 'a' : 'NuxtLink'"
     v-if="blok"
-    :class="`item-link cursor-pointer h-full ${sliderMode || carouselMode || containerMode ? 'flex justify-center' : 'block'}`"
+    :class="`item-link cursor-pointer ${sliderMode || carouselMode || containerMode ? 'flex justify-center self-center' : 'h-full block'}`"
     :active-class="blok.external_link ? false : !iconItem && !blok.icon_item ? 'filter invert grayscale bg-gray-500' : 'filter invert grayscale bg-gray-300'"
     :to="blok.external_link ? false : blok.path"
     :href="blok.external_link ? blok.path : false"
@@ -19,6 +19,8 @@
       :tag="blok.body[0].tag"
       :blok="blok.body[0]"
       :slider-mode="sliderMode"
+      :carousel-mode="carouselMode"
+      :container-mode="containerMode"
       :tooltip="blok.title ? blok.title : ''"
     />
   </component>

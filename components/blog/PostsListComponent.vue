@@ -1,12 +1,12 @@
 <template>
-  <div class="posts">
+  <div :class="`posts ${carouselContainer || sliderContainer ? 'p-5' : ''}`">
     <div v-if="blok.search_action" class="post-search mb-2.5 pb-2.5 md:pb-5 md:mb-5 border-b-4 border-dotted">
       <label class="search-label">{{ $languageCase('Search the post', 'Busca el post', 'Cerca il post') }}</label>
       <input v-model="searchTerm" class="search-bar w-full h-10 p-2 mt-2.5 md:mt-5 rounded-md border border-black" type="text">
     </div>
     <transition-group
       tag="ul"
-      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container && sliderContainer ? 'md:auto-rows-max' : containerMode || $parent.carouselMode ? 'md:grid-cols-big' : 'lg:grid-flow-row lg:auto-rows-fr'}`"
+      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container && sliderContainer ? 'md:auto-rows-max' : containerMode || carouselContainer ? 'md:grid-cols-big' : 'lg:grid-flow-row lg:auto-rows-fr'}`"
       appear
       enter-active-class="duration-200"
       leave-active-class="duration-200"
@@ -20,6 +20,7 @@
         :post-content="post.content"
         :row-container="blok.row_container"
         :slider-container="sliderContainer"
+        :carousel-container="carouselContainer"
       />
     </transition-group>
   </div>
@@ -55,6 +56,9 @@ export default {
   computed: {
     sliderContainer () {
       return !!(this.sliderMode || this.$parent.sliderMode)
+    },
+    carouselContainer () {
+      return !!(this.carouselMode || this.$parent.carouselMode)
     },
     sortedPosts () {
       const featuredPosts = this.$store.state.list.posts.items.filter((post) => {

@@ -20,7 +20,7 @@
           @load="wait = false"
         />
         <Skeleton :class="`w-full ${rowContainer && !sliderContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : sliderContainer ? 'h-full' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'}`" :wait="wait" />
-        <div :class="`teaser-text w-full flex flex-col p-5 ${rowContainer && !sliderContainer ? 'lg:p-10' : sliderContainer ? '' : 'h-max lg:h-full lg:w-1/2 sm:p-10'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full flex flex-col p-5 ${rowContainer && !sliderContainer && !carouselContainer ? 'lg:p-10' : sliderContainer || carouselContainer ? 'h-32 md:h-36' : 'h-max lg:h-full lg:w-1/2 sm:p-10'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               :class="`teaser-title mb-2 font-semibold overflow-hidden ${$route.name === 'blog' ? 'text-xl sm:text-2xl' : 'text-xl'}`"
@@ -62,6 +62,10 @@ export default {
       required: true
     },
     sliderContainer: {
+      type: Boolean,
+      required: true
+    },
+    carouselContainer: {
       type: Boolean,
       required: true
     }

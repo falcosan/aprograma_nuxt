@@ -5,7 +5,7 @@
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${sliderMode ? 'flex justify-center' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${sliderMode || carouselMode ? 'flex justify-center overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode"
         previous
@@ -41,9 +41,10 @@
           >
             <component
               :is="component.component"
-              :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'h-full' : ''}`"
+              :class="`${component.component.toLowerCase()}-component ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'h-full' : ''}`"
               :blok="component"
               slider-mode
+              :container-width="containerWidth"
             />
           </li>
         </ul>
@@ -64,14 +65,15 @@
               :key="component._uid"
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
-              :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded-md ${index === currentSlide ? 'show' : 'hidden'}`"
+              :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 overflow-hidden rounded-md ${index === currentSlide ? 'show' : 'hidden'}`"
               :style="`background-color: ${blok.background_color_component.color};`"
             >
               <component
                 :is="component.component"
-                :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'grid items-center' : ''}`"
+                :class="`${component.component.toLowerCase()}-component ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'grid items-center' : ''}`"
                 :blok="component"
                 carousel-mode
+                :container-width="containerWidth"
               />
             </li>
           </transition-group>
@@ -86,13 +88,14 @@
         v-for="component in elements"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${maxElements + 1}`}`"
-        :class="`${component.component.toLowerCase()}-container w-full rounded-md ${component.row_container ? '' : 'col-start-1'} ${component.component.toLowerCase() === 'container' ? 'flex' : ''}`"
+        :class="`${component.component.toLowerCase()}-container w-full rounded-md ${component.row_container ? '' : 'col-start-1'} ${component.component.toLowerCase() === 'container' ? 'grid' : ''}`"
       >
         <component
           :is="component.component"
           :class="`${component.component.toLowerCase()}-component`"
           :blok="component"
           container-mode
+          :container-width="containerWidth"
         />
       </div>
     </div>
@@ -192,7 +195,7 @@ export default {
   methods: {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) + this.containerWidth <= 1) { this.sliderIndex-- } else { this.sliderIndex = this.elements.length - this.maxElements }
+        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) + this.containerWidth <= 0) { this.sliderIndex-- } else { this.sliderIndex = this.sliderMode || this.carouselMode || this.containerMode ? this.defaultMax : this.elements.length - this.maxElements }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
           if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }

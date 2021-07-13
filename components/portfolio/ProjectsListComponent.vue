@@ -1,10 +1,10 @@
 <template>
-  <div :class="`projects ${carouselContainer || sliderContainer ? 'p-5' : ''}`">
+  <div :class="`projects ${carouselContainer || sliderContainer ? 'flex items-center p-5' : ''}`">
     <ProjectSlider
       v-if="sortedProject && $store.state.data.windowWidth >= 1024 && blok.show_slider && !blok.row_container && !sliderContainer"
       :blok="sortedProject"
     />
-    <ul v-else-if="sortedProject" :class="`project-list grid gap-5 auto-cols-fr ${blok.row_container && !sliderContainer ? carouselContainer ? 'md:grid-cols-medium' : 'md:auto-rows-max' : 'md:grid-cols-small auto-rows-fr'}`">
+    <ul v-else-if="sortedProject" :class="`project-list w-full grid gap-5 auto-cols-fr ${blok.row_container && !sliderContainer ? `${containerWidth > 295 ? 'grid-cols-medium' : 'grid-cols-small'} md:auto-rows-fr` : 'grid-flow-col'}`">
       <ProjectTeaser
         v-for="project in sortedProject"
         :key="project.uuid"
@@ -26,6 +26,10 @@ export default {
     blok: {
       type: Object,
       required: true
+    },
+    containerWidth: {
+      type: Number,
+      default: 0
     },
     containerMode: {
       type: Boolean,

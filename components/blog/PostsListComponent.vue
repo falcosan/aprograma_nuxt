@@ -6,7 +6,7 @@
     </div>
     <transition-group
       tag="ul"
-      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container && parentContainer ? 'md:auto-rows-max p-5' : containerMode || $parent.carouselMode ? 'md:grid-cols-big p-5' : 'lg:grid-flow-row lg:auto-rows-fr'}`"
+      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container && sliderContainer ? 'md:auto-rows-max' : containerMode || $parent.carouselMode ? 'md:grid-cols-big' : 'lg:grid-flow-row lg:auto-rows-fr'}`"
       appear
       enter-active-class="duration-200"
       leave-active-class="duration-200"
@@ -18,7 +18,8 @@
         :key="post.uuid"
         :post-link="`blog/${post.slug}`"
         :post-content="post.content"
-        :row-container="parentContainer && blok.row_container"
+        :row-container="blok.row_container"
+        :slider-container="sliderContainer"
       />
     </transition-group>
   </div>
@@ -52,7 +53,7 @@ export default {
     }
   },
   computed: {
-    parentContainer () {
+    sliderContainer () {
       return !!(this.sliderMode || this.$parent.sliderMode)
     },
     sortedPosts () {

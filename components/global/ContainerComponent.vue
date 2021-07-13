@@ -81,7 +81,7 @@
         </div>
       </div>
     </div>
-    <div v-else :class="`container-components ${carouselMode || sliderMode ? 'h-full flex flex-col justify-center' : 'grid gap-5 auto-cols-fr'}`" :style="maxElements > 1 && !containerMode ? `grid-template-columns:repeat(${maxElements}, 1fr);` : false">
+    <div v-else :class="`container-components grid gap-5 auto-cols-fr`" :style="maxElements > 1 && !containerMode && !sliderMode && !carouselMode ? `grid-template-columns:repeat(${maxElements}, 1fr);` : false">
       <div
         v-for="component in elements"
         :key="component._uid"

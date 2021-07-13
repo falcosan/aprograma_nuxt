@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`container-cover w-full h-full ${sliderMode ? 'grid content-center' : ''}`"
+    :class="`container-cover w-full h-full ${sliderMode || containerMode ? 'grid content-center' : ''}`"
   >
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}

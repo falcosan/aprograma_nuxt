@@ -1,11 +1,11 @@
 <template>
   <div
-    :class="`container-cover w-full ${sliderMode || containerMode || carouselMode ? 'self-center' : 'h-full'}`"
+    :class="`container-cover w-full ${sliderMode || containerMode || carouselMode ? 'self-center' : ''}`"
   >
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${sliderMode || carouselMode ? 'flex justify-center overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || carouselMode ? 'h-full flex justify-center items-center overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode"
         previous
@@ -41,7 +41,7 @@
           >
             <component
               :is="component.component"
-              :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'h-full' : ''}`"
+              :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''}`"
               :blok="component"
               slider-mode
               :container-width="containerWidth"
@@ -70,7 +70,7 @@
             >
               <component
                 :is="component.component"
-                :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode ? 'grid items-center' : ''}`"
+                :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full grid items-center' : ''}`"
                 :blok="component"
                 carousel-mode
                 :container-width="containerWidth"
@@ -88,7 +88,7 @@
         v-for="component in elements"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${maxElements + 1}`}`"
-        :class="`${component.component.toLowerCase()}-container w-full rounded-md ${component.row_container ? '' : 'col-start-1'} ${component.component.toLowerCase() === 'container' ? 'grid' : ''}`"
+        :class="`${component.component.toLowerCase()}-container w-full grid rounded-md ${component.row_container ? '' : 'col-start-1'}`"
       >
         <component
           :is="component.component"

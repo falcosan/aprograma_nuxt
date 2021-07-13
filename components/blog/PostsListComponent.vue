@@ -75,9 +75,6 @@ export default {
       this.getPosts()
     }
   },
-  beforeDestroy () {
-    this.$store.dispatch('list/posts/deletePosts')
-  },
   methods: {
     async getPosts () {
       await this.$store.dispatch('list/posts/addPosts')

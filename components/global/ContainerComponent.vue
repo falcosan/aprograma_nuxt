@@ -28,8 +28,8 @@
         <ul
           v-if="blok.slider_mode === 'slider'"
           :key="sliderKey"
-          :style="`transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
-          :class="`slider relative w-full grid grid-flow-col transition-transform ${sliderMode ? 'h-full' : ''}`"
+          :style="`width: ${sliderMode || containerMode || carouselMode ? `${containerWidth}px` : false}; transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
+          :class="`slider relative grid grid-flow-col transition-transform ${sliderMode ? 'h-full' : ''}`"
         >
           <li
             v-for="component in elements"
@@ -145,8 +145,8 @@ export default {
     maxElements () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         if (this.containerWidth >= 1240) {
-          return this.$rangeItems(this.elements.length, 3)
-        } return this.containerWidth >= 610 ? this.$rangeItems(this.elements.length, 2) : 1
+          return this.$rangeItems(this.defaultMax, 3)
+        } return this.containerWidth >= 610 ? this.$rangeItems(this.defaultMax, 2) : 1
       } else if (this.blok.slider_mode && this.elements.length > 1) {
         if (this.max) {
           if (this.$store.state.data.windowWidth >= 1536) {
@@ -195,7 +195,7 @@ export default {
   methods: {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) + this.containerWidth <= 0) { this.sliderIndex-- } else { this.sliderIndex = this.sliderMode || this.carouselMode || this.containerMode ? this.defaultMax : this.elements.length - this.maxElements }
+        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) + this.containerWidth <= 0) { this.sliderIndex-- } else { this.sliderIndex = this.elements.length - this.maxElements }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
           if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }

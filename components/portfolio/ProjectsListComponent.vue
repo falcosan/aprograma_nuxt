@@ -1,10 +1,10 @@
 <template>
-  <div :class="`projects ${carouselContainer || sliderContainer ? 'flex items-center p-5' : ''}`">
+  <div :class="`projects ${carouselContainer || sliderContainer || containerContainer ? 'flex items-center p-5' : ''}`">
     <ProjectSlider
-      v-if="sortedProject && $store.state.data.windowWidth >= 1024 && blok.show_slider && !blok.row_container && !sliderContainer"
+      v-if="sortedProject && $store.state.data.windowWidth >= 1024 && blok.show_slider && !blok.row_container && containerWidth >= 1024"
       :blok="sortedProject"
     />
-    <ul v-else-if="sortedProject" :class="`project-list w-full grid gap-5 auto-cols-fr auto-rows-fr ${containerWidth > 295 ? 'md:grid-cols-medium' : 'md:grid-cols-small'}`">
+    <ul v-else-if="sortedProject" :class="`project-list w-full grid gap-5 auto-cols-fr auto-rows-fr ${containerWidth >= 295 ? 'md:grid-cols-medium' : 'md:grid-cols-small'}`">
       <ProjectTeaser
         v-for="project in sortedProject"
         :key="project.uuid"
@@ -13,6 +13,7 @@
         :row-container="blok.row_container"
         :slider-container="sliderContainer"
         :carousel-container="carouselContainer"
+        :container-container="containerContainer"
       />
     </ul>
   </div>
@@ -50,6 +51,9 @@ export default {
     },
     carouselContainer () {
       return !!(this.carouselMode || this.$parent.carouselMode)
+    },
+    containerContainer () {
+      return !!(this.containerMode || this.$parent.containerMode)
     },
     sortedProject () {
       const featuredProjects = this.$store.state.list.projects.items.filter((project) => {

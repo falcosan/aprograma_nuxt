@@ -1,12 +1,12 @@
 <template>
-  <div :class="`posts w-full ${carouselContainer || sliderContainer || $parent.containerMode ? 'grid items-center p-5' : ''}`">
+  <div :class="`posts ${carouselContainer || sliderContainer || $parent.containerMode ? 'grid items-center p-5' : ''}`">
     <div v-if="blok.search_action" class="post-search self-start mb-5 md:mb-10">
       <label class="search-label">{{ $languageCase('Search the post', 'Busca el post', 'Cerca il post') }}</label>
       <input v-model="searchTerm" class="search-bar w-full h-10 p-2 mt-2.5 md:mt-5 rounded-md border border-black" type="text">
     </div>
     <transition-group
       tag="ul"
-      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || !sliderContainer || carouselContainer ? `${containerWidth > 295 ? blok.search_action ? 'grid-cols-fill-big' : 'grid-cols-fit-big' : sliderContainer ? 'grid-flow-row-dense' : blok.search_action ? 'grid-cols-fill-big' : 'grid-cols-fit-big'} md:auto-rows-fr` : 'lg:grid-flow-row lg:auto-rows-fr'}`"
+      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || !sliderContainer || carouselContainer ? `${containerWidth > 295 ? blok.search_action ? 'grid-cols-fill-big' : 'grid-cols-fit-big' : blok.search_action ? 'grid-cols-fill-small' : 'grid-cols-fit-small'} md:auto-rows-fr` : 'lg:grid-flow-row lg:auto-rows-fr'}`"
       appear
       enter-active-class="duration-200"
       leave-active-class="duration-200"
@@ -92,6 +92,7 @@ export default {
     async getPosts () {
       await this.$store.dispatch('list/posts/addPosts')
     }
+
   }
 }
 </script>

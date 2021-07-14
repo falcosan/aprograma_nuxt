@@ -4,7 +4,7 @@
       v-if="sortedProject && $store.state.data.windowWidth >= 1024 && blok.show_slider && !blok.row_container && containerWidth >= 1024"
       :blok="sortedProject"
     />
-    <ul v-else-if="sortedProject" :class="`project-list w-full grid gap-5 auto-cols-fr auto-rows-fr ${containerWidth > 295 ? 'grid-cols-fit-medium' : sliderContainer ? 'grid-flow-row-dense' : 'grid-cols-fit-big'}`">
+    <ul v-else-if="sortedProject" :class="`project-list w-full grid gap-5 auto-cols-fr auto-rows-fr ${containerWidth > 295 ? 'grid-cols-fit-big' : 'grid-cols-fit-small'}`">
       <ProjectTeaser
         v-for="project in sortedProject"
         :key="project.uuid"

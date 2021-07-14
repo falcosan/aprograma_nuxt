@@ -9,8 +9,8 @@
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode"
         previous
-        :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2.5 md:bottom-8'} ${sliderMode || carouselMode ? containerWidth > 295 ? 'left-10' : 'left-5' : 'left-3'}`"
-        :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-7'}`"
+        :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-3.5'} ${sliderMode || carouselMode ? containerWidth > 295 ? 'left-10' : 'left-5' : 'left-3'}`"
+        :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
         tag="button"
         @click.native="previous"
       />
@@ -18,8 +18,8 @@
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode"
         next
-        :class="`next-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-2.5 md:bottom-8'} ${sliderMode || carouselMode ? containerWidth > 295 ? 'right-10' : 'right-5' : 'right-3'}`"
-        :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-7'}`"
+        :class="`next-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-3.5'} ${sliderMode || carouselMode ? containerWidth > 295 ? 'right-10' : 'right-5' : 'right-3'}`"
+        :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
         tag="button"
         @click.native="next"
       />
@@ -77,7 +77,7 @@
               />
             </li>
           </transition-group>
-          <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-3 justify-center my-5 md:my-10">
+          <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-3 justify-center my-6">
             <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1 w-1 rounded-full select-none text-xl transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-black bg-black' : 'bg-black'}`" />
           </div>
         </div>

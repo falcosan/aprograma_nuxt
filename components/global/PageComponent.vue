@@ -3,12 +3,12 @@
     <h1 v-if="blok.title && blok.show_title" class="page-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div class="page-components grid gap-5 auto-cols-fr divide-y-4 divide-dotted" :style="maxComponents > 1 ? `grid-template-columns:repeat(${maxComponents}, 1fr);` : false">
+    <div class="page-components grid gap-5 auto-cols-fr" :style="maxComponents > 1 ? `grid-template-columns:repeat(${maxComponents}, 1fr);` : false">
       <div
         v-for="(component, index) in blok.body"
         :key="component._uid"
         :style="`${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${maxComponents + 1}`}`"
-        :class="`${component.component.toLowerCase()}-content ${index === 0 ? '' : 'mt-5 pt-10'} ${component.row_container ? '' : 'col-start-1'}`"
+        :class="`${component.component.toLowerCase()}-content ${index === 0 || rowComponent.length === blok.body.length ? '' : 'mt-5 pt-10 border-t-4 border-dotted'} ${component.row_container ? '' : 'col-start-1'}`"
       >
         <component
           :is="component.component"

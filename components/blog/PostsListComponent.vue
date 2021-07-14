@@ -6,7 +6,7 @@
     </div>
     <transition-group
       tag="ul"
-      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container && !sliderContainer || carouselContainer ? `${containerWidth > 295 ? 'grid-cols-medium' : 'grid-cols-small'} md:auto-rows-fr` : 'lg:grid-flow-row lg:auto-rows-fr'}`"
+      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container && !sliderContainer || carouselContainer ? `${containerWidth > 295 ? 'grid-cols-medium' : 'grid-flow-row-dense'} md:auto-rows-fr` : 'lg:grid-flow-row lg:auto-rows-fr'}`"
       appear
       enter-active-class="duration-200"
       leave-active-class="duration-200"

@@ -5,7 +5,7 @@
         tag="span"
         loader
         class="animate-pulse"
-        size="w-24"
+        size="w-20"
       />
     </div>
   </div>

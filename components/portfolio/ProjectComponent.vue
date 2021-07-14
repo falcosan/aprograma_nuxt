@@ -60,7 +60,7 @@
       <Detail
         v-for="(description, index) in blok.body"
         :key="description._uid"
-        :class="`${index === blok.body.length - 1 ? '' : 'border-b-4 border-dotted pb-10 mb-10'}`"
+        :class="`${index === blok.body.length - 1 ? '' : 'mb-10'}`"
         :inline-text-style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
         :blok="description"
       />

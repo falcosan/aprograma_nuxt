@@ -1,11 +1,11 @@
 <template>
   <div
-    :class="`container-cover w-full ${sliderMode || containerMode || carouselMode ? 'self-center' : ''}`"
+    :class="`container-cover w-full ${sliderMode || containerMode || carouselMode ? 'grid items-center self-center' : ''}`"
   >
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || carouselMode ? 'h-full flex justify-center items-center overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || carouselMode ? 'flex justify-center items-center overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode"
         previous
@@ -77,8 +77,8 @@
               />
             </li>
           </transition-group>
-          <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-full grid grid-flow-col-dense gap-3 justify-center my-6">
-            <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1 w-1 rounded-full select-none text-xl transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-black bg-black' : 'bg-black'}`" />
+          <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-1/2 flex flex-wrap justify-center my-5 mx-auto">
+            <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1 w-1 inline-block m-1 rounded-full select-none text-xl transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-black bg-black' : 'bg-black'}`" />
           </div>
         </div>
       </div>
@@ -195,7 +195,7 @@ export default {
   methods: {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) + this.containerWidth <= 0) { this.sliderIndex-- } else { this.sliderIndex = this.elements.length - this.maxElements }
+        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) + this.containerWidth <= 0) { this.sliderIndex-- } else { this.sliderIndex = this.sliderMode || this.carouselMode ? this.defaultMax : this.elements.length - this.maxElements }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
           if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }

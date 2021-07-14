@@ -12,14 +12,14 @@
         <component
           :is="postContent.file.filename ? lookFile() : 'img'"
           v-show="!wait"
-          :class="`teaser-file w-full object-cover object-center select-none ${rowContainer && !sliderContainer && !containerContainer && !carouselContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : sliderContainer || containerContainer || carouselContainer ? 'h-full' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'}`"
+          :class="`teaser-file w-full object-cover object-center select-none ${rowContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'}`"
           :alt="postContent.file.alt"
           :src="setFile"
           :width="lookImage || !postContent.file.filename ? '100%' : false"
           :height="lookImage || !postContent.file.filename ? '100%' : false"
           @load="wait = false"
         />
-        <Skeleton :class="`w-full ${rowContainer && !sliderContainer && !containerContainer && !carouselContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : sliderContainer || containerContainer || carouselContainer ? 'h-full' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'}`" :wait="wait" />
+        <Skeleton :class="`w-full ${rowContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'}`" :wait="wait" />
         <div :class="`teaser-text w-full flex flex-col p-5 ${rowContainer && !sliderContainer && !carouselContainer && !containerContainer ? 'lg:p-10' : sliderContainer || carouselContainer || containerContainer ? 'h-32 md:h-36' : 'h-max lg:h-full lg:w-1/2 sm:p-10'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span

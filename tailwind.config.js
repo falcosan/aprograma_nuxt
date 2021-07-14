@@ -42,9 +42,12 @@ module.exports = {
         '-40': '-40'
       },
       gridTemplateColumns: {
-        big: 'repeat(auto-fit, minmax(300px, 1fr))',
-        medium: 'repeat(auto-fit, minmax(275px, 1fr))',
-        small: 'repeat(auto-fit, minmax(167px, 1fr))'
+        'fit-big': 'repeat(auto-fit, minmax(300px, 1fr))',
+        'fit-medium': 'repeat(auto-fit, minmax(275px, 1fr))',
+        'fit-small': 'repeat(auto-fit, minmax(167px, 1fr))',
+        'fill-big': 'repeat(auto-fill, minmax(300px, 1fr))',
+        'fill-medium': 'repeat(auto-fill, minmax(275px, 1fr))',
+        'fill-small': 'repeat(auto-fill, minmax(167px, 1fr))'
 
       },
       transitionProperty: {

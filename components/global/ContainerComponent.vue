@@ -28,7 +28,7 @@
         <ul
           v-if="blok.slider_mode === 'slider'"
           :key="sliderKey"
-          :style="`width: ${sliderMode || containerMode || carouselMode ? `${containerWidth}px` : false}; transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
+          :style="`width: ${sliderMode || carouselMode || containerMode ? `${containerWidth}px` : '100%'}; transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
           :class="`slider relative grid grid-flow-col transition-transform ${sliderMode ? 'h-full' : ''}`"
         >
           <li
@@ -143,12 +143,12 @@ export default {
       return this.elements.filter(function (item) { return item.row_container })
     },
     maxElements () {
-      if (this.sliderMode || this.carouselMode || this.containerMode) {
+      if (this.sliderMode || this.carouselMode) {
         if (this.containerWidth >= 1240) {
           return this.$rangeItems(this.defaultMax, 3)
         } return this.containerWidth >= 610 ? this.$rangeItems(this.defaultMax, 2) : 1
       } else if (this.blok.slider_mode && this.elements.length > 1) {
-        if (this.max) {
+        if (this.max && this.max <= this.defaultMax) {
           if (this.$store.state.data.windowWidth >= 1536) {
             return this.$rangeItems(Number(this.blok.max_slides), 5)
           } else if (this.$store.state.data.windowWidth >= 1280) {

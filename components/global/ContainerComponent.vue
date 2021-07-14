@@ -83,7 +83,7 @@
         </div>
       </div>
     </div>
-    <div v-else :class="`container-components grid gap-5 auto-cols-fr`" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : false">
+    <div v-else :class="`container-components grid gap-5 auto-cols-fr`" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : `grid-template-columns: repeat(auto-fit, minmax(${containerWidth > 232 ? '295' : '232'}px, 1fr));`">
       <div
         v-for="component in elements"
         :key="component._uid"

@@ -1,5 +1,5 @@
 <template>
-  <div :class="`projects ${carouselContainer || sliderContainer || containerContainer ? 'flex items-center p-5' : ''}`">
+  <div :class="`projects ${carouselContainer || sliderContainer || $parent.containerMode ? 'flex items-center p-5' : ''}`">
     <ProjectSlider
       v-if="sortedProject && $store.state.data.windowWidth >= 1024 && blok.show_slider && !blok.row_container && containerWidth >= 1024"
       :blok="sortedProject"

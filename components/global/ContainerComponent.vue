@@ -36,7 +36,7 @@
             :key="component._uid"
             v-touch:swipe.stop.left="next"
             v-touch:swipe.stop.right="previous"
-            :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
+            :style="`width: ${sliderMode || carouselMode || containerMode ? containerWidth / maxElements - (spaceFix / maxElements) * (maxElements - 1) : containerWidth}px; background-color: ${blok.background_color_component.color};`"
             class="slider-slide slide flex my-0 mx-auto rounded-md"
           >
             <component
@@ -241,7 +241,7 @@ export default {
       this.setAutoPlay = 0
     },
     getContainerWidth () {
-      if (this.sliderMode || this.carouselMode) {
+      if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
           this.containerWidth = this.$el.clientWidth
         })

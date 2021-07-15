@@ -5,7 +5,7 @@
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || carouselMode || containerMode ? 'flex justify-center items-center overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || containerMode ? 'flex justify-center items-center overflow-hidden' : carouselMode ? 'overflow-hidden' :''}`" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode"
         previous
@@ -24,7 +24,7 @@
         @click.native="next"
       />
       <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode || !containerMode)" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-      <div ref="sliderBox" class="slider-box overflow-hidden">
+      <div class="slider-box overflow-hidden">
         <ul
           v-if="blok.slider_mode === 'slider'"
           :key="sliderKey"
@@ -70,7 +70,7 @@
             >
               <component
                 :is="component.component"
-                :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full grid items-center' : ''}`"
+                :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''}`"
                 :blok="component"
                 carousel-mode
                 :container-width="containerWidth"

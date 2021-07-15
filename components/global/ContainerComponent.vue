@@ -5,7 +5,7 @@
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || carouselMode ? 'h-full flex justify-center items-center overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || carouselMode || containerMode ? 'h-full flex justify-center items-center overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode"
         previous
@@ -24,12 +24,12 @@
         @click.native="next"
       />
       <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode || !containerMode)" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-      <div class="slider-box overflow-hidden">
+      <div ref="sliderBox" class="slider-box overflow-hidden">
         <ul
           v-if="blok.slider_mode === 'slider'"
           :key="sliderKey"
-          :style="`width: ${sliderMode || carouselMode || containerMode ? `${containerWidth}px` : '100%'}; transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px; grid-template-columns: repeat(${elements.length}, 1fr);`"
-          :class="`slider relative grid transition-transform ${sliderMode || carouselMode || containerMode? 'h-full' : ''}`"
+          :style="`transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
+          :class="`slider relative grid grid-flow-col transition-transform ${sliderMode || carouselMode || containerMode? 'h-full' : ''}`"
         >
           <li
             v-for="component in elements"
@@ -83,12 +83,12 @@
         </div>
       </div>
     </div>
-    <div v-else :class="`container-components grid gap-5 auto-cols-fr`" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : `grid-template-columns: repeat(auto-fit, minmax(${containerWidth > 232 ? '295' : '232'}px, 1fr));`">
+    <div v-else :class="`container-components grid gap-5 auto-cols-fr`" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : false">
       <div
         v-for="component in elements"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${maxElements + 1}`}`"
-        :class="`${component.component.toLowerCase()}-container w-full grid rounded-md ${component.row_container ? '' : 'col-start-1'}`"
+        :class="`${component.component.toLowerCase()}-container w-full grid overflow-hidden rounded-md ${component.row_container ? '' : 'col-start-1'}`"
       >
         <component
           :is="component.component"
@@ -144,9 +144,11 @@ export default {
     },
     maxElements () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
-        if (this.containerWidth >= 1240) {
+        if (this.blok.row_container) {
+          return 1
+        } else if (this.$store.state.data.windowWidth >= 1536) {
           return this.$rangeItems(this.defaultMax, 3)
-        } return this.containerWidth >= 610 ? this.$rangeItems(this.defaultMax, 2) : 1
+        } return (this.$store.state.data.windowWidth >= 1024) ? this.$rangeItems(this.defaultMax, 2) : 1
       } else if (this.blok.slider_mode && this.elements.length > 1) {
         if (this.max && this.max <= this.defaultMax) {
           if (this.$store.state.data.windowWidth >= 1536) {
@@ -195,7 +197,7 @@ export default {
   methods: {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) + this.containerWidth <= 0) { this.sliderIndex-- } else { this.sliderIndex = this.elements.length - this.maxElements }
+        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) + this.containerWidth <= 1) { this.sliderIndex-- } else { this.sliderIndex = this.elements.length - this.maxElements }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
           if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
@@ -243,7 +245,7 @@ export default {
     getContainerWidth () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
-          this.containerWidth = this.$attrs['container-width']
+          this.containerWidth = this.blok.row_container ? this.$el.clientWidth : this.$attrs['container-width'] / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
         })
       } else {
         this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)

@@ -88,7 +88,7 @@
         v-for="component in elements"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${maxElements + 1}`}`"
-        :class="`${component.component.toLowerCase()}-container w-full grid overflow-hidden rounded-md ${component.row_container ? '' : 'col-start-1'}`"
+        :class="`${component.component.toLowerCase()}-container w-full grid rounded-md ${component.row_container ? '' : 'col-start-1'}`"
       >
         <component
           :is="component.component"
@@ -147,8 +147,8 @@ export default {
         if (this.blok.row_container) {
           return 1
         } else if (this.$store.state.data.windowWidth >= 1536) {
-          return this.$rangeItems(this.defaultMax, 3)
-        } return (this.$store.state.data.windowWidth >= 1024) ? this.$rangeItems(this.defaultMax, 2) : 1
+          return this.$parent.maxElements <= 1 ? this.$rangeItems(this.defaultMax, 3) : this.$rangeItems(this.defaultMax, 2)
+        } return this.$store.state.data.windowWidth >= 1024 && this.$parent.maxElements <= 1 ? this.$rangeItems(this.defaultMax, 2) : 1
       } else if (this.blok.slider_mode && this.elements.length > 1) {
         if (this.max && this.max <= this.defaultMax) {
           if (this.$store.state.data.windowWidth >= 1536) {

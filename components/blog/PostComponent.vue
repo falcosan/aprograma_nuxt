@@ -14,16 +14,18 @@
         size="p-3 w-10"
         @click.native="goBack()"
       />
-      <component
-        :is="blok.file.filename ? lookFile() : 'img'"
-        v-show="!wait"
-        class="post-file w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl object-cover object-center select-none"
-        :alt="`${blok.file.alt} project`"
-        :src="setFile"
-        :width="lookImage || !blok.file.filename ? '100%' : false"
-        :height="lookImage || !blok.file.filename ? '100%' : false"
-        @load="wait = false"
-      />
+      <div :class="`post-file w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl ${blok.file.filename ? '' : ' p-5 xs:p-10 sm:p-20 md:p-28 lg:p-32 bg-white'}`">
+        <component
+          :is="blok.file.filename ? lookFile() : 'img'"
+          v-show="!wait"
+          :class="`w-full h-full object-center select-none ${blok.file.filename ? 'object-cover' : 'object-contain'}`"
+          :alt="`${blok.file.alt} project`"
+          :src="setFile"
+          :width="lookImage || !blok.file.filename ? '100%' : false"
+          :height="lookImage || !blok.file.filename ? '100%' : false"
+          @load="wait = false"
+        />
+      </div>
       <Skeleton class="w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl" :wait="wait" />
     </div>
     <div class="post-body w-full flex justify-center rounded-b-md" :style="`background-color: ${blok.post_background_color.color};`">
@@ -68,10 +70,10 @@ export default {
   },
   computed: {
     lookImage () {
-      return !!(/(gif|jpe?g|tiff?|png|webp|bmp)/gi).test(this.blok.file.filename.toLowerCase().split('.').pop())
+      return this.blok.file.filename ? !!(/(gif|jpe?g|tiff?|png|webp|bmp)/gi).test(this.blok.file.filename.toLowerCase().split('.').pop()) : true
     },
     setFile () {
-      return this.blok.file.filename ? this.blok.file.filename : 'https://picsum.photos/896/576'
+      return this.blok.file.filename ? this.blok.file.filename : 'https://lh3.ggpht.com/p/AF1QipOtVOQDe3uhfwNQIlhLzt8GCe8HUnD42JqnqBxB=s1024'
     }
   },
   methods: {

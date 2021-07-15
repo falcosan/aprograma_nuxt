@@ -5,7 +5,7 @@
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || carouselMode || containerMode ? 'h-full flex justify-center items-center overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || carouselMode || containerMode ? 'flex justify-center items-center overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode"
         previous
@@ -147,8 +147,8 @@ export default {
         if (this.blok.row_container) {
           return 1
         } else if (this.$store.state.data.windowWidth >= 1536) {
-          return this.$parent.maxElements <= 1 ? this.$rangeItems(this.defaultMax, 3) : this.$rangeItems(this.defaultMax, 2)
-        } return this.$store.state.data.windowWidth >= 1024 && this.$parent.maxElements <= 1 ? this.$rangeItems(this.defaultMax, 2) : 1
+          return this.$parent.maxElements >= 3 ? 1 : this.$rangeItems(this.defaultMax, 2)
+        } return this.$store.state.data.windowWidth >= 1024 && this.$parent.maxElements >= 1 ? this.$rangeItems(this.defaultMax, 2) : 1
       } else if (this.blok.slider_mode && this.elements.length > 1) {
         if (this.max && this.max <= this.defaultMax) {
           if (this.$store.state.data.windowWidth >= 1536) {

@@ -9,10 +9,9 @@
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
-        <div :class="`teaser-file w-full ${rowContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'} ${postContent.file.filename ? '' : 'px-5 bg-white'}`">
+        <div v-show="!wait" :class="`teaser-file w-full ${rowContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-white'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'img'"
-            v-show="!wait"
             class="w-full h-full object-cover object-center select-none"
             :alt="postContent.file.alt"
             :src="setFile"
@@ -87,7 +86,7 @@ export default {
       return this.postContent.file.filename ? !!(/(gif|jpe?g|tiff?|png|webp|bmp)/gi).test(this.postContent.file.filename.toLowerCase().split('.').pop()) : true
     },
     setFile () {
-      return this.postContent.file.filename ? this.postContent.file.filename : 'https://lh3.ggpht.com/p/AF1QipOtVOQDe3uhfwNQIlhLzt8GCe8HUnD42JqnqBxB=s1024'
+      return this.postContent.file.filename ? this.postContent.file.filename : 'https://lh5.ggpht.com/p/AF1QipOiXNIz0HQYnBRDykrlsUaxNWuv0ZOtuyni_zMi=s1280'
     }
   },
   methods: {

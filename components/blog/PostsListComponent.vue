@@ -1,5 +1,5 @@
 <template>
-  <div :class="`posts ${carouselContainer || sliderContainer || $parent.containerMode ? 'grid items-center p-5' : ''}`">
+  <div :class="`posts ${carouselContainer || sliderContainer || $parent.containerMode ? `grid p-5 ${blok.search_action ? 'self-start' : 'items-center'}` : ''}`">
     <div v-if="blok.search_action" class="post-search self-start mb-5 md:mb-10">
       <label class="search-label">{{ $languageCase('Search the post', 'Busca el post', 'Cerca il post') }}</label>
       <input v-model="searchTerm" class="search-bar w-full h-10 p-2 mt-2.5 md:mt-5 rounded-md border border-black" type="text">

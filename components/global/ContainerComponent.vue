@@ -5,11 +5,11 @@
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || carouselMode ? 'flex justify-center items-center overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || carouselMode ? 'h-full flex justify-center items-center overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode"
         previous
-        :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-3.5'} ${sliderMode || carouselMode ? sliderWidth > 295 ? 'left-10' : 'left-5' : 'left-3'}`"
+        :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-3.5'} ${sliderMode || carouselMode ? containerWidth > 295 ? 'left-10' : 'left-5' : 'left-3'}`"
         :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
         tag="button"
         @click.native="previous"
@@ -18,7 +18,7 @@
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode"
         next
-        :class="`next-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-3.5'} ${sliderMode || carouselMode ? sliderWidth > 295 ? 'right-10' : 'right-5' : 'right-3'}`"
+        :class="`next-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-3.5'} ${sliderMode || carouselMode ? containerWidth > 295 ? 'right-10' : 'right-5' : 'right-3'}`"
         :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
         tag="button"
         @click.native="next"
@@ -28,15 +28,15 @@
         <ul
           v-if="blok.slider_mode === 'slider'"
           :key="sliderKey"
-          :style="`width: ${sliderMode || carouselMode || containerMode ? `${sliderWidth * maxElements + (spaceFix * maxElements) - spaceFix}px` : '100%'}; transform: translateX(${-((sliderWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
-          :class="`slider relative grid grid-flow-col transition-transform ${sliderMode ? 'h-full' : ''}`"
+          :style="`width: ${sliderMode || carouselMode || containerMode ? `${containerWidth}px` : '100%'}; transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px; grid-template-columns: repeat(${elements.length}, 1fr);`"
+          :class="`slider relative grid transition-transform ${sliderMode || carouselMode || containerMode? 'h-full' : ''}`"
         >
           <li
             v-for="component in elements"
             :key="component._uid"
             v-touch:swipe.stop.left="next"
             v-touch:swipe.stop.right="previous"
-            :style="`width: ${sliderWidth}px; background-color: ${blok.background_color_component.color};`"
+            :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
             class="slider-slide slide flex my-0 mx-auto rounded-md"
           >
             <component
@@ -44,7 +44,7 @@
               :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''}`"
               :blok="component"
               slider-mode
-              :container-width="sliderWidth"
+              :container-width="containerWidth"
             />
           </li>
         </ul>
@@ -73,7 +73,7 @@
                 :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full grid items-center' : ''}`"
                 :blok="component"
                 carousel-mode
-                :container-width="sliderWidth"
+                :container-width="containerWidth"
               />
             </li>
           </transition-group>
@@ -83,7 +83,7 @@
         </div>
       </div>
     </div>
-    <div v-else :class="`container-components grid gap-5 auto-cols-fr`" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : `grid-template-columns: repeat(auto-fit, minmax(${sliderWidth > 232 ? '295' : '232'}px, 1fr));`">
+    <div v-else :class="`container-components grid gap-5 auto-cols-fr`" :style="maxElements > 1 ? `grid-template-columns:repeat(${maxElements}, 1fr);` : `grid-template-columns: repeat(auto-fit, minmax(${containerWidth > 232 ? '295' : '232'}px, 1fr));`">
       <div
         v-for="component in elements"
         :key="component._uid"
@@ -95,7 +95,7 @@
           :class="`${component.component.toLowerCase()}-component`"
           :blok="component"
           container-mode
-          :container-width="sliderWidth"
+          :container-width="containerWidth"
         />
       </div>
     </div>
@@ -132,7 +132,6 @@ export default {
       currentSlide: 0,
       setAutoPlay: 0,
       containerWidth: 0,
-      sliderWidth: 0,
       transitionEnter: '',
       transitionLeave: '',
       spaceFix: 20,
@@ -145,18 +144,18 @@ export default {
     },
     maxElements () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
-        if (this.$store.state.data.windowWidth >= 1240) {
+        if (this.containerWidth >= 1240) {
           return this.$rangeItems(this.defaultMax, 3)
-        } return this.$store.state.data.windowWidth >= 610 ? this.$rangeItems(this.defaultMax, 2) : 1
+        } return this.containerWidth >= 610 ? this.$rangeItems(this.defaultMax, 2) : 1
       } else if (this.blok.slider_mode && this.elements.length > 1) {
         if (this.max && this.max <= this.defaultMax) {
           if (this.$store.state.data.windowWidth >= 1536) {
-            return this.$rangeItems(this.max, 5)
+            return this.$rangeItems(Number(this.blok.max_slides), 5)
           } else if (this.$store.state.data.windowWidth >= 1280) {
-            return this.$rangeItems(this.max, 4)
+            return this.$rangeItems(Number(this.blok.max_slides), 4)
           } else if (this.$store.state.data.windowWidth >= 1024) {
-            return this.$rangeItems(this.max, 3)
-          } return this.$store.state.data.windowWidth >= 640 ? this.$rangeItems(this.max, 2) : 1
+            return this.$rangeItems(Number(this.blok.max_slides), 3)
+          } return this.$store.state.data.windowWidth >= 640 ? this.$rangeItems(Number(this.blok.max_slides), 2) : 1
         } else {
           if (this.$store.state.data.windowWidth >= 1536) {
             return this.$rangeItems(this.defaultMax, 5)
@@ -175,16 +174,14 @@ export default {
   },
   watch: {
     '$store.state.data.windowWidth' () {
-      this.getSliderWidth()
       this.getContainerWidth()
       if (this.blok.slider_mode) {
         this.sliderKey++
       }
     },
-    sliderWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
+    containerWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
   },
   mounted () {
-    this.getSliderWidth()
     this.getContainerWidth()
     if (this.blok.slider_mode && this.blok.auto_play) {
       this.autoPlay()
@@ -198,7 +195,7 @@ export default {
   methods: {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.sliderWidth + this.spaceFix) * this.sliderIndex) + this.sliderWidth <= 0) { this.sliderIndex-- } else { this.sliderIndex = this.sliderMode || this.carouselMode ? this.defaultMax : this.elements.length - this.maxElements }
+        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) + this.containerWidth <= 0) { this.sliderIndex-- } else { this.sliderIndex = this.elements.length - this.maxElements }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
           if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
@@ -209,7 +206,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.sliderWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -(this.sliderWidth * this.elements.length)) { this.sliderIndex++ } else { this.sliderIndex = 0 }
+        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -(this.containerWidth * this.elements.length)) { this.sliderIndex++ } else { this.sliderIndex = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
           if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
@@ -243,12 +240,16 @@ export default {
       clearTimeout(this.setAutoPlay)
       this.setAutoPlay = 0
     },
-    getSliderWidth () {
-      this.sliderWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
-    },
     getContainerWidth () {
-      this.containerWidth = this.$el.clientWidth
+      if (this.sliderMode || this.carouselMode || this.containerMode) {
+        this.$nextTick(function () {
+          this.containerWidth = this.$attrs['container-width']
+        })
+      } else {
+        this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+      }
     }
+
   }
 }
 </script>

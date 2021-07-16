@@ -24,30 +24,31 @@
         @click.native="next"
       />
       <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode || !containerMode) && !blok.row_container" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-      <div class="slider-box overflow-hidden">
-        <ul
-          v-if="blok.slider_mode === 'slider'"
-          :key="sliderKey"
-          :style="`transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
-          :class="`slider relative grid grid-flow-col transition-transform ${sliderMode || carouselMode || containerMode? 'h-full' : ''}`"
-        >
-          <li
-            v-for="component in elements"
-            :key="component._uid"
-            v-touch:swipe.stop.left="next"
-            v-touch:swipe.stop.right="previous"
-            :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
-            class="slider-slide slide flex my-0 mx-auto rounded-md"
+      <div :class="`slider-box ${blok.slider_mode === 'slider' ? 'overflow-hidden' : ''}`">
+        <div v-if="blok.slider_mode === 'slider'" class="slider-container">
+          <ul
+            :key="sliderKey"
+            :style="`transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
+            :class="`slider relative grid grid-flow-col transition-transform ${sliderMode || carouselMode || containerMode? 'h-full' : ''}`"
           >
-            <component
-              :is="component.component"
-              :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''}`"
-              :blok="component"
-              slider-mode
-              :container-width="containerWidth"
-            />
-          </li>
-        </ul>
+            <li
+              v-for="component in elements"
+              :key="component._uid"
+              v-touch:swipe.stop.left="next"
+              v-touch:swipe.stop.right="previous"
+              :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
+              class="slider-slide slide flex my-0 mx-auto rounded-md"
+            >
+              <component
+                :is="component.component"
+                :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''}`"
+                :blok="component"
+                slider-mode
+                :container-width="containerWidth"
+              />
+            </li>
+          </ul>
+        </div>
         <div v-else class="carousel-container">
           <transition-group
             tag="ul"
@@ -65,7 +66,7 @@
               :key="component._uid"
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
-              :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 overflow-hidden rounded-md ${index === currentSlide ? 'show' : 'hidden'}`"
+              :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded-md ${index === currentSlide ? 'show' : 'hidden'}`"
               :style="`background-color: ${blok.background_color_component.color};`"
             >
               <component

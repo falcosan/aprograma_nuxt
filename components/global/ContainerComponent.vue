@@ -172,11 +172,13 @@ export default {
   },
   watch: {
     '$store.state.data.windowWidth' () {
-      this.getContainerWidth()
+      this.fullWidth = this.$el.clientWidth
+      this.$nextTick(function () {
+        this.getContainerWidth()
+      })
       if (this.blok.slider_mode) {
         this.sliderKey++
       }
-      this.fullWidth = this.$el.clientWidth
     },
     containerWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
   },
@@ -245,7 +247,7 @@ export default {
     getContainerWidth () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
-          this.containerWidth = this.blok.row_container ? this.fullWidth : this.$attrs['container-width'] / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+          this.containerWidth = this.$attrs['container-width'] / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
         })
       } else {
         this.containerWidth = this.fullWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)

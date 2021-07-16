@@ -9,7 +9,7 @@
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
-        <div v-show="!wait" :class="`teaser-file w-full ${rowContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : sliderContainer || containerContainer || carouselContainer ? 'h-full' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-white'}`">
+        <div v-show="!wait" :class="`teaser-file w-full ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : sliderContainer || containerContainer || carouselContainer ? 'h-full' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-white'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'img'"
             class="w-full h-full object-cover object-center select-none"
@@ -20,8 +20,8 @@
             @load="wait = false"
           />
         </div>
-        <Skeleton :class="`w-full ${rowContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : sliderContainer || containerContainer || carouselContainer ? '' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'}`" :wait="wait" />
-        <div :class="`teaser-text w-full flex flex-col p-5 ${rowContainer ? 'lg:p-10' : sliderContainer || carouselContainer || containerContainer ? 'h-32 md:h-36' : 'h-max lg:h-full lg:w-1/2 sm:p-10'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <Skeleton :class="`w-full ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : sliderContainer || containerContainer || carouselContainer ? '' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'}`" :wait="wait" />
+        <div :class="`teaser-text w-full flex flex-col p-5 ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? 'lg:p-10' : sliderContainer || carouselContainer || containerContainer ? 'h-32 md:h-36' : 'h-max lg:h-full lg:w-1/2 sm:p-10'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               :class="`teaser-title mb-2 font-semibold overflow-hidden ${$route.name === 'blog' ? 'text-xl sm:text-2xl' : 'text-xl'}`"

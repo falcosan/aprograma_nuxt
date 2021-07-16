@@ -147,8 +147,10 @@ export default {
     maxElements () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         if (this.$el.clientWidth >= 1240) {
-          return this.$parent.maxElements >= 3 ? 1 : this.$rangeItems(this.defaultMax, 2)
-        } return this.$el.clientWidth >= 728 && this.$parent.maxElements >= 1 ? this.$rangeItems(this.defaultMax, 2) : 1
+          return this.$rangeItems(this.defaultMax, 4)
+        } else if (this.$el.clientWidth >= 728) {
+          return this.$rangeItems(this.defaultMax, 3)
+        } return this.$el.clientWidth >= 536 ? this.$rangeItems(this.defaultMax, 2) : 1
       } else if (this.blok.slider_mode && this.elements.length > 1) {
         if (this.max && this.max <= this.defaultMax) {
           if (this.fullWidth >= 1240) {

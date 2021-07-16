@@ -131,6 +131,7 @@ export default {
       sliderIndex: 0,
       currentSlide: 0,
       setAutoPlay: 0,
+      fullWidth: 0,
       containerWidth: 0,
       transitionEnter: '',
       transitionLeave: '',
@@ -144,34 +145,29 @@ export default {
     },
     maxElements () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
-        if (this.blok.row_container) {
-          return 1
-        } else if (this.$store.state.data.windowWidth >= 1536) {
+        if (this.fullWidth >= 1240) {
           return this.$parent.maxElements >= 3 ? 1 : this.$rangeItems(this.defaultMax, 2)
-        } return this.$store.state.data.windowWidth >= 1024 && this.$parent.maxElements >= 1 ? this.$rangeItems(this.defaultMax, 2) : 1
+        } return this.fullWidth >= 728 && this.$parent.maxElements >= 1 ? this.$rangeItems(this.defaultMax, 2) : 1
       } else if (this.blok.slider_mode && this.elements.length > 1) {
         if (this.max && this.max <= this.defaultMax) {
-          if (this.$store.state.data.windowWidth >= 1536) {
+          if (this.fullWidth >= 1240) {
             return this.$rangeItems(Number(this.blok.max_slides), 5)
-          } else if (this.$store.state.data.windowWidth >= 1280) {
+          } else if (this.fullWidth >= 856) {
             return this.$rangeItems(Number(this.blok.max_slides), 4)
-          } else if (this.$store.state.data.windowWidth >= 1024) {
+          } else if (this.fullWidth >= 728) {
             return this.$rangeItems(Number(this.blok.max_slides), 3)
-          } return this.$store.state.data.windowWidth >= 640 ? this.$rangeItems(Number(this.blok.max_slides), 2) : 1
+          } return this.fullWidth >= 536 ? this.$rangeItems(Number(this.blok.max_slides), 2) : 1
         } else {
-          if (this.$store.state.data.windowWidth >= 1536) {
+          if (this.fullWidth >= 1240) {
             return this.$rangeItems(this.defaultMax, 5)
-          } else if (this.$store.state.data.windowWidth >= 1280) {
+          } else if (this.fullWidth >= 856) {
             return this.$rangeItems(this.defaultMax, 4)
-          } else if (this.$store.state.data.windowWidth >= 1024) {
+          } else if (this.fullWidth >= 728) {
             return this.$rangeItems(this.defaultMax, 3)
-          } return this.$store.state.data.windowWidth >= 640 ? this.$rangeItems(this.defaultMax, 2) : 1
+          } return this.fullWidth >= 536 ? this.$rangeItems(this.defaultMax, 2) : 1
         }
-      } else {
-        if (this.$store.state.data.windowWidth >= 1536) {
-          return this.$rangeItems(this.rowComponent.length, 3)
-        } return this.$store.state.data.windowWidth >= 768 ? this.$rangeItems(this.rowComponent.length, 2) : 1
       }
+      return this.$store.state.data.windowWidth >= 1024 ? this.$rangeItems(this.rowComponent.length, 2) : 1
     }
   },
   watch: {
@@ -180,11 +176,15 @@ export default {
       if (this.blok.slider_mode) {
         this.sliderKey++
       }
+      this.fullWidth = this.$el.clientWidth
     },
     containerWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
   },
   mounted () {
-    this.getContainerWidth()
+    this.fullWidth = this.$el.clientWidth
+    this.$nextTick(function () {
+      this.getContainerWidth()
+    })
     if (this.blok.slider_mode && this.blok.auto_play) {
       this.autoPlay()
     }
@@ -208,7 +208,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -(this.containerWidth * this.elements.length)) { this.sliderIndex++ } else { this.sliderIndex = 0 }
+        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.fullWidth >= -(this.containerWidth * this.elements.length)) { this.sliderIndex++ } else { this.sliderIndex = 0 }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
           if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
@@ -245,10 +245,10 @@ export default {
     getContainerWidth () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
-          this.containerWidth = this.blok.row_container ? this.$el.clientWidth : this.$attrs['container-width'] / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+          this.containerWidth = this.blok.row_container ? this.fullWidth : this.$attrs['container-width'] / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
         })
       } else {
-        this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+        this.containerWidth = this.fullWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
       }
     }
 

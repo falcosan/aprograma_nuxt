@@ -1,10 +1,11 @@
 <template>
   <span
-    :class="`icon-container grid gap-5 ${blok && !blok.remove_space ? 'p-5 sm:p-10' : ''} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : ''} ${sliderMode || carouselMode || carouselMode ? 'h-full content-center' : 'content-around'}`"
+    :class="`icon-container grid gap-5 justify-center ${blok && !blok.remove_space ? 'p-5 sm:p-10' : ''} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : ''} ${sliderMode || carouselMode || carouselMode ? 'h-full content-center' : 'content-around'}`"
     @click="animateMenu ? open = !open : false"
   >
     <component
       :is="blok ? blok.tag ? blok.tag : 'button' : tag ? tag : 'button'"
+      :style="`width: ${blok && blok.size ? `${blok.size}px`: 'auto'}; height: ${blok && blok.size ? `${blok.size}px`: 'auto'}`"
       :title="blok && blok.title && !blok.show_title || tooltip ? blok ? blok.title : tooltip : false"
       :name="blok && blok.tag === 'button' || tag === 'button' ? `icon-button` : false"
       :aria-label="blok && blok.tag === 'button' || tag === 'button' ? `icon-button-reader` : false"
@@ -12,13 +13,13 @@
     >
       <img
         v-if="blok && blok.icon_image.filename"
-        :width="blok && blok.size ?`${blok.size}px` : 100"
-        :height="blok && blok.size ?`${blok.size}px` : 100"
         :class="`icon ${blok.icon_image.filename
           .split(/[\\/]/)
           .pop()
-          .replace(/\.[^/.]+$/, '')}-icon my-0 mx-auto fill-current ${size} object-contain object-center`"
+          .replace(/\.[^/.]+$/, '')}-icon my-0 mx-auto fill-current object-contain object-center ${size ? size : 'w-full h-full'}`"
         :src="blok.icon_image.filename"
+        width="100%"
+        height="100%"
         alt=""
         :name="blok.name"
         :type="`image/${lookFile()}`"

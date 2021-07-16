@@ -7,23 +7,23 @@
     </h1>
     <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || containerMode ? 'flex justify-center items-center overflow-hidden' : carouselMode ? 'overflow-hidden' :''}`" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
-        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode"
+        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode || blok.row_container"
         previous
         :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-3.5'} ${sliderMode || carouselMode ? containerWidth > 295 ? 'left-10' : 'left-5' : 'left-3'}`"
         :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
         tag="button"
         @click.native="previous"
       />
-      <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode || !containerMode)" class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
+      <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode || !containerMode) && !blok.row_container" class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
       <Icon
-        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode"
+        v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode || blok.row_container"
         next
         :class="`next-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-3.5'} ${sliderMode || carouselMode ? containerWidth > 295 ? 'right-10' : 'right-5' : 'right-3'}`"
         :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
         tag="button"
         @click.native="next"
       />
-      <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode || !containerMode)" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
+      <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode || !containerMode) && !blok.row_container" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
       <div class="slider-box overflow-hidden">
         <ul
           v-if="blok.slider_mode === 'slider'"

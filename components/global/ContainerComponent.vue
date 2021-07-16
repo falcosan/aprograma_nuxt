@@ -199,10 +199,20 @@ export default {
   methods: {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) + this.containerWidth <= 1) { this.sliderIndex-- } else { this.sliderIndex = this.elements.length - this.maxElements }
+        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) + this.containerWidth <= 1) { this.sliderIndex-- } else {
+          this.sliderIndex = this.elements.length - this.maxElements
+          if (this.blok.auto_play) {
+            this.clearAutoPlay()
+          }
+        }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
-          if (this.currentSlide > 0) { this.currentSlide-- } else { this.currentSlide = this.defaultMax }
+          if (this.currentSlide > 0) { this.currentSlide-- } else {
+            this.currentSlide = this.defaultMax
+            if (this.blok.auto_play) {
+              this.clearAutoPlay()
+            }
+          }
         }
         this.transitionEnter = '-translate-x-full'
         this.transitionLeave = 'translate-x-full'
@@ -210,10 +220,20 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.fullWidth >= -(this.containerWidth * this.elements.length)) { this.sliderIndex++ } else { this.sliderIndex = 0 }
+        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -(this.containerWidth * this.elements.length)) { this.sliderIndex++ } else {
+          this.sliderIndex = 0
+          if (this.blok.auto_play) {
+            this.clearAutoPlay()
+          }
+        }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
-          if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else { this.currentSlide = 0 }
+          if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else {
+            this.currentSlide = 0
+            if (this.blok.auto_play) {
+              this.clearAutoPlay()
+            }
+          }
         }
         this.transitionEnter = 'translate-x-full'
         this.transitionLeave = '-translate-x-full'
@@ -247,10 +267,10 @@ export default {
     getContainerWidth () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
-          this.containerWidth = this.$attrs['container-width'] / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+          this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
         })
       } else {
-        this.containerWidth = this.fullWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+        this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
       }
     }
 

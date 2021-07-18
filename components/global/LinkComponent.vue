@@ -14,7 +14,7 @@
       {{ blok.title }}
     </span>
     <Icon
-      v-else
+      v-else-if="iconItem || blok.icon_item"
       :class="`item-icon ${iconStyle}`"
       :tag="blok.body[0].tag"
       :blok="blok.body[0]"
@@ -36,7 +36,7 @@
     :target="externalLink ? '_blank' : false"
     :title="title && iconItem ? title : false"
   >
-    <span v-if="!iconItem" class="item-text break-words">{{ title }}</span>
+    <span v-if="title && !iconItem" class="item-text break-words">{{ title }}</span>
     <slot v-else name="icon" />
   </component>
 </template>

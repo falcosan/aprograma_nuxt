@@ -223,7 +223,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -(this.containerWidth * this.elements.length)) { this.sliderIndex++ } else {
+        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -((this.containerWidth + this.spaceFix) * this.defaultMax)) { this.sliderIndex++ } else {
           this.sliderIndex = 0
           if (this.blok.auto_play) {
             this.clearAutoPlay()

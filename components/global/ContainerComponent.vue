@@ -186,7 +186,9 @@ export default {
           } return this.fullWidth >= 536 ? this.$rangeItems(this.defaultMax, 2) : 1
         }
       }
-      return this.$store.state.data.windowWidth >= 1024 ? this.$rangeItems(this.rowComponent.length, 2) : 1
+      if (this.$store.state.data.windowWidth >= 1440) {
+        return this.$rangeItems(this.rowComponent.length, 3)
+      } return this.$store.state.data.windowWidth >= 1024 ? this.$rangeItems(this.rowComponent.length, 2) : 1
     }
   },
   watch: {

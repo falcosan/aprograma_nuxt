@@ -33,7 +33,9 @@ export default {
       return this.blok.body.filter(function (item) { return item.row_container })
     },
     maxComponents () {
-      return this.$store.state.data.windowWidth >= 1024 ? this.$rangeItems(this.rowComponent.length, 2) : 1
+      if (this.$store.state.data.windowWidth >= 1440) {
+        return this.$rangeItems(this.rowComponent.length, 3)
+      } return this.$store.state.data.windowWidth >= 1024 ? this.$rangeItems(this.rowComponent.length, 2) : 1
     }
   }
 }

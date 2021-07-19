@@ -5,7 +5,7 @@
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || containerMode ? 'flex justify-center items-center overflow-hidden' : carouselMode ? 'overflow-hidden' :''}`" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || containerMode ? 'flex justify-center items-center overflow-hidden' : carouselMode ? 'overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode || blok.row_container"
         previous
@@ -44,7 +44,7 @@
                 :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''}`"
                 :blok="component"
                 slider-mode
-                :container-width="containerWidth"
+                :container-width="fullWidth"
               />
             </li>
           </ul>
@@ -52,7 +52,7 @@
         <div v-else class="carousel-container">
           <transition-group
             tag="ul"
-            class="carousel relative grid items-center"
+            class="carousel relative grid items-center overflow-hidden"
             enter-active-class="in-out duration-500"
             leave-active-class="out-in duration-500"
             :enter-class="`transform ${transitionEnter}`"
@@ -74,7 +74,7 @@
                 :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''}`"
                 :blok="component"
                 carousel-mode
-                :container-width="containerWidth"
+                :container-width="fullWidth"
               />
             </li>
           </transition-group>
@@ -84,7 +84,7 @@
         </div>
       </div>
     </div>
-    <div v-else :class="`container-components grid gap-5 auto-cols-fr`" :style="maxElements > 1 ? `grid-template-columns: repeat(${maxElements}, 1fr);` : false">
+    <div v-else :class="`container-components grid gap-5 auto-cols-fr`" :style="maxElements >= 1 ? `grid-template-columns: repeat(${maxElements}, 1fr);` : false">
       <div
         v-for="component in elements"
         :key="component._uid"
@@ -96,7 +96,7 @@
           :class="`${component.component.toLowerCase()}-component`"
           :blok="component"
           container-mode
-          :container-width="containerWidth"
+          :container-width="fullWidth"
         />
       </div>
     </div>
@@ -146,13 +146,21 @@ export default {
     },
     maxElements () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
-        if (this.$el.clientWidth >= 1240) {
-          return this.$rangeItems(this.defaultMax, 4)
-        } else if (this.$el.clientWidth >= 728) {
-          return this.$rangeItems(this.defaultMax, 3)
-        } return this.$el.clientWidth >= 536 ? this.$rangeItems(this.defaultMax, 2) : 1
+        if (this.max && this.max <= this.elements.length) {
+          if (this.fullWidth >= 1240) {
+            return this.$rangeItems(Number(this.blok.max_slides), 4)
+          } else if (this.fullWidth >= 728) {
+            return this.$rangeItems(Number(this.blok.max_slides), 3)
+          } return this.fullWidth >= 536 ? this.$rangeItems(Number(this.blok.max_slides), 2) : 1
+        } else {
+          if (this.fullWidth >= 1240) {
+            return this.$rangeItems(this.elements.length, 4)
+          } else if (this.fullWidth >= 728) {
+            return this.$rangeItems(this.elements.length, 3)
+          } return this.fullWidth >= 536 ? this.$rangeItems(this.elements.length, 2) : 1
+        }
       } else if (this.blok.slider_mode && this.elements.length > 1) {
-        if (this.max && this.max <= this.defaultMax) {
+        if (this.max && this.max <= this.elements.length) {
           if (this.fullWidth >= 1240) {
             return this.$rangeItems(Number(this.blok.max_slides), 5)
           } else if (this.fullWidth >= 856) {
@@ -162,12 +170,12 @@ export default {
           } return this.fullWidth >= 536 ? this.$rangeItems(Number(this.blok.max_slides), 2) : 1
         } else {
           if (this.fullWidth >= 1240) {
-            return this.$rangeItems(this.defaultMax, 5)
+            return this.$rangeItems(this.elements.length, 5)
           } else if (this.fullWidth >= 856) {
-            return this.$rangeItems(this.defaultMax, 4)
+            return this.$rangeItems(this.elements.length, 4)
           } else if (this.fullWidth >= 728) {
-            return this.$rangeItems(this.defaultMax, 3)
-          } return this.fullWidth >= 536 ? this.$rangeItems(this.defaultMax, 2) : 1
+            return this.$rangeItems(this.elements.length, 3)
+          } return this.fullWidth >= 536 ? this.$rangeItems(this.elements.length, 2) : 1
         }
       }
       return this.$store.state.data.windowWidth >= 1024 ? this.$rangeItems(this.rowComponent.length, 2) : 1
@@ -175,7 +183,9 @@ export default {
   },
   watch: {
     '$store.state.data.windowWidth' () {
-      this.fullWidth = this.$el.clientWidth
+      if (!this.sliderMode && !this.carouselMode && !this.containerMode) {
+        this.fullWidth = this.$el.clientWidth
+      }
       this.$nextTick(function () {
         this.getContainerWidth()
       })
@@ -186,7 +196,9 @@ export default {
     containerWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
   },
   mounted () {
-    this.fullWidth = this.$el.clientWidth
+    if (!this.sliderMode && !this.carouselMode && !this.containerMode) {
+      this.fullWidth = this.$el.clientWidth
+    }
     this.$nextTick(function () {
       this.getContainerWidth()
     })
@@ -270,6 +282,7 @@ export default {
     getContainerWidth () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
+          this.fullWidth = this.$el.clientWidth
           this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
         })
       } else {

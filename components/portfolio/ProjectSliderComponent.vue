@@ -34,7 +34,7 @@
                 :alt="project.content.image.alt"
                 @load="wait = false"
               >
-              <Skeleton class="w-full" :wait="wait" />
+              <Skeleton class="w-full h-full" :wait="wait" />
             </div>
           </NuxtLink>
         </li>

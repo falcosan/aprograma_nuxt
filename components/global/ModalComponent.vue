@@ -27,9 +27,8 @@
             @click.self.stop="closeMode ? closeModal() : false"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
-              <div class="body-container grid gap-5 grid-flow-row-dense" @click.self.stop="closeMode ? closeModal() : false">
+              <div class="body-container grid gap-10 grid-flow-row-dense" @click.self.stop="closeMode ? closeModal() : false">
                 <slot name="body" />
-                <hr class="invisible">
               </div>
             </transition>
           </section>
@@ -102,5 +101,8 @@ export default {
 }
 .body-container > *:first-child{
   box-sizing: content-box;
+}
+.body-container > *:last-child:not(:first-child){
+  padding-bottom: 3rem;
 }
 </style>

@@ -17,7 +17,9 @@
                 :src="image.filename"
                 :alt="image.alt"
                 @click="action.open()"
+                @load="wait = false"
               >
+              <Skeleton :class="`max-h-96 md:max-h-xl select-none ${blok.text ? 'w-screen' : ''}`" :wait="wait" />
             </template>
             <template #body>
               <img class="description-image select-none cursor-default" height="auto" width="auto" :src="image.filename" :alt="image.alt">
@@ -45,6 +47,11 @@ export default {
     inlineTextStyle: {
       type: String,
       default: ''
+    }
+  },
+  data () {
+    return {
+      wait: true
     }
   }
 }

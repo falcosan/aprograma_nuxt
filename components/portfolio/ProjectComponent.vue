@@ -53,9 +53,9 @@
         </h4>
       </div>
     </div>
-    <div v-if="$contentByName(blok.body, 'Detail').length > 0" class="project-details col-start-1 col-end-4 mt-5 border-t-4 border-dotted">
+    <div v-if="$contentByName(blok.body, 'Detail').length > 0" class="project-details col-start-1 col-end-4 mt-5">
       <h1 class="detail-title mb-10 pt-10 text-lg font-light">
-        {{ $languageCase('Project details', 'Detalles del proyecto', 'Dettaglio del progetto') }}
+        {{ $languageCase('Project details', 'Detalles del proyecto', 'Dettagli del progetto') }}
       </h1>
       <Detail
         v-for="(description, index) in blok.body"

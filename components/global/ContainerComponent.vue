@@ -5,7 +5,7 @@
     <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || containerMode ? 'flex justify-center items-center overflow-hidden' : carouselMode ? 'overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center items-center overflow-hidden' : carouselMode ? 'overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode || blok.row_container"
         previous
@@ -29,7 +29,7 @@
           <ul
             :key="sliderKey"
             :style="`transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
-            :class="`slider relative grid grid-flow-col transition-transform ${sliderMode || carouselMode || containerMode? 'h-full' : ''}`"
+            :class="`slider relative grid grid-flow-col rounded-md transition-transform ${sliderMode || carouselMode || containerMode? 'h-full' : ''}`"
           >
             <li
               v-for="component in elements"
@@ -52,7 +52,7 @@
         <div v-else class="carousel-container">
           <transition-group
             tag="ul"
-            class="carousel relative grid items-center overflow-hidden"
+            class="carousel relative grid items-center overflow-hidden rounded-md"
             enter-active-class="in-out duration-500"
             leave-active-class="out-in duration-500"
             :enter-class="`transform ${transitionEnter}`"
@@ -84,7 +84,7 @@
         </div>
       </div>
     </div>
-    <div v-else :class="`container-components grid gap-5 auto-cols-fr`" :style="maxElements >= 1 ? `grid-template-columns: repeat(${maxElements}, 1fr);` : false">
+    <div v-else :class="`container-components grid gap-5 auto-cols-fr ${sliderMode || containerMode || carouselMode ? 'p-5' : ''}`" :style="maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : false">
       <div
         v-for="component in elements"
         :key="component._uid"

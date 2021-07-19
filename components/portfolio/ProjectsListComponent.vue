@@ -4,7 +4,7 @@
       v-if="sortedProject && $store.state.data.windowWidth >= 1024 && blok.show_slider && !blok.row_container && containerWidth >= 1024"
       :blok="sortedProject"
     />
-    <ul v-else-if="sortedProject" :class="`project-list w-full grid gap-5 auto-cols-fr auto-rows-fr ${containerWidth >= 610 ? 'grid-cols-fit-big' : 'grid-cols-fit-small'}`">
+    <ul v-else-if="sortedProject" :class="`project-list w-full grid gap-5 auto-cols-fr auto-rows-fr ${maxProjects}`">
       <ProjectTeaser
         v-for="project in sortedProject"
         :key="project.uuid"
@@ -54,6 +54,13 @@ export default {
     },
     containerContainer () {
       return !!(this.containerMode || this.$parent.containerMode)
+    },
+    maxProjects () {
+      if (this.containerWidth >= 1240) {
+        return 'md:grid-cols-fill-big'
+      } else if (this.containerWidth >= 400) {
+        return 'md:grid-cols-fill-medium'
+      } return 'md:grid-cols-fill-small'
     },
     sortedProject () {
       const featuredProjects = this.$store.state.list.projects.items.filter((project) => {

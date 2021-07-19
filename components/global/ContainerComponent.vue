@@ -9,7 +9,7 @@
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode || blok.row_container"
         previous
-        :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-3.5'} ${sliderMode || carouselMode ? containerWidth > 295 ? 'left-10' : 'left-5' : 'left-3'}`"
+        :class="`previous-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode || containerMode ? 'bottom-3.5' : 'bottom-0'} ${sliderMode || carouselMode ? containerWidth > 295 ? 'left-10' : 'left-5' : 'left-3'}`"
         :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
         tag="button"
         @click.native="previous"
@@ -18,7 +18,7 @@
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode || blok.row_container"
         next
-        :class="`next-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : 'bottom-3.5'} ${sliderMode || carouselMode ? containerWidth > 295 ? 'right-10' : 'right-5' : 'right-3'}`"
+        :class="`next-control control absolute z-20 filter invert grayscale transform rounded-full bg-opacity-70 bg-gray-300 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode || containerMode ? 'bottom-3.5' : 'bottom-0'} ${sliderMode || carouselMode ? containerWidth > 295 ? 'right-10' : 'right-5' : 'right-3'}`"
         :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
         tag="button"
         @click.native="next"
@@ -127,7 +127,6 @@ export default {
     return {
       elements: this.blok.body,
       max: Number(this.blok.max_slides),
-      defaultMax: this.blok.body.length - 1,
       sliderKey: 0,
       sliderIndex: 0,
       currentSlide: 0,
@@ -144,9 +143,18 @@ export default {
     rowComponent () {
       return this.elements.filter(function (item) { return item.row_container })
     },
+    defaultMax () {
+      if (this.fullWidth >= 1240) {
+        return this.$rangeItems(this.rowComponent.length, 5)
+      } else if (this.fullWidth >= 856) {
+        return this.$rangeItems(this.rowComponent.length, 4)
+      } else if (this.fullWidth >= 728) {
+        return this.$rangeItems(this.rowComponent.length, 3)
+      } return this.fullWidth >= 536 ? this.$rangeItems(this.rowComponent.length, 2) : 1
+    },
     maxElements () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
-        if (this.max && this.max <= this.elements.length) {
+        if (this.max && this.max <= this.defaultMax) {
           if (this.fullWidth >= 1240) {
             return this.$rangeItems(Number(this.blok.max_slides), 4)
           } else if (this.fullWidth >= 728) {
@@ -154,13 +162,13 @@ export default {
           } return this.fullWidth >= 536 ? this.$rangeItems(Number(this.blok.max_slides), 2) : 1
         } else {
           if (this.fullWidth >= 1240) {
-            return this.$rangeItems(this.elements.length, 4)
+            return this.$rangeItems(this.defaultMax, 4)
           } else if (this.fullWidth >= 728) {
-            return this.$rangeItems(this.elements.length, 3)
-          } return this.fullWidth >= 536 ? this.$rangeItems(this.elements.length, 2) : 1
+            return this.$rangeItems(this.defaultMax, 3)
+          } return this.fullWidth >= 536 ? this.$rangeItems(this.defaultMax, 2) : 1
         }
       } else if (this.blok.slider_mode && this.elements.length > 1) {
-        if (this.max && this.max <= this.elements.length) {
+        if (this.max && this.max <= this.defaultMax) {
           if (this.fullWidth >= 1240) {
             return this.$rangeItems(Number(this.blok.max_slides), 5)
           } else if (this.fullWidth >= 856) {
@@ -170,12 +178,12 @@ export default {
           } return this.fullWidth >= 536 ? this.$rangeItems(Number(this.blok.max_slides), 2) : 1
         } else {
           if (this.fullWidth >= 1240) {
-            return this.$rangeItems(this.elements.length, 5)
+            return this.$rangeItems(this.defaultMax, 5)
           } else if (this.fullWidth >= 856) {
-            return this.$rangeItems(this.elements.length, 4)
+            return this.$rangeItems(this.defaultMax, 4)
           } else if (this.fullWidth >= 728) {
-            return this.$rangeItems(this.elements.length, 3)
-          } return this.fullWidth >= 536 ? this.$rangeItems(this.elements.length, 2) : 1
+            return this.$rangeItems(this.defaultMax, 3)
+          } return this.fullWidth >= 536 ? this.$rangeItems(this.defaultMax, 2) : 1
         }
       }
       return this.$store.state.data.windowWidth >= 1024 ? this.$rangeItems(this.rowComponent.length, 2) : 1
@@ -223,7 +231,7 @@ export default {
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
           if (this.currentSlide > 0) { this.currentSlide-- } else {
-            this.currentSlide = this.defaultMax
+            this.currentSlide = (this.elements.length - 1)
             if (this.blok.auto_play) {
               this.clearAutoPlay()
             }
@@ -235,7 +243,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -((this.containerWidth + this.spaceFix) * this.defaultMax)) { this.sliderIndex++ } else {
+        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -((this.containerWidth + this.spaceFix) * (this.elements.length - 1))) { this.sliderIndex++ } else {
           this.sliderIndex = 0
           if (this.blok.auto_play) {
             this.clearAutoPlay()
@@ -243,7 +251,7 @@ export default {
         }
       } else if (this.blok.slider_mode === 'carousel') {
         if (!this.disabled) {
-          if (this.defaultMax > this.currentSlide) { this.currentSlide++ } else {
+          if ((this.elements.length - 1) > this.currentSlide) { this.currentSlide++ } else {
             this.currentSlide = 0
             if (this.blok.auto_play) {
               this.clearAutoPlay()

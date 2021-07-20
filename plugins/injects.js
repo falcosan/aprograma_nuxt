@@ -20,7 +20,7 @@ export default ({ app }, inject) => {
     }
   })
   inject('themeColor', (color) => {
-    return !((parseInt(color.replace('#', ''), 16) > 0xFFFFFF / 2))
+    return color.charAt(0) === '#' ? !((parseInt(color.replace('#', ''), 16) > 0xFFFFFF / 2)) : false
   })
   inject('rangeItems', (val, max) => {
     return val < 1 ? 1 : (val > max ? max : val)

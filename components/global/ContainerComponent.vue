@@ -145,37 +145,23 @@ export default {
     },
     defaultMax () {
       if (this.fullWidth >= 1240) {
-        return this.$rangeItems(this.rowComponent.length, 5)
+        return this.$rangeItems((this.elements.length - 1), 5)
       } else if (this.fullWidth >= 856) {
-        return this.$rangeItems(this.rowComponent.length, 4)
+        return this.$rangeItems((this.elements.length - 1), 4)
       } else if (this.fullWidth >= 728) {
-        return this.$rangeItems(this.rowComponent.length, 3)
-      } return this.fullWidth >= 536 ? this.$rangeItems(this.rowComponent.length, 2) : 1
+        return this.$rangeItems((this.elements.length - 1), 3)
+      } return this.fullWidth >= 536 ? this.$rangeItems((this.elements.length - 1), 2) : 1
     },
     maxElements () {
-      if (this.sliderMode || this.carouselMode || this.containerMode) {
+      if (this.blok.slider_mode && this.elements.length > 1) {
         if (this.max && this.max <= this.defaultMax) {
           if (this.fullWidth >= 1240) {
-            return this.$rangeItems(Number(this.blok.max_slides), 4)
-          } else if (this.fullWidth >= 728) {
-            return this.$rangeItems(Number(this.blok.max_slides), 3)
-          } return this.fullWidth >= 536 ? this.$rangeItems(Number(this.blok.max_slides), 2) : 1
-        } else {
-          if (this.fullWidth >= 1240) {
-            return this.$rangeItems(this.defaultMax, 4)
-          } else if (this.fullWidth >= 728) {
-            return this.$rangeItems(this.defaultMax, 3)
-          } return this.fullWidth >= 536 ? this.$rangeItems(this.defaultMax, 2) : 1
-        }
-      } else if (this.blok.slider_mode && this.elements.length > 1) {
-        if (this.max && this.max <= this.defaultMax) {
-          if (this.fullWidth >= 1240) {
-            return this.$rangeItems(Number(this.blok.max_slides), 5)
+            return this.$rangeItems(this.max, 5)
           } else if (this.fullWidth >= 856) {
-            return this.$rangeItems(Number(this.blok.max_slides), 4)
+            return this.$rangeItems(this.max, 4)
           } else if (this.fullWidth >= 728) {
-            return this.$rangeItems(Number(this.blok.max_slides), 3)
-          } return this.fullWidth >= 536 ? this.$rangeItems(Number(this.blok.max_slides), 2) : 1
+            return this.$rangeItems(this.max, 3)
+          } return this.fullWidth >= 536 ? this.$rangeItems(this.max, 2) : 1
         } else {
           if (this.fullWidth >= 1240) {
             return this.$rangeItems(this.defaultMax, 5)

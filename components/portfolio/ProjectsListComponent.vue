@@ -56,11 +56,9 @@ export default {
       return !!(this.containerMode || this.$parent.containerMode)
     },
     maxProjects () {
-      if (this.containerWidth >= 1240) {
-        return 'md:grid-cols-fill-big'
-      } else if (this.containerWidth >= 400) {
-        return 'md:grid-cols-fill-medium'
-      } return 'md:grid-cols-fill-small'
+      if (this.containerWidth >= 536) {
+        return 'sm:grid-cols-fill-medium'
+      } return ''
     },
     sortedProject () {
       const featuredProjects = this.$store.state.list.projects.items.filter((project) => {

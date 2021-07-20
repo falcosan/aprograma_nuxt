@@ -69,11 +69,9 @@ export default {
       return !!(this.containerMode || this.$parent.containerMode)
     },
     maxPosts () {
-      if (this.containerWidth >= 1240) {
-        return 'md:grid-cols-fill-big'
-      } else if (this.containerWidth >= 400) {
-        return 'md:grid-cols-fill-medium'
-      } return 'md:grid-cols-fill-small'
+      if (this.containerWidth >= 536) {
+        return 'sm:grid-cols-fill-medium'
+      } return ''
     },
     sortedPosts () {
       const featuredPosts = this.$store.state.list.posts.items.filter((post) => {

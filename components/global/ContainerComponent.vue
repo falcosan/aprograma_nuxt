@@ -1,11 +1,11 @@
 <template>
   <div
-    :class="`container-cover w-full ${sliderMode || containerMode || carouselMode ? 'grid items-center self-center' : ''}`"
+    :class="`container-cover w-full ${carouselMode ? 'grid self-center' : sliderMode || containerMode ? 'grid self-start' : ''}`"
   >
-    <h1 v-if="blok.show_title && blok.title" class="container-title mb-5 md:mb-10 text-2xl font-extralight">
+    <h1 v-if="blok.show_title && blok.title" :class="`container-title py-5 font-extralight ${sliderMode || carouselMode || containerMode ? 'px-5 text-xl' : 'text-2xl md:pb-10'}`">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center items-center overflow-hidden' : carouselMode ? 'overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
+    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center overflow-hidden' : carouselMode ? 'overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode || blok.row_container"
         previous
@@ -37,7 +37,7 @@
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
               :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
-              class="slider-slide slide flex my-0 mx-auto rounded-md"
+              class="slider-slide slide flex self-start my-0 mx-auto rounded-md"
             >
               <component
                 :is="component.component"
@@ -52,7 +52,7 @@
         <div v-else class="carousel-container">
           <transition-group
             tag="ul"
-            class="carousel relative grid items-center overflow-hidden rounded-md"
+            class="carousel relative grid overflow-hidden rounded-md"
             enter-active-class="in-out duration-500"
             leave-active-class="out-in duration-500"
             :enter-class="`transform ${transitionEnter}`"
@@ -89,7 +89,7 @@
         v-for="component in elements"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color};`"
-        :class="`${component.component.toLowerCase()}-container w-full grid rounded-md ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
+        :class="`${component.component.toLowerCase()}-container w-full grid self-start rounded-md ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
       >
         <component
           :is="component.component"
@@ -172,9 +172,9 @@ export default {
           } return this.fullWidth >= 536 ? this.$rangeItems(this.defaultMax, 2) : 1
         }
       }
-      if (this.$store.state.data.windowWidth >= 1440) {
+      if (this.fullWidth >= 1240) {
         return this.$rangeItems(this.rowComponent.length, 3)
-      } return this.$store.state.data.windowWidth >= 1024 ? this.$rangeItems(this.rowComponent.length, 2) : 1
+      } return this.fullWidth >= 536 ? this.$rangeItems(this.rowComponent.length, 2) : 1
     }
   },
   watch: {

@@ -88,8 +88,8 @@
       <div
         v-for="component in elements"
         :key="component._uid"
-        :style="`background-color: ${blok.background_color_component.color}; ${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${maxElements + 1}`}`"
-        :class="`${component.component.toLowerCase()}-container w-full grid rounded-md ${component.row_container ? '' : 'col-start-1'}`"
+        :style="`background-color: ${blok.background_color_component.color};`"
+        :class="`${component.component.toLowerCase()}-container w-full grid rounded-md ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
       >
         <component
           :is="component.component"

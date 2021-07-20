@@ -7,8 +7,7 @@
       <div
         v-for="component in blok.body"
         :key="component._uid"
-        :style="`${component.row_container || $store.state.data.windowWidth < 768 ? false : `grid-column-end: ${maxComponents + 1}`}`"
-        :class="`${component.component.toLowerCase()}-content ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''} ${component.row_container ? '' : 'col-start-1'}`"
+        :class="`${component.component.toLowerCase()}-content ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'} ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
       >
         <component
           :is="component.component"

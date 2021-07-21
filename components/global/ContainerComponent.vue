@@ -2,7 +2,7 @@
   <div
     :class="`container-cover w-full rounded-md ${carouselMode ? 'grid self-center' : sliderMode || containerMode ? 'grid self-start' : ''}`"
   >
-    <h1 v-if="blok.show_title && blok.title" :class="`container-title pb-5 font-extralight ${sliderMode || carouselMode || containerMode ? '' : 'pt-5 text-2xl'}`">
+    <h1 v-if="blok.show_title && blok.title" :class="`container-title pb-5 font-extralight ${sliderMode || carouselMode || containerMode ? 'px-5' : 'pt-5 md:pb-10 text-2xl'}`">
       {{ blok.title }}
     </h1>
     <div
@@ -330,7 +330,11 @@ export default {
   position: relative;
   z-index: 10;
 }
+[class*='parent'] .container-cover {
+  padding-top: 20px;
+}
 [class*='parent'] > .container-cover > .container-title {
   font-size: 20px;
+  padding: 0 20px;
 }
 </style>

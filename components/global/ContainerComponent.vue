@@ -1,8 +1,8 @@
 <template>
   <div
-    :class="`container-cover w-full rounded-md ${carouselMode ? 'grid self-center' : sliderMode || containerMode ? 'grid self-start' : ''}`"
+    :class="`container-cover w-full rounded-md ${carouselMode || sliderMode || containerMode ? 'grid  p-5' : ''}`"
   >
-    <h1 v-if="blok.show_title && blok.title" :class="`container-title pb-5 font-extralight ${sliderMode || carouselMode || containerMode ? 'px-5' : 'pt-5 md:pb-10 text-2xl'}`">
+    <h1 v-if="blok.show_title && blok.title" :class="`container-title pb-5 font-extralight ${sliderMode || carouselMode || containerMode ? '' : 'pt-5 md:pb-10 text-2xl'}`">
       {{ blok.title }}
     </h1>
     <div
@@ -41,7 +41,7 @@
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
               :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
-              :class="`slider-slide slide flex self-start my-0 mx-auto rounded-md ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+              :class="`slider-slide slide h-full flex my-0 mx-auto rounded-md ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
             >
               <component
                 :is="component.component"
@@ -200,6 +200,7 @@ export default {
   },
   watch: {
     '$store.state.data.windowWidth' () {
+      this.sliderKey++
       if (!this.sliderMode && !this.carouselMode && !this.containerMode) {
         this.fullWidth = this.$el.clientWidth
       }
@@ -213,6 +214,7 @@ export default {
     containerWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
   },
   mounted () {
+    this.sliderKey++
     if (!this.sliderMode && !this.carouselMode && !this.containerMode) {
       this.fullWidth = this.$el.clientWidth
     }
@@ -227,9 +229,7 @@ export default {
     }
   },
   updated () {
-    this.$nextTick(function () {
-      this.getContainerWidth()
-    })
+    this.getContainerWidth()
   },
   beforeDestroy () {
     if (this.blok.slider_mode && this.blok.auto_play) {
@@ -239,7 +239,7 @@ export default {
   methods: {
     setPrevious () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) + this.containerWidth <= 1) { this.sliderIndex-- } else {
+        if (-((this.containerWidth + (this.spaceFix * 2)) * this.sliderIndex) + this.containerWidth <= 1) { this.sliderIndex-- } else {
           this.sliderIndex = this.elements.length - this.maxElements
           if (this.blok.auto_play) {
             this.clearAutoPlay()
@@ -260,7 +260,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -((this.containerWidth + this.spaceFix) * (this.elements.length - 1))) { this.sliderIndex++ } else {
+        if (-((this.containerWidth + (this.spaceFix * 2)) * this.sliderIndex) - this.$el.clientWidth >= -((this.containerWidth + (this.spaceFix * 2)) * (this.elements.length - 1))) { this.sliderIndex++ } else {
           this.sliderIndex = 0
           if (this.blok.auto_play) {
             this.clearAutoPlay()
@@ -307,8 +307,8 @@ export default {
     getContainerWidth () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
-          this.fullWidth = this.$el.clientWidth
-          this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+          this.fullWidth = this.$el.clientWidth - (this.spaceFix * 2)
+          this.containerWidth = (this.$el.clientWidth - (this.spaceFix * 2)) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
         })
       } else {
         this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
@@ -330,11 +330,7 @@ export default {
   position: relative;
   z-index: 10;
 }
-[class*='parent'] .container-cover {
-  padding-top: 20px;
-}
 [class*='parent'] > .container-cover > .container-title {
   font-size: 20px;
-  padding: 0 20px;
 }
 </style>

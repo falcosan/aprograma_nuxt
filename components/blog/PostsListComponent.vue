@@ -71,7 +71,7 @@ export default {
     maxPosts () {
       if (this.containerWidth >= 536) {
         return 'sm:grid-cols-fill-medium'
-      } return ''
+      } return 'xs:grid-cols-fill-small'
     },
     sortedPosts () {
       const featuredPosts = this.$store.state.list.posts.items.filter((post) => {

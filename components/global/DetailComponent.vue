@@ -2,7 +2,7 @@
   <div class="project-description">
     <h1 v-if="blok.title" class="description-title mb-5 font-semibold" v-text="blok.title" />
     <div :class="`description-content p-5 rounded-md shadow-sm border ${blok.text ? 'grid gap-5 grid-flow-col auto-cols-fr' : 'flex justify-center'}`">
-      <ul :class="`image-container description-container justify-items-center ${blok.text ? `grid gap-5 ${blok.image.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} ${blok.invert_direction ? 'col-start-2 col-end-2' : ''}` : ''}`" :style="inlineImageStyle">
+      <ul :class="`image-container w-full justify-items-center ${blok.text ? `grid gap-5 ${blok.image.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} ${blok.invert_direction ? 'col-start-2 col-end-2' : ''}` : ''}`" :style="inlineImageStyle">
         <li v-for="image in blok.image" :key="image.id" class="image-item">
           <Modal
             close-mode
@@ -11,6 +11,7 @@
           >
             <template #activator="action">
               <img
+                v-show="!wait"
                 height="100%"
                 width="100%"
                 :class="`description-image max-h-96 md:max-h-xl cursor-pointer object-contain select-none ${blok.text ? 'w-screen' : ''}`"

@@ -28,7 +28,7 @@
       <Field
         v-for="(input, index) in $contentByName(blok.body, 'Field')"
         :key="input._uid"
-        :class="`contact-field ${index === 0 ? '-mt-2' : ''}`"
+        class="contact-field"
         :field-value.sync="fields[index]"
         :blok="input"
       />

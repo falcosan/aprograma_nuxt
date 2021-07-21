@@ -3,7 +3,7 @@
     :class="`container-cover w-full rounded-md ${carouselMode ? 'grid self-center' : sliderMode || containerMode ? 'grid self-start' : ''}`"
     :style="`background-color: ${blok.background_color_container.color};`"
   >
-    <h1 v-if="blok.show_title && blok.title" :class="`container-title py-5 font-extralight ${sliderMode || carouselMode || containerMode ? 'px-5 text-xl' : 'md:pb-10 text-2xl'}`">
+    <h1 v-if="blok.show_title && blok.title" :class="`container-title py-5 font-extralight ${sliderMode || carouselMode || containerMode ? !!(blok.background_color_container.color.charAt(0) === '#' || $parent.blok.background_color_component.color.charAt(0) === '#') ? 'px-5 text-xl' : 'text-xl' : 'md:pb-10 text-2xl'}`">
       {{ blok.title }}
     </h1>
     <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center overflow-hidden' : carouselMode ? 'overflow-hidden' : ''}`">
@@ -42,7 +42,7 @@
             >
               <component
                 :is="component.component"
-                :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setColor ? 'text-white' : ''}`"
+                :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setTextColor ? 'text-white' : ''}`"
                 :blok="component"
                 slider-mode
                 :container-width="fullWidth"
@@ -72,7 +72,7 @@
             >
               <component
                 :is="component.component"
-                :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setColor ? 'text-white' : ''}`"
+                :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setTextColor ? 'text-white' : ''}`"
                 :blok="component"
                 carousel-mode
                 :container-width="fullWidth"
@@ -94,7 +94,7 @@
       >
         <component
           :is="component.component"
-          :class="`${component.name.toLowerCase()}-component ${setColor ? 'text-white' : ''}`"
+          :class="`${component.name.toLowerCase()}-component ${setTextColor ? 'text-white' : ''}`"
           :blok="component"
           container-mode
           :container-width="fullWidth"
@@ -184,7 +184,7 @@ export default {
         } return this.fullWidth >= 536 ? this.$rangeItems(this.rowComponent.length, 2) : 1
       }
     },
-    setColor () {
+    setTextColor () {
       if (this.blok.background_color_component.color || this.blok.background_color_container.color) {
         if (this.blok.background_color_component.color) {
           return this.$themeColor(this.blok.background_color_component.color)

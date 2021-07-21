@@ -1,12 +1,15 @@
 <template>
   <div
     :class="`container-cover w-full rounded-md ${carouselMode ? 'grid self-center' : sliderMode || containerMode ? 'grid self-start' : ''}`"
-    :style="`background-color: ${blok.background_color_container.color};`"
   >
-    <h1 v-if="blok.show_title && blok.title" :class="`container-title pb-5 font-extralight  ${setTextColor ? 'text-white' : ''} ${sliderMode || carouselMode || containerMode ? '' : 'pt-5 md:pb-10 text-2xl'}`">
+    <h1 v-if="blok.show_title && blok.title" :class="`container-title pb-5 font-extralight ${sliderMode || carouselMode || containerMode ? '' : 'pt-5 text-2xl'}`">
       {{ blok.title }}
     </h1>
-    <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center overflow-hidden' : carouselMode ? 'overflow-hidden' : ''}`">
+    <div
+      v-if="blok.slider_mode && elements.length > 1"
+      :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center overflow-hidden' : carouselMode ? 'overflow-hidden' : ''}`"
+      :style="`background-color: ${blok.background_color_container.color};`"
+    >
       <Icon
         v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode || blok.row_container"
         previous
@@ -90,7 +93,7 @@
         v-for="component in elements"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color};`"
-        :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded-md ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
+        :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded-md ${sliderMode || carouselMode || containerMode ? 'p-5' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
       >
         <component
           :is="component.component"

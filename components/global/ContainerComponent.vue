@@ -2,7 +2,7 @@
   <div
     :class="`container-cover w-full ${carouselMode ? 'grid self-center' : sliderMode || containerMode ? 'grid self-start' : ''}`"
   >
-    <h1 v-if="blok.show_title && blok.title" :class="`container-title py-5 font-extralight ${sliderMode || carouselMode || containerMode ? 'px-5 text-xl' : 'text-2xl md:pb-10'} ${blok.background_color_container.color ? $themeColor(blok.background_color_container.color) ? 'text-white' : '' : ''}`">
+    <h1 v-if="blok.show_title && blok.title" :class="`container-title py-5 font-extralight ${sliderMode || carouselMode || containerMode ? 'px-5 text-xl' : 'text-2xl md:pb-10'}`">
       {{ blok.title }}
     </h1>
     <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || containerMode ? 'flex justify-center overflow-hidden' : carouselMode ? 'overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
@@ -84,7 +84,7 @@
         </div>
       </div>
     </div>
-    <div v-else :class="`container-components grid gap-5 auto-cols-fr ${sliderMode || containerMode || carouselMode ? 'sm:p-5' : ''}`" :style="maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : false">
+    <div v-else :class="`container-components grid gap-5 auto-cols-fr rounded-md ${sliderMode || containerMode || carouselMode ? 'sm:p-5' : ''}`" :style="`background-color: ${blok.background_color_container.color}; ${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : false}`">
       <div
         v-for="component in elements"
         :key="component._uid"
@@ -177,10 +177,11 @@ export default {
         if (this.fullWidth >= 1240) {
           return this.$rangeItems(this.columnSet, 3)
         } return this.fullWidth >= 536 ? this.$rangeItems(this.columnSet, 2) : 1
-      } else
-      if (this.fullWidth >= 1240) {
-        return this.$rangeItems(this.rowComponent.length, 3)
-      } return this.fullWidth >= 536 ? this.$rangeItems(this.rowComponent.length, 2) : 1
+      } else {
+        if (this.fullWidth >= 1240) {
+          return this.$rangeItems(this.rowComponent.length, 3)
+        } return this.fullWidth >= 536 ? this.$rangeItems(this.rowComponent.length, 2) : 1
+      }
     },
     setTextColors () {
       if (this.blok.background_color_component.color || this.blok.background_color_container.color) {

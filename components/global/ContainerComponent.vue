@@ -84,7 +84,7 @@
         </div>
       </div>
     </div>
-    <div v-else :class="`container-components grid gap-5 auto-cols-fr rounded-md ${sliderMode || containerMode || carouselMode ? 'sm:p-5' : ''}`" :style="`background-color: ${blok.background_color_container.color}; ${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : false}`">
+    <div v-else :class="`container-components grid gap-5 auto-cols-fr rounded-md ${sliderMode || containerMode || carouselMode ? 'p-5' : ''}`" :style="`background-color: ${blok.background_color_container.color}; ${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : false}`">
       <div
         v-for="component in elements"
         :key="component._uid"

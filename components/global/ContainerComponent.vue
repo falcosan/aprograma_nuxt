@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`container-cover w-full rounded-md ${carouselMode || sliderMode || containerMode ? 'grid  p-5' : ''}`"
+    :class="`container-cover w-full rounded-md ${carouselMode || sliderMode || containerMode ? 'grid py-5 px-2.5 md:px-5' : ''}`"
   >
     <h1 v-if="blok.show_title && blok.title" :class="`container-title pb-5 font-extralight ${sliderMode || carouselMode || containerMode ? '' : 'pt-5 md:pb-10 text-2xl'}`">
       {{ blok.title }}
@@ -307,8 +307,8 @@ export default {
     getContainerWidth () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
-          this.fullWidth = this.$el.clientWidth - (this.spaceFix * 2)
-          this.containerWidth = (this.$el.clientWidth - (this.spaceFix * 2)) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+          this.fullWidth = this.$el.clientWidth - (this.$store.state.data.windowWidth >= 768 ? this.spaceFix * 2 : this.spaceFix)
+          this.containerWidth = (this.$el.clientWidth - (this.$store.state.data.windowWidth >= 768 ? this.spaceFix * 2 : this.spaceFix)) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
         })
       } else {
         this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)

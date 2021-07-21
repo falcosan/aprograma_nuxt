@@ -3,7 +3,7 @@
     :class="`container-cover w-full rounded-md ${carouselMode ? 'grid self-center' : sliderMode || containerMode ? 'grid self-start' : ''}`"
     :style="`background-color: ${blok.background_color_container.color};`"
   >
-    <h1 v-if="blok.show_title && blok.title" :class="`container-title py-5 font-extralight ${sliderMode || carouselMode || containerMode ? !!(blok.background_color_container.color.charAt(0) === '#' || $parent.blok.background_color_component.color.charAt(0) === '#') ? 'px-5 text-xl' : 'text-xl' : 'md:pb-10 text-2xl'}`">
+    <h1 v-if="blok.show_title && blok.title" :class="`container-title pb-5 font-extralight  ${setTextColor ? 'text-white' : ''} ${sliderMode || carouselMode || containerMode ? '' : 'pt-5 md:pb-10 text-2xl'}`">
       {{ blok.title }}
     </h1>
     <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center overflow-hidden' : carouselMode ? 'overflow-hidden' : ''}`">
@@ -25,12 +25,12 @@
         @click.native="next"
       />
       <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode || !containerMode) && !blok.row_container" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-      <div :class="`slider-box w-full ${blok.slider_mode === 'slider' ? 'overflow-hidden' : ''}`">
+      <div :class="`slider-box w-full rounded-md ${blok.slider_mode === 'slider' ? 'overflow-hidden' : ''}`">
         <div v-if="blok.slider_mode === 'slider'" class="slider-container">
           <ul
             :key="sliderKey"
             :style="`transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
-            :class="`slider relative grid grid-flow-col rounded-md transition-transform ${sliderMode || carouselMode || containerMode? 'h-full' : ''}`"
+            class="slider relative grid grid-flow-col transition-transform"
           >
             <li
               v-for="component in elements"
@@ -38,7 +38,7 @@
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
               :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
-              class="slider-slide slide flex self-start my-0 mx-auto rounded-md"
+              :class="`slider-slide slide flex self-start my-0 mx-auto rounded-md ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
             >
               <component
                 :is="component.component"
@@ -67,7 +67,7 @@
               :key="component._uid"
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
-              :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded-md ${index === currentSlide ? 'show' : 'hidden'}`"
+              :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded-md ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
               :style="`background-color: ${blok.background_color_component.color};`"
             >
               <component
@@ -80,7 +80,7 @@
             </li>
           </transition-group>
           <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-1/2 flex flex-wrap justify-center my-5 mx-auto">
-            <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1 w-1 inline-block m-1 rounded-full select-none text-xl transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-black bg-black' : 'bg-black'}`" />
+            <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1 w-1 inline-block m-1 rounded-full select-none text-xl transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-gray-400 bg-gray-500' : 'bg-gray-500'}`" />
           </div>
         </div>
       </div>
@@ -90,7 +90,7 @@
         v-for="component in elements"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color};`"
-        :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded-md ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
+        :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded-md ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
       >
         <component
           :is="component.component"
@@ -326,5 +326,11 @@ export default {
 .show > * {
   position: relative;
   z-index: 10;
+}
+[class*='parent'] > .container-cover {
+  padding: 20px;
+}
+[class*='parent'] > .container-cover > .container-title {
+  font-size: 20px;
 }
 </style>

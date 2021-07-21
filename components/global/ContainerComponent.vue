@@ -2,7 +2,7 @@
   <div
     :class="`container-cover w-full ${carouselMode ? 'grid self-center' : sliderMode || containerMode ? 'grid self-start' : ''}`"
   >
-    <h1 v-if="blok.show_title && blok.title" :class="`container-title py-5 font-extralight ${sliderMode || carouselMode || containerMode ? 'px-5 text-xl' : 'text-2xl md:pb-10'}`">
+    <h1 v-if="blok.show_title && blok.title" :class="`container-title py-5 font-extralight ${sliderMode || carouselMode || containerMode ? !blok.remove_space ? 'px-5 text-xl' : 'text-xl' : 'text-2xl md:pb-10'}`">
       {{ blok.title }}
     </h1>
     <div v-if="blok.slider_mode && elements.length > 1" :class="`slider-wrapper relative rounded-md ${sliderMode || containerMode ? 'flex justify-center overflow-hidden' : carouselMode ? 'overflow-hidden' : ''}`" :style="`background-color: ${blok.background_color_container.color};`">
@@ -41,7 +41,7 @@
             >
               <component
                 :is="component.component"
-                :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setTextColors ? 'text-white' : ''}`"
+                :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setColor ? 'text-white' : ''}`"
                 :blok="component"
                 slider-mode
                 :container-width="fullWidth"
@@ -71,7 +71,7 @@
             >
               <component
                 :is="component.component"
-                :class="`${component.component.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setTextColors ? 'text-white' : ''}`"
+                :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setColor ? 'text-white' : ''}`"
                 :blok="component"
                 carousel-mode
                 :container-width="fullWidth"
@@ -84,16 +84,16 @@
         </div>
       </div>
     </div>
-    <div v-else :class="`container-components grid gap-5 auto-cols-fr rounded-md ${sliderMode || containerMode || carouselMode ? 'p-2.5 sm:p-5' : ''}`" :style="`background-color: ${blok.background_color_container.color}; ${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : false}`">
+    <div v-else :class="`container-components grid gap-5 auto-cols-fr rounded-md ${(sliderMode || containerMode || carouselMode) && !blok.remove_space ? 'p-5' : ''}`" :style="`background-color: ${blok.background_color_container.color}; ${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : false}`">
       <div
         v-for="component in elements"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color};`"
-        :class="`${component.component.toLowerCase()}-container w-full grid self-start rounded-md ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
+        :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded-md ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
       >
         <component
           :is="component.component"
-          :class="`${component.component.toLowerCase()}-component ${setTextColors ? 'text-white' : ''}`"
+          :class="`${component.name.toLowerCase()}-component ${setColor ? 'text-white' : ''}`"
           :blok="component"
           container-mode
           :container-width="fullWidth"
@@ -174,16 +174,16 @@ export default {
         }
       }
       if (this.columnSet) {
-        if (this.fullWidth >= 1240) {
+        if (this.$store.state.data.windowWidth >= 1440) {
           return this.$rangeItems(this.columnSet, 3)
-        } return this.fullWidth >= 536 ? this.$rangeItems(this.columnSet, 2) : 1
+        } return this.$store.state.data.windowWidth >= 1024 ? this.$rangeItems(this.columnSet, 2) : 1
       } else {
         if (this.fullWidth >= 1240) {
           return this.$rangeItems(this.rowComponent.length, 3)
         } return this.fullWidth >= 536 ? this.$rangeItems(this.rowComponent.length, 2) : 1
       }
     },
-    setTextColors () {
+    setColor () {
       if (this.blok.background_color_component.color || this.blok.background_color_container.color) {
         if (this.blok.background_color_component.color) {
           return this.$themeColor(this.blok.background_color_component.color)

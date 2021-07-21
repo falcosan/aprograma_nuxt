@@ -84,7 +84,7 @@
         </div>
       </div>
     </div>
-    <div v-else :class="`container-components grid gap-5 auto-cols-fr ${sliderMode || containerMode || carouselMode ? 'p-5' : ''}`" :style="maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : false">
+    <div v-else :class="`container-components grid gap-5 auto-cols-fr ${sliderMode || containerMode || carouselMode ? 'sm:p-5' : ''}`" :style="maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : false">
       <div
         v-for="component in elements"
         :key="component._uid"
@@ -127,6 +127,7 @@ export default {
     return {
       elements: this.blok.body,
       max: Number(this.blok.max_slides),
+      columnSet: Number(this.blok.column_container),
       sliderKey: 0,
       sliderIndex: 0,
       currentSlide: 0,
@@ -172,6 +173,11 @@ export default {
           } return this.fullWidth >= 536 ? this.$rangeItems(this.defaultMax, 2) : 1
         }
       }
+      if (this.columnSet) {
+        if (this.fullWidth >= 1240) {
+          return this.$rangeItems(this.columnSet, 3)
+        } return this.fullWidth >= 536 ? this.$rangeItems(this.columnSet, 2) : 1
+      } else
       if (this.fullWidth >= 1240) {
         return this.$rangeItems(this.rowComponent.length, 3)
       } return this.fullWidth >= 536 ? this.$rangeItems(this.rowComponent.length, 2) : 1

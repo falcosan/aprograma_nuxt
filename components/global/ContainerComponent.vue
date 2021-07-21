@@ -41,7 +41,7 @@
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
               :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
-              :class="`slider-slide slide flex self-start my-0 mx-auto rounded-md ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+              class="slider-slide slide flex self-start my-0 mx-auto rounded-md"
             >
               <component
                 :is="component.component"
@@ -70,7 +70,7 @@
               :key="component._uid"
               v-touch:swipe.stop.left="next"
               v-touch:swipe.stop.right="previous"
-              :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded-md ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+              :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded-md ${index === currentSlide ? 'show' : 'hidden'}`"
               :style="`background-color: ${blok.background_color_component.color};`"
             >
               <component
@@ -93,7 +93,7 @@
         v-for="component in elements"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color};`"
-        :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded-md ${sliderMode || carouselMode || containerMode ? 'p-5' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
+        :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded-md ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
       >
         <component
           :is="component.component"
@@ -329,11 +329,5 @@ export default {
 .show > * {
   position: relative;
   z-index: 10;
-}
-[class*='parent'] > .container-cover {
-  padding: 20px;
-}
-[class*='parent'] > .container-cover > .container-title {
-  font-size: 20px;
 }
 </style>

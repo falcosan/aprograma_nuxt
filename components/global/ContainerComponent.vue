@@ -24,7 +24,7 @@
         @click.native="next"
       />
       <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode || !containerMode) && !blok.row_container" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-      <div :class="`slider-box ${blok.slider_mode === 'slider' ? 'overflow-hidden' : ''}`">
+      <div :class="`slider-box w-full ${blok.slider_mode === 'slider' ? 'overflow-hidden' : ''}`">
         <div v-if="blok.slider_mode === 'slider'" class="slider-container">
           <ul
             :key="sliderKey"

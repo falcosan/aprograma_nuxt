@@ -2,7 +2,7 @@
   <div
     :class="`container-cover w-full rounded ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
-    <h1 v-if="blok.show_title && blok.title" :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? $parent.blok.background_color_container.color.charAt(0) === '#' || $parent.blok.background_color_component.color.charAt(0) === '#' ? 'px-5 pt-5 pb-2.5 mb-2.5' : 'pt-2.5 mb-5 -mt-2.5' : 'mb-5 text-2xl'}`">
+    <h1 v-if="blok.show_title && blok.title" :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? 'px-5 pt-5 pb-2.5 mb-2.5' : 'mb-5 text-2xl'}`">
       {{ blok.title }}
     </h1>
     <div

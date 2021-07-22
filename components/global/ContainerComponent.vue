@@ -1,10 +1,11 @@
 <template>
   <div
     :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
+    :style="`padding: ${blok.add_space ? spaceFix : false}px;`"
   >
     <h1
       v-if="blok.show_title && blok.title"
-      :style="`${sliderMode || carouselMode || containerMode ? blok.add_space ? `padding: ${spaceFix}px 0;` : `padding-bottom: ${spaceFix}px;` : `margin-bottom: ${spaceFix}px;`}`"
+      :style="`${`padding-bottom: ${spaceFix}px;`}`"
       :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? '' : 'text-2xl'}`"
     >
       {{ blok.title }}

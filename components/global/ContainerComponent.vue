@@ -182,9 +182,9 @@ export default {
         }
       }
       if (this.columnSet) {
-        if (this.$store.state.data.windowWidth >= 1440) {
+        if (this.fullWidth >= 1240) {
           return this.$rangeItems(this.columnSet, 3)
-        } return this.$store.state.data.windowWidth >= 1024 ? this.$rangeItems(this.columnSet, 2) : 1
+        } return this.fullWidth >= 536 ? this.$rangeItems(this.columnSet, 2) : 1
       } else {
         if (this.fullWidth >= 1240) {
           return this.$rangeItems(this.rowComponent.length, 3)

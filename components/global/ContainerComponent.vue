@@ -1,13 +1,13 @@
 <template>
   <div
-    :class="`container-cover w-full pt-5 pb-2.5 px-2.5 rounded-md ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
+    :class="`container-cover w-full rounded-md ${carouselMode || sliderMode || containerMode ? 'grid p-2.5' : 'parent-cover'}`"
   >
-    <h1 v-if="blok.show_title && blok.title" :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? 'pb-5' : 'text-2xl'}`">
+    <h1 v-if="blok.show_title && blok.title" :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? $parent.blok.background_color_container.color.charAt(0) === '#' || $parent.blok.background_color_component.color.charAt(0) === '#' ? 'mb-2.5' : 'mb-5 -mt-2.5' : 'mb-5 text-2xl'}`">
       {{ blok.title }}
     </h1>
     <div
       v-if="blok.slider_mode && elements.length > 1"
-      :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center overflow-hidden' : carouselMode ? 'overflow-hidden' : 'pt-5'}`"
+      :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center overflow-hidden' : carouselMode ? 'overflow-hidden' : ''}`"
       :style="`background-color: ${blok.background_color_container.color};`"
     >
       <Icon
@@ -88,7 +88,7 @@
         </div>
       </div>
     </div>
-    <div v-else :class="`container-components grid gap-5 auto-cols-fr rounded-md ${carouselMode || sliderMode || containerMode ? '' : 'pt-5'}`" :style="`background-color: ${blok.background_color_container.color}; ${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : false}`">
+    <div v-else class="container-components grid gap-5 auto-cols-fr rounded-md" :style="`background-color: ${blok.background_color_container.color}; ${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : false}`">
       <div
         v-for="component in elements"
         :key="component._uid"
@@ -335,11 +335,7 @@ export default {
   position: relative;
   z-index: 10;
 }
-[class*='parent'] {
-  padding: 0;
-}
-
-[class*='parent'] > .container-cover > .container-title {
+.parent-container > .container-cover > .container-title {
   font-size: 20px;
 }
 </style>

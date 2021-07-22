@@ -3,12 +3,12 @@
     :is="blok.external_link ? 'a' : 'NuxtLink'"
     v-if="blok"
     :class="`item-link cursor-pointer ${sliderMode || carouselMode || containerMode ? 'flex items-center justify-center self-center' : 'h-full block'}`"
-    :active-class="blok.external_link ? false : !iconItem && !blok.icon_item ? 'filter invert grayscale bg-gray-500' : 'filter invert grayscale bg-gray-300'"
-    :to="blok.external_link ? false : blok.path"
-    :href="blok.external_link ? blok.path : false"
-    :rel="blok.external_link ? 'noopener noreferrer' : false"
-    :target="blok.external_link ? '_blank' : false"
-    :title="blok.title && blok.icon_item ? blok.title : false"
+    :active-class="blok.external_link ? '' : !iconItem && !blok.icon_item ? 'filter invert grayscale bg-gray-500' : 'filter invert grayscale bg-gray-300'"
+    :to="blok.external_link ? '' : blok.path"
+    :href="blok.external_link ? blok.path : ''"
+    :rel="blok.external_link ? 'noopener noreferrer' : ''"
+    :target="blok.external_link ? '_blank' : ''"
+    :title="blok.title && blok.icon_item ? blok.title : ''"
   >
     <span v-if="blok.title && !iconItem && !blok.icon_item" class="item-text break-words" :style="`color: ${blok.text_color.color};`">
       {{ blok.title }}
@@ -27,14 +27,14 @@
   <component
     :is="externalLink ? 'a' : 'NuxtLink'"
     v-else
-    :class="`item-link h-full block cursor-pointer ${sliderMode || carouselMode ? false : 'h-full'}`"
+    :class="`item-link h-full block cursor-pointer ${sliderMode || carouselMode ? '' : 'h-full'}`"
     :active-class="active === 'active' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : ''"
     :exact-active-class="active === 'exact' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : ''"
-    :to="externalLink ? false : to"
-    :href="externalLink ? to : false"
-    :rel="externalLink ? 'noopener noreferrer' : false"
-    :target="externalLink ? '_blank' : false"
-    :title="title && iconItem ? title : false"
+    :to="externalLink ? '' : to"
+    :href="externalLink ? to : ''"
+    :rel="externalLink ? 'noopener noreferrer' : ''"
+    :target="externalLink ? '_blank' : ''"
+    :title="title && iconItem ? title : ''"
   >
     <span v-if="title && !iconItem" class="item-text break-words">{{ title }}</span>
     <slot v-else name="icon" />

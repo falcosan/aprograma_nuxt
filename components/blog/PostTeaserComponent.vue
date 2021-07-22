@@ -5,18 +5,18 @@
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div
-        :class="`teaser-content h-full flex flex-col ${rowContainer || sliderContainer || containerContainer || carouselContainer ? false : 'lg:flex-row lg:h-64 2xl:h-56'}`"
+        :class="`teaser-content h-full flex flex-col ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:flex-row lg:h-64 2xl:h-56'}`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
-        <div v-show="!wait" :class="`teaser-file w-full ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : sliderContainer || containerContainer || carouselContainer ? 'h-full' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'} ${postContent.file.filename ? false : 'bg-white'}`">
+        <div v-show="!wait" :class="`teaser-file w-full ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : sliderContainer || containerContainer || carouselContainer ? 'h-full' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-white'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'img'"
             class="w-full h-full object-cover object-center select-none"
             :alt="postContent.file.alt"
             :src="setFile"
-            :width="lookImage || !postContent.file.filename ? '100%' : false"
-            :height="lookImage || !postContent.file.filename ? '100%' : false"
+            :width="lookImage || !postContent.file.filename ? '100%' : ''"
+            :height="lookImage || !postContent.file.filename ? '100%' : ''"
             @load="wait = false"
           />
         </div>

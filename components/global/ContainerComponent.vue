@@ -1,21 +1,21 @@
 <template>
   <div
-    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'pt-5 md:pb-5 md:px-5' : false : blok.add_space ? 'pt-5 md:pb-5 md:px-5' : false : blok.add_space ? 'pt-5 md:pb-5 md:px-5' : false }`"
+    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'pt-5 md:pb-5 md:px-5' : '' : blok.add_space ? 'pt-5 md:pb-5 md:px-5' : '' : blok.add_space ? 'pt-5 md:pb-5 md:px-5' : '' }`"
   >
     <h1
       v-if="blok.show_title && blok.title"
       :style="`${`padding-bottom: ${spaceFix}px;`}`"
-      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? false : 'text-2xl'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'px-5 md:px-0' : false : blok.add_space ? 'px-5 md:px-0' : false : blok.add_space ? 'px-5 md:px-0' : false }`"
+      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? '' : 'text-2xl'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'px-5 md:px-0' : '' : blok.add_space ? 'px-5 md:px-0' : '' : blok.add_space ? 'px-5 md:px-0' : '' }`"
     >
       {{ blok.title }}
     </h1>
     <div
       class="container-content overflow-hidden rounded"
-      :style="`padding: ${blok.add_space && blok.background_color_container.color.charAt(0) === '#' ? spaceFix : false}px; background-color: ${blok.background_color_container.color};`"
+      :style="`padding: ${blok.add_space && blok.background_color_container.color.charAt(0) === '#' ? spaceFix : ''}px; background-color: ${blok.background_color_container.color};`"
     >
       <div
         v-if="blok.slider_mode && elements.length > 1"
-        :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : false}`"
+        :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''}`"
       >
         <Icon
           v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode || blok.row_container"
@@ -35,7 +35,7 @@
           @click.native="next"
         />
         <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode || !containerMode) && !blok.row_container" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-        <div :class="`slider-box w-full rounded ${blok.slider_mode === 'slider' ? 'overflow-hidden' : false}`">
+        <div :class="`slider-box w-full rounded ${blok.slider_mode === 'slider' ? 'overflow-hidden' : ''}`">
           <div v-if="blok.slider_mode === 'slider'" class="slider-container">
             <ul
               :key="sliderKey"
@@ -48,11 +48,11 @@
                 v-touch:swipe.stop.left="next"
                 v-touch:swipe.stop.right="previous"
                 :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
-                :class="`slider-slide slide h-full flex my-0 mx-auto rounded ${sliderMode || carouselMode || containerMode ? false : 'parent-slide'}`"
+                :class="`slider-slide slide h-full flex my-0 mx-auto rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
               >
                 <component
                   :is="component.component"
-                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : false} ${setTextColor ? 'text-white' : false}`"
+                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setTextColor ? 'text-white' : ''}`"
                   :blok="component"
                   slider-mode
                   :container-width="fullWidth"
@@ -77,12 +77,12 @@
                 :key="component._uid"
                 v-touch:swipe.stop.left="next"
                 v-touch:swipe.stop.right="previous"
-                :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? false : 'parent-slide'}`"
+                :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
                 :style="`background-color: ${blok.background_color_component.color};`"
               >
                 <component
                   :is="component.component"
-                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : false} ${setTextColor ? 'text-white' : false}`"
+                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setTextColor ? 'text-white' : ''}`"
                   :blok="component"
                   carousel-mode
                   :container-width="fullWidth"
@@ -95,16 +95,16 @@
           </div>
         </div>
       </div>
-      <div v-else class="container-components grid auto-cols-fr rounded" :style="`gap: ${spaceFix}px; ${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : false}`">
+      <div v-else class="container-components grid auto-cols-fr rounded" :style="`gap: ${spaceFix}px; ${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : ''}`">
         <div
           v-for="component in elements"
           :key="component._uid"
           :style="`background-color: ${blok.background_color_component.color};`"
-          :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded ${sliderMode || carouselMode || containerMode ? false : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? false : 'col-span-full'}`"
+          :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
         >
           <component
             :is="component.component"
-            :class="`${component.name.toLowerCase()}-component ${setTextColor ? 'text-white' : false}`"
+            :class="`${component.name.toLowerCase()}-component ${setTextColor ? 'text-white' : ''}`"
             :blok="component"
             container-mode
             :container-width="fullWidth"

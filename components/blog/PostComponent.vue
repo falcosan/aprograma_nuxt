@@ -20,8 +20,8 @@
           :class="`w-full h-full object-center select-none ${blok.file.filename ? 'object-cover' : 'object-contain'}`"
           :alt="`${blok.file.alt} project`"
           :src="setFile"
-          :width="lookImage || !blok.file.filename ? '100%' : false"
-          :height="lookImage || !blok.file.filename ? '100%' : false"
+          :width="lookImage || !blok.file.filename ? '100%' : ''"
+          :height="lookImage || !blok.file.filename ? '100%' : ''"
           @load="wait = false"
         />
       </div>
@@ -47,7 +47,7 @@
         />
         <h5
           :style="`color: ${blok.post_text_color.color};`"
-          :class="`post-date text-right ${blok.long_text ? 'pt-5 lg:pt-8 border-t-4 border-dotted' : false}`"
+          :class="`post-date text-right ${blok.long_text ? 'pt-5 lg:pt-8 border-t-4 border-dotted' : ''}`"
           v-text="changeDate(blok.date)"
         />
       </div>

@@ -3,11 +3,11 @@
     <h1 v-if="blok.title && blok.show_title" class="page-title mb-5 text-2xl font-extralight">
       {{ blok.title }}
     </h1>
-    <div class="page-components grid gap-5 auto-cols-fr" :style="maxComponents > 1 ? `grid-template-columns: repeat(${$rangeItems(maxComponents, 3)}, 1fr);` : false">
+    <div class="page-components grid gap-5 auto-cols-fr" :style="maxComponents > 1 ? `grid-template-columns: repeat(${$rangeItems(maxComponents, 3)}, 1fr);` : ''">
       <div
         v-for="component in blok.body"
         :key="component._uid"
-        :class="`${component.component.toLowerCase()}-content ${component.row_container || $store.state.data.windowWidth < 768 ? false : 'col-span-full'} ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : false}`"
+        :class="`${component.component.toLowerCase()}-content ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'} ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
       >
         <component
           :is="component.component"

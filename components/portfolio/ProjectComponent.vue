@@ -30,9 +30,9 @@
         :is="blok.url_project ? 'a' : 'span'"
         v-if="$store.state.data.windowWidth >= 1024"
         :class="`project-url xl:row-start-2 xl:row-end-2 xl:col-start-3 xl:col-end-3 ${blok.url_project ? ' font-semibold' : ' italic'} text-center truncate`"
-        :href="blok.url_project ? blok.url_project : false"
-        :target="blok.url_project ? '_blank' : false"
-        :rel="blok.url_project ? 'noopener noreferrer' : false"
+        :href="blok.url_project ? blok.url_project : ''"
+        :target="blok.url_project ? '_blank' : ''"
+        :rel="blok.url_project ? 'noopener noreferrer' : ''"
       >
         {{ blok.url_project ? `${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}` : $languageCase('private project', 'proyecto privado', 'progetto privato') }}
       </component>
@@ -60,7 +60,7 @@
       <Detail
         v-for="(description, index) in blok.body"
         :key="description._uid"
-        :class="`${index === blok.body.length - 1 ? false : 'mb-10'}`"
+        :class="`${index === blok.body.length - 1 ? '' : 'mb-10'}`"
         :inline-text-style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
         :blok="description"
       />
@@ -79,9 +79,9 @@
         v-if="$store.state.data.windowWidth < 1024"
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
         :class="`project-url p-5 rounded text-center truncate ${blok.url_project ? ' font-semibold' : ' italic'}`"
-        :href="blok.url_project ? blok.url_project : false"
-        :target="blok.url_project ? '_blank' : false"
-        :rel="blok.url_project ? 'noopener noreferrer' : false"
+        :href="blok.url_project ? blok.url_project : ''"
+        :target="blok.url_project ? '_blank' : ''"
+        :rel="blok.url_project ? 'noopener noreferrer' : ''"
       >
         {{ blok.url_project ? `${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}` : $languageCase('private project', 'proyecto privado', 'progetto privato') }}
       </component>

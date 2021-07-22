@@ -5,12 +5,12 @@
       <div
         v-if="openEvent || open"
         ref="modal"
-        :class="`modal-backdrop fixed flex justify-center inset-0 z-50 overflow-auto focus:outline-none ${modalStyle} ${closeMode ? 'cursor-pointer' : false}`"
+        :class="`modal-backdrop fixed flex justify-center inset-0 z-50 overflow-auto focus:outline-none ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
         tabindex="0"
-        @keydown.esc="closeMode ? closeModal() : false"
+        @keydown.esc="closeMode ? closeModal() : ''"
         @click.self.stop="closeModal()"
       >
-        <div class="modal-container flex items-center" @click.self.stop="closeMode ? closeModal() : false">
+        <div class="modal-container flex items-center" @click.self.stop="closeMode ? closeModal() : ''">
           <header v-if="hasSlot('header') || closeMode" class="modal-header">
             <slot name="header" />
             <Icon
@@ -23,11 +23,11 @@
           </header>
           <section
             v-if="hasSlot('body')"
-            :class="`modal-body h-auto px-5 lg:px-12 ${closeMode ? 'cursor-pointer' : false}`"
-            @click.self.stop="closeMode ? closeModal() : false"
+            :class="`modal-body h-auto px-5 lg:px-12 ${closeMode ? 'cursor-pointer' : ''}`"
+            @click.self.stop="closeMode ? closeModal() : ''"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
-              <div class="body-container grid gap-10 grid-flow-row-dense" @click.self.stop="closeMode ? closeModal() : false">
+              <div class="body-container grid gap-10 grid-flow-row-dense" @click.self.stop="closeMode ? closeModal() : ''">
                 <slot name="body" />
               </div>
             </transition>

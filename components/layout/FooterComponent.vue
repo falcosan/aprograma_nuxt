@@ -9,7 +9,7 @@
       class="top-kick absolute w-20 h-20 flex right-0 -top-20 items-center justify-center z-10 rounded-tl cursor-pointer transition-all duration-200"
       @click="scrollTop();"
     >
-      <Icon arrow tag="button" size="w-auto" :class="`justify-center transform rotate-90 ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : false : false}`" />
+      <Icon arrow tag="button" size="w-auto" :class="`justify-center transform rotate-90 ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`" />
     </div>
     <div
       class="content-container h-full overflow-hidden"
@@ -27,28 +27,28 @@
             eye
             tag="span"
             size="w-auto"
-            :class="`${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : false : false}`"
+            :class="`${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`"
           />
         </div>
       </div>
       <div
-        :class="`footer-content h-full w-full grid grid-flow-col auto-cols-fr gap-5 items-center transition-opacity duration-200 ${expanded ? false : 'opacity-0'}`"
+        :class="`footer-content h-full w-full grid grid-flow-col auto-cols-fr gap-5 items-center transition-opacity duration-200 ${expanded ? '' : 'opacity-0'}`"
       >
         <div
           class="messages-container ml-4"
         >
-          <span :class="`footer-messages text-xs ${$themeColor(blok.background_color.color) ? 'filter invert' : false}`">
+          <span :class="`footer-messages text-xs ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`">
             Aprograma {{ typewriter }}
           </span>
         </div>
         <div
-          :class="`footer-info justify-self-center leading-relaxed text-center ${$themeColor(blok.background_color.color) ? 'text-white' : false}`"
+          :class="`footer-info justify-self-center leading-relaxed text-center ${$themeColor(blok.background_color.color) ? 'text-white' : ''}`"
         >
           <span class="footer-copyright text-sm">
             © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span><br><span class="footer-powered text-xs">&#60; {{ $languageCase('powered by', 'creado con', 'creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span><span class="nuxtjs-emoji"> 💚</span></a> / &nbsp;{{ $languageCase('hosted by', 'alojado con', 'distribuito da') }} <a class="netlify-link" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"><span class="netlify underline">Netlify</span> <span class="netlify-emoji"> 🚂</span></a> &#62;</span>
         </div>
         <ul
-          :class="`social-links grid grid-flow-col gap-3 justify-end mr-3 ${$themeColor(blok.background_color.color) ? 'filter invert' : false}`"
+          :class="`social-links grid grid-flow-col gap-3 justify-end mr-3 ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`"
         >
           <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid">
             <component

@@ -218,7 +218,7 @@ export default {
         this.sliderKey++
       }
     },
-    containerWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
+    fullWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
   },
   mounted () {
     if (!this.sliderMode && !this.carouselMode && !this.containerMode) {

@@ -1,11 +1,11 @@
 <template>
   <div
-    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'py-5 md:px-5' : false : blok.add_space ? 'py-5 md:px-5' : false : blok.add_space ? 'py-5 md:px-5' : false }`"
+    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'pt-5 md:pb-5 md:px-5' : false : blok.add_space ? 'pt-5 md:pb-5 md:px-5' : false : blok.add_space ? 'pt-5 md:pb-5 md:px-5' : false }`"
   >
     <h1
       v-if="blok.show_title && blok.title"
       :style="`${`padding-bottom: ${spaceFix}px;`}`"
-      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? false : 'text-2xl'}`"
+      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? false : 'text-2xl'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'px-5 md:px-0' : false : blok.add_space ? 'px-5 md:px-0' : false : blok.add_space ? 'px-5 md:px-0' : false }`"
     >
       {{ blok.title }}
     </h1>

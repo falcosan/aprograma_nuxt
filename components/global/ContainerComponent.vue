@@ -1,8 +1,8 @@
 <template>
   <div
-    :class="`container-cover w-full rounded-md ${carouselMode || sliderMode || containerMode ? 'grid p-2.5' : 'parent-cover'}`"
+    :class="`container-cover w-full rounded-md ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
-    <h1 v-if="blok.show_title && blok.title" :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? $parent.blok.background_color_container.color.charAt(0) === '#' || $parent.blok.background_color_component.color.charAt(0) === '#' ? 'mb-2.5' : 'mb-5 -mt-2.5' : 'mb-5 text-2xl'}`">
+    <h1 v-if="blok.show_title && blok.title" :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? $parent.blok.background_color_container.color.charAt(0) === '#' || $parent.blok.background_color_component.color.charAt(0) === '#' ? 'px-5 pt-5 pb-2.5 mb-2.5' : 'pt-2.5 mb-5 -mt-2.5' : 'mb-5 text-2xl'}`">
       {{ blok.title }}
     </h1>
     <div
@@ -93,7 +93,7 @@
         v-for="component in elements"
         :key="component._uid"
         :style="`background-color: ${blok.background_color_component.color};`"
-        :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded-md ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
+        :class="`${component.name.toLowerCase()}-container w-full grid self-start ${sliderMode || carouselMode || containerMode ? 'rounded' : 'parent-container rounded-md'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
       >
         <component
           :is="component.component"
@@ -230,8 +230,8 @@ export default {
   },
   updated () {
     if (this.sliderMode || this.carouselMode || this.containerMode) {
-      this.fullWidth = this.$el.clientWidth - this.spaceFix
-      this.containerWidth = (this.$el.clientWidth - this.spaceFix) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+      this.fullWidth = this.$el.clientWidth
+      this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
     } else {
       this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
     }

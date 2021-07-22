@@ -6,7 +6,7 @@
   >
     <div
       :style="`background-color: ${expanded ? blok.background_color.color : '#fff'};`"
-      class="top-kick absolute w-20 h-20 flex right-0 -top-20 items-center justify-center z-10 rounded-tl-md cursor-pointer transition-all duration-200"
+      class="top-kick absolute w-20 h-20 flex right-0 -top-20 items-center justify-center z-10 rounded-tl cursor-pointer transition-all duration-200"
       @click="scrollTop();"
     >
       <Icon arrow tag="button" size="w-auto" :class="`justify-center transform rotate-90 ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`" />
@@ -20,7 +20,7 @@
         :class="`open-footer absolute left-0 -top-20 ${expanded ? 'w-full' : 'w-20'}`"
       >
         <div
-          class="icon-open w-20 h-20 flex justify-center items-center rounded-tr-md transition-all duration-200"
+          class="icon-open w-20 h-20 flex justify-center items-center rounded-tr transition-all duration-200"
           :style="`background-color: ${expanded ? blok.background_color.color : '#fff'};`"
         >
           <Icon
@@ -63,7 +63,7 @@
   </footer>
   <footer
     v-else
-    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl mx-auto px-10 py-20 mb-12 rounded-t-md backdrop-filter backdrop-blur bg-opacity-70 bg-white"
+    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl mx-auto px-10 py-20 mb-12 rounded-t backdrop-filter backdrop-blur bg-opacity-70 bg-white"
   >
     <div class="footer-content h-52 grid gap-5 text-center">
       <span class="input-footer relative grid gap-5 grid-flow-col-dense items-end justify-center bottom-6 text-md font-thin">

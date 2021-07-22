@@ -12,7 +12,7 @@
       <div class="maintenance-line absolute h-px w-full left-0 top-1/2 -z-10 bg-black" />
       <Logo
         transition
-        class="max-w-lg my-0 mx-auto border border-black rounded bg-white"
+        class="max-w-lg my-0 mx-auto border border-gray-500 rounded bg-white"
         size="w-full"
       />
       <h1 class="maintenance-text mt-10 sm:mt-20 text-center text-xs xs:text-base sm:text-lg xs:whitespace-nowrap font-bold uppercase italic">

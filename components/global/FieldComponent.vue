@@ -6,7 +6,7 @@
       :id="`${blok.type}-field`"
       :name="blok.label.toLowerCase().replace(/ /g,'')"
       :type="blok.type"
-      :class="`field-input w-full relative z-20 p-2 rounded resize-none ${isMessage ? 'h-40' : 'h-10 leading-10'} ${fieldError() ? 'border-dotted border-2 border-red-600' : 'border border-black'}`"
+      :class="`field-input w-full relative z-20 p-2 rounded resize-none ${isMessage ? 'h-40' : 'h-10 leading-10'} ${fieldError() ? 'border-dotted border-2 border-red-600' : 'border border-gray-500'}`"
       :value="fieldValue !== '' ? fieldValue : false"
       @keyup="updateFields(); showIndication()"
       @focus="showIndication"
@@ -14,7 +14,7 @@
       @input="$emit('update:fieldValue', $event.target.value)"
     />
     <transition v-if="blok.indication" enter-active-class="duration-100 in-out" leave-active-class="duration-100 out-in" enter-class="-translate-y-full opacity-0" leave-to-class="-translate-y-full opacity-0">
-      <span v-if="indication" class="field-indication w-full absolute -bottom-7 z-10 py-1 px-2 transform rounded-b-md text-sm filter drop-shadow-xl text-white bg-red-400">
+      <span v-if="indication" class="field-indication w-full absolute -bottom-7 z-10 py-1 px-2 transform rounded-b text-sm filter drop-shadow-xl text-white bg-red-400">
         {{ blok.indication }}
       </span>
     </transition>

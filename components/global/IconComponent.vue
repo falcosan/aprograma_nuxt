@@ -1,6 +1,6 @@
 <template>
   <span
-    :class="`icon-container grid gap-5 justify-center ${blok && !blok.remove_space ? 'p-5 sm:p-10' : ''} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : ''} ${sliderMode || carouselMode || carouselMode ? 'h-full content-center' : 'content-around'}`"
+    :class="`icon-container grid gap-5 justify-center ${blok && !blok.remove_space ? 'p-5 sm:p-10' : false} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : false} ${sliderMode || carouselMode || carouselMode ? 'h-full content-center' : 'content-around'}`"
     @click="animateMenu ? open = !open : false"
   >
     <component
@@ -98,7 +98,7 @@
       ><path d="M7 9h-7v-7h1v5.2c1.853-4.237 6.083-7.2 11-7.2 6.623 0 12 5.377 12 12s-5.377 12-12 12c-6.286 0-11.45-4.844-11.959-11h1.004c.506 5.603 5.221 10 10.955 10 6.071 0 11-4.929 11-11s-4.929-11-11-11c-4.66 0-8.647 2.904-10.249 7h5.249v1z" /></svg>
 
       <!-- MENU -->
-      <div v-else-if="animateMenu" :class="`animate-menu my-0 mx-auto ${open ? 'open' : ''} ${size}`">
+      <div v-else-if="animateMenu" :class="`animate-menu my-0 mx-auto ${open ? 'open' : false} ${size}`">
         <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
         <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
         <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />

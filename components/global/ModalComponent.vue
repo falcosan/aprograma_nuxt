@@ -5,7 +5,7 @@
       <div
         v-if="openEvent || open"
         ref="modal"
-        :class="`modal-backdrop fixed flex justify-center inset-0 z-50 overflow-auto focus:outline-none ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
+        :class="`modal-backdrop fixed flex justify-center inset-0 z-50 overflow-auto focus:outline-none ${modalStyle} ${closeMode ? 'cursor-pointer' : false}`"
         tabindex="0"
         @keydown.esc="closeMode ? closeModal() : false"
         @click.self.stop="closeModal()"
@@ -23,7 +23,7 @@
           </header>
           <section
             v-if="hasSlot('body')"
-            :class="`modal-body h-auto px-5 lg:px-12 ${closeMode ? 'cursor-pointer' : ''}`"
+            :class="`modal-body h-auto px-5 lg:px-12 ${closeMode ? 'cursor-pointer' : false}`"
             @click.self.stop="closeMode ? closeModal() : false"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">

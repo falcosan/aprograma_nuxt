@@ -18,7 +18,7 @@
         <li
           v-if="translateTransition ? cutLanguage(language) !== $store.state.language.language && $store.state.language.language !== '' || cutLanguage(language) !== 'en' && $store.state.language.language === '' : true"
           :key="language._uid"
-          :class="`translate-item cursor-pointer ${styleTranslateItem} ${!translateTransition && (cutLanguage(language) === $store.state.language.language || cutLanguage(language) === 'en' && $store.state.language.language === '') ? 'underline' : ''}`"
+          :class="`translate-item cursor-pointer ${styleTranslateItem} ${!translateTransition && (cutLanguage(language) === $store.state.language.language || cutLanguage(language) === 'en' && $store.state.language.language === '') ? 'underline' : false}`"
           @click="changeLanguage(language.language); $emit('translateListAction')"
         >
           <span

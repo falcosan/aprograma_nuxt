@@ -1,12 +1,11 @@
 <template>
   <div
-    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
-    :style="`padding: ${blok.add_space ? spaceFix : false}px;`"
+    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'} ${blok.add_space ? 'md:p-5' : false}`"
   >
     <h1
       v-if="blok.show_title && blok.title"
       :style="`${`padding-bottom: ${spaceFix}px;`}`"
-      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? '' : 'text-2xl'}`"
+      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? false : 'text-2xl'}`"
     >
       {{ blok.title }}
     </h1>
@@ -16,7 +15,7 @@
     >
       <div
         v-if="blok.slider_mode && elements.length > 1"
-        :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''}`"
+        :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : false}`"
       >
         <Icon
           v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode || blok.row_container"
@@ -36,7 +35,7 @@
           @click.native="next"
         />
         <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode || !containerMode) && !blok.row_container" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-        <div :class="`slider-box w-full rounded ${blok.slider_mode === 'slider' ? 'overflow-hidden' : ''}`">
+        <div :class="`slider-box w-full rounded ${blok.slider_mode === 'slider' ? 'overflow-hidden' : false}`">
           <div v-if="blok.slider_mode === 'slider'" class="slider-container">
             <ul
               :key="sliderKey"
@@ -49,11 +48,11 @@
                 v-touch:swipe.stop.left="next"
                 v-touch:swipe.stop.right="previous"
                 :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
-                :class="`slider-slide slide h-full flex my-0 mx-auto rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+                :class="`slider-slide slide h-full flex my-0 mx-auto rounded ${sliderMode || carouselMode || containerMode ? false : 'parent-slide'}`"
               >
                 <component
                   :is="component.component"
-                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setTextColor ? 'text-white' : ''}`"
+                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : false} ${setTextColor ? 'text-white' : false}`"
                   :blok="component"
                   slider-mode
                   :container-width="fullWidth"
@@ -78,12 +77,12 @@
                 :key="component._uid"
                 v-touch:swipe.stop.left="next"
                 v-touch:swipe.stop.right="previous"
-                :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+                :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? false : 'parent-slide'}`"
                 :style="`background-color: ${blok.background_color_component.color};`"
               >
                 <component
                   :is="component.component"
-                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setTextColor ? 'text-white' : ''}`"
+                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : false} ${setTextColor ? 'text-white' : false}`"
                   :blok="component"
                   carousel-mode
                   :container-width="fullWidth"
@@ -101,11 +100,11 @@
           v-for="component in elements"
           :key="component._uid"
           :style="`background-color: ${blok.background_color_component.color};`"
-          :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
+          :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded ${sliderMode || carouselMode || containerMode ? false : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? false : 'col-span-full'}`"
         >
           <component
             :is="component.component"
-            :class="`${component.name.toLowerCase()}-component ${setTextColor ? 'text-white' : ''}`"
+            :class="`${component.name.toLowerCase()}-component ${setTextColor ? 'text-white' : false}`"
             :blok="component"
             container-mode
             :container-width="fullWidth"

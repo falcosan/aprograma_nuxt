@@ -7,9 +7,9 @@
       :class="`media ${blok && blok.media.filename ? blok.media.filename : src
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-media media-image my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
+        .replace(/\.[^/.]+$/, '')}-media media-image my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : false}`"
       :src="blok && blok.media.filename ? blok.media.filename : src"
-      :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
+      :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : false"
       :type="`image/${imageType()}`"
     >
     <video
@@ -17,7 +17,7 @@
       :class="`${blok && blok.media.filename ? blok.media.filename : src
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-media media-video my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
+        .replace(/\.[^/.]+$/, '')}-media media-video my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : false}`"
       :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
       :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
       playsinline

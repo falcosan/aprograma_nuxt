@@ -20,7 +20,7 @@
     "@sendgrid/mail": "^7.4.5",
     "@tailwindcss/typography": "^0.4.1",
     "core-js": "^3.15.2",
-    "netlify-lambda": "^2.0.10",
+    "netlify-lambda": "^2.0.11",
     "nuxt": "^2.15.7",
     "nuxt-compress": "^5.0.0",
     "storyblok-nuxt": "^2.0.1",
@@ -30,8 +30,8 @@
   "devDependencies": {
     "@nuxtjs/device": "^2.1.0",
     "@nuxtjs/eslint-config": "^6.0.1",
-    "@nuxtjs/tailwindcss": "^4.2.0",
-    "eslint": "^7.30.0"
+    "@nuxtjs/tailwindcss": "^4.2.1",
+    "eslint": "^7.31.0"
   },
   "main": ".eslintrc.js",
   "repository": {

@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="postContent"
-    class="post-teaser overflow-hidden rounded-md transform transition-all duration-200 hover:shadow hover:scale-105"
+    class="post-teaser overflow-hidden rounded transform transition-all duration-200 hover:shadow hover:scale-105"
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div

@@ -16,7 +16,7 @@
           </Link>
         </div>
         <transition enter-active-class="duration-300" leave-active-class="duration-300" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
-          <div v-if="expanded" :class="`menu-expanded h-10 max-w-sm xs:max-w-md sm:max-w-lg md:max-w-md lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl w-full grid grid-flow-col overflow-hidden transform opacity-80 hover:opacity-100 transition-all ${topPosition ? 'translate-y-2 rounded-md' : 'rounded-b-md'}`">
+          <div v-if="expanded" :class="`menu-expanded h-10 max-w-sm xs:max-w-md sm:max-w-lg md:max-w-md lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl w-full grid grid-flow-col overflow-hidden transform opacity-80 hover:opacity-100 transition-all ${topPosition ? 'translate-y-2 rounded' : 'rounded-b-md'}`">
             <ul class="link-list grid grid-flow-col auto-cols-fr" :style="`background-color: ${blok.background_color.color};`">
               <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu hover:bg-gray-300">
                 <Link class="flex items-center justify-center py-2 px-3 text-sm font-light truncate" :blok="item" />

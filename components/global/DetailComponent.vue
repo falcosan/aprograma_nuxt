@@ -1,7 +1,7 @@
 <template>
   <div class="project-description">
     <h1 v-if="blok.title" class="description-title mb-5 font-semibold" v-text="blok.title" />
-    <div :class="`description-content p-5 rounded-md shadow-sm border ${blok.text ? 'grid gap-5 grid-flow-col auto-cols-fr' : 'flex justify-center'}`">
+    <div :class="`description-content p-5 rounded shadow-sm border ${blok.text ? 'grid gap-5 grid-flow-col auto-cols-fr' : 'flex justify-center'}`">
       <ul :class="`image-container w-full justify-items-center ${blok.text ? `grid gap-5 ${blok.image.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} ${blok.invert_direction ? 'col-start-2 col-end-2' : ''}` : ''}`" :style="inlineImageStyle">
         <li v-for="image in blok.image" :key="image.id" class="image-item">
           <Modal
@@ -28,7 +28,7 @@
           </Modal>
         </li>
       </ul>
-      <span v-if="blok.text" class="description-text- h-max p-5 rounded-md break-words" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-text="blok.text" />
+      <span v-if="blok.text" class="description-text- h-max p-5 rounded break-words" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-text="blok.text" />
     </div>
   </div>
 </template>

@@ -3,10 +3,10 @@
     v-if="blok.text"
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor}; color: ${randomTextColor};`"
-    :class="`text-container w-full max-w-full h-full rounded-md ${customClass('index', blok.name === 'text_phrase', 'transition-colors duration-700 ease-in-out')}`"
+    :class="`text-container w-full max-w-full h-full rounded ${customClass('index', blok.name === 'text_phrase', 'transition-colors duration-700 ease-in-out')}`"
   >
     <span
-      :class="`text-content h-full max-w-none block p-5 lg:p-10 rounded-md prose-sm lg:prose-lg break-all ss:break-normal`"
+      :class="`text-content h-full max-w-none block p-5 lg:p-10 rounded prose-sm lg:prose-lg break-all ss:break-normal`"
       v-html="$md.render(blok.text)"
     />
   </div>

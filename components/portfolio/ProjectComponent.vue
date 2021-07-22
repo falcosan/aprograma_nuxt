@@ -13,7 +13,7 @@
         <template #activator="action">
           <div class="image-container my-0 mx-auto cursor-pointer" @click="action.open()">
             <img
-              class="intro-image border-2 object-contain rounded-md select-none"
+              class="intro-image border-2 object-contain rounded select-none"
               height="auto"
               width="100%"
               :src="blok.image.filename"
@@ -38,7 +38,7 @@
       </component>
       <span
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        class="intro-text max-w-none p-5 rounded-md"
+        class="intro-text max-w-none p-5 rounded"
         v-html="$md.render(blok.intro)"
       />
       <div class="project-date flex items-baseline justify-around xl:col-start-1 xl:col-end-3">
@@ -70,7 +70,7 @@
         arrow
         tag="button"
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        class="project-back h-full rounded-md hover:shadow transition-shadow duration-100"
+        class="project-back h-full rounded hover:shadow transition-shadow duration-100"
         size="w-16 p-5"
         @click.native="goBack()"
       />
@@ -78,7 +78,7 @@
         :is="blok.url_project ? 'a' : 'span'"
         v-if="$store.state.data.windowWidth < 1024"
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        :class="`project-url p-5 rounded-md text-center truncate ${blok.url_project ? ' font-semibold' : ' italic'}`"
+        :class="`project-url p-5 rounded text-center truncate ${blok.url_project ? ' font-semibold' : ' italic'}`"
         :href="blok.url_project ? blok.url_project : false"
         :target="blok.url_project ? '_blank' : false"
         :rel="blok.url_project ? 'noopener noreferrer' : false"

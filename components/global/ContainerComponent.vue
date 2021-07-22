@@ -12,7 +12,7 @@
     </h1>
     <div
       class="container-content overflow-hidden rounded"
-      :style="`padding: ${blok.add_space ? spaceFix : false}px; background-color: ${blok.background_color_container.color};`"
+      :style="`padding: ${blok.add_space && blok.background_color_container.color.charAt(0) === '#' ? spaceFix : false}px; background-color: ${blok.background_color_container.color};`"
     >
       <div
         v-if="blok.slider_mode && elements.length > 1"

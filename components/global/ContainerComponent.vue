@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'md:p-5' : false : blok.add_space ? 'md:p-5' : false : blok.add_space ? 'md:p-5' : false }`"
+    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'py-5 md:px-5' : false : blok.add_space ? 'py-5 md:px-5' : false : blok.add_space ? 'py-5 md:px-5' : false }`"
   >
     <h1
       v-if="blok.show_title && blok.title"

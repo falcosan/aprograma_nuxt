@@ -1,7 +1,7 @@
 <template>
   <div class="projects w-full">
     <ProjectSlider
-      v-if="sortedProject && $store.state.data.windowWidth >= 1024 && blok.show_slider && !blok.row_container"
+      v-if="sortedProject && $store.state.data.windowWidth >= 1024 && blok.show_slider && !blok.row_container && !sliderContainer"
       :blok="sortedProject"
     />
     <ul v-else-if="sortedProject" :class="`project-list w-full grid gap-5 auto-cols-fr auto-rows-fr ${maxProjects}`">

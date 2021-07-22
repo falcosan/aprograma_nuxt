@@ -2,12 +2,16 @@
   <div
     :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
-    <h1 v-if="blok.show_title && blok.title" :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? blok.add_space ? 'py-5' : 'pb-5' : 'mb-5 text-2xl'}`">
+    <h1
+      v-if="blok.show_title && blok.title"
+      :style="`${sliderMode || carouselMode || containerMode ? blok.add_space ? `padding: ${spaceFix}px 0;` : `padding-bottom: ${spaceFix}px;` : `margin-bottom: ${spaceFix}px;`}`"
+      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? '' : 'text-2xl'}`"
+    >
       {{ blok.title }}
     </h1>
     <div
-      :class="`container-content overflow-hidden rounded ${blok.add_space ? 'p-5' : ''}`"
-      :style="`background-color: ${blok.background_color_container.color};`"
+      class="container-content overflow-hidden rounded"
+      :style="`padding: ${blok.add_space ? spaceFix : false}px; background-color: ${blok.background_color_container.color};`"
     >
       <div
         v-if="blok.slider_mode && elements.length > 1"
@@ -91,7 +95,7 @@
           </div>
         </div>
       </div>
-      <div v-else class="container-components grid gap-5 auto-cols-fr rounded" :style="`${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : false}`">
+      <div v-else class="container-components grid auto-cols-fr rounded" :style="`gap: ${spaceFix}px; ${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : false}`">
         <div
           v-for="component in elements"
           :key="component._uid"
@@ -181,10 +185,10 @@ export default {
           } return this.fullWidth >= 536 ? this.$rangeItems(this.defaultMax, 2) : 1
         }
       }
-      if (this.columnSet) {
-        if (this.fullWidth >= 1240) {
+      if (this.columnSet && !this.blok.slider_mode) {
+        if (this.fullWidth + (this.spaceFix * this.$rangeItems(this.defaultMax, 3)) >= 1240) {
           return this.$rangeItems(this.columnSet, 3)
-        } return this.fullWidth >= 536 ? this.$rangeItems(this.columnSet, 2) : 1
+        } return this.fullWidth + (this.spaceFix * this.$rangeItems(this.defaultMax, 3)) >= 536 ? this.$rangeItems(this.columnSet, 2) : 1
       } else {
         if (this.fullWidth >= 1240) {
           return this.$rangeItems(this.rowComponent.length, 3)
@@ -204,7 +208,6 @@ export default {
   },
   watch: {
     '$store.state.data.windowWidth' () {
-      this.sliderKey++
       if (!this.sliderMode && !this.carouselMode && !this.containerMode) {
         this.fullWidth = this.$el.clientWidth
       }
@@ -218,7 +221,6 @@ export default {
     containerWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
   },
   mounted () {
-    this.sliderKey++
     if (!this.sliderMode && !this.carouselMode && !this.containerMode) {
       this.fullWidth = this.$el.clientWidth
     }

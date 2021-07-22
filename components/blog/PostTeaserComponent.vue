@@ -86,7 +86,7 @@ export default {
       return this.postContent.file.filename ? !!(/(gif|jpe?g|tiff?|png|webp|bmp)/gi).test(this.postContent.file.filename.toLowerCase().split('.').pop()) : true
     },
     setFile () {
-      return this.postContent.file.filename ? this.postContent.file.filename : 'https://lh5.ggpht.com/p/AF1QipOiXNIz0HQYnBRDykrlsUaxNWuv0ZOtuyni_zMi=s1280'
+      return this.postContent.file.filename ? this.postContent.file.filename : 'https://a.storyblok.com/f/106240/4065x1468/5c83c3e7de/noimeageteaser.png'
     }
   },
   methods: {

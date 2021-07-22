@@ -6,7 +6,7 @@
     <component
       :is="blok ? blok.tag ? blok.tag : 'button' : tag ? tag : 'button'"
       :style="`width: ${blok && blok.size ? `${blok.size}px`: 'auto'}; height: ${blok && blok.size ? `${blok.size}px`: 'auto'}`"
-      :title="blok && blok.title && !blok.show_title || tooltip ? blok ? blok.title : tooltip : false"
+      :title="blok && blok.title && !blok.show_title || tooltip ? blok ? blok.title : tooltip : ''"
       :name="blok && blok.tag === 'button' || tag === 'button' ? `icon-button` : false"
       :aria-label="blok && blok.tag === 'button' || tag === 'button' ? `icon-button-reader` : false"
       class="icon-wrapper my-0 mx-auto select-none pointer-events-none"

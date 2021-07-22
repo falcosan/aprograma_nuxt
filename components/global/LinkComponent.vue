@@ -21,15 +21,15 @@
       :slider-mode="sliderMode"
       :carousel-mode="carouselMode"
       :container-mode="containerMode"
-      :tooltip="blok.title ? blok.title : false"
+      :tooltip="blok.title ? blok.title : ''"
     />
   </component>
   <component
     :is="externalLink ? 'a' : 'NuxtLink'"
     v-else
     :class="`item-link h-full block cursor-pointer ${sliderMode || carouselMode ? false : 'h-full'}`"
-    :active-class="active === 'active' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : false"
-    :exact-active-class="active === 'exact' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : false"
+    :active-class="active === 'active' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : ''"
+    :exact-active-class="active === 'exact' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : ''"
     :to="externalLink ? false : to"
     :href="externalLink ? to : false"
     :rel="externalLink ? 'noopener noreferrer' : false"

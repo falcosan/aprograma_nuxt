@@ -17,7 +17,7 @@
         <Skeleton :class="`project-image w-full ${rowContainer && !sliderContainer && !containerContainer ? 'h-60 sm:h-72 md:h-60 lg:h-80 xl:h-96 2xl:h-sm' : 'h-full'}`" :wait="wait" />
         <div
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
-          :class="`title-container flex flex-row flex-wrap items-center p-5 ${rowContainer || containerContainer || sliderContainer? '' : 'h-16'}`"
+          :class="`title-container flex flex-row flex-wrap items-center p-5 ${rowContainer || containerContainer || sliderContainer? false : 'h-16'}`"
         >
           <span
             class="teaser-title min-w-0 overflow-hidden"

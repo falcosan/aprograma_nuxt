@@ -1,6 +1,6 @@
 <template>
   <div class="error h-full">
-    <div v-if="error.statusCode === 404" :class="`error-404 h-full flex flex-col justify-center items-center p-10 space-y-5 text-center rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`">
+    <div v-if="error.statusCode === 404" :class="`error-404 h-full flex flex-col justify-center items-center p-10 space-y-5 text-center rounded-b ${!$device.isDesktop ? false : 'md:rounded-t'}`">
       <span class="text-7xl font-bold">{{ error.statusCode }}</span>
       <span class="w-max h-max justify-self-center transform rotate-90">=(</span>
       <span class="text-lg sm:text-2xl"> {{ error.message }}</span>
@@ -8,7 +8,7 @@
         Home
       </NuxtLink>
     </div>
-    <div v-else :class="`error-500 h-full flex flex-col justify-center items-center p-10 space-y-5 text-center rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`">
+    <div v-else :class="`error-500 h-full flex flex-col justify-center items-center p-10 space-y-5 text-center rounded-b ${!$device.isDesktop ? false : 'md:rounded-t'}`">
       <span class="text-7xl font-bold">{{ error.statusCode }}</span>
       <span class="w-max h-max justify-self-center transform rotate-90">=(</span>
       <span class="text-lg sm:text-2xl"> {{ error.message }}</span>

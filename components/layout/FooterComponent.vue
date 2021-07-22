@@ -32,7 +32,7 @@
         </div>
       </div>
       <div
-        :class="`footer-content h-full w-full grid grid-flow-col auto-cols-fr gap-5 items-center transition-opacity duration-200 ${expanded ? '' : 'opacity-0'}`"
+        :class="`footer-content h-full w-full grid grid-flow-col auto-cols-fr gap-5 items-center transition-opacity duration-200 ${expanded ? false : 'opacity-0'}`"
       >
         <div
           class="messages-container ml-4"

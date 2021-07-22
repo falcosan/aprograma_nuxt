@@ -27,7 +27,7 @@
   <component
     :is="externalLink ? 'a' : 'NuxtLink'"
     v-else
-    :class="`item-link h-full block cursor-pointer ${sliderMode || carouselMode ? '' : 'h-full'}`"
+    :class="`item-link h-full block cursor-pointer ${sliderMode || carouselMode ? false : 'h-full'}`"
     :active-class="active === 'active' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : false"
     :exact-active-class="active === 'exact' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : false"
     :to="externalLink ? false : to"

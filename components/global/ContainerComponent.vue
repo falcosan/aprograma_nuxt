@@ -10,8 +10,8 @@
       {{ blok.title }}
     </h1>
     <div
-      class="container-content overflow-hidden rounded"
-      :style="`padding: ${blok.add_space && blok.background_color_container.color.charAt(0) === '#' ? spaceFix : ''}px; background-color: ${blok.background_color_container.color};`"
+      :class="`container-content overflow-hidden rounded ${blok.add_space && blok.background_color_container.color.charAt(0) === '#' ? 'pt-5 md:pb-5 md:px-5' : ''}`"
+      :style="`background-color: ${blok.background_color_container.color};`"
     >
       <div
         v-if="blok.slider_mode && elements.length > 1"

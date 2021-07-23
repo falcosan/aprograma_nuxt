@@ -4,7 +4,7 @@
   >
     <h1
       v-if="blok.show_title && blok.title"
-      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? 'p-5' : 'pb-5 text-2xl'}`"
+      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? 'p-5' : ' text-2xl pb-5'}`"
     >
       {{ blok.title }}
     </h1>
@@ -336,5 +336,9 @@ export default {
 .show > * {
   position: relative;
   z-index: 10;
+}
+
+.parent-container > .container-cover > .container-title{
+  font-size: 20px;
 }
 </style>

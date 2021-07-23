@@ -9,7 +9,7 @@
       {{ blok.title }}
     </h1>
     <div
-      class="container-content overflow-hidden rounded"
+      :class="`container-content rounded ${blok.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
       :style="`background-color: ${blok.background_color_container.color};`"
     >
       <div

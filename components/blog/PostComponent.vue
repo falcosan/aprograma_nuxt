@@ -9,12 +9,12 @@
       <Icon
         arrow
         :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
-        class="post-close absolute right-0 z-10 rounded-bl hover:shadow transition-shadow duration-100"
+        class="post-close absolute right-0 z-10 rounded-bl rounded-tr hover:shadow transition-shadow duration-100"
         tag="button"
         size="p-3 w-10"
         @click.native="goBack()"
       />
-      <div v-show="!wait" class="post-file w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl">
+      <div v-show="!wait" class="post-file w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl overflow-hidden rounded">
         <component
           :is="blok.file.filename ? lookFile() : 'img'"
           class="w-full h-full object-center select-none object-cover"
@@ -27,7 +27,7 @@
       </div>
       <Skeleton class="w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl" :wait="wait" />
     </div>
-    <div class="post-body w-full flex justify-center rounded-b" :style="`background-color: ${blok.post_background_color.color};`">
+    <div class="post-body w-full flex justify-center rounded" :style="`background-color: ${blok.post_background_color.color};`">
       <div class="post-article w-full prose prose-sm lg:prose-lg py-10 md:py-14 px-5">
         <h2
           :style="`color: ${blok.post_text_color.color};`"

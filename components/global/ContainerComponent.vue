@@ -4,7 +4,7 @@
   >
     <h1
       v-if="blok.show_title && blok.title"
-      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? 'p-5' : 'text-2xl'}`"
+      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? 'p-5' : 'pb-5 text-2xl'}`"
     >
       {{ blok.title }}
     </h1>
@@ -233,7 +233,7 @@ export default {
       }
     }
   },
-  updated () {
+  beforeUpdate () {
     if (this.sliderMode || this.carouselMode || this.containerMode) {
       this.fullWidth = this.$el.clientWidth
       this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
@@ -341,8 +341,5 @@ export default {
 .show > * {
   position: relative;
   z-index: 10;
-}
-.parent-container > .container-cover > .container-title {
-  font-size: 20px;
 }
 </style>

@@ -17,7 +17,7 @@
       <div v-show="!wait" class="post-file w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl">
         <component
           :is="blok.file.filename ? lookFile() : 'img'"
-          :class="`w-full h-full object-center select-none ${blok.file.filename ? 'object-cover' : 'object-contain'}`"
+          class="w-full h-full object-center select-none object-cover"
           :alt="`${blok.file.alt} project`"
           :src="setFile"
           :width="lookImage || !blok.file.filename ? '100%' : ''"

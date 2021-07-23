@@ -1,16 +1,15 @@
 <template>
   <div
-    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
+    :class="`container-cover w-full self-start ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
     <h1
       v-if="blok.show_title && blok.title"
-      :style="`${`padding-bottom: ${spaceFix}px;`}`"
-      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? '' : 'text-2xl'}`"
+      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? 'p-5' : 'text-2xl'}`"
     >
       {{ blok.title }}
     </h1>
     <div
-      :class="`container-content overflow-hidden rounded ${blok.add_space && blok.background_color_container.color.charAt(0) === '#' ? 'pt-5 md:pb-5 md:px-5' : ''}`"
+      class="container-content overflow-hidden rounded"
       :style="`background-color: ${blok.background_color_container.color};`"
     >
       <div
@@ -52,7 +51,7 @@
               >
                 <component
                   :is="component.component"
-                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setTextColor ? 'text-white' : ''}`"
+                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${setTextColor ? 'text-white' : ''}`"
                   :blok="component"
                   slider-mode
                   :container-width="fullWidth"
@@ -82,7 +81,7 @@
               >
                 <component
                   :is="component.component"
-                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setTextColor ? 'text-white' : ''}`"
+                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${setTextColor ? 'text-white' : ''}`"
                   :blok="component"
                   carousel-mode
                   :container-width="fullWidth"
@@ -100,7 +99,7 @@
           v-for="component in elements"
           :key="component._uid"
           :style="`background-color: ${blok.background_color_component.color};`"
-          :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
+          :class="`${component.name.toLowerCase()}-container w-full grid rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
         >
           <component
             :is="component.component"
@@ -332,6 +331,8 @@ export default {
 .hidden{
   display: flex !important;
   opacity: 0;
+  pointer-events: none;
+  cursor: none;
 }
 .show {
   transition: opacity .5s cubic-bezier(0.4, 0, 0.2, 1);

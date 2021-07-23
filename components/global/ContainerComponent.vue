@@ -234,12 +234,7 @@ export default {
     }
   },
   beforeUpdate () {
-    if (this.sliderMode || this.carouselMode || this.containerMode) {
-      this.fullWidth = this.$el.clientWidth
-      this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
-    } else {
-      this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
-    }
+    this.getContainerWidth()
   },
   beforeDestroy () {
     if (this.blok.slider_mode && this.blok.auto_play) {

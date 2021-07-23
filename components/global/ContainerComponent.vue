@@ -1,11 +1,11 @@
 <template>
   <div
-    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'pt-5 md:pb-5 md:px-5' : '' : blok.add_space ? 'pt-5 md:pb-5 md:px-5' : '' : blok.add_space ? 'pt-5 md:pb-5 md:px-5' : '' }`"
+    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
     <h1
       v-if="blok.show_title && blok.title"
       :style="`${`padding-bottom: ${spaceFix}px;`}`"
-      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? '' : 'text-2xl'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'px-5 md:px-0' : '' : blok.add_space ? 'px-5 md:px-0' : '' : blok.add_space ? 'px-5 md:px-0' : '' }`"
+      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? '' : 'text-2xl'}`"
     >
       {{ blok.title }}
     </h1>
@@ -318,8 +318,8 @@ export default {
     getContainerWidth () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
-          this.fullWidth = this.$el.clientWidth - this.spaceFix
-          this.containerWidth = (this.$el.clientWidth - this.spaceFix) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+          this.fullWidth = this.$el.clientWidth
+          this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
         })
       } else {
         this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)

@@ -1,16 +1,16 @@
 <template>
   <div
-    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'pt-5 md:pb-5 md:px-5' : '' : blok.add_space ? 'pt-5 md:pb-5 md:px-5' : '' : blok.add_space ? 'pt-5 md:pb-5 md:px-5' : '' }`"
+    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'pt-5 xs:pb-5 xs:px-5' : '' : blok.add_space ? 'pt-5 xs:pb-5 xs:px-5' : '' : blok.add_space ? 'pt-5 xs:pb-5 xs:px-5' : '' }`"
   >
     <h1
       v-if="blok.show_title && blok.title"
       :style="`${`padding-bottom: ${spaceFix}px;`}`"
-      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? '' : 'text-2xl'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'px-5 md:px-0' : '' : blok.add_space ? 'px-5 md:px-0' : '' : blok.add_space ? 'px-5 md:px-0' : '' }`"
+      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? '' : 'text-2xl'} ${carouselMode || sliderMode || containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'px-5 xs:px-0' : '' : blok.add_space ? 'px-5 xs:px-0' : '' : blok.add_space ? 'px-5 xs:px-0' : '' }`"
     >
       {{ blok.title }}
     </h1>
     <div
-      :class="`container-content overflow-hidden rounded ${blok.add_space && blok.background_color_container.color.charAt(0) === '#' ? 'pt-5 md:pb-5 md:px-5' : ''}`"
+      :class="`container-content rounded ${blok.add_space && blok.background_color_container.color.charAt(0) === '#' ? 'xs:p-5' : ''}`"
       :style="`background-color: ${blok.background_color_container.color};`"
     >
       <div
@@ -48,7 +48,7 @@
                 v-touch:swipe.stop.left="next"
                 v-touch:swipe.stop.right="previous"
                 :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
-                :class="`slider-slide slide h-full flex my-0 mx-auto rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+                :class="`slider-slide slide h-full flex my-0 mx-auto rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'} ${blok.zoom_effect ? 'transform transition-all duration-200 hover:shadow hover:scale-105' : ''}`"
               >
                 <component
                   :is="component.component"
@@ -77,7 +77,7 @@
                 :key="component._uid"
                 v-touch:swipe.stop.left="next"
                 v-touch:swipe.stop.right="previous"
-                :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+                :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'} ${blok.zoom_effect ? 'transform transition-all duration-200 hover:shadow hover:scale-105' : ''}`"
                 :style="`background-color: ${blok.background_color_component.color};`"
               >
                 <component
@@ -100,7 +100,7 @@
           v-for="component in elements"
           :key="component._uid"
           :style="`background-color: ${blok.background_color_component.color};`"
-          :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
+          :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'} ${blok.zoom_effect ? 'transform transition-all duration-200 hover:shadow hover:scale-105' : ''}`"
         >
           <component
             :is="component.component"

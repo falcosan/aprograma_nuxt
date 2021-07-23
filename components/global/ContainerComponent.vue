@@ -100,7 +100,7 @@
           v-for="component in elements"
           :key="component._uid"
           :style="`background-color: ${blok.background_color_component.color};`"
-          :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'} ${blok.zoom_effect ? 'transform transition-all duration-200 hover:shadow hover:scale-105' : ''}`"
+          :class="`${component.name.toLowerCase()}-container w-full grid rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'} ${blok.zoom_effect ? 'transform transition-all duration-200 hover:shadow hover:scale-105' : ''}`"
         >
           <component
             :is="component.component"

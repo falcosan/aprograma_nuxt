@@ -1,16 +1,15 @@
 <template>
   <div
-    :class="`container-cover w-full ${sliderMode || containerMode ? 'grid self-start' : carouselMode ? 'grid self-center' : 'parent-cover'} ${containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'pt-5 xs:pb-5 xs:px-5' : '' : sliderMode || carouselMode ? blok.background_color_container.color.charAt(0) === '#' && blok.add_space ? 'pt-5 xs:pb-5 xs:px-5' : '' : blok.add_space ? 'pt-5 xs:pb-5 xs:px-5' : '' : '' }`"
+    :class="`container-cover w-full self-start ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
     <h1
       v-if="blok.show_title && blok.title"
-      :style="`${`padding-bottom: ${spaceFix}px;`}`"
-      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? '' : 'text-2xl'} ${containerMode ? !$parent.blok.containerMode || !$parent.blok.carouselMode || !$parent.blok.sliderMode ? blok.add_space && ($parent.blok.background_color_component.color.charAt(0) === '#' || $parent.blok.background_color_container.color.charAt(0) === '#') ? 'px-5 xs:px-0' : '' : sliderMode || carouselMode ? blok.background_color_container.color.charAt(0) === '#' && blok.add_space ? 'px-5 xs:px-0' : '' : blok.add_space ? 'px-5 xs:px-0' : '' : ''}`"
+      :class="`container-title font-extralight ${sliderMode || carouselMode || containerMode ? 'p-5' : 'pb-5 text-2xl'}`"
     >
       {{ blok.title }}
     </h1>
     <div
-      :class="`container-content rounded ${blok.add_space && blok.background_color_container.color.charAt(0) === '#' ? 'xs:p-5' : ''}`"
+      class="container-content overflow-hidden rounded"
       :style="`background-color: ${blok.background_color_container.color};`"
     >
       <div
@@ -48,11 +47,11 @@
                 v-touch:swipe.stop.left="next"
                 v-touch:swipe.stop.right="previous"
                 :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
-                :class="`slider-slide slide h-full flex my-0 mx-auto rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'} ${blok.zoom_effect ? 'transform transition-all duration-200 hover:shadow hover:scale-105' : ''}`"
+                :class="`slider-slide slide h-full flex my-0 mx-auto rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
               >
                 <component
                   :is="component.component"
-                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setTextColor ? 'text-white' : ''}`"
+                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${setTextColor ? 'text-white' : ''}`"
                   :blok="component"
                   slider-mode
                   :container-width="fullWidth"
@@ -77,12 +76,12 @@
                 :key="component._uid"
                 v-touch:swipe.stop.left="next"
                 v-touch:swipe.stop.right="previous"
-                :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'} ${blok.zoom_effect ? 'transform transition-all duration-200 hover:shadow hover:scale-105' : ''}`"
+                :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
                 :style="`background-color: ${blok.background_color_component.color};`"
               >
                 <component
                   :is="component.component"
-                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${component.component.toLowerCase() === 'container' && component.slider_mode.toLowerCase() ? 'h-full' : ''} ${setTextColor ? 'text-white' : ''}`"
+                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${setTextColor ? 'text-white' : ''}`"
                   :blok="component"
                   carousel-mode
                   :container-width="fullWidth"
@@ -100,7 +99,7 @@
           v-for="component in elements"
           :key="component._uid"
           :style="`background-color: ${blok.background_color_component.color};`"
-          :class="`${component.name.toLowerCase()}-container w-full grid rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'} ${blok.zoom_effect ? 'transform transition-all duration-200 hover:shadow hover:scale-105' : ''}`"
+          :class="`${component.name.toLowerCase()}-container w-full grid rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
         >
           <component
             :is="component.component"
@@ -234,7 +233,7 @@ export default {
       }
     }
   },
-  updated () {
+  beforeUpdate () {
     if (this.sliderMode || this.carouselMode || this.containerMode) {
       this.fullWidth = this.$el.clientWidth
       this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
@@ -318,8 +317,8 @@ export default {
     getContainerWidth () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
-          this.fullWidth = this.$el.clientWidth - this.spaceFix
-          this.containerWidth = (this.$el.clientWidth - this.spaceFix) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+          this.fullWidth = this.$el.clientWidth
+          this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
         })
       } else {
         this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
@@ -332,6 +331,8 @@ export default {
 .hidden{
   display: flex !important;
   opacity: 0;
+  pointer-events: none;
+  cursor: none;
 }
 .show {
   transition: opacity .5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -340,8 +341,5 @@ export default {
 .show > * {
   position: relative;
   z-index: 10;
-}
-.parent-container > .container-cover > .container-title {
-  font-size: 20px;
 }
 </style>

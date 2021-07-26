@@ -112,9 +112,3 @@ export default {
   }
 }
 </script>
-<style>
-.intro-text img{
-  margin: 20px auto;
-  max-width: 28rem;
-}
-</style>

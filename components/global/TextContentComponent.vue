@@ -55,9 +55,3 @@ export default {
   }
 }
 </script>
-<style>
-.text-content img{
-  margin: 20px auto;
-  max-width: 28rem;
-}
-</style>

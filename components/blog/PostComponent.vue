@@ -101,10 +101,6 @@ export default {
 }
 </script>
 <style>
-.post-article img{
-  margin: 20px auto;
-  max-width: 28rem;
-}
 .post-article *::-webkit-scrollbar {
  display: none;
 }

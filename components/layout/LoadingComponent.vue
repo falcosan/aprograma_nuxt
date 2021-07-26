@@ -6,22 +6,24 @@
       leave-active-class="duration-700 out-in"
       leave-to-class="opacity-0"
     >
-      <div v-show="loadingLogo" :class="`loader-logo fixed flex items-center justify-center top-0 z-50 overflow-hidden bg-white ${!$device.isDesktop || $store.state.data.windowWidth < 768 ? 'top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full' : 'h-20 w-20 rounded-br-lg'}`">
+      <div v-if="!$device.isDesktop && $store.state.data.windowWidth < 768" v-show="loadingItem" class="loading-bar-container fixed h-0.5 w-full bottom-12 z-50 overflow-hidden bg-gray-200">
+        <div class="loading-bar absolute -left-1/2 h-full w-1/2 filter grayscale bg-gray-800" />
+      </div>
+      <div v-else v-show="loadingItem" class="loader-logo fixed h-20 w-20 flex items-center justify-center top-0 z-50 overflow-hidden rounded-br-lg bg-white">
         <Logo
           class="logo-spin filter opacity-50 contrast-0 brightness-50"
-          :size="`${!$device.isDesktop || $store.state.data.windowWidth < 768 ? 'w-11' : 'w-16'}`"
+          size="w-16"
         />
       </div>
     </transition>
   </div>
 </template>
-
 <script>
 export default {
   data () {
     return {
       loading: false,
-      loadingLogo: false,
+      loadingItem: false,
       loadingTimer: 0
     }
   },
@@ -29,11 +31,11 @@ export default {
     start () {
       clearTimeout(this.loadingTimer)
       this.loading = true
-      this.loadingLogo = true
+      this.loadingItem = true
     },
     finish () {
       this.loadingTimer = setTimeout(() => { this.loading = false }, 1000)
-      this.loadingLogo = false
+      this.loadingItem = false
     }
   }
 }
@@ -41,35 +43,21 @@ export default {
 
 <style scoped>
 .logo-spin{
-  filter: blur(1px);
+  filter: blur(0.5px);
   animation: spinning 0.5s linear infinite;
 }
 
-.loader-bar {
-  animation:looping 1s linear infinite;
+.loading-bar {
+  animation: loading 1.5s ease-in 0.5s infinite;
 }
 
-@keyframes looping {
-  0% {
-    left:0%;
-    right:100%;
-    width:0%;
-  }
-  10% {
-    left:0%;
-    right:75%;
-    width:25%;
-  }
-  90% {
-    right:0%;
-    left:75%;
-    width:25%;
-  }
-  100% {
-    left:100%;
-    right:0%;
-    width:0%;
-  }
+@keyframes loading {
+ 0% {
+  transform:translateX(0)
+ }
+ to {
+  transform:translateX(400%)
+ }
 }
 @keyframes spinning {
   from {

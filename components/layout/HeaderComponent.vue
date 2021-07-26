@@ -58,7 +58,7 @@
         </Link>
         <Logo
           transition
-          class="absolute top-0 right-1/2 p-1 transform translate-x-1/2 rounded-b-full filter drop-shadow-md bg-white"
+          class="absolute -top-0.5 right-1/2 p-1 transform translate-x-1/2 rounded-b-full filter drop-shadow-md bg-white"
           size="w-11"
         />
         <Translate

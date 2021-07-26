@@ -112,9 +112,9 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 .intro-text img{
-  margin: 0 auto;
+  margin: 20px auto;
   max-width: 28rem;
 }
 </style>

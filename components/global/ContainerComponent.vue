@@ -99,7 +99,7 @@
           v-for="component in elements"
           :key="component._uid"
           :style="`background-color: ${blok.background_color_component.color};`"
-          :class="`${component.name.toLowerCase()}-container w-full grid self-start rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
+          :class="`${component.name.toLowerCase()}-container w-full grid rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
         >
           <component
             :is="component.component"

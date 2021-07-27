@@ -1,23 +1,31 @@
 <template>
-  <span v-if="blok.resolution_show ? $store.state.data.windowWidth >= Number(blok.resolution_show) : true" class="media relative w-full h-full grid gap-5">
-    <img
-      v-if="(blok && blok.media.filename && lookFile === 'image') || image"
-      :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'"
-      :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'"
-      :class="`media ${blok && blok.media.filename ? blok.media.filename : src
-        .split(/[\\/]/)
-        .pop()
-        .replace(/\.[^/.]+$/, '')}-media media-image my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-      :src="blok && blok.media.filename ? blok.media.filename : src"
-      :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
-      :type="`image/${imageType()}`"
-    >
+  <div v-if="blok.resolution_show ? $store.state.data.windowWidth >= Number(blok.resolution_show) : true" class="media relative w-full h-full grid gap-5 overflow-hidden rounded">
+    <span v-if="(blok && blok.media.filename && lookFile === 'image') || image" class="image-container">
+      <img
+        v-show="!wait"
+        :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'"
+        :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'"
+        :class="`${blok && blok.media.filename ? blok.media.filename : src
+          .split(/[\\/]/)
+          .pop()
+          .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
+        :src="blok && blok.media.filename ? blok.media.filename : src"
+        :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
+        :type="`image/${imageType()}`"
+        @load="wait = false"
+      >
+      <Skeleton
+        :class="`my-0 mx-auto ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
+        :wait="wait"
+        :style="`width: ${blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'}`"
+      />
+    </span>
     <video
       v-else-if="(blok && blok.media.filename) || video"
       :class="`${blok && blok.media.filename ? blok.media.filename : src
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-media media-video my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
+        .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
       :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
       :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
       playsinline
@@ -28,7 +36,7 @@
       <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
     </video>
     <p v-if="(blok && blok.title && blok.show_title) || title" class="media-title text-center" v-text="blok && blok.title ? blok.title : title" />
-  </span>
+  </div>
 </template>
 
 <script>
@@ -69,6 +77,11 @@ export default {
     video: {
       type: Boolean,
       default: false
+    }
+  },
+  data () {
+    return {
+      wait: true
     }
   },
   computed: {

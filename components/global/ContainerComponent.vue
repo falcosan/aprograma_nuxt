@@ -70,8 +70,6 @@
               leave-active-class="out-in duration-500"
               :enter-class="`transform ${transitionEnter}`"
               :leave-to-class="`transform ${transitionLeave}`"
-              @before-enter="disabled = true"
-              @after-leave="disabled = false"
             >
               <template v-for="(component, index) in elements">
                 <li
@@ -153,8 +151,7 @@ export default {
       containerWidth: 0,
       transitionEnter: '',
       transitionLeave: '',
-      spaceFix: 20,
-      disabled: false
+      spaceFix: 20
     }
   },
   computed: {
@@ -260,12 +257,10 @@ export default {
           }
         }
       } else if (this.blok.slider_mode === 'carousel') {
-        if (!this.disabled) {
-          if (this.currentSlide > 0) { this.currentSlide-- } else {
-            this.currentSlide = (this.elements.length - 1)
-            if (this.blok.auto_play) {
-              this.clearAutoPlay()
-            }
+        if (this.currentSlide > 0) { this.currentSlide-- } else {
+          this.currentSlide = (this.elements.length - 1)
+          if (this.blok.auto_play) {
+            this.clearAutoPlay()
           }
         }
         this.transitionEnter = '-translate-x-full'
@@ -281,12 +276,10 @@ export default {
           }
         }
       } else if (this.blok.slider_mode === 'carousel') {
-        if (!this.disabled) {
-          if ((this.elements.length - 1) > this.currentSlide) { this.currentSlide++ } else {
-            this.currentSlide = 0
-            if (this.blok.auto_play) {
-              this.clearAutoPlay()
-            }
+        if ((this.elements.length - 1) > this.currentSlide) { this.currentSlide++ } else {
+          this.currentSlide = 0
+          if (this.blok.auto_play) {
+            this.clearAutoPlay()
           }
         }
         this.transitionEnter = 'translate-x-full'

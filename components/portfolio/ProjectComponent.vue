@@ -23,7 +23,13 @@
           </div>
         </template>
         <template #body>
-          <img class="image-project select-none cursor-default" height="auto" width="auto" :src="blok.image.filename" :alt="blok.image.alt">
+          <img
+            class="image-project select-none cursor-default"
+            width="100%"
+            height="100%"
+            :src="blok.image.filename"
+            :alt="blok.image.alt"
+          >
         </template>
       </Modal>
       <component
@@ -89,9 +95,7 @@
   </div>
 </template>
 <script>
-import Modal from '../global/ModalComponent'
 export default {
-  components: { Modal },
   props: {
     blok: {
       type: Object,

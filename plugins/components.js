@@ -6,6 +6,7 @@ import Form from '@/components/global/FormComponent'
 import Link from '@/components/global/LinkComponent'
 import Media from '@/components/global/MediaComponent'
 import Field from '@/components/global/FieldComponent'
+import Modal from '@/components/global/ModalComponent'
 import Input from '@/components/global/InputComponent'
 import Detail from '@/components/global/DetailComponent'
 import Skeleton from '@/components/global/SkeletonComponent'
@@ -21,6 +22,7 @@ Vue.component('Form', Form)
 Vue.component('Icon', Icon)
 Vue.component('Link', Link)
 Vue.component('Media', Media)
+Vue.component('Modal', Modal)
 Vue.component('Field', Field)
 Vue.component('Input', Input)
 Vue.component('Detail', Detail)

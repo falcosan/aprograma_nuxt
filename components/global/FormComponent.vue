@@ -42,9 +42,8 @@
 <script>
 import axios from 'axios'
 import Field from './FieldComponent'
-import Modal from './ModalComponent'
 export default {
-  components: { Field, Modal },
+  components: { Field },
   props: {
     blok: {
       type: Object,

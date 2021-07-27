@@ -1,5 +1,5 @@
 <template>
-  <span class="media relative w-full h-full grid gap-5">
+  <span v-if="blok.resolution_show ? $store.state.data.windowWidth >= Number(blok.resolution_show) : true" class="media relative w-full h-full grid gap-5">
     <img
       v-if="(blok && blok.media.filename && lookFile === 'image') || image"
       :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'"

@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="blok.resolution_show ? $store.state.data.windowWidth >= Number(blok.resolution_show) : true"
     :class="`container-cover w-full self-start ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
     <h1
@@ -41,22 +42,24 @@
               :style="`transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
               class="slider relative grid grid-flow-col transition-transform"
             >
-              <li
-                v-for="component in elements"
-                :key="component._uid"
-                v-touch:swipe.stop.left="next"
-                v-touch:swipe.stop.right="previous"
-                :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
-                :class="`slider-slide slide h-full flex my-0 mx-auto rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
-              >
-                <component
-                  :is="component.component"
-                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${setTextColor ? 'text-white' : ''}`"
-                  :blok="component"
-                  slider-mode
-                  :container-width="fullWidth"
-                />
-              </li>
+              <template v-for="component in elements">
+                <li
+                  v-if="component.resolution_show ? $store.state.data.windowWidth >= Number(component.resolution_show) : true"
+                  :key="component._uid"
+                  v-touch:swipe.stop.left="next"
+                  v-touch:swipe.stop.right="previous"
+                  :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
+                  :class="`slider-slide slide h-full flex my-0 mx-auto rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+                >
+                  <component
+                    :is="component.component"
+                    :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${setTextColor ? 'text-white' : ''}`"
+                    :blok="component"
+                    slider-mode
+                    :container-width="fullWidth"
+                  />
+                </li>
+              </template>
             </ul>
           </div>
           <div v-else class="carousel-container">
@@ -70,23 +73,25 @@
               @before-enter="disabled = true"
               @after-leave="disabled = false"
             >
-              <li
-                v-for="(component, index) in elements"
-                v-show="index === currentSlide"
-                :key="component._uid"
-                v-touch:swipe.stop.left="next"
-                v-touch:swipe.stop.right="previous"
-                :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
-                :style="`background-color: ${blok.background_color_component.color};`"
-              >
-                <component
-                  :is="component.component"
-                  :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${setTextColor ? 'text-white' : ''}`"
-                  :blok="component"
-                  carousel-mode
-                  :container-width="fullWidth"
-                />
-              </li>
+              <template v-for="(component, index) in elements">
+                <li
+                  v-if="component.resolution_show ? $store.state.data.windowWidth >= Number(component.resolution_show) : true"
+                  v-show="index === currentSlide"
+                  :key="component._uid"
+                  v-touch:swipe.stop.left="next"
+                  v-touch:swipe.stop.right="previous"
+                  :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+                  :style="`background-color: ${blok.background_color_component.color};`"
+                >
+                  <component
+                    :is="component.component"
+                    :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${setTextColor ? 'text-white' : ''}`"
+                    :blok="component"
+                    carousel-mode
+                    :container-width="fullWidth"
+                  />
+                </li>
+              </template>
             </transition-group>
             <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-1/2 flex flex-wrap justify-center my-5 mx-auto">
               <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1 w-1 inline-block m-1 rounded-full select-none text-xl transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-gray-400 bg-gray-500' : 'bg-gray-500'}`" />
@@ -94,21 +99,23 @@
           </div>
         </div>
       </div>
-      <div v-else class="container-components grid auto-cols-fr rounded" :style="`gap: ${spaceFix}px; ${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : ''}`">
-        <div
-          v-for="component in elements"
-          :key="component._uid"
-          :style="`background-color: ${blok.background_color_component.color};`"
-          :class="`${component.name.toLowerCase()}-container w-full grid rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
-        >
-          <component
-            :is="component.component"
-            :class="`${component.name.toLowerCase()}-component ${setTextColor ? 'text-white' : ''}`"
-            :blok="component"
-            container-mode
-            :container-width="fullWidth"
-          />
-        </div>
+      <div v-else class="container-components grid auto-cols-fr gap-5 rounded" :style="`${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : ''}`">
+        <template v-for="component in elements">
+          <div
+            v-if="component.resolution_show ? $store.state.data.windowWidth >= Number(component.resolution_show) : true"
+            :key="component._uid"
+            :style="`background-color: ${blok.background_color_component.color};`"
+            :class="`${component.name.toLowerCase()}-container w-full grid rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
+          >
+            <component
+              :is="component.component"
+              :class="`${component.name.toLowerCase()}-component ${setTextColor ? 'text-white' : ''}`"
+              :blok="component"
+              container-mode
+              :container-width="fullWidth"
+            />
+          </div>
+        </template>
       </div>
     </div>
   </div>
@@ -136,7 +143,6 @@ export default {
   },
   data () {
     return {
-      elements: this.blok.body,
       max: Number(this.blok.max_slides),
       columnSet: Number(this.blok.column_container),
       sliderKey: 0,
@@ -152,6 +158,9 @@ export default {
     }
   },
   computed: {
+    elements () {
+      return this.blok.body.filter(component => component.resolution_show ? this.$store.state.data.windowWidth >= Number(component.resolution_show) : component)
+    },
     rowComponent () {
       return this.elements.filter(function (item) { return item.row_container })
     },

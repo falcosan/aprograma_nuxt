@@ -43,7 +43,6 @@
         >
           <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
         </video>
-        <p v-if="(blok && blok.title && blok.show_title) || title" class="media-title text-center" v-text="blok && blok.title ? blok.title : title" />
       </template>
       <template #body>
         <img
@@ -111,8 +110,8 @@
       >
         <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
       </video>
-      <p v-if="(blok && blok.title && blok.show_title) || title" class="media-title mt-5 text-center" v-text="blok && blok.title ? blok.title : title" />
     </template>
+    <p v-if="(blok && blok.title && blok.show_title) || title" class="media-title text-center text-lg" v-text="blok && blok.title ? blok.title : title" />
   </div>
 </template>
 

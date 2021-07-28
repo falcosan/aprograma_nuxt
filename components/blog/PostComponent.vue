@@ -14,10 +14,10 @@
         size="p-3 w-10"
         @click.native="goBack()"
       />
-      <div v-show="!wait" class="post-file w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl overflow-hidden rounded">
+      <div v-show="!wait" :class="`post-file w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl overflow-hidden rounded ${blok.file.filename ? '' : 'p-5 bg-black'}`">
         <component
           :is="blok.file.filename ? lookFile() : 'img'"
-          class="w-full h-full object-center select-none object-cover"
+          :class="`w-full h-full object-center select-none object-cover ${blok.file.filename ? '' : 'ml-2.5'}`"
           :alt="`${blok.file.alt} project`"
           :src="setFile"
           :width="lookImage || !blok.file.filename ? '100%' : ''"

@@ -6,27 +6,22 @@
       modal-style="bg-gray-200 bg-opacity-90"
     >
       <template #activator="action">
-        <span v-if="(blok && blok.media.filename && lookFile === 'image') || image" class="image-container">
-          <img
-            v-show="!wait"
-            :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
-            :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
-            :class="`${blok && blok.media.filename ? blok.media.filename : src
-              .split(/[\\/]/)
-              .pop()
-              .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center cursor-pointer select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-            :src="blok && blok.media.filename ? blok.media.filename : src"
-            :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
-            :type="`image/${imageType()}`"
-            @click="action.open()"
-            @load="wait = false"
-          >
-          <Skeleton
-            :class="`my-0 mx-auto ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-            :wait="wait"
-            :style="`width: ${blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '400px'}`"
-          />
-        </span>
+        <img
+          v-if="(blok && blok.media.filename && lookFile === 'image') || image"
+          v-show="!wait"
+          class="image-container"
+          :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
+          :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
+          :class="`${blok && blok.media.filename ? blok.media.filename : src
+            .split(/[\\/]/)
+            .pop()
+            .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center cursor-pointer select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
+          :src="blok && blok.media.filename ? blok.media.filename : src"
+          :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
+          :type="`image/${imageType()}`"
+          @click="action.open()"
+          @load="wait = false"
+        >
         <video
           v-else-if="(blok && blok.media.filename) || video"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
@@ -40,9 +35,15 @@
           muted
           loop
           @click="action.open()"
+          @loadeddata="wait = false"
         >
           <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
         </video>
+        <Skeleton
+          :class="`my-0 mx-auto ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
+          :wait="wait"
+          :style="`width: ${blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '400px'}`"
+        />
       </template>
       <template #body>
         <img
@@ -56,6 +57,7 @@
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :type="`image/${imageType()}`"
+          @load="wait = false"
         >
         <video
           v-else-if="(blok && blok.media.filename) || video"
@@ -69,32 +71,34 @@
           autoplay
           muted
           loop
+          @loadeddata="wait = false"
         >
           <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
         </video>
-      </template>
-    </Modal>
-    <template v-else>
-      <span v-if="(blok && blok.media.filename && lookFile === 'image') || image" class="image-container">
-        <img
-          v-show="!wait"
-          :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
-          :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
-          :class="`${blok && blok.media.filename ? blok.media.filename : src
-            .split(/[\\/]/)
-            .pop()
-            .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-          :src="blok && blok.media.filename ? blok.media.filename : src"
-          :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
-          :type="`image/${imageType()}`"
-          @load="wait = false"
-        >
         <Skeleton
           :class="`my-0 mx-auto ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
           :wait="wait"
           :style="`width: ${blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '400px'}`"
         />
-      </span>
+      </template>
+    </Modal>
+    <template v-else>
+      <img
+        v-if="(blok && blok.media.filename && lookFile === 'image') || image"
+        v-show="!wait"
+        class="image-container"
+        :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
+        :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
+        :class="`${blok && blok.media.filename ? blok.media.filename : src
+          .split(/[\\/]/)
+          .pop()
+          .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
+        :src="blok && blok.media.filename ? blok.media.filename : src"
+        :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
+        :type="`image/${imageType()}`"
+        @load="wait = false"
+      >
+
       <video
         v-else-if="(blok && blok.media.filename) || video"
         :class="`${blok && blok.media.filename ? blok.media.filename : src
@@ -107,9 +111,15 @@
         autoplay
         muted
         loop
+        @loadeddata="wait = false"
       >
         <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
       </video>
+      <Skeleton
+        :class="`my-0 mx-auto ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
+        :wait="wait"
+        :style="`width: ${blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '400px'}`"
+      />
     </template>
     <p v-if="(blok && blok.title && blok.show_title) || title" class="media-title text-center text-lg" v-text="blok && blok.title ? blok.title : title" />
   </div>

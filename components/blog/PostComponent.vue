@@ -28,7 +28,7 @@
       <Skeleton class="w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl" :wait="wait" />
     </div>
     <div class="post-body w-full flex justify-center rounded" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full prose prose-sm lg:prose-lg py-10 md:py-14 px-5">
+      <div class="post-article w-full prose-sm lg:prose-lg py-10 md:py-14 px-5">
         <h2
           :style="`color: ${blok.post_text_color.color};`"
           class="post-intro"

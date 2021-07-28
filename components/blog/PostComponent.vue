@@ -3,7 +3,7 @@
     <div class="post-head relative w-full mb-5 md:mb-10">
       <h1
         :style="`color: ${blok.post_text_color.color};`"
-        class="post-title p-5 font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl"
+        class="post-title p-5 font-semibold text-xl sm:text-2xl lg:text-3xl xl:text-4xl"
         v-text="blok.title"
       />
       <Icon
@@ -28,7 +28,7 @@
       <Skeleton class="w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl" :wait="wait" />
     </div>
     <div class="post-body w-full flex justify-center rounded" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full prose-sm lg:prose-lg py-10 md:py-14 px-5">
+      <div class="post-article w-full max-w-prose prose-sm lg:prose-lg py-10 md:py-14 px-5">
         <h2
           :style="`color: ${blok.post_text_color.color};`"
           class="post-intro"
@@ -36,7 +36,7 @@
         />
         <h4
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-author border-b-4 border-dotted py-3 italic"
+          class="post-author py-3 border-b-4 border-dotted font-medium italic"
         >
           {{ $languageCase('by', 'de', 'di') }} {{ blok.author }}
         </h4>

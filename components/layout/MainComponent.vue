@@ -3,13 +3,13 @@
     <div :class="`main-wrapper relative min-h-screen ${$store.state.data.error ? 'main-error' : 'main-regular'}`">
       <div
         v-if="blok.show_background_mask || blok.background_media.filename"
-        :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl inset-0 my-0 mx-auto overflow-hidden rounded-b transition-colors duration-500 backdrop-filter backdrop-blur ${!$device.isDesktop ? '' : 'md:rounded-t'}`"
+        :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-0 mx-auto overflow-hidden rounded-b transition-colors duration-500 backdrop-filter backdrop-blur ${!$device.isDesktop ? '' : 'md:rounded-t'}`"
         :style="`background-color: ${blok.background_media.filename ? 'transparent' : randomBackgroundColor};`"
       >
         <div :class="`main-mask h-full w-full bg-white ${blok.background_media.filename ? 'bg-opacity-50' : 'bg-opacity-65'}`" />
       </div>
       <transition enter-active-class="duration-300 in-out" enter-class="opacity-0" mode="out-in">
-        <Nuxt :class="`relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
+        <Nuxt :class="`relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
       </transition>
     </div>
     <div v-if="blok.background_media.filename" :class="`background-media fixed inset-0 -z-10 ${blok.color_animation ? 'colorAnimation' : ''}`">

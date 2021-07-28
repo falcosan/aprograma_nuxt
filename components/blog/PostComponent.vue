@@ -3,7 +3,7 @@
     <div class="post-head relative w-full mb-5 md:mb-10">
       <h1
         :style="`color: ${blok.post_text_color.color};`"
-        class="post-title p-5 xxs:px-0 py-5 font-medium text-2xl lg:text-4xl"
+        class="post-title p-5 xs:px-0 py-5 font-medium text-2xl lg:text-4xl"
         v-text="blok.title"
       />
       <Icon

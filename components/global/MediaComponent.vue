@@ -9,8 +9,8 @@
         <span v-if="(blok && blok.media.filename && lookFile === 'image') || image" class="image-container">
           <img
             v-show="!wait"
-            :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'"
-            :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'"
+            :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
+            :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
             :class="`${blok && blok.media.filename ? blok.media.filename : src
               .split(/[\\/]/)
               .pop()
@@ -24,7 +24,7 @@
           <Skeleton
             :class="`my-0 mx-auto ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
             :wait="wait"
-            :style="`width: ${blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'}`"
+            :style="`width: ${blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '400px'}`"
           />
         </span>
         <video
@@ -78,8 +78,8 @@
       <span v-if="(blok && blok.media.filename && lookFile === 'image') || image" class="image-container">
         <img
           v-show="!wait"
-          :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'"
-          :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'"
+          :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
+          :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
@@ -92,7 +92,7 @@
         <Skeleton
           :class="`my-0 mx-auto ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
           :wait="wait"
-          :style="`width: ${blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'}`"
+          :style="`width: ${blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '400px'}`"
         />
       </span>
       <video

@@ -7,14 +7,14 @@
       <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
         <img
           v-show="!wait"
-          :class="`project-image w-full object-cover object-center select-none rounded-t ${rowContainer && !sliderContainer && !containerContainer ? 'h-60 sm:h-72 md:h-60 lg:h-80 xl:h-96 2xl:h-sm' : 'h-full'}`"
+          :class="`project-image w-full min-h-40 object-cover object-center select-none rounded-t ${rowContainer && !sliderContainer && !containerContainer ? 'h-60 sm:h-72 md:h-60 lg:h-80 xl:h-96 2xl:h-sm' : 'h-full'}`"
           width="100%"
           height="100%"
           :src="projectContent.image.filename"
           :alt="projectContent.image.alt"
           @load="wait = false"
         >
-        <Skeleton :class="`project-image w-full ${rowContainer && !sliderContainer && !containerContainer ? 'h-60 sm:h-72 md:h-60 lg:h-80 xl:h-96 2xl:h-sm' : 'h-full'}`" :wait="wait" />
+        <Skeleton :class="`project-image w-full min-h-40 ${rowContainer && !sliderContainer && !containerContainer ? 'h-60 sm:h-72 md:h-60 lg:h-80 xl:h-96 2xl:h-sm' : 'h-full'}`" :wait="wait" />
         <div
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
           :class="`title-container flex flex-row flex-wrap items-center p-5 ${rowContainer || containerContainer || sliderContainer? '' : 'h-16'}`"

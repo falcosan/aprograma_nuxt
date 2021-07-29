@@ -20,7 +20,7 @@
         <Icon
           v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode || blok.row_container"
           previous
-          :class="`previous-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode || containerMode ? 'bottom-3.5' : 'bottom-0'} ${sliderMode || carouselMode ? containerWidth > 295 ? 'left-10' : 'left-5' : 'left-3'}`"
+          :class="`previous-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode || containerMode ? 'bottom-3.5' : 'bottom-0'} ${sliderMode || carouselMode ? fullWidth > 295 ? 'left-10' : 'left-5' : 'left-3'}`"
           :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
           tag="button"
           @click.native="previous"
@@ -29,7 +29,7 @@
         <Icon
           v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || containerMode || blok.row_container"
           next
-          :class="`next-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode || containerMode ? 'bottom-3.5' : 'bottom-0'} ${sliderMode || carouselMode ? containerWidth > 295 ? 'right-10' : 'right-5' : 'right-3'}`"
+          :class="`next-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode || containerMode ? 'bottom-3.5' : 'bottom-0'} ${sliderMode || carouselMode ? fullWidth > 295 ? 'right-10' : 'right-5' : 'right-3'}`"
           :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
           tag="button"
           @click.native="next"
@@ -40,7 +40,7 @@
             <ul
               :key="sliderKey"
               :style="`transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
-              class="slider relative grid grid-flow-col transition-transform"
+              class="slider relative grid grid-flow-col-dense transition-transform"
             >
               <template v-for="component in elements">
                 <li
@@ -56,7 +56,7 @@
                     :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${setTextColor ? 'text-white' : ''}`"
                     :blok="component"
                     slider-mode
-                    :container-width="fullWidth"
+                    :container-width="containerWidth"
                   />
                 </li>
               </template>
@@ -86,13 +86,13 @@
                     :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${setTextColor ? 'text-white' : ''}`"
                     :blok="component"
                     carousel-mode
-                    :container-width="fullWidth"
+                    :container-width="containerWidth"
                   />
                 </li>
               </template>
             </transition-group>
             <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-1/2 flex flex-wrap justify-center my-5 mx-auto">
-              <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1 w-1 inline-block m-1 rounded-full select-none text-xl transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-gray-400 bg-gray-500' : 'bg-gray-500'}`" />
+              <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1 w-1 inline-block m-1 rounded-full select-none text-xl transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-gray-500 bg-gray-500' : 'bg-gray-500'}`" />
             </div>
           </div>
         </div>
@@ -110,7 +110,7 @@
               :class="`${component.name.toLowerCase()}-component ${setTextColor ? 'text-white' : ''}`"
               :blok="component"
               container-mode
-              :container-width="fullWidth"
+              :container-width="containerWidth"
             />
           </div>
         </template>

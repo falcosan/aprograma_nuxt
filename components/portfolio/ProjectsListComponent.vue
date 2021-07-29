@@ -57,8 +57,8 @@ export default {
     },
     maxProjects () {
       if (this.containerWidth >= 536) {
-        return 'sm:grid-cols-fit-medium'
-      } return 'xs:grid-cols-fit-big'
+        return 'md:grid-cols-fit-medium lg:grid-cols-fit-big'
+      } return 'md:grid-cols-fit-small'
     },
     sortedProject () {
       const featuredProjects = this.$store.state.list.projects.items.filter((project) => {

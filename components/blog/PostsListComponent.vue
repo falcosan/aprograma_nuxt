@@ -6,7 +6,7 @@
     </div>
     <transition-group
       tag="ul"
-      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || sliderContainer || carouselContainer || containerContainer ? `${maxPosts} md:auto-rows-fr` : 'lg:grid-flow-row lg:auto-rows-fr'}`"
+      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || sliderContainer || carouselContainer || containerContainer ? `${maxPosts} auto-rows-fr` : 'lg:grid-flow-row lg:auto-rows-fr'}`"
       appear
       enter-active-class="duration-200"
       leave-active-class="duration-200"
@@ -71,7 +71,7 @@ export default {
     maxPosts () {
       if (this.containerWidth >= 536) {
         return 'md:grid-cols-fit-medium lg:grid-cols-fit-big'
-      } return 'md:grid-cols-fit-small'
+      } return this.containerWidth >= 354 ? 'md:grid-cols-fit-medium' : 'md:grid-cols-fit-small'
     },
     sortedPosts () {
       const featuredPosts = this.$store.state.list.posts.items.filter((post) => {

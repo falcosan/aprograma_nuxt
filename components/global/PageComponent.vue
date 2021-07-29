@@ -7,7 +7,7 @@
       <div
         v-for="component in blok.body"
         :key="component._uid"
-        :class="`${component.component.toLowerCase()}-content ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
+        :class="`${component.component.toLowerCase()}-content ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'} ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
       >
         <component
           :is="component.component"

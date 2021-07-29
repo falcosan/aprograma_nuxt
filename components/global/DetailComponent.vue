@@ -20,7 +20,7 @@
                 @click="action.open()"
                 @load="wait = false"
               >
-              <Skeleton :class="`max-h-96 md:max-h-xl select-none ${blok.text ? 'w-screen' : ''}`" :wait="wait" />
+              <Skeleton :class="`h-96 select-none ${blok.text ? 'w-screen' : 'w-2xl mx-auto my-0'}`" :wait="wait" />
             </template>
             <template #body>
               <img class="description-image select-none cursor-default" height="auto" width="auto" :src="image.filename" :alt="image.alt">

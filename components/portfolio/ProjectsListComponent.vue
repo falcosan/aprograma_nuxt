@@ -1,10 +1,10 @@
 <template>
-  <div class="projects w-full">
+  <div v-if="sortedProject.length > 0" class="projects w-full">
     <ProjectSlider
-      v-if="sortedProject && $store.state.data.windowWidth >= 1024 && blok.show_slider && !blok.row_container && !sliderContainer"
+      v-if="$store.state.data.windowWidth >= 1024 && blok.show_slider && !blok.row_container && !sliderContainer"
       :blok="sortedProject"
     />
-    <ul v-else-if="sortedProject" :class="`project-list w-full grid gap-5 auto-cols-fr auto-rows-fr ${maxProjects}`">
+    <ul v-else :class="`project-list w-full grid gap-5 auto-cols-fr auto-rows-fr ${maxProjects}`">
       <ProjectTeaser
         v-for="project in sortedProject"
         :key="project.uuid"

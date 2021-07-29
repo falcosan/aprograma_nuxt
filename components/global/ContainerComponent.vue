@@ -35,7 +35,7 @@
           @click.native="next"
         />
         <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode || !containerMode) && !blok.row_container" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-        <div :class="`slider-box w-full rounded ${blok.slider_mode === 'slider' ? 'overflow-hidden' : ''}`">
+        <div :class="`slider-box w-full rounded ${blok.slider_mode ? 'overflow-hidden' : ''}`">
           <div v-if="blok.slider_mode === 'slider'" class="slider-container">
             <ul
               :key="sliderKey"
@@ -65,7 +65,7 @@
           <div v-else class="carousel-container">
             <transition-group
               tag="ul"
-              class="carousel relative grid overflow-hidden rounded"
+              class="carousel relative grid rounded"
               enter-active-class="in-out duration-500"
               leave-active-class="out-in duration-500"
               :enter-class="`transform ${transitionEnter}`"

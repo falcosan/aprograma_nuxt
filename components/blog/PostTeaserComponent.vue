@@ -9,7 +9,7 @@
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
-        <div v-show="!wait" :class="`teaser-file w-full min-h-40 ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : sliderContainer || containerContainer || carouselContainer ? 'h-full' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
+        <div v-show="!wait" :class="`teaser-file w-full min-h-40 ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? 'h-48 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : sliderContainer || containerContainer || carouselContainer ? 'h-full' : 'h-48 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'img'"
             :class="`w-full h-full object-center select-none ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"

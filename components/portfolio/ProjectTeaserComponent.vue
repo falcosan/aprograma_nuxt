@@ -14,7 +14,7 @@
           :alt="projectContent.image.alt"
           @load="wait = false"
         >
-        <Skeleton class="project-image w-full min-h-40 h-60 sm:h-72 md:h-60 lg:h-80 xl:h-96 2xl:h-sm" :wait="wait" />
+        <Skeleton :class="`project-image w-full min-h-40 ${rowContainer && !sliderContainer && !containerContainer ? 'h-60 sm:h-72 md:h-60 lg:h-80 xl:h-96 2xl:h-sm' : 'h-full'}`" :wait="wait" />
         <div
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
           :class="`title-container flex flex-row flex-wrap items-center p-5 ${rowContainer || containerContainer || sliderContainer? '' : 'h-16'}`"

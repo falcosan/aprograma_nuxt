@@ -44,7 +44,6 @@
             >
               <template v-for="component in elements">
                 <li
-                  v-if="component.resolution_show ? $store.state.data.windowWidth >= Number(component.resolution_show) : true"
                   :key="component._uid"
                   v-touch:swipe.stop.left="next"
                   v-touch:swipe.stop.right="previous"
@@ -73,7 +72,6 @@
             >
               <template v-for="(component, index) in elements">
                 <li
-                  v-if="component.resolution_show ? $store.state.data.windowWidth >= Number(component.resolution_show) : true"
                   v-show="index === currentSlide"
                   :key="component._uid"
                   v-touch:swipe.stop.left="next"
@@ -156,7 +154,11 @@ export default {
   },
   computed: {
     elements () {
-      return this.blok.body.filter(component => component.resolution_show ? this.$store.state.data.windowWidth >= Number(component.resolution_show) : component)
+      if (this.blok.slider_mode) {
+        return this.blok.body
+      } else {
+        return this.blok.body.filter(component => component.resolution_show ? this.$store.state.data.windowWidth >= Number(component.resolution_show) : component)
+      }
     },
     rowComponent () {
       return this.elements.filter(function (item) { return item.row_container })

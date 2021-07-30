@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blok.resolution_show ? $store.state.data.windowWidth >= Number(blok.resolution_show) : true" class="media relative w-auto h-full grid gap-5 overflow-hidden rounded">
+  <div class="media relative w-auto h-full grid gap-5 overflow-hidden rounded">
     <Modal
       v-if="blok.modal_mode"
       close-mode

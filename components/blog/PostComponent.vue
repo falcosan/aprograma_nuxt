@@ -36,7 +36,7 @@
         />
         <h4
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-author py-3 border-b-4 border-dotted font-medium italic"
+          class="post-author py-3 border-b-2 border-dotted font-medium italic"
         >
           {{ $languageCase('by', 'de', 'di') }} {{ blok.author }}
         </h4>
@@ -47,7 +47,7 @@
         />
         <h5
           :style="`color: ${blok.post_text_color.color};`"
-          :class="`post-date text-right ${blok.long_text ? 'pt-5 lg:pt-8 border-t-4 border-dotted' : ''}`"
+          :class="`post-date text-right ${blok.long_text ? 'pt-5 lg:pt-8 border-t-2 border-dotted' : ''}`"
           v-text="changeDate(blok.date)"
         />
       </div>

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blok.resolution_show ? $store.state.data.windowWidth >= Number(blok.resolution_show) : true" class="media relative w-full h-full grid gap-5 overflow-hidden rounded">
+  <div v-if="blok.resolution_show ? $store.state.data.windowWidth >= Number(blok.resolution_show) : true" class="media relative w-auto h-full grid gap-5 overflow-hidden rounded">
     <Modal
       v-if="blok.modal_mode"
       close-mode
@@ -9,9 +9,8 @@
         <img
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
           v-show="!wait"
-          class="image-container"
-          :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
-          :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
+          :width="blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'"
+          :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
@@ -28,8 +27,8 @@
             .split(/[\\/]/)
             .pop()
             .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center cursor-pointer select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-          :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
-          :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
+          :width="blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'"
+          :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'"
           playsinline
           autoplay
           muted
@@ -42,7 +41,7 @@
         <Skeleton
           :class="`my-0 mx-auto ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
           :wait="wait"
-          :style="`width: ${blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : `${containerWidth}px`}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : `${containerWidth}px`}`"
+          :style="`width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : `${containerWidth}px`}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : `${containerWidth}px`}`"
         />
       </template>
       <template #body>
@@ -78,7 +77,7 @@
         <Skeleton
           :class="`my-0 mx-auto ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
           :wait="wait"
-          :style="`width: ${blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'}`"
+          :style="`width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'}`"
         />
       </template>
     </Modal>
@@ -87,8 +86,8 @@
         v-if="(blok && blok.media.filename && lookFile === 'image') || image"
         v-show="!wait"
         class="image-container"
-        :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
-        :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
+        :width="blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'"
+        :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'"
         :class="`${blok && blok.media.filename ? blok.media.filename : src
           .split(/[\\/]/)
           .pop()
@@ -105,8 +104,8 @@
           .split(/[\\/]/)
           .pop()
           .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-        :width="blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'"
-        :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : '100%'"
+        :width="blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'"
+        :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'"
         playsinline
         autoplay
         muted
@@ -118,7 +117,7 @@
       <Skeleton
         :class="`my-0 mx-auto ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
         :wait="wait"
-        :style="`width: ${blok && blok.width && blok && blok.unit ? `${blok.width}${blok.unit}`: width ? width : `${containerWidth}px`}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : `${containerWidth}px`}`"
+        :style="`width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : `${containerWidth}px`}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : `${containerWidth}px`}`"
       />
     </template>
     <p v-if="(blok && blok.title && blok.show_title) || title" class="media-title text-center text-lg" v-text="blok && blok.title ? blok.title : title" />

@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="blok.resolution_show ? $store.state.data.windowWidth >= Number(blok.resolution_show) : true"
+    v-if="blok.resolution_show ? fullWidth >= Number(blok.resolution_show) : true"
     :class="`container-cover w-full self-start ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
     <h1
@@ -98,7 +98,6 @@
       <div v-else class="container-components grid auto-cols-fr gap-5 rounded" :style="`${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : ''}`">
         <template v-for="component in elements">
           <div
-            v-if="component.resolution_show ? $store.state.data.windowWidth >= Number(component.resolution_show) : true"
             :key="component._uid"
             :style="`background-color: ${blok.background_color_component.color};`"
             :class="`${component.name.toLowerCase()}-container w-full grid rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
@@ -157,7 +156,7 @@ export default {
       if (this.blok.slider_mode) {
         return this.blok.body
       } else {
-        return this.blok.body.filter(component => component.resolution_show ? this.$store.state.data.windowWidth >= Number(component.resolution_show) : component)
+        return this.blok.body.filter(component => component.resolution_show ? this.fullWidth >= Number(component.resolution_show) : component)
       }
     },
     rowComponent () {

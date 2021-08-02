@@ -19,11 +19,11 @@
           <div v-if="expanded" :class="`menu-expanded h-10 max-w-sm xs:max-w-md sm:max-w-lg md:max-w-md lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl w-full grid grid-flow-col overflow-hidden transform opacity-80 hover:opacity-100 transition-all ${topPosition ? 'translate-y-2 rounded' : 'rounded-b'}`">
             <ul class="link-list grid grid-flow-col auto-cols-fr" :style="`background-color: ${blok.background_color.color};`">
               <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu hover:bg-gray-300">
-                <Link class="flex items-center justify-center py-2 px-3 text-sm font-light truncate" :blok="item" />
+                <Link class="flex items-center justify-center py-2 px-3 text-sm font-extralight truncate" :blok="item" />
               </li>
             </ul>
             <Translate
-              class="translate-header grid h-full text-sm font-light filter grayscale text-white"
+              class="translate-header grid h-full text-sm font-extralight filter grayscale text-white"
               style-translate-list="grid grid-flow-col auto-cols-fr"
               style-translate-item="w-full flex items-center justify-center py-2 px-3 text-center bg-gray-800 hover:bg-gray-600"
               :blok="$contentByName(blok.body, 'Translate')"

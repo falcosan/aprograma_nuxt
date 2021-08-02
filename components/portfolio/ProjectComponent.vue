@@ -59,14 +59,13 @@
         </h4>
       </div>
     </div>
-    <div v-if="$contentByName(blok.body, 'Detail').length > 0" class="project-details col-start-1 col-end-4 mt-5">
-      <h1 class="detail-title mb-5 text-xl font-light">
+    <div v-if="$contentByName(blok.body, 'Detail').length > 0" class="project-details grid gap-5 col-start-1 col-end-4 mt-5">
+      <h1 class="detail-title text-xl font-extralight">
         {{ $languageCase('Project details', 'Detalles del proyecto', 'Dettagli del progetto') }}
       </h1>
       <Detail
-        v-for="(description, index) in blok.body"
+        v-for="description in blok.body"
         :key="description._uid"
-        :class="`${index === blok.body.length - 1 ? '' : 'mb-5'}`"
         :inline-text-style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
         :blok="description"
       />

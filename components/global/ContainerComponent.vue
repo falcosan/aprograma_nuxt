@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="blok.resolution_show ? fullWidth >= Number(blok.resolution_show) : true"
+    v-if="blok.resolution_show ? fullWidth > Number(blok.resolution_show) : true"
     :class="`container-cover w-full self-start ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
     <h1
@@ -156,7 +156,7 @@ export default {
       if (this.blok.slider_mode) {
         return this.blok.body
       } else {
-        return this.blok.body.filter(component => component.resolution_show ? this.fullWidth >= Number(component.resolution_show) : component)
+        return this.blok.body.filter(component => component.resolution_show ? this.fullWidth > Number(component.resolution_show) : component)
       }
     },
     rowComponent () {
@@ -165,7 +165,7 @@ export default {
     defaultMax () {
       if (this.fullWidth >= 1240) {
         return this.$rangeItems((this.elements.length - 1), 5)
-      } else if (this.fullWidth >= 856) {
+      } else if (this.fullWidth >= 984) {
         return this.$rangeItems((this.elements.length - 1), 4)
       } else if (this.fullWidth >= 728) {
         return this.$rangeItems((this.elements.length - 1), 3)
@@ -176,7 +176,7 @@ export default {
         if (this.max && this.max <= this.defaultMax) {
           if (this.fullWidth >= 1240) {
             return this.$rangeItems(this.max, 5)
-          } else if (this.fullWidth >= 856) {
+          } else if (this.fullWidth >= 984) {
             return this.$rangeItems(this.max, 4)
           } else if (this.fullWidth >= 728) {
             return this.$rangeItems(this.max, 3)
@@ -184,7 +184,7 @@ export default {
         } else {
           if (this.fullWidth >= 1240) {
             return this.$rangeItems(this.defaultMax, 5)
-          } else if (this.fullWidth >= 856) {
+          } else if (this.fullWidth >= 984) {
             return this.$rangeItems(this.defaultMax, 4)
           } else if (this.fullWidth >= 728) {
             return this.$rangeItems(this.defaultMax, 3)

@@ -8,7 +8,7 @@
     >
       <div v-show="loadingLogo" :class="`loader-logo fixed flex items-center justify-center top-0 z-50 overflow-hidden bg-white ${!$device.isDesktop || $store.state.data.windowWidth < 768 ? '-top-0.5 right-1/2 p-1 transform translate-x-1/2 rounded-b-full' : 'h-20 w-20 rounded-br-lg'}`">
         <Logo
-          class="logo-spin filter opacity-50 contrast-0 brightness-50"
+          class="logo-spin filter contrast-0 brightness-50"
           :size="`${!$device.isDesktop || $store.state.data.windowWidth < 768 ? 'w-11' : 'w-16'}`"
         />
       </div>
@@ -42,15 +42,21 @@ export default {
 <style scoped>
 .logo-spin{
   filter: blur(1px);
-  animation: spinning 0.5s linear infinite;
+  animation: spinning 0.5s infinite linear;
 }
 
 @keyframes spinning {
-  from {
-    transform: rotate(0deg);
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.9;
   }
-  to {
-    transform: rotate(359deg);
+  50% {
+    transform: rotate(130deg) scale(0.8);
+    opacity: 0.7;
+  }
+  100% {
+    transform: rotate(360deg) scale(0.6);
+    opacity: 0.5;
   }
 }
 </style>

@@ -4,7 +4,7 @@
     :class="`container-cover w-full self-start ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
     <h1
-      v-if="blok.show_title && blok.title"
+      v-if="blok.title"
       :class="`container-title font-extralight break-words ${sliderMode || carouselMode || containerMode ? 'p-5' : 'pb-5 text-xl xs:text-2xl'}`"
     >
       {{ blok.title }}

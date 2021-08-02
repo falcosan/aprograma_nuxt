@@ -5,7 +5,7 @@
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div
-        :class="`teaser-content h-full flex flex-col ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:flex-row lg:h-64 2xl:h-56'}`"
+        :class="`teaser-content h-full flex flex-col ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:flex-row lg:h-64'}`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
@@ -25,13 +25,13 @@
           <div class="text-description">
             <span
               :class="`teaser-title mb-2 font-medium overflow-hidden ${$route.name === 'blog' ? 'text-xl sm:text-2xl' : 'text-xl'}`"
-              :style="`-webkit-line-clamp: ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '1' : '2'};`"
+              :style="`-webkit-line-clamp: ${rowContainer || sliderContainer || containerContainer || carouselContainer || $store.state.data.windowWidth < 425 ? '1' : '2'};`"
             >
               {{ postContent.title }}
             </span>
             <span
               class="teaser-intro overflow-hidden"
-              :style="`-webkit-line-clamp: ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '2' : '3'};`"
+              :style="`-webkit-line-clamp: ${rowContainer || sliderContainer || containerContainer || carouselContainer || $store.state.data.windowWidth < 425 ? '2' : '3'};`"
             >
               {{ postContent.intro }}
             </span>

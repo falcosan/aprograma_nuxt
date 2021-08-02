@@ -63,7 +63,7 @@
   </footer>
   <footer
     v-else
-    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl mx-auto px-10 py-20 mb-12 rounded-t backdrop-filter backdrop-blur bg-opacity-70 bg-white"
+    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl mx-auto px-10 py-20 mb-12 rounded-t backdrop-filter backdrop-blur bg-opacity-60 bg-white"
   >
     <div class="footer-content h-52 grid gap-5 text-center">
       <span class="input-footer relative grid gap-5 grid-flow-col-dense items-end justify-center bottom-6 text-md font-thin">

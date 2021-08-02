@@ -70,26 +70,25 @@
         :blok="description"
       />
     </div>
-    <div class="project-action w-auto lg:w-32 grid grid-cols-3 gap-5 lg:block self-center lg:justify-self-end col-start-1 col-end-4 lg:row-end-1 lg:col-start-3 lg:col-end-4">
-      <Icon
-        arrow
-        tag="button"
-        :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        class="project-back col-start-1 col-end-1 rounded hover:shadow transition-shadow duration-100"
-        size="w-9 p-2"
-        @click.native="goBack()"
-      />
+    <div class="project-action w-auto min-w-0 flex lg:block self-center lg:justify-self-end items-center col-start-1 col-end-4 lg:row-end-1 lg:col-start-3 lg:col-end-4">
       <component
         :is="blok.url_project ? 'a' : 'span'"
         v-if="$store.state.data.windowWidth < 1024"
-        :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        :class="`project-url col-start-2 col-end-4 p-5 rounded text-center truncate ${blok.url_project ? 'font-medium' : 'italic'}`"
+        :class="`project-url w-full rounded mr-5 text-center truncate ${blok.url_project ? 'font-medium' : 'italic'}`"
         :href="blok.url_project ? blok.url_project : ''"
         :target="blok.url_project ? '_blank' : ''"
         :rel="blok.url_project ? 'noopener noreferrer' : ''"
       >
         {{ blok.url_project ? `${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}` : $languageCase('private project', 'proyecto privado', 'progetto privato') }}
       </component>
+      <Icon
+        arrow
+        tag="button"
+        :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
+        class="project-back w-10 rounded hover:shadow transition-shadow duration-100"
+        size="p-3 w-10"
+        @click.native="goBack()"
+      />
     </div>
   </div>
 </template>

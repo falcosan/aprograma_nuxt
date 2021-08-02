@@ -3,7 +3,7 @@
     <h1 v-if="blok.title" class="description-title p-5 text-xl font-extralight" v-text="blok.title" />
     <div :class="`description-content rounded ${blok.text ? 'grid gap-5 md:grid-flow-col auto-cols-fr' : 'flex justify-center'}`">
       <ul :class="`image-container grid gap-5 w-full justify-items-center ${blok.text ? `${blok.image.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} ${blok.invert_direction ? 'col-start-2 col-end-2' : ''}` : ''}`" :style="inlineImageStyle">
-        <li v-for="image in blok.image" :key="image.id" class="image-item">
+        <li v-for="image in blok.image" :key="image.id" class="image-item w-full">
           <Modal
             close-mode
             class="modal-project_description h-full"
@@ -20,7 +20,7 @@
                 @click="action.open()"
                 @load="wait = false"
               >
-              <Skeleton :class="`w-screen h-full select-none ${blok.text ? '' : 'mx-auto my-0'}`" :wait="wait" />
+              <Skeleton class="h-96 select-none" :wait="wait" />
             </template>
             <template #body>
               <img class="description-image select-none cursor-default" height="auto" width="auto" :src="image.filename" :alt="image.alt">

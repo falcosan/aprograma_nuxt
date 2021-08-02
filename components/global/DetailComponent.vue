@@ -1,12 +1,12 @@
 <template>
   <div class="project-description">
-    <h1 v-if="blok.title" class="description-title mb-5 font-semibold" v-text="blok.title" />
-    <div :class="`description-content p-5 rounded shadow ${blok.text ? 'grid gap-5 grid-flow-col auto-cols-fr' : 'flex justify-center'}`">
-      <ul :class="`image-container w-full justify-items-center ${blok.text ? `grid gap-5 ${blok.image.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} ${blok.invert_direction ? 'col-start-2 col-end-2' : ''}` : ''}`" :style="inlineImageStyle">
+    <h1 v-if="blok.title" class="description-title mb-5 font-medium" v-text="blok.title" />
+    <div :class="`description-content p-5 rounded ${blok.text ? 'grid gap-5 grid-flow-col auto-cols-fr' : 'flex justify-center'}`">
+      <ul :class="`image-container grid gap-5 w-full justify-items-center ${blok.text ? `${blok.image.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} ${blok.invert_direction ? 'col-start-2 col-end-2' : ''}` : ''}`" :style="inlineImageStyle">
         <li v-for="image in blok.image" :key="image.id" class="image-item">
           <Modal
             close-mode
-            class="modal-project_description"
+            class="modal-project_description h-full"
             modal-style="bg-opacity-90 bg-gray-200"
           >
             <template #activator="action">
@@ -14,13 +14,13 @@
                 v-show="!wait"
                 height="100%"
                 width="100%"
-                :class="`description-image max-h-96 md:max-h-xl cursor-pointer object-contain select-none ${blok.text ? 'w-screen' : ''}`"
+                class="description-image w-screen h-full cursor-pointer object-cover select-none"
                 :src="image.filename"
                 :alt="image.alt"
                 @click="action.open()"
                 @load="wait = false"
               >
-              <Skeleton :class="`h-96 select-none ${blok.text ? 'w-screen' : 'w-2xl mx-auto my-0'}`" :wait="wait" />
+              <Skeleton :class="`w-screen h-full select-none ${blok.text ? '' : 'mx-auto my-0'}`" :wait="wait" />
             </template>
             <template #body>
               <img class="description-image select-none cursor-default" height="auto" width="auto" :src="image.filename" :alt="image.alt">

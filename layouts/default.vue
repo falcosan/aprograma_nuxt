@@ -15,7 +15,7 @@
         class="max-w-lg my-0 mx-auto border border-gray-500 rounded bg-white"
         size="w-full"
       />
-      <h1 class="maintenance-text mt-10 sm:mt-20 text-center text-xs xs:text-base sm:text-lg xs:whitespace-nowrap font-bold uppercase italic">
+      <h1 class="maintenance-text mt-10 sm:mt-20 text-center text-xs xs:text-base sm:text-lg xs:whitespace-nowrap font-medium uppercase italic">
         under maintenance
       </h1>
     </div>

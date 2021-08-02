@@ -1,6 +1,6 @@
 <template>
   <div class="project grid gap-5 p-5">
-    <h1 class="project-title flex justify-center lg:justify-start items-center col-start-1 col-end-4 lg:col-end-3 text-xl lg:text-2xl text-center lg:text-left break-words">
+    <h1 class="project-title flex justify-center lg:justify-start items-center col-start-1 col-end-4 lg:col-end-3 lg:px-5 text-3xl text-center lg:text-left font-extralight break-words">
       {{ blok.title }}
     </h1>
     <div class="project-intro grid gap-5 col-start-1 col-end-4">
@@ -35,7 +35,7 @@
       <component
         :is="blok.url_project ? 'a' : 'span'"
         v-if="$store.state.data.windowWidth >= 1024"
-        :class="`project-url xl:row-start-2 xl:row-end-2 xl:col-start-3 xl:col-end-3 ${blok.url_project ? ' font-semibold' : ' italic'} text-center truncate`"
+        :class="`project-url xl:row-start-2 xl:row-end-2 xl:col-start-3 xl:col-end-3 text-center truncate ${blok.url_project ? 'font-medium' : 'italic'}`"
         :href="blok.url_project ? blok.url_project : ''"
         :target="blok.url_project ? '_blank' : ''"
         :rel="blok.url_project ? 'noopener noreferrer' : ''"
@@ -71,20 +71,20 @@
         :blok="description"
       />
     </div>
-    <div class="project-action w-auto lg:w-60 grid self-center lg:justify-self-end lg:blok grid-flow-col gap-5 col-start-1 col-end-4 lg:row-end-1 lg:col-start-3 lg:col-end-3">
+    <div class="project-action w-auto lg:w-32 grid grid-cols-3 gap-5 lg:block self-center lg:justify-self-end col-start-1 col-end-4 lg:row-end-1 lg:col-start-3 lg:col-end-4">
       <Icon
         arrow
         tag="button"
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        class="project-back h-full rounded hover:shadow transition-shadow duration-100"
-        size="w-16 p-5"
+        class="project-back col-start-1 col-end-1 rounded hover:shadow transition-shadow duration-100"
+        size="w-9 p-2"
         @click.native="goBack()"
       />
       <component
         :is="blok.url_project ? 'a' : 'span'"
         v-if="$store.state.data.windowWidth < 1024"
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        :class="`project-url p-5 rounded text-center truncate ${blok.url_project ? ' font-semibold' : ' italic'}`"
+        :class="`project-url col-start-2 col-end-4 p-5 rounded text-center truncate ${blok.url_project ? 'font-medium' : 'italic'}`"
         :href="blok.url_project ? blok.url_project : ''"
         :target="blok.url_project ? '_blank' : ''"
         :rel="blok.url_project ? 'noopener noreferrer' : ''"

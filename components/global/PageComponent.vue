@@ -1,6 +1,6 @@
 <template>
   <section :class="`${blok.name.toLowerCase()}-page p-5`">
-    <h1 v-if="blok.title && blok.show_title" class="page-title mb-5 text-2xl font-extralight">
+    <h1 v-if="blok.title && blok.show_title" class="page-title mb-5 text-xl xs:text-2xl font-extralight break-words">
       {{ blok.title }}
     </h1>
     <div class="page-components grid gap-x-5 gap-y-20 auto-cols-fr" :style="maxComponents > 1 ? `grid-template-columns: repeat(${$rangeItems(maxComponents, 3)}, 1fr);` : ''">

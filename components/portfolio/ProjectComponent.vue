@@ -1,6 +1,6 @@
 <template>
   <div class="project grid gap-5 p-5">
-    <h1 class="project-title flex justify-center lg:justify-start items-center col-start-1 col-end-4 lg:col-end-3 lg:px-5 text-3xl text-center lg:text-left font-extralight break-words">
+    <h1 class="project-title flex justify-center lg:justify-start items-center col-start-1 col-end-4 lg:col-end-3 lg:px-5 text-2xl xs:text-3xl text-center lg:text-left font-extralight break-words">
       {{ blok.title }}
     </h1>
     <div class="project-intro grid gap-5 col-start-1 col-end-4">

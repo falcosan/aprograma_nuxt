@@ -89,8 +89,8 @@
                 </li>
               </template>
             </transition-group>
-            <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-1/2 flex flex-wrap justify-center my-5 mx-auto">
-              <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1 w-1 inline-block m-1 rounded-full select-none text-xl transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-gray-500 bg-gray-500' : 'bg-gray-500'}`" />
+            <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-1/2 flex flex-wrap space-x-2 justify-center my-8 mx-auto">
+              <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 inline-block rounded-full shadow-inner select-none transform scale-90 transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-gray-500 bg-gray-500' : 'bg-gray-500'}`" />
             </div>
           </div>
         </div>

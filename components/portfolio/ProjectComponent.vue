@@ -75,9 +75,9 @@
         :is="blok.url_project ? 'a' : 'span'"
         v-if="$store.state.data.windowWidth < 1024"
         :class="`project-url w-full rounded mr-5 text-center truncate ${blok.url_project ? 'font-medium' : 'italic'}`"
-        :href="blok.url_project ? blok.url_project : ''"
-        :target="blok.url_project ? '_blank' : ''"
-        :rel="blok.url_project ? 'noopener noreferrer' : ''"
+        :href="blok.url_project ? blok.url_project : false"
+        :target="blok.url_project ? '_blank' : false"
+        :rel="blok.url_project ? 'noopener noreferrer' : false"
       >
         {{ blok.url_project ? `${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}` : $languageCase('private project', 'proyecto privado', 'progetto privato') }}
       </component>

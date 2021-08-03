@@ -44,7 +44,7 @@
       <div class="project-action min-w-0 flex items-center justify-between xl:row-start-2 xl:row-end-2 xl:col-start-3 xl:col-end-3">
         <component
           :is="blok.url_project ? 'a' : 'span'"
-          :class="`project-url mr-5 ss:my-0 ss:mx-auto ss:pl-10 xl:pl-0 text-center text-sm sm:text-base truncate ${blok.url_project ? 'font-medium' : 'italic'}`"
+          :class="`project-url mx-5 xl:my-0 xl:mx-auto text-sm sm:text-base truncate ${blok.url_project ? 'font-medium' : 'italic'}`"
           :href="blok.url_project ? blok.url_project : false"
           :target="blok.url_project ? '_blank' : false"
           :rel="blok.url_project ? 'noopener noreferrer' : false"

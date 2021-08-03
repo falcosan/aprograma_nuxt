@@ -1,6 +1,6 @@
 <template>
   <div class="project grid gap-5 auto-cols-fr p-5">
-    <h1 class="project-title flex justify-center lg:justify-start items-center col-start-1 col-end-4 xl:col-end-3 lg:px-5 text-2xl xs:text-3xl text-center xl:text-left font-extralight break-words">
+    <h1 class="project-title col-start-1 col-end-4 xl:col-end-3 text-2xl sm:text-3xl font-extralight break-words">
       {{ blok.title }}
     </h1>
     <Icon
@@ -20,7 +20,7 @@
         modal-style="bg-gray-200 bg-opacity-90"
       >
         <template #activator="action">
-          <div class="image-container h-60 ss:h-64 xs:h-72 sm:h-80 md:h-96 lg:h-lg xl:h-lg 2xl:h-2xl my-0 mx-auto cursor-pointer" @click="action.open()">
+          <div class="image-container w-full h-60 ss:h-64 xs:h-72 sm:h-80 md:h-96 lg:h-lg xl:h-lg 2xl:h-2xl my-0 mx-auto cursor-pointer" @click="action.open()">
             <img
               class="intro-image h-full border-2 object-cover rounded select-none"
               height="100%"

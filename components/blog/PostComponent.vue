@@ -1,9 +1,9 @@
 <template>
-  <div class="post">
+  <div class="post p-5">
     <div class="post-head relative w-full mb-5 lg:mb-8">
       <h1
         :style="`color: ${blok.post_text_color.color};`"
-        class="post-title p-5 text-2xl xs:text-3xl font-extralight"
+        class="post-title mb-5 text-2xl sm:text-3xl font-extralight"
         v-text="blok.title"
       />
       <Icon
@@ -14,7 +14,7 @@
         size="p-3 w-10"
         @click.native="goBack()"
       />
-      <div v-show="!wait" :class="`post-file w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl overflow-hidden rounded ${blok.file.filename ? '' : 'p-5 bg-black'}`">
+      <div v-show="!wait" :class="`post-file w-full h-60 ss:h-64 xs:h-72 sm:h-80 md:h-96 lg:h-lg xl:h-lg 2xl:h-2xl overflow-hidden rounded ${blok.file.filename ? '' : 'p-5 bg-black'}`">
         <component
           :is="blok.file.filename ? lookFile() : 'img'"
           :class="`w-full h-full object-center select-none object-cover ${blok.file.filename ? '' : 'ml-2.5'}`"

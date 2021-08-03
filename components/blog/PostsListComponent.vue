@@ -70,8 +70,8 @@ export default {
     },
     maxPosts () {
       if (this.containerWidth >= 536) {
-        return 'md:grid-cols-fit-medium lg:grid-cols-fit-big'
-      } return this.containerWidth >= 354 ? 'md:grid-cols-fit-medium' : 'md:grid-cols-fit-small'
+        return 'sm:grid-cols-fit-medium md:grid-cols-fit-big'
+      } return 'sm:grid-cols-fit-small'
     },
     sortedPosts () {
       const featuredPosts = this.$store.state.list.posts.items.filter((post) => {

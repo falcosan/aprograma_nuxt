@@ -1,7 +1,7 @@
 <template>
   <div v-if="sortedProject.length > 0" class="projects w-full">
     <ProjectSlider
-      v-if="$store.state.data.windowWidth >= 1024 && blok.show_slider && !blok.row_container && !sliderContainer"
+      v-if="$store.state.data.windowWidth > 1024 && blok.show_slider && !blok.row_container && !sliderContainer"
       :blok="sortedProject"
     />
     <ul v-else :class="`project-list w-full grid gap-5 auto-cols-fr auto-rows-fr ${maxProjects}`">
@@ -57,8 +57,8 @@ export default {
     },
     maxProjects () {
       if (this.containerWidth >= 536) {
-        return 'md:grid-cols-fit-medium lg:grid-cols-fit-big'
-      } return this.containerWidth >= 354 ? 'md:grid-cols-fit-medium' : 'md:grid-cols-fit-small'
+        return 'sm:grid-cols-fit-medium md:grid-cols-fit-big'
+      } return 'sm:grid-cols-fit-small'
     },
     sortedProject () {
       const featuredProjects = this.$store.state.list.projects.items.filter((project) => {

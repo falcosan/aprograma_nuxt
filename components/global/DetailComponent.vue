@@ -1,6 +1,6 @@
 <template>
   <div class="project-description">
-    <h1 v-if="blok.title" class="description-title p-5 text-xl font-extralight" v-text="blok.title" />
+    <h1 v-if="blok.title" class="description-title p-5 text-lg font-extralight" v-text="blok.title" />
     <div :class="`description-content rounded ${blok.text ? 'grid gap-5 md:grid-flow-col auto-cols-fr' : 'flex justify-center'}`">
       <ul :class="`image-container grid gap-5 w-full justify-items-center ${blok.text ? `${blok.image.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} ${blok.invert_direction ? 'col-start-2 col-end-2' : ''}` : ''}`" :style="inlineImageStyle">
         <li v-for="image in blok.image" :key="image.id" class="image-item w-full">

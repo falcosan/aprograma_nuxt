@@ -3,7 +3,7 @@
     <h1 class="project-title flex justify-center lg:justify-start items-center col-start-1 col-end-4 lg:col-end-auto lg:px-5 text-2xl xs:text-3xl text-center lg:text-left font-extralight break-words">
       {{ blok.title }}
     </h1>
-    <div class="project-intro grid gap-5 col-start-1 col-end-4">
+    <div class="project-intro grid gap-5 auto-cols-fr col-start-1 col-end-4">
       <Modal
         v-if="blok.image.filename"
         class="modal-project w-full row-start-1 row-end-1 xl:col-start-1 xl:col-end-3"
@@ -11,10 +11,10 @@
         modal-style="bg-gray-200 bg-opacity-90"
       >
         <template #activator="action">
-          <div class="image-container my-0 mx-auto cursor-pointer" @click="action.open()">
+          <div class="image-container h-60 ss:h-64 xs:h-72 sm:h-80 md:h-96 lg:h-lg xl:h-lg 2xl:h-2xl my-0 mx-auto cursor-pointer" @click="action.open()">
             <img
-              class="intro-image border-2 object-contain rounded select-none"
-              height="auto"
+              class="intro-image h-full border-2 object-cover rounded select-none"
+              height="100%"
               width="100%"
               :src="blok.image.filename"
               :alt="blok.image.alt"
@@ -44,7 +44,7 @@
       </component>
       <span
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        class="intro-text max-w-none p-5 rounded"
+        class="intro-text p-5 rounded"
         v-html="$md.render(blok.intro)"
       />
       <div class="project-date flex items-baseline justify-around xl:col-start-1 xl:col-end-3">

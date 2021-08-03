@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <div class="post-head relative w-full mb-5 md:mb-10">
+    <div class="post-head relative w-full mb-5 lg:mb-8">
       <h1
         :style="`color: ${blok.post_text_color.color};`"
         class="post-title p-5 text-2xl xs:text-3xl font-extralight"
@@ -28,7 +28,7 @@
       <Skeleton class="w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl" :wait="wait" />
     </div>
     <div class="post-body w-full flex justify-center rounded" :style="`background-color: ${blok.post_background_color.color};`">
-      <div class="post-article w-full max-w-prose prose-sm lg:prose-lg py-10 md:py-14 px-5">
+      <div class="post-article w-full max-w-prose prose-sm lg:prose-lg py-8 lg:py-16 px-5">
         <h2
           :style="`color: ${blok.post_text_color.color};`"
           class="post-intro"

@@ -16,7 +16,7 @@
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full opacity-0" leave-to-class="-translate-y-full opacity-0">
       <div v-if="alert.message" :class="`form-alert fixed w-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl left-1/2 top-10 transform -translate-x-1/2 z-30 p-5 text-center text-sm md:text-base transform rounded-b bg-opacity-90 text-white ${!$device.isDesktop ? '' : 'md:absolute md:left-0 md:top-0 md:translate-x-0 md:rounded'} ${alert.color}`" v-text="alert.message" />
     </transition>
-    <h2 v-if="blok.title" :class="`form-title mb-10 text-4xl`">
+    <h2 v-if="blok.title" :class="`form-title mb-8 text-4xl`">
       {{ blok.title }}
     </h2>
     <form
@@ -33,7 +33,7 @@
         :blok="input"
       />
       <div class="from-controls grid gap-5 grid-cols-fit-small mt-8">
-        <Input v-for="input in $contentByName(blok.body, 'Input')" :key="input._uid" class="buttons py-3 px-10" :blok="input" @resetInput="clearFields" />
+        <Input v-for="input in $contentByName(blok.body, 'Input')" :key="input._uid" class="buttons py-3 px-8" :blok="input" @resetInput="clearFields" />
       </div>
     </form>
   </div>

@@ -10,7 +10,7 @@
       {{ blok.title }}
     </h1>
     <div
-      :class="`container-content rounded ${blok.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
+      :class="`container-content inline-block rounded ${blok.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
       :style="`background-color: ${blok.background_color_container.color};`"
     >
       <div
@@ -341,8 +341,10 @@ export default {
   z-index: 10;
 }
 
-.parent-cover > .container-content > .container-components > .parent-container:last-child{
-  margin-bottom: 0;
+.parent-cover > .container-content > .container-components {
+  position: relative;
+  top: 10px;
+  margin-top: -20px;
 }
 
 .parent-container > .container-cover > .container-title{

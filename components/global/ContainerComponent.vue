@@ -96,11 +96,11 @@
         </div>
       </div>
       <div v-else class="container-components flex flex-wrap -m-2.5 rounded">
-        <template v-for="(component, index) in elements">
+        <template v-for="component in elements">
           <div
             :key="component._uid"
             :style="`flex: ${component.row_container ? `1 ${(100 - spaceFix) / $rangeItems(maxElements, 3)}%` : '100%'}; background-color: ${blok.background_color_component.color};`"
-            :class="`${component.name.toLowerCase()}-container m-2.5 rounded ${sliderMode || carouselMode || containerMode ? '' : `parent-container ${index === elements.length - 1 ? 'mb-0' : ''}`}`"
+            :class="`${component.name.toLowerCase()}-container m-2.5 rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'}`"
           >
             <component
               :is="component.component"

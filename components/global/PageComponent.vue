@@ -8,7 +8,7 @@
         v-for="(component, index) in blok.body"
         :key="component._uid"
         :style="`flex: ${component.row_container ? `1 ${(100 - spaceFix) / $rangeItems(maxComponents, 3)}%` : '100%'};`"
-        :class="`${component.component.toLowerCase()}-content m-2.5 ${index === blok.body.length - 1 ? 'mb-0' : ''} ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
+        :class="`${component.component.toLowerCase()}-content m-2.5 ${component.component.toLowerCase() === 'container' ? component.slider_mode === 'slider' ? 'overflow-hidden' : index === blok.body.length - 1 ? '-mb-2.5' : '' : ''}`"
       >
         <component
           :is="component.component"

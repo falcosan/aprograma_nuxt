@@ -95,12 +95,12 @@
           </div>
         </div>
       </div>
-      <div v-else class="container-components grid auto-cols-fr gap-5 rounded" :style="`${maxElements >= 1 ? `grid-template-columns: repeat(${$rangeItems(maxElements, 3)}, 1fr);` : ''}`">
+      <div v-else class="container-components flex flex-wrap gap-5 rounded">
         <template v-for="component in elements">
           <div
             :key="component._uid"
-            :style="`background-color: ${blok.background_color_component.color};`"
-            :class="`${component.name.toLowerCase()}-container w-full grid rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'}`"
+            :style="`flex: ${component.row_container ? `1 ${(100 - spaceFix) / $rangeItems(maxElements, 3)}%` : '100%'}; background-color: ${blok.background_color_component.color};`"
+            :class="`${component.name.toLowerCase()}-container rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'}`"
           >
             <component
               :is="component.component"

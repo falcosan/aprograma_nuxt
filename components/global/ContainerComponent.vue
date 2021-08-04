@@ -340,6 +340,11 @@ export default {
   position: relative;
   z-index: 10;
 }
+
+.parent-cover > .container-content > .container-components > .parent-container:last-child{
+  margin-bottom: 0;
+}
+
 .parent-container > .container-cover > .container-title{
   font-size: 18px;
 }

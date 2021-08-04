@@ -1,12 +1,12 @@
 <template>
-  <div class="field-item relative grid mb-8" :style="`background-color: ${blok.background_color.color};`">
-    <label :class="`field-label mb-5 font-extralight ${fieldError() ? 'text-red-600' : 'text-black'}`" :for="blok.label.toLowerCase().replace(/ /g,'')" :style="`color: ${blok.text_color.color};`">{{ blok.label }} *</label>
+  <div class="field-item relative grid mb-8 rounded" :style="`background-color: ${blok.background_color.color};`">
+    <label class="field-label p-5 font-extralight" :for="blok.label.toLowerCase().replace(/ /g,'')" :style="`color: ${blok.text_color.color};`">{{ blok.label }} *</label>
     <component
       :is="blok.tag"
       :id="`${blok.type}-field`"
       :name="blok.label.toLowerCase().replace(/ /g,'')"
       :type="blok.type"
-      :class="`field-input w-full relative z-20 p-2 rounded resize-none shadow-inner text-black bg-gray-50 ${isMessage ? 'h-40' : 'h-10 leading-10'} ${fieldError() ? 'border-dotted border-2 border-red-600' : 'border border-gray-500'}`"
+      :class="`field-input w-full relative z-20 p-2 rounded resize-none shadow-inner border border-gray-500 text-black ${isMessage ? 'h-40' : 'h-10 leading-10'} ${fieldError() ? 'bg-red-200' : 'bg-gray-50'}`"
       :value="fieldValue !== '' ? fieldValue : ''"
       @keyup="updateFields(); showIndication()"
       @focus="showIndication"

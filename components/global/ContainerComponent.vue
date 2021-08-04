@@ -202,10 +202,10 @@ export default {
       }
     },
     setTextColor () {
-      if (this.blok.background_color_component.color || this.blok.background_color_container.color) {
-        if (this.blok.background_color_component.color) {
+      if (this.blok.background_color_component.color.charAt(0) === '#' || this.blok.background_color_container.color.charAt(0) === '#') {
+        if (this.blok.background_color_component.color.charAt(0) === '#') {
           return this.$themeColor(this.blok.background_color_component.color)
-        } else if (this.blok.background_color_container.color) {
+        } else if (this.blok.background_color_container.color.charAt(0) === '#') {
           return this.$themeColor(this.blok.background_color_container.color)
         } else { return this.$themeColor(this.blok.background_color_component.color) }
       }

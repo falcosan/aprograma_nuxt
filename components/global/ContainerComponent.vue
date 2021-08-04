@@ -5,7 +5,7 @@
   >
     <h1
       v-if="blok.title"
-      :class="`container-title font-extralight break-words ${sliderMode || carouselMode || containerMode ? 'p-5' : 'pb-5 text-xl xs:text-2xl'}`"
+      :class="`container-title font-extralight break-words ${sliderMode || carouselMode || containerMode ? 'm-5' : 'mb-5 text-xl xs:text-2xl'}`"
     >
       {{ blok.title }}
     </h1>
@@ -346,6 +346,7 @@ export default {
 @media screen and (min-width: 425px) {
     .parent-container > .container-cover > .container-title{
     font-size: 20px;
+    margin-top: 10px;
   }
 }
 

@@ -39,10 +39,10 @@
     "url": "git+https://github.com/falcosan/aprograma_nuxt.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Daniele Falchetti <danielefalche@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/falcosan/aprograma_nuxt/issues"
   },
-  "homepage": "https://github.com/falcosan/aprograma_nuxt#readme"
+  "homepage": "https://aprograma.co/"
 }

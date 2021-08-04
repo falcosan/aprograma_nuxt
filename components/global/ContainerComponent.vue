@@ -5,7 +5,7 @@
   >
     <h1
       v-if="blok.title"
-      :class="`container-title font-extralight break-words ${sliderMode || carouselMode || containerMode ? 'm-5' : 'mb-5 text-xl xs:text-2xl'}`"
+      :class="`container-title font-extralight break-words ${sliderMode || carouselMode || containerMode ? 'm-5 text-lg' : 'mb-5 text-xl xs:text-2xl'} ${setTextColor ? 'text-white' : ''}`"
     >
       {{ blok.title }}
     </h1>
@@ -52,7 +52,7 @@
                 >
                   <component
                     :is="component.component"
-                    :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${setTextColor ? 'text-white' : ''}`"
+                    :class="`${component.name.toLowerCase()}-component my-0 mx-auto`"
                     :blok="component"
                     slider-mode
                     :container-width="containerWidth"
@@ -81,7 +81,7 @@
                 >
                   <component
                     :is="component.component"
-                    :class="`${component.name.toLowerCase()}-component my-0 mx-auto ${setTextColor ? 'text-white' : ''}`"
+                    :class="`${component.name.toLowerCase()}-component my-0 mx-auto`"
                     :blok="component"
                     carousel-mode
                     :container-width="containerWidth"
@@ -104,7 +104,7 @@
           >
             <component
               :is="component.component"
-              :class="`${component.name.toLowerCase()}-component ${setTextColor ? 'text-white' : ''}`"
+              :class="`${component.name.toLowerCase()}-component`"
               :blok="component"
               container-mode
               :container-width="containerWidth"
@@ -202,14 +202,21 @@ export default {
       }
     },
     setTextColor () {
-      if (this.blok.background_color_component.color.charAt(0) === '#' || this.blok.background_color_container.color.charAt(0) === '#') {
-        if (this.blok.background_color_component.color.charAt(0) === '#') {
-          return this.$themeColor(this.blok.background_color_component.color)
-        } else if (this.blok.background_color_container.color.charAt(0) === '#') {
-          return this.$themeColor(this.blok.background_color_container.color)
-        } else { return this.$themeColor(this.blok.background_color_component.color) }
-      }
-      return false
+      if (this.sliderMode || this.carouselMode || this.containerMode) {
+        if ((this.blok.background_color_component.color.charAt(0) === '#' || this.blok.background_color_container.color.charAt(0) === '#') && (!this.$parent.blok.background_color_component.color.charAt(0) === '#' || !this.$parent.blok.background_color_container.color.charAt(0) === '#')) {
+          if (this.blok.background_color_component.color.charAt(0) === '#') {
+            return this.$themeColor(this.blok.background_color_component.color)
+          } else if (this.blok.background_color_container.color.charAt(0) === '#') {
+            return this.$themeColor(this.blok.background_color_container.color)
+          } else { return this.$themeColor(this.blok.background_color_component.color) }
+        } else if (this.$parent.blok.background_color_component.color.charAt(0) === '#' || this.$parent.blok.background_color_container.color.charAt(0) === '#') {
+          if (this.$parent.blok.background_color_component.color.charAt(0) === '#') {
+            return this.$themeColor(this.$parent.blok.background_color_component.color)
+          } else if (this.$parent.blok.background_color_container.color.charAt(0) === '#') {
+            return this.$themeColor(this.$parent.blok.background_color_container.color)
+          } else { return this.$themeColor(this.$parent.blok.background_color_component.color) }
+        }
+      } return false
     }
   },
   watch: {

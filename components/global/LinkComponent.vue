@@ -10,7 +10,7 @@
     :target="blok.external_link ? '_blank' : ''"
     :title="blok.title && blok.icon_item ? blok.title : ''"
   >
-    <span v-if="blok.title && !iconItem && !blok.icon_item" class="item-text break-words" :style="`color: ${blok.text_color.color};`">
+    <span v-if="blok.title && !iconItem && !blok.icon_item" class="item-text break-words font-extralight" :style="`color: ${blok.text_color.color};`">
       {{ blok.title }}
     </span>
     <Icon
@@ -36,7 +36,7 @@
     :target="externalLink ? '_blank' : ''"
     :title="title && iconItem ? title : ''"
   >
-    <span v-if="title && !iconItem" class="item-text break-words">{{ title }}</span>
+    <span v-if="title && !iconItem" class="item-text break-words font-extralight">{{ title }}</span>
     <slot v-else name="icon" />
   </component>
 </template>

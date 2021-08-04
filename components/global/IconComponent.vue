@@ -166,7 +166,7 @@
         </circle>
       </svg>
     </component>
-    <span v-if="blok && blok.title && blok.show_title || title" class="icon-title text-center">{{ blok ? blok.title : title }}</span>
+    <span v-if="blok && blok.title && blok.show_title || title" class="icon-title text-center font-extralight">{{ blok ? blok.title : title }}</span>
   </span>
 </template>
 

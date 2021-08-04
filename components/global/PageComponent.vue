@@ -3,11 +3,12 @@
     <h1 v-if="blok.title" class="page-title mb-5 text-xl xs:text-2xl font-extralight break-words">
       {{ blok.title }}
     </h1>
-    <div class="page-components grid gap-x-5 gap-y-16 auto-cols-fr" :style="maxComponents > 1 ? `grid-template-columns: repeat(${$rangeItems(maxComponents, 3)}, 1fr);` : ''">
+    <div class="page-components flex flex-wrap -m-2.5">
       <div
-        v-for="component in blok.body"
+        v-for="(component, index) in blok.body"
         :key="component._uid"
-        :class="`${component.component.toLowerCase()}-content ${component.row_container || $store.state.data.windowWidth < 768 ? '' : 'col-span-full'} ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
+        :style="`flex: ${component.row_container ? `1 ${(100 - spaceFix) / $rangeItems(maxComponents, 3)}%` : '100%'};`"
+        :class="`${component.component.toLowerCase()}-content m-2.5 ${index === blok.body.length - 1 ? 'mb-0' : ''} ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
       >
         <component
           :is="component.component"
@@ -25,6 +26,11 @@ export default {
     blok: {
       type: Object,
       required: true
+    }
+  },
+  data () {
+    return {
+      spaceFix: 20
     }
   },
   computed: {

@@ -113,3 +113,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.intro-text{
+  overflow-wrap: anywhere;
+}
+</style>

@@ -101,6 +101,9 @@ export default {
 }
 </script>
 <style>
+.post-article{
+  overflow-wrap: anywhere;
+}
 .post-article *::-webkit-scrollbar {
  display: none;
 }

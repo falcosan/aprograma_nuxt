@@ -6,7 +6,7 @@
     :class="`text-container w-full max-w-full h-full rounded ${customClass('index', blok.name === 'text_phrase', 'transition-colors duration-700 ease-in-out')}`"
   >
     <span
-      :class="`text-content h-full max-w-none block p-5 lg:p-8 rounded prose-sm lg:prose-lg break-all ss:break-normal`"
+      :class="`text-content h-full max-w-none block p-5 lg:p-8 rounded prose-sm lg:prose-lg`"
       v-html="$md.render(blok.text)"
     />
   </div>
@@ -55,3 +55,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.text-content{
+  overflow-wrap: anywhere;
+}
+</style>

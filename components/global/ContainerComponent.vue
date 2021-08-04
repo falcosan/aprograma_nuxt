@@ -163,7 +163,7 @@ export default {
       return this.elements.filter(function (item) { return item.row_container })
     },
     defaultMax () {
-      if (this.fullWidth >= 1240) {
+      if (this.fullWidth >= 1239) {
         return this.$rangeItems((this.elements.length - 1), 5)
       } else if (this.fullWidth >= 984) {
         return this.$rangeItems((this.elements.length - 1), 4)
@@ -174,7 +174,7 @@ export default {
     maxElements () {
       if (this.blok.slider_mode && this.elements.length > 1) {
         if (this.max && this.max <= this.defaultMax) {
-          if (this.fullWidth >= 1240) {
+          if (this.fullWidth >= 1239) {
             return this.$rangeItems(this.max, 5)
           } else if (this.fullWidth >= 984) {
             return this.$rangeItems(this.max, 4)
@@ -182,7 +182,7 @@ export default {
             return this.$rangeItems(this.max, 3)
           } return this.fullWidth >= 536 ? this.$rangeItems(this.max, 2) : 1
         } else {
-          if (this.fullWidth >= 1240) {
+          if (this.fullWidth >= 1239) {
             return this.$rangeItems(this.defaultMax, 5)
           } else if (this.fullWidth >= 984) {
             return this.$rangeItems(this.defaultMax, 4)
@@ -192,11 +192,11 @@ export default {
         }
       }
       if (this.columnSet && !this.blok.slider_mode) {
-        if (this.fullWidth + (this.spaceFix * this.$rangeItems(this.defaultMax, 3)) >= 1240) {
+        if (this.fullWidth + (this.spaceFix * this.$rangeItems(this.defaultMax, 3)) >= 1239) {
           return this.$rangeItems(this.columnSet, 3)
         } return this.fullWidth + (this.spaceFix * this.$rangeItems(this.defaultMax, 3)) >= 536 ? this.$rangeItems(this.columnSet, 2) : 1
       } else {
-        if (this.fullWidth >= 1240) {
+        if (this.fullWidth >= 1239) {
           return this.$rangeItems(this.rowComponent.length, 3)
         } return this.fullWidth >= 536 ? this.$rangeItems(this.rowComponent.length, 2) : 1
       }

@@ -20,6 +20,7 @@ module.exports = {
     },
     extend: {
       spacing: {
+        5.5: '22px',
         18: '4.5rem',
         max: 'max-content',
         min: 'min-content',

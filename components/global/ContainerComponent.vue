@@ -95,12 +95,12 @@
           </div>
         </div>
       </div>
-      <div v-else class="container-components flex flex-wrap -m-2.5 rounded">
+      <div v-else :class="`container-components flex flex-wrap rounded ${sliderMode || carouselMode || containerMode ? '-m-2.5' : `-mx-2.5 ${blok.background_color_container.color ? '' : '-mt-2.5'}`}`">
         <template v-for="component in elements">
           <div
             :key="component._uid"
             :style="`flex: ${component.row_container ? `1 ${(100 - (maxElements > 1 ? spaceFix : 0)) / $rangeItems(maxElements, 3)}%` : '100%'}; background-color: ${blok.background_color_component.color};`"
-            :class="`${component.name.toLowerCase()}-container m-2.5 rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'}`"
+            :class="`${component.name.toLowerCase()}-container m-2.5 rounded ${sliderMode || carouselMode || containerMode ? '' : `parent-container ${blok.background_color_container.color ? 'mt-0' : ''}`}`"
           >
             <component
               :is="component.component"
@@ -346,7 +346,6 @@ export default {
 @media screen and (min-width: 425px) {
     .parent-container > .container-cover > .container-title{
     font-size: 20px;
-    margin-top: 10px;
   }
 }
 

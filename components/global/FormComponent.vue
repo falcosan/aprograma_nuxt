@@ -1,7 +1,7 @@
 
 <template>
   <div
-    class="form relative w-full max-w-2xl my-0 mx-auto overflow-hidden"
+    :class="`form relative w-full my-0 mx-auto overflow-hidden ${blok.reduce_width ? 'max-w-2xl' : ''}`"
   >
     <Modal v-if="submitting" class="modal-submit" :open="submitting" modal-style="bg-opacity-90 bg-gray-200 cursor-wait">
       <template #body>

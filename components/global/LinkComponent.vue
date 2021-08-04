@@ -10,7 +10,7 @@
     :target="blok.external_link ? '_blank' : ''"
     :title="blok.title && blok.icon_item ? blok.title : ''"
   >
-    <span v-if="blok.title && !iconItem && !blok.icon_item" class="item-text break-words p-10 font-extralight" :style="`color: ${blok.text_color.color};`">
+    <span v-if="blok.title && !iconItem && !blok.icon_item" class="item-text break-words font-extralight" :style="`color: ${blok.text_color.color};`">
       {{ blok.title }}
     </span>
     <Icon

@@ -347,13 +347,4 @@ export default {
   margin-top: -20px;
 }
 
-.parent-container > .container-cover > .container-title{
-  font-size: 18px;
-}
-@media screen and (min-width: 425px) {
-    .parent-container > .container-cover > .container-title{
-    font-size: 20px;
-  }
-}
-
 </style>

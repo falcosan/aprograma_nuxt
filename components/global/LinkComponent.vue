@@ -2,7 +2,7 @@
   <component
     :is="blok.external_link ? 'a' : 'NuxtLink'"
     v-if="blok"
-    :class="`item-link cursor-pointer ${sliderMode || carouselMode || containerMode ? 'flex items-center justify-center self-center' : 'h-full block'}`"
+    :class="`item-link h-full cursor-pointer ${sliderMode || carouselMode || containerMode ? 'flex items-center justify-center self-center' : 'block'}`"
     :active-class="blok.external_link ? '' : !iconItem && !blok.icon_item ? 'filter invert grayscale bg-gray-500' : 'filter invert grayscale bg-gray-300'"
     :to="blok.external_link ? '' : blok.path"
     :href="blok.external_link ? blok.path : ''"
@@ -10,7 +10,7 @@
     :target="blok.external_link ? '_blank' : ''"
     :title="blok.title && blok.icon_item ? blok.title : ''"
   >
-    <span v-if="blok.title && !iconItem && !blok.icon_item" class="item-text break-words font-extralight" :style="`color: ${blok.text_color.color};`">
+    <span v-if="blok.title && !iconItem && !blok.icon_item" class="item-text break-words p-10 font-extralight" :style="`color: ${blok.text_color.color};`">
       {{ blok.title }}
     </span>
     <Icon
@@ -27,7 +27,7 @@
   <component
     :is="externalLink ? 'a' : 'NuxtLink'"
     v-else
-    :class="`item-link h-full block cursor-pointer ${sliderMode || carouselMode ? '' : 'h-full'}`"
+    :class="`item-link h-full cursor-pointer ${sliderMode || carouselMode || containerMode ? 'flex items-center justify-center self-center' : 'block'}`"
     :active-class="active === 'active' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : ''"
     :exact-active-class="active === 'exact' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : ''"
     :to="externalLink ? '' : to"
@@ -74,6 +74,10 @@ export default {
     iconStyle: {
       type: String,
       default: ''
+    },
+    containerWidth: {
+      type: Number,
+      default: 0
     },
     sliderMode: {
       type: Boolean,

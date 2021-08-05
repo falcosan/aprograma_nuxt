@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="blok.resolution_show ? fullWidth > Number(blok.resolution_show) : true"
+    v-if="elements.length > 0 && (blok.resolution_show ? fullWidth > Number(blok.resolution_show) : true)"
     :class="`container-cover w-full self-start ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
     <h1
@@ -214,8 +214,14 @@ export default {
             return this.$themeColor(this.$parent.blok.background_color_component.color)
           } else if (this.$parent.blok.background_color_container.color.charAt(0) === '#') {
             return this.$themeColor(this.$parent.blok.background_color_container.color)
-          } else { return this.$themeColor(this.$parent.blok.background_color_component.color) }
+          } return this.$themeColor(this.$parent.blok.background_color_component.color)
         }
+      } else if (this.blok.background_color_component.color.charAt(0) === '#' || this.blok.background_color_container.color.charAt(0) === '#') {
+        if (this.blok.background_color_component.color.charAt(0) === '#') {
+          return this.$themeColor(this.blok.background_color_component.color)
+        } else if (this.blok.background_color_container.color.charAt(0) === '#') {
+          return this.$themeColor(this.blok.background_color_container.color)
+        } return this.$themeColor(this.blok.background_color_component.color)
       } return false
     }
   },

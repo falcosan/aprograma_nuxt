@@ -1,7 +1,7 @@
 <template>
   <div v-if="sortedPosts.length > 0" class="posts">
     <div v-if="blok.search_action" class="post-search grid self-start mb-5">
-      <label class="search-label p-2.5 font-extralight">{{ $languageCase('Search the post', 'Busca el post', 'Cerca il post') }}</label>
+      <label class="search-label pb-2.5 font-extralight">{{ $languageCase('Search the post', 'Busca el post', 'Cerca il post') }}</label>
       <input v-model="searchTerm" class="search-bar w-full h-10 p-2 rounded border border-gray-500 text-black bg-gray-50" type="text">
     </div>
     <transition-group

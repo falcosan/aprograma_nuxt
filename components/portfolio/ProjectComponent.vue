@@ -63,7 +63,7 @@
       </div>
       <span
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        class="intro-text p-5 rounded"
+        class="intro-text flex flex-col p-5 lg:p-8 rounded"
         v-html="$md.render(blok.intro)"
       />
       <div class="project-date flex items-baseline justify-around xl:col-start-1 xl:col-end-3">

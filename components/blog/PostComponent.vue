@@ -47,7 +47,7 @@
         />
         <h5
           :style="`color: ${blok.post_text_color.color};`"
-          :class="`post-date text-right ${blok.long_text ? 'pt-5 lg:pt-8 border-t-2 border-dotted' : ''}`"
+          :class="`post-date text-right ${blok.long_text ? 'pt-5 border-t-2 border-dotted' : ''}`"
           v-text="changeDate(blok.date)"
         />
       </div>

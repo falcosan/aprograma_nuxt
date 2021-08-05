@@ -1,5 +1,5 @@
 <template>
-  <section :class="`${blok.name.toLowerCase()}-page p-5`">
+  <section :class="`${blok.name.toLowerCase()}-page px-5 pt-5`">
     <h1 v-if="blok.title" class="page-title mb-5 text-xl xs:text-2xl font-extralight break-words">
       {{ blok.title }}
     </h1>
@@ -8,7 +8,7 @@
         v-for="component in blok.body"
         :key="component._uid"
         :style="`flex: ${component.row_container ? `1 ${(100 - (maxComponents > 1 ? spaceFix : 0 )) / $rangeItems(maxComponents, 3)}%` : '100%'};`"
-        :class="`${component.component.toLowerCase()}-content m-2.5 ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
+        :class="`${component.component.toLowerCase()}-content mx-2.5 mt-2.5 mb-8 ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
       >
         <component
           :is="component.component"

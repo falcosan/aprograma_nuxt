@@ -46,17 +46,11 @@ export default {
 }
 
 @keyframes spinning {
-  0% {
+  from {
     transform: rotate(0deg);
-    opacity: 0.9;
   }
-  50% {
-    transform: rotate(130deg);
-    opacity: 0.7;
-  }
-  100% {
-    transform: rotate(360deg);
-    opacity: 0.5;
+  to {
+    transform: rotate(359deg);
   }
 }
 </style>

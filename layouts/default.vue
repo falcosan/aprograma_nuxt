@@ -8,16 +8,16 @@
         :blok="layout"
       />
     </div>
-    <div v-else-if="story.content.body" class="aprograma-maintenance h-screen flex flex-col justify-center p-10 sm:p-20">
-      <div class="maintenance-line absolute h-px w-full left-0 top-1/2 -z-10 bg-black" />
+    <div v-else-if="story.content.body" class="aprograma-maintenance h-full flex flex-col justify-center p-10 sm:p-20">
       <Logo
         transition
-        class="max-w-lg my-0 mx-auto border border-gray-500 rounded bg-white"
-        size="w-full"
+        class="max-w-lg fixed left-0 top-1/2 my-0 mx-auto transform -translate-y-1/2 rounded"
+        size="w-screen h-screen"
       />
-      <h1 class="maintenance-text mt-10 sm:mt-20 text-center text-xs xs:text-base sm:text-lg xs:whitespace-nowrap font-medium uppercase italic">
+      <h1 class="maintenance-text fixed bottom-0 mb-10 sm:mb-20 text-center text-xs xs:text-base sm:text-lg xs:whitespace-nowrap pointer-events-none font-medium uppercase italic">
         under maintenance
       </h1>
+      <div class="maintenance-line fixed w-56 h-px bottom-0 mb-10 sm:mb-20 -z-10 pointer-events-none bg-black" />
     </div>
   </transition>
 </template>
@@ -57,3 +57,15 @@ export default {
   }
 }
 </script>
+<style scoped>
+.aprograma-maintenance{
+  min-height: unset;
+  height: calc(100vh - 4.5rem);
+}
+@media screen and (min-width:768px){
+  .aprograma-maintenance{
+    min-height: unset;
+    height: calc(100vh - 9rem);
+  }
+}
+</style>

@@ -41,7 +41,7 @@
           </div>
         </li>
       </ul>
-      <span v-if="blok.text" :class="`description-text- h-max flex flex-col rounded break-words ${blok.background_color.color ? 'p-5' : ''}`" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="$md.render(blok.text)" />
+      <span v-if="blok.text" :class="`description-text- h-max block rounded break-words ${blok.background_color.color ? 'p-5' : ''}`" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="$md.render(blok.text)" />
     </div>
   </div>
 </template>

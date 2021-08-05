@@ -42,7 +42,7 @@
         </h4>
         <article
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-article flex flex-col"
+          class="post-article block"
           v-html="$md.render(blok.long_text)"
         />
         <h5

@@ -28,7 +28,7 @@
           </Modal>
         </li>
       </ul>
-      <span v-if="blok.text" class="description-text- h-max flex flex-col p-5 lg:p-8 rounded break-words" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="$md.render(blok.text)" />
+      <span v-if="blok.text" class="description-text- h-max flex flex-col p-5  rounded break-words" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="$md.render(blok.text)" />
     </div>
   </div>
 </template>

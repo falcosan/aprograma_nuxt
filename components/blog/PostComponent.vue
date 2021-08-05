@@ -1,6 +1,6 @@
 <template>
   <div class="post p-5">
-    <div class="post-head relative w-full mb-5 lg:mb-8">
+    <div class="post-head relative w-full mb-5">
       <h1
         :style="`color: ${blok.post_text_color.color};`"
         class="post-title mb-5 text-2xl sm:text-3xl font-extralight"

@@ -25,7 +25,7 @@
     "nuxt-compress": "^5.0.0",
     "storyblok-nuxt": "^2.0.1",
     "vue2-touch-events": "^3.2.2",
-    "vuex-persistedstate": "*"
+    "vuex-persistedstate": "4.0.0"
   },
   "devDependencies": {
     "@nuxtjs/device": "^2.1.0",

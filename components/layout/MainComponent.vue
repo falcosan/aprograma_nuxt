@@ -12,27 +12,25 @@
         <Nuxt :class="`relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
       </transition>
     </div>
-    <div v-if="blok.background_media.filename" :class="`background-media fixed inset-0 -z-10 ${blok.color_animation ? 'colorAnimation' : ''}`">
-      <img
-        v-if="lookFile === 'image'"
-        class="media-image w-full h-full object-cover object-center"
-        :src="blok.background_media.filename"
-        :alt="blok.background_media.alt"
-        width="100%"
-        height="100%"
-        :type="`image/${imageType()}`"
-      >
-      <video
-        v-else
-        class="media-video w-full h-full object-cover object-center"
-        playsinline
-        autoplay
-        muted
-        loop
-      >
-        <source :src="blok.background_media.filename" :type="`video/${blok.background_media.filename.toLowerCase().split('.').pop()}`">
-      </video>
-    </div>
+    <img
+      v-if="blok.background_media.filename && lookFile === 'image'"
+      :class="`media-image min-h-full min-w-full fixed right-0 bottom-0 -z-10 object-cover object-center ${blok.color_animation ? 'colorAnimation' : ''}`"
+      :src="blok.background_media.filename"
+      :alt="blok.background_media.alt"
+      width="100%"
+      height="100%"
+      :type="`image/${imageType()}`"
+    >
+    <video
+      v-else-if="blok.background_media.filename"
+      :class="`media-video min-h-full min-w-full fixed right-0 bottom-0 -z-10 object-cover object-center ${blok.color_animation ? 'colorAnimation' : ''}`"
+      playsinline
+      autoplay
+      muted
+      loop
+    >
+      <source :src="blok.background_media.filename" :type="`video/${blok.background_media.filename.toLowerCase().split('.').pop()}`">
+    </video>
   </main>
 </template>
 

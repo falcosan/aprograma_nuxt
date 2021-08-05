@@ -5,7 +5,8 @@
   >
     <h1
       v-if="blok.title"
-      :class="`container-title font-extralight break-words ${sliderMode || carouselMode || containerMode ? 'm-5 text-lg' : 'mb-5 text-xl xs:text-2xl'} ${setTextColor ? 'text-white' : ''}`"
+      :class="`container-title font-extralight break-words ${sliderMode || carouselMode || containerMode ? 'm-5 text-lg' : 'mb-5 text-xl xs:text-2xl'}`"
+      :style="`color: ${blok.title_color.color};`"
     >
       {{ blok.title }}
     </h1>
@@ -200,29 +201,6 @@ export default {
           return this.$rangeItems(this.rowComponent.length, 3)
         } return this.fullWidth >= 536 ? this.$rangeItems(this.rowComponent.length, 2) : 1
       }
-    },
-    setTextColor () {
-      if (this.sliderMode || this.carouselMode || this.containerMode) {
-        if ((this.blok.background_color_component.color.charAt(0) === '#' || this.blok.background_color_container.color.charAt(0) === '#') && (!this.$parent.blok.background_color_component.color.charAt(0) === '#' || !this.$parent.blok.background_color_container.color.charAt(0) === '#')) {
-          if (this.blok.background_color_component.color.charAt(0) === '#') {
-            return this.$themeColor(this.blok.background_color_component.color)
-          } else if (this.blok.background_color_container.color.charAt(0) === '#') {
-            return this.$themeColor(this.blok.background_color_container.color)
-          } else { return this.$themeColor(this.blok.background_color_component.color) }
-        } else if (this.$parent.blok.background_color_component.color.charAt(0) === '#' || this.$parent.blok.background_color_container.color.charAt(0) === '#') {
-          if (this.$parent.blok.background_color_component.color.charAt(0) === '#') {
-            return this.$themeColor(this.$parent.blok.background_color_component.color)
-          } else if (this.$parent.blok.background_color_container.color.charAt(0) === '#') {
-            return this.$themeColor(this.$parent.blok.background_color_container.color)
-          } return this.$themeColor(this.$parent.blok.background_color_component.color)
-        }
-      } else if (this.blok.background_color_component.color.charAt(0) === '#' || this.blok.background_color_container.color.charAt(0) === '#') {
-        if (this.blok.background_color_component.color.charAt(0) === '#') {
-          return this.$themeColor(this.blok.background_color_component.color)
-        } else if (this.blok.background_color_container.color.charAt(0) === '#') {
-          return this.$themeColor(this.blok.background_color_container.color)
-        } return this.$themeColor(this.blok.background_color_component.color)
-      } return false
     }
   },
   watch: {

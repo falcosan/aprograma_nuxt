@@ -2,7 +2,7 @@
   <div class="project-description">
     <h1 v-if="blok.title" class="description-title p-5 text-lg font-extralight" v-text="blok.title" />
     <div :class="`description-content rounded ${blok.text ? 'grid gap-5 md:grid-flow-col auto-cols-fr' : 'flex justify-center'}`">
-      <ul :class="`image-container grid gap-5 w-full justify-items-center auto-rows-max ${blok.text ? `${blok.invert_direction ? 'col-start-2 col-end-2' : ''}` : ''}`" :style="`${inlineImageStyle} grid-template-columns: repeat(${blok.column_container ? $rangeItems(Number(blok.column_container), 3) : 1}, 1fr)`">
+      <ul :class="`image-container grid gap-5 w-full justify-items-center auto-rows-max ${blok.text ? `${blok.invert_direction ? 'col-start-2 col-end-2' : ''}` : ''}`" :style="`${inlineImageStyle} grid-template-columns: repeat(${blok.column_container ? $rangeItems(Number(blok.column_container), 3) : blok.image.length}, 1fr)`">
         <li v-for="image in blok.image" :key="image.id" class="image-item w-full">
           <Modal
             v-if="blok.modal_mode"

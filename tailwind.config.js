@@ -47,10 +47,10 @@ module.exports = {
       },
       gridTemplateColumns: {
         'fit-big': 'repeat(auto-fit, minmax(300px, 1fr))',
-        'fit-medium': 'repeat(auto-fit, minmax(258px, 1fr))',
+        'fit-medium': 'repeat(auto-fit, minmax(257px, 1fr))',
         'fit-small': 'repeat(auto-fit, minmax(159px, 1fr))',
         'fill-big': 'repeat(auto-fill, minmax(300px, 1fr))',
-        'fill-medium': 'repeat(auto-fill, minmax(258px, 1fr))',
+        'fill-medium': 'repeat(auto-fill, minmax(257px, 1fr))',
         'fill-small': 'repeat(auto-fill, minmax(159px, 1fr))'
 
       },

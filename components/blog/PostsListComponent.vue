@@ -5,9 +5,9 @@
       <input v-model="searchTerm" class="search-bar w-full h-10 p-2 rounded border border-gray-500 text-black bg-gray-50" type="text">
     </div>
     <div v-if="blok.categories_view">
-      <ul v-for="(filter, index) in blok.categories" :key="index">
-        <li @click="filterSearch(filter)">
-          {{ filter }}
+      <ul class="flex -m-1.5 pb-5">
+        <li v-for="(filter, index) in blok.categories" :key="index" class="input-container m-1.5 overflow-hidden rounded" @click="filterSearch(filter)">
+          <button class="filter-input py-3 px-8 text-white bg-gray-500" v-text="filter" />
         </li>
       </ul>
     </div>
@@ -105,10 +105,10 @@ export default {
       return this.sortedPosts.filter(post => `${post.content.title} ${post.content.intro}`.toLowerCase().includes(this.searchTerm.toLowerCase()))
     },
     filterByCategory () {
-      return this.sortedPosts.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(postCategory)))
+      return this.sortedPosts.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(postCategory.toLowerCase())))
     },
     filterBoth () {
-      return this.filterByTerm.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(postCategory)))
+      return this.filterByTerm.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(postCategory.toLowerCase())))
     }
   },
   created () {
@@ -121,10 +121,10 @@ export default {
       await this.$store.dispatch('list/posts/addPosts')
     },
     filterSearch (filter) {
-      if (!this.searchCategory.includes(filter)) {
-        this.searchCategory.push(filter)
+      if (!this.searchCategory.includes(filter.toLowerCase())) {
+        this.searchCategory.push(filter.toLowerCase())
       } else {
-        this.searchCategory.splice(this.searchCategory.indexOf(filter), 1)
+        this.searchCategory.splice(this.searchCategory.indexOf(filter.toLowerCase()), 1)
       }
     }
   }

@@ -4,11 +4,11 @@
       <label class="search-label pb-5 font-extralight">{{ $languageCase('Search the post', 'Busca el post', 'Cerca il post') }}</label>
       <input v-model="searchTerm" class="search-bar w-full h-10 p-2 rounded border border-gray-500 text-black bg-gray-50" type="text">
     </div>
-    <div v-if="blok.categories_view">
+    <div v-if="blok.categories_action">
       <ul class="flex flex-wrap -my-1.5 -mx-2.5 pb-5">
-        <li v-for="(filter, index) in blok.categories" :key="index" :class="`input-container flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer transition-shadow duration-100 filter hover:bg-opacity-80 grayscale text-white bg-gray-600 ${searchCategory.includes(filter.toLowerCase()) ? 'bg-opacity-80' : ''}`" @click="filterSearch(filter)">
-          <button class="filter-input py-3 pl-5 font-extralight" v-text="filter" />
-          <Icon close tag="span" size="w-3" :class="`px-5 transition ${searchCategory.includes(filter.toLowerCase()) ? '' : 'transform rotate-45'}`" />
+        <li v-for="(filter, index) in categories" :key="index" :class="`input-container flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer transition-shadow duration-100 filter hover:bg-opacity-80 grayscale text-white bg-gray-600 ${searchCategory.includes(filter.toLowerCase()) ? 'bg-opacity-80' : ''}`" @click="filterSearch(filter)">
+          <button class="filter-input py-3 pl-4 font-extralight text-sm" v-text="filter" />
+          <Icon close tag="span" size="w-3" :class="`px-4 transition ${searchCategory.includes(filter.toLowerCase()) ? '' : 'transform rotate-45'}`" />
         </li>
       </ul>
     </div>
@@ -64,6 +64,7 @@ export default {
   data () {
     return {
       searchTerm: '',
+      categories: this.blok.categories.replace(/\s/g, '').split('#').filter(hash => hash),
       searchCategory: []
     }
   },
@@ -92,11 +93,11 @@ export default {
       return featuredPosts
     },
     searchQuery () {
-      if (this.searchTerm && this.blok.search_action && (!this.blok.categories_view || this.searchCategory.length === 0)) {
+      if (this.searchTerm && this.blok.search_action && (!this.blok.categories_action || this.searchCategory.length === 0)) {
         return this.filterByTerm
-      } else if ((!this.searchTerm || !this.blok.search_action) && this.blok.categories_view && this.searchCategory.length > 0) {
+      } else if ((!this.searchTerm || !this.blok.search_action) && this.blok.categories_action && this.searchCategory.length > 0) {
         return this.filterByCategory
-      } else if (this.searchTerm && this.blok.search_action && this.blok.categories_view && this.searchCategory.length > 0) {
+      } else if (this.searchTerm && this.blok.search_action && this.blok.categories_action && this.searchCategory.length > 0) {
         return this.filterBoth
       } else {
         return this.sortedPosts

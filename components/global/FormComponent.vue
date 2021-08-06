@@ -62,6 +62,12 @@ export default {
     }
   },
   computed: {
+    mandatoryFields () {
+      return this.$contentByName(this.blok.body, 'Field').filter(field => field.mandatory)
+    },
+    checkEmptyFields () {
+      return this.mandatoryFields.map((field, index) => field.title === Object.keys(this.nameField)[index] ? Object.values(this.nameField)[index] : null)
+    },
     nameField () {
       return Object.assign(...this.$contentByName(this.blok.body, 'Field').map(({ title }, index) => ({ [title.toLowerCase()]: Object.values(this.fields)[index] })))
     }
@@ -92,7 +98,7 @@ export default {
     async submit () {
       if (this.blok.type === 'contact_form') {
         this.$store.dispatch('validator/checkValues')
-        if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length === this.$contentByName(this.blok.body, 'Field').length && Object.values(this.fields).every(text => text.length > 0)) {
+        if (this.$store.state.validator.email.passed === 'yes' && this.$store.state.validator.message.passed === 'yes' && Object.keys(this.fields).length >= this.mandatoryFields.length && this.checkEmptyFields.every(text => text.length > 0)) {
           this.removeAlert()
           this.submitting = true
           try {

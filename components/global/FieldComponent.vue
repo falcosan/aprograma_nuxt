@@ -1,6 +1,6 @@
 <template>
   <div class="field-item relative grid mb-7 rounded" :style="`background-color: ${blok.background_color.color};`">
-    <label :class="`field-label font-extralight pb-5 ${blok.background_color.color ? 'px-5 pt-5' : ''}`" :for="blok.label.toLowerCase().replace(/ /g,'')" :style="`color: ${blok.text_color.color};`">{{ blok.label }} *</label>
+    <label :class="`field-label font-extralight pb-5 ${blok.background_color.color ? 'px-5 pt-5' : ''}`" :for="blok.label.toLowerCase().replace(/ /g,'')" :style="`color: ${blok.text_color.color};`">{{ blok.label }} {{ blok.mandatory ? '*' : null }}</label>
     <component
       :is="blok.tag"
       :id="`${blok.type}-field`"
@@ -13,7 +13,7 @@
       @blur="indication = false"
       @input="$emit('update:fieldValue', $event.target.value)"
     />
-    <transition v-if="blok.indication" enter-active-class="duration-100 in-out" leave-active-class="duration-100 out-in" enter-class="-translate-y-full opacity-0" leave-to-class="-translate-y-full opacity-0">
+    <transition v-if="blok.indication && blok.mandatory" enter-active-class="duration-100 in-out" leave-active-class="duration-100 out-in" enter-class="-translate-y-full opacity-0" leave-to-class="-translate-y-full opacity-0">
       <span v-if="indication" class="field-indication w-full absolute -bottom-7 z-10 py-1 px-2 transform rounded-b text-sm filter drop-shadow-xl font-extralight text-white bg-red-400">
         {{ blok.indication }}
       </span>
@@ -51,7 +51,7 @@ export default {
 
   methods: {
     showIndication () {
-      if (this.blok.indication !== '') {
+      if (this.blok.indication !== '' && this.blok.mandatory) {
         if (this.emailFail) {
           this.indication = true
         } else if (this.messageFail) {
@@ -62,19 +62,23 @@ export default {
       }
     },
     updateFields () {
-      if (this.isEmail) {
-        this.$store.commit('validator/checkEmail', this.fieldValue)
-      } else if (this.isMessage) {
-        this.$store.commit('validator/checkMessage', this.fieldValue)
+      if (this.blok.mandatory) {
+        if (this.isEmail) {
+          this.$store.commit('validator/checkEmail', this.fieldValue)
+        } else if (this.isMessage) {
+          this.$store.commit('validator/checkMessage', this.fieldValue)
+        }
       }
     },
     fieldError () {
-      if (this.emailFail && this.$store.state.validator.email.passed === 'no') {
-        return true
-      } else if (this.messageFail && this.$store.state.validator.message.passed === 'no') {
-        return true
-      } else if (this.fieldValue.length < 1 && this.$store.state.validator.check) {
-        return true
+      if (this.blok.mandatory) {
+        if (this.emailFail && this.$store.state.validator.email.passed === 'no') {
+          return true
+        } else if (this.messageFail && this.$store.state.validator.message.passed === 'no') {
+          return true
+        } else if (this.fieldValue.length < 1 && this.$store.state.validator.check) {
+          return true
+        }
       } else {
         return false
       }

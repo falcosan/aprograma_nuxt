@@ -9,11 +9,11 @@
         <li
           v-for="(filter, index) in blok.categories"
           :key="index"
-          :class="`input-container flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer transition-shadow duration-100 filter hover:bg-opacity-80 grayscale text-white bg-gray-600 ${searchCategory.includes(setLanguageCase(filter)) ? 'bg-opacity-80' : ''}`"
+          :class="`input-container flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer transition-shadow duration-100 filter hover:bg-opacity-80 grayscale text-white bg-gray-600 ${searchCategory.includes(setLanguageCase(filter)) ? 'bg-opacity-70' : ''}`"
           @click="filterSearch(filter)"
         >
           <button class="filter-input py-3 pl-4 font-extralight text-sm" v-text="setLanguageCase(filter)" />
-          <Icon close tag="span" size="w-3" :class="`px-4 transition ${searchCategory.includes(setLanguageCase(filter)) ? '' : 'transform rotate-45'}`" />
+          <Icon close tag="span" size="w-2" :class="`px-4 transition ${searchCategory.includes(setLanguageCase(filter)) ? '' : 'transform rotate-45'}`" />
         </li>
       </ul>
     </div>

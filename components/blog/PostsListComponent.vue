@@ -6,9 +6,14 @@
     </div>
     <div v-if="blok.categories_action">
       <ul class="flex flex-wrap -my-1.5 -mx-2.5 pb-5">
-        <li v-for="(filter, index) in categories" :key="index" :class="`input-container flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer transition-shadow duration-100 filter hover:bg-opacity-80 grayscale text-white bg-gray-600 ${searchCategory.includes(filter.toLowerCase()) ? 'bg-opacity-80' : ''}`" @click="filterSearch(filter)">
-          <button class="filter-input py-3 pl-4 font-extralight text-sm" v-text="filter" />
-          <Icon close tag="span" size="w-3" :class="`px-4 transition ${searchCategory.includes(filter.toLowerCase()) ? '' : 'transform rotate-45'}`" />
+        <li
+          v-for="(filter, index) in blok.categories"
+          :key="index"
+          :class="`input-container flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer transition-shadow duration-100 filter hover:bg-opacity-80 grayscale text-white bg-gray-600 ${searchCategory.includes(setLanguageCase(filter)) ? 'bg-opacity-80' : ''}`"
+          @click="filterSearch(filter)"
+        >
+          <button class="filter-input py-3 pl-4 font-extralight text-sm" v-text="setLanguageCase(filter)" />
+          <Icon close tag="span" size="w-3" :class="`px-4 transition ${searchCategory.includes(setLanguageCase(filter)) ? '' : 'transform rotate-45'}`" />
         </li>
       </ul>
     </div>
@@ -64,7 +69,6 @@ export default {
   data () {
     return {
       searchTerm: '',
-      categories: this.blok.categories.replace(/\s/g, '').split('#').filter(hash => hash),
       searchCategory: []
     }
   },
@@ -107,10 +111,10 @@ export default {
       return this.sortedPosts.filter(post => `${post.content.title} ${post.content.intro}`.toLowerCase().includes(this.searchTerm.toLowerCase()))
     },
     filterByCategory () {
-      return this.sortedPosts.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(postCategory.toLowerCase())))
+      return this.sortedPosts.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(postCategory.toLowerCase().split(', ').filter(subFilter => subFilter))))
     },
     filterBoth () {
-      return this.filterByTerm.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(postCategory.toLowerCase())))
+      return this.filterByTerm.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(postCategory.toLowerCase().split(', ').filter(subFilter => subFilter))))
     }
   },
   created () {
@@ -123,11 +127,15 @@ export default {
       await this.$store.dispatch('list/posts/addPosts')
     },
     filterSearch (filter) {
-      if (!this.searchCategory.includes(filter.toLowerCase())) {
-        this.searchCategory.push(filter.toLowerCase())
+      if (!this.searchCategory.includes(this.setLanguageCase(filter))) {
+        this.searchCategory.push(this.setLanguageCase(filter))
       } else {
-        this.searchCategory.splice(this.searchCategory.indexOf(filter.toLowerCase()), 1)
+        this.searchCategory.splice(this.searchCategory.indexOf(this.setLanguageCase(filter)), 1)
       }
+    },
+    setLanguageCase (filter) {
+      const hash = filter.toLowerCase().split(', ').filter(subFilter => subFilter)
+      return this.$languageCase(hash[0], hash[1], hash[2])
     }
   }
 }

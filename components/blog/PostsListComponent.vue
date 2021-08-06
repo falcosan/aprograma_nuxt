@@ -5,9 +5,10 @@
       <input v-model="searchTerm" class="search-bar w-full h-10 p-2 rounded border border-gray-500 text-black bg-gray-50" type="text">
     </div>
     <div v-if="blok.categories_view">
-      <ul class="flex -m-1.5 pb-5">
-        <li v-for="(filter, index) in blok.categories" :key="index" class="input-container m-1.5 overflow-hidden rounded" @click="filterSearch(filter)">
-          <button class="filter-input py-3 px-8 text-white bg-gray-500" v-text="filter" />
+      <ul class="flex flex-wrap -my-1.5 -mx-2.5 pb-5">
+        <li v-for="(filter, index) in blok.categories" :key="index" :class="`input-container flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer transition-shadow duration-100 filter hover:bg-opacity-80 grayscale text-white bg-gray-600 ${searchCategory.includes(filter.toLowerCase()) ? 'bg-opacity-80' : ''}`" @click="filterSearch(filter)">
+          <button class="filter-input py-3 pl-5 font-extralight" v-text="filter" />
+          <Icon close tag="span" size="w-3" :class="`px-5 transition ${searchCategory.includes(filter.toLowerCase()) ? '' : 'transform rotate-45'}`" />
         </li>
       </ul>
     </div>

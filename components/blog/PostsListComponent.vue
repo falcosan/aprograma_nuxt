@@ -91,12 +91,12 @@ export default {
       return featuredPosts
     },
     searchQuery () {
-      if (this.blok.search_action && !this.blok.categories_view) {
+      if (this.searchTerm && this.blok.search_action && (!this.blok.categories_view || this.searchCategory.length === 0)) {
         return this.filterByTerm
-      } else if (!this.blok.search_action && this.blok.categories_view) {
+      } else if ((!this.searchTerm || !this.blok.search_action) && this.blok.categories_view && this.searchCategory.length > 0) {
         return this.filterByCategory
-      } else if (this.blok.search_action && this.blok.categories_view) {
-        return this.filterByTerm
+      } else if (this.searchTerm && this.blok.search_action && this.blok.categories_view && this.searchCategory.length > 0) {
+        return this.filterBoth
       } else {
         return this.sortedPosts
       }
@@ -106,6 +106,9 @@ export default {
     },
     filterByCategory () {
       return this.sortedPosts.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(postCategory)))
+    },
+    filterBoth () {
+      return this.filterByTerm.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(postCategory)))
     }
   },
   created () {

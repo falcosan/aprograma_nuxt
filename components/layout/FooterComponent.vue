@@ -65,18 +65,18 @@
     v-else
     class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl mx-auto px-2.5 py-20 mb-12 rounded-t backdrop-filter backdrop-blur bg-opacity-60 bg-white"
   >
-    <div class="footer-content h-52 grid gap-7 text-center">
+    <div class="footer-content h-52 grid gap-5 text-center">
       <span class="input-footer relative grid gap-5 grid-flow-col-dense items-end justify-center bottom-6 text-md font-thin">
         <span class="footer-dash"> - </span> <Icon eye tag="span" size="w-6" class="eye-footer" /><span class="footer-dash"> - </span>
       </span>
       <div
         class="messages-container"
       >
-        <span class="footer-messages whitespace-nowrap text-xs">
+        <span class="footer-messages text-xs">
           Aprograma {{ typewriter }}
         </span>
       </div>
-      <div class="footer-info grid gap-y-1.5 whitespace-nowrap">
+      <div class="footer-info grid gap-y-1.5">
         <span class="footer-copyright text-sm"> © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span>
         <span class="footer-powered text-xs">&#60; {{ $languageCase('powered by', 'creado con', 'creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span><span class="nuxtjs-emoji"> 💚</span></a> / &nbsp;{{ $languageCase('hosted by', 'alojado con', 'distribuito da') }} <a class="netlify-link" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"><span class="netlify underline">Netlify</span></a> &#62;</span>
       </div>

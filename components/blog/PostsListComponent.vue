@@ -4,6 +4,13 @@
       <label class="search-label pb-5 font-extralight">{{ $languageCase('Search the post', 'Busca el post', 'Cerca il post') }}</label>
       <input v-model="searchTerm" class="search-bar w-full h-10 p-2 rounded border border-gray-500 text-black bg-gray-50" type="text">
     </div>
+    <div v-if="blok.categories_view">
+      <ul v-for="(filter, index) in blok.categories" :key="index">
+        <li @click="filterSearch(filter)">
+          {{ filter }}
+        </li>
+      </ul>
+    </div>
     <transition-group
       tag="ul"
       :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || sliderContainer || carouselContainer || containerContainer ? `${maxPosts} auto-rows-fr` : 'lg:grid-flow-row lg:auto-rows-fr'}`"
@@ -14,7 +21,7 @@
       leave-to-class="opacity-0"
     >
       <PostTeaser
-        v-for="post in searchTerm && blok.search_action ? filterByTerm : sortedPosts"
+        v-for="post in searchQuery"
         :key="post.uuid"
         :post-link="`blog/${post.slug}`"
         :post-content="post.content"
@@ -55,7 +62,8 @@ export default {
   },
   data () {
     return {
-      searchTerm: ''
+      searchTerm: '',
+      searchCategory: []
     }
   },
   computed: {
@@ -82,10 +90,22 @@ export default {
       })
       return featuredPosts
     },
+    searchQuery () {
+      if (this.blok.search_action && !this.blok.categories_view) {
+        return this.filterByTerm
+      } else if (!this.blok.search_action && this.blok.categories_view) {
+        return this.filterByCategory
+      } else if (this.blok.search_action && this.blok.categories_view) {
+        return this.filterByTerm
+      } else {
+        return this.sortedPosts
+      }
+    },
     filterByTerm () {
-      return this.sortedPosts.filter((post) => {
-        return `${post.content.title} ${post.content.intro}`.toLowerCase().includes(this.searchTerm.toLowerCase())
-      })
+      return this.sortedPosts.filter(post => `${post.content.title} ${post.content.intro}`.toLowerCase().includes(this.searchTerm.toLowerCase()))
+    },
+    filterByCategory () {
+      return this.sortedPosts.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(postCategory)))
     }
   },
   created () {
@@ -96,8 +116,14 @@ export default {
   methods: {
     async getPosts () {
       await this.$store.dispatch('list/posts/addPosts')
+    },
+    filterSearch (filter) {
+      if (!this.searchCategory.includes(filter)) {
+        this.searchCategory.push(filter)
+      } else {
+        this.searchCategory.splice(this.searchCategory.indexOf(filter), 1)
+      }
     }
-
   }
 }
 </script>

@@ -9,7 +9,7 @@
       <Icon
         arrow
         :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
-        class="post-close absolute right-0 z-10 rounded-bl rounded-tr hover:shadow transition-shadow duration-100"
+        :class="`post-close absolute right-0 z-10 rounded-bl rounded-tr ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
         tag="button"
         size="p-3 w-10"
         @click.native="goBack()"

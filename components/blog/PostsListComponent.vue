@@ -9,7 +9,7 @@
         <li
           v-for="(filter, index) in blok.categories"
           :key="index"
-          :class="`input-container flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer transition-shadow duration-100 filter hover:bg-opacity-80 grayscale text-white bg-gray-600 ${searchCategory.includes(setLanguageCase(filter)) ? 'bg-opacity-70' : ''}`"
+          :class="`input-container flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer filter grayscale text-white bg-gray-600 ${!$device.isDesktop ? '' : 'transition-shadow duration-100 hover:bg-opacity-80'} ${searchCategory.includes(setLanguageCase(filter)) ? 'ring-1 bg-opacity-70' : ''}`"
           @click="filterSearch(filter)"
         >
           <button class="filter-input py-3 pl-4 font-extralight text-sm" v-text="setLanguageCase(filter)" />

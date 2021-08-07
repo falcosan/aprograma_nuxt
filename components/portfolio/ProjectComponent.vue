@@ -8,7 +8,7 @@
       arrow
       tag="button"
       :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-      class="project-back h-10 w-10 self-end justify-self-end rounded hover:shadow transition-shadow duration-100"
+      :class="`project-back h-10 w-10 self-end justify-self-end rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
       size="p-3 w-10"
       @click.native="goBack()"
     />
@@ -56,7 +56,7 @@
           arrow
           tag="button"
           :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-          class="project-back w-10 rounded hover:shadow transition-shadow duration-100"
+          :class="`project-back w-10 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
           size="p-3 w-10"
           @click.native="goBack()"
         />

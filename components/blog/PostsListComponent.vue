@@ -4,16 +4,16 @@
       <label class="search-label pb-5 font-extralight">{{ $languageCase('Search the post', 'Busca el post', 'Cerca il post') }}</label>
       <input v-model="searchTerm" class="search-bar w-full h-10 p-2 rounded border border-gray-500 text-black bg-gray-50" type="text">
     </div>
-    <div v-if="blok.categories_action">
-      <ul class="flex flex-wrap -my-1.5 -mx-2.5 pb-5">
+    <div v-if="blok.categories_action" class="post-categories">
+      <ul class="categories-list flex flex-wrap -my-1.5 -mx-2.5 pb-5">
         <li
           v-for="(filter, index) in blok.categories"
           :key="index"
-          :class="`input-container flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer filter grayscale text-white bg-gray-600 ${!$device.isDesktop ? '' : 'transition-shadow duration-100 hover:bg-opacity-80'} ${searchCategory.includes(setLanguageCase(filter)) ? 'ring-1 bg-opacity-70' : ''}`"
+          :class="`category-container relative flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer filter grayscale bg-gray-700 text-white ${searchCategory.includes(setLanguageCase(filter)) ? 'bg-opacity-70' : 'hover:bg-opacity-80'}`"
           @click="filterSearch(filter)"
         >
-          <button class="filter-input py-3 pl-4 font-extralight text-sm" v-text="setLanguageCase(filter)" />
-          <Icon close tag="span" size="w-2" :class="`px-4 transition ${searchCategory.includes(setLanguageCase(filter)) ? '' : 'transform rotate-45'}`" />
+          <Input :class="`category-input py-3 px-4 text-sm ${searchCategory.includes(setLanguageCase(filter)) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="setLanguageCase(filter)" />
+          <Icon close tag="span" size="w-2" :class="`px-4 pointer-events-none transition ${searchCategory.includes(setLanguageCase(filter)) ? '' : 'transform rotate-45'}`" />
         </li>
       </ul>
     </div>

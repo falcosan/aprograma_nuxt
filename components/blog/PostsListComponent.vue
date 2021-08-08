@@ -111,10 +111,10 @@ export default {
       return this.sortedPosts.filter(post => `${post.content.title} ${post.content.intro}`.toLowerCase().includes(this.searchTerm.toLowerCase()))
     },
     filterByCategory () {
-      return this.sortedPosts.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(this.$languageCase(postCategory.toLowerCase().split(', ').filter(subFilter => subFilter)[0], postCategory.toLowerCase().split(', ').filter(subFilter => subFilter)[1], postCategory.toLowerCase().split(', ').filter(subFilter => subFilter)[2]))))
+      return this.sortedPosts.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(this.setLanguageCase(postCategory.toLowerCase().split(', ').filter(subFilter => subFilter)))))
     },
     filterBoth () {
-      return this.filterByTerm.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(this.$languageCase(postCategory.toLowerCase().split(', ').filter(subFilter => subFilter)[0], postCategory.toLowerCase().split(', ').filter(subFilter => subFilter)[1], postCategory.toLowerCase().split(', ').filter(subFilter => subFilter)[2]))))
+      return this.filterByTerm.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(this.setLanguageCase(postCategory.toLowerCase().split(', ').filter(subFilter => subFilter)))))
     }
   },
   created () {

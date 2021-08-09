@@ -85,7 +85,8 @@ export default {
       }
     ],
     '@nuxtjs/markdownit',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/feed'
   ],
   markdownit: {
     html: true,
@@ -96,11 +97,38 @@ export default {
   sitemap: {
     hostname: 'https://aprograma.co',
     routes: async () => {
-      const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
+      const { data } = await axios.get(`https://api.storyblok.com/v2/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
       const exclude = ['home', 'layout']
       const include = Object.values(data.links).map(link => !exclude.includes(link.slug) ? link.slug : '')
       return include.filter(Boolean)
     },
+    feed: [
+      {
+        path: '/feed.xml',
+        async create (feed) {
+          const posts = await axios.get(
+              `https://api.storyblok.com/v2/cdn/stories?starts_with=blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`
+          )
+          posts.data.stories.forEach((post) => {
+            const url = `https://aprograma.co/blog/${post.slug}`
+            feed.addItem({
+              title: post.content.title,
+              id: url,
+              link: url,
+              description: post.content.intro,
+              published: new Date(post.content.date),
+              author: [
+                {
+                  name: post.content.author
+                }
+              ]
+            })
+          })
+        },
+        cacheTime: 1000 * 60 * 15,
+        type: 'rss2'
+      }
+    ],
     defaults: {
       changefreq: 'daily',
       priority: 1,

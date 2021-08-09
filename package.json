@@ -15,6 +15,7 @@
     "test": "nuxt generate && nuxt start"
   },
   "dependencies": {
+    "@nuxtjs/feed": "^2.0.0",
     "@nuxtjs/markdownit": "^2.0.0",
     "@nuxtjs/sitemap": "^2.4.0",
     "@sendgrid/mail": "^7.4.5",

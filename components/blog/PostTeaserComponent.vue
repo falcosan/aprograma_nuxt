@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="postContent"
-    :class="`post-teaser overflow-hidden max-h-md rounded ${sliderContainer || carouselContainer ? '' : !$device.isDesktop ? '' : 'transform transition-all duration-200 hover:shadow hover:scale-105'}`"
+    :class="`post-teaser overflow-hidden max-h-md rounded ${sliderContainer || carouselContainer || containerContainer ? 'max-w-2xl mx-auto my-0' : !$device.isDesktop ? '' : 'transform transition-all duration-200 hover:shadow hover:scale-105'}`"
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div
@@ -37,7 +37,7 @@
               {{ postContent.intro }}
             </span>
           </div>
-          <div class="teaser-info w-full flex flex-col ss:flex-row mt-2.5 italic items-end justify-between">
+          <div :class="`teaser-info w-full flex flex-col ss:flex-row mt-2.5 italic items-end ${$route.name === 'blog' ? 'justify-between' : 'justify-end'}`">
             <ul class="teaser-categories flex flex-wrap self-start -m-1.5">
               <li v-for="(category, index) in postContent.categories" :key="index" class="teaser-category text-xs p-2.5 m-1.5 font-extralight rounded shadow-sm filter brightness-95" :style="`background-color: ${postContent.teaser_background_color.color};`">
                 {{ $languageCase(category.split(', ')[0],category.split(', ')[1],category.split(', ')[2] ) }}

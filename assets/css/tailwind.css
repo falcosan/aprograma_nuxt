@@ -22,6 +22,9 @@ body {
 *::-webkit-scrollbar-thumb {
     background-color: rgb(36, 36, 36);
 }
+*::placeholder{
+    font-size: 14px;
+  }
 
 .noscroll {
     height: 100%;

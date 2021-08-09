@@ -1,8 +1,7 @@
 <template>
-  <div v-if="sortedPosts.length > 0" class="posts">
+  <div v-if="sortedPosts.length > 0" class="posts w-full">
     <div v-if="blok.search_action" class="post-search grid self-start mb-5">
-      <label class="search-label pb-5 font-extralight">{{ $languageCase('Search the post', 'Busca el post', 'Cerca il post') }}</label>
-      <input v-model="searchTerm" class="search-bar w-full h-10 p-2 rounded border border-gray-500 text-black bg-gray-50" type="text">
+      <input v-model="searchTerm" :placeholder="$languageCase('Search the post', 'Busca el post', 'Cerca il post')" class="search-bar w-full h-10 p-2 rounded border border-gray-500 text-black bg-gray-50" type="text">
     </div>
     <div v-if="blok.categories_action" class="post-categories grid relative overflow-hidden">
       <div class="show-categories w-max flex justify-self-end row-start-2 row-end-1 cursor-pointer mb-5" @click="showCategories">
@@ -19,7 +18,7 @@
           <li
             v-for="(filter, index) in sortedCategories"
             :key="index"
-            :class="`category-container flex justify-between overflow-hidden rounded cursor-pointer select-none transition-all filter grayscale bg-gray-700 text-white ${searchCategory.includes(filter) ? 'bg-opacity-70' : !$device.isDesktop ? '' : 'hover:bg-opacity-80'}`"
+            :class="`category-container flex justify-between overflow-hidden rounded cursor-pointer select-none transition-all filter grayscale bg-gray-600 text-white ${searchCategory.includes(filter) ? 'bg-opacity-70' : !$device.isDesktop ? '' : 'hover:bg-gray-700'}`"
             @click="filterSearch(filter)"
           >
             <Input :class="`category-input w-full py-3 px-4 text-sm text-left rounded truncate transition-all ${searchCategory.includes(filter) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter" />
@@ -33,10 +32,10 @@
     </div>
     <transition-group
       tag="ul"
-      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || sliderContainer || carouselContainer || containerContainer ? `${maxPosts} auto-rows-fr` : 'lg:grid-flow-row lg:auto-rows-fr'}`"
+      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || sliderContainer || carouselContainer || containerContainer ? `${maxPosts}` : 'lg:grid-flow-row lg:auto-rows-fr'}`"
       appear
-      enter-active-class="duration-200"
-      leave-active-class="duration-200"
+      enter-active-class="duration-150"
+      leave-active-class="duration-150"
       enter-class="opacity-0"
       leave-to-class="opacity-0"
     >

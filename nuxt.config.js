@@ -92,10 +92,7 @@ export default {
     linkify: true,
     runtime: true,
     typographer: true,
-    breaks: true,
-    use: [
-      'markdown-it-attrs'
-    ]
+    breaks: true
   },
 
   sitemap: {

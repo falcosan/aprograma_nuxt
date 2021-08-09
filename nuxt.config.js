@@ -70,7 +70,6 @@ export default {
       {
         accessToken: process.env.NODE_ENV === 'production' ? process.env.NUXT_ENV_PUBLIC_TOKEN : process.env.NUXT_ENV_PREVIEW_TOKEN,
         cacheProvider: 'memory'
-
       }
     ],
     [
@@ -92,8 +91,14 @@ export default {
     html: true,
     linkify: true,
     runtime: true,
-    typographer: true
+    typographer: true,
+    breaks: true,
+    use: [
+      'markdown-it-div',
+      'markdown-it-attrs'
+    ]
   },
+
   sitemap: {
     hostname: 'https://aprograma.co',
     routes: async () => {
@@ -108,6 +113,7 @@ export default {
       lastmod: new Date()
     }
   },
+
   feed: [
     {
       path: '/feed.xml',
@@ -139,6 +145,7 @@ export default {
       type: 'rss2'
     }
   ],
+
   build: {
     babel: {
       plugins: [

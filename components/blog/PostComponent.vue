@@ -29,7 +29,7 @@
     </div>
     <div class="post-body w-full justify-center rounded" :style="`background-color: ${blok.post_background_color.color};`">
       <ul class="post-categories flex flex-wrap justify-end px-2.5 pt-2.5">
-        <li v-for="(category, index) in blok.categories" :key="index" class="post-category p-2.5 m-2.5 font-extralight rounded shadow-sm filter brightness-90" :style="`background-color: ${blok.post_background_color.color};`">
+        <li v-for="(category, index) in blok.categories" :key="index" class="post-category p-2.5 m-2.5 font-extralight text-sm rounded shadow-sm filter brightness-90" :style="`background-color: ${blok.post_background_color.color};`">
           {{ $languageCase(category.split(', ')[0],category.split(', ')[1],category.split(', ')[2] ) }}
         </li>
       </ul>

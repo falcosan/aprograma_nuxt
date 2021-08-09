@@ -37,15 +37,15 @@
               {{ postContent.intro }}
             </span>
           </div>
-          <div class="teaser-info w-full flex mt-3 italic items-end justify-between">
-            <ul class="teaser-categories flex flex-wrap -m-1.5 pr-2.5">
+          <div class="teaser-info w-full flex flex-col ss:flex-row mt-2.5 italic items-end justify-between">
+            <ul class="teaser-categories flex flex-wrap self-start -m-1.5">
               <li v-for="(category, index) in postContent.categories" :key="index" class="teaser-category text-xs p-2.5 m-1.5 font-extralight rounded shadow-sm filter brightness-95" :style="`background-color: ${postContent.teaser_background_color.color};`">
                 {{ $languageCase(category.split(', ')[0],category.split(', ')[1],category.split(', ')[2] ) }}
               </li>
             </ul>
             <span
               v-if="$route.name === 'blog'"
-              class="teaser-date flex-none text-sm font-medium text-right"
+              class="teaser-date flex-none self-end pt-2.5 pl-2.5 text-sm font-medium text-right"
               v-text="changeDate(postContent.date)"
             />
           </div>

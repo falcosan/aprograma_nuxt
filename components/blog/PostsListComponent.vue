@@ -114,10 +114,10 @@ export default {
       return this.sortedPosts.filter(post => `${post.content.title} ${post.content.intro}`.toLowerCase().includes(this.searchTerm.toLowerCase()))
     },
     filterByCategory () {
-      return this.sortedPosts.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(this.setLanguageCase(postCategory))))
+      return this.sortedPosts.filter(post => post.content.categories.every(postCategory => this.searchCategory.includes(this.setLanguageCase(postCategory))))
     },
     filterBoth () {
-      return this.filterByTerm.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(this.setLanguageCase(postCategory))))
+      return this.filterByTerm.filter(post => post.content.categories.every(postCategory => this.searchCategory.includes(this.setLanguageCase(postCategory))))
     }
   },
   created () {

@@ -130,10 +130,10 @@ export default {
       await this.$store.dispatch('list/posts/addPosts')
     },
     filterSearch (filter) {
-      if (!this.searchCategory.includes(this.setLanguageCase(filter))) {
-        this.searchCategory.push(this.setLanguageCase(filter))
+      if (!this.searchCategory.includes(filter)) {
+        this.searchCategory.push(filter)
       } else {
-        this.searchCategory.splice(this.searchCategory.indexOf(this.setLanguageCase(filter)), 1)
+        this.searchCategory.splice(this.searchCategory.indexOf(filter), 1)
       }
     },
     setLanguageCase (filter) {

@@ -92,7 +92,12 @@ export default {
     html: true,
     linkify: true,
     runtime: true,
-    typographer: true
+    typographer: true,
+    use: [
+      'markdown-it-container',
+      'markdown-it-attrs',
+      'markdown-it-emoji'
+    ]
   },
   sitemap: {
     hostname: 'https://aprograma.co',

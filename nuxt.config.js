@@ -130,6 +130,7 @@ export default {
         dataFilter.forEach((post) => {
           feed.addItem({
             title: post.content.title,
+            image: post.content.file.filename,
             id: post.id,
             link: `https://aprograma.co/blog/${post.slug}`,
             description: post.content.intro,

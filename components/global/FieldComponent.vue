@@ -1,6 +1,6 @@
 <template>
   <div class="field-item relative grid mb-7 rounded" :style="`background-color: ${blok.background_color.color};`">
-    <label :class="`field-label font-extralight pb-5 ${blok.background_color.color ? 'px-5 pt-5' : ''}`" :for="blok.label.toLowerCase().replace(/ /g,'')" :style="`color: ${blok.text_color.color};`">{{ blok.label }} {{ blok.mandatory ? '*' : null }}</label>
+    <label :class="`field-label font-extralight pb-2.5 text-sm ${blok.background_color.color ? 'px-2.5 pt-2.5' : ''}`" :for="blok.label.toLowerCase().replace(/ /g,'')" :style="`color: ${blok.text_color.color};`">{{ blok.label }} {{ blok.mandatory ? '*' : null }}</label>
     <component
       :is="blok.tag"
       :id="`${blok.type}-field`"

@@ -65,9 +65,6 @@ export default {
     }
   },
   modules: [
-    '@nuxtjs/feed',
-    '@nuxtjs/sitemap',
-    '@nuxtjs/markdownit',
     [
       'storyblok-nuxt',
       {
@@ -86,8 +83,31 @@ export default {
           threshold: 10240
         }
       }
-    ]
+    ],
+    '@nuxtjs/markdownit',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/feed'
   ],
+  markdownit: {
+    html: true,
+    linkify: true,
+    runtime: true,
+    typographer: true
+  },
+  sitemap: {
+    hostname: 'https://aprograma.co',
+    routes: async () => {
+      const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
+      const exclude = ['home', 'layout']
+      const include = Object.values(data.links).map(link => !exclude.includes(link.slug) ? link.slug : '')
+      return include.filter(Boolean)
+    },
+    defaults: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmod: new Date()
+    }
+  },
   feed: [
     {
       path: '/feed.xml',
@@ -119,27 +139,6 @@ export default {
       type: 'rss2'
     }
   ],
-  markdownit: {
-    html: true,
-    linkify: true,
-    runtime: true,
-    typographer: true,
-    breaks: true
-  },
-  sitemap: {
-    hostname: 'https://aprograma.co',
-    routes: async () => {
-      const { data } = await axios.get(`https://api.storyblok.com/v2/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
-      const exclude = ['home', 'layout']
-      const include = Object.values(data.links).map(link => !exclude.includes(link.slug) ? link.slug : '')
-      return include.filter(Boolean)
-    },
-    defaults: {
-      changefreq: 'daily',
-      priority: 1,
-      lastmod: new Date()
-    }
-  },
   build: {
     babel: {
       plugins: [

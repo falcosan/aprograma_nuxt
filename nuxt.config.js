@@ -83,10 +83,7 @@ export default {
           threshold: 10240
         }
       }
-    ],
-    '@nuxtjs/markdownit',
-    '@nuxtjs/sitemap',
-    '@nuxtjs/feed'
+    ]
   ],
   markdownit: {
     html: true,
@@ -94,9 +91,8 @@ export default {
     runtime: true,
     typographer: true,
     use: [
-      'markdown-it-container',
-      'markdown-it-attrs',
-      'markdown-it-emoji'
+      'markdown-it-div',
+      'markdown-it-attrs'
     ]
   },
   sitemap: {

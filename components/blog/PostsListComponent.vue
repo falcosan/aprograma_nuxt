@@ -1,25 +1,39 @@
 <template>
-  <div v-if="sortedPosts.length > 0" class="posts">
+  <div v-if="sortedPosts.length > 0" class="posts relative">
+    <div class="absolute flex right-0 cursor-pointer" @click="showCategories">
+      <Input v-if="blok.categories_action" class="bg-transparent mr-2" type="button" :text="$languageCase('Categories' , 'Categorias' , 'Categorie')" />
+      <Icon next tag="span" size="w-2" :class="`pointer-events-none transition ${showFilters ? 'transform -rotate-90' : 'transform rotate-90'}`" />
+    </div>
     <div v-if="blok.search_action" class="post-search grid self-start mb-5">
       <label class="search-label pb-5 font-extralight">{{ $languageCase('Search the post', 'Busca el post', 'Cerca il post') }}</label>
       <input v-model="searchTerm" class="search-bar w-full h-10 p-2 rounded border border-gray-500 text-black bg-gray-50" type="text">
     </div>
-    <div v-if="blok.categories_action" class="post-categories">
-      <ul class="categories-list flex flex-wrap -my-1.5 -mx-2.5 pb-5">
-        <li
-          v-for="(filter, index) in sortedCategories"
-          :key="index"
-          :class="`category-container relative flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer select-none transition-all filter grayscale bg-gray-700 text-white ${searchCategory.includes(filter) ? 'bg-opacity-70' : $device.isDesktop ? 'hover:bg-opacity-80' : ''}`"
-          @click="filterSearch(filter)"
-        >
-          <Input :class="`category-input py-3 px-4 text-sm transition-all ${searchCategory.includes(filter) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter" />
-          <Icon close tag="span" size="w-2" :class="`px-4 pointer-events-none transition ${searchCategory.includes(filter) ? '' : 'transform rotate-45'}`" />
-        </li>
-      </ul>
+    <div v-if="blok.categories_action" class="post-categories relative overflow-hidden">
+      <transition
+        enter-active-class="duration-200"
+        leave-active-class="duration-200"
+        enter-class="opacity-0 transform -translate-y-full absolute"
+        leave-to-class="opacity-0 transform -translate-y-full absolute"
+      >
+        <ul v-if="showFilters" class="categories-list grid grid-cols-fit-tiny auto-cols-fr gap-5">
+          <li
+            v-for="(filter, index) in sortedCategories"
+            :key="index"
+            :class="`category-container flex justify-between overflow-hidden rounded cursor-pointer select-none transition-all filter grayscale bg-gray-700 text-white ${searchCategory.includes(filter) ? 'bg-opacity-70' : $device.isDesktop ? 'hover:bg-opacity-80' : ''}`"
+            @click="filterSearch(filter)"
+          >
+            <Input :class="`category-input w-full py-3 px-4 text-sm text-left transition-all ${searchCategory.includes(filter) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter" />
+            <Icon close tag="span" size="w-2" :class="`px-7 pointer-events-none transition ${searchCategory.includes(filter) ? '' : 'transform rotate-45'}`" />
+          </li>
+          <li class="reset-container overflow-hidden rounded cursor-pointer select-none" @click="searchCategory = []">
+            <Input class="reset-input w-full py-3 px-4 text-sm" type="button" :text="$languageCase('Cancel filters', 'Inizializa filtros', 'Resetta filtri')" />
+          </li>
+        </ul>
+      </transition>
     </div>
     <transition-group
       tag="ul"
-      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || sliderContainer || carouselContainer || containerContainer ? `${maxPosts} auto-rows-fr` : 'lg:grid-flow-row lg:auto-rows-fr'}`"
+      :class="`post-list w-full grid gap-5 auto-cols-fr transition-transform ${blok.row_container || sliderContainer || carouselContainer || containerContainer ? `${maxPosts} auto-rows-fr` : 'lg:grid-flow-row lg:auto-rows-fr'} ${showFilters ? 'transform translate-y-5' : 'translate-y-0'}`"
       appear
       enter-active-class="duration-200"
       leave-active-class="duration-200"
@@ -69,7 +83,8 @@ export default {
   data () {
     return {
       searchTerm: '',
-      searchCategory: []
+      searchCategory: [],
+      showFilters: false
     }
   },
   computed: {
@@ -139,6 +154,10 @@ export default {
     setLanguageCase (filter) {
       const hash = filter.toLowerCase().split(', ').filter(subFilter => subFilter)
       return this.$languageCase(hash[0], hash[1], hash[2])
+    },
+    showCategories () {
+      this.searchCategory = []
+      this.showFilters = !this.showFilters
     }
   }
 }

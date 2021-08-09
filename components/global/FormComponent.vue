@@ -32,7 +32,7 @@
         :field-value.sync="fields[index]"
         :blok="input"
       />
-      <div class="from-controls grid gap-5 grid-cols-fit-small mt-7">
+      <div class="from-controls grid gap-5 grid-cols-fit-tiny mt-7">
         <Input v-for="input in $contentByName(blok.body, 'Input')" :key="input._uid" class="buttons" :blok="input" @resetInput="clearFields" />
       </div>
     </form>

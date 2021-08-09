@@ -118,7 +118,12 @@ export default {
   },
   computed: {
     words () {
-      return this.blok.message[this.typewriterIndex]
+      if (this.blok.message.length > 0) {
+        const texts = this.blok.message[this.typewriterIndex].split(', ').filter(text => text)
+        return this.$languageCase(texts[0], texts[1], texts[2])
+      } else {
+        return ''
+      }
     }
   },
   watch: {
@@ -135,7 +140,7 @@ export default {
       this.expanded = false
     },
     typeText () {
-      if (this.charIndex < this.words.length) {
+      if (this.words && this.charIndex < this.words.length) {
         this.typewriter += this.words.charAt(this.charIndex)
         this.charIndex++
         this.playTypeText = setTimeout(this.typeText, 50)
@@ -146,7 +151,7 @@ export default {
       }
     },
     eraseText () {
-      if (this.charIndex > 0) {
+      if (this.words && this.charIndex > 0) {
         this.typewriter = this.words.substring(0, this.charIndex - 1)
         this.charIndex--
         this.playEraseText = setTimeout(this.eraseText, 50)
@@ -158,14 +163,16 @@ export default {
       }
     },
     restartTypewriter () {
-      clearTimeout(this.playTypeText)
-      clearTimeout(this.playEraseText)
-      this.playTypeText = 0
-      this.playEraseText = 0
-      this.typewriter = ''
-      this.charIndex = 0
-      this.typewriterIndex = 0
-      setTimeout(this.typeText, 400)
+      if (this.words) {
+        clearTimeout(this.playTypeText)
+        clearTimeout(this.playEraseText)
+        this.playTypeText = 0
+        this.playEraseText = 0
+        this.typewriter = ''
+        this.charIndex = 0
+        this.typewriterIndex = 0
+        setTimeout(this.typeText, 400)
+      }
     },
     scrollTop () {
       window.scrollTo({ top: 0, behavior: 'smooth' })

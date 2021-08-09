@@ -1,5 +1,5 @@
 <template>
-  <div class="translate-container">
+  <div class="translate-container font-extralight text-sm">
     <div
       v-if="translateTransition"
       :class="`current-language cursor-pointer ${styleCurrentLanguage}`"

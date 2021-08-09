@@ -5,11 +5,11 @@
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div
-        :class="`teaser-content h-full flex flex-col ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:flex-row lg:h-56'}`"
+        :class="`teaser-content h-full flex flex-col ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:max-h-72 xl:max-h-56 lg:flex-row'}`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
-        <div v-show="!wait" :class="`teaser-file w-full min-h-40 ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? 'h-48 xs:h-56 sm:h-64 md:h-72 lg:h-64 xl:h-80' : sliderContainer || containerContainer || carouselContainer ? 'h-full' : 'h-48 xs:h-56 sm:h-64 md:h-72 lg:h-full lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
+        <div v-show="!wait" :class="`teaser-file w-full h-full max-h-full min-h-40 ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? '' : sliderContainer || containerContainer || carouselContainer ? '' : 'lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'img'"
             :class="`w-full h-full object-center select-none ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
@@ -21,27 +21,34 @@
             @loadeddata="wait = false"
           />
         </div>
-        <Skeleton :class="`w-full min-h-40 ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : sliderContainer || containerContainer || carouselContainer ? 'h-full' : 'h-44 xs:h-56 sm:h-72 md:h-80 lg:h-full lg:w-1/2'}`" :wait="wait" />
-        <div :class="`teaser-text w-full flex flex-col p-5 ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? '' : sliderContainer || carouselContainer || containerContainer ? 'h-32 md:h-36' : 'h-max lg:h-full lg:w-1/2'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <Skeleton :class="`w-full min-h-40 ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? 'h-44 xs:h-56 sm:h-72 lg:h-64 xl:h-80' : 'h-full lg:w-1/2'}`" :wait="wait" />
+        <div :class="`teaser-text h-auto w-full flex flex-col p-5 ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? '' : sliderContainer || carouselContainer || containerContainer ? '' : 'lg:w-1/2'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               :class="`teaser-title mb-2 font-medium overflow-hidden ${$route.name === 'blog' ? 'text-xl sm:text-2xl' : 'text-xl'}`"
-              :style="`-webkit-line-clamp: ${rowContainer || sliderContainer || containerContainer || carouselContainer || $store.state.data.windowWidth < 425 ? '1' : '2'};`"
+              :style="`-webkit-line-clamp: ${rowContainer || sliderContainer || containerContainer || carouselContainer || $store.state.data.windowWidth < 1024 ? '1' : '2'};`"
             >
               {{ postContent.title }}
             </span>
             <span
               class="teaser-intro overflow-hidden"
-              :style="`-webkit-line-clamp: ${rowContainer || sliderContainer || containerContainer || carouselContainer || $store.state.data.windowWidth < 425 ? '2' : '3'};`"
+              :style="`-webkit-line-clamp: ${rowContainer || sliderContainer || containerContainer || carouselContainer || $store.state.data.windowWidth < 1024 ? '2' : '3'};`"
             >
               {{ postContent.intro }}
             </span>
           </div>
-          <span
-            v-if="$route.name === 'blog'"
-            class="text-date w-full mt-3 text-right text-sm font-medium italic"
-            v-text="changeDate(postContent.date)"
-          />
+          <div class="teaser-info w-full flex mt-3 italic items-end justify-between">
+            <ul class="teaser-categories flex flex-wrap -m-1.5 pr-2.5">
+              <li v-for="(category, index) in postContent.categories" :key="index" class="teaser-category text-xs p-2.5 m-1.5 font-extralight rounded shadow-sm filter brightness-95" :style="`background-color: ${postContent.teaser_background_color.color};`">
+                {{ $languageCase(category.split(', ')[0],category.split(', ')[1],category.split(', ')[2] ) }}
+              </li>
+            </ul>
+            <span
+              v-if="$route.name === 'blog'"
+              class="teaser-date flex-none text-sm font-medium text-right"
+              v-text="changeDate(postContent.date)"
+            />
+          </div>
         </div>
       </div>
     </NuxtLink>

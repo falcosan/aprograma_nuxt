@@ -1,32 +1,32 @@
 <template>
   <div v-if="sortedPosts.length > 0" class="posts relative">
-    <div class="absolute flex right-0 cursor-pointer" @click="showCategories">
-      <Input v-if="blok.categories_action" class="bg-transparent mr-2" type="button" :text="$languageCase('Categories' , 'Categorias' , 'Categorie')" />
-      <Icon next tag="span" size="w-2" :class="`pointer-events-none transition ${showFilters ? 'transform -rotate-90' : 'transform rotate-90'}`" />
-    </div>
     <div v-if="blok.search_action" class="post-search grid self-start mb-5">
       <label class="search-label pb-5 font-extralight">{{ $languageCase('Search the post', 'Busca el post', 'Cerca il post') }}</label>
       <input v-model="searchTerm" class="search-bar w-full h-10 p-2 rounded border border-gray-500 text-black bg-gray-50" type="text">
     </div>
-    <div v-if="blok.categories_action" class="post-categories relative overflow-hidden">
+    <div v-if="blok.categories_action" class="post-categories grid relative overflow-hidden">
+      <div class="show-categories w-max flex justify-self-end row-start-2 row-end-1 cursor-pointer mb-5" @click="showCategories">
+        <Input class="input-show mr-2 bg-transparent" type="button" :text="$languageCase('Categories' , 'Categorías' , 'Categorie')" />
+        <Icon next class="pointer-events-none rounded bg-gray-200" tag="span" :size="`w-6 px-2 py-1 transition ${showFilters ? 'transform -rotate-90' : 'transform rotate-90'}`" />
+      </div>
       <transition
-        enter-active-class="duration-200"
-        leave-active-class="duration-200"
-        enter-class="opacity-0 transform -translate-y-full absolute"
-        leave-to-class="opacity-0 transform -translate-y-full absolute"
+        enter-active-class="duration-150"
+        leave-active-class="duration-150"
+        enter-class="opacity-0 transform translate-y-full"
+        leave-to-class="absolute"
       >
-        <ul v-if="showFilters" class="categories-list grid grid-cols-fit-tiny auto-cols-fr gap-5">
+        <ul v-if="showFilters" class="categories-list grid grid-cols-fit-small row-start-2 row-end-auto auto-cols-fr gap-5">
           <li
             v-for="(filter, index) in sortedCategories"
             :key="index"
-            :class="`category-container flex justify-between overflow-hidden rounded cursor-pointer select-none transition-all filter grayscale bg-gray-700 text-white ${searchCategory.includes(filter) ? 'bg-opacity-70' : $device.isDesktop ? 'hover:bg-opacity-80' : ''}`"
+            :class="`category-container flex justify-between overflow-hidden rounded cursor-pointer select-none transition-all filter grayscale bg-gray-700 text-white ${searchCategory.includes(filter) ? 'bg-opacity-70' : !$device.isDesktop ? '' : 'hover:bg-opacity-80'}`"
             @click="filterSearch(filter)"
           >
-            <Input :class="`category-input w-full py-3 px-4 text-sm text-left transition-all ${searchCategory.includes(filter) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter" />
-            <Icon close tag="span" size="w-2" :class="`px-7 pointer-events-none transition ${searchCategory.includes(filter) ? '' : 'transform rotate-45'}`" />
+            <Input :class="`category-input w-full py-3 px-4 text-sm text-left truncate transition-all ${searchCategory.includes(filter) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter" />
+            <Icon close tag="span" size="w-2" :class="`px-4 sm:px-5 pointer-events-none transition ${searchCategory.includes(filter) ? '' : 'transform rotate-45'}`" />
           </li>
           <li class="reset-container overflow-hidden rounded cursor-pointer select-none" @click="searchCategory = []">
-            <Input class="reset-input w-full py-3 px-4 text-sm" type="button" :text="$languageCase('Cancel filters', 'Inizializa filtros', 'Resetta filtri')" />
+            <Input :class="`reset-input w-full py-3 px-4 text-sm transition bg-gray-200 ${!$device.isDesktop ? '' : 'hover:bg-gray-300'}`" type="button" :text="$languageCase('Clear filters', 'Borrar filtros', 'Rimuovi filtri')" />
           </li>
         </ul>
       </transition>

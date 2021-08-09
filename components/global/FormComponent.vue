@@ -14,7 +14,7 @@
       </template>
     </Modal>
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full opacity-0" leave-to-class="-translate-y-full opacity-0">
-      <div v-if="alert.message" :class="`form-alert fixed w-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl left-1/2 top-10 z-30 p-2.5 transform -translate-x-1/2 text-center text-sm font-extralight transform rounded-b bg-opacity-80 text-white ${!$device.isDesktop ? '' : 'md:absolute md:left-0 md:top-0 md:translate-x-0 md:rounded'} ${alert.color}`" v-text="alert.message" />
+      <div v-if="alert.message" v-click-outside="removeAlert" :class="`form-alert fixed w-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl left-1/2 top-10 z-30 p-4 transform -translate-x-1/2 text-center text-sm font-extralight transform rounded-b bg-opacity-80 text-white ${!$device.isDesktop ? '' : 'md:absolute md:left-0 md:top-0 md:translate-x-0 md:rounded'} ${alert.color}`" v-text="alert.message" />
     </transition>
     <h2 v-if="blok.title" :class="`form-title mb-5 text-4xl`">
       {{ blok.title }}
@@ -41,9 +41,25 @@
 
 <script>
 import axios from 'axios'
-import Field from './FieldComponent'
 export default {
-  components: { Field },
+  directives: {
+    'click-outside': {
+      bind (el, binding) {
+        const handler = (e) => {
+          if (binding.modifiers.bubble || (!el.contains(e.target) && el !== e.target)) {
+            binding.value(e)
+          }
+        }
+        el.outsideClick = handler
+        document.addEventListener('click', handler)
+      },
+
+      unbind (el) {
+        document.removeEventListener('click', el.outsideClick)
+        el.outsideClick = null
+      }
+    }
+  },
   props: {
     blok: {
       type: Object,

@@ -9,11 +9,11 @@
         <li
           v-for="(filter, index) in sortedCategories"
           :key="index"
-          :class="`category-container relative flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer select-none transition-all filter grayscale bg-gray-700 text-white ${searchCategory.includes(setLanguageCase(filter)) ? 'bg-opacity-70' : $device.isDesktop ? 'hover:bg-opacity-80' : ''}`"
+          :class="`category-container relative flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer select-none transition-all filter grayscale bg-gray-700 text-white ${searchCategory.includes(filter) ? 'bg-opacity-70' : $device.isDesktop ? 'hover:bg-opacity-80' : ''}`"
           @click="filterSearch(filter)"
         >
-          <Input :class="`category-input py-3 px-4 text-sm transition-all ${searchCategory.includes(setLanguageCase(filter)) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="setLanguageCase(filter)" />
-          <Icon close tag="span" size="w-2" :class="`px-4 pointer-events-none transition ${searchCategory.includes(setLanguageCase(filter)) ? '' : 'transform rotate-45'}`" />
+          <Input :class="`category-input py-3 px-4 text-sm transition-all ${searchCategory.includes(filter) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter" />
+          <Icon close tag="span" size="w-2" :class="`px-4 pointer-events-none transition ${searchCategory.includes(filter) ? '' : 'transform rotate-45'}`" />
         </li>
       </ul>
     </div>
@@ -97,7 +97,7 @@ export default {
       return featuredPosts
     },
     sortedCategories () {
-      return this.blok.categories.map(category => category).sort()
+      return this.blok.categories.map(category => category.toLowerCase().split(', ')[this.$languageCase(0, 1, 2)]).sort()
     },
     searchQuery () {
       if (this.searchTerm && this.blok.search_action && (!this.blok.categories_action || this.searchCategory.length === 0)) {

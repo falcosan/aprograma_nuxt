@@ -7,7 +7,7 @@
     <div v-if="blok.categories_action" class="post-categories">
       <ul class="categories-list flex flex-wrap -my-1.5 -mx-2.5 pb-5">
         <li
-          v-for="(filter, index) in blok.categories"
+          v-for="(filter, index) in sortedCategories"
           :key="index"
           :class="`category-container relative flex my-1.5 mx-2.5 overflow-hidden rounded cursor-pointer select-none transition-all filter grayscale bg-gray-700 text-white ${searchCategory.includes(setLanguageCase(filter)) ? 'bg-opacity-70' : $device.isDesktop ? 'hover:bg-opacity-80' : ''}`"
           @click="filterSearch(filter)"
@@ -95,6 +95,9 @@ export default {
         return this.blok.posts.indexOf(a.uuid) - this.blok.posts.indexOf(b.uuid)
       })
       return featuredPosts
+    },
+    sortedCategories () {
+      return this.blok.categories.map(category => category).sort()
     },
     searchQuery () {
       if (this.searchTerm && this.blok.search_action && (!this.blok.categories_action || this.searchCategory.length === 0)) {

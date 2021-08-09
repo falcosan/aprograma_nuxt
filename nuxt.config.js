@@ -112,28 +112,22 @@ export default {
           link: 'https://aprograma.co/feed.xml',
           description: 'Aprograma Blog RSS'
         }
-        feed.addCategory('Nuxt.js')
+        feed.addCategory('Blog')
         feed.addContributor({
           name: 'Daniele Falchetti',
           email: 'danielefalche@gmail.com',
           link: 'https://aprograma.co/'
         })
-        const { data } = await axios.get(
-              `https://api.storyblok.com/v2/cdn/stories?starts_with=blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`
-        )
-        data.stories.forEach((post) => {
-          const url = `https://aprograma.co/blog/${post.slug}`
+        const { data } = await axios.get(`https://api.storyblok.com/v2/cdn/stories?starts_with=blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
+        const dataFilter = data.stories.filter(filteredPost => filteredPost.name.toLowerCase() !== 'blog')
+        dataFilter.forEach((post) => {
           feed.addItem({
             title: post.content.title,
-            id: url,
-            link: url,
+            id: post.id,
+            link: `https://aprograma.co/blog/${post.slug}`,
             description: post.content.intro,
-            published: new Date(post.content.date),
-            author: [
-              {
-                name: post.content.author
-              }
-            ]
+            content: post.content,
+            published: new Date(post.content.date)
           })
         })
       },

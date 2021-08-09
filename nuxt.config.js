@@ -124,11 +124,7 @@ export default {
     linkify: true,
     runtime: true,
     typographer: true,
-    breaks: true,
-    use: [
-      'markdown-it-div',
-      'markdown-it-attrs'
-    ]
+    breaks: true
   },
   sitemap: {
     hostname: 'https://aprograma.co',

@@ -15,14 +15,14 @@
         enter-class="opacity-0 transform translate-y-full"
         leave-to-class="absolute"
       >
-        <ul v-if="showFilters" class="categories-list grid grid-cols-fit-small row-start-2 row-end-auto auto-cols-fr gap-5">
+        <ul v-if="showFilters" class="categories-list grid grid-cols-fit-small row-start-2 row-end-auto auto-cols-fr gap-5 mb-5">
           <li
             v-for="(filter, index) in sortedCategories"
             :key="index"
             :class="`category-container flex justify-between overflow-hidden rounded cursor-pointer select-none transition-all filter grayscale bg-gray-700 text-white ${searchCategory.includes(filter) ? 'bg-opacity-70' : !$device.isDesktop ? '' : 'hover:bg-opacity-80'}`"
             @click="filterSearch(filter)"
           >
-            <Input :class="`category-input w-full py-3 px-4 text-sm text-left truncate transition-all ${searchCategory.includes(filter) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter" />
+            <Input :class="`category-input w-full py-3 px-4 text-sm text-left rounded truncate transition-all ${searchCategory.includes(filter) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter" />
             <Icon close tag="span" size="w-2" :class="`px-4 sm:px-5 pointer-events-none transition ${searchCategory.includes(filter) ? '' : 'transform rotate-45'}`" />
           </li>
           <li class="reset-container overflow-hidden rounded cursor-pointer select-none" @click="searchCategory = []">
@@ -33,7 +33,7 @@
     </div>
     <transition-group
       tag="ul"
-      :class="`post-list w-full grid gap-5 auto-cols-fr transition-transform ${blok.row_container || sliderContainer || carouselContainer || containerContainer ? `${maxPosts} auto-rows-fr` : 'lg:grid-flow-row lg:auto-rows-fr'} ${showFilters ? 'transform translate-y-5' : 'translate-y-0'}`"
+      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || sliderContainer || carouselContainer || containerContainer ? `${maxPosts} auto-rows-fr` : 'lg:grid-flow-row lg:auto-rows-fr'}`"
       appear
       enter-active-class="duration-200"
       leave-active-class="duration-200"

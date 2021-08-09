@@ -101,39 +101,51 @@ export default {
       const exclude = ['home', 'layout']
       const include = Object.values(data.links).map(link => !exclude.includes(link.slug) ? link.slug : '')
       return include.filter(Boolean)
-    },
-    feed: [
-      {
-        path: '/feed.xml',
-        async create (feed) {
-          const posts = await axios.get(
-              `https://api.storyblok.com/v2/cdn/stories?starts_with=blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`
-          )
-          posts.data.stories.forEach((post) => {
-            const url = `https://aprograma.co/blog/${post.slug}`
-            feed.addItem({
-              title: post.content.title,
-              id: url,
-              link: url,
-              description: post.content.intro,
-              published: new Date(post.content.date),
-              author: [
-                {
-                  name: post.content.author
-                }
-              ]
-            })
-          })
-        },
-        cacheTime: 1000 * 60 * 15,
-        type: 'rss2'
-      }
-    ],
-    defaults: {
-      changefreq: 'daily',
-      priority: 1,
-      lastmod: new Date()
     }
+  },
+  feed: [
+    {
+      path: '/feed.xml',
+      async create (feed) {
+        feed.options = {
+          title: 'Aprograma Blog',
+          link: 'https://aprograma.co/feed.xml',
+          description: 'Aprograma Blog RSS'
+        }
+        feed.addCategory('Nuxt.js')
+        feed.addContributor({
+          name: 'Daniele Falchetti',
+          email: 'danielefalche@gmail.com',
+          link: 'https://aprograma.co/'
+        })
+        const { data } = await axios.get(
+              `https://api.storyblok.com/v2/cdn/stories?starts_with=blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`
+        )
+        data.stories.forEach((post) => {
+          const url = `https://aprograma.co/blog/${post.slug}`
+          feed.addItem({
+            title: post.content.title,
+            id: url,
+            link: url,
+            description: post.content.intro,
+            published: new Date(post.content.date),
+            author: [
+              {
+                name: post.content.author
+              }
+            ]
+          })
+        })
+      },
+      cacheTime: 1000 * 60 * 15,
+      type: 'rss2'
+    }
+  ],
+  defaults: {
+    changefreq: 'daily',
+    priority: 1,
+    lastmod: new Date()
+
   },
   build: {
     babel: {

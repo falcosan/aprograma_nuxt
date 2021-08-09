@@ -133,6 +133,7 @@ export default {
             id: post.id,
             link: `https://aprograma.co/blog/${post.slug}`,
             description: post.content.intro,
+            content: post.content.long_text,
             published: new Date(post.content.date)
           })
         })

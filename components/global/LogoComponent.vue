@@ -68,7 +68,16 @@ export default {
       moved: {
         a: '',
         p: ''
-      }
+      },
+      route: '',
+      loading: false,
+      loadingTimer: 0
+    }
+  },
+  watch: {
+    '$nuxt.isFetching' () { this.setLoading() },
+    $route (route) {
+      this.route = route.name
     }
   },
   methods: {
@@ -81,7 +90,30 @@ export default {
         this.moved.a = ''
         this.$store.commit('data/moveMutation', false)
       }
+    },
+    setLoading () {
+      if (this.transition && this.$nuxt.isFetching && this.route) {
+        clearTimeout(this.loadingTimer)
+        this.play()
+      } else {
+        this.loadingTimer = setTimeout(() => { this.loading = false }, 200)
+      }
     }
   }
 }
 </script>
+<style scoped>
+.logo-spin{
+  filter: blur(1px);
+  animation: spinning 0.5s infinite linear;
+}
+
+@keyframes spinning {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+</style>

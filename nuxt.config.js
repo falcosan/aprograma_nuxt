@@ -30,7 +30,6 @@ export default {
       }
     ]
   },
-  loading: '~/components/layout/LoadingComponent.vue',
   plugins: [
     '~/plugins/injects',
     '~/plugins/components',

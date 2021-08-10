@@ -31,7 +31,7 @@
       <div class="post-article w-full max-w-prose prose-sm lg:prose-lg py-7 lg:py-14 px-5 mx-auto my-0">
         <h3
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-intro font-extralight"
+          class="post-intro"
           v-text="blok.intro"
         />
         <p

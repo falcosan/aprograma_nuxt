@@ -44,7 +44,7 @@
         <div
           :class="`footer-info grid gap-y-1.5 justify-self-center whitespace-nowrap text-center ${$themeColor(blok.background_color.color) ? 'text-white' : ''}`"
         >
-          <span class="footer-copyright text-sm"> © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span>
+          <span class="footer-copyright text-sm"> © All rights are reserved | 2020 - {{ currentYear }}, <strong>Aprograma</strong></span>
           <span class="footer-powered text-xs">&#60; {{ $languageCase('powered by', 'creado con', 'creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span><span class="nuxtjs-emoji"> 💚</span></a> / &nbsp;{{ $languageCase('hosted by', 'alojado con', 'distribuito da') }} <a class="netlify-link" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"><span class="netlify underline">Netlify</span></a> &#62;</span>
         </div>
         <ul
@@ -77,7 +77,7 @@
         </span>
       </div>
       <div class="footer-info grid gap-y-1.5">
-        <span class="footer-copyright text-sm"> © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span>
+        <span class="footer-copyright text-sm"> © All rights are reserved | 2020 - {{ currentYear }}, <strong>Aprograma</strong></span>
         <span class="footer-powered text-xs">&#60; {{ $languageCase('powered by', 'creado con', 'creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span><span class="nuxtjs-emoji"> 💚</span></a> / &nbsp;{{ $languageCase('hosted by', 'alojado con', 'distribuito da') }} <a class="netlify-link" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"><span class="netlify underline">Netlify</span></a> &#62;</span>
       </div>
 

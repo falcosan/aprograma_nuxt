@@ -6,7 +6,7 @@
     <nav class="navbar">
       <div class="menu-wrapper h-0 grid grid-flow-col-dense justify-between">
         <div class="logo-home relative w-20 h-20 z-20">
-          <Link icon-item class="home-link flex items-center justify-center transition-shadow duration-300 rounded-br bg-white" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
+          <Link icon-item class="home-link flex items-center justify-center transition-shadow duration-300 rounded-br" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
             <template #icon>
               <Logo
                 transition
@@ -16,16 +16,16 @@
           </Link>
         </div>
         <transition enter-active-class="duration-300" leave-active-class="duration-300" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
-          <div v-if="expanded" :class="`menu-expanded h-10 max-w-sm xs:max-w-md sm:max-w-lg md:max-w-md lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl w-full grid grid-flow-col overflow-hidden transform opacity-80 ${!$device.isDesktop ? '' : 'hover:opacity-100 transition-all'} ${topPosition ? 'translate-y-2 rounded' : 'rounded-b'}`">
-            <ul class="link-list grid grid-flow-col auto-cols-fr" :style="`background-color: ${blok.background_color.color};`">
-              <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu hover:bg-gray-300">
+          <div v-if="expanded" :class="`menu-expanded h-14 w-lg grid grid-flow-col gap-5 p-2.5 overflow-hidden transform opacity-80 transition bg-white ${topPosition ? 'translate-y-2 rounded' : 'rounded-b'}`">
+            <ul class="link-list grid grid-flow-col auto-cols-fr">
+              <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu w-20 rounded hover:bg-gray-200">
                 <Link class="flex items-center justify-center py-2 px-3 text-sm font-extralight truncate" :blok="item" />
               </li>
             </ul>
             <Translate
-              class="translate-header grid h-full text-sm font-extralight filter grayscale text-white"
+              class="translate-header grid h-full"
               style-translate-list="grid grid-flow-col auto-cols-fr"
-              style-translate-item="w-full flex items-center justify-center py-2 px-3 text-center bg-gray-800 hover:bg-gray-600"
+              style-translate-item="w-full flex items-center justify-center py-2 px-3 text-center"
               :blok="$contentByName(blok.body, 'Translate')"
             />
           </div>

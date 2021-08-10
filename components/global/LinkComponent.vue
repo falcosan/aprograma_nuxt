@@ -3,14 +3,14 @@
     :is="blok.external_link ? 'a' : 'NuxtLink'"
     v-if="blok"
     :class="`item-link h-full cursor-pointer ${sliderMode || carouselMode || containerMode ? 'flex items-center justify-center self-center' : 'block'}`"
-    :active-class="blok.external_link ? '' : !iconItem && !blok.icon_item ? 'filter invert grayscale bg-gray-500' : 'filter invert grayscale bg-gray-300'"
+    :active-class="blok.external_link ? '' : !iconItem && !blok.icon_item ? 'font-medium' : 'filter invert grayscale bg-gray-300'"
     :to="blok.external_link ? '' : blok.path"
     :href="blok.external_link ? blok.path : ''"
     :rel="blok.external_link ? 'noopener noreferrer' : ''"
     :target="blok.external_link ? '_blank' : ''"
     :title="blok.title && blok.icon_item ? blok.title : ''"
   >
-    <span v-if="blok.title && !iconItem && !blok.icon_item" class="item-text break-words font-extralight" :style="`color: ${blok.text_color.color};`">
+    <span v-if="blok.title && !iconItem && !blok.icon_item" class="item-text break-words" :style="`color: ${blok.text_color.color};`">
       {{ blok.title }}
     </span>
     <Icon
@@ -28,15 +28,15 @@
     :is="externalLink ? 'a' : 'NuxtLink'"
     v-else
     :class="`item-link h-full cursor-pointer ${sliderMode || carouselMode || containerMode ? 'flex items-center justify-center self-center' : 'block'}`"
-    :active-class="active === 'active' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : ''"
-    :exact-active-class="active === 'exact' ? !iconItem ? 'filter invert grayscale bg-gray-600' : 'filter invert grayscale bg-gray-300' : ''"
+    :active-class="active === 'active' ? !iconItem ? 'font-medium' : 'filter invert grayscale bg-gray-300' : ''"
+    :exact-active-class="active === 'exact' ? !iconItem ? 'font-medium' : 'filter invert grayscale bg-gray-300' : ''"
     :to="externalLink ? '' : to"
     :href="externalLink ? to : ''"
     :rel="externalLink ? 'noopener noreferrer' : ''"
     :target="externalLink ? '_blank' : ''"
     :title="title && iconItem ? title : ''"
   >
-    <span v-if="title && !iconItem" class="item-text break-words font-extralight">{{ title }}</span>
+    <span v-if="title && !iconItem" class="item-text break-words">{{ title }}</span>
     <slot v-else name="icon" />
   </component>
 </template>

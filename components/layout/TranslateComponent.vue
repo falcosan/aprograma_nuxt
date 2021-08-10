@@ -1,8 +1,8 @@
 <template>
-  <div class="translate-container font-extralight text-sm">
+  <div class="translate-container text-sm">
     <div
       v-if="translateTransition"
-      :class="`current-language cursor-pointer ${styleCurrentLanguage}`"
+      :class="`current-language cursor-pointer font-extralight ${styleCurrentLanguage}`"
       @click="$emit('currentLangAction')"
     >
       <template v-for="selector in blok">
@@ -18,7 +18,7 @@
         <li
           v-if="translateTransition ? cutLanguage(language) !== $store.state.language.language && $store.state.language.language !== '' || cutLanguage(language) !== 'en' && $store.state.language.language === '' : true"
           :key="language._uid"
-          :class="`translate-item cursor-pointer ${styleTranslateItem} ${!translateTransition && (cutLanguage(language) === $store.state.language.language || cutLanguage(language) === 'en' && $store.state.language.language === '') ? 'underline' : ''}`"
+          :class="`translate-item rounded cursor-pointer ${styleTranslateItem} ${!translateTransition && (cutLanguage(language) === $store.state.language.language || cutLanguage(language) === 'en' && $store.state.language.language === '') ? 'bg-gray-500 text-white' : 'font-extralight'}`"
           @click="changeLanguage(language.language); $emit('translateListAction')"
         >
           <span

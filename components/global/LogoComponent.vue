@@ -68,16 +68,12 @@ export default {
       moved: {
         a: '',
         p: ''
-      },
-      route: '',
-      loading: false,
-      loadingTimer: 0
+      }
     }
   },
   watch: {
-    '$nuxt.isFetching' () { this.setLoading() },
-    $route (route) {
-      this.route = route.name
+    $route () {
+      this.play()
     }
   },
   methods: {
@@ -89,14 +85,6 @@ export default {
         this.moved.p = ''
         this.moved.a = ''
         this.$store.commit('data/moveMutation', false)
-      }
-    },
-    setLoading () {
-      if (this.transition && this.$nuxt.isFetching && this.route) {
-        clearTimeout(this.loadingTimer)
-        this.play()
-      } else {
-        this.loadingTimer = setTimeout(() => { this.loading = false }, 200)
       }
     }
   }

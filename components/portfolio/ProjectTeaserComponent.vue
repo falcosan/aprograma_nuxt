@@ -7,21 +7,20 @@
       <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
         <img
           v-show="!wait"
-          :class="`project-image w-full h-60 max-h-96 object-cover object-center select-none rounded-t ${rowContainer && !sliderContainer && !containerContainer ? 'sm:h-72 md:h-60 lg:h-80 xl:h-96 2xl:h-sm' : 'sm:h-full'}`"
+          class="project-image w-full h-60 sm:h-52 md:h-60 lg:h-80 xl:h-96 2xl:h-sm max-h-96 object-cover object-center select-none rounded-t"
           width="100%"
           height="100%"
           :src="projectContent.image.filename"
           :alt="projectContent.image.alt"
           @load="wait = false"
         >
-        <Skeleton :class="`project-image w-full h-60 max-h-96 ${rowContainer && !sliderContainer && !containerContainer ? 'sm:h-72 md:h-60 lg:h-80 xl:h-96 2xl:h-sm' : 'sm:h-full'}`" :wait="wait" />
+        <Skeleton class="project-image w-full h-60 sm:h-52 md:h-60 lg:h-80 xl:h-96 2xl:h-sm max-h-96" :wait="wait" />
         <div
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
           :class="`title-container flex flex-row flex-wrap items-center p-5 ${rowContainer || containerContainer || sliderContainer? '' : 'h-16'}`"
         >
           <span
             class="teaser-title min-w-0 overflow-hidden"
-            :style="`-webkit-line-clamp: 1`"
           > {{ projectContent.title }}</span>
         </div>
       </div>
@@ -69,6 +68,7 @@ export default {
 
 .teaser-title{
   display: -webkit-box;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
 </style>

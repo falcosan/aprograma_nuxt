@@ -51,7 +51,7 @@
           v-text="changeDate(blok.date)"
         />
       </div>
-      <ul class="post-categories flex flex-wrap -m-1.5 md:-m-2.5 pb-5 px-5">
+      <ul class="post-categories flex flex-wrap -m-1.5 md:-m-2.5 pb-2.5 px-5">
         <li v-for="(category, index) in sortedCategories" :key="index" :class="`post-category m-1.5 md:m-2.5 p-2.5 text-center font-extralight text-sm rounded shadow-sm italic filter brightness-90 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${blok.post_background_color.color};`">
           {{ category }}
         </li>

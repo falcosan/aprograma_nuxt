@@ -32,12 +32,11 @@
             </span>
             <span
               class="teaser-intro overflow-hidden"
-              :style="`-webkit-line-clamp: ${rowContainer || sliderContainer || containerContainer || carouselContainer || $store.state.data.windowWidth < 1024 ? '2' : '3'};`"
             >
               {{ postContent.intro }}
             </span>
           </div>
-          <div :class="`teaser-info w-full flex flex-col ss:flex-row mt-2.5 italic items-end ${$route.name === 'blog' ? 'justify-between' : 'justify-end'}`">
+          <div :class="`teaser-info w-full flex flex-col xx:flex-row mt-5 italic items-end ${$route.name === 'blog' ? 'justify-between' : 'justify-end'}`">
             <ul class="teaser-categories flex flex-wrap self-start -m-1.5">
               <li v-for="(category, index) in postContent.categories" :key="index" :class="`teaser-category text-xs p-2.5 m-1.5 font-extralight rounded shadow-sm filter brightness-95 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${postContent.teaser_background_color.color};`">
                 {{ $languageCase(category.split(', ')[0],category.split(', ')[1],category.split(', ')[2] ) }}
@@ -120,8 +119,12 @@ export default {
 }
 </script>
 <style scoped>
-
-.teaser-title, .teaser-intro{
+.teaser-intro{
+  display: -webkit-box;
+  -webkit-line-clamp:  2;
+  -webkit-box-orient: vertical;
+}
+.teaser-title{
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }

@@ -14,7 +14,7 @@
         enter-class="opacity-0 transform translate-y-full"
         leave-to-class="absolute"
       >
-        <ul v-if="showFilters" class="categories-list grid grid-cols-fit-tiny row-start-2 row-end-auto auto-cols-fr gap-5 mb-5">
+        <ul v-if="showFilters" class="categories-list grid grid-cols-fill-tiny row-start-2 row-end-auto auto-cols-fr gap-5 mb-5">
           <li
             v-for="(filter, index) in sortedCategories"
             :key="index"

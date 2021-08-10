@@ -36,7 +36,7 @@
         />
         <h4
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-author py-3 border-b-2 border-dotted font-medium italic"
+          class="post-author py-3 font-medium italic"
         >
           {{ $languageCase('by', 'de', 'di') }} {{ blok.author ? blok.author : $languageCase('Anonymous', 'Anónimo', 'Anonimo') }}
         </h4>

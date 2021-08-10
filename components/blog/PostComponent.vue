@@ -29,30 +29,30 @@
     </div>
     <div class="post-body w-full justify-center rounded" :style="`background-color: ${blok.post_background_color.color};`">
       <div class="post-article w-full max-w-prose prose-sm lg:prose-lg py-7 lg:py-14 px-5 mx-auto my-0">
-        <h2
+        <h3
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-intro"
+          class="post-intro font-extralight"
           v-text="blok.intro"
         />
-        <h4
+        <p
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-author py-3 font-medium italic"
+          class="post-author italic underline font-medium text-sm"
         >
           {{ $languageCase('by', 'de', 'di') }} {{ blok.author ? blok.author : $languageCase('Anonymous', 'Anónimo', 'Anonimo') }}
-        </h4>
+        </p>
         <article
           :style="`color: ${blok.post_text_color.color};`"
           class="post-article block"
           v-html="$md.render(blok.long_text)"
         />
-        <h5
+        <p
           :style="`color: ${blok.post_text_color.color};`"
-          :class="`post-date text-right ${blok.long_text ? 'pt-5 border-t-2 border-dotted' : ''}`"
+          class="post-date text-right"
           v-text="changeDate(blok.date)"
         />
       </div>
-      <ul class="post-categories flex flex-wrap pb-2.5 pl-2.5">
-        <li v-for="(category, index) in blok.categories" :key="index" :class="`post-category p-2.5 m-2.5 font-extralight text-sm rounded shadow-sm filter brightness-90 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${blok.post_background_color.color};`">
+      <ul class="post-categories grid grid-cols-fill-tiny gap-5 pb-5 px-5">
+        <li v-for="(category, index) in blok.categories" :key="index" :class="`post-category p-2.5 text-center font-extralight text-sm rounded shadow-sm italic filter brightness-90 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${blok.post_background_color.color};`">
           {{ $languageCase(category.split(', ')[0],category.split(', ')[1],category.split(', ')[2] ) }}
         </li>
       </ul>

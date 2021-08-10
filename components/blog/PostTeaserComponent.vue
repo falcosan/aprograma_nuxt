@@ -25,7 +25,7 @@
         <div :class="`teaser-text h-auto w-full flex flex-col p-5 ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? '' : sliderContainer || carouselContainer || containerContainer ? '' : 'lg:w-1/2'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
-              :class="`teaser-title mb-2 font-medium overflow-hidden ${$route.name === 'blog' ? 'text-xl sm:text-2xl' : 'text-xl'}`"
+              :class="`teaser-title mb-2 overflow-hidden ${$route.name === 'blog' ? 'text-xl sm:text-2xl' : 'text-xl'}`"
               :style="`-webkit-line-clamp: ${rowContainer || sliderContainer || containerContainer || carouselContainer || $store.state.data.windowWidth < 1024 ? '1' : '2'};`"
             >
               {{ postContent.title }}

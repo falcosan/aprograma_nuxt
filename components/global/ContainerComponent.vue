@@ -166,40 +166,40 @@ export default {
     defaultMax () {
       if (this.fullWidth >= 1239) {
         return this.$rangeItems((this.elements.length - 1), 5)
-      } else if (this.fullWidth >= 984) {
+      } else if (this.fullWidth >= 983) {
         return this.$rangeItems((this.elements.length - 1), 4)
-      } else if (this.fullWidth >= 728) {
+      } else if (this.fullWidth >= 727) {
         return this.$rangeItems((this.elements.length - 1), 3)
-      } return this.fullWidth >= 536 ? this.$rangeItems((this.elements.length - 1), 2) : 1
+      } return this.fullWidth >= 535 ? this.$rangeItems((this.elements.length - 1), 2) : 1
     },
     maxElements () {
       if (this.blok.slider_mode && this.elements.length > 1) {
         if (this.max && this.max <= this.defaultMax) {
           if (this.fullWidth >= 1239) {
             return this.$rangeItems(this.max, 5)
-          } else if (this.fullWidth >= 984) {
+          } else if (this.fullWidth >= 983) {
             return this.$rangeItems(this.max, 4)
-          } else if (this.fullWidth >= 728) {
+          } else if (this.fullWidth >= 727) {
             return this.$rangeItems(this.max, 3)
-          } return this.fullWidth >= 536 ? this.$rangeItems(this.max, 2) : 1
+          } return this.fullWidth >= 535 ? this.$rangeItems(this.max, 2) : 1
         } else {
           if (this.fullWidth >= 1239) {
             return this.$rangeItems(this.defaultMax, 5)
-          } else if (this.fullWidth >= 984) {
+          } else if (this.fullWidth >= 983) {
             return this.$rangeItems(this.defaultMax, 4)
-          } else if (this.fullWidth >= 728) {
+          } else if (this.fullWidth >= 727) {
             return this.$rangeItems(this.defaultMax, 3)
-          } return this.fullWidth >= 536 ? this.$rangeItems(this.defaultMax, 2) : 1
+          } return this.fullWidth >= 535 ? this.$rangeItems(this.defaultMax, 2) : 1
         }
       }
       if (this.columnSet && !this.blok.slider_mode) {
         if (this.fullWidth + (this.spaceFix * this.$rangeItems(this.defaultMax, 3)) >= 1239) {
           return this.$rangeItems(this.columnSet, 3)
-        } return this.fullWidth + (this.spaceFix * this.$rangeItems(this.defaultMax, 3)) >= 536 ? this.$rangeItems(this.columnSet, 2) : 1
+        } return this.fullWidth + (this.spaceFix * this.$rangeItems(this.defaultMax, 3)) >= 535 ? this.$rangeItems(this.columnSet, 2) : 1
       } else {
         if (this.fullWidth >= 1239) {
           return this.$rangeItems(this.rowComponent.length, 3)
-        } return this.fullWidth >= 536 ? this.$rangeItems(this.rowComponent.length, 2) : 1
+        } return this.fullWidth >= 535 ? this.$rangeItems(this.rowComponent.length, 2) : 1
       }
     }
   },

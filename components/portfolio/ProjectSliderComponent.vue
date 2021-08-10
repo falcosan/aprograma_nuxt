@@ -150,11 +150,9 @@ export default {
 }
 </script>
 <style scoped>
-
 .project-text{
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
-
 </style>

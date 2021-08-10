@@ -21,7 +21,7 @@
             @loadeddata="wait = false"
           />
         </div>
-        <Skeleton :class="`w-full h-48 xs:h-52 sm:h-56 lg:h-72 xl:h-56 max-h-full ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:w-1/2'}`" :wait="wait" />
+        <Skeleton :class="`w-full h-48 xx:h-56 lg:h-72 xl:h-56 max-h-full ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:w-1/2'}`" :wait="wait" />
         <div :class="`teaser-text h-auto w-full flex flex-col p-5 ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? '' : sliderContainer || carouselContainer || containerContainer ? '' : 'lg:w-1/2'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
@@ -37,14 +37,14 @@
             </span>
           </div>
           <div :class="`teaser-info w-full flex flex-col xx:flex-row mt-5 italic items-end ${$route.name === 'blog' ? 'justify-between' : 'justify-end'}`">
-            <ul class="teaser-categories flex flex-wrap self-start -m-1.5">
+            <ul class="teaser-categories w-full flex flex-wrap self-start -m-1.5">
               <li v-for="(category, index) in sortedCategories" :key="index" :class="`teaser-category text-xs p-2.5 m-1.5 font-extralight rounded shadow-sm filter brightness-95 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${postContent.teaser_background_color.color};`">
                 {{ category }}
               </li>
             </ul>
             <span
               v-if="$route.name === 'blog'"
-              class="teaser-date flex-none self-end pt-2.5 pl-2.5 text-sm font-medium text-right"
+              class="teaser-date flex-none self-end pt-5 pl-5 text-sm font-medium text-right"
               v-text="changeDate(postContent.date)"
             />
           </div>

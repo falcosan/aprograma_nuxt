@@ -57,6 +57,7 @@ export default {
 </script>
 <style scoped>
 .text-content{
+  word-break: break-word;
   overflow-wrap: anywhere;
 }
 </style>

@@ -38,8 +38,8 @@
           </div>
           <div :class="`teaser-info w-full flex flex-col xx:flex-row mt-5 italic items-end ${$route.name === 'blog' ? 'justify-between' : 'justify-end'}`">
             <ul class="teaser-categories flex flex-wrap self-start -m-1.5">
-              <li v-for="(category, index) in postContent.categories" :key="index" :class="`teaser-category text-xs p-2.5 m-1.5 font-extralight rounded shadow-sm filter brightness-95 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${postContent.teaser_background_color.color};`">
-                {{ $languageCase(category.split(', ')[0],category.split(', ')[1],category.split(', ')[2] ) }}
+              <li v-for="(category, index) in sortedCategories" :key="index" :class="`teaser-category text-xs p-2.5 m-1.5 font-extralight rounded shadow-sm filter brightness-95 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${postContent.teaser_background_color.color};`">
+                {{ category }}
               </li>
             </ul>
             <span
@@ -94,6 +94,9 @@ export default {
     },
     setFile () {
       return this.postContent.file.filename ? this.postContent.file.filename : 'https://a.storyblok.com/f/106240/4065x1468/5c83c3e7de/noimeageteaser.png'
+    },
+    sortedCategories () {
+      return this.postContent.categories.map(category => category.toLowerCase().split(', ')[this.$languageCase(0, 1, 2)]).sort()
     }
   },
   methods: {

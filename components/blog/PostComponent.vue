@@ -52,8 +52,8 @@
         />
       </div>
       <ul class="post-categories grid grid-cols-fill-tiny gap-5 pb-5 px-5">
-        <li v-for="(category, index) in blok.categories" :key="index" :class="`post-category p-2.5 text-center font-extralight text-sm rounded shadow-sm italic filter brightness-90 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${blok.post_background_color.color};`">
-          {{ $languageCase(category.split(', ')[0],category.split(', ')[1],category.split(', ')[2] ) }}
+        <li v-for="(category, index) in sortedCategories" :key="index" :class="`post-category p-2.5 text-center font-extralight text-sm rounded shadow-sm italic filter brightness-90 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${blok.post_background_color.color};`">
+          {{ category }}
         </li>
       </ul>
     </div>
@@ -78,6 +78,9 @@ export default {
     },
     setFile () {
       return this.blok.file.filename ? this.blok.file.filename : 'https://a.storyblok.com/f/106240/4067x2440/49d9d1a222/noimagedetail.png'
+    },
+    sortedCategories () {
+      return this.blok.categories.map(category => category.toLowerCase().split(', ')[this.$languageCase(0, 1, 2)]).sort()
     }
   },
   methods: {

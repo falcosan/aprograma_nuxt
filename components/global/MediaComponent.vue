@@ -175,7 +175,7 @@ export default {
   },
   computed: {
     lookFile () {
-      return this.blok && this.blok.media.filename ? (/(gif|jpe?g|tiff?|png|webp|bmp)/gi).test(this.blok.media.filename.toLowerCase().split('.').pop()) ? 'image' : 'video' : ''
+      return this.blok && this.blok.media.filename ? (/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(this.blok.media.filename.toLowerCase().split('.').pop()) ? 'image' : 'video' : ''
     }
   },
   methods: {

@@ -49,7 +49,7 @@ export default {
   },
   computed: {
     lookFile () {
-      return this.blok.background_media.filename ? (/(gif|jpe?g|tiff?|png|webp|bmp)/gi).test(this.blok.background_media.filename.toLowerCase().split('.').pop()) ? 'image' : 'video' : ''
+      return this.blok.background_media.filename ? (/(gif|jpe?g|tiff?|svg|png|webp|bmp)/gi).test(this.blok.background_media.filename.toLowerCase().split('.').pop()) ? 'image' : 'video' : ''
     },
     randomBackgroundColor () {
       return this.blok.background_color.color.split('; ')[this.index]

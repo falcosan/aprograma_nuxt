@@ -2,12 +2,13 @@
   <main :class="`main pt-10 overflow-x-hidden ${!$device.isDesktop ? '' : 'md:py-16'} ${blok.background_media.filename ? 'mb-10' : 'bg-white'}`">
     <div :class="`main-wrapper relative min-h-screen overflow-hidden ${$store.state.data.error ? 'main-error' : 'main-regular'}`">
       <div
-        v-if="blok.show_background_mask || blok.background_media.filename"
-        :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-0 mx-auto overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'}`"
-        :style="`background-color: ${blok.background_media.filename ? 'transparent' : randomBackgroundColor};`"
+        v-if="blok.show_background_mask"
+        :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-0 mx-auto overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'colorAnimation' : ''}`"
+        :style="`background-color: ${randomBackgroundColor};`"
       >
-        <div :class="`main-mask h-full w-full bg-white ${blok.background_media.filename ? 'bg-opacity-80' : ''}`" />
+        <div class="main-mask h-full w-full bg-opacity-80 bg-white" />
       </div>
+      <div v-else-if="!blok.background_media.filename" :class="`main-flat fixed min-h-full min-w-full inset-0 transition-colors duration-500 ${blok.color_animation ? 'colorAnimation' : ''}`" :style="`background-color: ${blok.background_media.filename ? 'transparent' : randomBackgroundColor};`" />
       <transition enter-active-class="duration-300 in-out" enter-class="opacity-0" mode="out-in">
         <Nuxt :class="`relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
       </transition>

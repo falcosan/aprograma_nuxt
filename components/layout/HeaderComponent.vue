@@ -6,7 +6,13 @@
     <nav class="navbar">
       <div class="menu-wrapper h-0 grid grid-flow-col-dense justify-between">
         <div class="logo-home relative w-20 h-20 z-20">
-          <Link icon-item class="home-link flex items-center justify-center transition-shadow duration-300 rounded-br bg-opacity-80 bg-white" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
+          <Link
+            icon-item
+            class="home-link flex items-center justify-center transition-shadow duration-300 rounded-br"
+            to="/"
+            :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)"
+            :style="`background-color: ${backgroundColors};`"
+          >
             <template #icon>
               <Logo
                 transition
@@ -18,19 +24,26 @@
         <transition enter-active-class="duration-300" leave-active-class="duration-300" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
           <div v-if="expanded" :class="`menu-expanded h-10 w-lg grid grid-flow-col gap-5 overflow-hidden transform transition bg-opacity-80 bg-gray-100 ${topPosition ? 'translate-y-3 rounded' : 'rounded-b'}`">
             <ul class="link-list grid grid-flow-col auto-cols-fr">
-              <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" :class="`link-menu w-20 filter grayscale hover:shadow-sm hover:bg-opacity-80 hover:bg-gray-200 ${topPosition ? 'rounded' : 'rounded-b'}`">
+              <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" :class="`link-menu w-20 hover:shadow-sm hover:bg-opacity-50 hover:bg-white ${topPosition ? 'rounded' : 'rounded-b'}`">
                 <Link class="flex items-center justify-center py-2 px-3 text-sm font-extralight truncate" :blok="item" />
               </li>
             </ul>
             <Translate
               class="translate-header grid h-full p-1"
               style-translate-list="grid grid-flow-col auto-cols-fr"
-              :style-translate-item="`w-full flex items-center justify-center py-2 px-3 text-center ${topPosition ? 'rounded' : 'rounded-b'}`"
+              style-translate-item="w-full flex items-center justify-center py-2 px-3 text-center rounded"
               :blok="$contentByName(blok.body, 'Translate')"
             />
           </div>
         </transition>
-        <Icon animate-menu tag="button" class="open-menu relative w-20 h-20 z-10 cursor-pointer rounded-bl bg-opacity-80 bg-white" size="w-5 h-5" @click.native="expanded = !expanded" />
+        <Icon
+          animate-menu
+          tag="button"
+          class="open-menu relative w-20 h-20 z-10 cursor-pointer rounded-bl"
+          size="w-5 h-5"
+          :style="`background-color: ${backgroundColors};`"
+          @click.native="expanded = !expanded"
+        />
       </div>
     </nav>
   </header>
@@ -38,7 +51,7 @@
     v-else
     class="header flex justify-center"
   >
-    <nav class="navbar-up w-full h-10 fixed flex justify-center top-0 z-40 shadow-sm" :style="`background-color: ${blok.background_color.color};`">
+    <nav class="navbar-up w-full h-10 fixed flex justify-center top-0 z-40 shadow-sm" :style="`background-color: ${backgroundColors};`">
       <div class="menu-wrapper wrapper-up w-full h-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-md flex justify-between">
         <Link
           active="exact"
@@ -75,7 +88,7 @@
         />
       </div>
     </nav>
-    <nav class="navbar-down fixed w-full h-12 flex items-center justify-center bottom-0 z-40 filter drop-shadow-2xl" :style="`background-color: ${blok.background_color.color};`">
+    <nav class="navbar-down fixed w-full h-12 flex items-center justify-center bottom-0 z-40 filter drop-shadow-2xl" :style="`background-color: ${backgroundColors};`">
       <ul class="menu-wrapper wrapper-down w-full h-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-md grid grid-cols-4">
         <li
           v-for="item in $contentByName(blok.body, 'Link')"
@@ -104,6 +117,20 @@ export default {
       topPosition: false,
       expanded: false,
       timer: 0
+    }
+  },
+  computed: {
+    backgroundColors () {
+      const colors = this.blok.background_color.color.split('; ')
+      if (colors.length > 1) {
+        if (this.$store.state.data.windowWidth >= 768 && this.$device.isDesktop) {
+          return colors[0]
+        } else {
+          return colors.length > 1 ? colors[1] : colors[0]
+        }
+      } else {
+        return this.blok.background_color.color
+      }
     }
   },
   watch: {

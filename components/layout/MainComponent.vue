@@ -1,5 +1,5 @@
 <template>
-  <main :class="`main pt-10 overflow-x-hidden ${!$device.isDesktop ? '' : 'md:py-14'} ${blok.background_media.filename ? 'mb-10' : 'bg-white'}`">
+  <main :class="`main pt-10 overflow-x-hidden ${!$device.isDesktop ? '' : 'md:py-16'} ${blok.background_media.filename ? 'mb-10' : 'bg-white'}`">
     <div :class="`main-wrapper relative min-h-screen overflow-hidden ${$store.state.data.error ? 'main-error' : 'main-regular'}`">
       <div
         v-if="blok.show_background_mask || blok.background_media.filename"

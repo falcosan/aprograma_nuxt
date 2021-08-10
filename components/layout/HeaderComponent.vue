@@ -6,7 +6,7 @@
     <nav class="navbar">
       <div class="menu-wrapper h-0 grid grid-flow-col-dense justify-between">
         <div class="logo-home relative w-20 h-20 z-20">
-          <Link icon-item class="home-link flex items-center justify-center transition-shadow duration-300 rounded-br" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
+          <Link icon-item class="home-link flex items-center justify-center transition-shadow duration-300 rounded-br bg-opacity-80 bg-white" to="/" :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)">
             <template #icon>
               <Logo
                 transition
@@ -16,21 +16,21 @@
           </Link>
         </div>
         <transition enter-active-class="duration-300" leave-active-class="duration-300" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
-          <div v-if="expanded" :class="`menu-expanded h-14 w-lg grid grid-flow-col gap-5 p-2.5 overflow-hidden transform opacity-80 transition bg-white ${topPosition ? 'translate-y-2 rounded' : 'rounded-b'}`">
+          <div v-if="expanded" :class="`menu-expanded h-10 w-lg grid grid-flow-col gap-5 overflow-hidden transform transition bg-opacity-80 bg-gray-100 ${topPosition ? 'translate-y-3 rounded' : 'rounded-b'}`">
             <ul class="link-list grid grid-flow-col auto-cols-fr">
-              <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" class="link-menu w-20 rounded hover:bg-gray-200">
+              <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" :class="`link-menu w-20 hover:bg-opacity-50 hover:bg-gray-200 ${topPosition ? 'rounded' : 'rounded-b'}`">
                 <Link class="flex items-center justify-center py-2 px-3 text-sm font-extralight truncate" :blok="item" />
               </li>
             </ul>
             <Translate
               class="translate-header grid h-full"
               style-translate-list="grid grid-flow-col auto-cols-fr"
-              style-translate-item="w-full flex items-center justify-center py-2 px-3 text-center"
+              :style-translate-item="`w-full flex items-center justify-center py-2 px-3 text-center ${topPosition ? 'rounded' : 'rounded-b'}`"
               :blok="$contentByName(blok.body, 'Translate')"
             />
           </div>
         </transition>
-        <Icon animate-menu tag="button" class="open-menu relative w-20 h-20 z-10 cursor-pointer rounded-bl bg-white" size="w-5 h-5" @click.native="expanded = !expanded" />
+        <Icon animate-menu tag="button" class="open-menu relative w-20 h-20 z-10 cursor-pointer rounded-bl bg-opacity-80 bg-white" size="w-5 h-5" @click.native="expanded = !expanded" />
       </div>
     </nav>
   </header>

@@ -5,7 +5,7 @@
     :class="`footer w-full fixed z-40 bottom-0 transition-height duration-200 ease-in-out ${expanded ? 'h-28' : 'h-0'}`"
   >
     <div
-      :style="`background-color: ${expanded ? blok.background_color.color : '#fff'};`"
+      :style="`background-color: ${expanded ? blok.background_color.color : 'rgb(255 255 255 / 80%)'};`"
       class="top-kick absolute w-20 h-20 flex right-0 -top-20 items-center justify-center z-10 rounded-tl cursor-pointer transition-all duration-200"
       @click="scrollTop();"
     >
@@ -21,7 +21,7 @@
       >
         <div
           class="icon-open w-20 h-20 flex justify-center items-center rounded-tr transition-all duration-200"
-          :style="`background-color: ${expanded ? blok.background_color.color : '#fff'};`"
+          :style="`background-color: ${expanded ? blok.background_color.color : 'rgb(255 255 255 / 80%)'};`"
         >
           <Icon
             eye

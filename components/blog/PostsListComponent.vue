@@ -24,7 +24,7 @@
             <Input :class="`category-input w-full py-3 px-4 text-sm text-left rounded truncate transition-all ${searchCategory.includes(filter) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter" />
             <Icon close tag="span" size="w-2" :class="`px-3.5 xs:px-5 pointer-events-none transition ${searchCategory.includes(filter) ? '' : 'transform rotate-45'}`" />
           </li>
-          <li class="reset-container overflow-hidden rounded cursor-pointer select-none" @click="searchCategory = []">
+          <li class="reset-container row-start-1 row-end-1 col-start-1 col-end-1 overflow-hidden rounded cursor-pointer select-none" @click="searchCategory = []">
             <Input :class="`reset-input w-full py-3 px-4 text-sm transition bg-gray-200 ${!$device.isDesktop ? '' : 'hover:bg-gray-300'}`" type="button" :text="$languageCase('Clear filters', 'Borrar filtros', 'Rimuovi filtri')" />
           </li>
         </ul>

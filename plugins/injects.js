@@ -11,7 +11,7 @@ export default ({ app }, inject) => {
   })
   inject('languageCase', (english, spanish, italian) => {
     switch (app.store.state.language.language) {
-      case '':
+      case '' || 'default':
         return english
       case 'es':
         return spanish

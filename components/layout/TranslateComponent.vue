@@ -1,5 +1,5 @@
 <template>
-  <div class="translate-container text-sm">
+  <div class="translate-container text-xs">
     <div
       v-if="translateTransition"
       :class="`current-language cursor-pointer font-extralight ${styleCurrentLanguage}`"
@@ -18,7 +18,7 @@
         <li
           v-if="translateTransition ? cutLanguage(language) !== $store.state.language.language && $store.state.language.language !== '' || cutLanguage(language) !== 'en' && $store.state.language.language === '' : true"
           :key="language._uid"
-          :class="`translate-item font-extralight cursor-pointer ${styleTranslateItem} ${!translateTransition && (cutLanguage(language) === $store.state.language.language || cutLanguage(language) === 'en' && $store.state.language.language === '') ? 'filter grayscale bg-gray-400 text-white' : ''}`"
+          :class="`translate-item font-extralight cursor-pointer ${styleTranslateItem} ${!translateTransition && (cutLanguage(language) === $store.state.language.language || cutLanguage(language) === 'en' && $store.state.language.language === '') ? 'filter grayscale bg-gray-500 text-white' : ''}`"
           @click="changeLanguage(language.language); $emit('translateListAction')"
         >
           <span

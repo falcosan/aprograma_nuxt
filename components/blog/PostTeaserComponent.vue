@@ -21,7 +21,7 @@
             @loadeddata="wait = false"
           />
         </div>
-        <Skeleton :class="`w-full h-full max-h-full min-h-40 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:w-1/2'}`" :wait="wait" />
+        <Skeleton :class="`w-full h-48 xs:h-52 sm:h-56 lg:h-72 xl:h-56 max-h-full ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:w-1/2'}`" :wait="wait" />
         <div :class="`teaser-text h-auto w-full flex flex-col p-5 ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? '' : sliderContainer || carouselContainer || containerContainer ? '' : 'lg:w-1/2'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span

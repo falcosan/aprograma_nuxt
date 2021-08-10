@@ -28,12 +28,7 @@
       <Skeleton class="w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl" :wait="wait" />
     </div>
     <div class="post-body w-full justify-center rounded" :style="`background-color: ${blok.post_background_color.color};`">
-      <ul class="post-categories flex flex-wrap justify-end px-2.5 pt-2.5">
-        <li v-for="(category, index) in blok.categories" :key="index" class="post-category p-2.5 m-2.5 font-extralight text-sm rounded shadow-sm filter brightness-90" :style="`background-color: ${blok.post_background_color.color};`">
-          {{ $languageCase(category.split(', ')[0],category.split(', ')[1],category.split(', ')[2] ) }}
-        </li>
-      </ul>
-      <div class="post-article w-full max-w-prose prose-sm lg:prose-lg pb-3.5 pt-7 lg:pt-7 lg:pb-14 px-5 mx-auto my-0">
+      <div class="post-article w-full max-w-prose prose-sm lg:prose-lg py-7 lg:py-14 px-5 mx-auto my-0">
         <h2
           :style="`color: ${blok.post_text_color.color};`"
           class="post-intro"
@@ -56,6 +51,11 @@
           v-text="changeDate(blok.date)"
         />
       </div>
+      <ul class="post-categories flex flex-wrap pb-2.5 pl-2.5">
+        <li v-for="(category, index) in blok.categories" :key="index" :class="`post-category p-2.5 m-2.5 font-extralight text-sm rounded shadow-sm filter brightness-90 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${blok.post_background_color.color};`">
+          {{ $languageCase(category.split(', ')[0],category.split(', ')[1],category.split(', ')[2] ) }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>

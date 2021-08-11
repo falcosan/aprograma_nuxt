@@ -9,7 +9,6 @@ import Field from '@/components/global/FieldComponent'
 import Modal from '@/components/global/ModalComponent'
 import Input from '@/components/global/InputComponent'
 import Detail from '@/components/global/DetailComponent'
-import Skeleton from '@/components/global/SkeletonComponent'
 import PostsList from '@/components/blog/PostsListComponent'
 import Container from '@/components/global/ContainerComponent'
 import TextContent from '@/components/global/TextContentComponent'
@@ -26,7 +25,6 @@ Vue.component('Modal', Modal)
 Vue.component('Field', Field)
 Vue.component('Input', Input)
 Vue.component('Detail', Detail)
-Vue.component('Skeleton', Skeleton)
 Vue.component('Container', Container)
 Vue.component('TextContent', TextContent)
 

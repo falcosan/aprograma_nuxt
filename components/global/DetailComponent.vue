@@ -12,16 +12,13 @@
           >
             <template #activator="action">
               <img
-                v-show="!wait"
                 height="100%"
                 width="100%"
                 class="description-image w-screen h-full cursor-pointer object-cover rounded select-none"
                 :src="image.filename"
                 :alt="image.alt"
                 @click="action.open()"
-                @load="wait = false"
               >
-              <Skeleton class="h-96 select-none" :wait="wait" />
             </template>
             <template #body>
               <img class="description-image select-none cursor-default" height="auto" width="auto" :src="image.filename" :alt="image.alt">
@@ -29,15 +26,12 @@
           </Modal>
           <div v-else class="project-description">
             <img
-              v-show="!wait"
               height="100%"
               width="100%"
               class="description-image w-screen h-full object-cover rounded select-none"
               :src="image.filename"
               :alt="image.alt"
-              @load="wait = false"
             >
-            <Skeleton class="h-96 select-none" :wait="wait" />
           </div>
         </li>
       </ul>
@@ -59,11 +53,6 @@ export default {
     inlineTextStyle: {
       type: String,
       default: ''
-    }
-  },
-  data () {
-    return {
-      wait: true
     }
   }
 }

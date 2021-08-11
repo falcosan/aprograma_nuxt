@@ -8,7 +8,6 @@
       <template #activator="action">
         <img
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
-          v-show="!wait"
           :style="`height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'};`"
           :width="blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'"
           :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'"
@@ -20,7 +19,6 @@
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :type="`image/${imageType()}`"
           @click="action.open()"
-          @load="wait = false"
         >
         <video
           v-else-if="(blok && blok.media.filename) || video"
@@ -36,15 +34,9 @@
           muted
           loop
           @click="action.open()"
-          @loadeddata="wait = false"
         >
           <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
         </video>
-        <Skeleton
-          :class="`my-0 mx-auto ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-          :wait="wait"
-          :style="`width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : `${containerWidth}px`}`"
-        />
       </template>
       <template #body>
         <img
@@ -58,7 +50,6 @@
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :type="`image/${imageType()}`"
-          @load="wait = false"
         >
         <video
           v-else-if="(blok && blok.media.filename) || video"
@@ -72,21 +63,14 @@
           autoplay
           muted
           loop
-          @loadeddata="wait = false"
         >
           <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
         </video>
-        <Skeleton
-          :class="`my-0 mx-auto ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-          :wait="wait"
-          :style="`width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : `${containerWidth}px`}`"
-        />
       </template>
     </Modal>
     <template v-else>
       <img
         v-if="(blok && blok.media.filename && lookFile === 'image') || image"
-        v-show="!wait"
         class="image-container"
         :style="`height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'};`"
         :width="blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'"
@@ -98,7 +82,6 @@
         :src="blok && blok.media.filename ? blok.media.filename : src"
         :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
         :type="`image/${imageType()}`"
-        @load="wait = false"
       >
 
       <video
@@ -114,15 +97,9 @@
         autoplay
         muted
         loop
-        @loadeddata="wait = false"
       >
         <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
       </video>
-      <Skeleton
-        :class="`my-0 mx-auto ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-        :wait="wait"
-        :style="`width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : '100%'}; height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : `${containerWidth}px`}`"
-      />
     </template>
     <p v-if="(blok && blok.title && blok.show_title) || title" class="media-title text-center text-lg" v-text="blok && blok.title ? blok.title : title" />
   </div>
@@ -170,11 +147,6 @@ export default {
     video: {
       type: Boolean,
       default: false
-    }
-  },
-  data () {
-    return {
-      wait: true
     }
   },
   computed: {

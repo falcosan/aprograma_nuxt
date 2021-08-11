@@ -6,15 +6,12 @@
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
       <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
         <img
-          v-show="!wait"
           class="project-image w-full h-60 sm:h-52 md:h-60 lg:h-80 xl:h-96 2xl:h-sm max-h-96 object-cover object-center select-none rounded-t"
           width="100%"
           height="100%"
           :src="projectContent.image.filename"
           :alt="projectContent.image.alt"
-          @load="wait = false"
         >
-        <Skeleton class="project-image w-full h-60 sm:h-52 md:h-60 lg:h-80 xl:h-96 2xl:h-sm max-h-96" :wait="wait" />
         <div
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
           :class="`title-container flex flex-row flex-wrap items-center p-5 ${rowContainer || containerContainer || sliderContainer? '' : 'h-16'}`"
@@ -58,8 +55,7 @@ export default {
   },
   data () {
     return {
-      expanded: false,
-      wait: true
+      expanded: false
     }
   }
 }

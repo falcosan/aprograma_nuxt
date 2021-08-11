@@ -14,7 +14,7 @@
         size="p-3 w-10"
         @click.native="goBack()"
       />
-      <div v-show="!wait" :class="`post-file w-full h-60 ss:h-64 xs:h-72 sm:h-80 md:h-96 lg:h-lg xl:h-lg 2xl:h-2xl overflow-hidden rounded ${blok.file.filename ? '' : 'p-5 bg-black'}`">
+      <div :class="`post-file w-full h-60 ss:h-64 xs:h-72 sm:h-80 md:h-96 lg:h-lg xl:h-lg 2xl:h-2xl overflow-hidden rounded ${blok.file.filename ? '' : 'p-5 bg-black'}`">
         <component
           :is="blok.file.filename ? lookFile() : 'img'"
           :class="`w-full h-full object-center select-none object-cover ${blok.file.filename ? '' : 'ml-2.5'}`"
@@ -22,10 +22,8 @@
           :src="setFile"
           :width="lookImage || !blok.file.filename ? '100%' : ''"
           :height="lookImage || !blok.file.filename ? '100%' : ''"
-          @load="wait = false"
         />
       </div>
-      <Skeleton class="w-full h-72 xs:h-xs sm:h-sm md:h-md lg:h-xl xl:h-xl 2xl:h-3xl" :wait="wait" />
     </div>
     <div class="post-body w-full justify-center rounded" :style="`background-color: ${blok.post_background_color.color};`">
       <div class="post-article w-full max-w-prose prose-sm lg:prose-lg py-7 lg:py-14 px-5 mx-auto my-0">
@@ -65,11 +63,6 @@ export default {
     blok: {
       type: Object,
       required: true
-    }
-  },
-  data () {
-    return {
-      wait: true
     }
   },
   computed: {

@@ -12,6 +12,7 @@
         <div :class="`teaser-file w-full h-full max-h-56 sm:max-h-60 min-h-40 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'nuxt-img'"
+            :modifiers="lookFile() === 'nuxt-img' || !postContent.file.filename ?{ smart: true } : false"
             :class="`w-full h-full max-h-56 sm:max-h-60 object-center select-none ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
             :alt="postContent.file.alt"
             :src="setFile"

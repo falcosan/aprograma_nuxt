@@ -26,6 +26,7 @@
             </div>
             <div :class="`image-container flex row-start-1 row-end-1 ${index % 2 == 0 ? 'col-start-2 col-end-2' : 'col-start-1 col-end-1'}`">
               <nuxt-img
+                :modifiers="{ smart: true }"
                 class="project-image object-cover object-center pointer-events-none select-none"
                 width="100%"
                 height="auto"

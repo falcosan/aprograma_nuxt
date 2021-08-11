@@ -6,7 +6,7 @@
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
       <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
         <nuxt-img
-
+          :modifiers="{ smart: true }"
           class="project-image w-full h-60 sm:h-52 md:h-60 lg:h-80 xl:h-96 2xl:h-sm max-h-96 object-cover object-center select-none rounded-t"
           width="100%"
           height="100%"

@@ -18,8 +18,8 @@
       </transition>
     </div>
     <nuxt-img
-
       v-if="blok.background_media.filename && lookFile === 'image'"
+      :modifiers="{ smart: true }"
       :class="`media-image min-h-full min-w-full fixed right-0 bottom-0 -z-10 object-cover object-center ${blok.color_animation ? 'colorAnimation' : ''}`"
       :src="blok.background_media.filename"
       :alt="blok.background_media.alt"

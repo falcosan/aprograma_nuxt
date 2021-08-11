@@ -8,6 +8,7 @@
       <template #activator="action">
         <nuxt-img
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
+          :modifiers="{ smart: true }"
           :width="blok && blok.width ? blok.width: width ? width : 'auto'"
           :height="blok && blok.height ? blok.height : height ? height : 'auto'"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
@@ -39,6 +40,7 @@
       <template #body>
         <nuxt-img
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
+          :modifiers="{ smart: true }"
           width="100%"
           height="100%"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
@@ -69,6 +71,7 @@
     <template v-else>
       <nuxt-img
         v-if="(blok && blok.media.filename && lookFile === 'image') || image"
+        :modifiers="{ smart: true }"
 
         class="image-container"
         :width="blok && blok.width ? blok.width: width ? width : 'auto'"

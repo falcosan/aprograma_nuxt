@@ -22,7 +22,7 @@
         <template #activator="action">
           <div class="image-container w-full h-60 ss:h-64 xs:h-72 sm:h-80 md:h-96 lg:h-lg xl:h-lg 2xl:h-2xl my-0 mx-auto cursor-pointer" @click="action.open()">
             <nuxt-img
-
+              :modifiers="{ smart: true }"
               class="intro-image h-full border-2 object-cover rounded select-none"
               height="100%"
               width="100%"
@@ -34,7 +34,7 @@
         </template>
         <template #body>
           <nuxt-img
-
+            :modifiers="{ smart: true }"
             class="image-project select-none cursor-default"
             width="100%"
             height="100%"

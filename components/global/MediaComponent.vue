@@ -9,8 +9,8 @@
         <nuxt-img
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
           :modifiers="{ smart: true }"
-          :width="blok && blok.width ? blok.width: width ? width : 'auto'"
-          :height="blok && blok.height ? blok.height : height ? height : 'auto'"
+          :width="blok && blok.width ? blok.width: width ? width : false"
+          :height="blok && blok.height ? blok.height : height ? height : false"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
@@ -26,8 +26,8 @@
             .split(/[\\/]/)
             .pop()
             .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center cursor-pointer select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-          :width="blok && blok.width ? blok.width: width ? width : 'auto'"
-          :height="blok && blok.height ? blok.height : height ? height : 'auto'"
+          :width="blok && blok.width ? blok.width: width ? width : false"
+          :height="blok && blok.height ? blok.height : height ? height : false"
           playsinline
           autoplay
           muted
@@ -74,8 +74,8 @@
         :modifiers="{ smart: true }"
 
         class="image-container"
-        :width="blok && blok.width ? blok.width: width ? width : 'auto'"
-        :height="blok && blok.height ? blok.height : height ? height : 'auto'"
+        :width="blok && blok.width ? blok.width: width ? width : false"
+        :height="blok && blok.height ? blok.height : height ? height : false"
         :class="`${blok && blok.media.filename ? blok.media.filename : src
           .split(/[\\/]/)
           .pop()
@@ -91,8 +91,8 @@
           .split(/[\\/]/)
           .pop()
           .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-        :width="blok && blok.width ? blok.width: width ? width : 'auto'"
-        :height="blok && blok.height ? blok.height : height ? height : 'auto'"
+        :width="blok && blok.width ? blok.width: width ? width : false"
+        :height="blok && blok.height ? blok.height : height ? height : false"
         playsinline
         autoplay
         muted

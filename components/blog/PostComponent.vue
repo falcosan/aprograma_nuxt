@@ -39,9 +39,9 @@
           {{ $languageCase('by', 'de', 'di') }} {{ blok.author ? blok.author : $languageCase('Anonymous', 'Anónimo', 'Anonimo') }}
         </p>
         <article
-          v-lazy-load="$md.render(blok.long_text)"
           :style="`color: ${blok.post_text_color.color};`"
           class="post-article block pb-2.5"
+          v-html="$md.render(blok.long_text)"
         />
         <p
           :style="`color: ${blok.post_text_color.color};`"

@@ -21,8 +21,6 @@
           :class="`w-full h-full object-center select-none object-cover ${blok.file.filename ? '' : 'ml-2.5'}`"
           :alt="`${blok.file.alt} project`"
           :src="setFile"
-          :width="lookImage || !blok.file.filename ? '1240' : false"
-          :height="lookImage || !blok.file.filename ? '672' : false"
         />
       </div>
     </div>

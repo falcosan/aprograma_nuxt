@@ -1,5 +1,5 @@
 <template>
-  <div class="media relative w-auto h-full grid gap-5 overflow-hidden rounded">
+  <div class="media relative w-auto h-full grid gap-5 items-center overflow-hidden rounded">
     <Modal
       v-if="blok.modal_mode"
       close-mode
@@ -9,8 +9,8 @@
         <nuxt-img
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
           :modifiers="{ smart: true }"
-          :width="blok && blok.width ? blok.width: width ? width : false"
-          :height="blok && blok.height ? blok.height : height ? height : false"
+          :width="blok && blok.width ? blok.width: width ? width : ''"
+          :height="blok && blok.height ? blok.height : height ? height : ''"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
@@ -18,7 +18,7 @@
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :type="`image/${imageType()}`"
-          @click="action.open()"
+          @click.native="action.open()"
         />
         <video
           v-else-if="(blok && blok.media.filename) || video"
@@ -26,13 +26,13 @@
             .split(/[\\/]/)
             .pop()
             .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center cursor-pointer select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-          :width="blok && blok.width ? blok.width: width ? width : false"
-          :height="blok && blok.height ? blok.height : height ? height : false"
+          :width="blok && blok.width ? blok.width: width ? width : ''"
+          :height="blok && blok.height ? blok.height : height ? height : ''"
           playsinline
           autoplay
           muted
           loop
-          @click="action.open()"
+          @click.native="action.open()"
         >
           <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
         </video>
@@ -74,8 +74,8 @@
         :modifiers="{ smart: true }"
 
         class="image-container"
-        :width="blok && blok.width ? blok.width: width ? width : false"
-        :height="blok && blok.height ? blok.height : height ? height : false"
+        :width="blok && blok.width ? blok.width: width ? width : ''"
+        :height="blok && blok.height ? blok.height : height ? height : ''"
         :class="`${blok && blok.media.filename ? blok.media.filename : src
           .split(/[\\/]/)
           .pop()
@@ -91,8 +91,8 @@
           .split(/[\\/]/)
           .pop()
           .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-        :width="blok && blok.width ? blok.width: width ? width : false"
-        :height="blok && blok.height ? blok.height : height ? height : false"
+        :width="blok && blok.width ? blok.width: width ? width : ''"
+        :height="blok && blok.height ? blok.height : height ? height : ''"
         playsinline
         autoplay
         muted

@@ -1,6 +1,6 @@
 <template>
   <main :class="`main pt-10 overflow-x-hidden ${!$device.isDesktop ? '' : 'md:py-16'} ${blok.background_media.filename ? 'mb-10' : ''}`">
-    <div :class="`main-wrapper relative min-h-screen overflow-hidden ${$store.state.data.error ? 'main-error' : 'main-regular'}`">
+    <div :class="`main-wrapper relative overflow-hidden ${$store.state.data.error ? 'main-error' : 'main-regular'}`">
       <div
         v-if="blok.show_background_mask"
         :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-0 mx-auto overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'colorAnimation' : ''}`"
@@ -106,12 +106,10 @@ export default {
 <style scoped>
 
 .main-error{
-  min-height: unset;
   height: calc(100vh - 4.5rem);
 }
 @media screen and (min-width:768px){
   .main-error{
-    min-height: unset;
     height: calc(100vh - 9rem);
   }
 }

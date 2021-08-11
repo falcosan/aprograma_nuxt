@@ -21,7 +21,7 @@
         <Icon
           v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || blok.row_container"
           previous
-          :class="`previous-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? 'bottom-3.5' : 'bottom-0'} ${sliderMode ? fullWidth > 295 ? 'left-10' : 'left-5' : 'left-2'}`"
+          :class="`previous-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? 'bottom-3.5' : 'bottom-5'} ${sliderMode ? fullWidth > 295 ? 'left-10' : 'left-5' : 'left-2'}`"
           :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
           tag="button"
           @click.native="previous"
@@ -30,7 +30,7 @@
         <Icon
           v-if="blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || blok.row_container"
           next
-          :class="`next-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? 'bottom-3.5' : 'bottom-0'} ${sliderMode ? fullWidth > 295 ? 'right-10' : 'right-5' : 'right-2'}`"
+          :class="`next-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? 'bottom-3.5' : 'bottom-5'} ${sliderMode ? fullWidth > 295 ? 'right-10' : 'right-5' : 'right-2'}`"
           :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
           tag="button"
           @click.native="next"
@@ -90,8 +90,8 @@
                 </li>
               </template>
             </transition-group>
-            <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-1/2 flex flex-wrap space-x-2 justify-center my-7 mx-auto">
-              <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 inline-block rounded-full shadow-inner select-none transform scale-90 transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-gray-500 bg-gray-500' : 'bg-gray-500'}`" />
+            <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-1/2 flex flex-wrap justify-center py-7 -my-1.5 mx-auto">
+              <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 inline-block m-1.5 rounded-full shadow-inner select-none transform scale-90 transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-gray-500 bg-gray-500' : 'bg-gray-500'}`" />
             </div>
           </div>
         </div>

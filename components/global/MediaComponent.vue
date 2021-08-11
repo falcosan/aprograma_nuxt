@@ -9,14 +9,16 @@
         <nuxt-img
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
           :modifiers="{ smart: true }"
-          :width="blok && blok.width ? blok.width: width ? width : ''"
-          :height="blok && blok.height ? blok.height : height ? height : ''"
+          :style="`height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit === 'vh; vw' ? lookUnit[0] : lookUnit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit === 'vh; vw' ? lookUnit[1] : lookUnit}`: width ? width : 'auto'};`"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
-            .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center cursor-pointer select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
+            .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center cursor-pointer select-none`"
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
+          :quality="Number(blok.quality)"
+          :width="blok && blok.quality ? Number(blok.quality) : width ? width : ''"
+          :height="blok && blok.quality ? Number(blok.quality) : height ? height : ''"
           :type="`image/${imageType()}`"
           @click.native="action.open()"
         />
@@ -25,9 +27,8 @@
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
-            .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center cursor-pointer select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-          :width="blok && blok.width ? blok.width: width ? width : ''"
-          :height="blok && blok.height ? blok.height : height ? height : ''"
+            .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center cursor-pointer select-none`"
+          :style="`height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit === 'vh; vw' ? lookUnit[0] : lookUnit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit === 'vh; vw' ? lookUnit[1] : lookUnit}`: width ? width : 'auto'};`"
           playsinline
           autoplay
           muted
@@ -72,27 +73,26 @@
       <nuxt-img
         v-if="(blok && blok.media.filename && lookFile === 'image') || image"
         :modifiers="{ smart: true }"
-
         class="image-container"
-        :width="blok && blok.width ? blok.width: width ? width : ''"
-        :height="blok && blok.height ? blok.height : height ? height : ''"
+        :style="`height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit === 'vh; vw' ? lookUnit[0] : lookUnit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit === 'vh; vw' ? lookUnit[1] : lookUnit}`: width ? width : 'auto'};`"
         :class="`${blok && blok.media.filename ? blok.media.filename : src
           .split(/[\\/]/)
           .pop()
-          .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
+          .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center pointer-events-none select-none`"
         :src="blok && blok.media.filename ? blok.media.filename : src"
         :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
+        :quality="Number(blok.quality)"
+        :width="blok && blok.quality ? Number(blok.quality) : width ? width : ''"
+        :height="blok && blok.quality ? Number(blok.quality) : height ? height : ''"
         :type="`image/${imageType()}`"
       />
-
       <video
         v-else-if="(blok && blok.media.filename) || video"
         :class="`${blok && blok.media.filename ? blok.media.filename : src
           .split(/[\\/]/)
           .pop()
-          .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center pointer-events-none select-none ${carouselMode ? 'h-xs xs:h-sm sm:h-md md:h-md lg:h-2xl xl:h-3xl 2xl:h-4xl' : ''}`"
-        :width="blok && blok.width ? blok.width: width ? width : ''"
-        :height="blok && blok.height ? blok.height : height ? height : ''"
+          .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center pointer-events-none select-none`"
+        :style="`height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit === 'vh; vw' ? lookUnit[0] : lookUnit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit === 'vh; vw' ? lookUnit[1] : lookUnit}`: width ? width : 'auto'};`"
         playsinline
         autoplay
         muted
@@ -152,6 +152,9 @@ export default {
   computed: {
     lookFile () {
       return this.blok && this.blok.media.filename ? (/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(this.blok.media.filename.toLowerCase().split('.').pop()) ? 'image' : 'video' : ''
+    },
+    lookUnit () {
+      return this.blok.unit === 'vh; vw' ? this.blok.unit.split('; ') : this.blok.unit
     }
   },
   methods: {

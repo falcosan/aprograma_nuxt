@@ -23,8 +23,8 @@
       :class="`media-image min-h-full min-w-full fixed right-0 bottom-0 -z-10 object-cover object-center ${blok.color_animation ? 'colorAnimation' : ''}`"
       :src="blok.background_media.filename"
       :alt="blok.background_media.alt"
-      width="100%"
-      height="100%"
+      width="auto"
+      height="auto"
       :type="`image/${imageType()}`"
     />
     <video

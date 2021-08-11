@@ -13,8 +13,8 @@
             <template #activator="action">
               <nuxt-img
                 :modifiers="{ smart: true }"
-                height="100%"
-                width="100%"
+                height="auto"
+                width="auto"
                 class="description-image w-screen h-full cursor-pointer object-cover rounded select-none"
                 :src="image.filename"
                 :alt="image.alt"
@@ -35,8 +35,8 @@
           <div v-else class="project-description">
             <nuxt-img
               :modifiers="{ smart: true }"
-              height="100%"
-              width="100%"
+              height="auto"
+              width="auto"
               class="description-image w-screen h-full object-cover rounded select-none"
               :src="image.filename"
               :alt="image.alt"

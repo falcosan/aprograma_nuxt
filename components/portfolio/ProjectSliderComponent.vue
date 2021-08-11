@@ -28,8 +28,8 @@
               <nuxt-img
                 :modifiers="{ smart: true }"
                 class="project-image w-full h-full object-cover object-center pointer-events-none select-none"
-                width="100%"
-                height="100%"
+                width="auto"
+                height="auto"
                 :src="project.content.image.filename"
                 :alt="project.content.image.alt"
               />

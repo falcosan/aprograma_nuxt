@@ -20,12 +20,12 @@
         modal-style="bg-gray-200 bg-opacity-90"
       >
         <template #activator="action">
-          <div class="image-container w-full h-60 ss:h-64 xs:h-72 sm:h-80 md:h-96 lg:h-lg xl:h-lg 2xl:h-2xl my-0 mx-auto cursor-pointer" @click="action.open()">
+          <div class="image-container w-full h-64 xx:h-72 xs:h-80 sm:h-sm md:h-md lg:h-xl 2xl:h-2xl my-0 mx-auto cursor-pointer" @click="action.open()">
             <nuxt-img
               :modifiers="{ smart: true }"
-              class="intro-image h-full border-2 object-cover rounded select-none"
-              height="100%"
-              width="100%"
+              class="intro-image h-full w-full border-2 object-cover rounded select-none"
+              height="auto"
+              width="auto"
               :src="blok.image.filename"
               :alt="blok.image.alt"
               :style="`border-color: ${blok.project_background_color.color}`"
@@ -36,8 +36,8 @@
           <nuxt-img
             :modifiers="{ smart: true }"
             class="image-project select-none cursor-default"
-            width="100%"
-            height="100%"
+            width="auto"
+            height="auto"
             :src="blok.image.filename"
             :alt="blok.image.alt"
           />

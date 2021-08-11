@@ -8,8 +8,8 @@
         <nuxt-img
           :modifiers="{ smart: true }"
           class="project-image w-full h-60 sm:h-52 md:h-60 lg:h-80 xl:h-96 2xl:h-sm max-h-96 object-cover object-center select-none rounded-t"
-          width="100%"
-          height="100%"
+          width="auto"
+          height="auto"
           :src="projectContent.image.filename"
           :alt="projectContent.image.alt"
         />

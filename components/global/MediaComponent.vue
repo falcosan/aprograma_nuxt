@@ -43,8 +43,8 @@
         <nuxt-img
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
           :modifiers="{ smart: true }"
-          width="100%"
-          height="100%"
+          width="auto"
+          height="auto"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
@@ -60,8 +60,8 @@
             .split(/[\\/]/)
             .pop()
             .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center select-none cursor-default`"
-          width="100%"
-          height="100%"
+          width="auto"
+          height="auto"
           playsinline
           autoplay
           muted

@@ -1,7 +1,7 @@
 <template>
   <div class="modal">
     <slot name="activator" :open="openModal" />
-    <transition enter-active-class="duration-200 in-out" enter-class="opacity-0" leave-active-class="duration-200 out-in" leave-to-class="opacity-0">
+    <transition enter-active-class="duration-300 in-out" enter-class="opacity-0" leave-active-class="duration-300 out-in" leave-to-class="opacity-0">
       <div
         v-show="openEvent || open"
         ref="modal"

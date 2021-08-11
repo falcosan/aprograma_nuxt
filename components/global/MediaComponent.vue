@@ -20,6 +20,7 @@
           :width="blok && blok.quality ? Number(blok.quality) : width ? width : ''"
           :height="blok && blok.quality ? Number(blok.quality) : height ? height : ''"
           :type="`image/${imageType()}`"
+          draggable="false"
           @click.native="action.open()"
         />
         <video
@@ -51,6 +52,7 @@
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :type="`image/${imageType()}`"
+          draggable="false"
         />
         <video
           v-else-if="(blok && blok.media.filename) || video"
@@ -85,6 +87,7 @@
         :width="blok && blok.quality ? Number(blok.quality) : width ? width : ''"
         :height="blok && blok.quality ? Number(blok.quality) : height ? height : ''"
         :type="`image/${imageType()}`"
+        draggable="false"
       />
       <video
         v-else-if="(blok && blok.media.filename) || video"

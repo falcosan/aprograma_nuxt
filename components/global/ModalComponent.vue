@@ -1,9 +1,9 @@
 <template>
   <div class="modal">
     <slot name="activator" :open="openModal" />
-    <transition enter-active-class="duration-500 in-out" enter-class="opacity-0" leave-active-class="duration-500 out-in" leave-to-class="opacity-0">
+    <transition enter-active-class="duration-200 in-out" enter-class="opacity-0" leave-active-class="duration-200 out-in" leave-to-class="opacity-0">
       <div
-        v-if="openEvent || open"
+        v-show="openEvent || open"
         ref="modal"
         :class="`modal-backdrop fixed flex justify-center inset-0 z-50 overflow-auto focus:outline-none ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
         tabindex="0"
@@ -74,11 +74,13 @@ export default {
     },
     checkModal () {
       if (this.openEvent || this.open) {
+        document.body.appendChild(this.$refs.modal)
         this.$nextTick(function () {
           this.$refs.modal.focus({ preventScroll: true })
         })
         this.$noscroll(true)
       } else {
+        this.$refs.modal.parentNode.removeChild(this.$refs.modal)
         this.$noscroll(false)
       }
     },

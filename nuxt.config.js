@@ -52,8 +52,9 @@ export default {
   image: {
     provider: 'storyblok',
     storyblok: {
-      baseURL: 'https://a.storyblok.com'
-    }
+      baseURL: 'https://img2.storyblok.com'
+    },
+    domains: ['https://aprograma.co']
   },
   device: {
     refreshOnResize: true

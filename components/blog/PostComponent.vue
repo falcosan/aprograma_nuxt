@@ -16,12 +16,12 @@
       />
       <div :class="`post-file w-full h-60 ss:h-64 xs:h-72 sm:h-80 md:h-96 lg:h-lg xl:h-lg 2xl:h-2xl overflow-hidden rounded ${blok.file.filename ? '' : 'p-5 bg-black'}`">
         <component
-          :is="blok.file.filename ? lookFile() : 'img'"
+          :is="blok.file.filename ? lookFile() : 'nuxt-img'"
           :class="`w-full h-full object-center select-none object-cover ${blok.file.filename ? '' : 'ml-2.5'}`"
           :alt="`${blok.file.alt} project`"
           :src="setFile"
-          :width="lookImage || !blok.file.filename ? '100%' : ''"
-          :height="lookImage || !blok.file.filename ? '100%' : ''"
+          :width="lookImage || !blok.file.filename ? '1240' : ''"
+          :height="lookImage || !blok.file.filename ? '672' : ''"
         />
       </div>
     </div>
@@ -90,7 +90,7 @@ export default {
         case 'png':
         case 'gif':
         case 'svg':
-          return 'img'
+          return 'nuxt-img'
         case 'pdf':
           return 'embed'
       }

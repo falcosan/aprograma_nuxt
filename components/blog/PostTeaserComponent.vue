@@ -11,12 +11,12 @@
       >
         <div :class="`teaser-file w-full h-full max-h-56 sm:max-h-60 min-h-40 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
           <component
-            :is="postContent.file.filename ? lookFile() : 'img'"
-            :class="`h-full max-h-56 sm:max-h-60 object-center select-none ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
+            :is="postContent.file.filename ? lookFile() : 'nuxt-img'"
+            :class="`w-full h-full max-h-56 sm:max-h-60 object-center select-none ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
             :alt="postContent.file.alt"
             :src="setFile"
-            :width="lookImage || !postContent.file.filename ? '100%' : ''"
-            :height="lookImage || !postContent.file.filename ? '100%' : ''"
+            :width="lookImage || !postContent.file.filename ? '620' : ''"
+            :height="lookImage || !postContent.file.filename ? '224' : ''"
           />
         </div>
         <div :class="`teaser-text h-auto w-full flex flex-col p-5 ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? '' : sliderContainer || carouselContainer || containerContainer ? '' : 'lg:w-1/2'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
@@ -109,7 +109,7 @@ export default {
         case 'png':
         case 'gif':
         case 'svg':
-          return 'img'
+          return 'nuxt-img'
         case 'pdf':
           return 'embed'
       }

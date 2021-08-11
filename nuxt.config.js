@@ -46,8 +46,7 @@ export default {
   buildModules: [
     '@nuxtjs/tailwindcss',
     'nuxt-compress',
-    '@nuxtjs/device',
-    'nuxt-lazy-load'
+    '@nuxtjs/device'
   ],
   device: {
     refreshOnResize: true

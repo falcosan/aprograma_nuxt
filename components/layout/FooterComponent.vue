@@ -1,15 +1,15 @@
 <template>
   <footer
     v-if="$store.state.data.windowWidth >= 768 && $device.isDesktop"
-    :style="`background-color: ${blok.background_color.color};`"
+    :style="`background-color: ${backgroundColors};`"
     :class="`footer w-full fixed z-40 bottom-0 transition-height duration-200 ease-in-out ${expanded ? 'h-28' : 'h-0'}`"
   >
     <div
-      :style="`background-color: ${expanded ? blok.background_color.color : blok.background_color_menu.color};`"
+      :style="`background-color: ${expanded ? backgroundColors : blok.background_color_menu.color};`"
       class="top-kick absolute w-20 h-20 flex right-0 -top-20 items-center justify-center z-10 rounded-tl cursor-pointer transition-all duration-200"
       @click="scrollTop();"
     >
-      <Icon arrow tag="button" size="w-auto" :class="`justify-center transform rotate-90 ${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`" />
+      <Icon arrow tag="button" size="w-auto" :class="`justify-center transform rotate-90 ${expanded ? $themeColor(backgroundColors) ? 'filter invert' : '' : ''}`" />
     </div>
     <div
       class="content-container h-full overflow-hidden"
@@ -21,13 +21,13 @@
       >
         <div
           class="icon-open w-20 h-20 flex justify-center items-center rounded-tr transition-all duration-200"
-          :style="`background-color: ${expanded ? blok.background_color.color : blok.background_color_menu.color};`"
+          :style="`background-color: ${expanded ? backgroundColors : blok.background_color_menu.color};`"
         >
           <Icon
             eye
             tag="span"
             size="w-auto"
-            :class="`${expanded ? $themeColor(blok.background_color.color) ? 'filter invert' : '' : ''}`"
+            :class="`${expanded ? $themeColor(backgroundColors) ? 'filter invert' : '' : ''}`"
           />
         </div>
       </div>
@@ -37,18 +37,18 @@
         <div
           class="messages-container"
         >
-          <span :class="`footer-messages whitespace-nowrap text-xs ${$themeColor(blok.background_color.color) ? 'text-white' : ''}`">
+          <span :class="`footer-messages whitespace-nowrap text-xs ${$themeColor(backgroundColors) ? 'text-white' : ''}`">
             Aprograma {{ typewriter }}
           </span>
         </div>
         <div
-          :class="`footer-info grid gap-y-1.5 justify-self-center whitespace-nowrap text-center ${$themeColor(blok.background_color.color) ? 'text-white' : ''}`"
+          :class="`footer-info grid gap-y-1.5 justify-self-center whitespace-nowrap text-center ${$themeColor(backgroundColors) ? 'text-white' : ''}`"
         >
           <span class="footer-copyright text-sm"> © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span>
           <span class="footer-powered text-xs">&#60; {{ $languageCase('powered by', 'creado con', 'creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span><span class="nuxtjs-emoji"> 💚</span></a> / &nbsp;{{ $languageCase('hosted by', 'alojado con', 'distribuito da') }} <a class="netlify-link" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"><span class="netlify underline">Netlify</span></a> &#62;</span>
         </div>
         <ul
-          :class="`social-links flex flex-wrap justify-end -m-1.5 ${$themeColor(blok.background_color.color) ? 'filter invert' : ''}`"
+          :class="`social-links flex flex-wrap justify-end -m-1.5 ${$themeColor(backgroundColors) ? 'filter invert' : ''}`"
         >
           <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid" class="link-item m-1.5">
             <component
@@ -63,7 +63,8 @@
   </footer>
   <footer
     v-else
-    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl mx-auto px-2.5 py-20 mb-12 rounded-t bg-opacity-80 bg-white"
+    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl mx-auto px-2.5 py-20 mb-12 rounded-t"
+    :style="`background-color: ${backgroundColors};`"
   >
     <div class="footer-content h-52 grid gap-5 text-center">
       <span class="input-footer relative grid gap-5 grid-flow-col-dense items-end justify-center bottom-6 text-md font-thin">
@@ -123,6 +124,18 @@ export default {
         return this.$languageCase(texts[0], texts[1], texts[2])
       } else {
         return ''
+      }
+    },
+    backgroundColors () {
+      const colors = this.blok.background_color.color.split('; ')
+      if (colors.length > 1) {
+        if (this.$store.state.data.windowWidth >= 768 && this.$device.isDesktop) {
+          return colors[0]
+        } else {
+          return colors.length > 1 ? colors[1] : colors[0]
+        }
+      } else {
+        return this.blok.background_color.color
       }
     }
   },

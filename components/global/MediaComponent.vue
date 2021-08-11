@@ -104,7 +104,12 @@
         <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
       </video>
     </template>
-    <p v-if="(blok && blok.title && blok.show_title) || title" class="media-title text-center text-lg" v-text="blok && blok.title ? blok.title : title" />
+    <p
+      v-if="(blok && blok.title && blok.show_title) || title"
+      class="media-title text-center text-lg"
+      :style="`color: ${blok && blok.text_color.color ? blok.text_color.color : false};`"
+      v-text="blok && blok.title ? blok.title : title"
+    />
   </div>
 </template>
 

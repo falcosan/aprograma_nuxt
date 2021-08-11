@@ -1,11 +1,12 @@
 <template>
-  <div class="field-item relative grid mb-7 rounded" :style="`background-color: ${blok.background_color.color};`">
+  <div class="field-item relative grid mb-8 rounded" :style="`background-color: ${blok.background_color.color};`">
     <label class="field-label font-extralight p-2.5 text-sm" :for="blok.label.toLowerCase().replace(/ /g,'')" :style="`color: ${blok.text_color.color};`">{{ blok.label }} {{ blok.mandatory ? '*' : null }}</label>
     <component
       :is="blok.tag"
       :id="`${blok.type}-field`"
       :name="blok.label.toLowerCase().replace(/ /g,'')"
       :type="blok.type"
+      :placeholder="blok.placeholder"
       :class="`field-input w-full relative z-20 p-2 rounded resize-none shadow-inner border border-gray-500 text-black ${isMessage ? 'h-40' : 'h-10 leading-10'} ${fieldError() ? 'border border-red-300 bg-red-100' : 'bg-gray-50'}`"
       :value="fieldValue !== '' ? fieldValue : ''"
       @keyup="updateFields(); showIndication()"

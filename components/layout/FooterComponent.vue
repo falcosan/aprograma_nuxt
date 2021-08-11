@@ -54,7 +54,7 @@
             <component
               :is="iconLink.component"
               :blok="iconLink"
-              class="social-icon"
+              class="social-icon hover:opacity-80"
             />
           </li>
         </ul>

@@ -9,9 +9,6 @@ body {
     scroll-behavior: smooth;
     background-color: #ffffff;
 }
-body ::-webkit-scrollbar {
-    display: none;
-}
 *::placeholder{
     font-size: 14px;
   }

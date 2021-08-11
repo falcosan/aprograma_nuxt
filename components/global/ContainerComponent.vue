@@ -317,6 +317,10 @@ export default {
 }
 </script>
 <style scoped>
+.slider-box .slider .slider-slide {
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
 .hidden{
   display: flex !important;
   opacity: 0;

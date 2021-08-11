@@ -30,7 +30,11 @@ export default {
       }
     ]
   },
-  loading: false,
+  loading: {
+    duration: 1000,
+    rtl: true,
+    continuous: true
+  },
   plugins: [
     '~/plugins/injects',
     '~/plugins/components',

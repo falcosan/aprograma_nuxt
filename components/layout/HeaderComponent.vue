@@ -121,7 +121,7 @@ export default {
   },
   computed: {
     backgroundColors () {
-      const colors = this.blok.background_color.color.split('; ')
+      const colors = this.blok.background_color_menu.color.split('; ')
       if (colors.length > 1) {
         if (this.$store.state.data.windowWidth >= 768 && this.$device.isDesktop) {
           return colors[0]
@@ -129,7 +129,7 @@ export default {
           return colors.length > 1 ? colors[1] : colors[0]
         }
       } else {
-        return this.blok.background_color.color
+        return this.blok.background_color_menu.color
       }
     }
   },

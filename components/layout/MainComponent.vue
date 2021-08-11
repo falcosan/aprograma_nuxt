@@ -1,14 +1,18 @@
 <template>
-  <main :class="`main pt-10 overflow-x-hidden ${!$device.isDesktop ? '' : 'md:py-16'} ${blok.background_media.filename ? 'mb-10' : 'bg-white'}`">
+  <main :class="`main pt-10 overflow-x-hidden ${!$device.isDesktop ? '' : 'md:py-16'} ${blok.background_media.filename ? 'mb-10' : ''}`">
     <div :class="`main-wrapper relative min-h-screen overflow-hidden ${$store.state.data.error ? 'main-error' : 'main-regular'}`">
       <div
         v-if="blok.show_background_mask"
         :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-0 mx-auto overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'colorAnimation' : ''}`"
-        :style="`background-color: ${randomBackgroundColor};`"
+        :style="`background-color: ${randomBackgroundColorMask};`"
       >
-        <div class="main-mask h-full w-full bg-opacity-80 bg-white" />
+        <div class="main-mask h-full w-full bg-opacity-70 bg-white" />
       </div>
-      <div v-else-if="!blok.background_media.filename" :class="`main-flat fixed min-h-full min-w-full inset-0 transition-colors duration-500 ${blok.color_animation ? 'colorAnimation' : ''}`" :style="`background-color: ${blok.background_media.filename ? 'transparent' : randomBackgroundColor};`" />
+      <div
+        v-if="!blok.background_media.filename"
+        :class="`main-flat fixed min-h-full min-w-full inset-0 -z-10 transition-colors duration-500 ${blok.color_animation ? 'colorAnimation' : ''}`"
+        :style="`background-color: ${randomBackgroundColor};`"
+      />
       <transition enter-active-class="duration-300 in-out" enter-class="opacity-0" mode="out-in">
         <Nuxt :class="`relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
       </transition>
@@ -45,7 +49,10 @@ export default {
   },
   data () {
     return {
-      index: 0
+      index: {
+        background: 0,
+        mask: 0
+      }
     }
   },
   computed: {
@@ -53,19 +60,30 @@ export default {
       return this.blok.background_media.filename ? (/(gif|jpe?g|tiff?|svg|png|webp|bmp)/gi).test(this.blok.background_media.filename.toLowerCase().split('.').pop()) ? 'image' : 'video' : ''
     },
     randomBackgroundColor () {
-      return this.blok.background_color.color.split('; ')[this.index]
+      return this.blok.background_color.color.split('; ')[this.index.background]
+    },
+    randomBackgroundColorMask () {
+      return this.blok.background_color_mask.color.split('; ')[this.index.mask]
     }
   },
   watch: {
-    $route () { this.setBackgroundColor() }
+    $route () {
+      if (this.blok.background_color.color || this.blok.background_color_mask.color) {
+        this.setBackgroundColor()
+      }
+      if (this.blok.background_color.color) { this.$store.commit('data/themeColorMutation', this.randomBackgroundColor) }
+    }
   },
   created () {
-    this.setBackgroundColor()
+    if (this.blok.background_color.color || this.blok.background_color_mask.color) {
+      this.setBackgroundColor()
+    }
+    if (this.blok.background_color.color) { this.$store.commit('data/themeColorMutation', this.randomBackgroundColor) }
   },
   methods: {
     setBackgroundColor () {
-      this.index = ~~(Math.random() * (this.blok.background_color.color.split('; ').length - 0)) + 0
-      this.$store.commit('data/themeColorMutation', this.randomBackgroundColor)
+      this.index.background = ~~(Math.random() * (this.blok.background_color.color.split('; ').length - 0)) + 0
+      this.index.mask = ~~(Math.random() * (this.blok.background_color_mask.color.split('; ').length - 0)) + 0
     },
     imageType () {
       if (this.lookFile === 'image') {

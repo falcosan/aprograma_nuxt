@@ -31,6 +31,7 @@ export default {
     ]
   },
   loading: {
+    color: '#212121',
     duration: 1000,
     rtl: true,
     continuous: true

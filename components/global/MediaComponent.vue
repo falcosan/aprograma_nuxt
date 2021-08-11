@@ -1,5 +1,5 @@
 <template>
-  <div class="media relative w-auto h-full grid gap-5 items-center overflow-hidden rounded">
+  <div class="media relative w-auto flex flex-col items-center overflow-hidden rounded">
     <Modal
       v-if="blok.modal_mode"
       close-mode
@@ -106,7 +106,7 @@
     </template>
     <p
       v-if="(blok && blok.title && blok.show_title) || title"
-      class="media-title text-center text-lg"
+      class="media-title mt-5 text-center text-xl font-extralight"
       :style="`color: ${blok && blok.text_color.color ? blok.text_color.color : false};`"
       v-text="blok && blok.title ? blok.title : title"
     />

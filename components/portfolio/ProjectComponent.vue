@@ -21,24 +21,26 @@
       >
         <template #activator="action">
           <div class="image-container w-full h-60 ss:h-64 xs:h-72 sm:h-80 md:h-96 lg:h-lg xl:h-lg 2xl:h-2xl my-0 mx-auto cursor-pointer" @click="action.open()">
-            <img
+            <nuxt-img
+
               class="intro-image h-full border-2 object-cover rounded select-none"
               height="100%"
               width="100%"
               :src="blok.image.filename"
               :alt="blok.image.alt"
               :style="`border-color: ${blok.project_background_color.color}`"
-            >
+            />
           </div>
         </template>
         <template #body>
-          <img
+          <nuxt-img
+
             class="image-project select-none cursor-default"
             width="100%"
             height="100%"
             :src="blok.image.filename"
             :alt="blok.image.alt"
-          >
+          />
         </template>
       </Modal>
       <div class="project-action min-w-0 flex items-center justify-between xl:row-start-2 xl:row-end-2 xl:col-start-3 xl:col-end-3">

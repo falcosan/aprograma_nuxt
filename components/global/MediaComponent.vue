@@ -6,8 +6,9 @@
       modal-style="bg-gray-200 bg-opacity-90"
     >
       <template #activator="action">
-        <img
+        <nuxt-img
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
+
           :style="`height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'};`"
           :width="blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'"
           :height="blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'"
@@ -19,7 +20,7 @@
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :type="`image/${imageType()}`"
           @click="action.open()"
-        >
+        />
         <video
           v-else-if="(blok && blok.media.filename) || video"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
@@ -39,8 +40,9 @@
         </video>
       </template>
       <template #body>
-        <img
+        <nuxt-img
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
+
           width="100%"
           height="100%"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
@@ -50,7 +52,7 @@
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :type="`image/${imageType()}`"
-        >
+        />
         <video
           v-else-if="(blok && blok.media.filename) || video"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
@@ -69,8 +71,9 @@
       </template>
     </Modal>
     <template v-else>
-      <img
+      <nuxt-img
         v-if="(blok && blok.media.filename && lookFile === 'image') || image"
+
         class="image-container"
         :style="`height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'};`"
         :width="blok && blok.width && blok.unit ? `${blok.width}${blok.unit}`: width ? width : 'auto'"
@@ -82,7 +85,7 @@
         :src="blok && blok.media.filename ? blok.media.filename : src"
         :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
         :type="`image/${imageType()}`"
-      >
+      />
 
       <video
         v-else-if="(blok && blok.media.filename) || video"

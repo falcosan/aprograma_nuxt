@@ -11,27 +11,34 @@
             modal-style="bg-opacity-90 bg-gray-200"
           >
             <template #activator="action">
-              <img
+              <nuxt-img
                 height="100%"
                 width="100%"
                 class="description-image w-screen h-full cursor-pointer object-cover rounded select-none"
                 :src="image.filename"
                 :alt="image.alt"
                 @click="action.open()"
-              >
+              />
             </template>
             <template #body>
-              <img class="description-image select-none cursor-default" height="auto" width="auto" :src="image.filename" :alt="image.alt">
+              <nuxt-img
+                class="description-image select-none cursor-default"
+                height="auto"
+                width="auto"
+                :src="image.filename"
+                :alt="image.alt"
+              />
             </template>
           </Modal>
           <div v-else class="project-description">
-            <img
+            <nuxt-img
+
               height="100%"
               width="100%"
               class="description-image w-screen h-full object-cover rounded select-none"
               :src="image.filename"
               :alt="image.alt"
-            >
+            />
           </div>
         </li>
       </ul>

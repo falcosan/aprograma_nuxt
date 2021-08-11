@@ -11,7 +11,7 @@
       :aria-label="blok && blok.tag === 'button' || tag === 'button' ? `icon-button-reader` : ''"
       :class="`icon-wrapper my-0 mx-auto select-none pointer-events-none ${blok && blok.shadow ? 'filter drop-shadow-md' : ''}`"
     >
-      <img
+      <nuxt-img
         v-if="blok && blok.icon_image.filename"
         :class="`icon ${blok.icon_image.filename
           .split(/[\\/]/)
@@ -23,7 +23,7 @@
         alt=""
         :name="blok.name"
         :type="`image/${lookFile()}`"
-      >
+      />
 
       <!-- HOME-->
       <svg

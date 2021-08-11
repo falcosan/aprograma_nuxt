@@ -46,8 +46,15 @@ export default {
   buildModules: [
     '@nuxtjs/tailwindcss',
     'nuxt-compress',
-    '@nuxtjs/device'
+    '@nuxtjs/device',
+    '@nuxt/image'
   ],
+  image: {
+    provider: 'storyblok',
+    storyblok: {
+      baseURL: 'https://a.storyblok.com'
+    }
+  },
   device: {
     refreshOnResize: true
   },

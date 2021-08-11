@@ -25,13 +25,13 @@
               </h2>
             </div>
             <div :class="`image-container flex row-start-1 row-end-1 ${index % 2 == 0 ? 'col-start-2 col-end-2' : 'col-start-1 col-end-1'}`">
-              <img
+              <nuxt-img
                 class="project-image object-cover object-center pointer-events-none select-none"
                 width="100%"
                 height="auto"
                 :src="project.content.image.filename"
                 :alt="project.content.image.alt"
-              >
+              />
             </div>
           </NuxtLink>
         </li>

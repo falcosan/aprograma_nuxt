@@ -96,7 +96,7 @@ export default {
       return this.postContent.file.filename ? this.postContent.file.filename : 'https://a.storyblok.com/f/106240/4065x1468/5c83c3e7de/noimeageteaser.png'
     },
     sortedCategories () {
-      return this.postContent.categories.map(category => category.toLowerCase().split(', ')[this.$languageCase(0, 1, 2)]).sort()
+      return this.postContent.categories.map(category => category.toLowerCase().split('; ')[this.$languageCase(0, 1, 2)]).sort()
     }
   },
   methods: {

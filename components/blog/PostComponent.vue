@@ -80,7 +80,7 @@ export default {
       return this.blok.file.filename ? this.blok.file.filename : 'https://a.storyblok.com/f/106240/4067x2440/49d9d1a222/noimagedetail.png'
     },
     sortedCategories () {
-      return this.blok.categories.map(category => category.toLowerCase().split(', ')[this.$languageCase(0, 1, 2)]).sort()
+      return this.blok.categories.map(category => category.toLowerCase().split('; ')[this.$languageCase(0, 1, 2)]).sort()
     }
   },
   methods: {

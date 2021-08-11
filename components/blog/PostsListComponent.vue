@@ -111,7 +111,7 @@ export default {
       return featuredPosts
     },
     sortedCategories () {
-      return this.blok.categories.map(category => category.toLowerCase().split(', ')[this.$languageCase(0, 1, 2)]).sort()
+      return this.blok.categories.map(category => category.toLowerCase().split('; ')[this.$languageCase(0, 1, 2)]).sort()
     },
     searchQuery () {
       if (this.searchTerm && this.blok.search_action && (!this.blok.categories_action || this.searchCategory.length === 0)) {
@@ -151,7 +151,7 @@ export default {
       }
     },
     setLanguageCase (filter) {
-      const hash = filter.toLowerCase().split(', ').filter(subFilter => subFilter)
+      const hash = filter.toLowerCase().split('; ').filter(subFilter => subFilter)
       return this.$languageCase(hash[0], hash[1], hash[2])
     },
     showCategories () {

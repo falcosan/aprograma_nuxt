@@ -119,7 +119,7 @@ export default {
   computed: {
     words () {
       if (this.blok.message.length > 0) {
-        const texts = this.blok.message[this.typewriterIndex].split(', ').filter(text => text)
+        const texts = this.blok.message[this.typewriterIndex].split('; ').filter(text => text)
         return this.$languageCase(texts[0], texts[1], texts[2])
       } else {
         return ''

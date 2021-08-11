@@ -1,5 +1,12 @@
 <template>
   <div v-if="sortedPosts.length > 0" class="posts w-full">
+    <h1
+      v-if="blok.title"
+      class="posts-title font-extralight break-words"
+      :style="`color: ${blok.title_color.color};`"
+    >
+      {{ blok.title }}
+    </h1>
     <div v-if="blok.search_action" class="post-search grid self-start mb-5">
       <input v-model="searchTerm" :placeholder="$languageCase('Search the post', 'Busca el post', 'Cerca il post')" class="search-bar w-full h-10 p-2 rounded border border-gray-500 text-black bg-gray-50" type="text">
     </div>
@@ -99,7 +106,7 @@ export default {
     maxPosts () {
       if (this.containerWidth >= 536) {
         return 'md:grid-cols-fit-medium lg:grid-cols-fit-big'
-      } return this.containerWidth >= 354 ? 'sm:grid-cols-fit-small md:grid-cols-fit-medium' : 'md:grid-cols-fit-small'
+      } return this.containerWidth >= 354 ? 'md:grid-cols-fit-medium' : 'md:grid-cols-fit-small'
     },
     sortedPosts () {
       const featuredPosts = this.$store.state.list.posts.items.filter((post) => {

@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="postContent"
-    :class="`post-teaser overflow-hidden max-h-md rounded ${sliderContainer || carouselContainer || containerContainer ? 'max-w-2xl mx-auto my-0' : !$device.isDesktop ? '' : 'transform transition-all duration-200 hover:shadow hover:scale-105'}`"
+    :class="`post-teaser w-full overflow-hidden max-h-md rounded ${sliderContainer || carouselContainer || containerContainer ? 'max-w-2xl mx-auto my-0' : !$device.isDesktop ? '' : 'transform transition-all duration-200 hover:shadow hover:scale-105'}`"
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div
@@ -9,16 +9,16 @@
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
-        <div :class="`teaser-file w-full h-full max-h-56 sm:max-h-60 min-h-40 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
+        <div :class="`teaser-file w-full h-full max-h-60 sm:max-h-64 min-h-40 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'md:max-h-40 lg:max-h-60 xl:max-h-64 flex-none' : 'lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'nuxt-img'"
             :modifiers="lookFile() === 'nuxt-img' || !postContent.file.filename ?{ smart: true } : false"
-            :class="`w-full h-full max-h-56 sm:max-h-60 object-center select-none ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
+            :class="`w-full h-full max-h-60 sm:max-h-64 object-center select-none ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
             :alt="postContent.file.alt"
             :src="setFile"
           />
         </div>
-        <div :class="`teaser-text h-auto w-full flex flex-col p-5 ${rowContainer && !carouselContainer && !sliderContainer && !containerContainer ? '' : sliderContainer || carouselContainer || containerContainer ? '' : 'lg:w-1/2'} ${$route.name === 'blog' ? 'justify-between' : 'justify-center'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full flex flex-col justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? 'h-full' : 'lg:w-1/2'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               :class="`teaser-title mb-2 overflow-hidden ${$route.name === 'blog' ? 'text-xl sm:text-2xl' : 'text-xl'}`"
@@ -32,7 +32,7 @@
               {{ postContent.intro }}
             </span>
           </div>
-          <div :class="`teaser-info w-full flex flex-col xx:flex-row mt-5 italic items-end ${$route.name === 'blog' ? 'justify-between' : 'justify-end'}`">
+          <div class="teaser-info w-full flex flex-col xx:flex-row mt-5 italic items-end">
             <ul class="teaser-categories w-full flex flex-wrap self-start -m-1.5">
               <li v-for="(category, index) in sortedCategories" :key="index" :class="`teaser-category text-xs p-2.5 m-1.5 font-extralight rounded shadow-sm filter brightness-95 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${postContent.teaser_background_color.color};`">
                 {{ category }}

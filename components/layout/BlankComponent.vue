@@ -1,5 +1,5 @@
 <template>
-  <div class="blank-space" :style="`height: ${blok.height}rem;`" />
+  <div class="blank-space" :style="`height: ${blok.height}${blok.unit};`" />
 </template>
 
 <script>

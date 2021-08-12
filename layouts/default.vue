@@ -1,24 +1,22 @@
 <template>
-  <transition appear enter-active-class="duration-1000" enter-class="opacity-0">
-    <div v-if="story.content.body && story.content.view" class="aprograma-theme">
-      <component
-        :is="layout.component"
-        v-for="layout in story.content.body"
-        :key="layout._uid"
-        :blok="layout"
-      />
-    </div>
-    <div v-else-if="story.content.body" class="aprograma-maintenance h-screen flex flex-col justify-center p-10">
-      <Logo
-        transition
-        class="rounded"
-        size="w-full max-h-md mx-auto my-0"
-      />
-      <h1 class="maintenance-text text-xs xs:text-base sm:text-lg text-center xs:whitespace-nowrap pointer-events-none font-medium uppercase underline italic">
-        under maintenance
-      </h1>
-    </div>
-  </transition>
+  <div v-if="story.content.body && story.content.view" class="aprograma-theme">
+    <component
+      :is="layout.component"
+      v-for="layout in story.content.body"
+      :key="layout._uid"
+      :blok="layout"
+    />
+  </div>
+  <div v-else-if="story.content.body" class="aprograma-maintenance h-screen flex flex-col justify-center p-10">
+    <Logo
+      transition
+      class="rounded"
+      size="w-full max-h-md mx-auto my-0"
+    />
+    <h1 class="maintenance-text text-xs xs:text-base sm:text-lg text-center xs:whitespace-nowrap pointer-events-none font-medium uppercase underline italic">
+      under maintenance
+    </h1>
+  </div>
 </template>
 
 <script>

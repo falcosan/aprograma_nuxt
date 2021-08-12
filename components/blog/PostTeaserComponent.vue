@@ -27,7 +27,7 @@
               {{ postContent.title }}
             </span>
             <span
-              class="teaser-intro overflow-hidden"
+              class="teaser-intro font-extralight overflow-hidden"
             >
               {{ postContent.intro }}
             </span>

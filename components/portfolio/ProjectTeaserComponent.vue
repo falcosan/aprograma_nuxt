@@ -7,7 +7,7 @@
       <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
         <nuxt-img
           :modifiers="{ smart: true }"
-          class="project-image w-full h-4/5 object-cover object-center select-none rounded-t"
+          class="project-image w-full h-5/6 object-cover object-center select-none rounded-t"
           width="auto"
           height="auto"
           :src="projectContent.image.filename"
@@ -15,10 +15,10 @@
         />
         <div
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
-          class="title-container h-1/5 flex flex-row flex-wrap items-center px-5"
+          class="title-container h-1/6 flex flex-row flex-wrap items-center px-5"
         >
           <span
-            class="teaser-title min-w-0 overflow-hidden"
+            class="teaser-title min-w-0 overflow-hidden font-extralight"
           > {{ projectContent.title }}</span>
         </div>
       </div>

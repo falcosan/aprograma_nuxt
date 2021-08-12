@@ -105,7 +105,7 @@
       </video>
     </template>
     <p
-      v-if="(blok && blok.title && blok.show_title) || title"
+      v-if="(blok && blok.title) || title"
       class="media-title mt-5 text-center text-xl font-extralight"
       :style="`color: ${blok && blok.text_color.color ? blok.text_color.color : false};`"
       v-text="blok && blok.title ? blok.title : title"

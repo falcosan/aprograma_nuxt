@@ -1,5 +1,12 @@
 <template>
   <div v-if="sortedProject.length > 0" class="projects w-full">
+    <h1
+      v-if="blok.title"
+      class="projects-title font-extralight break-words"
+      :style="`color: ${blok.title_color.color};`"
+    >
+      {{ blok.title }}
+    </h1>
     <ProjectSlider
       v-if="$store.state.data.windowWidth > 1024 && blok.show_slider && !blok.row_container && !sliderContainer"
       :blok="sortedProject"

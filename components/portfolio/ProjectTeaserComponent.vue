@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="projectContent"
-    :class="`project-teaser w-full h-full overflow-hidden rounded ${rowContainer || sliderContainer || carouselContainer || containerContainer ? 'max-h-sd' : !$device.isDesktop ? '' : 'transform transition-all duration-200 hover:shadow hover:scale-105'}`"
+    :class="`project-teaser w-full h-full max-h-sd overflow-hidden rounded ${sliderContainer || carouselContainer ? '' : !$device.isDesktop ? '' : 'transform transition-all duration-200 hover:shadow hover:scale-105'}`"
   >
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
       <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">

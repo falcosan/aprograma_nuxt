@@ -8,7 +8,7 @@
       {{ blok.title }}
     </h1>
     <ProjectSlider
-      v-if="$store.state.data.windowWidth > 1024 && blok.show_slider && !blok.row_container && !sliderContainer"
+      v-if="$store.state.data.windowWidth > 1024 && blok.show_slider && !blok.row_container && sortedProject.length > 2 && !sliderContainer"
       :blok="sortedProject"
     />
     <ul v-else :class="`project-list w-full grid gap-5 auto-cols-fr auto-rows-fr ${maxProjects}`">

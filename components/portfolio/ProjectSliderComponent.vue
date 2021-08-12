@@ -20,7 +20,7 @@
         >
           <NuxtLink v-click-outside="focusSlide" :to="`${$route.path}/${project.slug}`" class="project-link w-full grid grid-rows-1 grid-cols-2">
             <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1`" :style="`background-color: ${project.content.teaser_background_color.color};`">
-              <h2 class="project-text text-xl xl:text-2xl px-5 overflow-hidden" :style="`color: ${project.content.teaser_text_color.color};`">
+              <h2 class="project-text text-xl xl:text-2xl px-10 overflow-hidden font-extralight" :style="`color: ${project.content.teaser_text_color.color};`">
                 {{ project.content.title }}
               </h2>
             </div>
@@ -50,7 +50,7 @@
       leave-to-class="opacity-0"
       class="controls w-full absolute top-1/2 text-white"
     >
-      <span v-if="frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control absolute right-3 transform -translate-y-1/2 rounded-full bg-opacity-70 bg-gray-800">
+      <span :key="`${indexControls}-1`" class="next-control absolute right-3 transform -translate-y-1/2 rounded-full bg-opacity-70 bg-gray-800">
         <Icon next class="next" size="p-2 lg:p-3 w-9 lg:w-10" tag="button" @click.native="next" />
       </span>
       <span :key="`${indexControls}-2`" class="previous-control absolute left-3 transform -translate-y-1/2 rounded-full bg-opacity-70 bg-gray-800">

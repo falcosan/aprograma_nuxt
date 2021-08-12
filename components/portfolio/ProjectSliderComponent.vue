@@ -53,7 +53,7 @@
       <span v-if="frame.up + 1 < blok.length" :key="`${indexControls}-1`" class="next-control absolute right-3 transform -translate-y-1/2 rounded-full bg-opacity-70 bg-gray-800">
         <Icon next class="next" size="p-2 lg:p-3 w-9 lg:w-10" tag="button" @click.native="next" />
       </span>
-      <span v-if="frame.up != 0" :key="`${indexControls}-2`" class="previous-control absolute left-3 transform -translate-y-1/2 rounded-full bg-opacity-70 bg-gray-800">
+      <span :key="`${indexControls}-2`" class="previous-control absolute left-3 transform -translate-y-1/2 rounded-full bg-opacity-70 bg-gray-800">
         <Icon previous class="previous" size="p-2 lg:p-3 w-9 lg:w-10" tag="button" @click.native="prev" />
       </span>
     </transition-group>
@@ -128,6 +128,12 @@ export default {
         this.frame.down--
         this.translation.enter = '-translate-x-full'
         this.translation.leave = 'translate-x-full'
+      } else {
+        this.indexControls = this.blok.length - 1
+        this.frame.up = this.blok.length - 1
+        this.frame.down = this.blok.length
+        this.translation.enter = ''
+        this.translation.leave = ''
       }
     },
     resetData () {

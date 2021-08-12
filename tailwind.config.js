@@ -27,6 +27,7 @@ module.exports = {
         min: 'min-content',
         xs: '20rem',
         sm: '24rem',
+        sd: '420px',
         md: '28rem',
         lg: '32rem',
         xl: '36rem',

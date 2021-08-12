@@ -9,7 +9,7 @@
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
-        <div :class="`teaser-file w-full h-full max-h-60 sm:max-h-64 min-h-40 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'flex-1 lg:flex-auto' : 'lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
+        <div :class="`teaser-file w-full h-full max-h-60 sm:max-h-64 min-h-40 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'md:flex-1 lg:flex-auto' : 'lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'nuxt-img'"
             :modifiers="lookFile() === 'nuxt-img' || !postContent.file.filename ?{ smart: true } : false"

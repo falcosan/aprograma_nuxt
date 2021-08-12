@@ -15,7 +15,7 @@
         />
         <div
           :style="`background-color: ${projectContent.teaser_background_color.color};`"
-          class="title-container h-1/5 flex flex-row flex-wrap items-center p-7"
+          class="title-container h-1/5 flex flex-row flex-wrap items-center px-5"
         >
           <span
             class="teaser-title min-w-0 overflow-hidden"

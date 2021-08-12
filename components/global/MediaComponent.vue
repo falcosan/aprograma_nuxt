@@ -20,6 +20,7 @@
           :width="blok && blok.quality ? Number(blok.quality) : width ? width : ''"
           :height="blok && blok.quality ? Number(blok.quality) : height ? height : ''"
           :type="`image/${imageType()}`"
+          fit="in"
           draggable="false"
           @click.native="action.open()"
         />
@@ -52,6 +53,7 @@
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :type="`image/${imageType()}`"
+          fit="in"
           draggable="false"
         />
         <video
@@ -87,6 +89,7 @@
         :width="blok && blok.quality ? Number(blok.quality) : width ? width : ''"
         :height="blok && blok.quality ? Number(blok.quality) : height ? height : ''"
         :type="`image/${imageType()}`"
+        fit="in"
         draggable="false"
       />
       <video

@@ -13,7 +13,7 @@
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
-            .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-cover object-center cursor-pointer select-none`"
+            .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center cursor-pointer select-none`"
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :quality="Number(blok.quality)"
@@ -28,7 +28,7 @@
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
-            .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-cover object-center cursor-pointer select-none`"
+            .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center cursor-pointer select-none`"
           :style="`height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit === 'vh; vw' ? lookUnit[0] : lookUnit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit === 'vh; vw' ? lookUnit[1] : lookUnit}`: width ? width : 'auto'};`"
           playsinline
           autoplay
@@ -80,7 +80,7 @@
         :class="`${blok && blok.media.filename ? blok.media.filename : src
           .split(/[\\/]/)
           .pop()
-          .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-cover object-center pointer-events-none select-none`"
+          .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center pointer-events-none select-none`"
         :src="blok && blok.media.filename ? blok.media.filename : src"
         :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
         :quality="Number(blok.quality)"
@@ -94,7 +94,7 @@
         :class="`${blok && blok.media.filename ? blok.media.filename : src
           .split(/[\\/]/)
           .pop()
-          .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-cover object-center pointer-events-none select-none`"
+          .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center pointer-events-none select-none`"
         :style="`height: ${blok && blok.height && blok && blok.unit ? `${blok.height}${blok.unit === 'vh; vw' ? lookUnit[0] : lookUnit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit === 'vh; vw' ? lookUnit[1] : lookUnit}`: width ? width : 'auto'};`"
         playsinline
         autoplay

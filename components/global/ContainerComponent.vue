@@ -46,8 +46,8 @@
               <template v-for="component in elements">
                 <li
                   :key="component._uid"
-                  v-touch:swipe.stop.left="next"
-                  v-touch:swipe.stop.right="previous"
+                  v-touch:swipe.stop.left="blok.show_controllers ? next : null"
+                  v-touch:swipe.stop.right="blok.show_controllers ? previous : null"
                   :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
                   :class="`slider-slide slide h-full flex my-0 mx-auto rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
                 >
@@ -75,8 +75,8 @@
                 <li
                   v-show="index === currentSlide"
                   :key="component._uid"
-                  v-touch:swipe.stop.left="next"
-                  v-touch:swipe.stop.right="previous"
+                  v-touch:swipe.stop.left="blok.show_controllers ? next : null"
+                  v-touch:swipe.stop.right="blok.show_controllers ? previous : null"
                   :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
                   :style="`background-color: ${blok.background_color_component.color};`"
                 >

@@ -2,7 +2,7 @@
   <div v-if="sortedPosts.length > 0" class="posts w-full">
     <h1
       v-if="blok.title"
-      class="posts-title font-extralight break-words"
+      class="posts-title mb-5 text-xl xs:text-2xl font-extralight break-words"
       :style="`color: ${blok.title_color.color};`"
     >
       {{ blok.title }}

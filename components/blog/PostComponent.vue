@@ -102,10 +102,8 @@ export default {
 </script>
 <style>
 .post-article{
+  word-break: break-word;
   overflow-wrap: anywhere;
-}
-.post-article *::-webkit-scrollbar {
- display: none;
 }
 .post-article * {
  -ms-overflow-style: none;

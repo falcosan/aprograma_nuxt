@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="postContent"
-    :class="`post-teaser w-full overflow-hidden rounded ${sliderContainer || carouselContainer || containerContainer ? 'max-w-2xl mx-auto my-0' : !$device.isDesktop ? '' : 'transform transition-all duration-200 hover:shadow hover:scale-105'}`"
+    :class="`post-teaser w-full overflow-hidden rounded ${sliderContainer || carouselContainer || containerContainer ? '' : !$device.isDesktop ? '' : 'transform transition-all duration-200 hover:shadow hover:scale-105'}`"
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div
@@ -18,7 +18,7 @@
             :src="setFile"
           />
         </div>
-        <div :class="`teaser-text w-full flex flex-col justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? ' h-2/3' : 'lg:w-1/2'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full flex flex-col justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? 'flex-auto' : 'lg:w-1/2'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               :class="`teaser-title mb-2 overflow-hidden ${$route.name === 'blog' ? 'text-xl sm:text-2xl' : 'text-xl'}`"

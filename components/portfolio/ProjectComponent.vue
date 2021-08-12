@@ -117,6 +117,7 @@ export default {
 </script>
 <style scoped>
 .intro-text{
+  word-break: break-word;
   overflow-wrap: anywhere;
 }
 </style>

@@ -27,26 +27,27 @@ p code {
 pre{
     padding: 0 !important;
   }
-  pre code {
-    display: flex;
-    flex-direction: column-reverse;
-    padding: 20px;
-    overflow: hidden;
-    border-radius: .25rem;
-    border: 1px solid #212121;
-    color: #ffffff;
-    background-color: #212121;
-    }
-  pre code span {
-    position: relative;
-    width: calc(100% + 40px);
-    display: block;
-    top: -20px;
-    left: -20px;
-    padding: 10px;
-    background-color: #f9fafb;
-    color: #212121;
+pre code {
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 20px;
+  overflow: hidden;
+  border-radius: .25rem;
+  border: 1px solid #212121;
+  color: #ffffff;
+  background-color: #212121;
   }
+pre code span {
+  position: relative;
+  width: calc(100% + 40px);
+  display: block;
+  top: -20px;
+  left: -20px;
+  padding: 10px;
+  text-align: right;
+  background-color: #f9fafb;
+  color: #212121;
+}
 .noscroll {
     height: 100%;
     width: 100%;

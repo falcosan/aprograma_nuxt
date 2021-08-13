@@ -22,7 +22,7 @@
         <template #activator="action">
           <div class="image-container w-full h-64 xx:h-72 xs:h-80 sm:h-sm md:h-md lg:h-xl 2xl:h-2xl my-0 mx-auto cursor-pointer" @click="action.open()">
             <nuxt-img
-              :modifiers="{ smart: true, filters: { focal: blok.image.focus } }"
+              :modifiers="{ smart: true, filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
               class="intro-image h-full w-full border-2 object-cover rounded select-none"
               height="auto"
               width="auto"
@@ -34,7 +34,7 @@
         </template>
         <template #body>
           <nuxt-img
-            :modifiers="{ smart: true, filters: { focal: blok.image.focus } }"
+            :modifiers="{ smart: true, filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
             class="image-project select-none cursor-default"
             width="auto"
             height="auto"

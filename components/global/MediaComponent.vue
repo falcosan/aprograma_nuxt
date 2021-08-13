@@ -8,7 +8,7 @@
       <template #activator="action">
         <nuxt-img
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
-          :modifiers="{ smart: true, filters: { focal: blok.media.focus } }"
+          :modifiers="{ smart: true, filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
           :style="`height: ${blok && blok.height && blok.unit ? `${blok.height}${blok.unit === 'vh; vw' ? lookUnit[0] : lookUnit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit === 'vh; vw' ? lookUnit[1] : lookUnit}`: width ? width : 'auto'};`"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
@@ -43,7 +43,7 @@
       <template #body>
         <nuxt-img
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
-          :modifiers="{ smart: true, filters: { focal: blok.media.focus } }"
+          :modifiers="{ smart: true, filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
           width="auto"
           height="auto"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
@@ -76,7 +76,7 @@
     <template v-else>
       <nuxt-img
         v-if="(blok && blok.media.filename && lookFile === 'image') || image"
-        :modifiers="{ smart: true, filters: { focal: blok.media.focus } }"
+        :modifiers="{ smart: true, filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
         class="image-container"
         :style="`height: ${blok && blok.height && blok.unit ? `${blok.height}${blok.unit === 'vh; vw' ? lookUnit[0] : lookUnit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit === 'vh; vw' ? lookUnit[1] : lookUnit}`: width ? width : 'auto'};`"
         :class="`${blok && blok.media.filename ? blok.media.filename : src

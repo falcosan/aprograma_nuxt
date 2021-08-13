@@ -1,30 +1,30 @@
 <template>
-  <div class="project-description">
-    <h1 v-if="blok.title" :class="`description-title font-extralight ${sliderMode || carouselMode || containerMode ? 'm-5 text-lg' : 'mb-5 text-xl xs:text-2xl'}`" v-text="blok.title" />
-    <div :class="`description-content rounded ${blok.text ? 'grid gap-5 md:grid-flow-col auto-cols-fr' : 'flex justify-center'}`">
-      <ul :class="`image-container grid gap-5 w-full justify-items-center auto-rows-max ${blok.text ? `${blok.invert_direction ? 'col-start-2 col-end-2' : ''}` : ''}`" :style="`${inlineImageStyle} grid-template-columns: repeat(${blok.column_container ? $rangeItems(Number(blok.column_container), 3) : blok.image.length}, 1fr)`">
+  <div class="detail">
+    <h1 v-if="blok.title" :class="`detail-title font-extralight ${sliderMode || carouselMode || containerMode ? 'm-5 text-lg' : 'mb-5 text-xl xs:text-2xl'}`" v-text="blok.title" />
+    <div class="detail-content grid gap-5 md:grid-flow-col auto-cols-fr rounded">
+      <ul :class="`image-container grid gap-5 w-full justify-items-center auto-rows-max ${blok.invert_direction ? 'col-start-2 col-end-2' : ''}`" :style="`${inlineImageStyle} grid-template-columns: repeat(${blok.column_container ? $rangeItems(Number(blok.column_container), 3) : blok.image.length}, 1fr)`">
         <li v-for="image in blok.image" :key="image.id" class="image-item w-full">
           <Modal
             v-if="blok.modal_mode"
             close-mode
-            class="modal-project_description"
+            class="detail-modal"
             modal-style="bg-opacity-90 bg-gray-200"
           >
             <template #activator="action">
               <nuxt-img
-                :modifiers="{ smart: true, filters: { focal: blok.image.focus } }"
+                :modifiers="{ smart: true, filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
                 height="auto"
                 width="auto"
-                class="description-image w-screen h-full cursor-pointer object-cover rounded select-none"
+                class="detail-image w-screen h-full cursor-pointer object-cover rounded select-none"
                 :src="image.filename"
                 :alt="image.alt"
-                @click="action.open()"
+                @click.native="action.open()"
               />
             </template>
             <template #body>
               <nuxt-img
-                :modifiers="{ smart: true, filters: { focal: blok.image.focus } }"
-                class="description-image select-none cursor-default"
+                :modifiers="{ smart: true, filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
+                class="detail-image select-none cursor-default"
                 height="auto"
                 width="auto"
                 :src="image.filename"
@@ -32,19 +32,19 @@
               />
             </template>
           </Modal>
-          <div v-else class="project-description">
+          <div v-else class="project-detail">
             <nuxt-img
-              :modifiers="{ smart: true, filters: { focal: blok.image.focus } }"
+              :modifiers="{ smart: true, filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
               height="auto"
               width="auto"
-              class="description-image w-screen h-full object-cover rounded select-none"
+              class="detail-image w-screen h-full object-cover rounded select-none"
               :src="image.filename"
               :alt="image.alt"
             />
           </div>
         </li>
       </ul>
-      <div v-if="blok.text" :class="`description-text- h-max block overflow-hidden rounded break-words prose-sm lg:prose-lg ${blok.background_color.color ? 'p-5' : ''}`" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="richtext" />
+      <div class="detail-text- h-max block p-5 overflow-hidden rounded break-words prose-sm lg:prose-lg" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="$storyapi.richTextResolver.render(blok.text)" />
     </div>
   </div>
 </template>
@@ -74,11 +74,6 @@ export default {
     inlineTextStyle: {
       type: String,
       default: ''
-    }
-  },
-  computed: {
-    richtext () {
-      return this.blok.text ? this.$storyapi.richTextResolver.render(this.blok.text) : ''
     }
   }
 }

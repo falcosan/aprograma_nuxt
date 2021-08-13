@@ -11,7 +11,10 @@ body {
 }
 *::placeholder{
     font-size: 14px;
-  }
+}
+iframe{
+    border-radius: .25rem;
+}
 
 .noscroll {
     height: 100%;

@@ -46,6 +46,21 @@ export default ({ app }, inject) => {
       document.body.classList.remove('noscroll')
     }
   })
+  inject('setCodeLang', () => {
+    if (document.querySelector('pre code')) {
+      [...document.querySelectorAll('pre code')].forEach((code) => {
+        if (code.className) {
+          const content = document.createElement('span')
+          content.appendChild(document.createTextNode(code.className))
+          return code.appendChild(content)
+        } else {
+          const content = document.createElement('span')
+          content.appendChild(document.createTextNode(app.$languageCase('code', 'codigo', 'codice')))
+          return code.appendChild(content)
+        }
+      })
+    }
+  })
   inject('errorMessage', (res, message404, message500) => {
     if (!res) {
       app.context.error({

@@ -75,6 +75,9 @@ export default {
       type: String,
       default: ''
     }
+  },
+  mounted () {
+    this.$setCodeLang()
   }
 }
 </script>

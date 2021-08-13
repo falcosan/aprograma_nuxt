@@ -41,6 +41,9 @@ export default {
   created () {
     this.randomIndex()
   },
+  mounted () {
+    this.$setCodeLang()
+  },
   methods: {
     randomIndex () {
       this.index = ~~(Math.random() * (this.colors.length - 0)) + 0

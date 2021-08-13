@@ -75,6 +75,9 @@ export default {
       return this.blok.categories.map(category => category.toLowerCase().split('; ')[this.$languageCase(0, 1, 2)]).sort()
     }
   },
+  mounted () {
+    this.$setCodeLang()
+  },
   methods: {
     changeDate (date) {
       const currentDateTime = new Date(date.replace(' ', 'T'))

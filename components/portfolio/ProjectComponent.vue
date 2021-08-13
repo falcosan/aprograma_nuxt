@@ -101,6 +101,9 @@ export default {
       required: true
     }
   },
+  mounted () {
+    this.$setCodeLang()
+  },
   methods: {
     changeDate (date) {
       const currentDateTime = new Date(date.replace(' ', 'T'))

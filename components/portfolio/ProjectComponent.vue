@@ -63,10 +63,10 @@
           @click.native="goBack()"
         />
       </div>
-      <span
+      <div
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
         class="intro-text block p-5 rounded"
-        v-html="$md.render(blok.intro)"
+        v-html="$storyapi.richTextResolver.render(blok.intro)"
       />
       <div class="project-date flex items-baseline justify-around xl:col-start-1 xl:col-end-3">
         <h4 class="date-start text-right text-sm sm:text-base">

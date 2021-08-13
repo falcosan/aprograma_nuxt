@@ -5,9 +5,9 @@
     :style="`background-color: ${randomBackgroundColor}; color: ${randomTextColor};`"
     :class="`text-container w-full max-w-full h-full rounded ${customClass('index', blok.name === 'text_phrase', 'transition-colors duration-700 ease-in-out')}`"
   >
-    <span
+    <div
       :class="`text-content h-full block max-w-none p-5 rounded prose-sm lg:prose-lg`"
-      v-html="$md.render(blok.text)"
+      v-html="$storyapi.richTextResolver.render(blok.text)"
     />
   </div>
 </template>

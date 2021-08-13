@@ -44,7 +44,7 @@
           </div>
         </li>
       </ul>
-      <span v-if="blok.text" :class="`description-text- h-max block rounded break-words ${blok.background_color.color ? 'p-5' : ''}`" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="$md.render(blok.text)" />
+      <div v-if="blok.text" :class="`description-text- h-max block overflow-hidden rounded break-words prose-sm lg:prose-lg ${blok.background_color.color ? 'p-5' : ''}`" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="richtext" />
     </div>
   </div>
 </template>
@@ -74,6 +74,11 @@ export default {
     inlineTextStyle: {
       type: String,
       default: ''
+    }
+  },
+  computed: {
+    richtext () {
+      return this.blok.text ? this.$storyapi.richTextResolver.render(this.blok.text) : ''
     }
   }
 }

@@ -16,6 +16,30 @@ iframe{
     border-radius: .25rem;
 }
 
+pre{
+    padding: 0 !important;
+  }
+pre code:before {
+    content: attr(class);
+    position: relative;
+    width: calc(100% + 20px);
+    display: block;
+    top: -10px;
+    left: -10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: .25rem;
+    background-color: #ffffff;
+    color: #212121;
+  }
+pre code {
+  display: block;
+  padding: 10px;
+  border: 1px solid #212121;
+  color: #ffffff;
+  background: #212121;
+  }
+
 .noscroll {
     height: 100%;
     width: 100%;

@@ -99,6 +99,9 @@ export default {
       }
     }
   },
+  mounted () {
+    this.focusSlide()
+  },
   updated () {
     this.focusSlide()
   },

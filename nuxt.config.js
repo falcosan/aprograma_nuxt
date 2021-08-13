@@ -96,9 +96,17 @@ export default {
         }
       }
     ],
+    '@nuxtjs/markdownit',
     '@nuxtjs/sitemap',
     '@nuxtjs/feed'
   ],
+  markdownit: {
+    html: true,
+    linkify: true,
+    runtime: true,
+    typographer: true,
+    breaks: true
+  },
 
   sitemap: {
     hostname: 'https://aprograma.co',

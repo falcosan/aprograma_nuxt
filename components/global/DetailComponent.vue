@@ -44,7 +44,7 @@
           </div>
         </li>
       </ul>
-      <div class="detail-text- h-max block p-5 overflow-hidden rounded break-words prose-sm lg:prose-lg" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="$storyapi.richTextResolver.render(blok.text)" />
+      <div class="detail-text- h-max block p-5 overflow-hidden rounded break-words prose-sm lg:prose-lg" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="$md.render(blok.text)" />
     </div>
   </div>
 </template>

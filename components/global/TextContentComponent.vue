@@ -7,7 +7,7 @@
   >
     <div
       :class="`text-content h-full block max-w-none p-5 rounded prose-sm lg:prose-lg`"
-      v-html="$storyapi.richTextResolver.render(blok.text)"
+      v-html="$md.render(blok.text)"
     />
   </div>
 </template>

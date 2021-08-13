@@ -2,7 +2,7 @@
   <div v-if="sortedPosts.length > 0" class="posts w-full">
     <h1
       v-if="blok.title"
-      class="posts-title mb-5 text-xl xs:text-2xl font-extralight break-words"
+      :class="`posts-title font-extralight break-words ${sliderMode || carouselMode || containerMode ? 'm-5 text-lg' : 'mb-5 text-xl xs:text-2xl'}`"
       :style="`color: ${blok.title_color.color};`"
     >
       {{ blok.title }}
@@ -39,7 +39,7 @@
     </div>
     <transition-group
       tag="ul"
-      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || sliderContainer || carouselContainer || containerContainer ? `${maxPosts} auto-rows-fr` : 'lg:grid-flow-row lg:auto-rows-fr'}`"
+      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || sliderMode || carouselMode || containerMode ? `${maxPosts} auto-rows-fr` : 'lg:grid-flow-row lg:auto-rows-fr'}`"
       appear
       enter-active-class="duration-150"
       leave-active-class="duration-150"
@@ -52,9 +52,9 @@
         :post-link="`blog/${post.slug}`"
         :post-content="post.content"
         :row-container="blok.row_container"
-        :slider-container="sliderContainer"
-        :carousel-container="carouselContainer"
-        :container-container="containerContainer"
+        :slider-container="sliderMode"
+        :carousel-container="carouselMode"
+        :container-container="containerMode"
       />
     </transition-group>
   </div>
@@ -94,15 +94,6 @@ export default {
     }
   },
   computed: {
-    sliderContainer () {
-      return !!(this.sliderMode || this.$parent.sliderMode)
-    },
-    carouselContainer () {
-      return !!(this.carouselMode || this.$parent.carouselMode)
-    },
-    containerContainer () {
-      return !!(this.containerMode || this.$parent.containerMode)
-    },
     maxPosts () {
       if (this.containerWidth >= 536) {
         return 'md:grid-cols-fit-medium lg:grid-cols-fit-big'

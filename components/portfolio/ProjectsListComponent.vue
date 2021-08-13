@@ -2,13 +2,13 @@
   <div v-if="sortedProject.length > 0" class="projects w-full">
     <h1
       v-if="blok.title"
-      class="projects-title mb-5 text-xl xs:text-2xl font-extralight break-words"
+      :class="`projects-title font-extralight break-words ${sliderMode || carouselMode || containerMode ? 'm-5 text-lg' : 'mb-5 text-xl xs:text-2xl'}`"
       :style="`color: ${blok.title_color.color};`"
     >
       {{ blok.title }}
     </h1>
     <ProjectSlider
-      v-if="$store.state.data.windowWidth > 1024 && blok.show_slider && !blok.row_container && sortedProject.length > 2 && !sliderContainer"
+      v-if="$store.state.data.windowWidth > 1024 && blok.show_slider && !blok.row_container && sortedProject.length > 2 && !sliderMode"
       :blok="sortedProject"
     />
     <ul v-else :class="`project-list w-full grid gap-5 auto-cols-fr auto-rows-fr ${maxProjects}`">
@@ -18,9 +18,9 @@
         :project-link="`portfolio/${project.slug}`"
         :project-content="project.content"
         :row-container="blok.row_container"
-        :slider-container="sliderContainer"
-        :carousel-container="carouselContainer"
-        :container-container="containerContainer"
+        :slider-container="sliderMode"
+        :carousel-container="carouselMode"
+        :container-container="containerMode"
       />
     </ul>
   </div>
@@ -53,15 +53,6 @@ export default {
     }
   },
   computed: {
-    sliderContainer () {
-      return !!(this.sliderMode || this.$parent.sliderMode)
-    },
-    carouselContainer () {
-      return !!(this.carouselMode || this.$parent.carouselMode)
-    },
-    containerContainer () {
-      return !!(this.containerMode || this.$parent.containerMode)
-    },
     maxProjects () {
       if (this.containerWidth >= 536) {
         return 'md:grid-cols-fit-medium lg:grid-cols-fit-big'

@@ -1,6 +1,6 @@
 <template>
   <div class="project-description">
-    <h1 v-if="blok.title" class="description-title p-5 text-lg font-extralight" v-text="blok.title" />
+    <h1 v-if="blok.title" :class="`description-title font-extralight ${sliderMode || carouselMode || containerMode ? 'm-5 text-lg' : 'mb-5 text-xl xs:text-2xl'}`" v-text="blok.title" />
     <div :class="`description-content rounded ${blok.text ? 'grid gap-5 md:grid-flow-col auto-cols-fr' : 'flex justify-center'}`">
       <ul :class="`image-container grid gap-5 w-full justify-items-center auto-rows-max ${blok.text ? `${blok.invert_direction ? 'col-start-2 col-end-2' : ''}` : ''}`" :style="`${inlineImageStyle} grid-template-columns: repeat(${blok.column_container ? $rangeItems(Number(blok.column_container), 3) : blok.image.length}, 1fr)`">
         <li v-for="image in blok.image" :key="image.id" class="image-item w-full">
@@ -12,7 +12,7 @@
           >
             <template #activator="action">
               <nuxt-img
-                :modifiers="{ smart: true }"
+                :modifiers="{ smart: true, filters: { focal: blok.image.focus } }"
                 height="auto"
                 width="auto"
                 class="description-image w-screen h-full cursor-pointer object-cover rounded select-none"
@@ -23,7 +23,7 @@
             </template>
             <template #body>
               <nuxt-img
-                :modifiers="{ smart: true }"
+                :modifiers="{ smart: true, filters: { focal: blok.image.focus } }"
                 class="description-image select-none cursor-default"
                 height="auto"
                 width="auto"
@@ -34,7 +34,7 @@
           </Modal>
           <div v-else class="project-description">
             <nuxt-img
-              :modifiers="{ smart: true }"
+              :modifiers="{ smart: true, filters: { focal: blok.image.focus } }"
               height="auto"
               width="auto"
               class="description-image w-screen h-full object-cover rounded select-none"
@@ -54,6 +54,18 @@ export default {
     blok: {
       type: Object,
       required: true
+    },
+    containerMode: {
+      type: Boolean,
+      default: false
+    },
+    sliderMode: {
+      type: Boolean,
+      default: false
+    },
+    carouselMode: {
+      type: Boolean,
+      default: false
     },
     inlineImageStyle: {
       type: String,

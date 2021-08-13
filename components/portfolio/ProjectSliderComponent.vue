@@ -26,7 +26,7 @@
             </div>
             <div :class="`image-container flex row-start-1 row-end-1 ${index % 2 == 0 ? 'col-start-2 col-end-2' : 'col-start-1 col-end-1'}`">
               <nuxt-img
-                :modifiers="{ smart: true }"
+                :modifiers="{ smart: true, filters: { focal: project.content.image.focus } }"
                 class="project-image w-full h-full object-cover object-center pointer-events-none select-none"
                 width="auto"
                 height="auto"
@@ -100,7 +100,9 @@ export default {
     }
   },
   mounted () {
-    this.focusSlide()
+    if (this.$device.isDesktop) {
+      this.focusSlide()
+    }
   },
   updated () {
     this.focusSlide()

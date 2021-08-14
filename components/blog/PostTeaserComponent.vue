@@ -9,11 +9,11 @@
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
-        <div :class="`teaser-file w-full h-screen min-h-40 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'max-h-56 lg:max-h-60' : 'max-h-64 sm:max-h-72 lg:max-h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
+        <div :class="`teaser-file w-full h-screen max-h-56  min-h-40 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'lg:max-h-60' : 'sm:max-h-64 md:max-h-72 lg:max-h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'nuxt-img'"
-            :modifiers="lookFile() === 'nuxt-img' || !postContent.file.filename ?{ smart: true } : false"
-            :class="`w-full h-full object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'max-h-56 lg:max-h-60' : 'max-h-64 sm:max-h-72 lg:max-h-56'} ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
+            :modifiers="lookFile() === 'nuxt-img' || !postContent.file.filename ? { smart: true, focal: postContent.file.focus ? postContent.file.focus : 0 } : false"
+            :class="`w-full h-full max-h-56 object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'lg:max-h-60' : 'sm:max-h-64 md:max-h-72 lg:max-h-56'} ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
             :alt="postContent.file.alt"
             :src="setFile"
           />

@@ -69,7 +69,9 @@ export default {
     }
   },
   created () {
-    this.getProjects()
+    if (this.$route.name !== 'portfolio') {
+      this.getProjects()
+    }
   },
 
   methods: {

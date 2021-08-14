@@ -133,7 +133,9 @@ export default {
     }
   },
   created () {
-    this.getPosts()
+    if (this.$route.name !== 'blog') {
+      this.getPosts()
+    }
   },
   methods: {
     async getPosts () {

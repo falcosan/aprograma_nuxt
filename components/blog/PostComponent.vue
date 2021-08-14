@@ -3,7 +3,7 @@
     <div class="post-head relative w-full mb-5">
       <h1
         :style="`color: ${blok.post_text_color.color};`"
-        class="post-title mb-5 text-2xl sm:text-3xl font-extralight"
+        class="post-title mb-5 text-2xl sm:text-3xl"
         v-text="blok.title"
       />
       <Icon
@@ -39,7 +39,7 @@
         </p>
         <article
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-article block pb-2.5"
+          class="post-article block pb-2.5 font-extralight"
           v-html="$md.render(blok.long_text)"
         />
         <p
@@ -49,7 +49,7 @@
         />
       </div>
       <ul class="post-categories flex flex-wrap -m-1.5 md:-m-2.5 pb-2.5 px-5">
-        <li v-for="(category, index) in sortedCategories" :key="index" :class="`post-category m-1.5 md:m-2.5 p-2.5 text-center font-extralight text-sm rounded shadow-sm italic filter brightness-90 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${blok.post_background_color.color};`">
+        <li v-for="(category, index) in sortedCategories" :key="index" :class="`post-category m-1.5 md:m-2.5 p-2.5 text-center font-extralight text-xs rounded shadow-sm italic filter brightness-90 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${blok.post_background_color.color};`">
           {{ category }}
         </li>
       </ul>

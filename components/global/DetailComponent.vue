@@ -1,6 +1,6 @@
 <template>
   <div class="detail">
-    <h1 v-if="blok.title" :class="`detail-title font-extralight ${sliderMode || carouselMode || containerMode ? 'm-5 text-lg' : 'mb-5 text-xl xs:text-2xl'}`" v-text="blok.title" />
+    <h1 v-if="blok.title" :class="`detail-title ${sliderMode || carouselMode || containerMode ? 'm-5 text-xl' : 'mb-5 text-xl xs:text-2xl'}`" v-text="blok.title" />
     <div class="detail-content grid gap-5 md:grid-flow-col auto-cols-fr rounded">
       <ul :class="`image-container grid gap-5 w-full justify-items-center auto-rows-max ${blok.invert_direction ? 'col-start-2 col-end-2' : ''}`" :style="`${inlineImageStyle} grid-template-columns: repeat(${blok.column_container ? $rangeItems(Number(blok.column_container), 3) : blok.image.length}, 1fr)`">
         <li v-for="image in blok.image" :key="image.id" class="image-item w-full">
@@ -44,7 +44,7 @@
           </div>
         </li>
       </ul>
-      <div class="detail-text- h-max block overflow-hidden rounded break-words prose-sm lg:prose-lg" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="$md.render(blok.text)" />
+      <div :class="`detail-text- h-max block overflow-hidden rounded break-words font-extralight prose-sm lg:prose-lg ${blok.background_color.color ? 'p-5' : ''}`" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="$md.render(blok.text)" />
     </div>
   </div>
 </template>

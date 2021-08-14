@@ -6,7 +6,7 @@
     :class="`text-container w-full max-w-full h-full rounded ${customClass('index', blok.name === 'text_phrase', 'transition-colors duration-700 ease-in-out')}`"
   >
     <div
-      :class="`text-content h-full block max-w-none p-5 rounded prose-sm lg:prose-lg`"
+      :class="`text-content h-full block max-w-none font-extralight rounded prose-sm lg:prose-lg ${randomBackgroundColor ? 'p-5' : ''}`"
       v-html="$md.render(blok.text)"
     />
   </div>

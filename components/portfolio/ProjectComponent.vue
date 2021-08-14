@@ -1,6 +1,6 @@
 <template>
   <div class="project grid gap-5 auto-cols-fr p-5">
-    <h1 class="project-title col-start-1 col-end-4 xl:col-end-3 text-2xl sm:text-3xl font-extralight break-words">
+    <h1 class="project-title col-start-1 col-end-4 xl:col-end-3 text-2xl sm:text-3xl break-words">
       {{ blok.title }}
     </h1>
     <Icon
@@ -65,7 +65,7 @@
       </div>
       <div
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        class="intro-text block p-5 rounded"
+        :class="`intro-text block font-extralight rounded prose-sm lg:prose-lg ${blok.project_background_color.color ? 'p-5' : ''}`"
         v-html="$md.render(blok.intro)"
       />
       <div class="project-date flex items-baseline justify-around xl:col-start-1 xl:col-end-3">

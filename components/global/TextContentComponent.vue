@@ -3,7 +3,7 @@
     v-if="blok.text"
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor}; color: ${randomTextColor};`"
-    :class="`text-container w-full max-w-full h-full rounded ${customClass('index', blok.name === 'text_phrase', 'transition-colors duration-700 ease-in-out')}`"
+    :class="`text-container w-full max-w-full h-full rounded ${blok.color_effect && colors.length > 1 ? 'transition-colors duration-700 ease-in-out' : ''}`"
   >
     <div
       :class="`text-content h-full block max-w-none font-extralight rounded prose-sm lg:prose-lg ${randomBackgroundColor ? 'p-5' : ''}`"
@@ -47,13 +47,6 @@ export default {
   methods: {
     randomIndex () {
       this.index = ~~(Math.random() * (this.colors.length - 0)) + 0
-    },
-    customClass (page, component, style) {
-      if (this.$route.name === page && component) {
-        return style
-      } else {
-        return ''
-      }
     }
   }
 }

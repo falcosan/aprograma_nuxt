@@ -54,9 +54,7 @@ export default ({ app }, inject) => {
           content.appendChild(document.createTextNode(code.className))
           return code.appendChild(content)
         } else {
-          const content = document.createElement('span')
-          content.appendChild(document.createTextNode(app.$languageCase('code', 'codigo', 'codice')))
-          return code.appendChild(content)
+          return false
         }
       })
     }

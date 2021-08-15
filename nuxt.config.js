@@ -3,7 +3,7 @@ const axios = require('axios')
 export default {
   target: 'static',
   head: {
-    title: 'Aprograma - a peaceful coding experience',
+    title: 'Aprograma - A peaceful coding experience',
     htmlAttrs: {
       lang: 'en'
     },

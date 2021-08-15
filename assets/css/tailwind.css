@@ -51,21 +51,21 @@ pre code span {
   color: #212121;
 }
 blockquote {
-  border-left: 10px solid #cccccc;
+  border-left: 10px solid #484848;
   border-radius: .25rem;
   margin: 1.5rem 10px;
   padding: 0.5rem 10px;
-  font-style: oblique;
   background-color: #eeeeee;
   quotes: "\201C""\201D""\2018""\2019";
 }
 blockquote:before {
   content: open-quote;
-  font-size: 4rem;
   line-height: 0;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
   vertical-align: -1.5rem;
-  color: #cccccc;
+  font-size: 4rem;
+  font-style: oblique;
+  color: #484848;
 }
 blockquote > * {
   display: inline;

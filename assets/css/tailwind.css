@@ -65,7 +65,7 @@ blockquote:before {
   line-height: 0;
   margin-right: 0.5rem;
   vertical-align: -1.5rem;
-  color: #ccc;
+  color: #cccccc;
 }
 blockquote > * {
   display: inline;

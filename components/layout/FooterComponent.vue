@@ -6,7 +6,7 @@
   >
     <div
       :style="`background-color: ${expanded ? backgroundColors : blok.background_color_menu.color};`"
-      class="top-kick absolute w-20 h-20 flex right-0 -top-20 items-center justify-center z-10 rounded-tl cursor-pointer transition-all duration-200"
+      class="top-kick absolute h-16 w-16 lg:w-20 lg:h-20 flex right-0 -top-16 lg:-top-20 items-center justify-center z-10 rounded-tl cursor-pointer transition-all duration-200"
       @click="scrollTop();"
     >
       <Icon arrow tag="button" size="w-auto" :class="`justify-center transform rotate-90 ${expanded ? $themeColor(backgroundColors) ? 'filter invert' : '' : ''}`" />
@@ -17,16 +17,15 @@
       @mouseover="expandIn"
     >
       <div
-        :class="`open-footer absolute left-0 -top-20 ${expanded ? 'w-full' : 'w-20'}`"
+        :class="`open-footer absolute left-0 -top-16 lg:-top-20 ${expanded ? 'w-full' : 'w-20'}`"
       >
         <div
-          class="icon-open w-20 h-20 flex justify-center items-center rounded-tr transition-all duration-200"
+          class="icon-open h-16 w-16 lg:w-20 lg:h-20 flex justify-center items-center rounded-tr transition-all duration-200"
           :style="`background-color: ${expanded ? backgroundColors : blok.background_color_menu.color};`"
         >
           <Icon
             eye
             tag="span"
-            size="w-auto"
             :class="`${expanded ? $themeColor(backgroundColors) ? 'filter invert' : '' : ''}`"
           />
         </div>
@@ -63,7 +62,7 @@
   </footer>
   <footer
     v-else
-    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl mx-auto px-2.5 py-20 mb-12 rounded-t"
+    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl mx-auto px-2.5 py-20 mb-12 rounded-t"
     :style="`background-color: ${backgroundColors};`"
   >
     <div class="footer-content h-52 grid gap-5 text-center">

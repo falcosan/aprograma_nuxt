@@ -3,7 +3,7 @@
     <div :class="`main-wrapper relative overflow-hidden ${$store.state.data.error ? 'main-error' : 'main-regular'}`">
       <div
         v-if="blok.show_background_mask"
-        :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-0 mx-auto overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'colorAnimation' : ''}`"
+        :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-0 mx-auto overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'colorAnimation' : ''}`"
         :style="`background-color: ${randomBackgroundColorMask};`"
       >
         <div class="main-mask h-full w-full bg-opacity-70 bg-white" />
@@ -14,7 +14,7 @@
         :style="`background-color: ${randomBackgroundColor};`"
       />
       <transition appear enter-active-class="duration-500 in-out" enter-class="opacity-0" mode="out-in">
-        <Nuxt :class="`relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
+        <Nuxt :class="`relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
       </transition>
     </div>
     <nuxt-img

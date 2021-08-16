@@ -5,10 +5,10 @@
   >
     <nav class="navbar">
       <div class="menu-wrapper h-0 grid grid-flow-col-dense justify-between">
-        <div class="logo-home relative w-20 h-20 z-20">
+        <div class="logo-home relative h-16 w-16 lg:w-20 lg:h-20 z-20">
           <Link
             icon-item
-            class="home-link flex items-center justify-center transition-shadow duration-300 rounded-br"
+            class="home-link flex items-center justify-center p-1.5 transition-shadow duration-300 rounded-br"
             to="/"
             :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)"
             :style="`background-color: ${backgroundColors};`"
@@ -16,7 +16,7 @@
             <template #icon>
               <Logo
                 transition
-                width="4rem"
+                width="100%"
               />
             </template>
           </Link>
@@ -39,7 +39,7 @@
         <Icon
           animate-menu
           tag="button"
-          class="open-menu relative w-20 h-20 z-10 cursor-pointer rounded-bl"
+          class="open-menu relative h-16 w-16 lg:w-20 lg:h-20 z-10 cursor-pointer rounded-bl"
           size="w-5 h-5"
           :style="`background-color: ${backgroundColors};`"
           @click.native="expanded = !expanded"
@@ -52,7 +52,7 @@
     class="header flex justify-center"
   >
     <nav class="navbar-up w-full h-10 fixed flex justify-center top-0 z-40 shadow-sm" :style="`background-color: ${backgroundColors};`">
-      <div class="menu-wrapper wrapper-up w-full h-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-md flex justify-between">
+      <div class="menu-wrapper wrapper-up w-full h-full max-w-sm xs:max-w-md sm:max-w-lg flex justify-between">
         <Link
           active="exact"
           icon-item
@@ -89,7 +89,7 @@
       </div>
     </nav>
     <nav class="navbar-down fixed w-full h-12 flex items-center justify-center bottom-0 z-40 filter drop-shadow-2xl" :style="`background-color: ${backgroundColors};`">
-      <ul class="menu-wrapper wrapper-down w-full h-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-md grid grid-cols-4">
+      <ul class="menu-wrapper wrapper-down w-full h-full max-w-sm xs:max-w-md sm:max-w-lg grid grid-cols-4">
         <li
           v-for="item in $contentByName(blok.body, 'Link')"
           :key="item._uid"

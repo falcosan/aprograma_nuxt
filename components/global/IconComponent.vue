@@ -297,25 +297,25 @@ export default {
 }
 
 .animate-menu span:nth-child(1) {
-  top: 6px;
+  top: 4px;
 }
 
 .animate-menu span:nth-child(2),.animate-menu span:nth-child(3) {
-  top: 12px;
+  top: 10px;
 }
 
 .animate-menu span:nth-child(4) {
-  top: 18px;
+  top: 16px;
 }
 
 .animate-menu.open span:nth-child(1) {
-  top: 18px;
+  top: 16px;
   width: 0%;
   left: 50%;
 }
 
 .animate-menu.open span:nth-child(4) {
-  top: 18px;
+  top: 16px;
   width: 0%;
   left: 50%;
 }

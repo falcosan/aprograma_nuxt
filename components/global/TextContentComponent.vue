@@ -36,8 +36,6 @@ export default {
     },
     alignText () {
       switch (this.blok.align_text) {
-        case 'start':
-          return 'justify-start'
         case 'center':
           return 'justify-center'
         case 'end':

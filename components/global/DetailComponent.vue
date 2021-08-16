@@ -33,7 +33,6 @@
                   .split(/[\\/]/)
                   .pop()
                   .replace(/\.[^/.]+$/, '')}-video detail-video my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
-                playsinline
                 autoplay
                 muted
                 :loop="blok.loop"
@@ -66,7 +65,7 @@
                 height="auto"
                 :src="media.filename"
                 :alt="media.alt"
-                playsinline
+
                 autoplay
                 muted
                 loop
@@ -95,7 +94,7 @@
                 .split(/[\\/]/)
                 .pop()
                 .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center rounded pointer-events-none cursor-pointer select-none`"
-              playsinline
+
               autoplay
               muted
               :loop="blok.loop"

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="media relative flex flex-col justify-center items-center overflow-hidden rounded"
+    class="media relative flex flex-col justify-center items-center mx-auto my-0 overflow-hidden rounded"
     :style="`height: ${blok && blok.height && blok.unit ? `${blok.height}${blok.unit === 'vh; vw' ? lookUnit[0] : lookUnit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit === 'vh; vw' ? lookUnit[1] : lookUnit}`: width ? width : 'auto'};`"
   >
     <transition appear enter-active-class="duration-500 in-out" enter-class="opacity-0" mode="out-in">

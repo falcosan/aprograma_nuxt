@@ -28,7 +28,7 @@
     <video
       v-else-if="blok.background_media.filename"
       :class="`media-video min-h-full min-w-full fixed right-0 bottom-0 -z-10 object-cover object-center ${blok.color_animation ? 'colorAnimation' : ''}`"
-
+      playsinline
       autoplay
       muted
       loop

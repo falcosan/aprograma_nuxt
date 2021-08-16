@@ -9,16 +9,16 @@
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
-        <div :class="`teaser-file w-full h-screen max-h-44 xx:max-h-52 min-h-40 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'lg:max-h-60' : 'sm:max-h-64 md:max-h-72 lg:max-h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
+        <div :class="`teaser-file w-full h-screen max-h-44 xx:max-h-52 min-h-40 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'lg:max-h-60' : 'xs:max-h-64 sm:max-h-72 md:max-h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'nuxt-img'"
             :modifiers="lookFile() === 'nuxt-img' || !postContent.file.filename ? { smart: true, focal: postContent.file.focus ? postContent.file.focus : 0 } : false"
-            :class="`w-full h-full max-h-44 xx:max-h-52 object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'lg:max-h-60' : 'sm:max-h-64 md:max-h-72 lg:max-h-56'} ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
+            :class="`w-full h-full max-h-44 xx:max-h-52 object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'lg:max-h-60' : 'xs:max-h-64 sm:max-h-72 md:max-h-56'} ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
             :alt="postContent.file.alt"
             :src="setFile"
           />
         </div>
-        <div :class="`teaser-text w-full flex flex-col justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? 'flex-auto' : 'lg:w-1/2'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full flex flex-col justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? 'flex-auto' : 'h-full lg:w-1/2'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               :class="`teaser-title mb-2 overflow-hidden ${$route.name === 'blog' ? 'text-xl sm:text-2xl' : 'text-xl'}`"

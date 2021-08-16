@@ -77,8 +77,8 @@
         <Translate
           translate-transition
           class="translate-header w-2/12 bg-gray-800 text-white filter grayscale"
-          :style-current-language="`h-full flex items-center justify-center relative z-10 bg-gray-800 text-white ${expanded ? 'filter drop-shadow-md' : ''}`"
-          :style-translate-list="`transform transition-transform duration-200 esase-out ${expanded ? 'translate-y-0' : '-translate-y-full'} bg-gray-800`"
+          style-current-language="h-full flex items-center justify-center relative z-10 bg-gray-800 text-white"
+          :style-translate-list="`rounded-b w-full transform transition-transform duration-200 esase-out bg-gray-800 ${expanded ? 'translate-y-0' : '-translate-y-full'}`"
           style-translate-item="p-3 text-center"
           :blok="$contentByName(blok.body, 'Translate')"
           @translateListAction.passive="expanded = false"

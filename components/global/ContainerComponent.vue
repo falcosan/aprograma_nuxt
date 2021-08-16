@@ -2,7 +2,6 @@
   <div
     v-if="elements.length > 0 && (blok.resolution_show ? fullWidth > Number(blok.resolution_show) : true)"
     :class="`container-cover w-full grid items-center self-start ${carouselMode || sliderMode || containerMode ? '' : 'parent-cover'}`"
-    :style="`height: ${blok && blok.height && blok.unit ? `${blok.height}${blok.unit === 'vh; vw' ? lookUnit[0] : lookUnit}` : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit === 'vh; vw' ? lookUnit[1] : lookUnit}`: 'auto'};`"
   >
     <h1
       v-if="blok.title"

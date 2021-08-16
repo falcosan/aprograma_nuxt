@@ -22,7 +22,7 @@
           </Link>
         </div>
         <transition enter-active-class="duration-300" leave-active-class="duration-300" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
-          <div v-if="expanded" :class="`menu-expanded h-10 w-lg grid grid-flow-col gap-5 overflow-hidden transform transition bg-opacity-80 bg-gray-100 ${topPosition ? 'translate-y-3 rounded' : 'rounded-b'}`">
+          <div v-if="expanded" :class="`menu-expanded h-10 grid grid-flow-col gap-5 overflow-hidden transform transition bg-opacity-80 bg-gray-100 ${topPosition ? 'translate-y-3 rounded' : 'rounded-b'}`">
             <ul class="link-list grid grid-flow-col auto-cols-fr">
               <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" :class="`link-menu w-20 hover:shadow-sm hover:bg-opacity-50 hover:bg-white ${topPosition ? 'rounded' : 'rounded-b'}`">
                 <Link class="flex items-center justify-center py-2 px-3 text-sm font-extralight truncate" :blok="item" />

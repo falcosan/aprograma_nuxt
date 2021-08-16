@@ -8,7 +8,7 @@
         <div class="logo-home relative h-16 w-16 lg:w-20 lg:h-20 z-20">
           <Link
             icon-item
-            class="home-link flex items-center justify-center p-1.5 transition-shadow duration-300 rounded-br"
+            class="home-link flex items-center justify-center p-1 lg:p-1.5 transition-shadow duration-300 rounded-br"
             to="/"
             :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)"
             :style="`background-color: ${backgroundColors};`"

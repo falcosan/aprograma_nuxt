@@ -16,7 +16,7 @@
             <template #icon>
               <Logo
                 transition
-                size="w-16"
+                width="4rem"
               />
             </template>
           </Link>
@@ -72,7 +72,7 @@
         <Logo
           transition
           class="absolute -top-0.5 right-1/2 p-1 transform translate-x-1/2 rounded-b-full filter drop-shadow-md bg-white"
-          size="w-11"
+          width="2.75rem"
         />
         <Translate
           translate-transition

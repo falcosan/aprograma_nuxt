@@ -13,7 +13,7 @@
         :class="`main-flat fixed min-h-full min-w-full inset-0 -z-10 transition-colors duration-500 ${blok.color_animation ? 'colorAnimation' : ''}`"
         :style="`background-color: ${randomBackgroundColor};`"
       />
-      <transition enter-active-class="duration-300 in-out" enter-class="opacity-0" mode="out-in">
+      <transition appear enter-active-class="duration-500 in-out" enter-class="opacity-0" mode="out-in">
         <Nuxt :class="`relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
       </transition>
     </div>

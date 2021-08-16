@@ -5,8 +5,8 @@
     <svg
       key="logo"
       ref="logo"
-      :style="`height: ${blok && blok.height ? blok.height : false}; width: ${blok && blok.width ? blok.width : false};`"
-      :class="`logo cursor-pointer mx-auto my-0 ${!blok && size ? size : ''}`"
+      :style="`height: ${blok && blok.height && blok.unit ? `${blok.height}${blok.unit === 'vh; vw' ? lookUnit[0] : lookUnit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit === 'vh; vw' ? lookUnit[1] : lookUnit}`: width ? width : 'auto'};`"
+      class="logo cursor-pointer mx-auto my-0"
       version="1.1"
       baseProfile="basic"
       xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,11 @@ export default {
       type: Object,
       default: undefined
     },
-    size: {
+    width: {
+      type: String,
+      default: ''
+    },
+    height: {
       type: String,
       default: ''
     },
@@ -77,6 +81,11 @@ export default {
       route: '',
       loading: false,
       loadingTimer: 0
+    }
+  },
+  computed: {
+    lookUnit () {
+      return this.blok.unit ? this.blok.unit === 'vh; vw' ? this.blok.unit.split('; ') : this.blok.unit : ''
     }
   },
   watch: {

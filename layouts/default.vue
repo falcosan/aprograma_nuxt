@@ -10,8 +10,8 @@
   <div v-else-if="story.content.body" class="aprograma-maintenance h-screen flex flex-col justify-center p-10">
     <Logo
       transition
-      class="rounded"
-      size="w-full max-h-md mx-auto my-0"
+      class="rounded max-h-md mx-auto my-0"
+      width="100%"
     />
     <h1 class="maintenance-text text-xs xs:text-base sm:text-lg text-center xs:whitespace-nowrap pointer-events-none font-medium uppercase underline italic">
       under maintenance

@@ -34,7 +34,7 @@
           playsinline
           autoplay
           muted
-          loop
+          :loop="blok.loop"
           @click.native="action.open()"
         >
           <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
@@ -102,7 +102,7 @@
         playsinline
         autoplay
         muted
-        loop
+        :loop="blok.loop"
       >
         <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
       </video>

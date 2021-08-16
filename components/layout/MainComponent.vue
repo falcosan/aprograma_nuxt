@@ -1,10 +1,10 @@
 <template>
-  <main :class="`main overflow-x-hidden ${!$device.isDesktop ? 'pt-10' : 'pt-10 md:py-20'} ${blok.background_media.filename ? 'pb-10' : ''}`">
-    <div :class="`main-wrapper relative overflow-hidden ${$store.state.data.error ? 'main-error' : 'main-regular'}`">
+  <main :class="`main overflow-x-hidden ${!$device.isDesktop ? 'pt-10' : 'pt-10 md:py-20'}`">
+    <div :class="`main-wrapper min-h-screen relative overflow-hidden ${$store.state.data.error ? 'main-error' : 'main-regular'}`">
       <div
         v-if="blok.show_background_mask"
         :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-0 mx-auto overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'colorAnimation' : ''}`"
-        :style="`background-color: ${randomBackgroundColorMask ? blok.trasparency ? `${randomBackgroundColorMask}b3` : randomBackgroundColorMask : blok.trasparency ? '#ffffffb3' : '#ffffff'};`"
+        :style="`background-color: ${randomBackgroundColorMask ? blok.transparency ? `${randomBackgroundColorMask}b3` : randomBackgroundColorMask : blok.transparency ? '#ffffffb3' : '#ffffff'};`"
       />
       <div
         v-if="!blok.background_media.filename"

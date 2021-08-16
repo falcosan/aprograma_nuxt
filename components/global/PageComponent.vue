@@ -1,5 +1,5 @@
 <template>
-  <section :class="`${blok.name.toLowerCase()}-page px-5 pt-5 -mb-3`">
+  <section :class="`${blok.name.toLowerCase()}-page p-5`">
     <h1 v-if="blok.title" class="page-title mb-5 text-xl xs:text-2xl break-words">
       {{ blok.title }}
     </h1>

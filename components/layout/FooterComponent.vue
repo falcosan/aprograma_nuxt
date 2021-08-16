@@ -62,8 +62,8 @@
   </footer>
   <footer
     v-else
-    class="footer px-5 py-20 mb-12 rounded-t"
-    :style="`background-color: ${backgroundColors}B3;`"
+    class="footer px-5 py-20 my-12 rounded-t"
+    :style="`background-color: ${blok.transparency ? `${backgroundColors}B3` : backgroundColors};`"
   >
     <div class="footer-content h-52 grid gap-5 text-center">
       <span class="input-footer relative grid gap-5 grid-flow-col-dense items-end justify-center bottom-6 text-md font-thin">

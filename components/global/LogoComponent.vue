@@ -1,12 +1,12 @@
 <template>
   <div
     class="logo-container"
-    @click="transition ? play() : null"
   >
     <svg
       key="logo"
       ref="logo"
-      :class="`logo h-auto cursor-pointer ${size}`"
+      :style="`height: ${blok && blok.height ? blok.height : false}; width: ${blok && blok.width ? blok.width : false};`"
+      :class="`logo cursor-pointer mx-auto my-0 ${!blok && size ? size : ''}`"
       version="1.1"
       baseProfile="basic"
       xmlns="http://www.w3.org/2000/svg"
@@ -17,6 +17,7 @@
       height="710.8732px"
       viewBox="0 0 710.8732 710.8732"
       xml:space="preserve"
+      @click="(blok && blok.transition) || transition ? play() : null"
     >
       <g :class="`transition-logo logo-a ${moved.a}`">
         <path
@@ -54,6 +55,10 @@
 <script>
 export default {
   props: {
+    blok: {
+      type: Object,
+      default: undefined
+    },
     size: {
       type: String,
       default: ''

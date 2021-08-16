@@ -32,7 +32,7 @@
               />
             </template>
           </Modal>
-          <div v-else class="project-detail">
+          <div v-else class="detail-image">
             <nuxt-img
               :modifiers="{ smart: true, filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
               height="auto"
@@ -44,7 +44,7 @@
           </div>
         </li>
       </ul>
-      <div :class="`detail-text- h-max block overflow-hidden rounded break-words font-extralight prose-sm lg:prose-lg ${blok.remove_space ? 'p-5' : ''}`" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="$md.render(blok.text)" />
+      <div :class="`detail-text h-max block overflow-hidden rounded break-words font-extralight prose-sm lg:prose-lg ${blok.remove_space ? 'p-5' : ''}`" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="$md.render(blok.text)" />
     </div>
   </div>
 </template>

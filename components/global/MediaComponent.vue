@@ -110,13 +110,13 @@
           <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
         </video>
       </template>
-      <p
-        v-if="(blok && blok.title) || title"
-        class="media-title mt-5 text-center text-xl font-extralight"
-        :style="`color: ${blok && blok.title_color.color ? blok.title_color.color : false};`"
-        v-text="blok && blok.title ? blok.title : title"
-      />
     </transition>
+    <p
+      v-if="(blok && blok.title) || title"
+      class="media-title mt-5 text-center text-xl font-extralight"
+      :style="`color: ${blok && blok.title_color.color ? blok.title_color.color : false};`"
+      v-text="blok && blok.title ? blok.title : title"
+    />
   </div>
 </template>
 

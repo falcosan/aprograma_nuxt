@@ -62,8 +62,8 @@
   </footer>
   <footer
     v-else
-    class="footer max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl mx-auto px-2.5 py-20 mb-12 rounded-t"
-    :style="`background-color: ${backgroundColors};`"
+    class="footer px-5 py-20 mb-12 rounded-t"
+    :style="`background-color: ${backgroundColors}B3;`"
   >
     <div class="footer-content h-52 grid gap-5 text-center">
       <span class="input-footer relative grid gap-5 grid-flow-col-dense items-end justify-center bottom-6 text-md font-thin">

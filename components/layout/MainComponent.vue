@@ -4,10 +4,8 @@
       <div
         v-if="blok.show_background_mask"
         :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-0 mx-auto overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'colorAnimation' : ''}`"
-        :style="`background-color: ${randomBackgroundColorMask};`"
-      >
-        <div class="main-mask h-full w-full bg-opacity-70 bg-white" />
-      </div>
+        :style="`background-color: ${randomBackgroundColorMask ? blok.trasparency ? `${randomBackgroundColorMask}b3` : randomBackgroundColorMask : blok.trasparency ? '#ffffffb3' : '#ffffff'};`"
+      />
       <div
         v-if="!blok.background_media.filename"
         :class="`main-flat fixed min-h-full min-w-full inset-0 -z-10 transition-colors duration-500 ${blok.color_animation ? 'colorAnimation' : ''}`"

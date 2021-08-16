@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="elements.length > 0 && (blok.resolution_show ? fullWidth > Number(blok.resolution_show) : true)"
-    :class="`container-cover w-full grid items-center self-start ${carouselMode || sliderMode || containerMode ? '' : 'parent-cover'}`"
+    :class="`container-cover w-full self-start ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
     <h1
       v-if="blok.title"

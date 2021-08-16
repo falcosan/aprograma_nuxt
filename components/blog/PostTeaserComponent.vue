@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="postContent"
-    :class="`post-teaser w-full overflow-hidden rounded ${sliderContainer || carouselContainer ? '' : !$device.isDesktop ? '' : 'transform transition-all duration-200 hover:shadow hover:scale-105'}`"
+    class="post-teaser w-full overflow-hidden rounded"
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div

@@ -52,9 +52,6 @@ export default {
       default: false
     }
   },
-  async fetch () {
-    await this.$store.dispatch('list/projects/addProjects')
-  },
   computed: {
     maxProjects () {
       if (this.containerWidth >= 536) {
@@ -70,7 +67,16 @@ export default {
       })
       return this.$route.name === 'portfolio' ? featuredProjects.reverse() : featuredProjects
     }
+  },
+  created () {
+    if (this.$route.name !== 'portfolio') {
+      this.getProjects()
+    }
+  },
+  methods: {
+    async getProjects () {
+      await this.$store.dispatch('list/projects/addProjects')
+    }
   }
-
 }
 </script>

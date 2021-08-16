@@ -93,9 +93,6 @@ export default {
       showFilters: false
     }
   },
-  async fetch () {
-    await this.$store.dispatch('list/posts/addPosts')
-  },
   computed: {
     maxPosts () {
       if (this.containerWidth >= 536) {
@@ -135,7 +132,15 @@ export default {
       return this.filterByTerm.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(this.setLanguageCase(postCategory))))
     }
   },
+  created () {
+    if (this.$route.name !== 'blog') {
+      this.getPosts()
+    }
+  },
   methods: {
+    async getPosts () {
+      await this.$store.dispatch('list/posts/addPosts')
+    },
     filterSearch (filter) {
       if (!this.searchCategory.includes(filter)) {
         this.searchCategory.push(filter)

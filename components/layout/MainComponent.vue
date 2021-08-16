@@ -104,11 +104,12 @@ export default {
 <style scoped>
 
 .main-error{
-  height: calc(100vh - 4.5rem);
+  min-height: unset;
+  height: calc(100vh - 5rem);
 }
 @media screen and (min-width:768px){
   .main-error{
-    height: calc(100vh - 9rem);
+    height: calc(100vh - 10rem);
   }
 }
 .colorAnimation{

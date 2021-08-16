@@ -6,7 +6,7 @@
       key="logo"
       ref="logo"
       :style="`height: ${blok && blok.height && blok.unit ? `${blok.height}${blok.unit === 'vh; vw' ? lookUnit[0] : lookUnit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit === 'vh; vw' ? lookUnit[1] : lookUnit}`: width ? width : 'auto'};`"
-      class="logo cursor-pointer mx-auto my-0"
+      class="logo cursor-pointer max-w-full max-h-full mx-auto my-0"
       version="1.1"
       baseProfile="basic"
       xmlns="http://www.w3.org/2000/svg"

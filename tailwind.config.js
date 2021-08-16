@@ -21,13 +21,14 @@ module.exports = {
     },
     extend: {
       spacing: {
-        5.5: '22px',
-        18: '4.5rem',
         max: 'max-content',
         min: 'min-content',
+        5.5: '22px',
+        18: '4.5rem',
+        88: '22rem',
         xs: '20rem',
         sm: '24rem',
-        sd: '420px',
+        sd: '26.25rem',
         md: '28rem',
         lg: '32rem',
         xl: '36rem',

@@ -65,7 +65,7 @@
       </div>
       <div
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        :class="`intro-text block font-extralight rounded prose-sm lg:prose-lg ${blok.remove_space ? 'p-5' : ''}`"
+        :class="`intro-text block font-extralight rounded prose-sm lg:prose-lg ${!blok.remove_space ? 'p-5' : ''}`"
         v-html="$md.render(blok.intro)"
       />
       <div class="project-date flex items-baseline justify-around xl:col-start-1 xl:col-end-3">

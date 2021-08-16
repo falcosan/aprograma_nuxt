@@ -1,7 +1,8 @@
 <template>
   <div
     v-if="elements.length > 0 && (blok.resolution_show ? fullWidth > Number(blok.resolution_show) : true)"
-    :class="`container-cover w-full self-start ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
+    :class="`container-cover w-full grid items-center self-start ${carouselMode || sliderMode || containerMode ? '' : 'parent-cover'}`"
+    :style="`height: ${blok && blok.height && blok.unit ? `${blok.height}${blok.unit === 'vh; vw' ? lookUnit[0] : lookUnit}` : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit === 'vh; vw' ? lookUnit[1] : lookUnit}`: 'auto'};`"
   >
     <h1
       v-if="blok.title"
@@ -19,23 +20,23 @@
         :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''}`"
       >
         <Icon
-          v-if="(blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || blok.row_container) && blok.show_controllers"
+          v-if="(blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || blok.row_container) && !blok.hide_controllers"
           previous
           :class="`previous-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? 'bottom-3.5' : 'bottom-5'} ${sliderMode ? fullWidth > 295 ? 'left-10' : 'left-5' : 'left-2'}`"
           :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
           tag="button"
           @click.native="previous"
         />
-        <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode) && !blok.row_container && blok.show_controllers" class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
+        <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode) && !blok.row_container && !blok.hide_controllers" class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
         <Icon
-          v-if="(blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || blok.row_container) && blok.show_controllers"
+          v-if="(blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || blok.row_container) && !blok.hide_controllers"
           next
           :class="`next-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? 'bottom-3.5' : 'bottom-5'} ${sliderMode ? fullWidth > 295 ? 'right-10' : 'right-5' : 'right-2'}`"
           :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
           tag="button"
           @click.native="next"
         />
-        <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode) && !blok.row_container && blok.show_controllers" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
+        <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode) && !blok.row_container && !blok.hide_controllers" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
         <div :class="`slider-box w-full rounded ${blok.slider_mode ? 'overflow-hidden' : ''}`">
           <div v-if="blok.slider_mode === 'slider'" class="slider-container">
             <ul
@@ -46,8 +47,8 @@
               <template v-for="component in elements">
                 <li
                   :key="component._uid"
-                  v-touch:swipe.stop.left="blok.show_controllers ? next : null"
-                  v-touch:swipe.stop.right="blok.show_controllers ? previous : null"
+                  v-touch:swipe.stop.left="!blok.hide_controllers ? next : null"
+                  v-touch:swipe.stop.right="!blok.hide_controllers ? previous : null"
                   :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
                   :class="`slider-slide slide h-full flex my-0 mx-auto rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
                 >
@@ -75,8 +76,8 @@
                 <li
                   v-show="index === currentSlide"
                   :key="component._uid"
-                  v-touch:swipe.stop.left="blok.show_controllers ? next : null"
-                  v-touch:swipe.stop.right="blok.show_controllers ? previous : null"
+                  v-touch:swipe.stop.left="!blok.hide_controllers ? next : null"
+                  v-touch:swipe.stop.right="!blok.hide_controllers ? previous : null"
                   :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
                   :style="`background-color: ${blok.background_color_component.color};`"
                 >
@@ -201,6 +202,9 @@ export default {
           return this.$rangeItems(this.rowComponent.length, 3)
         } return this.fullWidth >= 535 ? this.$rangeItems(this.rowComponent.length, 2) : 1
       }
+    },
+    lookUnit () {
+      return this.blok.unit ? this.blok.unit === 'vh; vw' ? this.blok.unit.split('; ') : this.blok.unit : ''
     }
   },
   watch: {

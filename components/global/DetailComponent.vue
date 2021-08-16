@@ -44,7 +44,7 @@
           </div>
         </li>
       </ul>
-      <div :class="`detail-text- h-max block overflow-hidden rounded break-words font-extralight prose-sm lg:prose-lg ${blok.background_color.color ? 'p-5' : ''}`" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="$md.render(blok.text)" />
+      <div :class="`detail-text- h-max block overflow-hidden rounded break-words font-extralight prose-sm lg:prose-lg ${blok.remove_space ? 'p-5' : ''}`" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`" v-html="$md.render(blok.text)" />
     </div>
   </div>
 </template>

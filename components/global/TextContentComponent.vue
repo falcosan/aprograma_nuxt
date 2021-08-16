@@ -3,10 +3,10 @@
     v-if="blok.text"
     :key="blok._uid"
     :style="`background-color: ${randomBackgroundColor}; color: ${randomTextColor};`"
-    :class="`text-container w-full max-w-full h-full rounded ${blok.color_effect && colors.length > 1 ? 'transition-colors duration-700 ease-in-out' : ''}`"
+    :class="`text-container w-full max-w-full h-full flex flex-col rounded ${alignText} ${blok.color_effect && colors.length > 1 ? 'transition-colors duration-700 ease-in-out' : ''}`"
   >
     <div
-      :class="`text-content h-full block max-w-none font-extralight rounded prose-sm lg:prose-lg ${randomBackgroundColor ? 'p-5' : ''}`"
+      :class="`text-content block max-w-none font-extralight rounded prose-sm lg:prose-lg ${!blok.remove_space ? 'p-5' : ''}`"
       v-html="$md.render(blok.text)"
     />
   </div>
@@ -33,6 +33,16 @@ export default {
     },
     randomBackgroundColor () {
       return this.colors.length > 1 ? this.colors[this.index].background : this.colors[0].background
+    },
+    alignText () {
+      switch (this.blok.align_text) {
+        case 'start':
+          return 'justify-start'
+        case 'center':
+          return 'justify-center'
+        case 'end':
+          return 'justify-end'
+      } return 'justify-start'
     }
   },
   watch: {

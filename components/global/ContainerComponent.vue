@@ -340,7 +340,8 @@ export default {
 }
 
 .parent-cover > .container-content{
-  padding: 0.1px;
+    margin: .1px;
+    padding: .1px;
 }
 
 .parent-cover > .container-content > .container-components {

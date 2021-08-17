@@ -3,27 +3,10 @@ const axios = require('axios')
 export default {
   target: 'static',
   head: {
-    title: 'Aprograma - Take a <br/> from stressful coding',
-    htmlAttrs: {
-      lang: 'en'
-    },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'google-site-verification', content: 'XAHIQv3mCKIUNNPmq1Vqr_nnFUudd52GYaCSxWZG_Hc' },
-      { hid: 'description', name: 'description', content: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.' },
-      { name: 'application-name', content: 'Aprograma' },
-      { name: 'apple-mobile-web-app-title', content: 'Aprograma' },
-      { name: 'msapplication-TileColor', content: '#da532c' },
-      { name: 'theme-color', content: '#ffffff' }
+      { name: 'google-site-verification', content: 'XAHIQv3mCKIUNNPmq1Vqr_nnFUudd52GYaCSxWZG_Hc' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/icon/favicon.ico' },
-      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/icon/favicon-32x32.png' },
-      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/icon/favicon-16x16.png' },
-      { rel: 'apple-touch-icon', sizes: '180x180', href: '/icon/apple-touch-icon.png' },
-      { rel: 'mask-icon', href: '/icon/safari-pinned-tab.svg', color: '#454545' },
-      { rel: 'manifest', href: '/icon/site.webmanifest' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' }
@@ -97,8 +80,22 @@ export default {
     ],
     '@nuxtjs/markdownit',
     '@nuxtjs/sitemap',
-    '@nuxtjs/feed'
+    '@nuxtjs/feed',
+    '@nuxtjs/pwa'
   ],
+  pwa: {
+    meta: {
+      title: 'Aprograma',
+      author: 'Daniele Falchetti - danielefalche@gmail.com',
+      description: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.'
+    },
+    manifest: {
+      name: 'Aprograma',
+      short_name: 'Aprograma',
+      lang: 'en'
+    }
+  },
+
   markdownit: {
     html: true,
     linkify: true,

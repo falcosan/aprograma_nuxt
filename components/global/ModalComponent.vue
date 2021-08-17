@@ -81,6 +81,7 @@ export default {
         this.$noscroll(true)
       } else {
         this.$refs.modal.parentNode.removeChild(this.$refs.modal)
+        document.querySelector('.modal').appendChild(this.$refs.modal)
         this.$noscroll(false)
       }
     },

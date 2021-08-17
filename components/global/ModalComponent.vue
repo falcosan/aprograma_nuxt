@@ -1,5 +1,5 @@
 <template>
-  <div class="modal">
+  <div :class="`modal ${openEvent || open ? 'opened' : ''}`">
     <slot name="activator" :open="openModal" />
     <transition enter-active-class="duration-300 in-out" enter-class="opacity-0" leave-active-class="duration-300 out-in" leave-to-class="opacity-0">
       <div
@@ -81,7 +81,7 @@ export default {
         this.$noscroll(true)
       } else {
         this.$refs.modal.parentNode.removeChild(this.$refs.modal)
-        document.querySelector('.modal').appendChild(this.$refs.modal)
+        document.querySelector('.modal.opened').appendChild(this.$refs.modal)
         this.$noscroll(false)
       }
     },

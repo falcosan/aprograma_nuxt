@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="elements.length > 0 && (blok.resolution_show ? fullWidth > Number(blok.resolution_show) : true)"
+    v-if="elements.length > 0"
     :class="`container-cover w-full self-start ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
     <h1
@@ -157,7 +157,7 @@ export default {
       if (this.blok.slider_mode) {
         return this.blok.body
       } else {
-        return this.blok.body.filter(component => component.resolution_show ? this.fullWidth > Number(component.resolution_show.split('; ')[0]) : component)
+        return this.blok.body.filter(component => component.resolution_show ? this.fullWidth >= Number(component.resolution_show.split('; ')[0]) : component)
       }
     },
     rowComponent () {

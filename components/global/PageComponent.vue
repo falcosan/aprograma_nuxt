@@ -34,7 +34,7 @@ export default {
       return this.blok.body.filter(function (item) { return item.row_container })
     },
     components () {
-      return this.blok.body.filter(component => component.resolution_show ? this.$store.state.data.windowWidth > Number(component.resolution_show.split('; ')[1]) : component)
+      return this.blok.body.filter(component => component.resolution_show ? this.$store.state.data.windowWidth >= component.resolution_show.split('; ')[1] : component)
     },
     maxComponents () {
       if (Number(this.blok.column_container)) {

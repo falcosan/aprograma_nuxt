@@ -40,11 +40,11 @@ export default {
       if (Number(this.blok.column_container)) {
         if (this.$store.state.data.windowWidth >= 1440) {
           return this.$rangeItems(Number(this.blok.column_container), 3)
-        } return this.$store.state.data.windowWidth >= 1024 ? this.$rangeItems(Number(this.blok.column_container), 2) : 1
+        } return this.$store.state.data.windowWidth >= 768 ? this.$rangeItems(Number(this.blok.column_container), 2) : 1
       } else {
         if (this.$store.state.data.windowWidth >= 1440) {
           return this.$rangeItems(this.rowComponent.length, 3)
-        } return this.$store.state.data.windowWidth >= 1024 ? this.$rangeItems(this.rowComponent.length, 2) : 1
+        } return this.$store.state.data.windowWidth >= 768 ? this.$rangeItems(this.rowComponent.length, 2) : 1
       }
     },
     setAlignContent () {

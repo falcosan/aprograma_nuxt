@@ -96,11 +96,11 @@
           </div>
         </div>
       </div>
-      <div v-else :class="`container-components flex flex-wrap rounded ${sliderMode || carouselMode || containerMode ? '-m-2.5' : `-mx-2.5 ${blok.background_color_container.color ? '' : '-mt-2.5'}`}`">
+      <div v-else :class="`container-components flex flex-wrap rounded ${sliderMode || carouselMode || containerMode ? '-m-2.5' : `-mx-2.5 ${blok.background_color_container.color ? '' : '-mt-2.5'}`} ${blok.add_space ? !blok.background_color_container.color && blok.title ? 'px-5 pb-5' : 'p-5': ''}`">
         <template v-for="component in elements">
           <div
             :key="component._uid"
-            :style="`flex: ${component.row_container ? `1 ${(100 - (maxElements > 1 ? spaceFix : 0)) / $rangeItems(maxElements, 3)}%` : '100%'}; background-color: ${blok.background_color_component.color};`"
+            :style="`flex: ${component.row_container ? `1 ${(100 - (maxElements > 1 ? (!blok.add_space ? spaceFix * 2 : spaceFix) : 0)) / $rangeItems(maxElements, 3)}%` : '100%'}; background-color: ${blok.background_color_component.color};`"
             :class="`${component.name.toLowerCase()}-container m-2.5 rounded ${setAlignContent} ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'}`"
           >
             <component
@@ -345,12 +345,10 @@ export default {
   position: relative;
   z-index: 10;
 }
-
 .parent-cover > .container-content{
     margin: .1px;
     padding: .1px;
 }
-
 .parent-cover > .container-content > .container-components {
   position: relative;
   top: 10px;

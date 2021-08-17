@@ -43,10 +43,27 @@
           />
         </template>
       </Modal>
-      <div class="project-action min-w-0 flex items-center justify-between xl:row-start-2 xl:row-end-2 xl:col-start-3 xl:col-end-3">
+      <div
+        :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
+        :class="`intro-text block h-max xl:row-start-1 xl:row-end-1 xl:col-start-3 xl:col-end-3 font-extralight rounded prose-sm lg:prose-lg ${!blok.remove_space ? 'p-5' : ''}`"
+        v-html="$md.render(blok.intro)"
+      />
+
+      <div class="project-date flex flex-col ss:flex-row flex-wrap justify-evenly  items-center xl:col-start-1 xl:col-end-2 xl:mr-5">
+        <h4 class="date-start mb-1 ss:mb-0 text-right">
+          {{ changeDate(blok.start_date) }}
+        </h4>
+        <p class="date-to text-center my-1 ss:my-0 text-xs">
+          {{ $languageCase('to', 'hasta', 'al') }}
+        </p>
+        <h4 class="date-end mt-1 ss:mt-0 text-left">
+          {{ !blok.current_project ? changeDate(blok.end_date) : $languageCase('present', 'presente', 'presente') }}
+        </h4>
+      </div>
+      <div class="project-action min-w-0 flex items-center justify-between xl:justify-end row-start-2 row-end-3 xl:col-start-2 xl:col-end-3">
         <component
           :is="blok.url_project ? 'a' : 'span'"
-          :class="`project-url mx-5 xl:my-0 xl:mx-auto text-sm sm:text-base truncate ${blok.url_project ? 'font-medium' : 'italic'}`"
+          class="project-url font-medium truncate"
           :href="blok.url_project ? blok.url_project : false"
           :target="blok.url_project ? '_blank' : false"
           :rel="blok.url_project ? 'noopener noreferrer' : false"
@@ -63,33 +80,6 @@
           @click.native="goBack()"
         />
       </div>
-      <div
-        :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        :class="`intro-text block font-extralight rounded prose-sm lg:prose-lg ${!blok.remove_space ? 'p-5' : ''}`"
-        v-html="$md.render(blok.intro)"
-      />
-      <div class="project-date flex items-baseline justify-around xl:col-start-1 xl:col-end-3">
-        <h4 class="date-start text-right text-sm sm:text-base">
-          {{ changeDate(blok.start_date) }}
-        </h4>
-        <p class="date-to text-center text-xs">
-          {{ $languageCase('to', 'hasta', 'al') }}
-        </p>
-        <h4 class="date-end text-left text-sm sm:text-base">
-          {{ !blok.current_project ? changeDate(blok.end_date) : $languageCase('present', 'presente', 'presente') }}
-        </h4>
-      </div>
-    </div>
-    <div v-if="$contentByName(blok.body, 'Detail').length > 0" class="project-details grid gap-5 col-start-1 col-end-4 mt-5">
-      <h1 class="detail-title text-xl font-extralight">
-        {{ $languageCase('Project details', 'Detalles del proyecto', 'Dettagli del progetto') }}
-      </h1>
-      <Detail
-        v-for="description in blok.body"
-        :key="description._uid"
-        :inline-text-style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        :blok="description"
-      />
     </div>
   </div>
 </template>

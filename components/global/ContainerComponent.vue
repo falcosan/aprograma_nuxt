@@ -101,7 +101,7 @@
           <div
             :key="component._uid"
             :style="`flex: ${component.row_container ? `1 ${(100 - (maxElements > 1 ? spaceFix : 0)) / $rangeItems(maxElements, 3)}%` : '100%'}; background-color: ${blok.background_color_component.color};`"
-            :class="`${component.name.toLowerCase()}-container m-2.5 rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'}`"
+            :class="`${component.name.toLowerCase()}-container self-start m-2.5 rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'}`"
           >
             <component
               :is="component.component"

@@ -157,7 +157,7 @@ export default {
       if (this.blok.slider_mode) {
         return this.blok.body
       } else {
-        return this.blok.body.filter(component => component.resolution_show ? this.fullWidth > Number(component.resolution_show) : component)
+        return this.blok.body.filter(component => component.resolution_show ? this.fullWidth > Number(component.resolution_show.split('; ')[0]) : component)
       }
     },
     rowComponent () {

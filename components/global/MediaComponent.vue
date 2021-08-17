@@ -1,6 +1,6 @@
 <template>
   <div
-    class="media relative flex flex-col justify-center items-center mx-auto my-0 overflow-hidden rounded"
+    class="media relative flex flex-col mx-auto my-0 overflow-hidden rounded"
   >
     <transition appear enter-active-class="duration-500 in-out" enter-class="opacity-0" mode="out-in">
       <Modal

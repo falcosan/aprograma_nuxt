@@ -6,11 +6,11 @@
     <div class="page-components flex flex-wrap -m-2.5">
       <component
         :is="component.component"
-        v-for="component in blok.body"
+        v-for="component in components"
         :key="component._uid"
         :blok="component"
         :style="`flex: ${component.row_container ? `1 ${(100 - (maxComponents > 1 ? spaceFix : 0 )) / $rangeItems(maxComponents, 3)}%` : '100%'};`"
-        :class="`${component.component.toLowerCase()}-content mx-2.5 mt-2.5 mb-8 ${setAlignContent} ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
+        :class="`${component.component.toLowerCase()}-content m-2.5 ${setAlignContent} ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
       />
     </div>
   </section>
@@ -32,6 +32,9 @@ export default {
   computed: {
     rowComponent () {
       return this.blok.body.filter(function (item) { return item.row_container })
+    },
+    components () {
+      return this.blok.body.filter(component => component.resolution_show ? this.$store.state.data.windowWidth > Number(component.resolution_show.split('; ')[1]) : component)
     },
     maxComponents () {
       if (Number(this.blok.column_container)) {

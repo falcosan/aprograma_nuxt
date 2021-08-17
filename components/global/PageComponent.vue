@@ -4,18 +4,14 @@
       {{ blok.title }}
     </h1>
     <div class="page-components flex flex-wrap -m-2.5">
-      <div
+      <component
+        :is="component.component"
         v-for="component in blok.body"
         :key="component._uid"
+        :blok="component"
         :style="`flex: ${component.row_container ? `1 ${(100 - (maxComponents > 1 ? spaceFix : 0 )) / $rangeItems(maxComponents, 3)}%` : '100%'};`"
-        :class="`${component.component.toLowerCase()}-content mx-2.5 mt-2.5 mb-8 ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
-      >
-        <component
-          :is="component.component"
-          :class="`${component.component.toLowerCase()}-component`"
-          :blok="component"
-        />
-      </div>
+        :class="`${component.component.toLowerCase()}-content mx-2.5 mt-2.5 mb-8 ${setAlignContent} ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
+      />
     </div>
   </section>
 </template>
@@ -47,6 +43,16 @@ export default {
           return this.$rangeItems(this.rowComponent.length, 3)
         } return this.$store.state.data.windowWidth >= 1024 ? this.$rangeItems(this.rowComponent.length, 2) : 1
       }
+    },
+    setAlignContent () {
+      switch (this.blok.align_content) {
+        case 'start':
+          return 'self-start'
+        case 'center':
+          return 'self-center'
+        case 'end':
+          return 'self-end'
+      } return ''
     }
   }
 }

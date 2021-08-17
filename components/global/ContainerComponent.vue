@@ -101,7 +101,7 @@
           <div
             :key="component._uid"
             :style="`flex: ${component.row_container ? `1 ${(100 - (maxElements > 1 ? spaceFix : 0)) / $rangeItems(maxElements, 3)}%` : '100%'}; background-color: ${blok.background_color_component.color};`"
-            :class="`${component.name.toLowerCase()}-container self-start m-2.5 rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'}`"
+            :class="`${component.name.toLowerCase()}-container m-2.5 rounded ${setAlignContent} ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'}`"
           >
             <component
               :is="component.component"
@@ -202,8 +202,15 @@ export default {
         } return this.fullWidth >= 535 ? this.$rangeItems(this.rowComponent.length, 2) : 1
       }
     },
-    lookUnit () {
-      return this.blok.unit ? this.blok.unit === 'vh; vw' ? this.blok.unit.split('; ') : this.blok.unit : ''
+    setAlignContent () {
+      switch (this.blok.align_content) {
+        case 'start':
+          return 'self-start'
+        case 'center':
+          return 'self-center'
+        case 'end':
+          return 'self-end'
+      } return ''
     }
   },
   watch: {

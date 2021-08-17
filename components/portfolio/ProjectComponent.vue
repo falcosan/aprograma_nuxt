@@ -20,7 +20,7 @@
         modal-style="bg-gray-200 bg-opacity-90"
       >
         <template #activator="action">
-          <div class="image-container w-full h-60 ss:h-64 xx:h-72 xs:h-88 sm:h-sm md:h-lg lg:h-xl 2xl:h-2xl my-0 mx-auto cursor-pointer" @click="action.open()">
+          <div class="image-container w-full h-64 ss:h-76 xx:h-80 xs:h-88 sm:h-sm md:h-lg lg:h-xl 2xl:h-2xl my-0 mx-auto cursor-pointer" @click="action.open()">
             <nuxt-img
               :modifiers="{ smart: true, filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
               class="intro-image h-full w-full border-2 object-cover rounded select-none"
@@ -45,7 +45,7 @@
       </Modal>
       <div
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        :class="`intro-text block h-max xl:row-start-1 xl:row-end-1 xl:col-start-3 xl:col-end-3 font-extralight rounded prose-sm lg:prose-lg ${!blok.remove_space ? 'p-5' : ''}`"
+        :class="`intro-text block self-start xl:row-start-1 xl:row-end-1 xl:col-start-3 xl:col-end-3 font-extralight rounded prose-sm lg:prose-lg ${!blok.remove_space ? 'p-5' : ''}`"
         v-html="$md.render(blok.intro)"
       />
 

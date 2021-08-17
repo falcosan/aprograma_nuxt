@@ -90,8 +90,8 @@
                 </li>
               </template>
             </transition-group>
-            <div v-if="blok.slider_mode === 'carousel'" class="dot-contaienr w-1/2 flex flex-wrap justify-center py-7 -my-1.5 mx-auto">
-              <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 inline-block m-1.5 rounded-full shadow-inner select-none transform scale-90 transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-gray-500 bg-gray-500' : 'bg-gray-500'}`" />
+            <div v-if="!blok.hide_dots" class="dot-contaienr w-1/2 flex flex-wrap justify-center py-7 -my-1.5 mx-auto">
+              <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 inline-block p-px m-1.5 rounded-full shadow-inner select-none transform scale-90 transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-gray-500 bg-gray-500' : 'bg-gray-500'}`" />
             </div>
           </div>
         </div>
@@ -338,7 +338,7 @@ export default {
   cursor: none;
 }
 .show {
-  transition: opacity .5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity .5s cubic-bezier(0.77, 0, 0.175, 1);
   opacity: 1;
 }
 .show > * {

@@ -12,7 +12,7 @@
       >
         <component
           :is="component.component"
-          :class="`${component.component.toLowerCase()}-component h-full`"
+          :class="`${component.component.toLowerCase()}-component`"
           :blok="component"
         />
       </div>

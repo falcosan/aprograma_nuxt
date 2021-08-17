@@ -105,7 +105,7 @@
           </div>
         </li>
       </ul>
-      <div :class="`detail-text h-max w-full max-w-full h-full flex flex-col rounded ${alignText} ${!blok.remove_space ? 'p-5' : ''}`" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`">
+      <div :class="`detail-text h-max w-full max-w-full flex flex-col rounded ${!blok.remove_space ? 'p-5' : ''}`" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`">
         <div class="block max-w-none font-extralight rounded prose-sm lg:prose-lg" v-html="$md.render(blok.text)" />
       </div>
     </div>
@@ -142,14 +142,6 @@ export default {
   computed: {
     lookUnit () {
       return this.blok.unit ? this.blok.unit === 'vh; vw' ? this.blok.unit.split('; ') : this.blok.unit : ''
-    },
-    alignText () {
-      switch (this.blok.align_text) {
-        case 'center':
-          return 'justify-center'
-        case 'end':
-          return 'justify-end'
-      } return 'justify-start'
     }
   },
   mounted () {

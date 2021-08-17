@@ -5,7 +5,7 @@
     <svg
       key="logo"
       ref="logo"
-      :style="`height: ${blok && blok.height && blok.unit ? `${blok.height}${blok.unit === 'vh; vw' ? lookUnit[0] : lookUnit}` : height ? height : 'auto'}; width: ${blok && blok.width && blok.unit ? `${blok.width}${blok.unit === 'vh; vw' ? lookUnit[1] : lookUnit}`: width ? width : 'auto'};`"
+      :style="`height: ${blok && blok.height ? `${blok.height}` : height ? height : 'auto'}; width: ${blok && blok.width ? `${blok.width}`: width ? width : 'auto'};`"
       class="logo cursor-pointer max-w-full max-h-full mx-auto my-0"
       version="1.1"
       baseProfile="basic"
@@ -81,11 +81,6 @@ export default {
       route: '',
       loading: false,
       loadingTimer: 0
-    }
-  },
-  computed: {
-    lookUnit () {
-      return this.blok.unit ? this.blok.unit === 'vh; vw' ? this.blok.unit.split('; ') : this.blok.unit : ''
     }
   },
   watch: {

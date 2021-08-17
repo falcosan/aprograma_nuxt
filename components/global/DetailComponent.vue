@@ -14,8 +14,9 @@
               <nuxt-img
                 v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
                 :modifiers="{ smart: true, filters: { focal: media.focus ? media.focus : 0 } }"
-                height="auto"
-                width="auto"
+                :quality="Number(blok.quality)"
+                :width="blok.quality ? Number(blok.quality) : 'auto'"
+                :height="blok.quality ? Number(blok.quality) : 'auto'"
                 :class="`${media.filename
                   .split(/[\\/]/)
                   .pop()
@@ -33,6 +34,8 @@
                   .split(/[\\/]/)
                   .pop()
                   .replace(/\.[^/.]+$/, '')}-video detail-video my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
+                width="auto"
+                height="auto"
                 autoplay
                 muted
                 playsinline
@@ -79,8 +82,9 @@
             <nuxt-img
               v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
               :modifiers="{ smart: true, filters: { focal: media.focus ? media.focus : 0 } }"
-              height="auto"
-              width="auto"
+              :quality="Number(blok.quality)"
+              :width="blok.quality ? Number(blok.quality) : 'auto'"
+              :height="blok.quality ? Number(blok.quality) : 'auto'"
               :type="`image/${imageType(media)}`"
               :class="`${media.filename
                 .split(/[\\/]/)
@@ -95,6 +99,8 @@
                 .split(/[\\/]/)
                 .pop()
                 .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center rounded pointer-events-none cursor-pointer select-none`"
+              width="auto"
+              height="auto"
               playsinline
               autoplay
               muted
@@ -137,11 +143,6 @@ export default {
     inlineTextStyle: {
       type: String,
       default: ''
-    }
-  },
-  computed: {
-    lookUnit () {
-      return this.blok.unit ? this.blok.unit === 'vh; vw' ? this.blok.unit.split('; ') : this.blok.unit : ''
     }
   },
   mounted () {

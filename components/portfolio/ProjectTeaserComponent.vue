@@ -12,6 +12,7 @@
           height="auto"
           :src="projectContent.image.filename"
           :alt="projectContent.image.alt"
+          sizes="xs:299 sm:380 md:514 lg:619 xl:711 2xl:804 3xl:883"
         />
         <div
           :style="`background-color: ${projectContent.teaser_background_color.color};`"

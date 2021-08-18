@@ -16,6 +16,7 @@
             :class="`w-full h-full max-h-44 xx:max-h-52 object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'sm:h-44 md:h-52 lg:h-60' : 'xs:max-h-64 sm:max-h-72 md:max-h-56'} ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
             :alt="postContent.file.alt"
             :src="setFile"
+            :sizes="lookFile() === 'nuxt-img' || !postContent.file.filename ? 'xs:299 sm:380 md:514 lg:619 xl:711 2xl:804 3xl:883' : false"
           />
         </div>
         <div :class="`teaser-text w-full flex flex-col justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? 'flex-auto' : 'h-full lg:w-1/2'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">

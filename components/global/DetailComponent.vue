@@ -24,6 +24,7 @@
                 fit="in"
                 width="auto"
                 height="auto"
+                loading="lazy"
                 draggable="false"
                 sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883px"
                 @click.native="action.open()"
@@ -55,6 +56,7 @@
                   .replace(/\.[^/.]+$/, '')}-image modal-image my-0 mx-auto object-contain object-center select-none cursor-default`"
                 height="auto"
                 width="auto"
+                loading="lazy"
                 :type="`image/${imageType(media)}`"
                 :src="media.filename"
                 :alt="media.alt"
@@ -91,6 +93,7 @@
               :alt="media.alt"
               width="auto"
               height="auto"
+              loading="lazy"
               sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883px"
             />
             <video

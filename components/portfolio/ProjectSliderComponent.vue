@@ -32,6 +32,7 @@
                 :alt="project.content.image.alt"
                 width="auto"
                 height="auto"
+                loading="lazy"
                 sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883px"
               />
             </div>

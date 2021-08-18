@@ -28,6 +28,7 @@
               :alt="blok.image.alt"
               width="auto"
               height="auto"
+              loading="lazy"
               :style="`border-color: ${blok.project_background_color.color}`"
               sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883px"
             />
@@ -39,6 +40,7 @@
             class="image-project select-none cursor-default"
             width="auto"
             height="auto"
+            loading="lazy"
             :src="blok.image.filename"
             :alt="blok.image.alt"
           />

@@ -11,7 +11,7 @@
           :src="projectContent.image.filename"
           :alt="projectContent.image.alt"
           loading="lazy"
-          sizes="xs:299px sm:380px md:514px lg:619px xl:820px"
+          :sizes="!$device.isIos ? 'xs:299px sm:380px md:514px lg:619px xl:820px' : null"
         />
         <div
           :style="`background-color: ${projectContent.teaser_background_color.color};`"

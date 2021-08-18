@@ -1,6 +1,6 @@
 <template>
   <div
-    class="media relative flex flex-col mx-auto my-0 overflow-hidden rounded"
+    :class="`media relative flex flex-col mx-auto my-0 overflow-hidden rounded ${!blok.remove_space ? blok.title ? 'px-5 pt-5' : 'p-5' : ''}`"
   >
     <transition appear enter-active-class="duration-500 in-out" enter-class="opacity-0" mode="out-in">
       <Modal

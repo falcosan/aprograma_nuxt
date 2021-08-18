@@ -8,8 +8,6 @@
         <NuxtImg
           :modifiers="{ filters: { focal: projectContent.image.focus ? projectContent.image.focus : 0 } }"
           class="project-image w-full h-5/6 object-cover object-center select-none rounded-t"
-          width="auto"
-          height="auto"
           :src="projectContent.image.filename"
           :alt="projectContent.image.alt"
           sizes="xs:299 sm:380 md:514 lg:619 xl:711 2xl:804 3xl:883"

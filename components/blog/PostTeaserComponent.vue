@@ -16,8 +16,6 @@
             :class="`w-full h-full object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxHeight : 'max-h-44 xx:max-h-52 xs:max-h-56 sm:max-h-64 md:max-h-56'}  ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
             :alt="postContent.file.alt"
             :src="setFile"
-            :width="lookFile() === 'NuxtImg' || !blok.file.filename ? 'auto' : false"
-            :height="lookFile() === 'NuxtImg' || !blok.file.filename ? 'auto' : false"
             :sizes="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'xs:299 sm:380 md:514 lg:619 xl:711 2xl:804 3xl:883' : false"
           />
         </div>

@@ -24,8 +24,6 @@
             <NuxtImg
               :modifiers="{ filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
               class="intro-image h-full w-full border-2 object-cover rounded select-none"
-              height="auto"
-              width="auto"
               :src="blok.image.filename"
               :alt="blok.image.alt"
               :style="`border-color: ${blok.project_background_color.color}`"

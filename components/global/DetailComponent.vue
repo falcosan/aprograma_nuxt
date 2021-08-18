@@ -14,8 +14,6 @@
               <NuxtImg
                 v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
                 :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
-                width="auto"
-                height="auto"
                 :class="`${media.filename
                   .split(/[\\/]/)
                   .pop()
@@ -82,8 +80,6 @@
             <NuxtImg
               v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
               :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
-              width="auto"
-              height="auto"
               :type="`image/${imageType(media)}`"
               :class="`${media.filename
                 .split(/[\\/]/)

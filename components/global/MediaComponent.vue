@@ -18,8 +18,7 @@
             :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
             :src="blok && blok.media.filename ? blok.media.filename : src"
             :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
-            :width="blok && blok.width ? blok.width: width ? width : 'auto'"
-            :height="blok && blok.height ? blok.height : height ? height : 'auto'"
+            :style="`height: ${blok && blok.height ? blok.height : height ? height : 'auto'}; width: ${blok && blok.width ? blok.width: width ? width : 'auto'};`"
             :type="`image/${imageType()}`"
             fit="in"
             draggable="false"
@@ -32,8 +31,9 @@
               .split(/[\\/]/)
               .pop()
               .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
-            :width="blok && blok.width ? blok.width: width ? width : 'auto'"
-            :height="blok && blok.height ? blok.height : height ? height : 'auto'"
+            :style="`height: ${blok && blok.height ? blok.height : height ? height : 'auto'}; width: ${blok && blok.width ? blok.width: width ? width : 'auto'};`"
+            width="auto"
+            height="auto"
             playsinline
             autoplay
             muted
@@ -87,8 +87,8 @@
             .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
-          :width="blok && blok.width ? blok.width: width ? width : 'auto'"
-          :height="blok && blok.height ? blok.height : height ? height : 'auto'"
+          :style="`height: ${blok && blok.height ? blok.height : height ? height : 'auto'}; width: ${blok && blok.width ? blok.width: width ? width : 'auto'};`"
+
           :type="`image/${imageType()}`"
           fit="in"
           draggable="false"
@@ -100,8 +100,9 @@
             .split(/[\\/]/)
             .pop()
             .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
-          :width="blok && blok.width ? blok.width: width ? width : 'auto'"
-          :height="blok && blok.height ? blok.height : height ? height : 'auto'"
+          :style="`height: ${blok && blok.height ? blok.height : height ? height : 'auto'}; width: ${blok && blok.width ? blok.width: width ? width : 'auto'};`"
+          width="auto"
+          height="auto"
           playsinline
           autoplay
           muted

@@ -14,9 +14,8 @@
               <nuxt-img
                 v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
                 :modifiers="{ smart: true, filters: { focal: media.focus ? media.focus : 0 } }"
-                :quality="Number(blok.quality)"
-                :width="blok.quality ? Number(blok.quality) : 'auto'"
-                :height="blok.quality ? Number(blok.quality) : 'auto'"
+                width="auto"
+                height="auto"
                 :class="`${media.filename
                   .split(/[\\/]/)
                   .pop()
@@ -83,9 +82,8 @@
             <nuxt-img
               v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
               :modifiers="{ smart: true, filters: { focal: media.focus ? media.focus : 0 } }"
-              :quality="Number(blok.quality)"
-              :width="blok.quality ? Number(blok.quality) : 'auto'"
-              :height="blok.quality ? Number(blok.quality) : 'auto'"
+              width="auto"
+              height="auto"
               :type="`image/${imageType(media)}`"
               :class="`${media.filename
                 .split(/[\\/]/)

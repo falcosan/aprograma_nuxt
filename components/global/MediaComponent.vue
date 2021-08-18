@@ -17,11 +17,9 @@
               .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
             :modifiers="{ smart: true, filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
             :src="blok && blok.media.filename ? blok.media.filename : src"
-            :style="`height: ${blok && blok.height ? blok.height : height ? height : 'auto'}; width: ${blok && blok.width ? blok.width: width ? width : 'auto'};`"
             :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
-            :quality="Number(blok.quality)"
-            :width="blok && blok.quality ? Number(blok.quality) : width ? width : 'auto'"
-            :height="blok && blok.quality ? Number(blok.quality) : height ? height : 'auto'"
+            :width="blok && blok.width ? blok.width: width ? width : 'auto'"
+            :height="blok && blok.height ? blok.height : height ? height : 'auto'"
             :type="`image/${imageType()}`"
             fit="in"
             draggable="false"
@@ -34,9 +32,8 @@
               .split(/[\\/]/)
               .pop()
               .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
-            :style="`height: ${blok && blok.height ? blok.height : height ? height : 'auto'}; width: ${blok && blok.width ? blok.width: width ? width : 'auto'};`"
-            width="auto"
-            height="auto"
+            :width="blok && blok.width ? blok.width: width ? width : 'auto'"
+            :height="blok && blok.height ? blok.height : height ? height : 'auto'"
             playsinline
             autoplay
             muted
@@ -88,12 +85,10 @@
             .split(/[\\/]/)
             .pop()
             .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
-          :style="`height: ${blok && blok.height ? blok.height : height ? height : 'auto'}; width: ${blok && blok.width ? blok.width: width ? width : 'auto'};`"
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
-          :quality="Number(blok.quality)"
-          :width="blok && blok.quality ? Number(blok.quality) : width ? width : 'auto'"
-          :height="blok && blok.quality ? Number(blok.quality) : height ? height : 'auto'"
+          :width="blok && blok.width ? blok.width: width ? width : 'auto'"
+          :height="blok && blok.height ? blok.height : height ? height : 'auto'"
           :type="`image/${imageType()}`"
           fit="in"
           draggable="false"
@@ -105,9 +100,8 @@
             .split(/[\\/]/)
             .pop()
             .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
-          :style="`height: ${blok && blok.height ? blok.height : height ? height : 'auto'}; width: ${blok && blok.width ? blok.width: width ? width : 'auto'};`"
-          width="auto"
-          height="auto"
+          :width="blok && blok.width ? blok.width: width ? width : 'auto'"
+          :height="blok && blok.height ? blok.height : height ? height : 'auto'"
           playsinline
           autoplay
           muted

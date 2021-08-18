@@ -95,9 +95,13 @@ export default {
   },
   computed: {
     maxPosts () {
-      if (this.containerWidth >= 536) {
+      if (this.sliderMode || this.carouselMode || this.containerMode) {
+        if (this.containerWidth >= 536) {
+          return 'md:grid-cols-fit-medium lg:grid-cols-fit-big'
+        } return this.containerWidth >= 354 ? 'md:grid-cols-fit-medium' : this.sliderMode ? 'sm:grid-cols-fit-small' : 'sm:grid-cols-fit-small md:grid-cols-fit-medium'
+      } else {
         return 'md:grid-cols-fit-medium lg:grid-cols-fit-big'
-      } return this.containerWidth >= 354 ? 'md:grid-cols-fit-medium' : this.sliderMode ? 'sm:grid-cols-fit-small' : 'sm:grid-cols-fit-small md:grid-cols-fit-medium'
+      }
     },
     sortedPosts () {
       const featuredPosts = this.$store.state.list.posts.items.filter((post) => {

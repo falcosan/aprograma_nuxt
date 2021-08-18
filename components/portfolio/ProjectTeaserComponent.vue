@@ -10,7 +10,7 @@
           class="project-image w-full h-5/6 object-cover object-center select-none rounded-t"
           :src="projectContent.image.filename"
           :alt="projectContent.image.alt"
-          :sizes="!$device.isIos ? 'xs:299px sm:380px md:514px lg:619px xl:820px' : null"
+          sizes="xs:299px sm:380px md:514px lg:619px xl:820"
         />
         <div
           :style="`background-color: ${projectContent.teaser_background_color.color};`"

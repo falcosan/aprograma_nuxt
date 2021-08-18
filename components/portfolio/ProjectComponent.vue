@@ -29,7 +29,7 @@
               width="auto"
               height="auto"
               :style="`border-color: ${blok.project_background_color.color}`"
-              :sizes="!$device.isIos ? 'xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883px' : null"
+              sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883"
             />
           </div>
         </template>

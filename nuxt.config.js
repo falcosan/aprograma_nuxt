@@ -95,12 +95,14 @@ export default {
     meta: {
       title: 'Aprograma',
       author: 'Daniele Falchetti - danielefalche@gmail.com',
-      description: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.'
+      description: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.',
+      theme_color: '#f9f9f9',
+      'apple-mobile-web-app-status-bar-style': 'black'
     },
     manifest: {
       name: 'Aprograma',
       short_name: 'Aprograma',
-      lang: 'en'
+      description: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.'
     }
   },
 

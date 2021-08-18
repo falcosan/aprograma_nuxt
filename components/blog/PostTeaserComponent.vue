@@ -9,17 +9,17 @@
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
-        <div :class="`teaser-file w-full h-screen ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxHeight : 'max-h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
+        <div :class="`teaser-file w-full h-screen ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxHeight : 'max-h-44 xs:max-h-56 sm:max-h-64 md:max-h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'nuxt-img'"
             :modifiers="lookFile() === 'nuxt-img' || !postContent.file.filename ? { smart: true, focal: postContent.file.focus ? postContent.file.focus : 0 } : false"
-            :class="`w-full h-full object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxHeight : 'max-h-56'}  ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
+            :class="`w-full h-full object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxHeight : 'max-h-44 xs:max-h-56 sm:max-h-64 md:max-h-56'}  ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
             :alt="postContent.file.alt"
             :src="setFile"
             :sizes="lookFile() === 'nuxt-img' || !postContent.file.filename ? 'xs:299 sm:380 md:514 lg:619 xl:711 2xl:804 3xl:883' : false"
           />
         </div>
-        <div :class="`teaser-text w-full h-full flex flex-col justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? 'flex-auto' : 'lg:h-screen lg:max-h-56 lg:w-1/2'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full flex flex-col justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? 'flex-auto' : 'lg:h-screen lg:max-h-56 lg:w-1/2'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               :class="`teaser-title mb-2 overflow-hidden ${$route.name === 'blog' ? 'text-xl sm:text-2xl' : 'text-xl'}`"
@@ -99,14 +99,20 @@ export default {
       return this.postContent.categories.map(category => category.toLowerCase().split('; ')[this.$languageCase(0, 1, 2)]).sort()
     },
     maxHeight () {
-      if (this.containerWidth <= 295) {
-        return 'max-h-44'
-      } else if (this.containerWidth <= 400) {
-        return 'max-h-56'
-      } else if (this.containerWidth <= 610) {
-        return 'max-h-72'
+      if (this.sliderContainer) {
+        if (this.containerWidth <= 375) {
+          return 'max-h-44'
+        } else if (this.containerWidth <= 425) {
+          return 'max-h-56'
+        } else if (this.containerWidth <= 640) {
+          return 'max-h-64'
+        } else if (this.containerWidth <= 768) {
+          return 'max-h-56'
+        } else {
+          return 'max-h-80'
+        }
       } else {
-        return 'max-h-80'
+        return 'max-h-44 xs:max-h-56 sm:max-h-64 md:max-h-56 lg:max-h-80'
       }
     }
   },

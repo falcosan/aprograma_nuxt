@@ -17,7 +17,7 @@
       <div :class="`post-file w-full h-60 ss:h-64 xs:h-72 sm:h-80 md:h-96 lg:h-lg xl:h-lg 2xl:h-2xl overflow-hidden rounded ${blok.file.filename ? '' : 'p-5 bg-black'}`">
         <component
           :is="blok.file.filename ? lookFile() : 'nuxt-img'"
-          :modifiers="lookFile() === 'nuxt-img' || !blok.file.filename ? { smart: true, focal: blok.file.focus ? blok.file.focus : 0 } : false"
+          :modifiers="lookFile() === 'nuxt-img' || !blok.file.filename ? { focal: blok.file.focus ? blok.file.focus : 0 } : false"
           :class="`w-full h-full object-center select-none object-cover ${blok.file.filename ? '' : 'ml-2.5'}`"
           :alt="`${blok.file.alt} project`"
           :src="setFile"

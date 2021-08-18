@@ -13,7 +13,7 @@
             <template #activator="action">
               <nuxt-img
                 v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
-                :modifiers="{ smart: true, filters: { focal: media.focus ? media.focus : 0 } }"
+                :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
                 width="auto"
                 height="auto"
                 :class="`${media.filename
@@ -48,7 +48,7 @@
             <template #body>
               <nuxt-img
                 v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
-                :modifiers="{ smart: true, filters: { focal: media.focus ? media.focus : 0 } }"
+                :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
                 :class="`${media.filename
                   .split(/[\\/]/)
                   .pop()
@@ -81,7 +81,7 @@
           <div v-else class="detail-image">
             <nuxt-img
               v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
-              :modifiers="{ smart: true, filters: { focal: media.focus ? media.focus : 0 } }"
+              :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
               width="auto"
               height="auto"
               :type="`image/${imageType(media)}`"

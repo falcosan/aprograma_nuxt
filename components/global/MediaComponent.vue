@@ -15,7 +15,7 @@
               .split(/[\\/]/)
               .pop()
               .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
-            :modifiers="{ smart: true, filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
+            :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
             :src="blok && blok.media.filename ? blok.media.filename : src"
             :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
             :width="blok && blok.width ? blok.width: width ? width : 'auto'"
@@ -46,7 +46,7 @@
         <template #body>
           <nuxt-img
             v-if="(blok && blok.media.filename && lookFile === 'image') || image"
-            :modifiers="{ smart: true, filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
+            :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
             :class="`${blok && blok.media.filename ? blok.media.filename : src
               .split(/[\\/]/)
               .pop()
@@ -79,7 +79,7 @@
       <template v-else>
         <nuxt-img
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
-          :modifiers="{ smart: true, filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
+          :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
           class="image-container"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)

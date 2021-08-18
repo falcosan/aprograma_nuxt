@@ -75,3 +75,9 @@ blockquote > * {
     width: 100%;
     overflow: hidden;
 }
+.page-enter-active, .page-leave-active {
+  transition: opacity .4s;
+}
+.page-enter, .page-leave-to {
+  opacity: 0;
+}

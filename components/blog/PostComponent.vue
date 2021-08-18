@@ -23,7 +23,7 @@
           :width="lookFile() === 'NuxtImg' || !blok.file.filename ? 'auto' : false"
           :height="lookFile() === 'NuxtImg' || !blok.file.filename ? 'auto' : false"
           :src="setFile"
-          :sizes="lookFile() === 'NuxtImg' || !blok.file.filename ? 'xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883px' : false"
+          :sizes="lookFile() === 'NuxtImg' || !blok.file.filename ? 'xs:299px sm:380px md:514px lg:619px xl:1240px' : false"
         />
       </div>
     </div>

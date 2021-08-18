@@ -10,7 +10,6 @@
           class="project-image w-full h-5/6 object-cover object-center select-none rounded-t"
           :src="projectContent.image.filename"
           :alt="projectContent.image.alt"
-          loading="lazy"
           :sizes="!$device.isIos ? 'xs:299px sm:380px md:514px lg:619px xl:820px' : null"
         />
         <div

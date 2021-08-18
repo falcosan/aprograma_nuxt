@@ -21,7 +21,6 @@
           :class="`w-full h-full object-center select-none object-cover ${blok.file.filename ? '' : 'ml-2.5'}`"
           :alt="`${blok.file.alt} project`"
           :src="setFile"
-          :loading="lookFile() === 'NuxtImg' || !blok.file.filename ? 'lazy' : false"
           :sizes="(lookFile() === 'NuxtImg' || !blok.file.filename) && !$device.isIos ? 'xs:299px sm:380px md:514px lg:619px xl:1240px' : null"
         />
       </div>

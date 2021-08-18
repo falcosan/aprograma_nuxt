@@ -28,10 +28,10 @@
               <NuxtImg
                 :modifiers="{ filters: { focal: project.content.image.focus ? project.content.image.focus : 0 } }"
                 class="project-image w-full h-full object-cover object-center pointer-events-none select-none"
-                width="auto"
-                height="auto"
                 :src="project.content.image.filename"
                 :alt="project.content.image.alt"
+                width="auto"
+                height="auto"
                 sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883px"
               />
             </div>

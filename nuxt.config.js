@@ -36,7 +36,6 @@ export default {
     storyblok: {
       baseURL: 'https://img2.storyblok.com'
     },
-    domains: ['https://aprograma.co'],
     screens: {
       xs: 320,
       sm: 640,

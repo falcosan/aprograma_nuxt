@@ -18,8 +18,6 @@
           .pop()
           .replace(/\.[^/.]+$/, '')}-icon my-0 mx-auto fill-current object-contain object-center ${size ? size : 'w-full h-full'}`"
         :src="blok.icon_image.filename"
-        width="auto"
-        height="auto"
         alt=""
         :name="blok.name"
         :type="`image/${lookFile()}`"

@@ -1,12 +1,5 @@
 <template>
   <div v-if="sortedPosts.length > 0" class="posts w-full">
-    <h1
-      v-if="blok.title"
-      :class="`posts-title break-words ${sliderMode || carouselMode || containerMode ? 'm-5 text-xl' : 'mb-5 text-xl xs:text-2xl'}`"
-      :style="`color: ${blok.title_color.color};`"
-    >
-      {{ blok.title }}
-    </h1>
     <div v-if="blok.search_action" class="post-search grid self-start mb-5">
       <input v-model="searchTerm" :placeholder="$languageCase('Search the post', 'Busca el post', 'Cerca il post')" class="search-bar w-full h-10 p-2 rounded border border-gray-500 text-black bg-gray-50" type="text">
     </div>

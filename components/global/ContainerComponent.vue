@@ -16,7 +16,7 @@
     >
       <div
         v-if="blok.slider_mode && elements.length > 1"
-        :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''} ${blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-5 mb-5' : 'm-5': ''}`"
+        :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-5 mb-5' : 'm-5': ''}`"
       >
         <Icon
           v-if="(blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || blok.row_container) && !blok.hide_controllers"

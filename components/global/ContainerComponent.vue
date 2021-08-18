@@ -317,10 +317,10 @@ export default {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
           this.fullWidth = this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
-          this.containerWidth = this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+          this.containerWidth = (this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
         })
       } else {
-        this.containerWidth = this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+        this.containerWidth = (this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
       }
     }
   }

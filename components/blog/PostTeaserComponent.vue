@@ -18,7 +18,7 @@
             :src="setFile"
             :width="lookFile() === 'NuxtImg' || !blok.file.filename ? 'auto' : false"
             :height="lookFile() === 'NuxtImg' || !blok.file.filename ? 'auto' : false"
-            :sizes="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'xs:299 sm:380 md:514 lg:619 xl:711 2xl:804 3xl:883' : false"
+            :sizes="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883px' : false"
           />
         </div>
         <div :class="`teaser-text w-full flex flex-col justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? 'flex-auto' : 'lg:h-screen lg:max-h-56 lg:w-1/2'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">

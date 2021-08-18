@@ -27,7 +27,7 @@
               :src="blok.image.filename"
               :alt="blok.image.alt"
               :style="`border-color: ${blok.project_background_color.color}`"
-              sizes="xs:299 sm:380 md:514 lg:619 xl:711 2xl:804 3xl:883"
+              sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883px"
             />
           </div>
         </template>

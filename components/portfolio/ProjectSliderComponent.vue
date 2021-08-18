@@ -14,7 +14,7 @@
           ref="slide"
           :key="project.uuid"
           tabindex="0"
-          :class="`slide slide-project w-full h-80 flex col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} outline-none`"
+          :class="`slide slide-project w-full h-72 flex col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} outline-none`"
           @keydown.right.prevent="next"
           @keydown.left.prevent="prev"
         >
@@ -30,7 +30,7 @@
                 class="project-image w-full h-full object-cover object-center pointer-events-none select-none"
                 :src="project.content.image.filename"
                 :alt="project.content.image.alt"
-                sizes="xs:299 sm:380 md:514 lg:619 xl:711 2xl:804 3xl:883"
+                sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883px"
               />
             </div>
           </NuxtLink>

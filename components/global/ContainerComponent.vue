@@ -100,7 +100,7 @@
         <template v-for="component in elements">
           <div
             :key="component._uid"
-            :style="`flex: ${component.row_container ? `1 ${(100 - (maxElements > 1 ? (blok.remove_space ? spaceFix : spaceFix * 2) : 0)) / $rangeItems(maxElements, 3)}%` : '100%'}; background-color: ${blok.background_color_component.color};`"
+            :style="`flex: ${component.row_container ? `1 ${(100 - (maxElements > 1 ? (!blok.remove_space ? spaceFix : spaceFix * 2) : 0)) / $rangeItems(maxElements, 3)}%` : '100%'}; background-color: ${blok.background_color_component.color};`"
             :class="`${component.name.toLowerCase()}-container m-2.5 rounded ${setAlignContent} ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'}`"
           >
             <component

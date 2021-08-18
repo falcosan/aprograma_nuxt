@@ -55,6 +55,7 @@
         :slider-container="sliderMode"
         :carousel-container="carouselMode"
         :container-container="containerMode"
+        :container-width="containerWidth"
       />
     </transition-group>
   </div>

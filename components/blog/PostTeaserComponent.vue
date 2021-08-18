@@ -11,12 +11,12 @@
       >
         <div :class="`teaser-file w-full h-screen ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxHeight : 'max-h-44 xx:max-h-52 xs:max-h-56 sm:max-h-64 md:max-h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
           <component
-            :is="postContent.file.filename ? lookFile() : 'nuxt-img'"
-            :modifiers="lookFile() === 'nuxt-img' || !postContent.file.filename ? { focal: postContent.file.focus ? postContent.file.focus : 0 } : false"
+            :is="postContent.file.filename ? lookFile() : 'NuxtImg'"
+            :modifiers="lookFile() === 'NuxtImg' || !postContent.file.filename ? { focal: postContent.file.focus ? postContent.file.focus : 0 } : false"
             :class="`w-full h-full object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxHeight : 'max-h-44 xx:max-h-52 xs:max-h-56 sm:max-h-64 md:max-h-56'}  ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
             :alt="postContent.file.alt"
             :src="setFile"
-            :sizes="lookFile() === 'nuxt-img' || !postContent.file.filename ? 'xs:299 sm:380 md:514 lg:619 xl:711 2xl:804 3xl:883' : false"
+            :sizes="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'xs:299 sm:380 md:514 lg:619 xl:711 2xl:804 3xl:883' : false"
           />
         </div>
         <div :class="`teaser-text w-full flex flex-col justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? 'flex-auto' : 'lg:h-screen lg:max-h-56 lg:w-1/2'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
@@ -134,7 +134,7 @@ export default {
         case 'png':
         case 'gif':
         case 'svg':
-          return 'nuxt-img'
+          return 'NuxtImg'
         case 'pdf':
           return 'embed'
       }

@@ -9,7 +9,7 @@
         modal-style="bg-gray-200 bg-opacity-90"
       >
         <template #activator="action">
-          <nuxt-img
+          <NuxtImg
             v-if="(blok && blok.media.filename && lookFile === 'image') || image"
             :class="`${blok && blok.media.filename ? blok.media.filename : src
               .split(/[\\/]/)
@@ -44,7 +44,7 @@
           </video>
         </template>
         <template #body>
-          <nuxt-img
+          <NuxtImg
             v-if="(blok && blok.media.filename && lookFile === 'image') || image"
             :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
             :class="`${blok && blok.media.filename ? blok.media.filename : src
@@ -77,7 +77,7 @@
         </template>
       </Modal>
       <template v-else>
-        <nuxt-img
+        <NuxtImg
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
           :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
           class="image-container"

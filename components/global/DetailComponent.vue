@@ -11,7 +11,7 @@
             modal-style="bg-opacity-90 bg-gray-200"
           >
             <template #activator="action">
-              <nuxt-img
+              <NuxtImg
                 v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
                 :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
                 width="auto"
@@ -46,7 +46,7 @@
               </video>
             </template>
             <template #body>
-              <nuxt-img
+              <NuxtImg
                 v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
                 :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
                 :class="`${media.filename
@@ -79,7 +79,7 @@
             </template>
           </Modal>
           <div v-else class="detail-image">
-            <nuxt-img
+            <NuxtImg
               v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
               :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
               width="auto"

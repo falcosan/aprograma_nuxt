@@ -15,7 +15,7 @@
         <Nuxt :class="`relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
       </transition>
     </div>
-    <nuxt-img
+    <NuxtImg
       v-if="blok.background_media.filename && lookFile === 'image'"
       :modifiers="{ filters: { focal: blok.background_media.focus ? blok.background_media.focus: 0 } }"
       :class="`media-image min-h-full min-w-full fixed right-0 bottom-0 -z-10 object-cover object-center ${blok.color_animation ? 'colorAnimation' : ''}`"

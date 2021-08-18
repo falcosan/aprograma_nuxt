@@ -16,7 +16,7 @@
     >
       <div
         v-if="blok.slider_mode && elements.length > 1"
-        :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''}`"
+        :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''} ${blok.add_space ? !blok.background_color_container.color && blok.title ? 'px-5 pb-5' : 'p-5': ''}`"
       >
         <Icon
           v-if="(blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || blok.row_container) && !blok.hide_controllers"
@@ -36,7 +36,7 @@
           @click.native="next"
         />
         <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode) && !blok.row_container && !blok.hide_controllers" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
-        <div :class="`slider-box w-full rounded ${blok.slider_mode ? 'overflow-hidden' : ''}`">
+        <div ref="sliderBox" :class="`slider-box w-full rounded ${blok.slider_mode ? 'overflow-hidden' : ''}`">
           <div v-if="blok.slider_mode === 'slider'" class="slider-container">
             <ul
               :key="sliderKey"
@@ -216,7 +216,7 @@ export default {
   watch: {
     '$store.state.data.windowWidth' () {
       if (!this.sliderMode && !this.carouselMode && !this.containerMode) {
-        this.fullWidth = this.$el.clientWidth
+        this.fullWidth = this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
       }
       this.$nextTick(function () {
         this.getContainerWidth()
@@ -229,7 +229,7 @@ export default {
   },
   mounted () {
     if (!this.sliderMode && !this.carouselMode && !this.containerMode) {
-      this.fullWidth = this.$el.clientWidth
+      this.fullWidth = this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
     }
     this.$nextTick(function () {
       this.getContainerWidth()
@@ -271,7 +271,7 @@ export default {
     },
     setNext () {
       if (this.blok.slider_mode === 'slider') {
-        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.$el.clientWidth >= -((this.containerWidth + this.spaceFix) * (this.elements.length - 1))) { this.sliderIndex++ } else {
+        if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.$refs.sliderBox.clientWidth >= -((this.containerWidth + this.spaceFix) * (this.elements.length - 1))) { this.sliderIndex++ } else {
           this.sliderIndex = 0
           if (this.blok.auto_play) {
             this.clearAutoPlay()
@@ -316,11 +316,11 @@ export default {
     getContainerWidth () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
-          this.fullWidth = this.$el.clientWidth
-          this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+          this.fullWidth = this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
+          this.containerWidth = this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
         })
       } else {
-        this.containerWidth = this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+        this.containerWidth = this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
       }
     }
   }

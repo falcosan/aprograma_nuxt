@@ -2,89 +2,19 @@
   <div
     :class="`media relative flex flex-col mx-auto my-0 overflow-hidden rounded ${!blok.remove_space ? blok.title ? 'px-5 pt-5' : 'p-5' : ''}`"
   >
-    <transition appear enter-active-class="duration-500 in-out" enter-class="opacity-0" mode="out-in">
-      <Modal
-        v-if="blok.modal_mode"
-        close-mode
-        modal-style="bg-gray-200 bg-opacity-90"
-      >
-        <template #activator="action">
-          <NuxtImg
-            v-if="(blok && blok.media.filename && lookFile === 'image') || image"
-            :class="`${blok && blok.media.filename ? blok.media.filename : src
-              .split(/[\\/]/)
-              .pop()
-              .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
-            :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
-            :src="blok && blok.media.filename ? blok.media.filename : src"
-            :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
-            :width="blok && blok.width ? blok.width: width ? width : 'auto'"
-            :height="blok && blok.height ? blok.height : height ? height : 'auto'"
-            :type="`image/${imageType()}`"
-            fit="in"
-            draggable="false"
-            sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883"
-            @click.native="action.open()"
-          />
-          <video
-            v-else-if="(blok && blok.media.filename) || video"
-            :class="`${blok && blok.media.filename ? blok.media.filename : src
-              .split(/[\\/]/)
-              .pop()
-              .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
-            :width="blok && blok.width ? blok.width: width ? width : 'auto'"
-            :height="blok && blok.height ? blok.height : height ? height : 'auto'"
-            playsinline
-            autoplay
-            muted
-            :loop="blok.loop"
-            @click="action.open()"
-          >
-            <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
-          </video>
-        </template>
-        <template #body>
-          <NuxtImg
-            v-if="(blok && blok.media.filename && lookFile === 'image') || image"
-            :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
-            :class="`${blok && blok.media.filename ? blok.media.filename : src
-              .split(/[\\/]/)
-              .pop()
-              .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center select-none cursor-default`"
-            width="auto"
-            height="auto"
-            :src="blok && blok.media.filename ? blok.media.filename : src"
-            :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
-            :type="`image/${imageType()}`"
-            fit="in"
-            draggable="false"
-          />
-          <video
-            v-else-if="(blok && blok.media.filename) || video"
-            :class="`${blok && blok.media.filename ? blok.media.filename : src
-              .split(/[\\/]/)
-              .pop()
-              .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center select-none cursor-default`"
-            width="auto"
-            height="auto"
-            playsinline
-            autoplay
-            muted
-            loop
-          >
-            <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
-          </video>
-        </template>
-      </Modal>
-      <template v-else>
+    <Modal
+      v-if="blok.modal_mode"
+      close-mode
+      modal-style="bg-gray-200 bg-opacity-90"
+    >
+      <template #activator="action">
         <NuxtImg
           v-if="(blok && blok.media.filename && lookFile === 'image') || image"
-          :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
-          class="image-container"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
-            .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
+            .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
+          :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :width="blok && blok.width ? blok.width: width ? width : 'auto'"
@@ -93,24 +23,92 @@
           fit="in"
           draggable="false"
           sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883"
+          @click.native="action.open()"
         />
         <video
           v-else-if="(blok && blok.media.filename) || video"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
-            .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
+            .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
           :width="blok && blok.width ? blok.width: width ? width : 'auto'"
           :height="blok && blok.height ? blok.height : height ? height : 'auto'"
           playsinline
           autoplay
           muted
           :loop="blok.loop"
+          @click="action.open()"
         >
           <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
         </video>
       </template>
-    </transition>
+      <template #body>
+        <NuxtImg
+          v-if="(blok && blok.media.filename && lookFile === 'image') || image"
+          :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
+          :class="`${blok && blok.media.filename ? blok.media.filename : src
+            .split(/[\\/]/)
+            .pop()
+            .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center select-none cursor-default`"
+          width="auto"
+          height="auto"
+          :src="blok && blok.media.filename ? blok.media.filename : src"
+          :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
+          :type="`image/${imageType()}`"
+          fit="in"
+          draggable="false"
+        />
+        <video
+          v-else-if="(blok && blok.media.filename) || video"
+          :class="`${blok && blok.media.filename ? blok.media.filename : src
+            .split(/[\\/]/)
+            .pop()
+            .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center select-none cursor-default`"
+          width="auto"
+          height="auto"
+          playsinline
+          autoplay
+          muted
+          loop
+        >
+          <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
+        </video>
+      </template>
+    </Modal>
+    <template v-else>
+      <NuxtImg
+        v-if="(blok && blok.media.filename && lookFile === 'image') || image"
+        :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
+        class="image-container"
+        :class="`${blok && blok.media.filename ? blok.media.filename : src
+          .split(/[\\/]/)
+          .pop()
+          .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
+        :src="blok && blok.media.filename ? blok.media.filename : src"
+        :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
+        :width="blok && blok.width ? blok.width: width ? width : 'auto'"
+        :height="blok && blok.height ? blok.height : height ? height : 'auto'"
+        :type="`image/${imageType()}`"
+        fit="in"
+        draggable="false"
+        sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883"
+      />
+      <video
+        v-else-if="(blok && blok.media.filename) || video"
+        :class="`${blok && blok.media.filename ? blok.media.filename : src
+          .split(/[\\/]/)
+          .pop()
+          .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
+        :width="blok && blok.width ? blok.width: width ? width : 'auto'"
+        :height="blok && blok.height ? blok.height : height ? height : 'auto'"
+        playsinline
+        autoplay
+        muted
+        :loop="blok.loop"
+      >
+        <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
+      </video>
+    </template>
     <p
       v-if="(blok && blok.title) || title"
       class="media-title p-5 text-center text-lg font-extralight"

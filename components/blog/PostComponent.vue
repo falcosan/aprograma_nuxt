@@ -34,7 +34,7 @@
         />
         <p
           :style="`color: ${blok.post_text_color.color};`"
-          class="post-author py-2.5 italic underline font-medium text-sm"
+          class="post-author py-2.5 italic text-sm"
         >
           {{ $languageCase('by', 'de', 'di') }} {{ blok.author ? blok.author : $languageCase('Anonymous', 'Anónimo', 'Anonimo') }}
         </p>

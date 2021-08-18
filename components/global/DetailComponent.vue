@@ -22,6 +22,8 @@
                 :alt="media.alt"
                 :type="`image/${imageType(media)}`"
                 fit="in"
+                width="auto"
+                height="auto"
                 draggable="false"
                 sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883px"
                 @click.native="action.open()"
@@ -87,6 +89,8 @@
                 .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain cursor-pointer object-cover rounded pointer-events-none select-none`"
               :src="media.filename"
               :alt="media.alt"
+              width="auto"
+              height="auto"
               sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883px"
             />
             <video

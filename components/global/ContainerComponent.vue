@@ -15,7 +15,7 @@
       :style="`background-color: ${blok.background_color_container.color};`"
     >
       <div
-        v-if="blok.slider_mode && elements.length > 1"
+        v-if="blok.slider_mode === 'slider' || blok.slider_mode === 'carousel' && elements.length > 1"
         :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-5 mb-5' : 'm-5': ''}`"
       >
         <Icon
@@ -154,7 +154,7 @@ export default {
   },
   computed: {
     elements () {
-      if (this.blok.slider_mode) {
+      if (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') {
         return this.blok.body
       } else {
         return this.blok.body.filter(component => component.resolution_show ? this.fullWidth >= Number(component.resolution_show.split('; ')[0]) : component)
@@ -192,7 +192,7 @@ export default {
           } return this.fullWidth >= 535 ? this.$rangeItems(this.defaultMax, 2) : 1
         }
       }
-      if (this.columnSet && !this.blok.slider_mode) {
+      if (this.columnSet && (!this.blok.slider_mode === 'slider' || !this.blok.slider_mode === 'carousel')) {
         if (this.fullWidth + (this.spaceFix * this.$rangeItems(this.defaultMax, 3)) >= 1239) {
           return this.$rangeItems(this.columnSet, 3)
         } return this.fullWidth + (this.spaceFix * this.$rangeItems(this.defaultMax, 3)) >= 535 ? this.$rangeItems(this.columnSet, 2) : 1
@@ -216,12 +216,12 @@ export default {
   watch: {
     '$store.state.data.windowWidth' () {
       if (!this.sliderMode && !this.carouselMode && !this.containerMode) {
-        this.fullWidth = this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
+        this.fullWidth = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
       }
       this.$nextTick(function () {
         this.getContainerWidth()
       })
-      if (this.blok.slider_mode) {
+      if (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') {
         this.sliderKey++
       }
     },
@@ -229,12 +229,12 @@ export default {
   },
   mounted () {
     if (!this.sliderMode && !this.carouselMode && !this.containerMode) {
-      this.fullWidth = this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
+      this.fullWidth = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
     }
     this.$nextTick(function () {
       this.getContainerWidth()
     })
-    if (this.blok.slider_mode) {
+    if (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') {
       this.sliderKey++
       if (this.blok.auto_play) {
         this.autoPlay()
@@ -245,7 +245,7 @@ export default {
     this.getContainerWidth()
   },
   beforeDestroy () {
-    if (this.blok.slider_mode && this.blok.auto_play) {
+    if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.blok.auto_play) {
       this.clearAutoPlay()
     }
   },
@@ -289,7 +289,7 @@ export default {
       }
     },
     next () {
-      if (this.blok.slider_mode && this.blok.auto_play) {
+      if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.blok.auto_play) {
         this.setNext()
         this.clearAutoPlay()
         this.autoPlay()
@@ -298,7 +298,7 @@ export default {
       }
     },
     previous () {
-      if (this.blok.slider_mode && this.blok.auto_play) {
+      if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.blok.auto_play) {
         this.setPrevious()
         this.clearAutoPlay()
         this.autoPlay()
@@ -316,11 +316,11 @@ export default {
     getContainerWidth () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
-          this.fullWidth = this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
-          this.containerWidth = (this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+          this.fullWidth = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
+          this.containerWidth = (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
         })
       } else {
-        this.containerWidth = (this.blok.slider_mode ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+        this.containerWidth = (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
       }
     }
   }

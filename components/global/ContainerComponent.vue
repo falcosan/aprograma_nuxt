@@ -33,9 +33,9 @@
           :class="`next-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? 'bottom-3.5' : 'bottom-7'} ${sliderMode ? fullWidth > 295 ? 'right-10' : 'right-5' : 'right-2'}`"
           :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
           tag="button"
-          @click.native="next('translate-x-full', '-translate-x-full')"
+          @click.native="manualNext"
         />
-        <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode) && !blok.row_container && !blok.hide_controllers" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next('translate-x-full', '-translate-x-full')" />
+        <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode) && !blok.row_container && !blok.hide_controllers" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="manualNext" />
         <div ref="sliderBox" :class="`slider-box w-full rounded ${blok.slider_mode ? 'overflow-hidden' : ''}`">
           <div v-if="blok.slider_mode === 'slider'" class="slider-container">
             <ul
@@ -75,7 +75,7 @@
                 <li
                   v-show="index === currentSlide"
                   :key="component._uid"
-                  v-touch:swipe.stop.left="!blok.hide_controllers ? next : null"
+                  v-touch:swipe.stop.left="!blok.hide_controllers ? manualNext : null"
                   v-touch:swipe.stop.right="!blok.hide_controllers ? previous : null"
                   :class="`carousel-slide slide w-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${setAlignContent} ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
                   :style="`background-color: ${blok.background_color_component.color};`"
@@ -287,6 +287,9 @@ export default {
       } else {
         this.setNext(enterMove, leaveMove)
       }
+    },
+    manualNext () {
+      this.next('translate-x-full', '-translate-x-full')
     },
     previous () {
       if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.blok.auto_play) {

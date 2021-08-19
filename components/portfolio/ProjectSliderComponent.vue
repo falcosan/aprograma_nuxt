@@ -13,8 +13,8 @@
           v-if="index === frame.up || index === frame.down"
           ref="slide"
           :key="project.uuid"
-          tabindex="0"
           :class="`slide slide-project w-full h-60 xl:h-72 flex col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} outline-none`"
+          tabindex="0"
           @keydown.right.prevent="next"
           @keydown.left.prevent="prev"
         >

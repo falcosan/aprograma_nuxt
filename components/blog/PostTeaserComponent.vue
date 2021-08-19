@@ -43,7 +43,7 @@
             </ul>
             <span
               v-if="$route.name === 'blog'"
-              class="teaser-date flex-none self-end pt-5 pl-5 text-sm font-medium text-right"
+              class="teaser-date flex-none self-end pt-5 pl-5 text-xs font-medium text-right"
               v-text="changeDate(postContent.date)"
             />
           </div>

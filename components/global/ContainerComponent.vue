@@ -292,7 +292,7 @@ export default {
       }
     },
     next (enterMove, leaveMove) {
-      if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.blok.auto_play) {
+      if (this.blok.auto_play) {
         this.setNext(enterMove, leaveMove)
         this.clearAutoPlay()
         this.autoPlay()
@@ -304,7 +304,7 @@ export default {
       this.next('translate-x-full', '-translate-x-full')
     },
     previous () {
-      if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.blok.auto_play) {
+      if (this.blok.auto_play) {
         this.setPrevious()
         this.clearAutoPlay()
         this.autoPlay()
@@ -313,6 +313,10 @@ export default {
       }
     },
     changeDot (input) {
+      if (this.blok.auto_play) {
+        this.clearAutoPlay()
+        this.autoPlay()
+      }
       this.currentSlide = input - 1
       this.transitionEnter = 'opacity-0'
       this.transitionLeave = 'opacity-0'
@@ -379,6 +383,7 @@ export default {
 }
 .dot-desktop .dot-text{
   opacity: 0;
+  pointer-events: none;
   transform: translate(-10.5px, -25px);
   -webkit-transition: opacity .2s ease;
   -moz-transition: opacity .2s ease;

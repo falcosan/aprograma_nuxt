@@ -33,9 +33,9 @@
           :class="`next-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? 'bottom-3.5' : 'bottom-7'} ${sliderMode ? fullWidth > 295 ? 'right-10' : 'right-5' : 'right-2'}`"
           :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
           tag="button"
-          @click.native="next"
+          @click.native="next('translate-x-full', '-translate-x-full')"
         />
-        <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode) && !blok.row_container && !blok.hide_controllers" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
+        <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode) && !blok.row_container && !blok.hide_controllers" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next('translate-x-full', '-translate-x-full')" />
         <div ref="sliderBox" :class="`slider-box w-full rounded ${blok.slider_mode ? 'overflow-hidden' : ''}`">
           <div v-if="blok.slider_mode === 'slider'" class="slider-container">
             <ul
@@ -271,7 +271,7 @@ export default {
         this.transitionLeave = 'translate-x-full'
       }
     },
-    setNext () {
+    setNext (setEnterMove = 'opacity-0', setLeaveMove = 'opacity-0') {
       if (this.blok.slider_mode === 'slider') {
         if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.$refs.sliderBox.clientWidth >= -((this.containerWidth + this.spaceFix) * (this.elements.length - 1))) { this.sliderIndex++ } else {
           this.sliderIndex = 0
@@ -286,17 +286,17 @@ export default {
             this.clearAutoPlay()
           }
         }
-        this.transitionEnter = 'translate-x-full'
-        this.transitionLeave = '-translate-x-full'
+        this.transitionEnter = setEnterMove
+        this.transitionLeave = setLeaveMove
       }
     },
-    next () {
+    next (enterMove, leaveMove) {
       if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.blok.auto_play) {
-        this.setNext()
+        this.setNext(enterMove, leaveMove)
         this.clearAutoPlay()
         this.autoPlay()
       } else {
-        this.setNext()
+        this.setNext(enterMove, leaveMove)
       }
     },
     previous () {

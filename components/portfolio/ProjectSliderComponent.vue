@@ -1,5 +1,5 @@
 <template>
-  <div class="project-slider relative w-full z-10">
+  <div class="project-slider relative w-full z-10" @mouseenter="focusSlide">
     <transition-group
       tag="ul"
       :enter-active-class="`${transitionActive} in-out`"
@@ -13,7 +13,7 @@
           v-if="index === frame.up || index === frame.down"
           ref="slide"
           :key="project.uuid"
-          :class="`slide slide-project w-full h-60 xl:h-72 flex col-start-1 col-end-1 ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'} outline-none`"
+          :class="`slide slide-project w-full h-60 xl:h-72 flex col-start-1 col-end-1 outline-none ${index % 2 === 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'}`"
           tabindex="0"
           @keydown.right.prevent="next"
           @keydown.left.prevent="prev"
@@ -72,6 +72,7 @@ export default {
     return {
       transitionActive: 'translation-all duration-500',
       indexControls: 0,
+      focusDisable: false,
       frame: {
         up: 0,
         down: 1
@@ -126,11 +127,14 @@ export default {
       this.transitionActive = ''
       this.translation.enter = ''
       this.translation.leave = ''
+      this.focusDisable = true
     },
     focusSlide () {
-      this.$nextTick(function () {
-        this.$refs.slide[0].focus({ preventScroll: true })
-      })
+      if (!this.focusDisable) {
+        this.$nextTick(function () {
+          this.$refs.slide[0].focus({ preventScroll: true })
+        })
+      }
     }
   }
 }

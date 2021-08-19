@@ -75,10 +75,15 @@
                 <li
                   v-show="index === currentSlide"
                   :key="component._uid"
+                  ref="carouselSlide"
                   v-touch:swipe.stop.left="!blok.hide_controllers ? manualNext : null"
                   v-touch:swipe.stop.right="!blok.hide_controllers ? previous : null"
-                  :class="`carousel-slide slide w-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${setAlignContent} ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+                  :class="`carousel-slide slide w-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${!blok.hide_controllers ? 'outline-none' : ''} ${setAlignContent} ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
                   :style="`background-color: ${blok.background_color_component.color};`"
+                  :tabindex="!blok.hide_controllers ? '0' : false"
+                  @mouseenter="focusContainer($refs.carouselSlide[0])"
+                  @keydown.right.prevent="!blok.hide_controllers ? manualNext() : null"
+                  @keydown.left.prevent="!blok.hide_controllers ? previous() : null"
                 >
                   <component
                     :is="component.component"
@@ -151,7 +156,8 @@ export default {
       containerWidth: 0,
       transitionEnter: '',
       transitionLeave: '',
-      spaceFix: 20
+      spaceFix: 20,
+      focusDisable: false
     }
   },
   computed: {
@@ -239,6 +245,7 @@ export default {
     if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.blok.auto_play) {
       this.clearAutoPlay()
     }
+    this.focusDisable = true
   },
   methods: {
     setPrevious () {
@@ -321,6 +328,13 @@ export default {
       } else {
         this.containerWidth = (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
         this.fullWidth = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
+      }
+    },
+    focusContainer (element) {
+      if (!this.focusDisable) {
+        this.$nextTick(function () {
+          element.focus({ preventScroll: true })
+        })
       }
     }
   }

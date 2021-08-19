@@ -42,8 +42,8 @@ export default ({ app }, inject) => {
   inject('scrollToSmoothly', (pos, time = 300) => {
     const currentPos = window.pageYOffset
     let start = null
-    pos = +pos
-    time = +time
+    pos = Number(pos)
+    time = Number(time)
     window.requestAnimationFrame(function step (currentTime) {
       start = !start ? currentTime : start
       const progress = currentTime - start

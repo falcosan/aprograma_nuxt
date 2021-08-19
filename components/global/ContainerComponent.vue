@@ -349,7 +349,7 @@ export default {
   cursor: none;
 }
 .show {
-  transition: opacity .5s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: opacity .3s cubic-bezier(0.77, 0, 0.175, 1);
   opacity: 1;
 }
 .show > * {

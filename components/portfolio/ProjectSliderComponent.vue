@@ -1,5 +1,5 @@
 <template>
-  <div class="project-slider relative w-full z-10">
+  <div class="project-slider relative w-full z-10" @mouseenter="focusSlide">
     <transition-group
       tag="ul"
       :enter-active-class="`${transitionActive} in-out`"
@@ -18,7 +18,7 @@
           @keydown.right.prevent="next"
           @keydown.left.prevent="prev"
         >
-          <NuxtLink v-click-outside="focusSlide" :to="`${$route.path}/${project.slug}`" class="project-link w-full grid grid-rows-1 grid-cols-2">
+          <NuxtLink :to="`${$route.path}/${project.slug}`" class="project-link w-full grid grid-rows-1 grid-cols-2">
             <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1`" :style="`background-color: ${project.content.teaser_background_color.color};`">
               <h2 class="project-text text-xl xl:text-2xl px-10 overflow-hidden" :style="`color: ${project.content.teaser_text_color.color};`">
                 {{ project.content.title }}
@@ -62,24 +62,6 @@
 </template>
 <script>
 export default {
-  directives: {
-    'click-outside': {
-      bind (el, binding) {
-        const handler = (e) => {
-          if (binding.modifiers.bubble || (!el.contains(e.target) && el !== e.target)) {
-            binding.value(e)
-          }
-        }
-        el.outsideClick = handler
-        document.addEventListener('click', handler)
-      },
-
-      unbind (el) {
-        document.removeEventListener('click', el.outsideClick)
-        el.outsideClick = null
-      }
-    }
-  },
   props: {
     blok: {
       type: Array,
@@ -98,11 +80,6 @@ export default {
         enter: '',
         leave: ''
       }
-    }
-  },
-  mounted () {
-    if (this.$device.isDesktop) {
-      this.focusSlide()
     }
   },
   updated () {

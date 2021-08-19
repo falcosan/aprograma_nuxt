@@ -9,11 +9,11 @@
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
-        <div :class="`teaser-file w-full h-screen ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxHeight : 'max-h-44 xx:max-h-52 xs:max-h-56 sm:max-h-64 md:max-h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
+        <div :class="`teaser-file w-full h-screen ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxSize : 'max-h-44 xx:max-h-52 xs:max-h-56 sm:max-h-64 md:max-h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'NuxtImg'"
             :modifiers="lookFile() === 'NuxtImg' || !postContent.file.filename ? { focal: postContent.file.focus ? postContent.file.focus : 0 } : false"
-            :class="`w-full h-full object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxHeight : 'max-h-44 xx:max-h-52 xs:max-h-56 sm:max-h-64 md:max-h-56'}  ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
+            :class="`w-full h-full object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxSize : 'max-h-44 xx:max-h-52 xs:max-h-56 sm:max-h-64 md:max-h-56'}  ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
             :alt="postContent.file.alt"
             :src="setFile"
             :width="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'auto' : false"
@@ -100,7 +100,7 @@ export default {
     sortedCategories () {
       return this.postContent.categories.map(category => category.toLowerCase().split('; ')[this.$languageCase(0, 1, 2)]).sort()
     },
-    maxHeight () {
+    maxSize () {
       if (this.sliderContainer) {
         if (this.containerWidth <= 240) {
           return 'max-h-40'
@@ -112,13 +112,11 @@ export default {
           return 'max-h-56'
         } else if (this.containerWidth <= 425) {
           return 'max-h-64'
-        } else if (this.containerWidth <= 640) {
-          return 'max-h-72'
         } else {
-          return 'max-h-80'
+          return 'max-h-72'
         }
       } else {
-        return 'max-h-44 xx:max-h-48 xs:max-h-56 sm:max-h-64 md:max-h-52 lg:max-h-56 xl:max-h-72 2xl:max-h-80'
+        return 'max-h-44 xx:max-h-48 xs:max-h-56 sm:max-h-64 md:max-h-52 lg:max-h-56 xl:max-h-64 2xl:max-h-72'
       }
     }
   },

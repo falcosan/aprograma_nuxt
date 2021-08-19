@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="projectContent"
-    :class="`project-teaser w-full h-screen overflow-hidden rounded ${maxHeight}`"
+    :class="`project-teaser w-full h-screen overflow-hidden rounded ${maxSize}`"
   >
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
       <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
@@ -63,7 +63,7 @@ export default {
     }
   },
   computed: {
-    maxHeight () {
+    maxSize () {
       if (this.sliderContainer) {
         if (this.containerWidth <= 240) {
           return 'max-h-60'
@@ -76,10 +76,10 @@ export default {
         } else if (this.containerWidth <= 425) {
           return 'max-h-96'
         } else {
-          return 'max-h-md'
+          return 'max-h-sd'
         }
       } else {
-        return 'max-h-64 xx:max-h-76 xs:max-h-88 sm:max-h-96 md:max-h-72 lg:max-h-80 xl:max-h-96 2xl:max-h-md'
+        return 'max-h-64 xx:max-h-76 xs:max-h-88 sm:max-h-96 md:max-h-72 lg:max-h-80 xl:max-h-96 2xl:max-h-sd'
       }
     }
   }

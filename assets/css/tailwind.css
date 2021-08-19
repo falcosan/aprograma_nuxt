@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 html {
-    font-family: "Archivo";
+  font: normal 16px/1.9em "Inter", "Source Sans Pro","Helvetica Neue", Arial, sans-serif;
  }
 body {
     touch-action: manipulation;

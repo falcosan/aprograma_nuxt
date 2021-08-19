@@ -102,7 +102,7 @@
         <template v-for="component in elements">
           <div
             :key="component._uid"
-            :style="`flex: ${component.row_container ? `1 ${(100 - (maxElements > 1 ? (!blok.remove_space ? spaceFix : spaceFix * 2) : 0)) / $rangeItems(maxElements, 3)}%` : '100%'}; background-color: ${blok.background_color_component.color};`"
+            :style="`flex: ${component.row_container ? `1 ${(100 - (maxElements > 1 ? spaceFix : 0)) / maxElements}%` : '100%'}; background-color: ${blok.background_color_component.color};`"
             :class="`${component.name.toLowerCase()}-container m-2.5 rounded ${setAlignContent} ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'}`"
           >
             <component
@@ -175,7 +175,7 @@ export default {
       } return this.fullWidth >= 535 ? this.$rangeItems((this.elements.length - 1), 2) : 1
     },
     maxElements () {
-      if (this.blok.slider_mode && this.elements.length > 1) {
+      if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.elements.length > 1) {
         if (this.max && this.max <= this.defaultMax) {
           if (this.fullWidth >= 1239) {
             return this.$rangeItems(this.max, 5)
@@ -193,13 +193,10 @@ export default {
             return this.$rangeItems(this.defaultMax, 3)
           } return this.fullWidth >= 535 ? this.$rangeItems(this.defaultMax, 2) : 1
         }
-      }
-      if (this.columnSet && (!this.blok.slider_mode === 'slider' || !this.blok.slider_mode === 'carousel')) {
-        if (this.fullWidth + (this.spaceFix * this.$rangeItems(this.defaultMax, 3)) >= 1239) {
-          return this.$rangeItems(this.columnSet, 3)
-        } return this.fullWidth + (this.spaceFix * this.$rangeItems(this.defaultMax, 3)) >= 535 ? this.$rangeItems(this.columnSet, 2) : 1
+      } else if (this.columnSet && this.elements.length > 1) {
+        return this.$rangeItems(this.columnSet, this.elements.length)
       } else {
-        if (this.fullWidth >= 1239) {
+        if (this.fullWidth >= 983) {
           return this.$rangeItems(this.rowComponent.length, 3)
         } return this.fullWidth >= 535 ? this.$rangeItems(this.rowComponent.length, 2) : 1
       }
@@ -232,6 +229,9 @@ export default {
         this.autoPlay()
       }
     }
+  },
+  beforeUpdate () {
+    this.getContainerWidth()
   },
   beforeDestroy () {
     if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.blok.auto_play) {
@@ -308,8 +308,15 @@ export default {
       this.setAutoPlay = 0
     },
     getContainerWidth () {
-      this.fullWidth = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
-      this.containerWidth = (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+      if (this.sliderMode || this.carouselMode || this.containerMode) {
+        this.$nextTick(function () {
+          this.fullWidth = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
+          this.containerWidth = (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+        })
+      } else {
+        this.containerWidth = (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+        this.fullWidth = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
+      }
     }
   }
 }

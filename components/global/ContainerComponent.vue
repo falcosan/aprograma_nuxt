@@ -90,8 +90,10 @@
                 </li>
               </template>
             </transition-group>
-            <div v-if="!blok.hide_dots" class="dot-contaienr w-1/2 flex flex-wrap justify-center py-7 -my-1.5 mx-auto">
-              <span v-for="dot in elements.length" :key="dot" :class="`dot-${dot} h-1.5 w-1.5 inline-block p-px m-1.5 rounded-full shadow-inner select-none transform scale-90 transition-all duration-200 ${dot === currentSlide + 1 ? 'ring-1 ring-gray-500 bg-gray-500' : 'bg-gray-500'}`" />
+            <div v-if="!blok.hide_dots" class="dot-contaienr relative w-1/2 flex flex-wrap justify-center z-20 py-7 -my-1.5 mx-auto">
+              <span v-for="dot in elements.length" :key="dot" :class="`dot-number_${dot} relative w-3.5 h-3.5 inline-block p-1 m-1.5 rounded-full shadow-inner select-none cursor-pointer transform scale-90 transition-all duration-200 ${!$device.isDesktop ? '' : 'dot-desktop'} ${dot === currentSlide + 1 ? 'ring-2 ring-gray-400 bg-gray-500 bg-opacity-70' : 'bg-gray-400 bg-opacity-70'}`" @click="currentSlide = dot - 1">
+                <span v-if="$device.isDesktop" class="dot-text absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 text-sm text-white">{{ dot }}</span>
+              </span>
             </div>
           </div>
         </div>
@@ -354,5 +356,14 @@ export default {
   top: 10px;
   margin-top: -20px;
 }
-
+.dot-desktop .dot-text{
+  font-size: 0;
+  -webkit-transition: font-size .2s ease;
+  -moz-transition: font-size .2s ease;
+  -o-transition: font-size .2s ease;
+  transition: font-size .2s ease;
+}
+.dot-desktop:hover .dot-text{
+  font-size: 9px;
+}
 </style>

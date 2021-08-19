@@ -194,7 +194,9 @@ export default {
           } return this.fullWidth >= 535 ? this.$rangeItems(this.defaultMax, 2) : 1
         }
       } else if (this.columnSet && this.elements.length > 1) {
-        return this.$rangeItems(this.columnSet, this.elements.length)
+        if (this.fullWidth + (this.spaceFix * this.$rangeItems(this.defaultMax, 3)) >= 1239) {
+          return this.$rangeItems(this.columnSet, 3)
+        } return this.fullWidth + (this.spaceFix * this.$rangeItems(this.defaultMax, 3)) >= 535 ? this.$rangeItems(this.columnSet, 2) : 1
       } else {
         if (this.fullWidth >= 983) {
           return this.$rangeItems(this.rowComponent.length, 3)

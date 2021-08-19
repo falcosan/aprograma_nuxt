@@ -46,10 +46,15 @@
               <template v-for="component in elements">
                 <li
                   :key="component._uid"
+                  ref="sliderSlide"
                   v-touch:swipe.stop.left="!blok.hide_controllers ? next : null"
                   v-touch:swipe.stop.right="!blok.hide_controllers ? previous : null"
+                  :tabindex="!blok.hide_controllers ? '0' : false"
                   :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
-                  :class="`slider-slide slide flex my-0 mx-auto rounded ${setAlignContent} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+                  :class="`slider-slide slide flex my-0 mx-auto rounded ${setAlignContent} ${!blok.hide_controllers ? 'outline-none' : ''} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+                  @keydown.right.prevent="!blok.hide_controllers ? next() : null"
+                  @keydown.left.prevent="!blok.hide_controllers ? previous() : null"
+                  @mouseenter="focusContainer($refs.sliderSlide[0])"
                 >
                   <component
                     :is="component.component"
@@ -78,7 +83,7 @@
                   ref="carouselSlide"
                   v-touch:swipe.stop.left="!blok.hide_controllers ? manualNext : null"
                   v-touch:swipe.stop.right="!blok.hide_controllers ? previous : null"
-                  :class="`carousel-slide slide w-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${!blok.hide_controllers ? 'outline-none' : ''} ${setAlignContent} ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+                  :class="`carousel-slide slide w-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${setAlignContent} ${!blok.hide_controllers ? 'outline-none' : ''} ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
                   :style="`background-color: ${blok.background_color_component.color};`"
                   :tabindex="!blok.hide_controllers ? '0' : false"
                   @mouseenter="focusContainer($refs.carouselSlide[0])"

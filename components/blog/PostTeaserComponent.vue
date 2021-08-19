@@ -122,7 +122,7 @@ export default {
           return 'max-h-80'
         }
       } else {
-        return 'max-h-44 xs:max-h-56 sm:max-h-64 md:max-h-52 lg:max-h-56 xl:max-h-72 2xl:max-h-80'
+        return 'max-h-44 xx:max-h-48 xs:max-h-56 sm:max-h-64 md:max-h-52 lg:max-h-56 xl:max-h-72 2xl:max-h-80'
       }
     }
   },

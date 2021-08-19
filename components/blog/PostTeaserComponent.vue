@@ -36,7 +36,7 @@
             </span>
           </div>
           <div class="teaser-info w-full flex flex-col xx:flex-row mt-5 italic items-end">
-            <ul class="teaser-categories w-full flex flex-wrap self-start -m-1.5">
+            <ul :class="`teaser-categories w-full flex flex-wrap self-start ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'justify-end' : '-m-1.5'}`">
               <li v-for="(category, index) in sortedCategories" :key="index" :class="`teaser-category text-xs p-2.5 m-1.5 rounded shadow-sm filter brightness-95 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${postContent.teaser_background_color.color};`">
                 {{ category }}
               </li>

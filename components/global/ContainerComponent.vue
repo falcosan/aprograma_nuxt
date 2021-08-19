@@ -21,7 +21,7 @@
         <Icon
           v-if="(blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || blok.row_container) && !blok.hide_controllers"
           previous
-          :class="`previous-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? 'bottom-3.5' : 'bottom-5'} ${sliderMode ? fullWidth > 295 ? 'left-10' : 'left-5' : 'left-2'}`"
+          :class="`previous-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? 'bottom-3.5' : 'bottom-7'} ${sliderMode ? fullWidth > 295 ? 'left-10' : 'left-5' : 'left-2'}`"
           :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
           tag="button"
           @click.native="previous"
@@ -30,7 +30,7 @@
         <Icon
           v-if="(blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || blok.row_container) && !blok.hide_controllers"
           next
-          :class="`next-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? 'bottom-3.5' : 'bottom-5'} ${sliderMode ? fullWidth > 295 ? 'right-10' : 'right-5' : 'right-2'}`"
+          :class="`next-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? 'bottom-3.5' : 'bottom-7'} ${sliderMode ? fullWidth > 295 ? 'right-10' : 'right-5' : 'right-2'}`"
           :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
           tag="button"
           @click.native="next"
@@ -90,9 +90,9 @@
                 </li>
               </template>
             </transition-group>
-            <div v-if="!blok.hide_dots" class="dot-contaienr relative w-1/2 flex flex-wrap justify-center z-20 py-7 -my-1.5 mx-auto">
-              <span v-for="dot in elements.length" :key="dot" :class="`dot-number_${dot} relative w-3.5 h-3.5 inline-block p-1 m-1.5 rounded-full shadow-inner select-none cursor-pointer transform scale-90 transition-all duration-200 ${!$device.isDesktop ? '' : 'dot-desktop'} ${dot === currentSlide + 1 ? 'ring-2 ring-gray-400 bg-gray-500 bg-opacity-70' : 'bg-gray-400 bg-opacity-70'}`" @click="currentSlide = dot - 1">
-                <span v-if="$device.isDesktop" class="dot-text absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 text-sm text-white">{{ dot }}</span>
+            <div v-if="!blok.hide_dots" class="dot-contaienr relative w-1/2 flex flex-wrap justify-center z-20 my-7 mx-auto">
+              <span v-for="dot in elements.length" :key="dot" :class="`dot-number_${dot} w-3.5 h-3.5 inline-block m-1.5 rounded-full shadow-inner select-none cursor-pointer transform scale-90 transition-all duration-200 ${!$device.isDesktop ? '' : 'dot-desktop'} ${dot === currentSlide + 1 ? 'ring-2 ring-gray-400 bg-gray-500 bg-opacity-70' : 'bg-gray-400 bg-opacity-70'}`" @click="changeDot(dot)">
+                <span v-if="$device.isDesktop" class="dot-text absolute w-5 h-5 flex justify-center items-center left-1/2 top-0 rounded-full text-xs text-white bg-opacity-70 bg-gray-500">{{ dot }}</span>
               </span>
             </div>
           </div>
@@ -308,6 +308,11 @@ export default {
         this.setPrevious()
       }
     },
+    changeDot (input) {
+      this.currentSlide = input - 1
+      this.transitionEnter = 'opacity-0'
+      this.transitionLeave = 'opacity-0'
+    },
     autoPlay () {
       this.setAutoPlay = setTimeout(this.next, this.blok.slider_time ? `${Number(this.blok.slider_time)}` : '5000')
     },
@@ -357,13 +362,14 @@ export default {
   margin-top: -20px;
 }
 .dot-desktop .dot-text{
-  font-size: 0;
-  -webkit-transition: font-size .2s ease;
-  -moz-transition: font-size .2s ease;
-  -o-transition: font-size .2s ease;
-  transition: font-size .2s ease;
+  opacity: 0;
+  transform: translate(-10.5px, -25px);
+  -webkit-transition: opacity .2s ease;
+  -moz-transition: opacity .2s ease;
+  -o-transition: opacity .2s ease;
+  transition: opacity .2s ease;
 }
 .dot-desktop:hover .dot-text{
-  font-size: 9px;
+  opacity: 1;
 }
 </style>

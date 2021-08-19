@@ -217,34 +217,21 @@ export default {
   },
   watch: {
     '$store.state.data.windowWidth' () {
-      if (!this.sliderMode && !this.carouselMode && !this.containerMode) {
-        this.fullWidth = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
-      }
-      this.$nextTick(function () {
-        this.getContainerWidth()
-      })
+      this.getContainerWidth()
       if (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') {
         this.sliderKey++
       }
     },
     fullWidth () { if (this.sliderIndex > 0) { this.sliderIndex = 0 } }
   },
-  mounted () {
-    if (!this.sliderMode && !this.carouselMode && !this.containerMode) {
-      this.fullWidth = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
-    }
-    this.$nextTick(function () {
-      this.getContainerWidth()
-    })
+  async mounted () {
+    await this.getContainerWidth()
     if (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') {
       this.sliderKey++
       if (this.blok.auto_play) {
         this.autoPlay()
       }
     }
-  },
-  beforeUpdate () {
-    this.getContainerWidth()
   },
   beforeDestroy () {
     if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.blok.auto_play) {
@@ -321,14 +308,8 @@ export default {
       this.setAutoPlay = 0
     },
     getContainerWidth () {
-      if (this.sliderMode || this.carouselMode || this.containerMode) {
-        this.$nextTick(function () {
-          this.fullWidth = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
-          this.containerWidth = (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
-        })
-      } else {
-        this.containerWidth = (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
-      }
+      this.fullWidth = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
+      this.containerWidth = (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
     }
   }
 }

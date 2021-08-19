@@ -1,5 +1,5 @@
 <template>
-  <div class="project-slider relative w-full z-10" @mouseenter="focusSlide">
+  <div class="project-slider relative w-full z-10">
     <transition-group
       tag="ul"
       :enter-active-class="`${transitionActive} in-out`"

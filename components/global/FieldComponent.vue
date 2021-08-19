@@ -1,6 +1,6 @@
 <template>
   <div class="field-item relative grid mb-8 rounded" :style="`background-color: ${blok.background_color.color};`">
-    <label class="field-label font-extralight p-2.5 text-sm" :for="blok.label.toLowerCase().replace(/ /g,'')" :style="`color: ${blok.text_color.color};`">{{ blok.label }} {{ blok.mandatory ? '*' : null }}</label>
+    <label class="field-label p-2.5 text-sm" :for="blok.label.toLowerCase().replace(/ /g,'')" :style="`color: ${blok.text_color.color};`">{{ blok.label }} {{ blok.mandatory ? '*' : null }}</label>
     <component
       :is="blok.tag ? blok.tag : 'input'"
       :id="`${blok.type}-field`"
@@ -15,7 +15,7 @@
       @input="$emit('update:fieldValue', $event.target.value)"
     />
     <transition v-if="blok.indication && blok.mandatory" enter-active-class="duration-100 in-out" leave-active-class="duration-100 out-in" enter-class="-translate-y-full opacity-0" leave-to-class="-translate-y-full opacity-0">
-      <span v-if="indication" class="field-indication w-full absolute -bottom-7 z-10 py-1 px-2 transform rounded-b text-sm filter drop-shadow-xl font-extralight text-white bg-red-400">
+      <span v-if="indication" class="field-indication w-full absolute -bottom-7 z-10 py-1 px-2 transform rounded-b text-sm filter drop-shadow-xl text-white bg-red-400">
         {{ blok.indication }}
       </span>
     </transition>

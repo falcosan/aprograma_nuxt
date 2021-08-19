@@ -166,7 +166,7 @@
     </component>
     <span
       v-if="blok && blok.title && blok.show_title || title"
-      class="icon-title text-center font-extralight"
+      class="icon-title text-center"
       :style="blok && blok.title && blok.show_title && blok.text_color.color ? `color: ${blok.text_color.color};` : false"
     >{{ blok ? blok.title : title }}</span>
   </span>

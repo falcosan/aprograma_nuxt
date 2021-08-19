@@ -17,7 +17,7 @@
           class="title-container h-1/6 flex flex-row flex-wrap items-center px-5"
         >
           <span
-            class="teaser-title min-w-0 overflow-hidden font-extralight"
+            class="teaser-title min-w-0 overflow-hidden"
           > {{ projectContent.title }}</span>
         </div>
       </div>

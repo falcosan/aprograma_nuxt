@@ -113,7 +113,7 @@
         </li>
       </ul>
       <div :class="`detail-text w-full max-w-full flex flex-col self-start rounded ${!blok.remove_space ? 'p-5' : ''}`" :style="inlineTextStyle ? inlineTextStyle : `background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`">
-        <div class="block max-w-none font-extralight rounded prose-sm lg:prose-lg" v-html="$md.render(blok.text)" />
+        <div class="block max-w-none rounded prose-sm lg:prose-lg" v-html="$md.render(blok.text)" />
       </div>
     </div>
   </div>

@@ -30,14 +30,14 @@
               {{ postContent.title }}
             </span>
             <span
-              class="teaser-intro font-extralight overflow-hidden"
+              class="teaser-intro overflow-hidden"
             >
               {{ postContent.intro }}
             </span>
           </div>
           <div class="teaser-info w-full flex flex-col xx:flex-row mt-5 italic items-end">
             <ul class="teaser-categories w-full flex flex-wrap self-start -m-1.5">
-              <li v-for="(category, index) in sortedCategories" :key="index" :class="`teaser-category text-xs p-2.5 m-1.5 font-extralight rounded shadow-sm filter brightness-95 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${postContent.teaser_background_color.color};`">
+              <li v-for="(category, index) in sortedCategories" :key="index" :class="`teaser-category text-xs p-2.5 m-1.5 rounded shadow-sm filter brightness-95 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${postContent.teaser_background_color.color};`">
                 {{ category }}
               </li>
             </ul>

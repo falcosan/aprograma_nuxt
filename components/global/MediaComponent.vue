@@ -111,7 +111,7 @@
     </template>
     <p
       v-if="(blok && blok.title) || title"
-      class="media-title p-5 text-center text-lg font-extralight"
+      class="media-title p-5 text-center text-lg"
       :style="`color: ${blok && blok.title_color.color ? blok.title_color.color : false};`"
       v-text="blok && blok.title ? blok.title : title"
     />

@@ -15,7 +15,7 @@
       :style="`background-color: ${blok.background_color_container.color};`"
     >
       <div
-        v-if="blok.slider_mode === 'slider' || blok.slider_mode === 'carousel' && elements.length > 1"
+        v-if="blok.slider_mode === 'slider' || blok.slider_mode === 'carousel'"
         :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-5 mb-5' : 'm-5': ''}`"
       >
         <Icon

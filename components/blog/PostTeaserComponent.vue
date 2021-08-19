@@ -113,12 +113,16 @@ export default {
         } else if (this.containerWidth <= 425) {
           return 'max-h-64'
         } else if (this.containerWidth <= 640) {
+          return 'max-h-52'
+        } else if (this.containerWidth <= 768) {
           return 'max-h-56'
+        } else if (this.containerWidth <= 1024) {
+          return 'max-h-72'
         } else {
           return 'max-h-80'
         }
       } else {
-        return 'max-h-44 xs:max-h-56 sm:max-h-64 md:max-h-56 lg:max-h-80'
+        return 'max-h-44 xs:max-h-56 sm:max-h-64 md:max-h-52 lg:max-h-56 xl:max-h-72 2xl:max-h-80'
       }
     }
   },

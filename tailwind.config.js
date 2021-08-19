@@ -30,7 +30,6 @@ module.exports = {
         88: '22rem',
         xs: '20rem',
         sm: '24rem',
-        sd: '26.25rem',
         md: '28rem',
         lg: '32rem',
         xl: '36rem',

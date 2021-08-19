@@ -51,6 +51,10 @@ export default {
     containerContainer: {
       type: Boolean,
       required: true
+    },
+    containerWidth: {
+      type: Number,
+      default: 0
     }
   },
   data () {
@@ -70,12 +74,6 @@ export default {
         } else if (this.containerWidth <= 375) {
           return 'max-h-88'
         } else if (this.containerWidth <= 425) {
-          return 'max-h-96'
-        } else if (this.containerWidth <= 640) {
-          return 'max-h-72'
-        } else if (this.containerWidth <= 768) {
-          return 'max-h-80'
-        } else if (this.containerWidth <= 1024) {
           return 'max-h-96'
         } else {
           return 'max-h-md'

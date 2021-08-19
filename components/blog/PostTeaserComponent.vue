@@ -113,10 +113,6 @@ export default {
         } else if (this.containerWidth <= 425) {
           return 'max-h-64'
         } else if (this.containerWidth <= 640) {
-          return 'max-h-52'
-        } else if (this.containerWidth <= 768) {
-          return 'max-h-56'
-        } else if (this.containerWidth <= 1024) {
           return 'max-h-72'
         } else {
           return 'max-h-80'

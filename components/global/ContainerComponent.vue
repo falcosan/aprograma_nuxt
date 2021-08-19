@@ -49,7 +49,7 @@
                   v-touch:swipe.stop.left="!blok.hide_controllers ? next : null"
                   v-touch:swipe.stop.right="!blok.hide_controllers ? previous : null"
                   :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
-                  :class="`slider-slide slide h-full flex my-0 mx-auto rounded ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+                  :class="`slider-slide slide flex my-0 mx-auto rounded ${setAlignContent} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
                 >
                   <component
                     :is="component.component"
@@ -77,7 +77,7 @@
                   :key="component._uid"
                   v-touch:swipe.stop.left="!blok.hide_controllers ? next : null"
                   v-touch:swipe.stop.right="!blok.hide_controllers ? previous : null"
-                  :class="`carousel-slide slide w-full h-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+                  :class="`carousel-slide slide w-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${setAlignContent} ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
                   :style="`background-color: ${blok.background_color_component.color};`"
                 >
                   <component

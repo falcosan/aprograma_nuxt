@@ -85,7 +85,7 @@
                     :class="`${component.name.toLowerCase()}-component my-0 mx-auto`"
                     :blok="component"
                     carousel-mode
-                    :container-width="containerWidth"
+                    :container-width="fullWidth"
                   />
                 </li>
               </template>
@@ -110,7 +110,7 @@
               :class="`${component.name.toLowerCase()}-component`"
               :blok="component"
               container-mode
-              :container-width="containerWidth"
+              :container-width="fullWidth"
             />
           </div>
         </template>

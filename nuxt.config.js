@@ -16,6 +16,7 @@ export default {
   plugins: [
     '~/plugins/injects',
     '~/plugins/components',
+    '~/plugins/custom-flag.client',
     '~/plugins/touchScreen.client.js',
     '~/plugins/persistedState.client.js'
   ],

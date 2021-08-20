@@ -8,7 +8,7 @@
       :class="`icon ${blok.icon_image.filename
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-icon mx-auto my-0 fill-current object-contain object-center`"
+        .replace(/\.[^/.]+$/, '')}-icon mx-auto my-0 fill-current object-contain object-center pointer-events-none`"
       :src="blok.icon_image.filename"
       alt=""
       :height="blok.size ? blok.size : 'auto'"

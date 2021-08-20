@@ -17,7 +17,7 @@
       height="710.8732px"
       viewBox="0 0 710.8732 710.8732"
       xml:space="preserve"
-      @click="(blok && blok.transition) || transition ? play() : null"
+      @click="((blok && blok.transition) || transition) && !$device.isSafari ? play() : null"
     >
       <g :class="`transition-logo logo-a ${moved.a}`">
         <path
@@ -84,7 +84,7 @@ export default {
     }
   },
   watch: {
-    '$nuxt.isFetching' () { this.setLoading() },
+    '$nuxt.isFetching' () { if (!this.$device.isSafari) { this.setLoading() } },
     $route (route) {
       this.route = route.name
     }
@@ -111,17 +111,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-.logo-spin{
-  filter: blur(1px);
-  animation: spinning 0.5s infinite linear;
-}
-@keyframes spinning {
-  from {
-  transform: rotate(0deg);
-  }
-  to {
-  transform: rotate(359deg);
-  }
-}
-</style>

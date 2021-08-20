@@ -9,6 +9,8 @@
         .split(/[\\/]/)
         .pop()
         .replace(/\.[^/.]+$/, '')}-icon mx-auto my-0 fill-current object-contain object-center pointer-events-none`"
+      :style="`width: ${blok && blok.size ? `${blok.size}`: 'auto'}; height: ${blok && blok.size ? `${blok.size}`: 'auto'}`"
+      :title="blok && blok.title && !blok.show_title || tooltip ? blok ? blok.title : tooltip : ''"
       :src="blok.icon_image.filename"
       alt=""
       :height="blok.size ? blok.size : 'auto'"

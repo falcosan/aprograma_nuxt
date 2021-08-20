@@ -93,7 +93,17 @@ export default {
       author: 'Daniele Falchetti - danielefalche@gmail.com',
       description: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.',
       theme_color: '#f9f9f9',
-      'apple-mobile-web-app-status-bar-style': 'black'
+      'apple-mobile-web-app-status-bar-style': 'black',
+      'og:url': 'https://aprograma.co/',
+      'og:image': {
+        path: 'https://a.storyblok.com/f/106240/810x810/1be2192023/logostatic.png',
+        width: 300,
+        height: 300,
+        type: 'png'
+      },
+      'twitter:site': '@danielefalche',
+      'twitter:card': 'https://a.storyblok.com/f/106240/3348x3348/7e87d98969/logoanimate.gif'
+
     },
     manifest: {
       name: 'Aprograma',

@@ -19,7 +19,6 @@
       :tag="blok.body[0].tag"
       :blok="blok.body[0]"
       :slider-mode="sliderMode"
-      :tooltip="blok.title && blok.icon_item ? false : undefined"
       :carousel-mode="carouselMode"
       :container-mode="containerMode"
     />

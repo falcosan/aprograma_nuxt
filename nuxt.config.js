@@ -97,8 +97,8 @@ export default {
       'og:url': 'https://aprograma.co/',
       'og:image': {
         path: 'https://a.storyblok.com/f/106240/810x810/1be2192023/logostatic.png',
-        width: 300,
-        height: 300,
+        width: 1200,
+        height: 630,
         type: 'image/png'
       },
       'twitter:site': '@danielefalche',

@@ -1,190 +1,192 @@
 <template>
-  <span
-    :class="`icon-container grid gap-5 justify-center ${blok && !blok.remove_space ? 'p-10' : ''} ${blok && blok.tag === 'button' || tag === 'button' ? 'cursor-pointer' : ''} ${sliderMode || carouselMode || carouselMode ? 'h-full content-center' : 'content-around'}`"
+  <div
+    :class="`icon-wrapper grid gap-5 justify-center my-0 mx-auto select-none ${blok && !blok.remove_space ? 'p-10' : ''} ${blok && (blok.tag === 'button' || blok.tag === 'a') || (tag === 'button' || tag === 'a') ? 'cursor-pointer' : ''} ${sliderMode || carouselMode || carouselMode ? 'h-full content-center' : 'content-around'}`"
     @click="animateMenu ? open = !open : ''"
   >
-    <component
-      :is="blok ? blok.tag ? blok.tag : 'button' : tag ? tag : 'button'"
-      :style="`width: ${blok && blok.size ? `${blok.size}px`: 'auto'}; height: ${blok && blok.size ? `${blok.size}px`: 'auto'}`"
-      :title="blok && blok.title && !blok.show_title || tooltip ? blok ? blok.title : tooltip : ''"
-      :name="blok && blok.tag === 'button' || tag === 'button' ? `icon-button` : ''"
-      :aria-label="blok && blok.tag === 'button' || tag === 'button' ? `icon-button-reader` : ''"
-      :class="`icon-wrapper my-0 mx-auto select-none ${blok && blok.shadow ? 'filter drop-shadow-md' : ''}`"
+    <img
+      v-if="blok && blok.icon_image.filename"
+      :class="`icon ${blok.icon_image.filename
+        .split(/[\\/]/)
+        .pop()
+        .replace(/\.[^/.]+$/, '')}-icon my-0 mx-auto fill-current object-contain object-center`"
+      :src="blok.icon_image.filename"
+      alt=""
+      :height="blok.size ? blok.size : 'auto'"
+      :width="blok.size ? blok.size : 'auto'"
+      :name="blok.name"
+      :type="`image/${lookFile()}`"
     >
-      <NuxtImg
-        v-if="blok && blok.icon_image.filename"
-        :class="`icon ${blok.icon_image.filename
-          .split(/[\\/]/)
-          .pop()
-          .replace(/\.[^/.]+$/, '')}-icon my-0 mx-auto fill-current object-contain object-center ${size ? size : 'w-full h-full'}`"
-        :src="blok.icon_image.filename"
-        alt=""
-        :name="blok.name"
-        :type="`image/${lookFile()}`"
+
+    <!-- HOME-->
+    <svg
+      v-else-if="home"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      :class="`home-icon h-auto my-0 mx-auto fill-current ${size}`"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    ><path d="M22 11.414v12.586h-20v-12.586l-1.293 1.293-.707-.707 12-12 12 12-.707.707-1.293-1.293zm-6 11.586h5v-12.586l-9-9-9 9v12.586h5v-9h8v9zm-1-7.889h-6v7.778h6v-7.778z" /></svg>
+
+    <!-- BACK-->
+    <svg
+      v-else-if="arrow"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      :class="`arrow-icon h-auto my-0 mx-auto fill-current ${size}`"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    ><path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z" /></svg>
+
+    <!--CLOSE-->
+    <svg
+      v-else-if="close"
+      :class="`close-icon h-auto my-0 mx-auto fill-current ${size}`"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    ><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z" /></svg>
+
+    <!--NEXT-->
+    <svg
+      v-else-if="next"
+      :class="`next-icon h-auto my-0 mx-auto fill-current ${size}`"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    ><path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z" /></svg>
+
+    <!--PREVIOUS-->
+    <svg
+      v-else-if="previous"
+      :class="`previous-icon h-auto my-0 mx-auto fill-current ${size}`"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    ><path d="M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z" /></svg>
+
+    <!--RESTART-->
+    <svg
+      v-else-if="restart"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      :class="`restart-icon h-auto my-0 mx-auto fill-current ${size}`"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    ><path d="M7 9h-7v-7h1v5.2c1.853-4.237 6.083-7.2 11-7.2 6.623 0 12 5.377 12 12s-5.377 12-12 12c-6.286 0-11.45-4.844-11.959-11h1.004c.506 5.603 5.221 10 10.955 10 6.071 0 11-4.929 11-11s-4.929-11-11-11c-4.66 0-8.647 2.904-10.249 7h5.249v1z" /></svg>
+
+    <!-- MENU -->
+    <div v-else-if="animateMenu" :class="`animate-menu my-0 mx-auto ${open ? 'open' : ''} ${size}`">
+      <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
+      <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
+      <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
+      <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
+    </div>
+    <svg
+      v-else-if="menu"
+      :class="`menu-icon ${size}`"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    ><path d="M24 18v1h-24v-1h24zm0-6v1h-24v-1h24zm0-6v1h-24v-1h24z" fill="#1040e2" /><path d="M24 19h-24v-1h24v1zm0-6h-24v-1h24v1zm0-6h-24v-1h24v1z" /></svg>
+
+    <!--LINK-->
+    <svg
+      v-else-if="link"
+      :class="`eye-link h-auto my-0 mx-auto fill-current ${size}`"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    ><path d="M14 4h-13v18h20v-11h1v12h-22v-20h14v1zm10 5h-1v-6.293l-11.646 11.647-.708-.708 11.647-11.646h-6.293v-1h8v8z" /></svg>
+
+    <!--EYE-->
+    <svg
+      v-else-if="eye"
+      :class="`eye-icon h-auto my-0 mx-auto fill-current ${size}`"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    ><path d="M12.01 20c-5.065 0-9.586-4.211-12.01-8.424 2.418-4.103 6.943-7.576 12.01-7.576 5.135 0 9.635 3.453 11.999 7.564-2.241 4.43-6.726 8.436-11.999 8.436zm-10.842-8.416c.843 1.331 5.018 7.416 10.842 7.416 6.305 0 10.112-6.103 10.851-7.405-.772-1.198-4.606-6.595-10.851-6.595-6.116 0-10.025 5.355-10.842 6.584zm10.832-4.584c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0 1c2.208 0 4 1.792 4 4s-1.792 4-4 4-4-1.792-4-4 1.792-4 4-4z" /></svg>
+
+    <svg
+      v-else-if="git"
+      :class="`icon-git h-auto my-0 mx-auto fill-current ${size}`"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    ><path d="M21 3c0-1.657-1.343-3-3-3s-3 1.343-3 3c0 1.323.861 2.433 2.05 2.832.168 4.295-2.021 4.764-4.998 5.391-1.709.36-3.642.775-5.052 2.085v-7.492c1.163-.413 2-1.511 2-2.816 0-1.657-1.343-3-3-3s-3 1.343-3 3c0 1.305.837 2.403 2 2.816v12.367c-1.163.414-2 1.512-2 2.817 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.295-.824-2.388-1.973-2.808.27-3.922 2.57-4.408 5.437-5.012 3.038-.64 6.774-1.442 6.579-7.377 1.141-.425 1.957-1.514 1.957-2.803zm-16.8 0c0-.993.807-1.8 1.8-1.8s1.8.807 1.8 1.8-.807 1.8-1.8 1.8-1.8-.807-1.8-1.8zm3.6 18c0 .993-.807 1.8-1.8 1.8s-1.8-.807-1.8-1.8.807-1.8 1.8-1.8 1.8.807 1.8 1.8zm10.2-16.2c-.993 0-1.8-.807-1.8-1.8s.807-1.8 1.8-1.8 1.8.807 1.8 1.8-.807 1.8-1.8 1.8z" /></svg>
+
+    <!--LOADER-->
+    <svg
+      v-else-if="loader"
+      :class="`icon-loader h-auto my-0 mx-auto fill-current ${size}`"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      viewBox="0 0 100 100"
+      enable-background="new 0 0 0 0"
+      xml:space="preserve"
+    >
+      <circle
+        fill="none"
+        stroke="#c1c1c1"
+        stroke-width="4"
+        cx="50"
+        cy="50"
+        r="44"
+        class="opacity-40"
       />
-
-      <!-- HOME-->
-      <svg
-        v-else-if="home"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        :class="`home-icon h-auto my-0 mx-auto fill-current ${size}`"
-        xmlns="http://www.w3.org/2000/svg"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-      ><path d="M22 11.414v12.586h-20v-12.586l-1.293 1.293-.707-.707 12-12 12 12-.707.707-1.293-1.293zm-6 11.586h5v-12.586l-9-9-9 9v12.586h5v-9h8v9zm-1-7.889h-6v7.778h6v-7.778z" /></svg>
-
-      <!-- BACK-->
-      <svg
-        v-else-if="arrow"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        :class="`arrow-icon h-auto my-0 mx-auto fill-current ${size}`"
-        xmlns="http://www.w3.org/2000/svg"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-      ><path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z" /></svg>
-
-      <!--CLOSE-->
-      <svg
-        v-else-if="close"
-        :class="`close-icon h-auto my-0 mx-auto fill-current ${size}`"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-      ><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z" /></svg>
-
-      <!--NEXT-->
-      <svg
-        v-else-if="next"
-        :class="`next-icon h-auto my-0 mx-auto fill-current ${size}`"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-      ><path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z" /></svg>
-
-      <!--PREVIOUS-->
-      <svg
-        v-else-if="previous"
-        :class="`previous-icon h-auto my-0 mx-auto fill-current ${size}`"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-      ><path d="M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z" /></svg>
-
-      <!--RESTART-->
-      <svg
-        v-else-if="restart"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        :class="`restart-icon h-auto my-0 mx-auto fill-current ${size}`"
-        xmlns="http://www.w3.org/2000/svg"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-      ><path d="M7 9h-7v-7h1v5.2c1.853-4.237 6.083-7.2 11-7.2 6.623 0 12 5.377 12 12s-5.377 12-12 12c-6.286 0-11.45-4.844-11.959-11h1.004c.506 5.603 5.221 10 10.955 10 6.071 0 11-4.929 11-11s-4.929-11-11-11c-4.66 0-8.647 2.904-10.249 7h5.249v1z" /></svg>
-
-      <!-- MENU -->
-      <div v-else-if="animateMenu" :class="`animate-menu my-0 mx-auto ${open ? 'open' : ''} ${size}`">
-        <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
-        <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
-        <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
-        <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
-      </div>
-      <svg
-        v-else-if="menu"
-        :class="`menu-icon ${size}`"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-      ><path d="M24 18v1h-24v-1h24zm0-6v1h-24v-1h24zm0-6v1h-24v-1h24z" fill="#1040e2" /><path d="M24 19h-24v-1h24v1zm0-6h-24v-1h24v1zm0-6h-24v-1h24v1z" /></svg>
-
-      <!--LINK-->
-      <svg
-        v-else-if="link"
-        :class="`eye-link h-auto my-0 mx-auto fill-current ${size}`"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-      ><path d="M14 4h-13v18h20v-11h1v12h-22v-20h14v1zm10 5h-1v-6.293l-11.646 11.647-.708-.708 11.647-11.646h-6.293v-1h8v8z" /></svg>
-
-      <!--EYE-->
-      <svg
-        v-else-if="eye"
-        :class="`eye-icon h-auto my-0 mx-auto fill-current ${size}`"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-      ><path d="M12.01 20c-5.065 0-9.586-4.211-12.01-8.424 2.418-4.103 6.943-7.576 12.01-7.576 5.135 0 9.635 3.453 11.999 7.564-2.241 4.43-6.726 8.436-11.999 8.436zm-10.842-8.416c.843 1.331 5.018 7.416 10.842 7.416 6.305 0 10.112-6.103 10.851-7.405-.772-1.198-4.606-6.595-10.851-6.595-6.116 0-10.025 5.355-10.842 6.584zm10.832-4.584c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0 1c2.208 0 4 1.792 4 4s-1.792 4-4 4-4-1.792-4-4 1.792-4 4-4z" /></svg>
-
-      <!--LOADER-->
-      <svg
-        v-else-if="loader"
-        :class="`loader-icon h-auto my-0 mx-auto fill-current ${size}`"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        viewBox="0 0 100 100"
-        enable-background="new 0 0 0 0"
-        xml:space="preserve"
+      <circle
+        fill="#fff"
+        stroke="#ccc"
+        stroke-width="2"
+        cx="8"
+        cy="54"
+        r="6"
       >
-        <circle
-          fill="none"
-          stroke="#c1c1c1"
-          stroke-width="4"
-          cx="50"
-          cy="50"
-          r="44"
-          class="opacity-40"
+        <animateTransform
+          attributeName="transform"
+          dur="2s"
+          type="rotate"
+          from="0 50 48"
+          to="360 50 52"
+          repeatCount="indefinite"
         />
-        <circle
-          fill="#fff"
-          stroke="#ccc"
-          stroke-width="2"
-          cx="8"
-          cy="54"
-          r="6"
-        >
-          <animateTransform
-            attributeName="transform"
-            dur="2s"
-            type="rotate"
-            from="0 50 48"
-            to="360 50 52"
-            repeatCount="indefinite"
-          />
 
-        </circle>
-      </svg>
-    </component>
+      </circle>
+    </svg>
     <span
       v-if="blok && blok.title && blok.show_title || title"
       class="icon-title text-center"
       :style="blok && blok.title && blok.show_title && blok.text_color.color ? `color: ${blok.text_color.color};` : false"
     >{{ blok ? blok.title : title }}</span>
-  </span>
+  </div>
 </template>
 
 <script>
@@ -239,6 +241,10 @@ export default {
       default: false
     },
     eye: {
+      type: Boolean,
+      default: false
+    },
+    git: {
       type: Boolean,
       default: false
     },

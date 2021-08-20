@@ -4,7 +4,23 @@ export default {
   target: 'static',
   head: {
     meta: [
-      { name: 'google-site-verification', content: 'XAHIQv3mCKIUNNPmq1Vqr_nnFUudd52GYaCSxWZG_Hc' }
+      { name: 'google-site-verification', content: 'XAHIQv3mCKIUNNPmq1Vqr_nnFUudd52GYaCSxWZG_Hc' },
+      {
+        hid: 'twitter:title',
+        name: 'twitter:title',
+        content:
+          'A <br/> from stressfull coding'
+      },
+      {
+        hid: 'twitter:description',
+        name: 'twitter:description',
+        content: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.'
+      },
+      {
+        hid: 'twitter:image',
+        name: 'twitter:image',
+        content: 'https://a.storyblok.com/f/106240/810x810/1be2192023/logostatic.png'
+      }
     ],
     link: [
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -89,7 +105,7 @@ export default {
   ],
   pwa: {
     meta: {
-      title: 'Aprograma',
+      title: 'Aprograma - A <br/> from stressfull coding',
       author: 'Daniele Falchetti - danielefalche@gmail.com',
       description: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.',
       theme_color: '#f9f9f9',
@@ -102,7 +118,7 @@ export default {
         type: 'image/png'
       },
       'twitter:site': '@danielefalche',
-      'twitter:card': 'https://a.storyblok.com/f/106240/3348x3348/7e87d98969/logoanimate.gif'
+      'twitter:card': 'summary_large_image'
 
     },
     manifest: {

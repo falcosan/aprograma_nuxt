@@ -74,28 +74,22 @@
         </h4>
       </div>
       <div v-if="$store.state.data.windowWidth < 1280" class="project-action min-w-0 flex items-center justify-end row-start-2 row-end-3 xl:col-start-2 xl:col-end-3">
-        <component
-          :is="blok.url_project ? 'a' : 'span'"
-          v-if="$store.state.data.windowWidth < 1280"
-          class="project-url text-xs mr-5 truncate"
-          :href="blok.url_project ? blok.url_project : false"
-          :target="blok.url_project ? '_blank' : false"
-          :rel="blok.url_project ? 'noopener noreferrer' : false"
-        >
-          <Icon
-            v-if="blok.url_project"
-            link
-            :class="`project-external w-10 h-10 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
-            :tooltip="`${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}`"
-            :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-            size="p-3 w-10"
-          /> {{ !blok.url_project ? $languageCase('private project', 'proyecto privado', 'progetto privato') : '' }}
-        </component>
+        <Link v-if="blok.url_project" icon-item external-link :to="blok.url_project" :title="`${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}`">
+          <template #icon>
+            <Icon
+              link
+              :class="`project-external w-10 h-10 mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
+              :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
+              size="p-3 w-10"
+            />
+          </template>
+        </Link>
+        <span v-else class="project-private mr-5 text-xs" v-text="!blok.url_project ? $languageCase('private project', 'proyecto privado', 'progetto privato') : ''" />
         <Icon
           arrow
           tag="button"
           :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-          :class="`project-back w-10 h-10 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
+          :class="`project-back h-10 w-10 self-end justify-self-end rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
           size="p-3 w-10"
           @click.native="goBack()"
         />

@@ -112,9 +112,9 @@ export default {
 }
 .colorAnimation{
     -webkit-animation: changeColor 10s infinite;
-    -moz-animation:    changeColor 10s infinite;
-    -o-animation:      changeColor 10s infinite;
-    animation:         changeColor 10s infinite;
+    -moz-animation: changeColor 10s infinite;
+    -o-animation: changeColor 10s infinite;
+    animation: changeColor 10s infinite;
 }
 
 @-webkit-keyframes changeColor {

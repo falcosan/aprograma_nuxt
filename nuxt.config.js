@@ -8,7 +8,7 @@ export default {
       {
         hid: 'twitter:title',
         name: 'twitter:title',
-        content: 'Aprograma - A <br/> from stressfull coding'
+        content: 'Aprograma - A break from stressfull coding'
       },
       {
         hid: 'twitter:description',
@@ -104,7 +104,7 @@ export default {
   ],
   pwa: {
     meta: {
-      title: 'Aprograma - A <br/> from stressfull coding',
+      title: 'Aprograma - A break from stressfull coding',
       author: 'Daniele Falchetti - danielefalche@gmail.com',
       description: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.',
       theme_color: '#f9f9f9',

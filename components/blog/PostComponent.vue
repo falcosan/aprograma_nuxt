@@ -8,7 +8,7 @@
       />
       <Icon
         arrow
-        :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
+        :style="`background-color: ${blok.post_background_color.color ? blok.post_background_color.color : '#e0e0e0'}; color: ${blok.post_text_color.color};`"
         :class="`post-close absolute right-0 z-10 rounded-bl rounded-tr ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
         tag="button"
         size="p-3 w-10 h-10"
@@ -25,7 +25,7 @@
         />
       </div>
     </div>
-    <div class="post-body w-full justify-center rounded" :style="`background-color: ${blok.post_background_color.color};`">
+    <div class="post-body w-full justify-center rounded" :style="`background-color: ${blok.post_background_color.color ? blok.post_background_color.color : '#e0e0e0'};`">
       <div class="post-article w-full max-w-prose prose-sm lg:prose-lg py-7 lg:py-14 px-5 mx-auto my-0">
         <h3
           :style="`color: ${blok.post_text_color.color};`"
@@ -50,7 +50,7 @@
         />
       </div>
       <ul class="post-categories flex flex-wrap -m-1.5 md:-m-2.5 pb-2.5 px-5">
-        <li v-for="(category, index) in sortedCategories" :key="index" :class="`post-category m-1.5 md:m-2.5 p-2.5 text-center text-xs rounded shadow-sm italic filter brightness-90 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${blok.post_background_color.color};`">
+        <li v-for="(category, index) in sortedCategories" :key="index" :class="`post-category m-1.5 md:m-2.5 p-2.5 text-center text-xs rounded shadow-sm italic filter brightness-90 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${blok.post_background_color.color ? blok.post_background_color.color : '#e0e0e0'};`">
           {{ category }}
         </li>
       </ul>

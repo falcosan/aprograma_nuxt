@@ -1,7 +1,7 @@
 <template>
   <footer
     v-if="$store.state.data.windowWidth >= 768 && $device.isDesktop"
-    :style="`background-color: ${backgroundColors};`"
+    :style="`background-color: ${backgroundColors ? backgroundColors : '#e0e0e0'};`"
     :class="`footer w-full fixed z-40 bottom-0 transition-height duration-200 ease-in-out ${expanded ? 'h-28' : 'h-0'}`"
   >
     <div

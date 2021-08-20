@@ -4,7 +4,7 @@
     :class="`project-teaser w-full h-screen overflow-hidden rounded ${maxSize}`"
   >
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
-      <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color}; color: ${projectContent.teaser_text_color.color};`">
+      <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color ? projectContent.teaser_background_color.color : '#e0e0e0'}; color: ${projectContent.teaser_text_color.color};`">
         <NuxtImg
           :modifiers="{ filters: { focal: projectContent.image.focus ? projectContent.image.focus : 0 } }"
           class="project-image w-full h-4/5 object-cover object-center select-none rounded-t"
@@ -13,7 +13,7 @@
           sizes="xs:299px sm:380px md:514px lg:619px xl:820"
         />
         <div
-          :style="`background-color: ${projectContent.teaser_background_color.color};`"
+          :style="`background-color: ${projectContent.teaser_background_color.color ? projectContent.teaser_background_color.color : '#e0e0e0'};`"
           class="title-container h-1/5 flex flex-row flex-wrap items-center px-5 py-1.5"
         >
           <span

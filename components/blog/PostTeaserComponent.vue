@@ -21,7 +21,7 @@
             :sizes="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883' : null"
           />
         </div>
-        <div :class="`teaser-text w-full flex flex-col justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? 'flex-auto' : 'lg:h-screen lg:max-h-56 lg:w-1/2'}`" :style="`background-color: ${postContent.teaser_background_color.color}; color: ${postContent.teaser_text_color.color};`">
+        <div :class="`teaser-text w-full flex flex-col justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? 'flex-auto' : 'lg:h-screen lg:max-h-56 lg:w-1/2'}`" :style="`background-color: ${postContent.teaser_background_color.color ? postContent.teaser_background_color.color : '#e0e0e0'}; color: ${postContent.teaser_text_color.color};`">
           <div class="text-description">
             <span
               :class="`teaser-title mb-2 overflow-hidden font-medium ${$route.name === 'blog' ? 'text-xl sm:text-2xl' : 'text-xl'}`"
@@ -37,7 +37,7 @@
           </div>
           <div class="teaser-info w-full flex flex-col xx:flex-row mt-5 italic items-end">
             <ul :class="`teaser-categories w-full flex flex-wrap self-start ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'justify-end' : '-m-1.5'}`">
-              <li v-for="(category, index) in sortedCategories" :key="index" :class="`teaser-category text-xs p-2.5 m-1.5 rounded shadow-sm filter brightness-95 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${postContent.teaser_background_color.color};`">
+              <li v-for="(category, index) in sortedCategories" :key="index" :class="`teaser-category text-xs p-2.5 m-1.5 rounded shadow-sm filter brightness-95 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${postContent.teaser_background_color.color ? postContent.teaser_background_color.color : '#e0e0e0'};`">
                 {{ category }}
               </li>
             </ul>

@@ -66,18 +66,18 @@ export default {
     maxSize () {
       if (this.sliderContainer) {
         if (this.containerWidth <= 240) {
-          return 'max-h-60'
+          return 'max-h-56'
         } else if (this.containerWidth <= 280) {
           return 'max-h-64'
         } else if (this.containerWidth <= 320) {
-          return 'max-h-76'
+          return 'max-h-72'
         } else if (this.containerWidth <= 375) {
-          return 'max-h-88'
+          return 'max-h-80'
         } else {
           return 'max-h-96'
         }
       } else {
-        return 'max-h-64 xx:max-h-76 xs:max-h-88 sm:max-h-96 md:max-h-72 lg:max-h-80 xl:max-h-96'
+        return 'max-h-60 xx:max-h-72 xs:max-h-80 sm:max-h-96 md:max-h-72 lg:max-h-80 xl:max-h-96'
       }
     }
   }

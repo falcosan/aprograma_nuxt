@@ -99,7 +99,7 @@ export default {
         path: 'https://a.storyblok.com/f/106240/810x810/1be2192023/logostatic.png',
         width: 300,
         height: 300,
-        type: 'png'
+        type: 'image/png'
       },
       'twitter:site': '@danielefalche',
       'twitter:card': 'https://a.storyblok.com/f/106240/3348x3348/7e87d98969/logoanimate.gif'

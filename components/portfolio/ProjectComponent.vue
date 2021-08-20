@@ -37,7 +37,7 @@
         modal-style="bg-gray-200 bg-opacity-90"
       >
         <template #activator="action">
-          <div class="image-container w-full h-64 ss:h-76 xx:h-80 xs:h-88 sm:h-sm md:h-lg lg:h-xl 2xl:h-2xl my-0 mx-auto cursor-pointer" @click="action.open()">
+          <div class="image-container w-full h-56 xx:h-60 xs:h-72 sm:h-80 md:h-96 lg:h-lg xl:h-xl 2xl:h-2xl my-0 mx-auto cursor-pointer" @click="action.open()">
             <NuxtImg
               :modifiers="{ filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
               class="intro-image h-full w-full border-2 object-cover rounded select-none"

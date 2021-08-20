@@ -8,8 +8,7 @@ export default {
       {
         hid: 'twitter:title',
         name: 'twitter:title',
-        content:
-          'A <br/> from stressfull coding'
+        content: 'Aprograma - A <br/> from stressfull coding'
       },
       {
         hid: 'twitter:description',

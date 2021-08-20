@@ -68,7 +68,7 @@ export default {
     routes (callback) {
       const exclude = ['home', 'layout']
       const routes = []
-      axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`).then((res) => {
+      axios.get(`https://api.storyblok.com/v2/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`).then((res) => {
         Object.keys(res.data.links).forEach((key) => {
           if (!exclude.includes(res.data.links[key].slug)) {
             routes.push('/' + res.data.links[key].slug)
@@ -138,7 +138,7 @@ export default {
   sitemap: {
     hostname: 'https://aprograma.co',
     routes: async () => {
-      const { data } = await axios.get(`https://api.storyblok.com/v1/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
+      const { data } = await axios.get(`https://api.storyblok.com/v2/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
       const exclude = ['home', 'layout']
       const include = Object.values(data.links).map(link => !exclude.includes(link.slug) ? link.slug : '')
       return include.filter(Boolean)

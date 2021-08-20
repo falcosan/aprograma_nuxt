@@ -263,8 +263,8 @@ export default {
             this.clearAutoPlay()
           }
         }
-        this.transitionEnter = 'enter-left'
-        this.transitionLeave = 'leave-left'
+        this.transitionEnter = 'enter-right'
+        this.transitionLeave = 'leave-right'
       }
     },
     setNext () {
@@ -282,8 +282,8 @@ export default {
             this.clearAutoPlay()
           }
         }
-        this.transitionEnter = 'enter-right'
-        this.transitionLeave = 'leave-right'
+        this.transitionEnter = 'enter-left'
+        this.transitionLeave = 'leave-left'
       }
     },
     next () {

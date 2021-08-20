@@ -33,9 +33,9 @@
           :class="`next-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? 'bottom-3.5' : 'bottom-7'} ${sliderMode ? fullWidth > 295 ? 'right-10' : 'right-5' : 'right-2'}`"
           :size="`${sliderMode || carouselMode ? 'p-1.5 w-5' : 'p-2 w-6'}`"
           tag="button"
-          @click.native="manualNext"
+          @click.native="next"
         />
-        <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode) && !blok.row_container && !blok.hide_controllers" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="manualNext" />
+        <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode) && !blok.row_container && !blok.hide_controllers" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
         <div ref="sliderBox" :class="`slider-box w-full rounded ${blok.slider_mode ? 'overflow-hidden' : ''}`">
           <div v-if="blok.slider_mode === 'slider'" class="slider-container">
             <ul
@@ -73,21 +73,19 @@
               class="carousel relative grid rounded"
               enter-active-class="in-out duration-500"
               leave-active-class="out-in duration-500"
-              :enter-class="`transform ${transitionEnter}`"
-              :leave-to-class="`transform ${transitionLeave}`"
             >
               <template v-for="(component, index) in elements">
                 <li
                   v-show="index === currentSlide"
                   :key="component._uid"
                   ref="carouselSlide"
-                  v-touch:swipe.stop.left="!blok.hide_controllers ? manualNext : null"
+                  v-touch:swipe.stop.left="!blok.hide_controllers ? next : null"
                   v-touch:swipe.stop.right="!blok.hide_controllers ? previous : null"
                   :class="`carousel-slide slide w-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${setAlignContent} ${!blok.hide_controllers ? 'outline-none' : ''} ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
                   :style="`background-color: ${blok.background_color_component.color};`"
                   :tabindex="!blok.hide_controllers ? '0' : false"
                   @mouseenter="focusContainer($refs.carouselSlide[0])"
-                  @keydown.right.prevent="!blok.hide_controllers ? manualNext() : null"
+                  @keydown.right.prevent="!blok.hide_controllers ? next() : null"
                   @keydown.left.prevent="!blok.hide_controllers ? previous() : null"
                 >
                   <component
@@ -268,11 +266,11 @@ export default {
             this.clearAutoPlay()
           }
         }
-        this.transitionEnter = '-translate-x-full'
-        this.transitionLeave = 'translate-x-full'
+        document.documentElement.style.setProperty('--animationEnter', 'moveEnterLeft')
+        document.documentElement.style.setProperty('--animationLeave', 'moveLeaveLeft')
       }
     },
-    setNext (setEnterMove = 'opacity-0', setLeaveMove = 'opacity-0') {
+    setNext () {
       if (this.blok.slider_mode === 'slider') {
         if (-((this.containerWidth + this.spaceFix) * this.sliderIndex) - this.$refs.sliderBox.clientWidth >= -((this.containerWidth + this.spaceFix) * (this.elements.length - 1))) { this.sliderIndex++ } else {
           this.sliderIndex = 0
@@ -287,21 +285,18 @@ export default {
             this.clearAutoPlay()
           }
         }
-        this.transitionEnter = setEnterMove
-        this.transitionLeave = setLeaveMove
+        document.documentElement.style.setProperty('--animationEnter', 'moveEnterRight')
+        document.documentElement.style.setProperty('--animationLeave', 'moveLeaveRight')
       }
     },
-    next (enterMove, leaveMove) {
+    next () {
       if (this.blok.auto_play) {
-        this.setNext(enterMove, leaveMove)
+        this.setNext()
         this.clearAutoPlay()
         this.autoPlay()
       } else {
-        this.setNext(enterMove, leaveMove)
+        this.setNext()
       }
-    },
-    manualNext () {
-      this.next('translate-x-full', '-translate-x-full')
     },
     previous () {
       if (this.blok.auto_play) {
@@ -349,7 +344,11 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
+:root {
+  --animationEnter: '';
+  --animationLeave: '';
+}
 .slider-box .slider .slider-slide {
   -webkit-transform:translate3d(0, 0, 0);
   -moz-transform:translate3d(0, 0, 0);
@@ -358,19 +357,66 @@ export default {
   transform:translate3d(0, 0, 0);
 }
 
-.hidden{
+.carousel-slide.hidden{
   display: flex !important;
   opacity: 0;
   pointer-events: none;
   cursor: none;
+  animation-name: var(--animationLeave);
+  -webkit-animation-name: var(--animationLeave);
+  -moz-animation-name: var(--animationLeave);
+  -ms-animation-name: var(--animationLeave);
+  -o-animation-name: var(--animationLeave);
+  animation-duration: .3s;
+  animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
 }
-.show {
-  transition: opacity .3s cubic-bezier(0.77, 0, 0.175, 1);
-  opacity: 1;
-}
-.show > * {
+.carousel-slide.show {
   position: relative;
-  z-index: 10;
+  animation-name: var(--animationEnter);
+  -webkit-animation-name: var(--animationEnter);
+  -moz-animation-name: var(--animationEnter);
+  -ms-animation-name: var(--animationEnter);
+  -o-animation-name: var(--animationEnter);
+  animation-duration: .3s;
+  animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+  opacity: 1;
+  z-index: 1;
+}
+.carousel-slide.show > * {
+  position: relative;
+  z-index: 11;
+}
+@keyframes moveEnterRight {
+ from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes moveEnterLeft {
+ from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes moveLeaveRight {
+ from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes moveLeaveLeft {
+ from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 .parent-cover > .container-content{
     margin: .1px;

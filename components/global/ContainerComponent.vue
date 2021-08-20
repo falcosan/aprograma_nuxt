@@ -245,10 +245,7 @@ export default {
     this.getContainerWidth()
   },
   beforeDestroy () {
-    if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.blok.auto_play) {
-      this.clearAutoPlay()
-    }
-    this.focusDisable = true
+    this.clearAll()
   },
   methods: {
     setPrevious () {
@@ -315,6 +312,8 @@ export default {
       this.currentSlide = input - 1
       this.transitionEnter = 'opacity-0'
       this.transitionLeave = 'opacity-0'
+      document.documentElement.style.setProperty('--animationEnter', '')
+      document.documentElement.style.setProperty('--animationLeave', '')
     },
     autoPlay () {
       this.setAutoPlay = setTimeout(this.next, this.blok.slider_time ? `${Number(this.blok.slider_time)}` : '5000')
@@ -340,6 +339,14 @@ export default {
           element.focus({ preventScroll: true })
         })
       }
+    },
+    clearAll () {
+      this.focusDisable = true
+      document.documentElement.style.setProperty('--animationEnter', '')
+      document.documentElement.style.setProperty('--animationLeave', '')
+      if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.blok.auto_play) {
+        this.clearAutoPlay()
+      }
     }
   }
 }
@@ -349,14 +356,6 @@ export default {
   --animationEnter: '';
   --animationLeave: '';
 }
-.slider-box .slider .slider-slide {
-  -webkit-transform:translate3d(0, 0, 0);
-  -moz-transform:translate3d(0, 0, 0);
-  -o-transform:translate3d(0, 0, 0);
-  -ms-transform:translate3d(0, 0, 0);
-  transform:translate3d(0, 0, 0);
-}
-
 .carousel-slide.hidden{
   display: flex !important;
   opacity: 0;
@@ -367,20 +366,18 @@ export default {
   -moz-animation-name: var(--animationLeave);
   -ms-animation-name: var(--animationLeave);
   -o-animation-name: var(--animationLeave);
-  animation-duration: .3s;
+  animation-duration: .5s;
   animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
 }
 .carousel-slide.show {
-  position: relative;
   animation-name: var(--animationEnter);
   -webkit-animation-name: var(--animationEnter);
   -moz-animation-name: var(--animationEnter);
   -ms-animation-name: var(--animationEnter);
   -o-animation-name: var(--animationEnter);
-  animation-duration: .3s;
+  animation-duration: .5s;
   animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
   opacity: 1;
-  z-index: 1;
 }
 .carousel-slide.show > * {
   position: relative;
@@ -418,6 +415,9 @@ export default {
     transform: translateX(-100%);
   }
 }
+</style>
+
+<style scoped>
 .parent-cover > .container-content{
     margin: .1px;
     padding: .1px;
@@ -426,6 +426,13 @@ export default {
   position: relative;
   top: 10px;
   margin-top: -20px;
+}
+.slider-box .slider .slider-slide {
+  -webkit-transform:translate3d(0, 0, 0);
+  -moz-transform:translate3d(0, 0, 0);
+  -o-transform:translate3d(0, 0, 0);
+  -ms-transform:translate3d(0, 0, 0);
+  transform:translate3d(0, 0, 0);
 }
 .dot-desktop .dot-text{
   opacity: 0;

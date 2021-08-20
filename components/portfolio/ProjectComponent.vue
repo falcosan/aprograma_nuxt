@@ -8,19 +8,29 @@
         <template #icon>
           <Icon
             link
-            :class="`project-external w-10 h-10 mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
+            :class="`project-external mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
             :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-            size="p-3 w-10"
+            size="w-10 h-10 p-3"
           />
         </template>
       </Link>
       <span v-else class="project-private mr-5 text-xs" v-text="!blok.url_project ? $languageCase('private project', 'proyecto privado', 'progetto privato') : ''" />
+      <Link v-if="blok.url_repository" icon-item external-link :to="blok.url_repository" title="repository">
+        <template #icon>
+          <Icon
+            git
+            :class="`project-repository mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
+            :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
+            size="w-10 h-10 p-3"
+          />
+        </template>
+      </Link>
       <Icon
         arrow
         tag="button"
         :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-        :class="`project-back h-10 w-10 self-end justify-self-end rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
-        size="p-3 w-10"
+        :class="`project-back rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
+        size="w-10 h-10 p-3"
         @click.native="goBack()"
       />
     </div>
@@ -78,19 +88,29 @@
           <template #icon>
             <Icon
               link
-              :class="`project-external w-10 h-10 mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
+              :class="`project-external mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
               :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-              size="p-3 w-10"
+              size="w-10 h-10 p-3"
             />
           </template>
         </Link>
         <span v-else class="project-private mr-5 text-xs" v-text="!blok.url_project ? $languageCase('private project', 'proyecto privado', 'progetto privato') : ''" />
+        <Link v-if="blok.url_repository" icon-item external-link :to="blok.url_repository" title="repository">
+          <template #icon>
+            <Icon
+              git
+              :class="`project-repository mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
+              :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
+              size="w-10 h-10 p-3"
+            />
+          </template>
+        </Link>
         <Icon
           arrow
           tag="button"
           :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-          :class="`project-back h-10 w-10 self-end justify-self-end rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
-          size="p-3 w-10"
+          :class="`project-back rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
+          size="w-10 h-10 p-3"
           @click.native="goBack()"
         />
       </div>

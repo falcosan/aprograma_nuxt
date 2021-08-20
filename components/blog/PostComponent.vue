@@ -11,7 +11,7 @@
         :style="`background-color: ${blok.post_background_color.color}; color: ${blok.post_text_color.color};`"
         :class="`post-close absolute right-0 z-10 rounded-bl rounded-tr ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
         tag="button"
-        size="p-3 w-10"
+        size="p-3 w-10 h-10"
         @click.native="goBack()"
       />
       <div :class="`post-file w-full h-56 xx:h-60 xs:h-72 sm:h-80 md:h-96 lg:h-md xl:h-xl 2xl:h-2xl overflow-hidden rounded ${blok.file.filename ? '' : 'p-5 bg-black'}`">

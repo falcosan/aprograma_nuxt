@@ -17,7 +17,7 @@
               close
               class="modal-close fixed top-0 right-0 rounded-bl filter invert grayscale bg-gray-300"
               tag="button"
-              size="p-3 w-10"
+              size="p-3 w-10 h-10"
               @click.native.stop="closeModal()"
             />
           </header>

@@ -9,7 +9,7 @@
       class="top-kick absolute h-16 w-16 lg:w-20 lg:h-20 flex right-0 -top-16 lg:-top-20 items-center justify-center z-10 rounded-tl cursor-pointer transition-all duration-200"
       @click="scrollTop();"
     >
-      <Icon arrow tag="button" size="w-auto" :class="`justify-center transform rotate-90 ${expanded ? $themeColor(backgroundColors) ? 'filter invert' : '' : ''}`" />
+      <Icon arrow tag="button" size="w-auto h-auto" :class="`justify-center transform rotate-90 ${expanded ? $themeColor(backgroundColors) ? 'filter invert' : '' : ''}`" />
     </div>
     <div
       class="content-container h-full overflow-hidden"

@@ -39,7 +39,7 @@
         </li>
       </template>
       <li v-if="frame.down === blok.length && blok.length > 2" :key="`${indexControls}-0`" :class="`restart-control control h-full projects-center col-start-1 col-end-1 cursor-pointer shadow-inner bg-opacity-20 bg-gray-400 ${blok.length % 2 == 0 ? 'row-start-1 row-end-1 self-end' : 'row-start-2 row-end-2 self-start'}`">
-        <Icon class="w-full h-full" restart size="w-14" tag="button" @click.native="next" />
+        <Icon class="w-full h-full" restart size="w-14 h-14" tag="button" @click.native="next" />
       </li>
     </transition-group>
     <transition-group
@@ -52,10 +52,10 @@
       class="controls w-full absolute top-1/2 text-white"
     >
       <span :key="`${indexControls}-1`" class="next-control absolute right-3 transform -translate-y-1/2 rounded-full bg-opacity-70 bg-gray-800">
-        <Icon next class="next" size="p-2 lg:p-3 w-9 lg:w-10" tag="button" @click.native="next" />
+        <Icon next class="next" size="p-3 w-9 h-9" tag="button" @click.native="next" />
       </span>
       <span :key="`${indexControls}-2`" class="previous-control absolute left-3 transform -translate-y-1/2 rounded-full bg-opacity-70 bg-gray-800">
-        <Icon previous class="previous" size="p-2 lg:p-3 w-9 lg:w-10" tag="button" @click.native="prev" />
+        <Icon previous class="previous" size="p-3 w-9 h-9" tag="button" @click.native="prev" />
       </span>
     </transition-group>
   </div>

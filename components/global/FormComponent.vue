@@ -9,7 +9,7 @@
           tag="span"
           loader
           class="form-loader max-h-full"
-          size="w-32"
+          size="w-32 h-32"
         />
       </template>
     </Modal>

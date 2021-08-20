@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`icon-wrapper grid gap-5 justify-center select-none ${blok && !blok.remove_space ? 'p-10' : ''} ${blok && (blok.tag === 'button' || blok.tag === 'a') || (tag === 'button' || tag === 'a') ? 'cursor-pointer' : ''} ${sliderMode || carouselMode || carouselMode ? 'h-full content-center' : 'content-around'}`"
+    :class="`icon-wrapper grid gap-5 justify-center items-center select-none ${blok && !blok.remove_space ? 'p-10' : ''} ${blok && (blok.tag === 'button' || blok.tag === 'a') || (tag === 'button' || tag === 'a') ? 'cursor-pointer' : ''}`"
     @click="animateMenu ? open = !open : ''"
   >
     <img
@@ -8,7 +8,7 @@
       :class="`icon ${blok.icon_image.filename
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-icon fill-current object-contain object-center`"
+        .replace(/\.[^/.]+$/, '')}-icon mx-auto my-0 fill-current object-contain object-center`"
       :src="blok.icon_image.filename"
       alt=""
       :height="blok.size ? blok.size : 'auto'"
@@ -23,7 +23,7 @@
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      :class="`home-icon h-auto fill-current ${size}`"
+      :class="`home-icon fill-current ${size}`"
       xmlns="http://www.w3.org/2000/svg"
       fill-rule="evenodd"
       clip-rule="evenodd"
@@ -35,7 +35,7 @@
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      :class="`arrow-icon h-auto fill-current ${size}`"
+      :class="`arrow-icon fill-current ${size}`"
       xmlns="http://www.w3.org/2000/svg"
       fill-rule="evenodd"
       clip-rule="evenodd"
@@ -44,7 +44,7 @@
     <!--CLOSE-->
     <svg
       v-else-if="close"
-      :class="`close-icon h-auto fill-current ${size}`"
+      :class="`close-icon fill-current ${size}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -56,7 +56,7 @@
     <!--NEXT-->
     <svg
       v-else-if="next"
-      :class="`next-icon h-auto fill-current ${size}`"
+      :class="`next-icon fill-current ${size}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -68,7 +68,7 @@
     <!--PREVIOUS-->
     <svg
       v-else-if="previous"
-      :class="`previous-icon h-auto fill-current ${size}`"
+      :class="`previous-icon fill-current ${size}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -83,7 +83,7 @@
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      :class="`restart-icon h-auto fill-current ${size}`"
+      :class="`restart-icon fill-current ${size}`"
       xmlns="http://www.w3.org/2000/svg"
       fill-rule="evenodd"
       clip-rule="evenodd"
@@ -110,7 +110,7 @@
     <!--LINK-->
     <svg
       v-else-if="link"
-      :class="`eye-link h-auto fill-current ${size}`"
+      :class="`eye-link fill-current ${size}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -122,7 +122,7 @@
     <!--EYE-->
     <svg
       v-else-if="eye"
-      :class="`eye-icon h-auto fill-current ${size}`"
+      :class="`eye-icon fill-current ${size}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -133,7 +133,7 @@
 
     <svg
       v-else-if="git"
-      :class="`icon-git h-auto fill-current ${size}`"
+      :class="`icon-git fill-current ${size}`"
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -143,7 +143,7 @@
     <!--LOADER-->
     <svg
       v-else-if="loader"
-      :class="`icon-loader h-auto fill-current ${size}`"
+      :class="`icon-loader fill-current ${size}`"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"

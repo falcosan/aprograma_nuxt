@@ -64,7 +64,7 @@
             <Icon
               home
               tag="button"
-              size="w-5"
+              size="w-5 h-5"
               class="home-link h-full w-full"
             />
           </template>

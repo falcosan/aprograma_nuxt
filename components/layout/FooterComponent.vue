@@ -25,6 +25,7 @@
         >
           <Icon
             eye
+            tooltip="Kiosco Antonio"
             tag="span"
             :class="`${expanded ? $themeColor(backgroundColors) ? 'filter invert' : '' : ''}`"
           />

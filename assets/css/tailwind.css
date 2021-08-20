@@ -52,7 +52,6 @@ pre code span {
 blockquote {
   border-left: 10px solid #484848;
   border-radius: .25rem;
-  margin: 1.5rem 10px;
   padding: 0.5rem 10px;
   background-color: #eeeeee;
   color: #212121;
@@ -61,8 +60,8 @@ blockquote {
 blockquote:before {
   content: open-quote;
   line-height: 0;
-  vertical-align: -10px;
-  font-size: 3rem;
+  vertical-align: -5px;
+  font-size: 2em;
   color: #484848;
 }
 blockquote > * {

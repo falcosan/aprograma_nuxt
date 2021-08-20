@@ -81,7 +81,7 @@
                   ref="carouselSlide"
                   v-touch:swipe.stop.left="!blok.hide_controllers ? next : null"
                   v-touch:swipe.stop.right="!blok.hide_controllers ? previous : null"
-                  :class="`carousel-slide slide w-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${setAlignContent} ${!blok.hide_controllers ? 'outline-none' : ''} ${index === currentSlide ? 'show' : 'hidden'} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+                  :class="`carousel-slide slide w-full flex row-start-1 row-end-1 col-start-1 col-end-1 rounded ${setAlignContent} ${!blok.hide_controllers ? 'outline-none' : ''} ${index === currentSlide ? `show ${transitionEnter}` : `hidden ${transitionLeave}`} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
                   :style="`background-color: ${blok.background_color_component.color};`"
                   :tabindex="!blok.hide_controllers ? '0' : false"
                   @mouseenter="focusContainer($refs.carouselSlide[0])"
@@ -99,7 +99,7 @@
               </template>
             </transition-group>
             <div v-if="!blok.hide_dots" class="dot-contaienr relative w-max max-w-1/2 flex flex-wrap justify-center z-20 my-7 mx-auto">
-              <span v-for="dot in elements.length" :key="dot" :class="`dot-number_${dot} w-3.5 h-3.5 inline-block m-1.5 rounded-full shadow-inner select-none cursor-pointer transform scale-90 transition-all duration-200 ${!$device.isDesktop ? '' : 'dot-desktop'} ${dot === currentSlide + 1 ? 'ring-2 ring-gray-400 bg-gray-500 bg-opacity-70' : 'bg-gray-400 bg-opacity-70'}`" @click="changeDot(dot)">
+              <span v-for="dot in elements.length" :key="dot" :class="`dot-number_${dot} w-2.5 h-2.5 inline-block m-1.5 rounded-full shadow-inner select-none cursor-pointer transform scale-90 transition-all duration-200 ${!$device.isDesktop ? '' : 'dot-desktop'} ${dot === currentSlide + 1 ? 'ring-2 ring-gray-400 bg-gray-500 bg-opacity-70' : 'bg-gray-400 bg-opacity-70'}`" @click="changeDot(dot)">
                 <span v-if="$device.isDesktop" class="dot-text absolute w-5 h-5 flex justify-center items-center left-1/2 top-0 rounded-full text-xs text-white bg-opacity-70 bg-gray-500">{{ dot }}</span>
               </span>
             </div>
@@ -263,8 +263,8 @@ export default {
             this.clearAutoPlay()
           }
         }
-        document.documentElement.style.setProperty('--animationEnter', 'moveEnterLeft')
-        document.documentElement.style.setProperty('--animationLeave', 'moveLeaveLeft')
+        this.transitionEnter = 'enter-left'
+        this.transitionLeave = 'leave-left'
       }
     },
     setNext () {
@@ -282,8 +282,8 @@ export default {
             this.clearAutoPlay()
           }
         }
-        document.documentElement.style.setProperty('--animationEnter', 'moveEnterRight')
-        document.documentElement.style.setProperty('--animationLeave', 'moveLeaveRight')
+        this.transitionEnter = 'enter-right'
+        this.transitionLeave = 'leave-right'
       }
     },
     next () {
@@ -310,10 +310,8 @@ export default {
         this.autoPlay()
       }
       this.currentSlide = input - 1
-      this.transitionEnter = 'opacity-0'
-      this.transitionLeave = 'opacity-0'
-      document.documentElement.style.setProperty('--animationEnter', '')
-      document.documentElement.style.setProperty('--animationLeave', '')
+      this.transitionEnter = ''
+      this.transitionLeave = ''
     },
     autoPlay () {
       this.setAutoPlay = setTimeout(this.next, this.blok.slider_time ? `${Number(this.blok.slider_time)}` : '5000')
@@ -342,8 +340,8 @@ export default {
     },
     clearAll () {
       this.focusDisable = true
-      document.documentElement.style.setProperty('--animationEnter', '')
-      document.documentElement.style.setProperty('--animationLeave', '')
+      this.transitionEnter = ''
+      this.transitionLeave = ''
       if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.blok.auto_play) {
         this.clearAutoPlay()
       }
@@ -351,37 +349,52 @@ export default {
   }
 }
 </script>
-<style>
-:root {
-  --animationEnter: '';
-  --animationLeave: '';
+<style scoped>
+.parent-cover > .container-content{
+    margin: .1px;
+    padding: .1px;
 }
-.carousel-slide.hidden{
+.parent-cover > .container-content > .container-components {
+  position: relative;
+  top: 10px;
+  margin-top: -20px;
+}
+.hidden{
   display: flex !important;
   opacity: 0;
   pointer-events: none;
   cursor: none;
-  animation-name: var(--animationLeave);
-  -webkit-animation-name: var(--animationLeave);
-  -moz-animation-name: var(--animationLeave);
-  -ms-animation-name: var(--animationLeave);
-  -o-animation-name: var(--animationLeave);
-  animation-duration: .5s;
-  animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
 }
-.carousel-slide.show {
-  animation-name: var(--animationEnter);
-  -webkit-animation-name: var(--animationEnter);
-  -moz-animation-name: var(--animationEnter);
-  -ms-animation-name: var(--animationEnter);
-  -o-animation-name: var(--animationEnter);
-  animation-duration: .5s;
-  animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+.show {
   opacity: 1;
 }
-.carousel-slide.show > * {
+.show > * {
   position: relative;
   z-index: 11;
+}
+.hidden.leave-right{
+  animation: moveLeaveRight .5s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-animation: moveLeaveRight .5s cubic-bezier(0.77, 0, 0.175, 1);
+  -moz-animation: moveLeaveRight .5s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-animation: moveLeaveRight .5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.hidden.leave-left{
+  animation: moveLeaveLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-animation: moveLeaveLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
+  -moz-animation: moveLeaveLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-animation: moveLeaveLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.show.enter-right{
+  animation: moveEnterRight .5s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-animation: moveEnterRight .5s cubic-bezier(0.77, 0, 0.175, 1);
+  -moz-animation: moveEnterRight .5s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-animation: moveEnterRight .5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.show.enter-left{
+  animation: moveEnterLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-animation: moveEnterLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
+  -moz-animation: moveEnterLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-animation: moveEnterLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
 }
 @keyframes moveEnterRight {
  from {
@@ -414,18 +427,6 @@ export default {
   to {
     transform: translateX(-100%);
   }
-}
-</style>
-
-<style scoped>
-.parent-cover > .container-content{
-    margin: .1px;
-    padding: .1px;
-}
-.parent-cover > .container-content > .container-components {
-  position: relative;
-  top: 10px;
-  margin-top: -20px;
 }
 .slider-box .slider .slider-slide {
   -webkit-transform:translate3d(0, 0, 0);

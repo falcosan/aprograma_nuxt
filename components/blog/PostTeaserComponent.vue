@@ -30,7 +30,7 @@
               {{ postContent.title }}
             </span>
             <span
-              class="teaser-intro overflow-hidden"
+              class="teaser-intro overflow-hidden leading-normal"
             >
               {{ postContent.intro }}
             </span>

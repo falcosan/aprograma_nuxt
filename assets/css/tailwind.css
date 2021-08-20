@@ -61,9 +61,8 @@ blockquote {
 blockquote:before {
   content: open-quote;
   line-height: 0;
-  margin-right: 5px;
-  vertical-align: -1.5rem;
-  font-size: 4rem;
+  vertical-align: -10px;
+  font-size: 3rem;
   color: #484848;
 }
 blockquote > * {

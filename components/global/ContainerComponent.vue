@@ -374,299 +374,56 @@ export default {
 }
 .hidden.leave-right{
   animation: moveLeaveRight .5s cubic-bezier(0.77, 0, 0.175, 1);
-  -webkit-animation: moveLeaveRight .5s cubic-bezier(0.77, 0, 0.175, 1);
-  -moz-animation: moveLeaveRight .5s cubic-bezier(0.77, 0, 0.175, 1);
-  -o-animation: moveLeaveRight .5s cubic-bezier(0.77, 0, 0.175, 1);
 }
 .hidden.leave-left{
   animation: moveLeaveLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
-  -webkit-animation: moveLeaveLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
-  -moz-animation: moveLeaveLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
-  -o-animation: moveLeaveLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
 }
 .show.enter-right{
   animation: moveEnterRight .5s cubic-bezier(0.77, 0, 0.175, 1);
-  -webkit-animation: moveEnterRight .5s cubic-bezier(0.77, 0, 0.175, 1);
-  -moz-animation: moveEnterRight .5s cubic-bezier(0.77, 0, 0.175, 1);
-  -o-animation: moveEnterRight .5s cubic-bezier(0.77, 0, 0.175, 1);
 }
 .show.enter-left{
   animation: moveEnterLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
-  -webkit-animation: moveEnterLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
-  -moz-animation: moveEnterLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
-  -o-animation: moveEnterLeft .5s cubic-bezier(0.77, 0, 0.175, 1);
 }
 @keyframes moveEnterRight {
  from {
-  -webkit-transform: translateX(-100%);
-  -moz-transform: translateX(-100%);
-  -o-transform: translateX(-100%);
-  -ms-transform: translateX(-100%);
   transform: translateX(-100%);
   }
   to {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
   transform: translateX(0);
   }
 }
 @keyframes moveEnterLeft {
  from {
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -o-transform: translateX(100%);
-  -ms-transform: translateX(100%);
   transform: translateX(100%);
   }
   to {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
   transform: translateX(0);
   }
 }
 @keyframes moveLeaveRight {
  from {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
   transform: translateX(0);
   }
   to {
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -o-transform: translateX(100%);
-  -ms-transform: translateX(100%);
   transform: translateX(100%);
   }
 }
 @keyframes moveLeaveLeft {
  from {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
   transform: translateX(0);
   }
   to {
-  -webkit-transform: translateX(-100%);
-  -moz-transform: translateX(-100%);
-  -o-transform: translateX(-100%);
-  -ms-transform: translateX(-100%);
-  transform: translateX(-100%);
-  }
-}
-@-webkit-keyframes moveEnterRight {
- from {
-  -webkit-transform: translateX(-100%);
-  -moz-transform: translateX(-100%);
-  -o-transform: translateX(-100%);
-  -ms-transform: translateX(-100%);
-  transform: translateX(-100%);
-  }
-  to {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  }
-}
-@-webkit-keyframes moveEnterLeft {
- from {
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -o-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  transform: translateX(100%);
-  }
-  to {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  }
-}
-@-webkit-keyframes moveLeaveRight {
- from {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  }
-  to {
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -o-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  transform: translateX(100%);
-  }
-}
-@-webkit-keyframes moveLeaveLeft {
- from {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  }
-  to {
-  -webkit-transform: translateX(-100%);
-  -moz-transform: translateX(-100%);
-  -o-transform: translateX(-100%);
-  -ms-transform: translateX(-100%);
-  transform: translateX(-100%);
-  }
-}
-@-moz-keyframes moveEnterRight {
- from {
-  -webkit-transform: translateX(-100%);
-  -moz-transform: translateX(-100%);
-  -o-transform: translateX(-100%);
-  -ms-transform: translateX(-100%);
-  transform: translateX(-100%);
-  }
-  to {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  }
-}
-@-moz-keyframes moveEnterLeft {
- from {
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -o-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  transform: translateX(100%);
-  }
-  to {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  }
-}
-@-moz-keyframes moveLeaveRight {
- from {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  }
-  to {
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -o-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  transform: translateX(100%);
-  }
-}
-@-moz-keyframes moveLeaveLeft {
- from {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  }
-  to {
-  -webkit-transform: translateX(-100%);
-  -moz-transform: translateX(-100%);
-  -o-transform: translateX(-100%);
-  -ms-transform: translateX(-100%);
-  transform: translateX(-100%);
-  }
-}
-@-o-keyframes moveEnterRight {
- from {
-  -webkit-transform: translateX(-100%);
-  -moz-transform: translateX(-100%);
-  -o-transform: translateX(-100%);
-  -ms-transform: translateX(-100%);
-  transform: translateX(-100%);
-  }
-  to {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  }
-}
-@-o-keyframes moveEnterLeft {
- from {
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -o-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  transform: translateX(100%);
-  }
-  to {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  }
-}
-@-o-keyframes moveLeaveRight {
- from {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  }
-  to {
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -o-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  transform: translateX(100%);
-  }
-}
-@-o-keyframes moveLeaveLeft {
- from {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  }
-  to {
-  -webkit-transform: translateX(-100%);
-  -moz-transform: translateX(-100%);
-  -o-transform: translateX(-100%);
-  -ms-transform: translateX(-100%);
   transform: translateX(-100%);
   }
 }
 
 .slider-box .slider .slider-slide {
-  -webkit-transform:translate3d(0, 0, 0);
-  -moz-transform:translate3d(0, 0, 0);
-  -o-transform:translate3d(0, 0, 0);
-  -ms-transform:translate3d(0, 0, 0);
   transform:translate3d(0, 0, 0);
 }
 .dot-desktop .dot-text{
   opacity: 0;
   pointer-events: none;
   transform: translate(-10.5px, -25px);
-  -webkit-transition: opacity .2s ease;
-  -moz-transition: opacity .2s ease;
-  -o-transition: opacity .2s ease;
   transition: opacity .2s ease;
 }
 .dot-desktop:hover .dot-text{

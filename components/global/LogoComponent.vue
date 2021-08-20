@@ -114,75 +114,13 @@ export default {
 <style scoped>
 .logo-spin{
   filter: blur(1px);
-  -webkit-animation: spinning 0.5s infinite linear;
-  -moz-animation: spinning 0.5s infinite linear;
-  -o-animation: spinning 0.5s infinite linear;
   animation: spinning 0.5s infinite linear;
 }
-@-webkit-keyframes spinning {
-  from {
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg);
-  }
-  to {
-  -webkit-transform: rotate(359deg);
-  -moz-transform: rotate(359deg);
-  -o-transform: rotate(359deg);
-  -ms-transform: rotate(359deg);
-  transform: rotate(359deg);
-  }
-}
-
-@-moz-keyframes spinning {
-  from {
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg);
-  }
-  to {
-  -webkit-transform: rotate(359deg);
-  -moz-transform: rotate(359deg);
-  -o-transform: rotate(359deg);
-  -ms-transform: rotate(359deg);
-  transform: rotate(359deg);
-  }
-}
-
-@-o-keyframes spinning {
-  from {
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg);
-  }
-  to {
-  -webkit-transform: rotate(359deg);
-  -moz-transform: rotate(359deg);
-  -o-transform: rotate(359deg);
-  -ms-transform: rotate(359deg);
-  transform: rotate(359deg);
-  }
-}
-
 @keyframes spinning {
   from {
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
   transform: rotate(0deg);
   }
   to {
-  -webkit-transform: rotate(359deg);
-  -moz-transform: rotate(359deg);
-  -o-transform: rotate(359deg);
-  -ms-transform: rotate(359deg);
   transform: rotate(359deg);
   }
 }

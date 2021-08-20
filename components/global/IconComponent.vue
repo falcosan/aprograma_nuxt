@@ -9,7 +9,7 @@
       :title="blok && blok.title && !blok.show_title || tooltip ? blok ? blok.title : tooltip : ''"
       :name="blok && blok.tag === 'button' || tag === 'button' ? `icon-button` : ''"
       :aria-label="blok && blok.tag === 'button' || tag === 'button' ? `icon-button-reader` : ''"
-      :class="`icon-wrapper my-0 mx-auto select-none pointer-events-none ${blok && blok.shadow ? 'filter drop-shadow-md' : ''}`"
+      :class="`icon-wrapper my-0 mx-auto select-none ${blok && blok.shadow ? 'filter drop-shadow-md' : ''}`"
     >
       <NuxtImg
         v-if="blok && blok.icon_image.filename"
@@ -107,10 +107,23 @@
         :class="`menu-icon ${size}`"
         width="24"
         height="24"
+        viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
         fill-rule="evenodd"
         clip-rule="evenodd"
       ><path d="M24 18v1h-24v-1h24zm0-6v1h-24v-1h24zm0-6v1h-24v-1h24z" fill="#1040e2" /><path d="M24 19h-24v-1h24v1zm0-6h-24v-1h24v1zm0-6h-24v-1h24v1z" /></svg>
+
+      <!--LINK-->
+      <svg
+        v-else-if="link"
+        :class="`eye-link h-auto my-0 mx-auto fill-current ${size}`"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+      ><path d="M14 4h-13v18h20v-11h1v12h-22v-20h14v1zm10 5h-1v-6.293l-11.646 11.647-.708-.708 11.647-11.646h-6.293v-1h8v8z" /></svg>
 
       <!--EYE-->
       <svg
@@ -118,10 +131,12 @@
         :class="`eye-icon h-auto my-0 mx-auto fill-current ${size}`"
         width="24"
         height="24"
+        viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
         fill-rule="evenodd"
         clip-rule="evenodd"
       ><path d="M12.01 20c-5.065 0-9.586-4.211-12.01-8.424 2.418-4.103 6.943-7.576 12.01-7.576 5.135 0 9.635 3.453 11.999 7.564-2.241 4.43-6.726 8.436-11.999 8.436zm-10.842-8.416c.843 1.331 5.018 7.416 10.842 7.416 6.305 0 10.112-6.103 10.851-7.405-.772-1.198-4.606-6.595-10.851-6.595-6.116 0-10.025 5.355-10.842 6.584zm10.832-4.584c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0 1c2.208 0 4 1.792 4 4s-1.792 4-4 4-4-1.792-4-4 1.792-4 4-4z" /></svg>
+
       <!--LOADER-->
       <svg
         v-else-if="loader"
@@ -219,6 +234,10 @@ export default {
       type: Boolean,
       default: false
     },
+    link: {
+      type: Boolean,
+      default: false
+    },
     eye: {
       type: Boolean,
       default: false
@@ -273,24 +292,12 @@ export default {
 </script>
 <style scoped>
 .animate-menu{
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: .5s ease-in-out;
-  -moz-transition: .5s ease-in-out;
-  -o-transition: .5s ease-in-out;
   transition: .5s ease-in-out;
 }
 
 .animate-menu span{
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: .25s ease-in-out;
-  -moz-transition: .25s ease-in-out;
-  -o-transition: .25s ease-in-out;
   transition: .25s ease-in-out;
 }
 
@@ -319,16 +326,10 @@ export default {
 }
 
 .animate-menu.open span:nth-child(2) {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
 .animate-menu.open span:nth-child(3) {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
 

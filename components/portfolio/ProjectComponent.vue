@@ -3,15 +3,32 @@
     <h1 class="project-title col-start-1 col-end-4 xl:col-end-3 text-2xl sm:text-3xl break-words">
       {{ blok.title }}
     </h1>
-    <Icon
-      v-if="$store.state.data.windowWidth >= 1280"
-      arrow
-      tag="button"
-      :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-      :class="`project-back h-10 w-10 self-end justify-self-end rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
-      size="p-3 w-10"
-      @click.native="goBack()"
-    />
+    <div v-if="$store.state.data.windowWidth >= 1280" class="project-action min-w-0 flex items-center justify-end">
+      <component
+        :is="blok.url_project ? 'a' : 'span'"
+        class="project-url text-xs mr-5 truncate"
+        :href="blok.url_project ? blok.url_project : false"
+        :target="blok.url_project ? '_blank' : false"
+        :rel="blok.url_project ? 'noopener noreferrer' : false"
+      >
+        <Icon
+          v-if="blok.url_project"
+          link
+          :class="`project-external w-10 h-10 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
+          :tooltip="`${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}`"
+          :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
+          size="p-3 w-10"
+        /> {{ !blok.url_project ? $languageCase('private project', 'proyecto privado', 'progetto privato') : '' }}
+      </component>
+      <Icon
+        arrow
+        tag="button"
+        :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
+        :class="`project-back h-10 w-10 self-end justify-self-end rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
+        size="p-3 w-10"
+        @click.native="goBack()"
+      />
+    </div>
     <div class="project-intro grid gap-5 auto-cols-fr col-start-1 col-end-4">
       <Modal
         v-if="blok.image.filename"
@@ -50,33 +67,40 @@
         v-html="$md.render(blok.intro)"
       />
 
-      <div class="project-date flex flex-col ss:flex-row flex-wrap justify-evenly  items-center xl:col-start-1 xl:col-end-2 xl:mr-5">
-        <h4 class="date-start mb-1 ss:mb-0 text-right">
+      <div class="project-date flex flex-col ss:flex-row flex-wrap justify-evenly items-center xl:col-start-1 xl:col-end-3">
+        <h4 class="date-start mb-1 ss:mb-0 text-right text-sm">
           {{ changeDate(blok.start_date) }}
         </h4>
         <p class="date-to text-center my-1 ss:my-0 text-xs">
           {{ $languageCase('to', 'hasta', 'al') }}
         </p>
-        <h4 class="date-end mt-1 ss:mt-0 text-left">
+        <h4 class="date-end mt-1 ss:mt-0 text-left text-sm">
           {{ !blok.current_project ? changeDate(blok.end_date) : $languageCase('present', 'presente', 'presente') }}
         </h4>
       </div>
-      <div class="project-action min-w-0 flex items-center justify-between xl:justify-end row-start-2 row-end-3 xl:col-start-2 xl:col-end-3">
+      <div v-if="$store.state.data.windowWidth < 1280" class="project-action min-w-0 flex items-center justify-end row-start-2 row-end-3 xl:col-start-2 xl:col-end-3">
         <component
           :is="blok.url_project ? 'a' : 'span'"
-          class="project-url font-medium truncate"
+          v-if="$store.state.data.windowWidth < 1280"
+          class="project-url text-xs mr-5 truncate"
           :href="blok.url_project ? blok.url_project : false"
           :target="blok.url_project ? '_blank' : false"
           :rel="blok.url_project ? 'noopener noreferrer' : false"
         >
-          {{ blok.url_project ? `${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}` : $languageCase('private project', 'proyecto privado', 'progetto privato') }}
+          <Icon
+            v-if="blok.url_project"
+            link
+            :class="`project-external w-10 h-10 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
+            :tooltip="`${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}`"
+            :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
+            size="p-3 w-10"
+          /> {{ !blok.url_project ? $languageCase('private project', 'proyecto privado', 'progetto privato') : '' }}
         </component>
         <Icon
-          v-if="$store.state.data.windowWidth < 1280"
           arrow
           tag="button"
           :style="`background-color: ${blok.project_background_color.color}; color: ${blok.project_text_color.color};`"
-          :class="`project-back w-10 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
+          :class="`project-back w-10 h-10 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
           size="p-3 w-10"
           @click.native="goBack()"
         />

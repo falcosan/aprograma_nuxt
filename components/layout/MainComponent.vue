@@ -111,72 +111,14 @@ export default {
   }
 }
 .colorAnimation{
-    -webkit-animation: changeColor 10s infinite;
-    -moz-animation: changeColor 10s infinite;
-    -o-animation: changeColor 10s infinite;
     animation: changeColor 10s infinite;
 }
-
-@-webkit-keyframes changeColor {
-  0%   {
-    -webkit-filter: hue-rotate(0deg);
-    -moz-filter: hue-rotate(0deg);
-    -o-filter: hue-rotate(0deg);
-    filter: hue-rotate(0deg);
-  }
-
-  100% {
-    -webkit-filter: hue-rotate(360deg);
-    -moz-filter: hue-rotate(360deg);
-    -o-filter: hue-rotate(360deg);
-    filter: hue-rotate(360deg);
-  }
-}
-
-@-moz-keyframes changeColor {
-  0%   {
-    -webkit-filter: hue-rotate(0deg);
-    -moz-filter: hue-rotate(0deg);
-    -o-filter: hue-rotate(0deg);
-    filter: hue-rotate(0deg);
-  }
-
-  100% {
-    -webkit-filter: hue-rotate(360deg);
-    -moz-filter: hue-rotate(360deg);
-    -o-filter: hue-rotate(360deg);
-    filter: hue-rotate(360deg);
-  }
-}
-
-@-o-keyframes changeColor {
-  0%   {
-    -webkit-filter: hue-rotate(0deg);
-    -moz-filter: hue-rotate(0deg);
-    -o-filter: hue-rotate(0deg);
-    filter: hue-rotate(0deg);
-  }
-
-  100% {
-    -webkit-filter: hue-rotate(360deg);
-    -moz-filter: hue-rotate(360deg);
-    -o-filter: hue-rotate(360deg);
-    filter: hue-rotate(360deg);
-  }
-}
-
 @keyframes changeColor {
   0%   {
-    -webkit-filter: hue-rotate(0deg);
-    -moz-filter: hue-rotate(0deg);
-    -o-filter: hue-rotate(0deg);
     filter: hue-rotate(0deg);
   }
 
   100% {
-    -webkit-filter: hue-rotate(360deg);
-    -moz-filter: hue-rotate(360deg);
-    -o-filter: hue-rotate(360deg);
     filter: hue-rotate(360deg);
   }
 }

@@ -230,6 +230,8 @@ export default {
     },
     postcss: {
       plugins: {
+        'postcss-url': false,
+        'postcss-nested': {}
       },
       preset: {
         autoprefixer: {

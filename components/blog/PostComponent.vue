@@ -2,13 +2,13 @@
   <div class="post p-5">
     <div class="post-head relative w-full mb-5">
       <h1
-        :style="`color: ${blok.post_text_color.color};`"
+        :style="`color: ${blok.text_color.color};`"
         class="post-title mb-5 text-2xl sm:text-3xl"
         v-text="blok.title"
       />
       <Icon
         arrow
-        :style="`background-color: ${blok.post_background_color.color ? blok.post_background_color.color : '#e0e0e0'}; color: ${blok.post_text_color.color};`"
+        :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
         :class="`post-close absolute right-0 z-10 rounded-bl rounded-tr ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
         tag="button"
         size="p-3 w-10 h-10"
@@ -25,32 +25,32 @@
         />
       </div>
     </div>
-    <div class="post-body w-full justify-center rounded" :style="`background-color: ${blok.post_background_color.color ? blok.post_background_color.color : '#e0e0e0'};`">
+    <div class="post-body w-full justify-center rounded" :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'};`">
       <div class="post-article markdown w-full max-w-prose prose-sm lg:prose-lg py-7 lg:py-14 px-5 mx-auto my-0">
         <h3
-          :style="`color: ${blok.post_text_color.color};`"
+          :style="`color: ${blok.text_color.color};`"
           class="post-intro"
           v-text="blok.intro"
         />
         <p
-          :style="`color: ${blok.post_text_color.color};`"
+          :style="`color: ${blok.text_color.color};`"
           class="post-author py-2.5 italic text-sm"
         >
           {{ $languageCase('by', 'de', 'di') }} {{ blok.author ? blok.author : $languageCase('Anonymous', 'Anónimo', 'Anonimo') }}
         </p>
         <article
-          :style="`color: ${blok.post_text_color.color};`"
+          :style="`color: ${blok.text_color.color};`"
           class="post-article block pb-2.5"
           v-html="$md.render(blok.long_text)"
         />
         <p
-          :style="`color: ${blok.post_text_color.color};`"
+          :style="`color: ${blok.text_color.color};`"
           class="post-date text-right"
           v-text="changeDate(blok.date)"
         />
       </div>
       <ul class="post-categories flex flex-wrap -m-1.5 md:-m-2.5 pb-2.5 px-5">
-        <li v-for="(category, index) in sortedCategories" :key="index" :class="`post-category m-1.5 md:m-2.5 p-2.5 text-center text-xs rounded shadow-sm italic filter brightness-90 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${blok.post_background_color.color ? blok.post_background_color.color : '#e0e0e0'};`">
+        <li v-for="(category, index) in sortedCategories" :key="index" :class="`post-category m-1.5 md:m-2.5 p-2.5 text-center text-xs rounded shadow-sm italic filter brightness-90 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'};`">
           {{ category }}
         </li>
       </ul>

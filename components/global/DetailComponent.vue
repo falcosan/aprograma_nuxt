@@ -165,3 +165,13 @@ export default {
   }
 }
 </script>
+<style>
+.detail-text{
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+.detail-text img,
+.detail-text video{
+  border-radius: .25rem;
+}
+</style>

@@ -142,9 +142,13 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 .intro-text{
   word-break: break-word;
   overflow-wrap: anywhere;
+}
+.intro-text img,
+.intro-text video{
+  border-radius: .25rem;
 }
 </style>

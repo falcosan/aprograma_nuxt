@@ -51,9 +51,13 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 .text-content{
   word-break: break-word;
   overflow-wrap: anywhere;
+}
+.text-content img,
+.text-content video{
+  border-radius: .25rem;
 }
 </style>

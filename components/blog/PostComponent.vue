@@ -109,8 +109,8 @@ export default {
   word-break: break-word;
   overflow-wrap: anywhere;
 }
-.post-article * {
- -ms-overflow-style: none;
- scrollbar-width: none;
+.post-article img,
+.post-article video{
+  border-radius: .25rem;
 }
 </style>

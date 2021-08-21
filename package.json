@@ -11,7 +11,7 @@
     "push:dev": "git checkout develop && git add -A && git commit -m 'develop' && git push origin develop",
     "push:prod": "git checkout develop && git fetch origin master && git merge master && git push origin develop:master && git fetch origin master:master",
     "dev": "nuxt",
-    "generate": "nuxt generate",
+    "generate": "nuxt generate --quiet",
     "test": "nuxt generate && nuxt start"
   },
   "dependencies": {
@@ -24,6 +24,7 @@
     "core-js": "^3.16.2",
     "netlify-lambda": "^2.0.14",
     "nuxt": "^2.15.8",
+    "nuxt-build-optimisations": "^1.0.6",
     "storyblok-nuxt": "^2.0.1",
     "vue2-touch-events": "^3.2.2",
     "vuex-persistedstate": "4.0.0"

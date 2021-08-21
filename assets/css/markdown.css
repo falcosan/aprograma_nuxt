@@ -9,8 +9,8 @@
     width: 100%;
     border-radius: .25rem;
   }
-  .markdown pre{
-    padding: 0 !important;
+  .markdown pre {
+    padding: 0;
   }
   .markdown code {
     position: relative;
@@ -33,7 +33,6 @@
     justify-content: flex-end;
     padding: 10px;
     border-radius: .25rem .25rem 0 0;
-    border: 1px solid #212121;
     background-color: #f9f9f9;
     color: #212121;
   }

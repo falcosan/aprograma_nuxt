@@ -69,9 +69,10 @@ export default ({ app }, inject) => {
   inject('setCodeLang', () => {
     if (document.querySelector('pre code')) {
       [...document.querySelectorAll('pre code')].forEach((code) => {
-        if (code.className) {
+        if (code.className && !code.classList.contains('codeblock')) {
           const content = document.createElement('span')
-          content.appendChild(document.createTextNode(code.className))
+          code.classList.add('codeblock')
+          content.appendChild(document.createTextNode(code.className.split(' ')[0]))
           return code.appendChild(content)
         } else {
           return false

@@ -15,58 +15,8 @@ iframe{
     border-radius: .25rem;
 }
 
-*:not(pre) code {
-  border: 1px solid #212121;
-  padding: 10px;
-  border-radius: .25rem;
-  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);;
-  background-color: #f9fafb;
-}
+/*LAYOUT*/
 
-pre{
-    padding: 0 !important;
-  }
-pre code {
-  position: relative;
-  display: flex;
-  flex-direction: column-reverse;
-  padding: 65px 20px 20px 20px;
-  overflow: hidden;
-  border-radius: .25rem;
-  color: #ffffff;
-  background-color: #212121;
-  }
-pre code span {
-  position: absolute;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  top: 0;
-  left: 0;
-  padding: 10px;
-  border-radius: .25rem;
-  border: 1px solid #212121;
-  background-color: #f9fafb;
-  color: #212121;
-}
-blockquote {
-  border-left: 10px solid #484848;
-  border-radius: .25rem;
-  padding: 0.5rem 10px;
-  background-color: #eeeeee;
-  color: #212121;
-  quotes: "\201C""\201D""\2018""\2019";
-}
-blockquote:before {
-  content: open-quote;
-  line-height: 0;
-  vertical-align: -5px;
-  font-size: 2em;
-  color: #484848;
-}
-blockquote > * {
-  display: inline;
-}
 .noscroll {
     height: 100%;
     width: 100%;
@@ -85,4 +35,63 @@ blockquote > * {
 .page-enter,
 .page-leave-active {
   opacity: 0;
+}
+
+/* MARKDOWN */
+
+.markdown{
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+.markdown img,
+.markdown video{
+  width: 100%;
+  border-radius: .25rem;
+}
+.markdown pre{
+  padding: 0 !important;
+}
+.markdown.markdown code {
+  display: block;
+  padding: 20px;
+  white-space: pre-wrap;
+  overflow: hidden;
+  border-radius: .25rem;
+  color: #ffffff;
+  background-color: #212121;
+}
+.markdown.markdown .codeblock{
+  position: relative;
+  padding-top: 65px;
+}
+.markdown code span {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  border-radius: .25rem;
+  border: 1px solid #212121;
+  background-color: #f9f9f9;
+  color: #212121;
+}
+.markdown blockquote {
+  border-left: 10px solid #484848;
+  border-radius: .25rem;
+  padding: 0.5rem 10px;
+  background-color: #eeeeee;
+  color: #212121;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+.markdown blockquote:before {
+  content: open-quote;
+  line-height: 0;
+  vertical-align: -5px;
+  font-size: 2em;
+  color: #484848;
+}
+.markdown blockquote > * {
+  display: inline;
 }

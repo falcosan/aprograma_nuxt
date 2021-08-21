@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="post-body w-full justify-center rounded" :style="`background-color: ${blok.post_background_color.color ? blok.post_background_color.color : '#e0e0e0'};`">
-      <div class="post-article w-full max-w-prose prose-sm lg:prose-lg py-7 lg:py-14 px-5 mx-auto my-0">
+      <div class="post-article markdown w-full max-w-prose prose-sm lg:prose-lg py-7 lg:py-14 px-5 mx-auto my-0">
         <h3
           :style="`color: ${blok.post_text_color.color};`"
           class="post-intro"
@@ -104,13 +104,3 @@ export default {
   }
 }
 </script>
-<style>
-.post-article{
-  word-break: break-word;
-  overflow-wrap: anywhere;
-}
-.post-article img,
-.post-article video{
-  border-radius: .25rem;
-}
-</style>

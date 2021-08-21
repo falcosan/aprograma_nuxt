@@ -13,6 +13,7 @@
             <template #activator="action">
               <NuxtImg
                 v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
+                format="webp"
                 :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
                 :class="`${media.filename
                   .split(/[\\/]/)
@@ -48,6 +49,7 @@
             <template #body>
               <NuxtImg
                 v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
+                format="webp"
                 :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
                 :class="`${media.filename
                   .split(/[\\/]/)
@@ -81,6 +83,7 @@
           <div v-else class="detail-image">
             <NuxtImg
               v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
+              format="webp"
               :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
               :type="`image/${imageType(media)}`"
               :class="`${media.filename

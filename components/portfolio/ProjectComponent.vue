@@ -44,6 +44,7 @@
         <template #activator="action">
           <div class="image-container w-full h-56 xx:h-60 xs:h-72 sm:h-80 md:h-96 lg:h-md 2xl:h-xl my-0 mx-auto cursor-pointer" @click="action.open()">
             <NuxtImg
+              format="webp"
               :modifiers="{ filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
               class="intro-image h-full w-full border-2 object-cover rounded select-none"
               :src="blok.image.filename"
@@ -57,6 +58,7 @@
         </template>
         <template #body>
           <NuxtImg
+            format="webp"
             :modifiers="{ filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
             class="image-project select-none cursor-default"
             width="auto"

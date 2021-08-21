@@ -6,8 +6,9 @@
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
       <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color ? projectContent.teaser_background_color.color : '#e0e0e0'}; color: ${projectContent.teaser_text_color.color};`">
         <NuxtImg
-          :modifiers="{ filters: { focal: projectContent.image.focus ? projectContent.image.focus : 0 } }"
           class="project-image w-full h-4/5 object-cover object-center select-none rounded-t"
+          format="webp"
+          :modifiers="{ filters: { focal: projectContent.image.focus ? projectContent.image.focus : 0 } }"
           :src="projectContent.image.filename"
           :alt="projectContent.image.alt"
           sizes="xs:299px sm:380px md:514px lg:619px xl:820"

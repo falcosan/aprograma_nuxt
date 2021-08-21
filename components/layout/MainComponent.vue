@@ -15,6 +15,7 @@
     </div>
     <NuxtImg
       v-if="blok.background_media.filename && lookFile === 'image'"
+      format="webp"
       :modifiers="{ filters: { focal: blok.background_media.focus ? blok.background_media.focus: 0 } }"
       :class="`media-image min-h-full min-w-full fixed right-0 bottom-0 -z-10 object-cover object-center ${blok.color_animation ? 'colorAnimation' : ''}`"
       :src="blok.background_media.filename"

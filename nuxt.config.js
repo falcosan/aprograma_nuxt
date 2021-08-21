@@ -22,9 +22,7 @@ export default {
       }
     ],
     link: [
-      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap' }
+      { rel: 'preconnect', href: '//img2.storyblok.com' }
     ]
   },
   loading: false,
@@ -91,13 +89,14 @@ export default {
       'nuxt-compress',
       {
         gzip: {
-          cache: true
+          threshold: 8192
         },
         brotli: {
-          threshold: 10240
+          threshold: 8192
         }
       }
     ],
+    '@nuxtjs/google-fonts',
     '@nuxtjs/markdownit',
     '@nuxtjs/sitemap',
     '@nuxtjs/feed',
@@ -127,7 +126,13 @@ export default {
       description: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.'
     }
   },
-
+  googleFonts: {
+    families: {
+      Inter: [300, 400, 500, 600, 700]
+    },
+    preconnect: true,
+    display: 'swap'
+  },
   markdownit: {
     html: true,
     linkify: true,

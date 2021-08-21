@@ -28,10 +28,11 @@ export default {
     ]
   },
   loading: false,
+  css: ['~/assets/css/main', '~/assets/css/markdown'],
   plugins: [
     '~/plugins/injects',
     '~/plugins/components',
-    '~/plugins/custom-flag.client',
+    '~/plugins/custom-flag.client.js',
     '~/plugins/touchScreen.client.js',
     '~/plugins/persistedState.client.js'
   ],

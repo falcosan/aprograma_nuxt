@@ -1,0 +1,57 @@
+/* MARKDOWN */
+  
+  .markdown{
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  .markdown img,
+  .markdown video{
+    width: 100%;
+    border-radius: .25rem;
+  }
+  .markdown pre{
+    padding: 0 !important;
+  }
+  .markdown code {
+    position: relative;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    overflow: hidden;
+    border-radius: .25rem;
+    color: #ffffff;
+    background-color: #212121;
+  }
+  .markdown .code-block{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+  }
+  .markdown pre .code-language{
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    border-radius: .25rem .25rem 0 0;
+    border: 1px solid #212121;
+    background-color: #f9f9f9;
+    color: #212121;
+  }
+  .markdown blockquote {
+    border-left: 10px solid #484848;
+    border-radius: .25rem;
+    padding: 0.5rem 10px;
+    background-color: #eeeeee;
+    color: #212121;
+    quotes: "\201C""\201D""\2018""\2019";
+  }
+  .markdown blockquote:before {
+    content: open-quote;
+    line-height: 0;
+    vertical-align: -5px;
+    font-size: 2em;
+    color: #484848;
+  }
+  .markdown blockquote > * {
+    display: inline;
+  }

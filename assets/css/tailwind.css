@@ -51,7 +51,8 @@ iframe{
 .markdown pre{
   padding: 0 !important;
 }
-.markdown.markdown code {
+.markdown code {
+  position: relative;
   display: block;
   padding: 20px;
   white-space: pre-wrap;
@@ -60,19 +61,17 @@ iframe{
   color: #ffffff;
   background-color: #212121;
 }
-.markdown.markdown .codeblock{
-  position: relative;
-  padding-top: 65px;
+.markdown .code-block{
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
 }
-.markdown code span {
-  position: absolute;
-  width: 100%;
+.markdown pre .code-language{
   display: flex;
   justify-content: flex-end;
-  top: 0;
-  left: 0;
   padding: 10px;
-  border-radius: .25rem;
+  border-radius: .25rem .25rem 0 0;
   border: 1px solid #212121;
   background-color: #f9f9f9;
   color: #212121;

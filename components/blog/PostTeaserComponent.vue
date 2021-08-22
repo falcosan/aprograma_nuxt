@@ -9,12 +9,12 @@
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
-        <div :class="`teaser-file w-full h-screen ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxSize : 'max-h-44 xx:max-h-52 xs:max-h-56 sm:max-h-64 md:max-h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
+        <div :class="`teaser-file w-full h-screen ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxSize : 'max-h-44 xx:max-h-48 xs:max-h-56 sm:max-h-64 md:max-h-52 lg:max-h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'NuxtImg'"
             :format="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'webp' : false"
             :modifiers="lookFile() === 'NuxtImg' || !postContent.file.filename ? { focal: postContent.file.focus ? postContent.file.focus : 0 } : false"
-            :class="`w-full h-full object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxSize : 'max-h-44 xx:max-h-52 xs:max-h-56 sm:max-h-64 md:max-h-56'}  ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
+            :class="`w-full h-full object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxSize : 'max-h-44 xx:max-h-48 xs:max-h-56 sm:max-h-64 md:max-h-52 lg:max-h-56'}  ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
             :alt="postContent.file.alt"
             :src="setFile"
             :width="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'auto' : false"
@@ -22,16 +22,16 @@
             :sizes="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883' : null"
           />
         </div>
-        <div :class="`teaser-text w-full flex flex-col justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? 'flex-auto' : 'lg:h-screen lg:max-h-56 lg:w-1/2'}`" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'}; color: ${postContent.text_color.color};`">
+        <div :class="`teaser-text w-full flex flex-col flex-auto justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? '' : 'lg:h-screen lg:max-h-56 lg:w-1/2'}`" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'}; color: ${postContent.text_color.color};`">
           <div class="text-description">
             <span
-              :class="`teaser-title mb-2 overflow-hidden font-medium ${$route.name === 'blog' ? 'text-xl sm:text-2xl' : 'text-xl'}`"
-              :style="`-webkit-line-clamp: ${rowContainer || sliderContainer || containerContainer || carouselContainer || $store.state.data.windowWidth < 1024 ? '1' : '2'};`"
+              class="teaser-title mb-2.5 overflow-hidden text-lg lg:text-xl xl:text-2xl font-mediu"
             >
               {{ postContent.title }}
             </span>
             <span
-              class="teaser-intro overflow-hidden leading-normal"
+              class="teaser-intro overflow-hidden text-sm xl:text-base"
+              :style="`-webkit-line-clamp: ${rowContainer || sliderContainer || containerContainer || carouselContainer || $store.state.data.windowWidth < 1024 ? '1' : '2'};`"
             >
               {{ postContent.intro }}
             </span>
@@ -142,12 +142,12 @@ export default {
 }
 </script>
 <style scoped>
+  .teaser-title{
+    -webkit-line-clamp:  2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
 .teaser-intro{
-  display: -webkit-box;
-  -webkit-line-clamp:  2;
-  -webkit-box-orient: vertical;
-}
-.teaser-title{
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }

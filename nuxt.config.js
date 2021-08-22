@@ -45,19 +45,6 @@ export default {
     profile: 'risky',
     imageFileLoader: false
   },
-  html: {
-    minify: {
-      collapseBooleanAttributes: true,
-      decodeEntities: true,
-      minifyCSS: false,
-      minifyJS: false,
-      processConditionalComments: true,
-      removeEmptyAttributes: true,
-      removeRedundantAttributes: true,
-      trimCustomFragments: true,
-      useShortDoctype: true
-    }
-  },
   image: {
     provider: 'storyblok',
     storyblok: {

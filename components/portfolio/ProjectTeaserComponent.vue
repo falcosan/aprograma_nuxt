@@ -7,6 +7,7 @@
       <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color ? projectContent.teaser_background_color.color : '#e0e0e0'}; color: ${projectContent.teaser_text_color.color};`">
         <NuxtImg
           class="project-image w-full h-4/5 object-cover object-center select-none rounded-t"
+          loading="lazy"
           format="webp"
           :modifiers="{ filters: { focal: projectContent.image.focus ? projectContent.image.focus : 0 } }"
           :src="projectContent.image.filename"

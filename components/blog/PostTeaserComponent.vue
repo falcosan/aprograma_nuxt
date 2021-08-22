@@ -12,6 +12,7 @@
         <div :class="`teaser-file w-full h-screen ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxSize : 'max-h-44 xx:max-h-48 xs:max-h-56 sm:max-h-64 md:max-h-52 lg:max-h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'NuxtImg'"
+            :loading="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'lazy' : ''"
             :format="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'webp' : false"
             :modifiers="lookFile() === 'NuxtImg' || !postContent.file.filename ? { focal: postContent.file.focus ? postContent.file.focus : 0 } : false"
             :class="`w-full h-full object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxSize : 'max-h-44 xx:max-h-48 xs:max-h-56 sm:max-h-64 md:max-h-52 lg:max-h-56'}  ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"

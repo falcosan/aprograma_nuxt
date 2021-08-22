@@ -15,6 +15,7 @@
             .pop()
             .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
           :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
+          loading="lazy"
           format="webp"
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
@@ -81,6 +82,7 @@
       <NuxtImg
         v-if="(blok && blok.media.filename && lookFile === 'image') || image"
         :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
+        loading="lazy"
         format="webp"
         class="image-container"
         :class="`${blok && blok.media.filename ? blok.media.filename : src

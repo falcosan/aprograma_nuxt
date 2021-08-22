@@ -13,6 +13,7 @@
             <template #activator="action">
               <NuxtImg
                 v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
+                loading="lazy"
                 format="webp"
                 :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
                 :class="`${media.filename
@@ -83,6 +84,7 @@
           <div v-else class="detail-image">
             <NuxtImg
               v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
+              loading="lazy"
               format="webp"
               :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
               :type="`image/${imageType(media)}`"

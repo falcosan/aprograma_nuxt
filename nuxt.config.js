@@ -42,7 +42,7 @@ export default {
     'nuxt-build-optimisations'
   ],
   buildOptimisations: {
-    profile: 'risky',
+    profile: process.env.NODE_ENV === 'development' ? 'risky' : 'experimental',
     imageFileLoader: false
   },
   image: {

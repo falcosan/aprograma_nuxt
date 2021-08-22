@@ -35,7 +35,7 @@
           @click.native="goBack()"
         />
       </div>
-      <div class="post-article markdown w-full max-w-prose prose-sm lg:prose-lg py-7 px-5 mx-auto my-0">
+      <div class="post-article w-full max-w-prose prose-sm lg:prose-lg py-7 px-5 mx-auto my-0">
         <h3
           :style="`color: ${blok.text_color.color};`"
           class="post-intro"
@@ -43,20 +43,24 @@
         />
         <article
           :style="`color: ${blok.text_color.color};`"
-          class="post-article block pb-2.5"
+          class="post-article markdown block pb-2.5"
           v-html="$md.render(blok.long_text)"
         />
         <p
           :style="`color: ${blok.text_color.color};`"
-          class="post-date text-right"
-          v-text="changeDate(blok.date)"
-        />
-        <p
-          :style="`color: ${blok.text_color.color};`"
-          class="post-author italic text-sm"
+          class="post-author pb-2.5 text-center italic text-sm"
         >
           {{ $languageCase('by', 'de', 'di') }} {{ blok.author ? blok.author : $languageCase('Anonymous', 'Anónimo', 'Anonimo') }}
         </p>
+        <div
+          class="end-ling w-5/12 h-0.5 my-0 mx-auto rounded filter brightness-50 opacity-50"
+          :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'};`"
+        />
+        <p
+          :style="`color: ${blok.text_color.color};`"
+          class="post-date text-center text-xs"
+          v-text="changeDate(blok.date)"
+        />
       </div>
     </div>
   </div>

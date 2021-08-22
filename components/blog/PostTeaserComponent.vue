@@ -37,9 +37,9 @@
               {{ postContent.intro }}
             </span>
           </div>
-          <div class="teaser-info w-full flex flex-col xx:flex-row mt-5 italic items-end">
-            <ul :class="`teaser-categories w-full flex flex-wrap self-start ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'justify-end' : '-m-1.5'}`">
-              <li v-for="(category, index) in sortedCategories" :key="index" :class="`teaser-category text-xs p-2.5 m-1.5 rounded shadow-sm filter brightness-95 transition-shadow ${!$device.isDesktop ? '' : ' hover:shadow'}`" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'};`">
+          <div class="teaser-info w-full flex flex-col xx:flex-row mt-5 items-end">
+            <ul :class="`teaser-categories w-full flex flex-wrap self-start ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'justify-end' : '-m-1'}`">
+              <li v-for="(category, index) in sortedCategories" :key="index" class="teaser-category text-xs p-2.5 m-1 rounded shadow-sm italic font-extralight filter brightness-95 transition-shadow" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'};`">
                 {{ category }}
               </li>
             </ul>

@@ -21,7 +21,7 @@
             :class="`category-container h-full flex justify-between overflow-hidden rounded cursor-pointer select-none transition-all filter grayscale bg-gray-600 text-white ${searchCategory.includes(filter) ? 'bg-opacity-70' : !$device.isDesktop ? '' : 'hover:bg-gray-700'}`"
             @click="filterSearch(filter)"
           >
-            <Input :class="`category-input w-full py-3 px-4 text-sm text-left rounded truncate transition-all ${searchCategory.includes(filter) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter" />
+            <Input :class="`category-input w-full py-3 px-4 text-sm text-left rounded italic font-extralight truncate transition-all ${searchCategory.includes(filter) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter" />
             <Icon close tag="span" size="w-2 h-2" :class="`px-3.5 xs:px-5 pointer-events-none transition ${searchCategory.includes(filter) ? '' : 'transform rotate-45'}`" />
           </li>
           <li class="reset-container h-full overflow-hidden col-start-1 col-end-1 row-start-1 row-end-1 rounded cursor-pointer select-none" @click="searchCategory = []">

@@ -42,7 +42,7 @@ export default {
     this.randomIndex()
   },
   mounted () {
-    this.$setCodeLang()
+    this.$markdownRules()
   },
   methods: {
     randomIndex () {

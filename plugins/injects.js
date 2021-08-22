@@ -66,7 +66,7 @@ export default ({ app }, inject) => {
       document.body.classList.remove('noscroll')
     }
   })
-  inject('setCodeLang', () => {
+  inject('markdownRules', () => {
     if (document.querySelector('pre code')) {
       [...document.querySelectorAll('pre code')].forEach((code) => {
         if (code.className && !code.classList.contains('code-block')) {

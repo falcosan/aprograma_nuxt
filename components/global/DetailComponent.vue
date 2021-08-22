@@ -152,7 +152,7 @@ export default {
     }
   },
   mounted () {
-    this.$setCodeLang()
+    this.$markdownRules()
   },
   methods: {
     imageType (media) {

@@ -79,7 +79,7 @@ export default {
     }
   },
   mounted () {
-    this.$setCodeLang()
+    this.$markdownRules()
   },
   methods: {
     changeDate (date) {

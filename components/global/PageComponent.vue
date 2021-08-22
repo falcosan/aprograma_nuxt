@@ -34,16 +34,7 @@ export default {
       return this.blok.body.filter(function (item) { return item.row_container })
     },
     components () {
-      return this.blok.body.filter(component => component.resolution_show ? !component.exact_resolution ? this.$store.state.data.windowWidth >= component.resolution_show.split('; ')[1] : this.$store.state.data.windowWidth >= component.resolution_show.split('; ')[1] && this.maxBreakpoint <= component.resolution_show.split('; ')[1] : component)
-    },
-    maxBreakpoint () {
-      if (this.$store.state.data.windowWidth > 1440) {
-        return this.$rangeItems(this.$store.state.data.windowWidth, 1440)
-      } else if (this.$store.state.data.windowWidth > 768) {
-        return this.$rangeItems(this.$store.state.data.windowWidth, 768)
-      } else {
-        return this.$rangeItems(this.$store.state.data.windowWidth, 632)
-      }
+      return this.blok.body.filter(component => component.resolution_show ? this.$store.state.data.windowWidth >= component.resolution_show.split('; ')[1] : component)
     },
     maxComponents () {
       if (Number(this.blok.column_container)) {

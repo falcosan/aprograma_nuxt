@@ -168,7 +168,7 @@ export default {
       if (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') {
         return this.blok.body
       } else {
-        return this.blok.body.filter(component => component.resolution_show ? !component.exact_resolution ? this.fullWidth >= Number(component.resolution_show.split('; ')[0]) : this.fullWidth >= Number(component.resolution_show.split('; ')[0]) && this.fullWidth < Number(component.resolution_show.split('; ')[1]) : component)
+        return this.blok.body.filter(component => component.resolution_show ? this.fullWidth >= Number(component.resolution_show.split('; ')[0]) : component)
       }
     },
     rowComponent () {

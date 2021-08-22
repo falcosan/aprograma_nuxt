@@ -8,7 +8,7 @@
       />
       <div
         v-if="!blok.background_media.filename"
-        :class="`main-flat fixed min-h-full min-w-full inset-0 -z-10 transition-colors duration-500 ${blok.color_animation ? 'colorAnimation' : ''}`"
+        :class="`main-flat fixed w-full h-full inset-0 -z-10 transition-colors duration-500 ${blok.color_animation ? 'colorAnimation' : ''}`"
         :style="`background-color: ${randomBackgroundColor};`"
       />
       <Nuxt :class="`relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
@@ -17,7 +17,7 @@
       v-if="blok.background_media.filename && lookFile === 'image'"
       format="webp"
       :modifiers="{ filters: { focal: blok.background_media.focus ? blok.background_media.focus: 0 } }"
-      :class="`media-image min-h-full min-w-full fixed right-0 bottom-0 -z-10 object-cover object-center ${blok.color_animation ? 'colorAnimation' : ''}`"
+      :class="`media-image w-full h-full fixed right-0 bottom-0 -z-10 object-cover object-center ${blok.color_animation ? 'colorAnimation' : ''}`"
       :src="blok.background_media.filename"
       :alt="blok.background_media.alt"
       width="auto"
@@ -26,7 +26,7 @@
     />
     <video
       v-else-if="blok.background_media.filename"
-      :class="`media-video min-h-full min-w-full fixed right-0 bottom-0 -z-10 object-cover object-center ${blok.color_animation ? 'colorAnimation' : ''}`"
+      :class="`media-video w-full h-full fixed right-0 bottom-0 -z-10 object-cover object-center ${blok.color_animation ? 'colorAnimation' : ''}`"
       playsinline
       autoplay
       muted

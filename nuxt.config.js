@@ -260,7 +260,7 @@ export default {
         collapseBooleanAttributes: true,
         decodeEntities: true,
         minifyCSS: false,
-        minifyJS: false,
+        minifyJS: true,
         processConditionalComments: true,
         removeEmptyAttributes: true,
         removeRedundantAttributes: true,

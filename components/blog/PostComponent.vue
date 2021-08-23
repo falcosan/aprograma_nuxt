@@ -46,12 +46,12 @@
         />
         <article
           :style="`color: ${blok.text_color.color};`"
-          class="post-article markdown block pb-2.5"
+          class="post-article markdown block mb-10"
           v-html="$md.render(blok.long_text)"
         />
         <p
           :style="`color: ${blok.text_color.color};`"
-          class="post-author pb-5 text-center italic text-sm"
+          class="post-author mb-5 text-center italic text-sm"
         >
           {{ $languageCase('by', 'de', 'di') }} {{ blok.author ? blok.author : $languageCase('Anonymous', 'Anónimo', 'Anonimo') }}
         </p>
@@ -61,7 +61,7 @@
         />
         <p
           :style="`color: ${blok.text_color.color};`"
-          class="post-date pt-2.5 text-center text-xs"
+          class="post-date mt-2.5 text-center text-xs"
           v-text="changeDate(blok.date)"
         />
       </div>

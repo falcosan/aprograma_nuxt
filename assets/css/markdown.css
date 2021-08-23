@@ -175,6 +175,12 @@
   border-top: 0.1rem solid #f4f5f6;
 }
 
+.markdown > *:last-child,
+.markdown > *:last-child > *:last-child,
+.markdown > *:last-child > *:last-child > *:last-child {
+  margin: 0;
+}
+
 .markdown button,
 .markdown dd,
 .markdown dt,

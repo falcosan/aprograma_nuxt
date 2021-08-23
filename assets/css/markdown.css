@@ -1,36 +1,40 @@
 /* MARKDOWN */
   
-  .prose{
+  .markdown{
     word-break: break-word;
     overflow-wrap: anywhere;
   }
-  .prose img,
-  .prose video{
+  .markdown img,
+  .markdown video{
     width: 100%;
     border-radius: .25rem;
   }
-  .prose pre {
-    position: relative;
+  .markdown a {
+    text-decoration: underline;
   }
-  .prose *:not(pre) code {
+  .markdown pre {
+    position: relative;
+    padding: 0;
+    border-radius: .25rem;
+    overflow: hidden;
+    background-color: #212121;
+  }
+  .markdown *:not(pre) code {
     padding: 2px;
     border-radius: .25rem; 
     box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
     background-color: #f9f9f9;
   }
-  .prose pre code {
-    overflow: hidden;
-    white-space: pre-wrap;
-  }
-  .prose .syntax-code-block{
+  .markdown pre code {
     display: block;
-    padding-top: 3em;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: .25rem;
-    border-bottom-right-radius: .25rem;
+    white-space: pre-wrap;
+    padding: 20px;
+    color: #ffffff;
   }
-  .prose .syntax-code-block .code-language{
+  .markdown .syntax-code-block{
+    padding-top: 4rem;
+  }
+  .markdown .syntax-code-block .code-language{
     position: absolute;
     width: 100%;
     display: flex;
@@ -42,7 +46,7 @@
     background-color: #f9f9f9;
     color: #212121;
   }
-  .prose blockquote {
+  .markdown blockquote {
     border-left: 10px solid #484848;
     border-radius: .25rem;
     padding: 0.5rem 10px;
@@ -50,7 +54,7 @@
     color: #212121;
     quotes: "\201C""\201D""\2018""\2019";
   }
-  .prose blockquote:before {
+  .markdown blockquote:before {
     content: open-quote;
     line-height: 0;
     vertical-align: -5px;

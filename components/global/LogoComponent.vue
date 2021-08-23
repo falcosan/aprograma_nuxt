@@ -93,11 +93,9 @@ export default {
     play () {
       this.moved.a = 'transform origin-center-left rotate-360 transition duration-700 ease-out'
       this.moved.p = 'transform origin-center rotate-360 transition duration-700 ease-out'
-      this.$store.commit('data/moveMutation', true)
       this.$refs.logo.ontransitionend = () => {
         this.moved.p = ''
         this.moved.a = ''
-        this.$store.commit('data/moveMutation', false)
       }
     },
     setLoading () {

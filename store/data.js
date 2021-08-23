@@ -1,15 +1,11 @@
 
 export const state = () => ({
-  moved: false,
   error: false,
   windowWidth: 0,
   themeColor: []
 })
 
 export const mutations = {
-  moveMutation (state, newMove) {
-    state.moved = newMove
-  },
   responsiveMutation (state, newResponsive) {
     state.windowWidth = newResponsive
   },

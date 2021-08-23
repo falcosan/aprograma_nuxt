@@ -39,9 +39,9 @@
         />
       </div>
       <div class="post-article w-full max-w-prose pb-10 px-5 mx-auto my-0">
-        <h3
+        <h2
           :style="`color: ${blok.text_color.color};`"
-          class="post-intro"
+          class="post-intro mb-7 text-xl sm:text-2xl"
           v-text="blok.intro"
         />
         <article
@@ -51,7 +51,7 @@
         />
         <p
           :style="`color: ${blok.text_color.color};`"
-          class="post-author pb-2.5 text-center italic text-sm"
+          class="post-author pb-5 text-center italic text-sm"
         >
           {{ $languageCase('by', 'de', 'di') }} {{ blok.author ? blok.author : $languageCase('Anonymous', 'Anónimo', 'Anonimo') }}
         </p>
@@ -61,7 +61,7 @@
         />
         <p
           :style="`color: ${blok.text_color.color};`"
-          class="post-date text-center text-xs"
+          class="post-date pt-2.5 text-center text-xs"
           v-text="changeDate(blok.date)"
         />
       </div>

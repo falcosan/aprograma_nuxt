@@ -171,8 +171,8 @@
 
 .markdown hr {
   border: 0;
-  border-top: 0.1rem solid #f4f5f6;
   margin: 3rem 0;
+  border-top: 0.1rem solid #f4f5f6;
 }
 
 .markdown button,
@@ -181,12 +181,12 @@
 .markdown li {
   margin-bottom: 1rem;
 }
-
-.markdown fieldset,
+.markdown p,
 .markdown input,
 .markdown select,
-.markdown textarea {
-  margin-bottom: 1.5rem;
+.markdown textarea,
+.markdown fieldset{
+margin-bottom: 1.5rem;
 }
 
 .markdown blockquote,
@@ -194,7 +194,6 @@
 .markdown figure,
 .markdown form,
 .markdown ol,
-.markdown p,
 .markdown pre,
 .markdown table,
 .markdown ul {

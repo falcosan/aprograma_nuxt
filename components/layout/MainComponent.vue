@@ -20,10 +20,10 @@
       :class="`media-image w-full h-full fixed right-0 bottom-0 -z-10 object-cover object-center ${blok.color_animation ? 'colorAnimation' : ''}`"
       :src="blok.background_media.filename"
       :alt="blok.background_media.alt"
-      width="1680"
-      height="643"
+      width="1920"
+      height="735"
       fit="in"
-      sizes="xs:514px sm:514px md:711px lg:804px xl:1680px"
+      sizes="xs:514px sm:514px md:711px lg:804px xl:1680px 2xl:1920px"
       :type="`image/${imageType()}`"
     />
     <video

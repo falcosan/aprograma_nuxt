@@ -16,7 +16,7 @@
       fit="in"
       :title="blok.title && !blok.show_title || tooltip ? blok ? blok.title : tooltip : ''"
       :src="blok.icon_image.filename"
-      alt=""
+      :alt="blok.alt"
       :height="blok.size"
       :width="blok.size"
       :name="blok.name"

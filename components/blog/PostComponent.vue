@@ -46,7 +46,7 @@
         />
         <article
           :style="`color: ${blok.text_color.color};`"
-          class="post-article markdown block pb-2.5"
+          class="post-article block pb-2.5"
           v-html="$md.render(blok.long_text)"
         />
         <p

@@ -82,6 +82,98 @@ module.exports = {
       cursor: {
         next: 'url("data:image/svg+xml,%3Csvg width=\'24\' height=\'24\' xmlns=\'http://www.w3.org/2000/svg\' fill-rule=\'evenodd\' clip-rule=\'evenodd\'%3E%3Cpath d=\'M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z\'/%3E%3C/svg%3E") 32 32, pointer',
         previous: 'url("data:image/svg+xml,%3Csvg width=\'24\' height=\'24\' xmlns=\'http://www.w3.org/2000/svg\' fill-rule=\'evenodd\' clip-rule=\'evenodd\'%3E%3Cpath d=\'M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z\'/%3E%3C/svg%3E") 32 32, pointer'
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: 'inherit',
+            h1: {
+              color: 'inherit'
+            },
+            h2: {
+              color: 'inherit'
+            },
+            h3: {
+              color: 'inherit'
+            },
+            h4: {
+              color: 'inherit'
+            },
+            h5: {
+              color: 'inherit'
+            },
+            h6: {
+              color: 'inherit'
+            },
+            a: {
+              color: 'inherit'
+            },
+            thead: {
+              color: 'inherit'
+            },
+            strong: {
+              color: 'inherit'
+            }
+          }
+        },
+        sm: {
+          css: {
+            color: 'inherit',
+            h2: {
+              color: 'inherit'
+            },
+            h3: {
+              color: 'inherit'
+            },
+            h4: {
+              color: 'inherit'
+            },
+            h5: {
+              color: 'inherit'
+            },
+            h6: {
+              color: 'inherit'
+            },
+            a: {
+              color: 'inherit'
+            },
+            thead: {
+              color: 'inherit'
+            },
+            strong: {
+              color: 'inherit'
+            }
+          }
+        },
+        lg: {
+          css: {
+            color: 'inherit',
+            h2: {
+              color: 'inherit'
+            },
+            h3: {
+              color: 'inherit'
+            },
+            h4: {
+              color: 'inherit'
+            },
+            h5: {
+              color: 'inherit'
+            },
+            h6: {
+              color: 'inherit'
+            },
+            a: {
+              color: 'inherit'
+            },
+            thead: {
+              color: 'inherit'
+            },
+            strong: {
+              color: 'inherit'
+            }
+          }
+        }
       }
     }
   },

@@ -10,7 +10,7 @@
         .pop()
         .replace(/\.[^/.]+$/, '')}-icon mx-auto my-0 fill-current object-contain object-center pointer-events-none`"
       loading="lazy"
-      :style="`width: ${blok.size}; height: ${blok.size};`"
+      :style="`width: ${/[a-zA-Z]/g.test(blok.size) ? blok.size : `${blok.size}px`}; height: ${/[a-zA-Z]/g.test(blok.size) ? blok.size : `${blok.size}px`};`"
       format="webp"
       :modifiers="{ filters: { focal: blok.icon_image.focus ? blok.icon_image.focus : 0 } }"
       fit="in"

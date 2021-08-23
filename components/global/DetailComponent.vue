@@ -12,7 +12,7 @@
           >
             <template #activator="action">
               <NuxtImg
-                v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
+                v-if="$imageValidation(media.filename)"
                 loading="lazy"
                 format="webp"
                 :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
@@ -24,10 +24,10 @@
                 :alt="media.alt"
                 :type="`image/${imageType(media)}`"
                 fit="in"
-                width="auto"
-                height="auto"
+                width="620"
+                height="620"
                 draggable="false"
-                sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883"
+                sizes="xs:299px sm:380px md:514px lg:620px"
                 @click.native="action.open()"
               />
               <video
@@ -49,7 +49,7 @@
             </template>
             <template #body>
               <NuxtImg
-                v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
+                v-if="$imageValidation(media.filename)"
                 format="webp"
                 :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
                 :class="`${media.filename
@@ -83,7 +83,7 @@
           </Modal>
           <div v-else class="detail-image">
             <NuxtImg
-              v-if="(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(media.filename.toLowerCase().split('.').pop())"
+              v-if="$imageValidation(media.filename)"
               loading="lazy"
               format="webp"
               :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
@@ -94,10 +94,11 @@
                 .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain cursor-pointer object-cover rounded pointer-events-none select-none`"
               :src="media.filename"
               :alt="media.alt"
-              width="auto"
-              height="auto"
-
-              sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883"
+              fit="in"
+              width="620"
+              height="620"
+              draggable="false"
+              sizes="xs:299px sm:380px md:514px lg:620px"
             />
             <video
               v-else

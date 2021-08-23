@@ -19,12 +19,12 @@
           format="webp"
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
-          :width="blok && blok.width ? blok.width: width ? width : 'auto'"
-          :height="blok && blok.height ? blok.height : height ? height : 'auto'"
+          :width="blok ? blok.width : width"
+          :height="blok ? blok.height : height"
           :type="`image/${imageType()}`"
           fit="in"
           draggable="false"
-          sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883"
+          :sizes="`xs:299px sm:380px md:514px lg:${blok ? blok.width : width}px`"
           @click.native="action.open()"
         />
         <video
@@ -33,8 +33,8 @@
             .split(/[\\/]/)
             .pop()
             .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
-          :width="blok && blok.width ? blok.width: width ? width : 'auto'"
-          :height="blok && blok.height ? blok.height : height ? height : 'auto'"
+          :width="blok ? blok.width : width"
+          :height="blok ? blok.height : height"
           playsinline
           autoplay
           muted
@@ -53,12 +53,13 @@
             .split(/[\\/]/)
             .pop()
             .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center select-none cursor-default`"
-          width="auto"
-          height="auto"
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :type="`image/${imageType()}`"
+          width="1680"
+          height="643"
           fit="in"
+          sizes="xs:514px sm:514px md:711px lg:804px xl:1680px"
           draggable="false"
         />
         <video
@@ -91,12 +92,12 @@
           .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
         :src="blok && blok.media.filename ? blok.media.filename : src"
         :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
-        :width="blok && blok.width ? blok.width: width ? width : 'auto'"
-        :height="blok && blok.height ? blok.height : height ? height : 'auto'"
+        :width="blok ? blok.width : width"
+        :height="blok ? blok.height : height"
         :type="`image/${imageType()}`"
         fit="in"
         draggable="false"
-        sizes="xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883"
+        :sizes="`xs:299px sm:380px md:514px lg:${blok ? blok.width : width}px`"
       />
       <video
         v-else-if="(blok && blok.media.filename) || video"
@@ -104,8 +105,8 @@
           .split(/[\\/]/)
           .pop()
           .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
-        :width="blok && blok.width ? blok.width: width ? width : 'auto'"
-        :height="blok && blok.height ? blok.height : height ? height : 'auto'"
+        :width="blok ? blok.width : width"
+        :height="blok ? blok.height : height"
         playsinline
         autoplay
         muted
@@ -138,6 +139,14 @@ export default {
       type: Number,
       default: 0
     },
+    width: {
+      type: String,
+      default: ''
+    },
+    height: {
+      type: String,
+      default: ''
+    },
     title: {
       type: String,
       default: ''
@@ -147,14 +156,6 @@ export default {
       default: ''
     },
     alt: {
-      type: String,
-      default: ''
-    },
-    width: {
-      type: String,
-      default: ''
-    },
-    height: {
       type: String,
       default: ''
     },

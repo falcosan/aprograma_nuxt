@@ -5,12 +5,12 @@
       <div
         v-show="openEvent || open"
         ref="modal"
-        :class="`modal-backdrop fixed flex justify-center inset-0 z-50 overflow-auto focus:outline-none ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
+        :class="`modal-backdrop w-full fixed flex justify-center inset-0 z-50 overflow-auto focus:outline-none ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
         tabindex="0"
         @keydown.esc="closeMode ? closeModal() : ''"
         @click.self.stop="closeModal()"
       >
-        <div class="modal-container flex items-center" @click.self.stop="closeMode ? closeModal() : ''">
+        <div class="modal-container w-full flex items-center" @click.stop="closeMode ? closeModal() : ''">
           <header v-if="hasSlot('header') || closeMode" class="modal-header">
             <slot name="header" />
             <Icon
@@ -23,12 +23,12 @@
           </header>
           <section
             v-if="hasSlot('body')"
-            :class="`modal-body h-auto px-5 lg:px-12 ${closeMode ? 'cursor-pointer' : ''}`"
-            @click.self.stop="closeMode ? closeModal() : ''"
+            :class="`modal-body w-full h-auto px-5 lg:px-12 ${closeMode ? 'cursor-pointer' : ''}`"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
-              <div class="body-container grid gap-10 grid-flow-row-dense" @click.self.stop="closeMode ? closeModal() : ''">
+              <div class="body-container grid gap-10 grid-flow-row-dense">
                 <slot name="body" />
+                <hr>
               </div>
             </transition>
           </section>
@@ -98,14 +98,11 @@ export default {
 .body-container > *:not(hr) {
   max-height: inherit;
   align-self: flex-end;
-  width: auto;
+  width: 100%;
   min-width: 30vw;
   object-fit: contain;
 }
-.body-container > *:first-child{
-  box-sizing: content-box;
-}
-.body-container > *:last-child:not(:first-child){
-  padding-bottom: 3rem;
+.body-container > *{
+  pointer-events: none;
 }
 </style>

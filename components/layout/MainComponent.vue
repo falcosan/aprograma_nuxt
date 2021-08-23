@@ -15,15 +15,15 @@
     </div>
     <NuxtImg
       v-if="$imageValidation(blok.background_media.filename)"
-      format="webp"
       :modifiers="{ filters: { focal: blok.background_media.focus ? blok.background_media.focus: 0 } }"
       :class="`media-image w-full h-full fixed right-0 bottom-0 -z-10 object-cover object-center ${blok.color_animation ? 'colorAnimation' : ''}`"
       :src="blok.background_media.filename"
       :alt="blok.background_media.alt"
-      width="1920"
-      height="735"
+      width="2560"
+      height="1440"
+      format="webp"
       fit="in"
-      sizes="xs:514px sm:514px md:711px lg:804px xl:1680px 2xl:1920px"
+      sizes="xs:514px sm:711px md:804px lg:1680px xl:1920px 2xl:2560px"
       :type="`image/${imageType()}`"
     />
     <video

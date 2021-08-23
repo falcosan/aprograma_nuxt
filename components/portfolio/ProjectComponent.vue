@@ -54,17 +54,19 @@
               height="595"
               fit="in"
               :style="`border-color: ${blok.project_background_color.color ? blok.project_background_color.color : '#e0e0e0'}`"
-              sizes="xs:299px sm:380px md:514px lg:620px xl:984 2xl:1200"
+              sizes="xs:299px sm:380px md:514px lg:620px xl:984 2xl:1200px"
             />
           </div>
         </template>
         <template #body>
           <NuxtImg
-            format="webp"
             :modifiers="{ filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
             class="image-project select-none cursor-default"
-            width="auto"
-            height="auto"
+            width="1920"
+            height="1980"
+            format="webp"
+            fit="in"
+            sizes="xs:380px sm:514px md:711px lg:804px xl:1680px 2xl:1920px"
             :src="blok.image.filename"
             :alt="blok.image.alt"
           />

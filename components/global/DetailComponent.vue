@@ -50,16 +50,16 @@
             <template #body>
               <NuxtImg
                 v-if="$imageValidation(media.filename)"
-                format="webp"
                 :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
                 :class="`${media.filename
                   .split(/[\\/]/)
                   .pop()
                   .replace(/\.[^/.]+$/, '')}-image modal-image my-0 mx-auto object-contain object-center select-none cursor-default`"
-                width="1680"
-                height="643"
+                width="1920"
+                height="1980"
+                format="webp"
                 fit="in"
-                sizes="xs:514px sm:514px md:711px lg:804px xl:1680px"
+                sizes="xs:380px sm:514px md:711px lg:804px xl:1680px 2xl:1920px"
                 draggable="false"
                 :type="`image/${imageType(media)}`"
                 :src="media.filename"

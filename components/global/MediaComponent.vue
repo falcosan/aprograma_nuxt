@@ -48,7 +48,6 @@
         <NuxtImg
           v-if="(blok && $imageValidation(blok.media.filename)) || image"
           :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
-          format="webp"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
@@ -56,10 +55,11 @@
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :type="`image/${imageType()}`"
-          width="1680"
-          height="643"
+          width="1920"
+          height="1980"
+          format="webp"
           fit="in"
-          sizes="xs:514px sm:514px md:711px lg:804px xl:1680px"
+          sizes="xs:380px sm:514px md:711px lg:804px xl:1680px 2xl:1920px"
           draggable="false"
         />
         <video

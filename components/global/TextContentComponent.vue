@@ -6,7 +6,7 @@
     :class="`text-container w-full max-w-full h-full flex flex-col rounded ${blok.color_effect && colors.length > 1 ? 'transition-colors duration-700 ease-in-out' : ''}`"
   >
     <div
-      :class="`text-content markdown block max-w-none rounded prose-sm lg:prose-lg ${!blok.remove_space ? 'p-5' : ''}`"
+      :class="`text-content markdown block max-w-none rounded ${!blok.remove_space ? 'p-5' : ''}`"
       v-html="$md.render(blok.text)"
     />
   </div>

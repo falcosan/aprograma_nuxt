@@ -140,7 +140,10 @@ export default {
     linkify: true,
     runtime: true,
     typographer: true,
-    breaks: true
+    breaks: true,
+    use: [
+      'markdown-it-emoji'
+    ]
   },
 
   sitemap: {

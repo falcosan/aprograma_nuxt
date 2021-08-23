@@ -45,7 +45,7 @@
           :class="`footer-info grid gap-y-1.5 justify-self-center whitespace-nowrap text-center ${$themeColor(backgroundColors) ? 'text-white' : ''}`"
         >
           <span class="footer-copyright text-sm"> © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span>
-          <span class="footer-powered text-xs">&#60; {{ $languageCase('powered by', 'creado con', 'creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span><span class="nuxtjs-emoji"> 💚</span></a> / &nbsp;{{ $languageCase('hosted by', 'alojado con', 'distribuito da') }} <a class="netlify-link" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"><span class="netlify underline">Netlify</span></a> &#62;</span>
+          <span class="footer-powered text-xs leading-relaxed">{{ $languageCase('Made with', 'Hecho con', 'Creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span></a>, <a class="netlify-link" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"><span class="netlify underline">Netlify</span></a> {{ $languageCase('and', 'y', 'e') }} <a class="storyblok-link" href="https://www.storyblok.com/" target="_blank" rel="noopener noreferrer"><span class="storyblok underline">Storyblok</span></a></span>
         </div>
         <ul
           :class="`social-links flex flex-wrap justify-end -m-1.5 ${$themeColor(backgroundColors) ? 'filter invert' : ''}`"
@@ -79,7 +79,7 @@
       </div>
       <div class="footer-info grid gap-y-1.5">
         <span class="footer-copyright text-sm"> © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span>
-        <span class="footer-powered text-xs">&#60; {{ $languageCase('powered by', 'creado con', 'creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span><span class="nuxtjs-emoji"> 💚</span></a> / &nbsp;{{ $languageCase('hosted by', 'alojado con', 'distribuito da') }} <a class="netlify-link" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"><span class="netlify underline">Netlify</span></a> &#62;</span>
+        <span class="footer-powered text-xs leading-relaxed">{{ $languageCase('Made with', 'Hecho con', 'Creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span></a>, <a class="netlify-link" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"><span class="netlify underline">Netlify</span></a> {{ $languageCase('and', 'y', 'e') }} <a class="storyblok-link" href="https://www.storyblok.com/" target="_blank" rel="noopener noreferrer"><span class="storyblok underline">Storyblok</span></a></span>
       </div>
 
       <ul

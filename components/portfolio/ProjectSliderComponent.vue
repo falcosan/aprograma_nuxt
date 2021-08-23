@@ -34,7 +34,7 @@
                 :alt="project.content.image.alt"
                 width="620"
                 height="320"
-                sizes="620px"
+                sizes="lg:364px xl:491px 2xl:620px"
               />
             </div>
           </NuxtLink>

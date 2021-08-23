@@ -24,7 +24,7 @@
           :type="`image/${imageType()}`"
           fit="in"
           draggable="false"
-          :sizes="`xs:299px sm:380px md:514px lg:${blok ? blok.width : width}px`"
+          :sizes="`xs:299px sm:380px md:514px lg:${blok ? /[a-zA-Z]/g.test(blok.width) ? blok.width : `${blok.width}px` : /[a-zA-Z]/g.test(width) ? width : `${width}px`}`"
           @click.native="action.open()"
         />
         <video
@@ -97,7 +97,7 @@
         :type="`image/${imageType()}`"
         fit="in"
         draggable="false"
-        :sizes="`xs:299px sm:380px md:514px lg:${blok ? blok.width : width}px`"
+        :sizes="`xs:299px sm:380px md:514px lg:${blok ? /[a-zA-Z]/g.test(blok.width) ? blok.width : `${blok.width}px` : /[a-zA-Z]/g.test(width) ? width : `${width}px`}`"
       />
       <video
         v-else-if="(blok && blok.media.filename) || video"

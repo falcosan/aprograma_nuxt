@@ -12,15 +12,16 @@
         <div :class="`teaser-file w-full h-screen ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxSize : 'max-h-44 xx:max-h-48 xs:max-h-56 sm:max-h-64 md:max-h-52 lg:max-h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
           <component
             :is="postContent.file.filename ? lookFile() : 'NuxtImg'"
-            :loading="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'lazy' : ''"
+            :loading="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'lazy' : false"
             :format="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'webp' : false"
-            :modifiers="lookFile() === 'NuxtImg' || !postContent.file.filename ? { focal: postContent.file.focus ? postContent.file.focus : 0 } : false"
+            :modifiers="lookFile() === 'NuxtImg' && postContent.file.filename ? { filters: { focal: postContent.file.focus ? postContent.file.focus : 0 } } : null"
             :class="`w-full h-full object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxSize : 'max-h-44 xx:max-h-48 xs:max-h-56 sm:max-h-64 md:max-h-52 lg:max-h-56'}  ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
-            :alt="postContent.file.alt"
+            :alt="postContent.file.filename ? lookFile() === 'NuxtImg' ? postContent.file.alt : false : $languageCase('quantum vacuum', 'vacío cuántico', 'vuoto quantistico')"
             :src="setFile"
-            :width="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'auto' : false"
-            :height="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'auto' : false"
-            :sizes="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'xs:299px sm:380px md:514px lg:619px xl:711px 2xl:804px 3xl:883' : null"
+            :fit="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'in' : false"
+            :width="lookFile() === 'NuxtImg' || !postContent.file.filename ? '620' : false"
+            :height="lookFile() === 'NuxtImg' || !postContent.file.filename ? '224' : false"
+            :sizes="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'xs:299px sm:380px md:514px lg:620px' : false"
           />
         </div>
         <div :class="`teaser-text w-full flex flex-col flex-auto justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? '' : 'lg:h-screen lg:max-h-56 lg:w-1/2'}`" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'}; color: ${postContent.text_color.color};`">
@@ -93,9 +94,6 @@ export default {
     }
   },
   computed: {
-    lookImage () {
-      return this.postContent.file.filename ? !!(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(this.postContent.file.filename.toLowerCase().split('.').pop()) : true
-    },
     setFile () {
       return this.postContent.file.filename ? this.postContent.file.filename : 'https://a.storyblok.com/f/106240/4065x1468/5c83c3e7de/noimeageteaser.png'
     },

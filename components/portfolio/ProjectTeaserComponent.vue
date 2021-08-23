@@ -12,7 +12,9 @@
           :modifiers="{ filters: { focal: projectContent.image.focus ? projectContent.image.focus : 0 } }"
           :src="projectContent.image.filename"
           :alt="projectContent.image.alt"
-          sizes="xs:299px sm:380px md:514px lg:619px xl:820"
+          width="340"
+          height="306"
+          sizes="xs:299px sm:340px"
         />
         <div
           :style="`background-color: ${projectContent.teaser_background_color.color ? projectContent.teaser_background_color.color : '#e0e0e0'};`"

@@ -9,7 +9,7 @@
     >
       <template #activator="action">
         <NuxtImg
-          v-if="(blok && blok.media.filename && lookFile === 'image') || image"
+          v-if="(blok && $imageValidation(blok.media.filename)) || image"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
@@ -46,7 +46,7 @@
       </template>
       <template #body>
         <NuxtImg
-          v-if="(blok && blok.media.filename && lookFile === 'image') || image"
+          v-if="(blok && $imageValidation(blok.media.filename)) || image"
           :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
           format="webp"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
@@ -80,7 +80,7 @@
     </Modal>
     <template v-else>
       <NuxtImg
-        v-if="(blok && blok.media.filename && lookFile === 'image') || image"
+        v-if="(blok && $imageValidation(blok.media.filename)) || image"
         :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
         loading="lazy"
         format="webp"
@@ -167,14 +167,9 @@ export default {
       default: false
     }
   },
-  computed: {
-    lookFile () {
-      return this.blok && this.blok.media.filename ? (/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(this.blok.media.filename.toLowerCase().split('.').pop()) ? 'image' : 'video' : ''
-    }
-  },
   methods: {
     imageType () {
-      if (this.blok && this.blok.media.filename && this.lookFile === 'image') {
+      if (this.blok && this.$imageValidation(this.blok.media.filename)) {
         switch (this.blok.media.filename.toLowerCase().split('.').pop()) {
           case 'jpg':
             return 'jpeg'

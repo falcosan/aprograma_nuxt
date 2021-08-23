@@ -14,14 +14,16 @@
       <Nuxt :class="`relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
     </div>
     <NuxtImg
-      v-if="blok.background_media.filename && lookFile === 'image'"
+      v-if="$imageValidation(blok.background_media.filename)"
       format="webp"
       :modifiers="{ filters: { focal: blok.background_media.focus ? blok.background_media.focus: 0 } }"
       :class="`media-image w-full h-full fixed right-0 bottom-0 -z-10 object-cover object-center ${blok.color_animation ? 'colorAnimation' : ''}`"
       :src="blok.background_media.filename"
       :alt="blok.background_media.alt"
-      width="auto"
-      height="auto"
+      width="1680"
+      height="643"
+      fit="in"
+      sizes="xs:514px sm:514px md:711px lg:804px xl:1680px"
       :type="`image/${imageType()}`"
     />
     <video
@@ -54,9 +56,6 @@ export default {
     }
   },
   computed: {
-    lookFile () {
-      return this.blok.background_media.filename ? (/(gif|jpe?g|tiff?|svg|png|webp|bmp)/gi).test(this.blok.background_media.filename.toLowerCase().split('.').pop()) ? 'image' : 'video' : ''
-    },
     randomBackgroundColor () {
       return this.blok.background_color.color.split('; ')[this.index.background]
     },
@@ -84,7 +83,7 @@ export default {
       this.index.mask = ~~(Math.random() * (this.blok.background_color_mask.color.split('; ').length - 0)) + 0
     },
     imageType () {
-      if (this.lookFile === 'image') {
+      if (this.$imageValidation(this.blok.background_media.filename)) {
         switch (this.blok.background_media.filename.toLowerCase().split('.').pop()) {
           case 'jpg':
             return 'jpeg'

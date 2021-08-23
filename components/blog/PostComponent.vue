@@ -9,18 +9,21 @@
       <div :class="`post-file w-full h-56 xx:h-60 xs:h-72 sm:h-80 md:h-96 lg:h-md xl:h-xl 2xl:h-2xl overflow-hidden rounded ${blok.file.filename ? '' : 'p-5 bg-black'}`">
         <component
           :is="blok.file.filename ? lookFile() : 'NuxtImg'"
-          :loading="lookFile() === 'NuxtImg' || !blok.file.filename ? 'lazy' : ''"
+          :loading="lookFile() === 'NuxtImg' || !blok.file.filename ? 'lazy' : false"
           :format="lookFile() === 'NuxtImg' || !blok.file.filename ? 'webp' : false"
-          :modifiers="lookFile() === 'NuxtImg' || !blok.file.filename ? { focal: blok.file.focus ? blok.file.focus : 0 } : false"
+          :modifiers="lookFile() === 'NuxtImg' || !blok.file.filename ? { filters: { focal: blok.file.focus ? blok.file.focus : 0 } } : false"
           :class="`w-full h-full object-center select-none object-cover ${blok.file.filename ? '' : 'ml-2.5'}`"
-          :alt="`${blok.file.alt} project`"
+          :alt="blok.file.filename ? lookFile() === 'NuxtImg' ? blok.file.alt : false : $languageCase('quantum vacuum', 'vacío cuántico', 'vuoto quantistico')"
           :src="setFile"
-          :sizes="lookFile() === 'NuxtImg' || !blok.file.filename ? 'xs:299px sm:380px md:514px lg:619px xl:1240' : null"
+          :width="lookFile() === 'NuxtImg' || !blok.file.filename ? '1240' : false"
+          :height="lookFile() === 'NuxtImg' || !blok.file.filename ? '672' : false"
+          :fit="lookFile() === 'NuxtImg' || !blok.file.filename ? 'in' : false"
+          :sizes="lookFile() === 'NuxtImg' || !blok.file.filename ? 'xs:299px sm:380px md:514px lg:620px xl:1240' : false"
         />
       </div>
     </div>
     <div class="post-body w-full justify-center rounded" :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'};`">
-      <div class="post-action flex flex-wrap-reverse sm:flex-wrap justify-end -m-2.5 py-2.5 px-5 ">
+      <div class="post-action flex flex-wrap-reverse sm:flex-wrap justify-end py-2.5 px-5 ">
         <ul class="post-categories flex flex-wrap self-center m-1">
           <li v-for="(category, index) in sortedCategories" :key="index" class="post-category self-start m-1.5 p-2.5 text-center text-xs rounded shadow-sm italic font-extralight filter brightness-95 transition-shadow" :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'};`">
             {{ category }}
@@ -35,7 +38,7 @@
           @click.native="goBack()"
         />
       </div>
-      <div class="post-article w-full max-w-prose prose-sm lg:prose-lg py-7 px-5 mx-auto my-0">
+      <div class="post-article w-full max-w-prose prose-sm lg:prose-lg py-10 px-5 mx-auto my-0">
         <h3
           :style="`color: ${blok.text_color.color};`"
           class="post-intro"

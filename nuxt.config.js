@@ -36,6 +36,7 @@ export default {
     '~/plugins/injects/markdown-rules.client.js',
     '~/plugins/injects/email-validator.client.js',
     '~/plugins/injects/content-by-name.client.js',
+    '~/plugins/injects/image-validation.client.js',
     '~/plugins/injects/scroll-to-smoothly.client.js',
     '~/plugins/components',
     '~/plugins/custom-flag.client.js',

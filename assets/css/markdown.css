@@ -55,7 +55,6 @@
 .markdown blockquote:before {
   content: open-quote;
   line-height: 1;
-  vertical-align: -5px;
   font-size: 3em;
   color: #484848;
 }

@@ -12,10 +12,10 @@
   .prose pre {
     position: relative;
   }
-  /* .prose pre code {
+  .prose pre code {
     overflow: hidden;
     white-space: pre-wrap;
-  } */
+  }
   .prose .syntax-code-block{
     display: block;
     padding-top: 3em;

@@ -190,8 +190,8 @@
 .markdown input,
 .markdown select,
 .markdown textarea,
-.markdown fieldset{
-margin-bottom: 1.5rem;
+.markdown fieldset {
+  margin-bottom: 1.5rem;
 }
 
 .markdown blockquote,

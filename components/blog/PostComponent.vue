@@ -99,14 +99,13 @@ export default {
       return formattedDate.toString()
     },
     lookFile () {
-      switch (this.blok.file.filename.toLowerCase().split('.').pop()) {
-        case 'jpg':
-        case 'png':
-        case 'gif':
-        case 'svg':
-          return 'NuxtImg'
-        case 'pdf':
-          return 'embed'
+      if (this.blok.file.filename) {
+        return 'NuxtImg'
+      } else {
+        switch (this.blok.file.filename.toLowerCase().split('.').pop()) {
+          case 'pdf':
+            return 'embed'
+        }
       }
     },
     goBack () {

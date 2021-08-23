@@ -56,8 +56,11 @@
                   .split(/[\\/]/)
                   .pop()
                   .replace(/\.[^/.]+$/, '')}-image modal-image my-0 mx-auto object-contain object-center select-none cursor-default`"
-                height="auto"
-                width="auto"
+                width="1680"
+                height="643"
+                fit="in"
+                sizes="xs:514px sm:514px md:711px lg:804px xl:1680px"
+                draggable="false"
                 :type="`image/${imageType(media)}`"
                 :src="media.filename"
                 :alt="media.alt"

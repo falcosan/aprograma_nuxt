@@ -19,9 +19,9 @@
             :alt="postContent.file.filename ? lookFile() === 'NuxtImg' ? postContent.file.alt : false : $languageCase('quantum vacuum', 'vacío cuántico', 'vuoto quantistico')"
             :src="setFile"
             :fit="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'in' : false"
-            :width="lookFile() === 'NuxtImg' || !postContent.file.filename ? '620' : false"
-            :height="lookFile() === 'NuxtImg' || !postContent.file.filename ? '224' : false"
-            :sizes="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'xs:299px sm:380px md:514px lg:620px' : false"
+            :width="lookFile() === 'NuxtImg' || !postContent.file.filename ? '984' : false"
+            :height="lookFile() === 'NuxtImg' || !postContent.file.filename ? '356' : false"
+            :sizes="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'xs:299px sm:380px md:514px lg:620px xl:984' : false"
           />
         </div>
         <div :class="`teaser-text w-full flex flex-col flex-auto justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? '' : 'lg:h-screen lg:max-h-56 lg:w-1/2'}`" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'}; color: ${postContent.text_color.color};`">
@@ -127,14 +127,13 @@ export default {
       return formattedDate.toString()
     },
     lookFile () {
-      switch (this.postContent.file.filename.toLowerCase().split('.').pop()) {
-        case 'jpg':
-        case 'png':
-        case 'gif':
-        case 'svg':
-          return 'NuxtImg'
-        case 'pdf':
-          return 'embed'
+      if (this.postContent.file.filename) {
+        return 'NuxtImg'
+      } else {
+        switch (this.postContent.file.filename.toLowerCase().split('.').pop()) {
+          case 'pdf':
+            return 'embed'
+        }
       }
     }
   }

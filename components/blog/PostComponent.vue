@@ -77,9 +77,6 @@ export default {
     }
   },
   computed: {
-    lookImage () {
-      return this.blok.file.filename ? !!(/(gif|jpe?g|tiff?|png|svg|webp|bmp)/gi).test(this.blok.file.filename.toLowerCase().split('.').pop()) : true
-    },
     setFile () {
       return this.blok.file.filename ? this.blok.file.filename : 'https://a.storyblok.com/f/106240/4067x2440/49d9d1a222/noimagedetail.png'
     },
@@ -99,13 +96,18 @@ export default {
       return formattedDate.toString()
     },
     lookFile () {
-      if (this.blok.file.filename) {
-        return 'NuxtImg'
-      } else {
-        switch (this.blok.file.filename.toLowerCase().split('.').pop()) {
-          case 'pdf':
-            return 'embed'
-        }
+      switch (this.blok.file.filename.toLowerCase().split('.').pop()) {
+        case 'pdf':
+          return 'embed'
+        case 'jpg':
+        case 'jpeg':
+        case 'png':
+        case 'gif':
+        case 'svg':
+        case 'webp':
+        case 'bmp':
+        case 'tiff':
+          return 'NuxtImg'
       }
     },
     goBack () {

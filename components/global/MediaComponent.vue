@@ -152,33 +152,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  methods: {
-    imageType () {
-      if (this.blok && this.$imageValidation(this.blok.media.filename)) {
-        switch (this.blok.media.filename.toLowerCase().split('.').pop()) {
-          case 'jpg':
-            return 'jpeg'
-          case 'png':
-            return 'png'
-          case 'svg':
-            return 'svg+xml'
-          case 'gif':
-            return 'gif'
-        }
-      } else if (this.image) {
-        switch (this.src.toLowerCase().split('.').pop()) {
-          case 'jpg':
-            return 'jpeg'
-          case 'png':
-            return 'png'
-          case 'svg':
-            return 'svg+xml'
-          case 'gif':
-            return 'gif'
-        }
-      }
-    }
   }
 }
 </script>

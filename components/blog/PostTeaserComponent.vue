@@ -126,13 +126,18 @@ export default {
       return formattedDate.toString()
     },
     lookFile () {
-      if (this.postContent.file.filename) {
-        return 'NuxtImg'
-      } else {
-        switch (this.postContent.file.filename.toLowerCase().split('.').pop()) {
-          case 'pdf':
-            return 'embed'
-        }
+      switch (this.postContent.file.filename.toLowerCase().split('.').pop()) {
+        case 'pdf':
+          return 'embed'
+        case 'jpg':
+        case 'jpeg':
+        case 'png':
+        case 'gif':
+        case 'svg':
+        case 'webp':
+        case 'bmp':
+        case 'tiff':
+          return 'NuxtImg'
       }
     }
   }

@@ -32,14 +32,14 @@
               {{ postContent.title }}
             </span>
             <span
-              class="teaser-intro overflow-hidden text-sm font-extralight"
+              class="teaser-intro overflow-hidden text-sm font-light"
             >
               {{ postContent.intro }}
             </span>
           </div>
           <div class="teaser-info w-full flex flex-col mt-5 items-end">
             <ul :class="`teaser-categories w-full flex flex-wrap mx-1 mb-2.5 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'justify-end' : ''}`">
-              <li v-for="(category, index) in sortedCategories" :key="index" class="teaser-category text-xs p-2.5 m-1 rounded shadow-sm italic font-extralight filter brightness-95 transition-shadow" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'};`">
+              <li v-for="(category, index) in sortedCategories" :key="index" class="teaser-category text-xs p-2.5 m-1 rounded shadow-sm italic font-light filter brightness-95 transition-shadow" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'};`">
                 {{ category }}
               </li>
             </ul>

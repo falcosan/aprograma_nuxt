@@ -67,7 +67,7 @@
     :style="`background-color: ${blok.transparency ? `${backgroundColors}B3` : backgroundColors};`"
   >
     <div class="footer-content h-52 grid gap-5 text-center">
-      <span class="input-footer relative grid gap-5 grid-flow-col-dense items-end justify-center bottom-6 text-md font-thin">
+      <span class="input-footer relative grid gap-5 grid-flow-col-dense items-end justify-center bottom-6 text-md">
         <span class="footer-dash"> - </span> <Icon eye tag="span" size="w-6" class="eye-footer" /><span class="footer-dash"> - </span>
       </span>
       <div

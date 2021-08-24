@@ -13,7 +13,7 @@
       class="rounded max-w-full mx-auto my-0"
       width="500px"
     />
-    <h1 class="maintenance-text text-xs xs:text-base sm:text-lg text-center xs:whitespace-nowrap pointer-events-none font-medium uppercase underline italic">
+    <h1 class="maintenance-text text-xs xs:text-base sm:text-lg text-center xs:whitespace-nowrap pointer-events-none uppercase underline italic">
       under maintenance
     </h1>
   </div>

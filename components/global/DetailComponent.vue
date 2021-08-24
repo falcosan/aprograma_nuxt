@@ -1,6 +1,6 @@
 <template>
   <div class="detail">
-    <h1 v-if="blok.title" :class="`detail-title text-lg sm:text-xl font-extralight ${sliderMode || carouselMode || containerMode ? 'm-5' : 'mb-5'}`" v-text="blok.title" />
+    <h1 v-if="blok.title" :class="`detail-title text-lg sm:text-xl font-light ${sliderMode || carouselMode || containerMode ? 'm-5' : 'mb-5'}`" v-text="blok.title" />
     <div class="detail-content grid gap-5 md:grid-flow-col auto-cols-fr rounded">
       <ul :class="`image-container grid gap-5 w-full justify-items-center auto-rows-max ${$store.state.data.windowWidth >= 768 ? blok.invert_direction ? 'col-start-2 col-end-2' : '' : ''}`" :style="`grid-template-columns: repeat(${blok.column_container ? $rangeItems(Number(blok.column_container), 3) : blok.media.length}, 1fr)`">
         <li v-for="media in blok.media" :key="media.id" class="image-item w-full">

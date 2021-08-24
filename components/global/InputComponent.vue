@@ -2,7 +2,7 @@
   <input
     v-if="blok"
     :id="`${blok.type}-input`"
-    :class="`input cursor-pointer rounded py-3 px-4 text-sm ${!$device.isDesktop ? '' : 'hover:opacity-80 transition-opacity duration-100'} ${$themeColor(blok.background_color.color) ? 'text-white' : ''}`"
+    :class="`input cursor-pointer py-3 px-4 rounded text-sm ${!$device.isDesktop ? '' : 'hover:opacity-80 transition-opacity duration-100'} ${$themeColor(blok.background_color.color) ? 'text-white' : ''}`"
     :style="`background-color: ${blok.background_color.color ? blok.background_color.color : 'transparent'};`"
     :type="blok.type"
     :value="blok.text"

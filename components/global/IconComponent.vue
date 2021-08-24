@@ -21,7 +21,7 @@
       :width="blok.size"
       :name="blok.name"
       :type="`image/${lookFile()}`"
-      sizes="xs:25vw sm:50vw md:75vw"
+      sizes="xs:16px sm:32px md:64px lg:128px"
     />
 
     <!-- HOME-->

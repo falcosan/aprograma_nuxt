@@ -46,6 +46,9 @@ export default {
       default: false
     }
   },
+  async fetch () {
+    await this.$store.dispatch('list/projects/addProjects')
+  },
   computed: {
     maxProjects () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
@@ -64,16 +67,6 @@ export default {
         return this.blok.projects.indexOf(a.uuid) - this.blok.projects.indexOf(b.uuid)
       })
       return this.$route.name === 'portfolio' ? featuredProjects.reverse() : featuredProjects
-    }
-  },
-  created () {
-    if (this.$route.name !== 'portfolio') {
-      this.getProjects()
-    }
-  },
-  methods: {
-    async getProjects () {
-      await this.$store.dispatch('list/projects/addProjects')
     }
   }
 }

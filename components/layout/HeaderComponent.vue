@@ -138,7 +138,7 @@ export default {
     '$store.state.data.windowWidth' () { if (this.$store.state.data.windowWidth < 768) { this.expanded = false } },
     expanded () { this.headerPosition() }
   },
-  mounted () {
+  updated () {
     window.addEventListener('scroll', this.headerPosition)
   },
   methods: {

@@ -142,8 +142,8 @@ export default {
   watch: {
     '$store.state.language.language' () { this.restartTypewriter() }
   },
-  created () {
-    this.typeText()
+  async mounted () {
+    await this.typeText()
   },
   methods: {
     expandIn () {

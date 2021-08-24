@@ -46,10 +46,15 @@ export default {
 
   buildModules: [
     '@nuxt/image',
-    'nuxt-compress',
     '@nuxtjs/device',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    'nuxt-compress',
+    'nuxt-build-optimisations'
   ],
+  buildOptimisations: {
+    profile: process.env.NODE_ENV === 'development' ? 'risky' : 'experimental',
+    imageFileLoader: false
+  },
   image: {
     provider: 'storyblok',
     storyblok: {

@@ -49,22 +49,24 @@
               </div>
             </template>
             <template #body>
-              <NuxtImg
+              <component
+                :is="imageType(media) === 'svg+xml' ? 'img' : 'NuxtImg'"
                 v-if="$imageValidation(media.filename)"
-                :modifiers="{ filters: { focal: media.focus ? media.focus : 0 } }"
+                loading="lazy"
                 :class="`${media.filename
                   .split(/[\\/]/)
                   .pop()
                   .replace(/\.[^/.]+$/, '')}-image modal-image my-0 mx-auto object-contain object-center select-none cursor-default`"
-                width="1920"
-                height="1980"
-                format="webp"
-                fit="in"
-                sizes="xs:380px sm:514px md:711px lg:804px xl:1680px 2xl:1920px"
-                draggable="false"
-                :type="`image/${imageType(media)}`"
                 :src="media.filename"
                 :alt="media.alt"
+                width="1920"
+                height="1980"
+                :type="`image/${imageType(media)}`"
+                draggable="false"
+                :modifiers="imageType(media) === 'svg+xml' ? false : { filters: { focal: media.focus ? media.focus : 0 } }"
+                :fit="imageType(media) === 'svg+xml' ? false : 'in'"
+                :format="imageType(media) === 'svg+xml' ? false : 'webp'"
+                :sizes="imageType(media) === 'svg+xml' ? false : 'xs:380px sm:514px md:711px lg:804px xl:1680px 2xl:1920px'"
               />
               <video
                 v-else

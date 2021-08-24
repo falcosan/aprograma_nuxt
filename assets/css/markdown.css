@@ -47,9 +47,10 @@
   color: #212121;
 }
 .markdown blockquote {
-  border-left: 10px solid #484848;
-  border-radius: 0.25rem;
-  padding: 0.5rem 10px;
+  position: relative;
+  padding: .5rem 15px;
+  border-left: 7px solid #484848;
+  border-radius: .25rem;
   background-color: #eeeeeeb3;
   color: #212121;
   quotes: "\201C""\201D""\2018""\2019";
@@ -57,8 +58,11 @@
 .markdown blockquote:before {
   content: open-quote;
   line-height: 1;
-  font-size: 2em;
+  font-size: 1.8em;
   color: #484848;
+  position: absolute;
+  top: 5px;
+  left: 5px;
 }
 .markdown blockquote > *:first-child {
   display: inline;
@@ -211,5 +215,5 @@
 .markdown pre,
 .markdown table,
 .markdown ul {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }

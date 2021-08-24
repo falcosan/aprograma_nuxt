@@ -16,7 +16,7 @@
     >
       <div
         v-if="blok.body.length > 1 && (blok.slider_mode === 'slider' || blok.slider_mode === 'carousel')"
-        :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-5 pb-5' : 'p-5': ''}`"
+        :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-2.5 pb-2.5 sm:px-5 sm:pb-5' : 'p-2.5 sm:p-5': ''}`"
       >
         <Icon
           v-if="(blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || blok.row_container) && !blok.hide_controllers"
@@ -106,7 +106,7 @@
           </div>
         </div>
       </div>
-      <div v-else :class="`container-components flex flex-wrap rounded ${sliderMode || carouselMode || containerMode ? '-m-2.5' : '-mx-2.5'} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-5 pb-5' : 'p-5': ''}`">
+      <div v-else :class="`container-components flex flex-wrap rounded ${sliderMode || carouselMode || containerMode ? '-m-2.5' : '-mx-2.5'} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-2.5 pb-2.5 sm:px-5 sm:pb-5' : 'p-2.5 sm:p-5': ''}`">
         <template v-for="component in elements">
           <div
             :key="component._uid"

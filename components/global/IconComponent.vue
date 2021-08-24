@@ -3,7 +3,7 @@
     :class="`icon-wrapper grid gap-5 justify-center items-center select-none ${blok && !blok.remove_space ? 'p-10' : ''} ${blok && (blok.tag === 'button' || blok.tag === 'a') || (tag === 'button' || tag === 'a') ? 'cursor-pointer' : ''}`"
     @click="animateMenu ? open = !open : ''"
   >
-    <NuxtImg
+    <ImageSet
       v-if="blok && blok.icon_image.filename"
       :class="`icon ${blok.icon_image.filename
         .split(/[\\/]/)
@@ -11,8 +11,6 @@
         .replace(/\.[^/.]+$/, '')}-icon mx-auto my-0 fill-current object-contain object-center pointer-events-none`"
       loading="lazy"
       :style="`width: ${/[a-zA-Z]/g.test(blok.size) ? blok.size : `${blok.size}px`}; height: ${/[a-zA-Z]/g.test(blok.size) ? blok.size : `${blok.size}px`};`"
-      format="webp"
-      :modifiers="{ filters: { focal: blok.icon_image.focus ? blok.icon_image.focus : 0 } }"
       fit="in"
       :title="blok.title && !blok.show_title || tooltip ? blok ? blok.title : tooltip : ''"
       :src="blok.icon_image.filename"
@@ -20,10 +18,9 @@
       :height="blok.size"
       :width="blok.size"
       :name="blok.name"
-      :type="`image/${lookFile()}`"
+      :file="blok"
       sizes="xs:16px sm:32px md:64px lg:128px"
     />
-
     <!-- HOME-->
     <svg
       v-else-if="home"
@@ -305,22 +302,6 @@ export default {
   data () {
     return {
       open: false
-    }
-  },
-  methods: {
-    lookFile () {
-      if (this.blok) {
-        switch (this.blok.icon_image.filename.toLowerCase().split('.').pop()) {
-          case 'jpg':
-            return 'jpeg'
-          case 'png':
-            return 'png'
-          case 'svg':
-            return 'svg+xml'
-          case 'gif':
-            return 'gif'
-        }
-      }
     }
   }
 }

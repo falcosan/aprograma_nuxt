@@ -3,12 +3,12 @@
     :is="imageType() === 'svg+xml' ? 'img' : 'NuxtImg'"
     loading="lazy"
     class="image"
-    :src="file.filename"
     :alt="alt"
     :type="`image/${imageType()}`"
     draggable="false"
+    :src="src"
     :modifiers="imageType() === 'svg+xml' ? false : { filters: { focal: file.focus ? file.focus : 0 } }"
-    :fit="imageType() === 'svg+xml' ? false : fit"
+    :fit="imageType() === 'svg+xml' ? false : fit ? fit : 'in'"
     :format="imageType() === 'svg+xml' ? false : 'webp'"
     :sizes="imageType() === 'svg+xml' ? false : sizes"
   />
@@ -20,10 +20,6 @@ export default {
       type: Object,
       required: true
     },
-    fit: {
-      type: String,
-      required: true
-    },
     sizes: {
       type: String,
       required: true
@@ -32,14 +28,18 @@ export default {
       type: String,
       required: true
     },
+    fit: {
+      type: String,
+      default: ''
+    },
     alt: {
       type: String,
-      required: true
+      default: ''
     }
   },
   methods: {
     imageType () {
-      switch (this.file.filename.toLowerCase().split('.').pop()) {
+      switch (this.src.toLowerCase().split('.').pop()) {
         case 'jpg':
           return 'jpeg'
         case 'png':

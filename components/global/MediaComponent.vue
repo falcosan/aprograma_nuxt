@@ -19,7 +19,6 @@
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :width="blok ? blok.width : width"
           :height="blok ? blok.height : height"
-          fit="in"
           :sizes="`xs:299px sm:380px md:514px lg:${blok ? /[a-zA-Z]/g.test(blok.width) ? blok.width : `${blok.width}px` : /[a-zA-Z]/g.test(width) ? width : `${width}px`}`"
           @click.native="action.open()"
         />
@@ -52,8 +51,6 @@
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           width="1920"
           height="1980"
-          format="webp"
-          fit="in"
           sizes="xs:380px sm:514px md:711px lg:804px xl:1680px 2xl:1920px"
         />
         <video
@@ -85,7 +82,6 @@
         :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
         :width="blok ? blok.width : width"
         :height="blok ? blok.height : height"
-        fit="in"
         :sizes="`xs:299px sm:380px md:514px lg:${blok ? /[a-zA-Z]/g.test(blok.width) ? blok.width : `${blok.width}px` : /[a-zA-Z]/g.test(width) ? width : `${width}px`}`"
       />
       <video

@@ -18,7 +18,7 @@
             :class="`${blok && blok.media.filename ? blok.media.filename : src
               .split(/[\\/]/)
               .pop()
-              .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center rounded select-none`"
+              .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center rounded select-none`"
             :src="blok && blok.media.filename ? blok.media.filename : src"
             :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
             :width="blok ? blok.width : width"
@@ -33,7 +33,7 @@
             :class="`${blok && blok.media.filename ? blok.media.filename : src
               .split(/[\\/]/)
               .pop()
-              .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center rounded select-none`"
+              .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center rounded select-none`"
             :width="blok ? blok.width : width"
             :height="blok ? blok.height : height"
             playsinline
@@ -57,7 +57,7 @@
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
-            .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center select-none cursor-default`"
+            .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center select-none cursor-default`"
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           width="1920"
@@ -72,7 +72,7 @@
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
-            .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center select-none cursor-default`"
+            .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center select-none cursor-default`"
           width="auto"
           height="auto"
           playsinline
@@ -94,7 +94,7 @@
         :class="`${blok && blok.media.filename ? blok.media.filename : src
           .split(/[\\/]/)
           .pop()
-          .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
+          .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
         :src="blok && blok.media.filename ? blok.media.filename : src"
         :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
         :width="blok ? blok.width : width"
@@ -109,7 +109,7 @@
         :class="`${blok && blok.media.filename ? blok.media.filename : src
           .split(/[\\/]/)
           .pop()
-          .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
+          .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
         :width="blok ? blok.width : width"
         :height="blok ? blok.height : height"
         playsinline

@@ -18,7 +18,7 @@
                   :class="`${media.filename
                     .split(/[\\/]/)
                     .pop()
-                    .replace(/\.[^/.]+$/, '')}-image detail-image my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
+                    .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center rounded select-none`"
                   :src="media.filename"
                   :alt="media.alt"
                   width="620"
@@ -35,7 +35,7 @@
                   :class="`${media.filename
                     .split(/[\\/]/)
                     .pop()
-                    .replace(/\.[^/.]+$/, '')}-video detail-video my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
+                    .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center rounded select-none`"
                   width="auto"
                   height="auto"
                   autoplay
@@ -87,7 +87,7 @@
               </video>
             </template>
           </Modal>
-          <div v-else class="detail-image">
+          <template v-else>
             <component
               :is="imageType(media) === 'svg+xml' ? 'img' : 'NuxtImg'"
               v-if="$imageValidation(media.filename)"
@@ -95,7 +95,7 @@
               :class="`${media.filename
                 .split(/[\\/]/)
                 .pop()
-                .replace(/\.[^/.]+$/, '')}-image detail-image my-0 mx-auto object-contain cursor-pointer object-cover rounded pointer-events-none select-none`"
+                .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center select-none cursor-default`"
               :src="media.filename"
               :alt="media.alt"
               width="620"
@@ -112,7 +112,7 @@
               :class="`${media.filename
                 .split(/[\\/]/)
                 .pop()
-                .replace(/\.[^/.]+$/, '')}-video detail-video my-0 mx-auto object-contain object-center rounded pointer-events-none cursor-pointer select-none`"
+                .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center select-none cursor-default`"
               width="auto"
               height="auto"
               playsinline
@@ -122,7 +122,7 @@
             >
               <source :src="media.filename" :type="`video/${media.filename.toLowerCase().split('.').pop()}`">
             </video>
-          </div>
+          </template>
         </li>
       </ul>
       <div :class="`text-container w-full max-w-full flex flex-col self-start rounded ${!blok.remove_space ? 'p-5' : ''}`" :style="`background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`">

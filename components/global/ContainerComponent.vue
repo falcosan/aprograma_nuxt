@@ -5,7 +5,7 @@
   >
     <h1
       v-if="blok.title"
-      :class="`container-title break-words ${sliderMode || carouselMode || containerMode ? 'm-5 text-xl' : 'mb-5 text-xl xs:text-2xl'}`"
+      :class="`container-title break-words ${sliderMode || carouselMode || containerMode ? 'm-5 text-xl' : 'mb-5 text-xl sm:text-2xl'}`"
       :style="`color: ${blok.title_color.color};`"
     >
       {{ blok.title }}

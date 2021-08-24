@@ -27,12 +27,12 @@
         <div :class="`teaser-text w-full flex flex-col flex-auto justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? '' : 'lg:h-screen lg:max-h-56 lg:w-1/2'}`" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'}; color: ${postContent.text_color.color};`">
           <div class="text-description">
             <span
-              class="teaser-title mb-2.5 overflow-hidden text-lg lg:text-xl xl:text-2xl font-mediu"
+              class="teaser-title mb-2.5 overflow-hidden text-lg sm:text-xl"
             >
               {{ postContent.title }}
             </span>
             <span
-              class="teaser-intro overflow-hidden text-sm xl:text-base"
+              class="teaser-intro overflow-hidden text-sm font-extralight"
               :style="`-webkit-line-clamp: ${rowContainer || sliderContainer || containerContainer || carouselContainer || $store.state.data.windowWidth < 1024 ? '1' : '2'};`"
             >
               {{ postContent.intro }}
@@ -46,7 +46,7 @@
             </ul>
             <span
               v-if="$route.name === 'blog'"
-              class="teaser-date flex-none self-end pt-5 pl-5 text-xs font-medium text-right"
+              class="teaser-date flex-none self-end pt-5 pl-5 text-xs text-right"
               v-text="changeDate(postContent.date)"
             />
           </div>

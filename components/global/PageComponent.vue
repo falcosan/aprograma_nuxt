@@ -1,6 +1,6 @@
 <template>
   <section :class="`${blok.name.toLowerCase()}-page p-5`">
-    <h1 v-if="blok.title" class="page-title mb-5 text-xl xs:text-2xl break-words">
+    <h1 v-if="blok.title" class="page-title mb-5 text-xl sm:text-2xl break-words">
       {{ blok.title }}
     </h1>
     <div class="page-components flex flex-wrap -m-2.5">

@@ -1,7 +1,6 @@
 export default ({ app }, inject) => {
   inject('languageCase', (english, spanish, italian) => {
-    const ctx = app
-    switch (ctx.store.state.language.language) {
+    switch (app.store.state.language.language) {
       case '':
         return english
       case 'default':

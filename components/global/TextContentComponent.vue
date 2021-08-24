@@ -6,7 +6,7 @@
     class="text-container w-full max-w-full h-full flex flex-col rounded"
   >
     <div
-      :class="`text-content markdown block max-w-none rounded ${!blok.remove_space ? 'p-5' : ''}`"
+      :class="`text-content markdown block max-w-none rounded ${setAlignText} ${!blok.remove_space ? 'p-5' : ''}`"
       v-html="$md.render(blok.text)"
     />
   </div>
@@ -17,6 +17,18 @@ export default {
     blok: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    setAlignText () {
+      switch (this.blok.align_text) {
+        case 'right':
+          return 'text-right'
+        case 'center':
+          return 'text-center'
+        case 'justify':
+          return 'text-justify'
+      } return ''
     }
   },
   mounted () {

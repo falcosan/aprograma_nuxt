@@ -74,7 +74,7 @@
       </Modal>
       <div
         :style="`background-color: ${blok.project_background_color.color ? blok.project_background_color.color : '#e0e0e0'}; color: ${blok.project_text_color.color};`"
-        :class="`intro-text markdown block self-start xl:row-start-1 xl:row-end-1 xl:col-start-3 xl:col-end-3 rounded ${!blok.remove_space ? 'p-5' : ''}`"
+        :class="`intro-text markdown block self-start xl:row-start-1 xl:row-end-1 xl:col-start-3 xl:col-end-3 rounded ${setAlignText} ${!blok.remove_space ? 'p-5' : ''}`"
         v-html="$md.render(blok.intro)"
       />
 
@@ -141,6 +141,18 @@ export default {
     blok: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    setAlignText () {
+      switch (this.blok.align_text) {
+        case 'right':
+          return 'text-right'
+        case 'center':
+          return 'text-center'
+        case 'justify':
+          return 'text-justify'
+      } return ''
     }
   },
   mounted () {

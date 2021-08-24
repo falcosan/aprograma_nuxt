@@ -109,7 +109,7 @@
         </li>
       </ul>
       <div :class="`text-container w-full max-w-full flex flex-col self-start rounded ${!blok.remove_space ? 'p-5' : ''}`" :style="`background-color: ${blok.background_color.color}; color: ${blok.text_color.color};`">
-        <div class="detail-text markdown block max-w-none rounded" v-html="$md.render(blok.text)" />
+        <div :class="`detail-text markdown block max-w-none rounded ${setAlignText}`" v-html="$md.render(blok.text)" />
       </div>
     </div>
   </div>
@@ -135,6 +135,18 @@ export default {
     carouselMode: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    setAlignText () {
+      switch (this.blok.align_text) {
+        case 'right':
+          return 'text-right'
+        case 'center':
+          return 'text-center'
+        case 'justify':
+          return 'text-justify'
+      } return ''
     }
   },
   mounted () {

@@ -46,7 +46,7 @@
         />
         <article
           :style="`color: ${blok.text_color.color};`"
-          class="post-article markdown block mb-10"
+          :class="`post-article markdown block mb-10 ${setAlignText}`"
           v-html="$md.render(blok.long_text)"
         />
         <p
@@ -82,6 +82,16 @@ export default {
     },
     sortedCategories () {
       return this.blok.categories.map(category => category.toLowerCase().split('; ')[this.$languageCase(0, 1, 2)]).sort()
+    },
+    setAlignText () {
+      switch (this.blok.align_text) {
+        case 'right':
+          return 'text-right'
+        case 'center':
+          return 'text-center'
+        case 'justify':
+          return 'text-justify'
+      } return ''
     }
   },
   mounted () {

@@ -110,7 +110,10 @@
 </template>
 
 <script>
+import Modal from './ModalComponent'
+import ImageSet from './ImageSetComponent'
 export default {
+  components: { ImageSet, Modal },
   props: {
     blok: {
       type: Object,

@@ -134,7 +134,9 @@
   </div>
 </template>
 <script>
+import Modal from '../global/ModalComponent'
 export default {
+  components: { Modal },
   props: {
     blok: {
       type: Object,

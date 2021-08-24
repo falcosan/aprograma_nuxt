@@ -41,7 +41,9 @@
 
 <script>
 import axios from 'axios'
+import Modal from './ModalComponent'
 export default {
+  components: { Modal },
   directives: {
     'click-outside': {
       bind (el, binding) {

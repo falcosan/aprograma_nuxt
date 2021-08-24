@@ -216,7 +216,9 @@
 </template>
 
 <script>
+import ImageSet from './ImageSetComponent'
 export default {
+  components: { ImageSet },
   props: {
     blok: {
       type: Object,

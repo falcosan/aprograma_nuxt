@@ -15,7 +15,6 @@
             :modifiers="imageType() === 'svg+xml' ? false : { filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
             loading="lazy"
             :format="imageType() === 'svg+xml' ? false : 'webp'"
-            class="image-container"
             :class="`${blok && blok.media.filename ? blok.media.filename : src
               .split(/[\\/]/)
               .pop()
@@ -92,7 +91,6 @@
         :modifiers="imageType() === 'svg+xml' ? false : { filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
         loading="lazy"
         :format="imageType() === 'svg+xml' ? false : 'webp'"
-        class="image-container"
         :class="`${blok && blok.media.filename ? blok.media.filename : src
           .split(/[\\/]/)
           .pop()

@@ -321,14 +321,15 @@ export default {
       this.setAutoPlay = 0
     },
     getContainerWidth () {
+      const containerSelect = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
-          this.fullWidth = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
-          this.containerWidth = (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
+          this.fullWidth = containerSelect
+          this.containerWidth = containerSelect / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
         })
       } else {
-        this.containerWidth = (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth) / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
-        this.fullWidth = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
+        this.fullWidth = containerSelect
+        this.containerWidth = containerSelect / this.maxElements - (this.spaceFix / this.maxElements) * (this.maxElements - 1)
       }
     },
     focusContainer (element) {

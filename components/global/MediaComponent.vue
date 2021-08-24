@@ -8,59 +8,65 @@
       modal-style="bg-gray-200 bg-opacity-90"
     >
       <template #activator="action">
-        <NuxtImg
-          v-if="(blok && $imageValidation(blok.media.filename)) || image"
-          :class="`${blok && blok.media.filename ? blok.media.filename : src
-            .split(/[\\/]/)
-            .pop()
-            .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
-          :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
-          loading="lazy"
-          format="webp"
-          :src="blok && blok.media.filename ? blok.media.filename : src"
-          :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
-          :width="blok ? blok.width : width"
-          :height="blok ? blok.height : height"
-          :type="`image/${imageType()}`"
-          fit="in"
-          draggable="false"
-          :sizes="`xs:299px sm:380px md:514px lg:${blok ? /[a-zA-Z]/g.test(blok.width) ? blok.width : `${blok.width}px` : /[a-zA-Z]/g.test(width) ? width : `${width}px`}`"
-          @click.native="action.open()"
-        />
-        <video
-          v-else-if="(blok && blok.media.filename) || video"
-          :class="`${blok && blok.media.filename ? blok.media.filename : src
-            .split(/[\\/]/)
-            .pop()
-            .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
-          :width="blok ? blok.width : width"
-          :height="blok ? blok.height : height"
-          playsinline
-          autoplay
-          muted
-          :loop="blok.loop"
-          @click="action.open()"
-        >
-          <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
-        </video>
+        <div class="modal-media cursor-pointer" @click="action.open()">
+          <component
+            :is="imageType() === 'svg+xml' ? 'img' : 'NuxtImg'"
+            v-if="(blok && $imageValidation(blok.media.filename)) || image"
+            :modifiers="imageType() === 'svg+xml' ? false : { filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
+            loading="lazy"
+            :format="imageType() === 'svg+xml' ? false : 'webp'"
+            class="image-container"
+            :class="`${blok && blok.media.filename ? blok.media.filename : src
+              .split(/[\\/]/)
+              .pop()
+              .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center rounded select-none`"
+            :src="blok && blok.media.filename ? blok.media.filename : src"
+            :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
+            :width="blok ? blok.width : width"
+            :height="blok ? blok.height : height"
+            :type="`image/${imageType()}`"
+            :fit="imageType() === 'svg+xml' ? false : 'in'"
+            draggable="false"
+            :sizes="imageType() === 'svg+xml' ? false : `xs:299px sm:380px md:514px lg:${blok ? /[a-zA-Z]/g.test(blok.width) ? blok.width : `${blok.width}px` : /[a-zA-Z]/g.test(width) ? width : `${width}px`}`"
+          />
+          <video
+            v-else-if="(blok && blok.media.filename) || video"
+            :class="`${blok && blok.media.filename ? blok.media.filename : src
+              .split(/[\\/]/)
+              .pop()
+              .replace(/\.[^/.]+$/, '')}-video media-video my-0 mx-auto object-contain object-center rounded select-none`"
+            :width="blok ? blok.width : width"
+            :height="blok ? blok.height : height"
+            playsinline
+            autoplay
+            muted
+            :loop="blok.loop"
+            @click="action.open()"
+          >
+            <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
+          </video>
+        </div>
       </template>
       <template #body>
-        <NuxtImg
+        <component
+          :is="imageType() === 'svg+xml' ? 'img' : 'NuxtImg'"
           v-if="(blok && $imageValidation(blok.media.filename)) || image"
-          :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
+          :modifiers="imageType() === 'svg+xml' ? false : { filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
+          loading="lazy"
+          :format="imageType() === 'svg+xml' ? false : 'webp'"
+          class="image-container"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
             .replace(/\.[^/.]+$/, '')}-image media-image my-0 mx-auto object-contain object-center select-none cursor-default`"
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
-          :type="`image/${imageType()}`"
           width="1920"
           height="1980"
-          format="webp"
-          fit="in"
-          sizes="xs:380px sm:514px md:711px lg:804px xl:1680px 2xl:1920px"
+          :type="`image/${imageType()}`"
+          :fit="imageType() === 'svg+xml' ? false : 'in'"
           draggable="false"
+          :sizes="imageType() === 'svg+xml' ? false : 'xs:380px sm:514px md:711px lg:804px xl:1680px 2xl:1920px'"
         />
         <video
           v-else-if="(blok && blok.media.filename) || video"
@@ -80,11 +86,12 @@
       </template>
     </Modal>
     <template v-else>
-      <NuxtImg
+      <component
+        :is="imageType() === 'svg+xml' ? 'img' : 'NuxtImg'"
         v-if="(blok && $imageValidation(blok.media.filename)) || image"
-        :modifiers="{ filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
+        :modifiers="imageType() === 'svg+xml' ? false : { filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
         loading="lazy"
-        format="webp"
+        :format="imageType() === 'svg+xml' ? false : 'webp'"
         class="image-container"
         :class="`${blok && blok.media.filename ? blok.media.filename : src
           .split(/[\\/]/)
@@ -95,9 +102,9 @@
         :width="blok ? blok.width : width"
         :height="blok ? blok.height : height"
         :type="`image/${imageType()}`"
-        fit="in"
+        :fit="imageType() === 'svg+xml' ? false : 'in'"
         draggable="false"
-        :sizes="`xs:299px sm:380px md:514px lg:${blok ? /[a-zA-Z]/g.test(blok.width) ? blok.width : `${blok.width}px` : /[a-zA-Z]/g.test(width) ? width : `${width}px`}`"
+        :sizes="imageType() === 'svg+xml' ? false : `xs:299px sm:380px md:514px lg:${blok ? /[a-zA-Z]/g.test(blok.width) ? blok.width : `${blok.width}px` : /[a-zA-Z]/g.test(width) ? width : `${width}px`}`"
       />
       <video
         v-else-if="(blok && blok.media.filename) || video"

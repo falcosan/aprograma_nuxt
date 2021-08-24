@@ -33,20 +33,19 @@
             </span>
             <span
               class="teaser-intro overflow-hidden text-sm font-extralight"
-              :style="`-webkit-line-clamp: ${rowContainer || sliderContainer || containerContainer || carouselContainer || $store.state.data.windowWidth < 1024 ? '1' : '2'};`"
             >
               {{ postContent.intro }}
             </span>
           </div>
-          <div class="teaser-info w-full flex flex-col xx:flex-row mt-5 items-end">
-            <ul :class="`teaser-categories w-full flex flex-wrap self-start ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'justify-end' : '-m-1'}`">
+          <div class="teaser-info w-full flex flex-col mt-5 items-end">
+            <ul :class="`teaser-categories w-full flex flex-wrap mx-1 mb-2.5 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'justify-end' : ''}`">
               <li v-for="(category, index) in sortedCategories" :key="index" class="teaser-category text-xs p-2.5 m-1 rounded shadow-sm italic font-extralight filter brightness-95 transition-shadow" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'};`">
                 {{ category }}
               </li>
             </ul>
             <span
               v-if="$route.name === 'blog'"
-              class="teaser-date flex-none self-end pt-5 pl-5 text-xs text-right"
+              class="teaser-date flex-none self-end text-xs text-right"
               v-text="changeDate(postContent.date)"
             />
           </div>
@@ -141,12 +140,13 @@ export default {
 </script>
 <style scoped>
   .teaser-title{
-    -webkit-line-clamp:  2;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:  2;
   }
 .teaser-intro{
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp:  2;
 }
 </style>

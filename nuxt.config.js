@@ -46,6 +46,7 @@ export default {
 
   buildModules: [
     '@nuxt/image',
+    'nuxt-compress',
     '@nuxtjs/device',
     '@nuxtjs/tailwindcss',
     'nuxt-build-optimisations'
@@ -96,6 +97,17 @@ export default {
       {
         accessToken: process.env.NODE_ENV === 'production' ? process.env.NUXT_ENV_PUBLIC_TOKEN : process.env.NUXT_ENV_PREVIEW_TOKEN,
         cacheProvider: 'memory'
+      }
+    ],
+    [
+      'nuxt-compress',
+      {
+        gzip: {
+          threshold: 8192
+        },
+        brotli: {
+          threshold: 8192
+        }
       }
     ],
     '@nuxtjs/google-fonts',

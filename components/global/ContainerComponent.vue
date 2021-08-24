@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="elements.length > 0"
+    v-if="blok.body.length > 0"
     :class="`container-cover w-full self-start ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
     <h1
@@ -15,8 +15,8 @@
       :style="`background-color: ${blok.background_color_container.color};`"
     >
       <div
-        v-if="blok.slider_mode === 'slider' || blok.slider_mode === 'carousel'"
-        :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-5 mb-5' : 'm-5': ''}`"
+        v-if="blok.body.length > 1 && (blok.slider_mode === 'slider' || blok.slider_mode === 'carousel')"
+        :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-5 pb-5' : 'p-5': ''}`"
       >
         <Icon
           v-if="(blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || blok.row_container) && !blok.hide_controllers"
@@ -106,7 +106,7 @@
           </div>
         </div>
       </div>
-      <div v-else :class="`container-components flex flex-wrap rounded ${sliderMode || carouselMode || containerMode ? '-m-2.5' : `-mx-2.5 ${blok.background_color_container.color ? '' : '-mt-2.5'}`} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-5 mb-5' : 'p-5': ''}`">
+      <div v-else :class="`container-components flex flex-wrap rounded ${sliderMode || carouselMode || containerMode ? '-m-2.5' : '-mx-2.5'} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-5 pb-5' : 'p-5': ''}`">
         <template v-for="component in elements">
           <div
             :key="component._uid"
@@ -321,7 +321,7 @@ export default {
       this.setAutoPlay = 0
     },
     getContainerWidth () {
-      const containerSelect = this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel' ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
+      const containerSelect = this.blok.body.length > 1 && (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') ? this.$refs.sliderBox.clientWidth : this.$el.clientWidth
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         this.$nextTick(function () {
           this.fullWidth = containerSelect

@@ -1,12 +1,13 @@
 export default ({ app }, inject) => {
   inject('errorMessage', (res, message404, message500) => {
+    const ctx = app
     if (!res) {
-      app.context.error({
+      ctx.context.error({
         statusCode: 404,
         message: message404
       })
     } else {
-      app.context.error({
+      ctx.context.error({
         statusCode: 500,
         message: message500
       })

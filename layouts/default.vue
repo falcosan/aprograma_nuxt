@@ -38,11 +38,9 @@ export default {
   created () {
     this.getLayout()
   },
-  beforeMount () {
+  async beforeMount () {
     this.$store.commit('data/responsiveMutation', window.innerWidth)
-  },
-  mounted () {
-    this.$store.dispatch('data/responsiveAction')
+    await this.$store.dispatch('data/responsiveAction')
   },
   methods: {
     async getLayout () {

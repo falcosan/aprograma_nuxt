@@ -8,52 +8,42 @@
       modal-style="bg-gray-200 bg-opacity-90"
     >
       <template #activator="action">
-        <div class="modal-media cursor-pointer" @click="action.open()">
-          <component
-            :is="imageType() === 'svg+xml' ? 'img' : 'NuxtImg'"
-            v-if="(blok && $imageValidation(blok.media.filename)) || image"
-            :modifiers="imageType() === 'svg+xml' ? false : { filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
-            loading="lazy"
-            :format="imageType() === 'svg+xml' ? false : 'webp'"
-            :class="`${blok && blok.media.filename ? blok.media.filename : src
-              .split(/[\\/]/)
-              .pop()
-              .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center rounded select-none`"
-            :src="blok && blok.media.filename ? blok.media.filename : src"
-            :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
-            :width="blok ? blok.width : width"
-            :height="blok ? blok.height : height"
-            :type="`image/${imageType()}`"
-            :fit="imageType() === 'svg+xml' ? false : 'in'"
-            draggable="false"
-            :sizes="imageType() === 'svg+xml' ? false : `xs:299px sm:380px md:514px lg:${blok ? /[a-zA-Z]/g.test(blok.width) ? blok.width : `${blok.width}px` : /[a-zA-Z]/g.test(width) ? width : `${width}px`}`"
-          />
-          <video
-            v-else-if="(blok && blok.media.filename) || video"
-            :class="`${blok && blok.media.filename ? blok.media.filename : src
-              .split(/[\\/]/)
-              .pop()
-              .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center rounded select-none`"
-            :width="blok ? blok.width : width"
-            :height="blok ? blok.height : height"
-            playsinline
-            autoplay
-            muted
-            :loop="blok.loop"
-            @click="action.open()"
-          >
-            <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
-          </video>
-        </div>
+        <ImageSet
+          v-if="(blok && $imageValidation(blok.media.filename)) || image"
+          :class="`${blok && blok.media.filename ? blok.media.filename : src
+            .split(/[\\/]/)
+            .pop()
+            .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
+          :file="blok.media"
+          :src="blok && blok.media.filename ? blok.media.filename : src"
+          :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
+          :width="blok ? blok.width : width"
+          :height="blok ? blok.height : height"
+          fit="in"
+          :sizes="`xs:299px sm:380px md:514px lg:${blok ? /[a-zA-Z]/g.test(blok.width) ? blok.width : `${blok.width}px` : /[a-zA-Z]/g.test(width) ? width : `${width}px`}`"
+          @click.native="action.open()"
+        />
+        <video
+          v-else-if="(blok && blok.media.filename) || video"
+          :class="`${blok && blok.media.filename ? blok.media.filename : src
+            .split(/[\\/]/)
+            .pop()
+            .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
+          :width="blok ? blok.width : width"
+          :height="blok ? blok.height : height"
+          playsinline
+          autoplay
+          muted
+          :loop="blok.loop"
+          @click="action.open()"
+        >
+          <source :src="blok && blok.media.filename ? blok.media.filename : src" :type="`video/${blok && blok.media.filename ? blok.media.filename.toLowerCase().split('.').pop() : src.toLowerCase().split('.').pop()}`">
+        </video>
       </template>
       <template #body>
-        <component
-          :is="imageType() === 'svg+xml' ? 'img' : 'NuxtImg'"
+        <ImageSet
           v-if="(blok && $imageValidation(blok.media.filename)) || image"
-          :modifiers="imageType() === 'svg+xml' ? false : { filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
-          loading="lazy"
-          :format="imageType() === 'svg+xml' ? false : 'webp'"
-          class="image-container"
+          :file="blok.media"
           :class="`${blok && blok.media.filename ? blok.media.filename : src
             .split(/[\\/]/)
             .pop()
@@ -62,10 +52,9 @@
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           width="1920"
           height="1980"
-          :type="`image/${imageType()}`"
-          :fit="imageType() === 'svg+xml' ? false : 'in'"
-          draggable="false"
-          :sizes="imageType() === 'svg+xml' ? false : 'xs:380px sm:514px md:711px lg:804px xl:1680px 2xl:1920px'"
+          format="webp"
+          fit="in"
+          sizes="xs:380px sm:514px md:711px lg:804px xl:1680px 2xl:1920px"
         />
         <video
           v-else-if="(blok && blok.media.filename) || video"
@@ -85,24 +74,19 @@
       </template>
     </Modal>
     <template v-else>
-      <component
-        :is="imageType() === 'svg+xml' ? 'img' : 'NuxtImg'"
+      <ImageSet
         v-if="(blok && $imageValidation(blok.media.filename)) || image"
-        :modifiers="imageType() === 'svg+xml' ? false : { filters: { focal: blok.media.focus ? blok.media.focus : 0 } }"
-        loading="lazy"
-        :format="imageType() === 'svg+xml' ? false : 'webp'"
         :class="`${blok && blok.media.filename ? blok.media.filename : src
           .split(/[\\/]/)
           .pop()
           .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
+        :file="blok.media"
         :src="blok && blok.media.filename ? blok.media.filename : src"
         :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
         :width="blok ? blok.width : width"
         :height="blok ? blok.height : height"
-        :type="`image/${imageType()}`"
-        :fit="imageType() === 'svg+xml' ? false : 'in'"
-        draggable="false"
-        :sizes="imageType() === 'svg+xml' ? false : `xs:299px sm:380px md:514px lg:${blok ? /[a-zA-Z]/g.test(blok.width) ? blok.width : `${blok.width}px` : /[a-zA-Z]/g.test(width) ? width : `${width}px`}`"
+        fit="in"
+        :sizes="`xs:299px sm:380px md:514px lg:${blok ? /[a-zA-Z]/g.test(blok.width) ? blok.width : `${blok.width}px` : /[a-zA-Z]/g.test(width) ? width : `${width}px`}`"
       />
       <video
         v-else-if="(blok && blok.media.filename) || video"

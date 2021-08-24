@@ -11,6 +11,7 @@ import Modal from '@/components/global/ModalComponent'
 import Input from '@/components/global/InputComponent'
 import Detail from '@/components/global/DetailComponent'
 import PostsList from '@/components/blog/PostsListComponent'
+import ImageSet from '@/components/global/ImageSetComponent'
 import Container from '@/components/global/ContainerComponent'
 import TextContent from '@/components/global/TextContentComponent'
 import ProjectsList from '@/components/portfolio/ProjectsListComponent'
@@ -27,6 +28,7 @@ Vue.component('Modal', Modal)
 Vue.component('Field', Field)
 Vue.component('Input', Input)
 Vue.component('Detail', Detail)
+Vue.component('ImageSet', ImageSet)
 Vue.component('Container', Container)
 Vue.component('TextContent', TextContent)
 

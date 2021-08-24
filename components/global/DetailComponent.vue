@@ -7,73 +7,64 @@
           <Modal
             v-if="blok.modal_mode"
             close-mode
+            class="detail-modal"
             modal-style="bg-opacity-90 bg-gray-200"
           >
             <template #activator="action">
-              <div class="modal-detail cursor-pointer" @click="action.open()">
-                <component
-                  :is="imageType(media) === 'svg+xml' ? 'img' : 'NuxtImg'"
-                  v-if="$imageValidation(media.filename)"
-                  loading="lazy"
-                  :class="`${media.filename
-                    .split(/[\\/]/)
-                    .pop()
-                    .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center rounded select-none`"
-                  :src="media.filename"
-                  :alt="media.alt"
-                  width="620"
-                  height="620"
-                  :type="`image/${imageType(media)}`"
-                  draggable="false"
-                  :modifiers="imageType(media) === 'svg+xml' ? false : { filters: { focal: media.focus ? media.focus : 0 } }"
-                  :fit="imageType(media) === 'svg+xml' ? false : 'in'"
-                  :format="imageType(media) === 'svg+xml' ? false : 'webp'"
-                  :sizes="imageType(media) === 'svg+xml' ? false : 'xs:299px sm:380px md:514px lg:620px'"
-                />
-                <video
-                  v-else
-                  :class="`${media.filename
-                    .split(/[\\/]/)
-                    .pop()
-                    .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center rounded select-none`"
-                  width="auto"
-                  height="auto"
-                  autoplay
-                  muted
-                  playsinline
-                  :loop="blok.loop"
-                  @click="action.open()"
-                >
-                  <source :src="media.filename" :type="`video/${media.filename.toLowerCase().split('.').pop()}`">
-                </video>
-              </div>
-            </template>
-            <template #body>
-              <component
-                :is="imageType(media) === 'svg+xml' ? 'img' : 'NuxtImg'"
+              <ImageSet
                 v-if="$imageValidation(media.filename)"
-                loading="lazy"
+                :file="media"
                 :class="`${media.filename
                   .split(/[\\/]/)
                   .pop()
-                  .replace(/\.[^/.]+$/, '')}-image modal-image my-0 mx-auto object-contain object-center select-none cursor-default`"
+                  .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
                 :src="media.filename"
                 :alt="media.alt"
-                width="1920"
-                height="1980"
-                :type="`image/${imageType(media)}`"
-                draggable="false"
-                :modifiers="imageType(media) === 'svg+xml' ? false : { filters: { focal: media.focus ? media.focus : 0 } }"
-                :fit="imageType(media) === 'svg+xml' ? false : 'in'"
-                :format="imageType(media) === 'svg+xml' ? false : 'webp'"
-                :sizes="imageType(media) === 'svg+xml' ? false : 'xs:380px sm:514px md:711px lg:804px xl:1680px 2xl:1920px'"
+                fit="in"
+                width="620"
+                height="620"
+                sizes="xs:299px sm:380px md:514px lg:620px"
+                @click.native="action.open()"
               />
               <video
                 v-else
                 :class="`${media.filename
                   .split(/[\\/]/)
                   .pop()
-                  .replace(/\.[^/.]+$/, '')}-video modal-video my-0 mx-auto object-contain object-center select-none cursor-default`"
+                  .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
+                width="auto"
+                height="auto"
+                autoplay
+                muted
+                playsinline
+                :loop="blok.loop"
+                @click="action.open()"
+              >
+                <source :src="media.filename" :type="`video/${media.filename.toLowerCase().split('.').pop()}`">
+              </video>
+            </template>
+            <template #body>
+              <ImageSet
+                v-if="$imageValidation(media.filename)"
+                :class="`${media.filename
+                  .split(/[\\/]/)
+                  .pop()
+                  .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center select-none cursor-default`"
+                width="1920"
+                height="1980"
+                format="webp"
+                fit="in"
+                sizes="xs:380px sm:514px md:711px lg:804px xl:1680px 2xl:1920px"
+                :file="media"
+                :src="media.filename"
+                :alt="media.alt"
+              />
+              <video
+                v-else
+                :class="`${media.filename
+                  .split(/[\\/]/)
+                  .pop()
+                  .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center select-none cursor-default`"
                 width="auto"
                 height="auto"
                 :src="media.filename"
@@ -88,31 +79,26 @@
             </template>
           </Modal>
           <template v-else>
-            <component
-              :is="imageType(media) === 'svg+xml' ? 'img' : 'NuxtImg'"
+            <ImageSet
               v-if="$imageValidation(media.filename)"
-              loading="lazy"
+              :file="media"
               :class="`${media.filename
                 .split(/[\\/]/)
                 .pop()
-                .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center select-none cursor-default`"
+                .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center rounded pointer-events-none cursor-pointer select-none`"
               :src="media.filename"
               :alt="media.alt"
+              fit="in"
               width="620"
               height="620"
-              :type="`image/${imageType(media)}`"
-              draggable="false"
-              :modifiers="imageType(media) === 'svg+xml' ? false : { filters: { focal: media.focus ? media.focus : 0 } }"
-              :fit="imageType(media) === 'svg+xml' ? false : 'in'"
-              :format="imageType(media) === 'svg+xml' ? false : 'webp'"
-              :sizes="imageType(media) === 'svg+xml' ? false : 'xs:299px sm:380px md:514px lg:620px'"
+              sizes="xs:299px sm:380px md:514px lg:620px"
             />
             <video
               v-else
-              :class="`${media.filename
+              :class="`${blok && media.filename ? media.filename : src
                 .split(/[\\/]/)
                 .pop()
-                .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center select-none cursor-default`"
+                .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center rounded pointer-events-none cursor-pointer select-none`"
               width="auto"
               height="auto"
               playsinline

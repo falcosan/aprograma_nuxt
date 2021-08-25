@@ -25,7 +25,7 @@ export default {
       { rel: 'preconnect', href: '//img2.storyblok.com' }
     ]
   },
-  loading: false,
+  loading: '@/components/layout/LoadingComponent.vue',
   css: ['~/assets/css/main', '~/assets/css/markdown'],
   plugins: [
     '~/plugins/injects/no-scroll.client.js',

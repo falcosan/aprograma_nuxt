@@ -9,7 +9,7 @@
         v-for="component in components"
         :key="component._uid"
         :blok="component"
-        :style="`flex: ${component.component.toLowerCase() === 'blank' ? false : component.row_container ? `1 ${(100 - (maxComponents > 1 ? spaceFix : 0 )) / $rangeItems(maxComponents, 3)}%` : '100%'};`"
+        :style="`flex: ${component.row_container ? `1 ${(100 - (maxComponents > 1 ? spaceFix : 0 )) / $rangeItems(maxComponents, 3)}%` : '100%'};`"
         :class="`${component.component.toLowerCase()}-content ${component.component.toLowerCase() === 'blank' ? '' : `${setAlignContent} m-2.5` } ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
       />
     </div>

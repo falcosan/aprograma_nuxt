@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="blok.body.length > 0"
-    :class="`container-cover w-full self-start ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
+    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
     <h1
       v-if="blok.title"
@@ -115,7 +115,7 @@
           <template v-for="component in elements">
             <div
               :key="component._uid"
-              :style="`flex: ${component.component.toLowerCase() === 'blank' ? false : component.row_container ? `1 ${(100 - (maxElements > 1 ? spaceFix : 0)) / maxElements}%` : '100%'}; background-color: ${component.component.toLowerCase() === 'blank' ? false : blok.background_color_component.color};`"
+              :style="`flex: ${component.row_container ? `1 ${(100 - (maxElements > 1 ? spaceFix : 0)) / maxElements}%` : '100%'}; background-color: ${component.component.toLowerCase() === 'blank' ? false : blok.background_color_component.color};`"
               :class="`${component.name.toLowerCase()}-container ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.component.toLowerCase() === 'blank' ? '' : `${setAlignContent} m-2.5 rounded`}`"
             >
               <component

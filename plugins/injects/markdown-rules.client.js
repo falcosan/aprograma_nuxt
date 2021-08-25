@@ -15,5 +15,10 @@ export default ({ app }, inject) => {
         }
       })
     }
+    if (document.querySelectorAll('markdown br')) {
+      [...document.querySelectorAll('* + br:last-child')].forEach((br) => {
+        br.previousElementSibling.style.marginBottom = '0'
+      })
+    }
   })
 }

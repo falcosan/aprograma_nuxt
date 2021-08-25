@@ -142,7 +142,7 @@ export default {
   },
   googleFonts: {
     families: {
-      Inter: [100, 200, 300, 400]
+      Inter: [100, 200, 300, 400, 700]
     },
     preconnect: true,
     display: 'swap'

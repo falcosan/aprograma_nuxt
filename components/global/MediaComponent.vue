@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`media relative flex flex-col mx-auto my-0 overflow-hidden rounded ${!blok.remove_space ? blok.title ? 'px-5 pt-5' : 'p-5' : ''}`"
+    :class="`media relative h-full flex flex-col justify-center mx-auto my-0 overflow-hidden rounded ${!blok.remove_space ? blok.title ? 'px-5 pt-5' : 'p-5' : ''}`"
   >
     <Modal
       v-if="blok.modal_mode"

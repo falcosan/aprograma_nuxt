@@ -54,7 +54,7 @@
               height="595"
               fit="in"
               :style="`border-color: ${blok.project_background_color.color ? blok.project_background_color.color : '#e0e0e0'}`"
-              sizes="xs:299px sm:380px md:514px lg:620px xl:984 2xl:1200px"
+              sizes="xs:299px sm:380px md:514px lg:711px xl:984 2xl:1200px"
             />
           </div>
         </template>

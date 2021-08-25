@@ -88,7 +88,9 @@ export default {
     }
   },
   async fetch () {
-    await this.$store.dispatch('list/posts/addPosts')
+    if (this.$route.name !== 'blog') {
+      await this.$store.dispatch('list/posts/addPosts')
+    }
   },
   computed: {
     maxPosts () {

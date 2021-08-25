@@ -40,7 +40,7 @@
           <div v-if="blok.slider_mode === 'slider'" class="slider-container">
             <ul
               :key="sliderKey"
-              :style="`transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
+              :style="`height: ${blok.height}; transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
               class="slider relative grid grid-flow-col-dense transition-transform"
             >
               <template v-for="component in elements">
@@ -73,6 +73,7 @@
               class="carousel relative grid rounded"
               enter-active-class="in-out duration-500"
               leave-active-class="out-in duration-500"
+              :style="`height: ${blok.height};`"
             >
               <template v-for="(component, index) in elements">
                 <li
@@ -106,22 +107,27 @@
           </div>
         </div>
       </div>
-      <div v-else :class="`container-components flex flex-wrap rounded ${sliderMode || carouselMode || containerMode ? '-m-2.5' : '-mx-2.5'} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-2.5 pb-2.5 sm:px-5 sm:pb-5' : 'p-2.5 sm:p-5': ''}`">
-        <template v-for="component in elements">
-          <div
-            :key="component._uid"
-            :style="`flex: ${component.component.toLowerCase() === 'blank' ? false : component.row_container ? `1 ${(100 - (maxElements > 1 ? spaceFix : 0)) / maxElements}%` : '100%'}; background-color: ${component.component.toLowerCase() === 'blank' ? false : blok.background_color_component.color};`"
-            :class="`${component.name.toLowerCase()}-container ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.component.toLowerCase() === 'blank' ? '' : `${setAlignContent} m-2.5 rounded`}`"
-          >
-            <component
-              :is="component.component"
-              :class="`${component.name.toLowerCase()}-component`"
-              :blok="component"
-              container-mode
-              :container-width="fullWidth"
-            />
-          </div>
-        </template>
+      <div v-else class="container-box overflow-hidden">
+        <div
+          :class="`container-components flex flex-wrap rounded ${sliderMode || carouselMode || containerMode ? '-m-2.5' : '-mx-2.5'} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-2.5 pb-2.5 sm:px-5 sm:pb-5' : 'p-2.5 sm:p-5': ''}`"
+          :style="`height: ${blok.height};`"
+        >
+          <template v-for="component in elements">
+            <div
+              :key="component._uid"
+              :style="`flex: ${component.component.toLowerCase() === 'blank' ? false : component.row_container ? `1 ${(100 - (maxElements > 1 ? spaceFix : 0)) / maxElements}%` : '100%'}; background-color: ${component.component.toLowerCase() === 'blank' ? false : blok.background_color_component.color};`"
+              :class="`${component.name.toLowerCase()}-container ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.component.toLowerCase() === 'blank' ? '' : `${setAlignContent} m-2.5 rounded`}`"
+            >
+              <component
+                :is="component.component"
+                :class="`${component.name.toLowerCase()}-component`"
+                :blok="component"
+                container-mode
+                :container-width="fullWidth"
+              />
+            </div>
+          </template>
+        </div>
       </div>
     </div>
   </div>

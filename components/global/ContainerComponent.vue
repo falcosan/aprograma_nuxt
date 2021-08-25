@@ -40,7 +40,7 @@
           <div v-if="blok.slider_mode === 'slider'" class="slider-container">
             <ul
               :key="sliderKey"
-              :style="`height: ${blok.height}; transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
+              :style="`min-height: ${blok.height}; transform: translateX(${-((containerWidth + spaceFix) * sliderIndex)}px); gap: ${spaceFix}px;`"
               class="slider relative grid grid-flow-col-dense transition-transform"
             >
               <template v-for="component in elements">
@@ -73,7 +73,7 @@
               class="carousel relative grid rounded"
               enter-active-class="in-out duration-500"
               leave-active-class="out-in duration-500"
-              :style="`height: ${blok.height};`"
+              :style="`min-height: ${blok.height};`"
             >
               <template v-for="(component, index) in elements">
                 <li
@@ -110,7 +110,7 @@
       <div v-else class="container-box overflow-hidden">
         <div
           :class="`container-components flex flex-wrap rounded ${sliderMode || carouselMode || containerMode ? '-m-2.5' : '-mx-2.5'} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-2.5 pb-2.5 sm:px-5 sm:pb-5' : 'p-2.5 sm:p-5': ''}`"
-          :style="`height: ${blok.height};`"
+          :style="`min-height: ${blok.height};`"
         >
           <template v-for="component in elements">
             <div

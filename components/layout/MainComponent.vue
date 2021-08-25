@@ -68,14 +68,12 @@ export default {
       if (this.blok.background_color.color || this.blok.background_color_mask.color) {
         this.setBackgroundColor()
       }
-      if (this.blok.background_color.color) { this.$store.commit('data/themeColorMutation', this.randomBackgroundColor) }
     }
   },
-  created () {
+  async created () {
     if (this.blok.background_color.color || this.blok.background_color_mask.color) {
-      this.setBackgroundColor()
+      await this.setBackgroundColor()
     }
-    if (this.blok.background_color.color) { this.$store.commit('data/themeColorMutation', this.randomBackgroundColor) }
   },
   methods: {
     setBackgroundColor () {

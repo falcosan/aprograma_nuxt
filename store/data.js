@@ -1,16 +1,12 @@
 
 export const state = () => ({
   error: false,
-  windowWidth: 0,
-  themeColor: []
+  windowWidth: 0
 })
 
 export const mutations = {
   responsiveMutation (state, newResponsive) {
     state.windowWidth = newResponsive
-  },
-  themeColorMutation (state, newThemeColor) {
-    state.themeColor = newThemeColor
   },
   errorMutation (state, newError) {
     state.error = newError

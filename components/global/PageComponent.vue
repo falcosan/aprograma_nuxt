@@ -1,5 +1,5 @@
 <template>
-  <section :class="`${blok.name.toLowerCase()}-page p-5`">
+  <section v-if="!blok.hide" :class="`${blok.name.toLowerCase()}-page p-5`">
     <h1 v-if="blok.title" class="page-title mb-5 text-xl sm:text-2xl break-words">
       {{ blok.title }}
     </h1>
@@ -13,6 +13,11 @@
         :class="`${component.component.toLowerCase()}-content ${component.component.toLowerCase() === 'blank' ? '' : `${setAlignContent} m-2.5` } ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
       />
     </div>
+  </section>
+  <section v-else>
+    <h1 class="maintenance-text fixed w-full left-1/2 top-1/2 p-5 transform -translate-x-1/2 -translate-y-full text-xs xs:text-base sm:text-lg text-center pointer-events-none uppercase italic">
+      {{ $languageCase("This page is in maintenance, sorry for the inconvenience", "Esta página está en mantenimiento, disculpe las molestias", "Questa pagina è in manutenzione, scusa per l'inconveniente") }}
+    </h1>
   </section>
 </template>
 

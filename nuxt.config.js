@@ -22,7 +22,7 @@ export default {
       }
     ],
     link: [
-      { rel: 'preconnect', href: '//img2.storyblok.com' }
+      { rel: 'preconnect', href: 'https://img2.storyblok.com' }
     ]
   },
   loading: '@/components/layout/LoadingComponent.vue',
@@ -48,7 +48,6 @@ export default {
     '@nuxt/image',
     '@nuxtjs/device',
     '@nuxtjs/tailwindcss',
-    'nuxt-compress',
     'nuxt-build-optimisations'
   ],
   buildOptimisations: {
@@ -97,17 +96,6 @@ export default {
       {
         accessToken: process.env.NODE_ENV === 'production' ? process.env.NUXT_ENV_PUBLIC_TOKEN : process.env.NUXT_ENV_PREVIEW_TOKEN,
         cacheProvider: 'memory'
-      }
-    ],
-    [
-      'nuxt-compress',
-      {
-        gzip: {
-          threshold: 8192
-        },
-        brotli: {
-          threshold: 8192
-        }
       }
     ],
     '@nuxtjs/google-fonts',

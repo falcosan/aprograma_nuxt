@@ -36,6 +36,13 @@ export default {
           name: 'description',
           content: `${this.story.name} project`
         }
+      ],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `${location.protocol + '//' + location.host}${this.$route.path}`
+        }
       ]
     }
   },

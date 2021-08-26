@@ -1,6 +1,6 @@
 <template>
   <main :class="`main overflow-x-hidden ${!$device.isDesktop ? 'pt-10' : 'pt-10 md:py-20'}`">
-    <div :class="`main-wrapper min-h-screen relative overflow-hidden ${$store.state.data.error ? 'main-error' : 'main-regular'}`">
+    <div class="main-wrapper relative overflow-hidden">
       <div
         v-if="blok.show_background_mask"
         :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-0 mx-auto overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'colorAnimation' : ''}`"
@@ -11,7 +11,7 @@
         :class="`main-flat fixed w-full h-full inset-0 -z-10 transition-colors duration-500 ${blok.color_animation ? 'colorAnimation' : ''}`"
         :style="`background-color: ${randomBackgroundColor};`"
       />
-      <Nuxt :class="`relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
+      <Nuxt :class="`relative min-h-screen max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
     </div>
     <NuxtImg
       v-if="$imageValidation(blok.background_media.filename)"
@@ -98,16 +98,6 @@ export default {
 }
 </script>
 <style scoped>
-
-.main-error{
-  min-height: unset;
-  height: calc(100vh - 5rem);
-}
-@media screen and (min-width:768px){
-  .main-error{
-    height: calc(100vh - 10rem);
-  }
-}
 .colorAnimation{
     animation: changeColor 10s infinite;
 }

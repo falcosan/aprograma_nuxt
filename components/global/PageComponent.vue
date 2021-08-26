@@ -62,6 +62,18 @@ export default {
           return 'self-end'
       } return ''
     }
+  },
+  beforeMount () {
+    this.setMaintenance()
+  },
+  methods: {
+    setMaintenance () {
+      if (this.blok.hide) {
+        this.$noscroll(true)
+      } else {
+        this.$noscroll(false)
+      }
+    }
   }
 }
 </script>

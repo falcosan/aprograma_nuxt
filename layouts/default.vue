@@ -7,14 +7,14 @@
       :blok="layout"
     />
   </div>
-  <div v-else-if="story.content.body" class="aprograma-maintenance h-screen flex flex-col justify-center p-10">
+  <div v-else-if="story.content.body" class="aprograma-maintenance h-screen flex flex-col justify-center p-5">
     <Logo
       transition
       class="rounded max-w-full mx-auto my-0"
       width="500px"
     />
-    <h1 class="maintenance-text text-xs xs:text-base sm:text-lg text-center xs:whitespace-nowrap pointer-events-none uppercase underline italic">
-      under maintenance
+    <h1 class="maintenance-text text-xs xs:text-base sm:text-lg text-center xs:whitespace-nowrap pointer-events-none uppercase italic">
+      {{ $languageCase("under maintenance", "en mantenimiento", "in manutenzione") }}
     </h1>
   </div>
 </template>
@@ -40,6 +40,7 @@ export default {
   },
   async beforeMount () {
     this.$store.commit('data/responsiveMutation', window.innerWidth)
+    this.setMaintenance()
     await this.$store.dispatch('data/responsiveAction')
   },
   methods: {
@@ -48,6 +49,11 @@ export default {
         language: this.$store.state.language.language
       })
       this.story = data.story
+    },
+    setMaintenance () {
+      if (this.story.content.maintenance) {
+        this.$noscroll(true)
+      }
     }
   }
 }

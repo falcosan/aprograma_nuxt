@@ -38,7 +38,7 @@
           @click.native="goBack()"
         />
       </div>
-      <div class="post-article w-full max-w-prose pb-10 px-5 pt-5 mx-auto my-0">
+      <div class="post-article w-full max-w-prose pb-10 pt-5 px-5 mx-auto my-0">
         <h2
           :style="`color: ${blok.text_color.color};`"
           class="post-intro mb-7 text-xl sm:text-2xl"

@@ -9,7 +9,7 @@
           <Icon
             link
             :class="`project-external mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
-            :style="`background-color: ${blok.project_background_color.color ? blok.project_background_color.color : '#e0e0e0'}; color: ${blok.project_text_color.color};`"
+            :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
             size="w-10 h-10 p-3"
           />
         </template>
@@ -20,7 +20,7 @@
           <Icon
             git
             :class="`project-repository mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
-            :style="`background-color: ${blok.project_background_color.color ? blok.project_background_color.color : '#e0e0e0'}; color: ${blok.project_text_color.color};`"
+            :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
             size="w-10 h-10 p-3"
           />
         </template>
@@ -28,7 +28,7 @@
       <Icon
         arrow
         tag="button"
-        :style="`background-color: ${blok.project_background_color.color ? blok.project_background_color.color : '#e0e0e0'}; color: ${blok.project_text_color.color};`"
+        :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
         :class="`project-back rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
         size="w-10 h-10 p-3"
         @click.native="goBack()"
@@ -53,7 +53,7 @@
               width="1200"
               height="595"
               fit="in"
-              :style="`border-color: ${blok.project_background_color.color ? blok.project_background_color.color : '#e0e0e0'}`"
+              :style="`border-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}`"
               sizes="xs:299px sm:380px md:514px lg:711px xl:984 2xl:1200px"
             />
           </div>
@@ -73,7 +73,7 @@
         </template>
       </Modal>
       <div
-        :style="`background-color: ${blok.project_background_color.color ? blok.project_background_color.color : '#e0e0e0'}; color: ${blok.project_text_color.color};`"
+        :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
         :class="`intro-text markdown block self-start xl:row-start-1 xl:row-end-1 xl:col-start-3 xl:col-end-3 rounded ${setAlignText} ${!blok.remove_space ? 'p-5' : ''}`"
         v-html="$md.render(blok.intro)"
       />
@@ -95,7 +95,7 @@
             <Icon
               link
               :class="`project-external mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
-              :style="`background-color: ${blok.project_background_color.color ? blok.project_background_color.color : '#e0e0e0'}; color: ${blok.project_text_color.color};`"
+              :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
               size="w-10 h-10 p-3"
             />
           </template>
@@ -106,7 +106,7 @@
             <Icon
               git
               :class="`project-repository mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
-              :style="`background-color: ${blok.project_background_color.color ? blok.project_background_color.color : '#e0e0e0'}; color: ${blok.project_text_color.color};`"
+              :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
               size="w-10 h-10 p-3"
             />
           </template>
@@ -114,7 +114,7 @@
         <Icon
           arrow
           tag="button"
-          :style="`background-color: ${blok.project_background_color.color ? blok.project_background_color.color : '#e0e0e0'}; color: ${blok.project_text_color.color};`"
+          :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
           :class="`project-back rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
           size="w-10 h-10 p-3"
           @click.native="goBack()"

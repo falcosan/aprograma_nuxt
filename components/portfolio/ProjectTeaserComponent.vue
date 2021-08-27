@@ -4,7 +4,7 @@
     class="project-teaser w-full h-full overflow-hidden rounded"
   >
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
-      <div class="teaser-content h-full flex flex-col justify-end pt-0.5" :style="`background-color: ${projectContent.teaser_background_color.color ? projectContent.teaser_background_color.color : '#e0e0e0'}; color: ${projectContent.teaser_text_color.color};`">
+      <div class="teaser-content h-full flex flex-col justify-end pt-0.5" :style="`background-color: ${projectContent.background_color.color ? projectContent.background_color.color : '#e0e0e0'}; color: ${projectContent.text_color.color};`">
         <NuxtImg
           class="project-image h-full w-full object-cover object-center select-none rounded-t"
           loading="lazy"
@@ -17,7 +17,7 @@
           sizes="xs:299px sm:380px md:514px lg:711px xl:804px"
         />
         <div
-          :style="`background-color: ${projectContent.teaser_background_color.color ? projectContent.teaser_background_color.color : '#e0e0e0'};`"
+          :style="`background-color: ${projectContent.background_color.color ? projectContent.background_color.color : '#e0e0e0'};`"
           class="title-container w-full flex flex-row items-center p-5"
         >
           <span

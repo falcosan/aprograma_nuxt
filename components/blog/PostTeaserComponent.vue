@@ -5,17 +5,19 @@
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div
-        :class="`teaser-content h-full flex flex-col ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:max-h-72 xl:max-h-56 lg:flex-row'}`"
+        :class="`teaser-content h-full flex flex-col ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:max-h-56 lg:flex-row'}`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
-        <div :class="`teaser-file w-full h-screen ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxSize : 'max-h-44 xx:max-h-48 xs:max-h-56 sm:max-h-64 md:max-h-52 lg:max-h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`">
+        <div
+          :class="`teaser-file w-full ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`"
+        >
           <component
             :is="postContent.file.filename ? lookFile() : 'NuxtImg'"
             :loading="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'lazy' : false"
             :format="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'webp' : false"
             :modifiers="lookFile() === 'NuxtImg' && postContent.file.filename ? { filters: { focal: postContent.file.focus ? postContent.file.focus : 0 } } : null"
-            :class="`w-full h-full object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? maxSize : 'max-h-44 xx:max-h-48 xs:max-h-56 sm:max-h-64 md:max-h-52 lg:max-h-56'}  ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
+            :class="`w-full h-full object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:h-56'}  ${postContent.file.filename ? 'object-cover' : 'pl-2.5 object-contain'}`"
             :alt="postContent.file.filename ? lookFile() === 'NuxtImg' ? postContent.file.alt : false : $languageCase('quantum vacuum', 'vacío cuántico', 'vuoto quantistico')"
             :src="setFile"
             :fit="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'in' : false"
@@ -37,7 +39,7 @@
               {{ postContent.intro }}
             </span>
           </div>
-          <div class="teaser-info w-full flex flex-col mt-2.5 items-end">
+          <div class="teaser-info w-full flex flex-col mt-5 items-end">
             <ul :class="`teaser-categories w-full flex flex-wrap ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'justify-end' : 'mx-1 mb-2.5'}`">
               <li v-for="(category, index) in sortedCategories" :key="index" class="teaser-category text-xs p-2.5 m-1 rounded shadow-sm italic font-light filter brightness-95 transition-shadow" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'};`">
                 {{ category }}
@@ -82,7 +84,7 @@ export default {
       type: Boolean,
       required: true
     },
-    containerWidth: {
+    fullWidth: {
       type: Number,
       default: 0
     }
@@ -98,23 +100,6 @@ export default {
     },
     sortedCategories () {
       return this.postContent.categories.map(category => category.toLowerCase().split('; ')[this.$languageCase(0, 1, 2)]).sort()
-    },
-    maxSize () {
-      if (this.sliderContainer) {
-        if (this.containerWidth <= 240) {
-          return 'max-h-40'
-        } else if (this.containerWidth <= 280) {
-          return 'max-h-44'
-        } else if (this.containerWidth <= 320) {
-          return 'max-h-48'
-        } else if (this.containerWidth <= 375) {
-          return 'max-h-56'
-        } else {
-          return 'max-h-64'
-        }
-      } else {
-        return 'max-h-44 xx:max-h-48 xs:max-h-56 sm:max-h-64 md:max-h-52 lg:max-h-56 xl:max-h-64'
-      }
     }
   },
   methods: {
@@ -144,7 +129,10 @@ export default {
 }
 </script>
 <style scoped>
-  .teaser-title{
+.teaser-file {
+  aspect-ratio: 16 / 9;
+}
+ .teaser-title{
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp:  2;

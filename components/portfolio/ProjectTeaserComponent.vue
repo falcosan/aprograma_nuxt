@@ -1,12 +1,12 @@
 <template>
   <li
     v-if="projectContent"
-    :class="`project-teaser w-full h-screen overflow-hidden rounded ${maxSize}`"
+    class="project-teaser w-full h-full overflow-hidden rounded"
   >
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
-      <div class="teaser-content h-full flex flex-col p-px" :style="`background-color: ${projectContent.teaser_background_color.color ? projectContent.teaser_background_color.color : '#e0e0e0'}; color: ${projectContent.teaser_text_color.color};`">
+      <div class="teaser-content h-full flex flex-col justify-end pt-0.5" :style="`background-color: ${projectContent.teaser_background_color.color ? projectContent.teaser_background_color.color : '#e0e0e0'}; color: ${projectContent.teaser_text_color.color};`">
         <NuxtImg
-          class="project-image w-full h-4/5 object-cover object-center select-none rounded-t"
+          class="project-image h-full w-full object-cover object-center select-none rounded-t"
           loading="lazy"
           format="webp"
           :modifiers="{ filters: { focal: projectContent.image.focus ? projectContent.image.focus : 0 } }"
@@ -18,7 +18,7 @@
         />
         <div
           :style="`background-color: ${projectContent.teaser_background_color.color ? projectContent.teaser_background_color.color : '#e0e0e0'};`"
-          class="title-container h-1/5 flex flex-row flex-wrap items-center px-5 py-1.5"
+          class="title-container w-full flex flex-row items-center p-5"
         >
           <span
             class="teaser-title min-w-0 overflow-hidden"
@@ -65,29 +65,13 @@ export default {
     return {
       expanded: false
     }
-  },
-  computed: {
-    maxSize () {
-      if (this.sliderContainer) {
-        if (this.containerWidth <= 240) {
-          return 'max-h-56'
-        } else if (this.containerWidth <= 280) {
-          return 'max-h-64'
-        } else if (this.containerWidth <= 320) {
-          return 'max-h-72'
-        } else if (this.containerWidth <= 375) {
-          return 'max-h-80'
-        } else {
-          return 'max-h-96'
-        }
-      } else {
-        return 'max-h-60 xx:max-h-72 xs:max-h-80 sm:max-h-96 md:max-h-72 lg:max-h-80 xl:max-h-96'
-      }
-    }
   }
 }
 </script>
 <style scoped>
+.project-image{
+  aspect-ratio: 14 / 9;
+}
 .teaser-title{
   display: -webkit-box;
   -webkit-line-clamp: 1;

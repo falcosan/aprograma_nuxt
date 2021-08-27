@@ -83,7 +83,7 @@
       </div>
 
       <ul
-        class="social-links flex flex-wrap -m-1.5 justify-center"
+        class="social-links flex flex-wrap -m-1.5 justify-center items-center"
       >
         <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid" class="link-item m-1.5">
           <component

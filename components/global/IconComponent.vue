@@ -19,7 +19,7 @@
       :width="blok.size"
       :name="blok.name"
       :file="blok"
-      sizes="xs:16px sm:32px md:64px lg:128px"
+      sizes="xs:64px md:128px"
     />
     <!-- HOME-->
     <svg

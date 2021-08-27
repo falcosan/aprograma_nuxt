@@ -11,7 +11,7 @@
       {{ blok.title }}
     </h1>
     <div
-      :class="`container-content rounded ${blok.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
+      :class="`container-content h-full rounded ${blok.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
       :style="`background-color: ${blok.background_color_container.color};`"
     >
       <div
@@ -107,9 +107,9 @@
           </div>
         </div>
       </div>
-      <div v-else class="container-box overflow-hidden">
+      <div v-else class="container-box h-full overflow-hidden">
         <div
-          :class="`container-components flex flex-wrap rounded ${sliderMode || carouselMode || containerMode ? '-m-2.5' : `-mx-2.5 ${!blok.background_color_container.color ? '' : '-my-2.5'}`} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-5 p-5' : 'p-5': ''}`"
+          :class="`container-components h-full flex flex-wrap rounded ${sliderMode || carouselMode || containerMode ? '-m-2.5' : `-mx-2.5 ${!blok.background_color_container.color ? '' : '-my-2.5'}`} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-5 p-5' : 'p-5': ''}`"
           :style="`min-height: ${blok.height};`"
         >
           <template v-for="component in elements">

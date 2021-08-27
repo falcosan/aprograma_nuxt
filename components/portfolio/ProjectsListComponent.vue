@@ -4,7 +4,7 @@
       v-if="$store.state.data.windowWidth >= 1024 && blok.show_slider && !blok.row_container && sortedProject.length > 2 && !sliderMode"
       :blok="sortedProject"
     />
-    <ul v-else :class="`project-list w-full h-full grid gap-5 auto-cols-fr ${maxProjects}`">
+    <ul v-else :class="`project-list w-full grid gap-5 auto-cols-fr ${maxProjects}`">
       <ProjectTeaser
         v-for="project in sortedProject"
         :key="project.uuid"
@@ -55,10 +55,10 @@ export default {
     maxProjects () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         if (this.containerWidth >= 536) {
-          return 'md:grid-cols-fit-medium lg:grid-cols-fit-big'
-        } return this.containerWidth >= 354 ? 'md:grid-cols-fit-medium' : this.sliderMode ? 'sm:grid-cols-fit-small' : 'sm:grid-cols-fit-small md:grid-cols-fit-medium'
+          return 'md:grid-cols-fill-medium lg:grid-cols-fill-big'
+        } return this.containerWidth >= 354 ? 'md:grid-cols-fill-medium' : this.sliderMode ? 'sm:grid-cols-fill-small' : 'sm:grid-cols-fill-small md:grid-cols-fill-medium'
       } else {
-        return 'md:grid-cols-fit-medium lg:grid-cols-fit-big'
+        return 'md:grid-cols-fill-medium lg:grid-cols-fill-big'
       }
     },
     sortedProject () {

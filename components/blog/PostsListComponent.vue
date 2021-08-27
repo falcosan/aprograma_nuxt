@@ -32,7 +32,7 @@
     </div>
     <transition-group
       tag="ul"
-      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || sliderMode || carouselMode || containerMode ? maxPosts : 'md:grid-cols-fit-medium lg:grid-cols-none lg:grid-flow-row lg:auto-rows-fr'}`"
+      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || sliderMode || carouselMode || containerMode ? maxPosts : 'md:grid-cols-fill-medium lg:grid-cols-none lg:grid-flow-row lg:auto-rows-fr'}`"
       appear
       enter-active-class="duration-150"
       leave-active-class="duration-150"
@@ -96,10 +96,10 @@ export default {
     maxPosts () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
         if (this.containerWidth >= 536) {
-          return 'md:grid-cols-fit-medium lg:grid-cols-fit-big'
-        } return this.containerWidth >= 354 ? 'md:grid-cols-fit-medium' : this.sliderMode ? 'sm:grid-cols-fit-small' : 'sm:grid-cols-fit-small md:grid-cols-fit-medium'
+          return 'md:grid-cols-fill-medium lg:grid-cols-fill-big'
+        } return this.containerWidth >= 354 ? 'md:grid-cols-fill-medium' : this.sliderMode ? 'sm:grid-cols-fill-small' : 'sm:grid-cols-fill-small md:grid-cols-fill-medium'
       } else {
-        return 'md:grid-cols-fit-medium lg:grid-cols-fit-big'
+        return 'md:grid-cols-fill-medium lg:grid-cols-fill-big'
       }
     },
     sortedPosts () {

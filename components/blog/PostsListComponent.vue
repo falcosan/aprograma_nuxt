@@ -32,7 +32,7 @@
     </div>
     <transition-group
       tag="ul"
-      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || sliderMode || carouselMode || containerMode ? maxPosts : 'md:grid-cols-fill-medium lg:grid-cols-none lg:grid-flow-row lg:auto-rows-fr'}`"
+      :class="`post-list w-full grid gap-5 auto-cols-fr ${blok.row_container || sliderMode || carouselMode || containerMode ? maxPosts : 'md:grid-cols-fit-medium lg:grid-cols-none lg:grid-flow-row lg:auto-rows-fr'}`"
       appear
       enter-active-class="duration-150"
       leave-active-class="duration-150"

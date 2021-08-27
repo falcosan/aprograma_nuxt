@@ -10,7 +10,7 @@
         @mouseleave="expanded = false"
       >
         <div
-          :class="`teaser-file w-full ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`"
+          :class="`teaser-file w-full aspect-w-16 aspect-h-9 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`"
         >
           <component
             :is="postContent.file.filename ? lookFile() : 'NuxtImg'"
@@ -129,9 +129,6 @@ export default {
 }
 </script>
 <style scoped>
-.teaser-file {
-  aspect-ratio: 16 / 9;
-}
  .teaser-title{
   display: -webkit-box;
   -webkit-box-orient: vertical;

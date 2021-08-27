@@ -6,7 +6,7 @@
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
       <div class="teaser-content h-full flex flex-col justify-end pt-0.5" :style="`background-color: ${projectContent.teaser_background_color.color ? projectContent.teaser_background_color.color : '#e0e0e0'}; color: ${projectContent.teaser_text_color.color};`">
         <NuxtImg
-          class="project-image h-full w-full object-cover object-center select-none rounded-t"
+          class="project-image h-full w-full aspect-w-1 aspect-h-1 p-0 object-cover object-center select-none rounded-t"
           loading="lazy"
           format="webp"
           :modifiers="{ filters: { focal: projectContent.image.focus ? projectContent.image.focus : 0 } }"
@@ -69,9 +69,6 @@ export default {
 }
 </script>
 <style scoped>
-.project-image{
-  aspect-ratio: 14 / 9;
-}
 .teaser-title{
   display: -webkit-box;
   -webkit-line-clamp: 1;

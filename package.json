@@ -20,6 +20,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/sitemap": "^2.4.0",
     "@sendgrid/mail": "^7.4.6",
+    "@tailwindcss/aspect-ratio": "^0.2.1",
     "core-js": "^3.16.2",
     "markdown-it-emoji": "^2.0.0",
     "netlify-lambda": "^2.0.14",

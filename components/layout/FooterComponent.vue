@@ -37,8 +37,8 @@
         <div
           class="messages-container"
         >
-          <span :class="`footer-messages whitespace-nowrap text-xs ${$themeColor(backgroundColors) ? 'text-white' : ''}`">
-            Aprograma {{ typewriter }}
+          <span :class="`footer-messages text-xs ${$themeColor(backgroundColors) ? 'text-white' : ''}`">
+            {{ blok.text_static ? blok.text_static : 'ㅤ' }}{{ typewriter }}
           </span>
         </div>
         <div
@@ -74,7 +74,7 @@
         class="messages-container"
       >
         <span class="footer-messages text-xs">
-          Aprograma {{ typewriter }}
+          {{ blok.text_static ? blok.text_static : 'ㅤ' }}{{ typewriter }}
         </span>
       </div>
       <div class="footer-info grid gap-y-1.5">
@@ -118,8 +118,8 @@ export default {
   },
   computed: {
     words () {
-      if (this.blok.message.length > 0) {
-        const texts = this.blok.message[this.typewriterIndex].split('; ').filter(text => text)
+      if (this.blok.text_typewriter.length > 0) {
+        const texts = this.blok.text_typewriter[this.typewriterIndex].split('; ').filter(text => text)
         return this.$languageCase(texts[0], texts[1], texts[2])
       } else {
         return ''
@@ -157,7 +157,7 @@ export default {
         this.charIndex++
         this.playTypeText = setTimeout(this.typeText, 50)
       } else {
-        if (this.typewriterIndex >= this.blok.message.length) { this.typewriterIndex = 0 }
+        if (this.typewriterIndex >= this.blok.text_typewriter.length) { this.typewriterIndex = 0 }
         this.playTypeText = 0
         this.playEraseText = setTimeout(this.eraseText, 1500)
       }
@@ -170,7 +170,7 @@ export default {
       } else {
         this.typewriterIndex++
         this.playEraseText = 0
-        if (this.typewriterIndex >= this.blok.message.length) { this.typewriterIndex = 0 }
+        if (this.typewriterIndex >= this.blok.text_typewriter.length) { this.typewriterIndex = 0 }
         this.playTypeText = setTimeout(this.typeText, 50)
       }
     },

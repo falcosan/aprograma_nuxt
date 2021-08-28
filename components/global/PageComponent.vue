@@ -60,7 +60,7 @@ export default {
           return 'self-center'
         case 'end':
           return 'self-end'
-      } return ''
+      } return 'self-baseline'
     }
   },
   beforeMount () {

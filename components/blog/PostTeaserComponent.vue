@@ -40,13 +40,12 @@
             </span>
           </div>
           <div class="teaser-info w-full flex flex-col mt-5 items-end">
-            <ul :class="`teaser-categories w-full flex flex-wrap ${rowContainer || sliderContainer || containerContainer || carouselContainer ? 'justify-end' : 'mx-1 mb-2.5'}`">
+            <ul class="teaser-categories w-full flex flex-wrap mx-1 mb-2.5">
               <li v-for="(category, index) in sortedCategories" :key="index" class="teaser-category text-xs p-2.5 m-1 rounded shadow-sm italic font-light filter brightness-95 transition-shadow" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'};`">
                 {{ category }}
               </li>
             </ul>
             <span
-              v-if="$route.name === 'blog'"
               class="teaser-date flex-none self-end text-xs text-right"
               v-text="changeDate(postContent.date)"
             />

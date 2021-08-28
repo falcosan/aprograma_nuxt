@@ -68,7 +68,7 @@ export default {
       featuredProjects.sort((a, b) => {
         return this.blok.projects.indexOf(a.uuid) - this.blok.projects.indexOf(b.uuid)
       })
-      return this.$route.name === 'portfolio' ? featuredProjects.reverse() : featuredProjects
+      return featuredProjects
     }
   }
 }

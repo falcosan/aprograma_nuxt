@@ -109,7 +109,7 @@ export default {
       featuredPosts.sort((a, b) => {
         return this.blok.posts.indexOf(a.uuid) - this.blok.posts.indexOf(b.uuid)
       })
-      return this.$route.name === 'blog' ? featuredPosts.reverse() : featuredPosts
+      return featuredPosts
     },
     sortedCategories () {
       return this.blok.categories.map(category => category.toLowerCase().split('; ')[this.$languageCase(0, 1, 2)]).sort()

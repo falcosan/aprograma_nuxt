@@ -15,7 +15,7 @@
     </div>
   </section>
   <section v-else>
-    <h1 class="maintenance-text fixed w-full left-1/2 top-1/2 p-5 transform -translate-x-1/2 -translate-y-full text-xs xs:text-base sm:text-lg text-center pointer-events-none uppercase italic">
+    <h1 class="maintenance-text fixed w-full left-1/2 top-1/2 px-5 transform -translate-x-1/2 -translate-y-3/4 text-xs xs:text-base sm:text-lg text-center pointer-events-none uppercase italic">
       {{ $languageCase("This page is in maintenance, sorry for the inconvenience", "Esta página está en mantenimiento, disculpe las molestias", "Questa pagina è in manutenzione, scusa per l'inconveniente") }}
     </h1>
   </section>

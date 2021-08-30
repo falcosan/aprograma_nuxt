@@ -42,7 +42,7 @@
         modal-style="bg-gray-200 bg-opacity-90"
       >
         <template #activator="action">
-          <div class="image-container w-full h-56 xx:h-60 xs:h-72 sm:h-80 md:h-96 lg:h-md 2xl:h-xl my-0 mx-auto cursor-pointer" @click="action.open()">
+          <div class="image-container w-full aspect-w-4 aspect-h-3 my-0 mx-auto cursor-pointer" @click="action.open()">
             <NuxtImg
               loading="lazy"
               format="webp"

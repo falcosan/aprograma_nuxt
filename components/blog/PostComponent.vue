@@ -6,13 +6,13 @@
         class="post-title mb-5 text-2xl sm:text-3xl"
         v-text="blok.title"
       />
-      <div :class="`post-file w-full h-56 xx:h-60 xs:h-72 sm:h-80 md:h-96 lg:h-md xl:h-xl 2xl:h-2xl overflow-hidden rounded ${blok.file.filename ? '' : 'p-5 bg-black'}`">
+      <div :class="`post-file w-full h-full aspect-w-13 aspect-h-8 overflow-hidden rounded ${blok.file.filename ? '' : 'bg-black'}`">
         <component
           :is="blok.file.filename ? lookFile() : 'NuxtImg'"
           :loading="lookFile() === 'NuxtImg' || !blok.file.filename ? 'lazy' : false"
           :format="lookFile() === 'NuxtImg' || !blok.file.filename ? 'webp' : false"
           :modifiers="lookFile() === 'NuxtImg' || !blok.file.filename ? { filters: { focal: blok.file.focus ? blok.file.focus : 0 } } : false"
-          :class="`w-full h-full object-center select-none object-cover ${blok.file.filename ? '' : 'ml-2.5'}`"
+          class="w-full h-full object-center select-none object-cover"
           :alt="blok.file.filename ? lookFile() === 'NuxtImg' ? blok.file.alt : false : $languageCase('quantum vacuum', 'vacío cuántico', 'vuoto quantistico')"
           :src="setFile"
           :width="lookFile() === 'NuxtImg' || !blok.file.filename ? '1240' : false"

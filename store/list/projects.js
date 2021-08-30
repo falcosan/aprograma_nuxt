@@ -9,7 +9,7 @@ export const mutations = {
 export const actions = {
   async addProjects ({ commit, rootState }) {
     const listProjects = await this.$storyapi.get('cdn/stories', {
-      starts_with: rootState.language.language === '' ? '[default]/portfolio' : `${rootState.language.language}/portfolio`
+      language: rootState.language.language
     })
     commit('setProjects', listProjects.data.stories)
   },

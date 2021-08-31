@@ -15,7 +15,7 @@
       @input="$emit('update:fieldValue', $event.target.value)"
     />
     <transition v-if="blok.indication && blok.mandatory" enter-active-class="duration-100 in-out" leave-active-class="duration-100 out-in" enter-class="-translate-y-full opacity-0" leave-to-class="-translate-y-full opacity-0">
-      <span v-if="indication" class="field-indication w-full absolute -bottom-7 z-10 py-1 px-2 transform rounded-b text-sm filter drop-shadow-xl text-white bg-red-400">
+      <span v-if="indication" class="field-indication w-full absolute -bottom-7 z-10 py-1 px-2 transform rounded-b text-sm filter drop-shadow-xl bg-opacity-80 text-white bg-red-400">
         {{ blok.indication }}
       </span>
     </transition>

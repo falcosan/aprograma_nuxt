@@ -4,9 +4,9 @@
       <input v-model="searchTerm" :placeholder="$languageCase('Search the post', 'Busca el post', 'Cerca il post')" class="search-bar w-full h-10 p-2 rounded border border-gray-500 text-black bg-gray-50" type="text">
     </div>
     <div v-if="blok.categories_action && sortedCategories.length > 0" class="post-categories grid relative overflow-hidden">
-      <div class="show-categories w-max flex justify-self-end row-start-2 row-end-1 mb-5 pl-2.5 py-1 pr-1 cursor-pointer rounded bg-gray-200" @click="showCategories">
-        <Input class="input-show mr-2 text-sm" type="button" :text="$languageCase('Categories' , 'Categorías' , 'Categorie')" />
-        <Icon next class="pointer-events-none rounded bg-gray-300" tag="span" :size="`w-7 h-7 p-2.5 transition ${showFilters ? 'transform -rotate-90' : 'transform rotate-90'}`" />
+      <div :class="`show-categories flex justify-self-end row-start-2 row-end-1 mb-5 cursor-pointer rounded transition bg-gray-200 ${!$device.isDesktop ? '' : 'hover:bg-gray-300'}`" @click="showCategories">
+        <Input class="input-show w-full pointer-events-none" type="button" :text="$languageCase('Categories' , 'Categorías' , 'Categorie')" />
+        <Icon next class="px-5 pointer-events-none rounded" tag="span" :size="`w-2 h-2 transition ${showFilters ? 'transform -rotate-90' : 'transform rotate-90'}`" />
       </div>
       <transition
         enter-active-class="duration-150"
@@ -21,11 +21,11 @@
             :class="`category-container h-full flex justify-between overflow-hidden rounded cursor-pointer select-none transition-all filter grayscale bg-gray-600 text-white ${searchCategory.includes(filter) ? 'bg-opacity-70' : !$device.isDesktop ? '' : 'hover:bg-gray-700'}`"
             @click="filterSearch(filter)"
           >
-            <Input :class="`category-input w-full py-3 px-4 text-sm text-left rounded italic truncate transition-all ${searchCategory.includes(filter) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter" />
-            <Icon close tag="span" size="w-2 h-2" :class="`px-3.5 xs:px-5 pointer-events-none transition ${searchCategory.includes(filter) ? '' : 'transform rotate-45'}`" />
+            <Input :class="`category-input w-full text-left rounded italic truncate transition-all ${searchCategory.includes(filter) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter" />
+            <Icon close tag="span" size="w-2 h-2" :class="`px-5 pointer-events-none transition ${searchCategory.includes(filter) ? '' : 'transform rotate-45'}`" />
           </li>
           <li class="reset-container h-full overflow-hidden col-start-1 col-end-1 row-start-1 row-end-1 rounded cursor-pointer select-none" @click="searchCategory = []">
-            <Input :class="`reset-input w-full py-3 px-4 text-sm transition bg-gray-200 ${!$device.isDesktop ? '' : 'hover:bg-gray-300'}`" type="button" :text="$languageCase('Clear filters', 'Borrar filtros', 'Rimuovi filtri')" />
+            <Input :class="`reset-input w-full bg-gray-200 ${!$device.isDesktop ? '' : 'hover:bg-gray-300'}`" type="button" :text="$languageCase('Clear filters', 'Borrar filtros', 'Rimuovi filtri')" />
           </li>
         </ul>
       </transition>

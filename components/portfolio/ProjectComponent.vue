@@ -47,7 +47,7 @@
               loading="lazy"
               format="webp"
               :modifiers="{ filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
-              class="intro-image h-full w-full border-2 object-cover rounded select-none"
+              class="intro-image h-full w-full border-t-2 border-b-2 object-cover rounded select-none"
               :src="blok.image.filename"
               :alt="blok.image.alt"
               width="1200"

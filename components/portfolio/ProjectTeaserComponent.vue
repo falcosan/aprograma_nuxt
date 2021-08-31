@@ -69,6 +69,9 @@ export default {
 }
 </script>
 <style scoped>
+.project-image{
+    transform: scaleX(1.001);
+}
 .teaser-title{
   display: -webkit-box;
   -webkit-line-clamp: 1;

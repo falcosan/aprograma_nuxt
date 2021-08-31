@@ -16,6 +16,8 @@
             <template #icon>
               <Logo
                 transition
+                :color-a="logoColors[0]"
+                :color-p="logoColors[1]"
                 width="100%"
               />
             </template>
@@ -41,6 +43,7 @@
           tag="button"
           class="open-menu relative h-16 w-16 lg:w-20 lg:h-20 z-10 cursor-pointer rounded-bl"
           size="w-5 h-5"
+          :color-icon-animated-menu="blok.icon_color_menu.color"
           :style="`background-color: ${backgroundColors};`"
           @click.native="expanded = !expanded"
         />
@@ -131,6 +134,9 @@ export default {
       } else {
         return this.blok.background_color_menu.color
       }
+    },
+    logoColors () {
+      return this.blok.logo_colors.color.split('; ')
     }
   },
   watch: {

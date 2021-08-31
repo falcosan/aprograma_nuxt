@@ -107,14 +107,14 @@
 
     <!-- MENU -->
     <div v-else-if="animateMenu" :class="`animate-menu ${open ? 'open' : ''} ${size}`">
-      <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
-      <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
-      <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
-      <span class="absolute h-px w-full block left-0 transform rotate-0 rounded bg-black" />
+      <span class="absolute h-px w-full block left-0 transform rotate-0 rounded" :style="`background-color: ${colorIconAnimatedMenu ? colorIconAnimatedMenu : '#000000'};`" />
+      <span class="absolute h-px w-full block left-0 transform rotate-0 rounded" :style="`background-color: ${colorIconAnimatedMenu ? colorIconAnimatedMenu : '#000000'};`" />
+      <span class="absolute h-px w-full block left-0 transform rotate-0 rounded" :style="`background-color: ${colorIconAnimatedMenu ? colorIconAnimatedMenu : '#000000'};`" />
+      <span class="absolute h-px w-full block left-0 transform rotate-0 rounded" :style="`background-color: ${colorIconAnimatedMenu ? colorIconAnimatedMenu : '#000000'};`" />
     </div>
     <svg
       v-else-if="menu"
-      :class="`menu-icon ${size}`"
+      :class="`menu-icon fill-current ${size}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -263,6 +263,10 @@ export default {
     animateMenu: {
       type: Boolean,
       default: false
+    },
+    colorIconAnimatedMenu: {
+      type: String,
+      default: ''
     },
     link: {
       type: Boolean,

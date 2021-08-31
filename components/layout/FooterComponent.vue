@@ -9,7 +9,13 @@
       class="top-kick absolute h-16 w-16 lg:w-20 lg:h-20 flex right-0 -top-16 lg:-top-20 items-center justify-center z-10 rounded-tl cursor-pointer transition-all duration-200"
       @click="scrollTop();"
     >
-      <Icon arrow tag="button" size="w-auto h-auto" :class="`justify-center transform rotate-90 ${expanded ? $themeColor(backgroundColors) ? 'filter invert' : '' : ''}`" />
+      <Icon
+        arrow
+        tag="button"
+        size="w-auto h-auto"
+        :class="`justify-center transform rotate-90 ${expanded ? $themeColor(blok.icon_color.color) ? 'text-white' : '' : ''}`"
+        :style="`color: ${blok.icon_color.color};`"
+      />
     </div>
     <div
       class="content-container h-full overflow-hidden"
@@ -27,7 +33,8 @@
             eye
             tooltip="Kiosco Antonio"
             tag="span"
-            :class="`${expanded ? $themeColor(backgroundColors) ? 'filter invert' : '' : ''}`"
+            :style="`color: ${blok.icon_color.color};`"
+            :class="`${expanded ? $themeColor(blok.icon_color.color) ? 'text-white' : '' : ''}`"
           />
         </div>
       </div>
@@ -67,23 +74,23 @@
     :style="`background-color: ${blok.transparency ? `${backgroundColors}B3` : backgroundColors};`"
   >
     <div class="footer-content h-52 grid gap-5 text-center">
-      <span class="input-footer relative grid gap-5 grid-flow-col-dense items-end justify-center bottom-6 text-md">
+      <span :class="`input-footer relative grid gap-5 grid-flow-col-dense items-end justify-center bottom-6 text-md ${$themeColor(backgroundColors) ? 'text-white' : ''}`">
         <span class="footer-dash"> - </span> <Icon eye tag="span" size="w-6" class="eye-footer" /><span class="footer-dash"> - </span>
       </span>
       <div
-        class="messages-container"
+        :class="`messages-container ${$themeColor(backgroundColors) ? 'text-white' : ''}`"
       >
         <span class="footer-messages text-xs">
           {{ blok.text_static ? blok.text_static : 'ㅤ' }}{{ typewriter }}
         </span>
       </div>
-      <div class="footer-info grid gap-y-1.5">
+      <div :class="`footer-info grid gap-y-1.5 ${$themeColor(backgroundColors) ? 'text-white' : ''}`">
         <span class="footer-copyright text-sm"> © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span>
         <span class="footer-powered text-xs leading-relaxed">{{ $languageCase('Made with', 'Hecho con', 'Creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span></a>, <a class="netlify-link" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"><span class="netlify underline">Netlify</span></a> {{ $languageCase('and', 'y', 'e') }} <a class="storyblok-link" href="https://www.storyblok.com/" target="_blank" rel="noopener noreferrer"><span class="storyblok underline">Storyblok</span></a></span>
       </div>
 
       <ul
-        class="social-links flex flex-wrap -m-1.5 justify-center items-center"
+        :class="`social-links flex flex-wrap -m-1.5 justify-center items-center ${$themeColor(backgroundColors) ? 'filter invert' : ''}`"
       >
         <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid" class="link-item m-1.5">
           <component

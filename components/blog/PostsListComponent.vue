@@ -4,9 +4,9 @@
       <input v-model="searchTerm" :placeholder="$languageCase('Search the post', 'Busca el post', 'Cerca il post')" class="search-bar w-full h-10 p-2 rounded border border-gray-500 text-black bg-gray-50" type="text">
     </div>
     <div v-if="blok.categories_action && sortedCategories.length > 0" class="post-categories grid relative overflow-hidden">
-      <div class="show-categories w-max flex justify-self-end row-start-2 row-end-1 cursor-pointer mb-5" @click="showCategories">
+      <div class="show-categories w-max flex justify-self-end row-start-2 row-end-1 mb-5 pl-2.5 py-1 pr-1 cursor-pointer rounded bg-gray-200" @click="showCategories">
         <Input class="input-show mr-2" type="button" :text="$languageCase('Categories' , 'Categorías' , 'Categorie')" />
-        <Icon next class="pointer-events-none rounded bg-gray-200" tag="span" :size="`w-7 h-7 p-2.5 transition ${showFilters ? 'transform -rotate-90' : 'transform rotate-90'}`" />
+        <Icon next class="pointer-events-none rounded bg-gray-300" tag="span" :size="`w-7 h-7 p-2.5 transition ${showFilters ? 'transform -rotate-90' : 'transform rotate-90'}`" />
       </div>
       <transition
         enter-active-class="duration-150"

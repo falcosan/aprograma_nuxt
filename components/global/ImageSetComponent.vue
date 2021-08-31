@@ -1,12 +1,14 @@
 <template>
   <component
     :is="imageType() === 'svg+xml' ? 'img' : 'NuxtImg'"
-    loading="lazy"
+    :loading="lazy ? 'lazy' : false"
     class="image"
     :alt="alt"
     :type="`image/${imageType()}`"
     draggable="false"
     :src="src"
+    :width="imageType() === 'svg+xml' ? false : width"
+    :height="imageType() === 'svg+xml' ? false : height"
     :modifiers="imageType() === 'svg+xml' ? false : { filters: { focal: file.focus ? file.focus : 0 } }"
     :fit="imageType() === 'svg+xml' ? false : fit ? fit : 'in'"
     :format="imageType() === 'svg+xml' ? false : 'webp'"
@@ -24,6 +26,14 @@ export default {
       type: String,
       required: true
     },
+    width: {
+      type: String,
+      required: true
+    },
+    height: {
+      type: String,
+      required: true
+    },
     src: {
       type: String,
       required: true
@@ -35,6 +45,10 @@ export default {
     alt: {
       type: String,
       default: ''
+    },
+    lazy: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {

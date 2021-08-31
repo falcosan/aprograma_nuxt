@@ -14,18 +14,17 @@
       <Nuxt :class="`relative max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
     </div>
     <transition appear appear-active-class="duration-300" appear-class="opacity-0">
-      <NuxtImg
+      <ImageSet
         v-if="$imageValidation(blok.background_media.filename)"
-        :modifiers="{ filters: { focal: blok.background_media.focus ? blok.background_media.focus: 0 } }"
         :class="`media-image w-full h-full fixed right-0 bottom-0 -z-10 object-cover object-top ${blok.color_animation ? 'colorAnimation' : ''}`"
         :src="blok.background_media.filename"
+        :file="blok.background_media"
         :alt="blok.background_media.alt"
+        :lazy="false"
         width="2560"
         height="1440"
-        format="webp"
         fit="in"
         sizes="xs:514px sm:711px md:804px lg:1680px xl:1920px 2xl:2560px"
-        :type="`image/${imageType()}`"
       />
       <video
         v-else-if="blok.background_media.filename"
@@ -42,7 +41,9 @@
 </template>
 
 <script>
+import ImageSet from '../global/ImageSetComponent.vue'
 export default {
+  components: { ImageSet },
   props: {
     blok: {
       type: Object,

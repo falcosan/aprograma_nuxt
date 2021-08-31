@@ -101,7 +101,7 @@
             </transition-group>
             <div v-if="!blok.hide_dots" class="dot-contaienr relative w-max max-w-1/2 flex flex-wrap justify-center z-20 my-10 mx-auto">
               <span v-for="dot in elements.length" :key="dot" :class="`dot-number_${dot} w-2.5 h-2.5 inline-block m-1.5 rounded-full shadow-inner select-none cursor-pointer transform scale-90 transition-all duration-200 ${!$device.isDesktop ? '' : 'dot-desktop'} ${dot === currentSlide + 1 ? 'ring-2 ring-gray-400 bg-gray-500 bg-opacity-70' : 'bg-gray-400 bg-opacity-70'}`" @click="changeDot(dot)">
-                <span v-if="$device.isDesktop" class="dot-text absolute w-5 h-5 flex justify-center items-center left-1/2 top-0 rounded-full text-xs text-white bg-opacity-70 bg-gray-500">{{ dot }}</span>
+                <span v-if="$device.isDesktop" class="dot-text absolute w-5 h-5 flex justify-center items-center left-1/2 top-0 rounded-full text-white bg-opacity-70 bg-gray-500">{{ dot }}</span>
               </span>
             </div>
           </div>
@@ -424,6 +424,7 @@ export default {
   transform:translate3d(0, 0, 0);
 }
 .dot-desktop .dot-text{
+  font-size: 11px;
   opacity: 0;
   pointer-events: none;
   transform: translate(-10.5px, -25px);

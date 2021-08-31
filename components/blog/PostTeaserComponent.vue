@@ -5,19 +5,19 @@
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div
-        :class="`teaser-content h-full flex flex-col ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:max-h-56 lg:flex-row'}`"
+        :class="`teaser-content h-full flex flex-col ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:flex-row'}`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >
         <div
-          :class="`teaser-file w-full aspect-w-16 aspect-h-9 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:h-56 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`"
+          :class="`teaser-file w-full aspect-w-16 aspect-h-10 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:aspect-h-4 xl:aspect-h-3 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`"
         >
           <component
             :is="postContent.file.filename ? lookFile() : 'NuxtImg'"
             :loading="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'lazy' : false"
             :format="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'webp' : false"
             :modifiers="lookFile() === 'NuxtImg' && postContent.file.filename ? { filters: { focal: postContent.file.focus ? postContent.file.focus : 0 } } : null"
-            :class="`w-full h-full object-center select-none ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:h-56'}  ${postContent.file.filename ? 'object-cover' : 'object-contain'}`"
+            :class="`w-full h-full object-center select-none ${postContent.file.filename ? 'object-cover' : 'object-contain'}`"
             :alt="postContent.file.filename ? lookFile() === 'NuxtImg' ? postContent.file.alt : false : $languageCase('quantum vacuum', 'vacío cuántico', 'vuoto quantistico')"
             :src="setFile"
             :fit="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'in' : false"
@@ -26,7 +26,7 @@
             :sizes="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'xs:299px sm:380px md:514px lg:620px xl:984px 2xl:1200px' : false"
           />
         </div>
-        <div :class="`teaser-text w-full flex flex-col flex-auto justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? '' : 'lg:h-screen lg:max-h-56 lg:w-1/2'}`" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'}; color: ${postContent.text_color.color};`">
+        <div :class="`teaser-text w-full flex flex-col flex-auto justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? '' : 'lg:w-1/2'}`" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'}; color: ${postContent.text_color.color};`">
           <div class="text-description">
             <span
               class="teaser-title mb-2.5 overflow-hidden text-lg sm:text-xl"

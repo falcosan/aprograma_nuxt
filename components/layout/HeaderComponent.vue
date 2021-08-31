@@ -24,9 +24,9 @@
           </Link>
         </div>
         <transition enter-active-class="duration-300" leave-active-class="duration-300" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
-          <div v-if="expanded" :class="`menu-expanded h-10 grid grid-flow-col gap-5 transform transition ${topPosition ? 'translate-y-5 rounded' : 'rounded-b bg-opacity-80 bg-white'}`">
+          <div v-if="expanded" :class="`menu-expanded h-10 grid grid-flow-col gap-5 transform transition bg-opacity-80 bg-white ${topPosition ? 'translate-y-5 rounded' : 'rounded-b'}`">
             <ul class="link-list grid grid-flow-col auto-cols-fr">
-              <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" :class="`link-menu w-20 hover:shadow-sm hover:bg-white ${topPosition ? 'rounded hover:bg-opacity-90' : 'rounded-b hover:bg-opacity-80'}`">
+              <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" :class="`link-menu w-20 hover:shadow-sm ${topPosition ? 'rounded' : 'rounded-b'}`">
                 <Link class="flex items-center justify-center py-2 px-3 text-sm truncate" :blok="item" />
               </li>
             </ul>

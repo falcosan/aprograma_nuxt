@@ -1,5 +1,5 @@
 <template>
-  <div :class="`translate-container text-xs rounded transition ${showBackground ? 'bg-opacity-80 bg-white' : ''}`">
+  <div class="translate-container text-xs">
     <div
       v-if="translateTransition"
       :class="`current-language cursor-pointer ${styleCurrentLanguage}`"
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+
 export default {
   props: {
     blok: {
@@ -52,10 +53,6 @@ export default {
     styleCurrentLanguage: {
       type: String,
       default: ''
-    },
-    showBackground: {
-      type: Boolean,
-      default: false
     }
   },
   methods: {

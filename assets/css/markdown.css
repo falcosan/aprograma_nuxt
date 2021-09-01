@@ -78,7 +78,7 @@
 .markdown td,
 .markdown th {
   border-bottom: 0.1rem solid #e1e1e1;
-  padding: 1.2rem 1.5rem;
+  padding: 1rem 1.5rem;
 }
 
 .markdown td:first-child,
@@ -149,7 +149,7 @@
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
   margin-top: 0;
 }
 
@@ -235,5 +235,5 @@
 .markdown pre,
 .markdown table,
 .markdown ul {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }

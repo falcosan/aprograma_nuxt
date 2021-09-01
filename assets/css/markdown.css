@@ -217,7 +217,7 @@
 .markdown dd:not(:last-child),
 .markdown dt:not(:last-child),
 .markdown li:not(:last-child) {
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
 }
 .markdown dl dd {
   margin-left: 1rem;
@@ -226,10 +226,7 @@
 .markdown input,
 .markdown select,
 .markdown textarea,
-.markdown fieldset {
-  margin-bottom: 1.5rem;
-}
-
+.markdown fieldset,
 .markdown blockquote,
 .markdown dl,
 .markdown figure,
@@ -238,5 +235,5 @@
 .markdown pre,
 .markdown table,
 .markdown ul {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }

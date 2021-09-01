@@ -24,7 +24,11 @@
           </Link>
         </div>
         <transition enter-active-class="duration-300" leave-active-class="duration-300" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
-          <div v-if="expanded" :class="`menu-expanded h-10 grid grid-flow-col gap-5 transform transition bg-opacity-80 bg-white ${topPosition ? 'translate-y-5 rounded' : 'rounded-b'}`">
+          <div
+            v-if="expanded"
+            :class="`menu-expanded h-10 grid grid-flow-col gap-5 transform transition ${topPosition ? 'translate-y-5 rounded' : 'rounded-b'}`"
+            :style="`background-color: ${topPosition ? 'transparent' : `${backgroundColors}B3`};`"
+          >
             <ul class="link-list grid grid-flow-col auto-cols-fr">
               <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" :class="`link-menu w-20 hover:shadow-sm ${topPosition ? 'rounded' : 'rounded-b'}`">
                 <Link class="flex items-center justify-center py-2 px-3 text-sm truncate" :blok="item" />
@@ -75,6 +79,8 @@
         </Link>
         <Logo
           transition
+          :color-a="logoColors[0]"
+          :color-p="logoColors[1]"
           class="absolute -top-0.5 right-1/2 p-1 transform translate-x-1/2 rounded-b-full filter drop-shadow-md bg-white"
           width="2.75rem"
         />
@@ -137,7 +143,12 @@ export default {
       }
     },
     logoColors () {
-      return this.blok.logo_colors.color.split('; ')
+      const colors = this.blok.logo_colors.color.split('; ')
+      if (colors.length > 1) {
+        return colors
+      } else {
+        return [this.blok.logo_colors.color, this.blok.logo_colors.color]
+      }
     }
   },
   watch: {

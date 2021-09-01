@@ -153,6 +153,15 @@
   margin-top: 0;
 }
 
+.markdown li h1,
+.markdown li h2,
+.markdown li h3,
+.markdown li h4,
+.markdown li h5,
+.markdown li h6 {
+ margin: 0;
+}
+
 .markdown h1 {
   font-size: clamp(2.72rem, 2.36rem + 1.83vw, 3.66rem);
   letter-spacing: -0.1rem;
@@ -197,6 +206,12 @@
 
 .markdown > *:last-child {
   margin: 0 auto;
+}
+
+.markdown dd > *,
+.markdown dt > *,
+.markdown li > * {
+  display: inline-block;
 }
 
 .markdown dd:not(:last-child),

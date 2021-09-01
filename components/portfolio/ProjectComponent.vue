@@ -86,7 +86,7 @@
           {{ $languageCase('to', 'hasta', 'al') }}
         </p>
         <h4 class="date-end mt-1 ss:mt-0 text-left text-sm">
-          {{ !blok.current_project ? changeDate(blok.end_date) : $languageCase('present', 'presente', 'presente') }}
+          {{ blok.end_date ? changeDate(blok.end_date) : $languageCase('present', 'presente', 'presente') }}
         </h4>
       </div>
       <div v-if="$store.state.data.windowWidth < 1280" class="project-action min-w-0 flex items-center justify-end row-start-2 row-end-3 xl:col-start-2 xl:col-end-3">

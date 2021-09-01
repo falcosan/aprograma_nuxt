@@ -130,7 +130,7 @@ export default {
   },
   googleFonts: {
     families: {
-      Nunito: [100, 200, 300, 400, 800]
+      Nunito: [100, 200, 300, 400, 500, 600, 700, 800]
     },
     preconnect: true,
     display: 'swap'

@@ -93,3 +93,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.underline{
+  text-underline-position: under;
+}
+</style>

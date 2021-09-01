@@ -150,7 +150,7 @@ export default {
   },
   methods: {
     headerPosition () {
-      if (window.pageYOffset === 0) {
+      if (window.pageYOffset <= 1) {
         this.topPosition = true
       } else {
         this.topPosition = false

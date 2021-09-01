@@ -5,7 +5,7 @@
     </div>
     <div v-if="blok.categories_action && sortedCategories.length > 0" class="post-categories grid relative overflow-hidden">
       <div :class="`show-categories flex justify-self-end row-start-2 row-end-1 mb-5 cursor-pointer rounded transition bg-gray-200 ${!$device.isDesktop ? '' : 'hover:opacity-80'}`" @click="showCategories">
-        <Input class="input-show w-full bg-transparent" type="button" :text="$languageCase('Categories' , 'Categorías' , 'Categorie')" />
+        <Input class="input-show w-full pr-0 bg-transparent" type="button" :text="$languageCase('Categories' , 'Categorías' , 'Categorie')" />
         <Icon next class="px-5 rounded bg-gray-200" tag="span" :size="`w-2 h-2 transition ${showFilters ? 'transform -rotate-90' : 'transform rotate-90'}`" />
       </div>
       <transition

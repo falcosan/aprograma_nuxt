@@ -15,8 +15,8 @@
           class="w-full h-full object-center select-none object-cover"
           :alt="blok.file.filename ? lookFile() === 'NuxtImg' ? blok.file.alt : false : $languageCase('quantum vacuum', 'vacío cuántico', 'vuoto quantistico')"
           :src="setFile"
-          :width="lookFile() === 'NuxtImg' || !blok.file.filename ? '1240' : false"
-          :height="lookFile() === 'NuxtImg' || !blok.file.filename ? '672' : false"
+          :width="lookFile() === 'NuxtImg' || !blok.file.filename ? '1366' : false"
+          :height="lookFile() === 'NuxtImg' || !blok.file.filename ? '707' : false"
           :fit="lookFile() === 'NuxtImg' || !blok.file.filename ? 'in' : false"
           :sizes="lookFile() === 'NuxtImg' || !blok.file.filename ? 'xs:380px sm:514px md:711px lg:804px xl:1366px' : false"
         />

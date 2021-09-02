@@ -35,8 +35,10 @@ export default {
   watch: {
     '$store.state.language.language' () { this.getLayout() }
   },
-  async beforeMount () {
+  created () {
     this.getLayout()
+  },
+  async beforeMount () {
     this.$store.commit('data/responsiveMutation', window.innerWidth)
     this.setMaintenance()
     await this.$store.dispatch('data/responsiveAction')

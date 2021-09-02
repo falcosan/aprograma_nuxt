@@ -1,6 +1,6 @@
 <template>
-  <div class="error h-screen">
-    <div v-if="error.statusCode === 404" :class="`error-404 absolute w-full max-w-screen-md flex flex-col left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-3/4 justify-center items-center p-20 space-y-5 text-center rounded-b bg-opacity-80 bg-white ${!$device.isDesktop ? '' : 'md:rounded-t'}`">
+  <div class="error fixed h-screen flex items-center inset-0 px-5">
+    <div v-if="error.statusCode === 404" :class="`error-404 w-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl flex flex-col justify-center items-center p-20 space-y-5 text-center rounded-b bg-opacity-80 bg-white ${!$device.isDesktop ? '' : 'md:rounded-t'}`">
       <span class="text-7xl">{{ error.statusCode }}</span>
       <Logo class="relative w-max h-max justify-self-center -top-1 filter brightness-0 animate-pulse" width="50" />
       <span class="text-xs xs:text-base sm:text-lg text-center pointer-events-none uppercase italic"> {{ error.message }}</span>
@@ -8,7 +8,7 @@
         Home
       </NuxtLink>
     </div>
-    <div v-else :class="`error-500 absolute w-full max-w-screen-md flex flex-col left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-3/4 justify-center items-center p-20 space-y-5 text-center rounded-b bg-opacity-80 bg-white ${!$device.isDesktop ? '' : 'md:rounded-t'}`">
+    <div v-else :class="`error-500 w-full max-w-screen-md flex flex-col justify-center items-center p-20 space-y-5 text-center rounded-b bg-opacity-80 bg-white ${!$device.isDesktop ? '' : 'md:rounded-t'}`">
       <span class="text-7xl">{{ error.statusCode }}</span>
       <Logo class="relative w-max h-max justify-self-center -top-1 filter brightness-0 animate-pulse" width="50" />
       <span class="text-xs xs:text-base sm:text-lg text-center pointer-events-none uppercase italic"> {{ error.message }}</span>

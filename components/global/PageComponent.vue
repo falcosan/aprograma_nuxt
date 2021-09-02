@@ -3,7 +3,7 @@
     <h1 v-if="blok.title" class="page-title mb-5 text-xl sm:text-2xl break-words">
       {{ blok.title }}
     </h1>
-    <div class="page-components flex flex-wrap -m-2.5">
+    <div class="page-components relative flex flex-wrap -m-2.5">
       <component
         :is="component.component"
         v-for="component in components"
@@ -14,8 +14,8 @@
       />
     </div>
   </section>
-  <section v-else class="page-maintenance fixed h-screen flex items-center justify-center px-5">
-    <h1 class="maintenance-text -mt-40 p-20 text-xs xs:text-base sm:text-lg text-center pointer-events-none rounded uppercase italic bg-opacity-80 bg-white">
+  <section v-else class="page-maintenance fixed max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl flex items-center justify-center inset-0 px-5">
+    <h1 class="maintenance-text p-20 text-xs xs:text-base sm:text-lg text-center pointer-events-none rounded uppercase italic bg-opacity-80 bg-white">
       {{ $languageCase("This page is in maintenance, sorry for the inconvenience", "Esta página está en mantenimiento, disculpe las molestias", "Questa pagina è in manutenzione, scusa per l'inconveniente") }}
     </h1>
   </section>

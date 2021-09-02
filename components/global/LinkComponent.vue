@@ -3,7 +3,7 @@
     :is="blok.external_link ? 'a' : 'NuxtLink'"
     v-if="blok"
     :class="`item-link h-full cursor-pointer ${sliderMode || carouselMode || containerMode ? 'flex items-center justify-center self-center' : 'block'}`"
-    :active-class="blok.external_link ? '' : !iconItem && !blok.icon_item ? 'underline' : 'filter invert grayscale bg-gray-300'"
+    :active-class="blok.external_link ? '' : !iconItem && !blok.icon_item ? 'opacity-40 font-semibold' : 'filter invert grayscale bg-gray-300'"
     :to="blok.external_link ? false : blok.path"
     :href="blok.external_link ? blok.path : false"
     :rel="blok.external_link ? 'noopener noreferrer' : false"
@@ -27,8 +27,8 @@
     :is="externalLink ? 'a' : 'NuxtLink'"
     v-else
     :class="`item-link h-full cursor-pointer ${sliderMode || carouselMode || containerMode ? 'flex items-center justify-center self-center' : 'block'}`"
-    :active-class="active === 'active' ? !iconItem ? 'underline' : 'filter invert grayscale bg-gray-300' : ''"
-    :exact-active-class="active === 'exact' ? !iconItem ? 'underline' : 'filter invert grayscale bg-gray-300' : ''"
+    :active-class="active === 'active' ? !iconItem ? 'opacity-40 font-semibold' : 'filter invert grayscale bg-gray-300' : ''"
+    :exact-active-class="active === 'exact' ? !iconItem ? 'opacity-40 font-semibold' : 'filter invert grayscale bg-gray-300' : ''"
     :to="externalLink ? false : to"
     :href="externalLink ? to : false"
     :rel="externalLink ? 'noopener noreferrer' : false"
@@ -93,8 +93,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-.underline{
-  text-underline-position: under;
-}
-</style>

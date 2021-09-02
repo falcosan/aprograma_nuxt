@@ -1,13 +1,11 @@
 <template>
   <div v-if="story.content.body && !story.content.maintenance" class="aprograma-theme">
-    <client-only>
-      <component
-        :is="layout.component"
-        v-for="layout in story.content.body"
-        :key="layout._uid"
-        :blok="layout"
-      />
-    </client-only>
+    <component
+      :is="layout.component"
+      v-for="layout in story.content.body"
+      :key="layout._uid"
+      :blok="layout"
+    />
   </div>
   <div v-else-if="story.content.body" class="aprograma-maintenance h-screen flex flex-col justify-center p-5">
     <Logo
@@ -16,7 +14,7 @@
       width="50vh"
     />
     <h1 class="maintenance-text text-xs xs:text-base sm:text-lg text-center xs:whitespace-nowrap pointer-events-none uppercase italic">
-      under maintenance · en mantenimiento · in manutenzione
+      {{ $languageCase("under maintenance", "en mantenimiento", "in manutenzione") }}
     </h1>
   </div>
 </template>
@@ -34,14 +32,15 @@ export default {
       }
     }
   },
-  async fetch () {
-    await this.getLayout()
-  },
   watch: {
     '$store.state.language.language' () { this.getLayout() }
   },
+  created () {
+    this.getLayout()
+  },
   async beforeMount () {
     this.$store.commit('data/responsiveMutation', window.innerWidth)
+    this.setMaintenance()
     await this.$store.dispatch('data/responsiveAction')
   },
   methods: {

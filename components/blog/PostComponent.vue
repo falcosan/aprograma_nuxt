@@ -17,7 +17,7 @@
           :src="setFile"
           :width="lookFile() === 'NuxtImg' || !blok.file.filename ? '1366' : false"
           :height="lookFile() === 'NuxtImg' || !blok.file.filename ? '707' : false"
-          :fit="lookFile() === 'NuxtImg' || !blok.file.filename ? 'in' : false"
+          :fit="(lookFile() === 'NuxtImg' || !blok.file.filename) && !blok.file.focus ? 'in' : null"
           :sizes="lookFile() === 'NuxtImg' || !blok.file.filename ? 'xs:380px sm:514px md:711px lg:804px xl:1366px' : false"
         />
       </div>

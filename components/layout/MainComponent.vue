@@ -23,7 +23,6 @@
         :lazy="false"
         width="2560"
         height="1440"
-        fit="in"
         sizes="xs:514px sm:711px md:804px lg:1680px xl:1920px 2xl:2560px"
       />
       <video

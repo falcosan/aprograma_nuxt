@@ -32,6 +32,7 @@
                 class="project-image w-full h-full object-cover object-center pointer-events-none select-none"
                 :src="project.content.image.filename"
                 :alt="project.content.image.alt"
+                :fit="project.content.image.focus ? null : 'in'"
                 width="620"
                 height="320"
                 sizes="lg:364px xl:491px 2xl:620px"

@@ -10,7 +10,7 @@
     :width="imageType() === 'svg+xml' ? false : width"
     :height="imageType() === 'svg+xml' ? false : height"
     :modifiers="imageType() === 'svg+xml' ? false : { filters: { focal: file.focus ? file.focus : 0 } }"
-    :fit="imageType() === 'svg+xml' ? false : fit ? fit : 'in'"
+    :fit="imageType() === 'svg+xml' || file.focus ? null : 'in'"
     :format="imageType() === 'svg+xml' ? false : 'webp'"
     :sizes="imageType() === 'svg+xml' ? false : sizes"
   />
@@ -37,10 +37,6 @@ export default {
     src: {
       type: String,
       required: true
-    },
-    fit: {
-      type: String,
-      default: ''
     },
     alt: {
       type: String,

@@ -12,6 +12,7 @@
           :modifiers="{ filters: { focal: projectContent.image.focus ? projectContent.image.focus : 0 } }"
           :src="projectContent.image.filename"
           :alt="projectContent.image.alt"
+          :fit="projectContent.image.focus ? false : 'in'"
           width="340"
           height="306"
           sizes="xs:299px sm:380px md:514px lg:711px xl:804px"

@@ -52,7 +52,7 @@
               :alt="blok.image.alt"
               width="1366"
               height="677"
-              fit="in"
+              :fit="blok.image.focus ? null : 'in'"
               :style="`border-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}`"
               sizes="xs:299px sm:380px md:514px lg:711px xl:804px 2xl:1366px"
             />
@@ -60,7 +60,6 @@
         </template>
         <template #body>
           <NuxtImg
-            :modifiers="{ filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
             class="image-project select-none cursor-default"
             width="1920"
             height="1980"

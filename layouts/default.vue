@@ -33,7 +33,12 @@ export default {
     }
   },
   watch: {
-    '$store.state.language.language' () { this.getLayout() }
+    async '$store.state.language.language' () {
+      const { data } = await this.$storyapi.get('cdn/stories/layout', {
+        language: this.$store.state.language.language
+      })
+      this.story = data.story
+    }
   },
   async beforeCreate () {
     const { data } = await this.$storyapi.get('cdn/stories/layout', {
@@ -47,12 +52,6 @@ export default {
     await this.$store.dispatch('data/responsiveAction')
   },
   methods: {
-    async getLayout () {
-      const { data } = await this.$storyapi.get('cdn/stories/layout', {
-        language: this.$store.state.language.language
-      })
-      this.story = data.story
-    },
     setMaintenance () {
       if (this.story.content.maintenance) {
         this.$noscroll(true)

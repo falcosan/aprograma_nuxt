@@ -35,13 +35,8 @@ export default {
   watch: {
     '$store.state.language.language' () { this.getLayout() }
   },
-  async beforeCreate () {
-    const { data } = await this.$storyapi.get('cdn/stories/layout', {
-      language: this.$store.state.language.language
-    })
-    this.story = data.story
-  },
   async beforeMount () {
+    this.getLayout()
     this.$store.commit('data/responsiveMutation', window.innerWidth)
     this.setMaintenance()
     await this.$store.dispatch('data/responsiveAction')

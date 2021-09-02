@@ -75,6 +75,9 @@ export default {
   publicRuntimeConfig: {
     projectName: process.env.npm_package_name
   },
+  router: {
+    trailingSlash: true
+  },
   generate: {
     fallback: true,
     routes (callback) {

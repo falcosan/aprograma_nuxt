@@ -47,7 +47,6 @@ export default {
   methods: {
     async getLayout () {
       const { data } = await this.$storyapi.get('cdn/stories/layout', {
-        version: 'published',
         language: this.$store.state.language.language
       })
       this.story = data.story

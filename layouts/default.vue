@@ -35,7 +35,7 @@ export default {
   watch: {
     '$store.state.language.language' () { this.getLayout() }
   },
-  async  beforeCreate () {
+  async beforeCreate () {
     const { data } = await this.$storyapi.get('cdn/stories/layout', {
       language: this.$store.state.language.language
     })

@@ -11,7 +11,7 @@
         :class="`main-flat fixed w-full h-full inset-0 -z-10 transition-colors duration-500 ${blok.color_animation ? 'colorAnimation' : ''}`"
         :style="`background-color: ${randomBackgroundColor};`"
       />
-      <Nuxt keep-alive :keep-alive-props="{ max: 2 }" :class="`max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
+      <Nuxt :class="`max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
     </div>
     <transition appear appear-active-class="duration-300" appear-class="opacity-0">
       <ImageSet

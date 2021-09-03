@@ -27,6 +27,9 @@ export default {
   },
   loading: '@/components/layout/LoadingComponent.vue',
   css: ['~/assets/css/main', '~/assets/css/markdown'],
+  router: {
+    trailingSlash: true
+  },
   plugins: [
     '~/plugins/injects/no-scroll.client.js',
     '~/plugins/injects/range-items.client.js',

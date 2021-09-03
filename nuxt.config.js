@@ -28,7 +28,7 @@ export default {
   loading: '@/components/layout/LoadingComponent.vue',
   css: ['~/assets/css/main', '~/assets/css/markdown'],
   router: {
-    trailingSlash: true
+    trailingSlash: process.env.NODE_ENV === 'development' ? undefined : true
   },
   plugins: [
     '~/plugins/injects/no-scroll.client.js',

@@ -8,7 +8,7 @@
       <ProjectTeaser
         v-for="project in sortedProject"
         :key="project.uuid"
-        :project-link="`portfolio/${project.slug}`"
+        :project-link="`${project.slug}/`"
         :project-content="project.content"
         :row-container="blok.row_container"
         :slider-container="sliderMode"

@@ -28,14 +28,8 @@ export default {
   loading: '@/components/layout/LoadingComponent.vue',
   css: ['~/assets/css/main', '~/assets/css/markdown'],
   router: {
-    trailingSlash: true
+    trailingSlash: process.env.NODE_ENV === 'development' ? undefined : true
   },
-  redirect: [
-    {
-      from: '^(\\/[^\\?]*[^\\/])(\\?.*)?$',
-      to: '$1/$2'
-    }
-  ],
   plugins: [
     '~/plugins/injects/no-scroll.client.js',
     '~/plugins/injects/range-items.client.js',
@@ -107,7 +101,6 @@ export default {
         cacheProvider: 'memory'
       }
     ],
-    '@nuxtjs/redirect-module',
     '@nuxtjs/google-fonts',
     '@nuxtjs/markdownit',
     '@nuxtjs/sitemap',

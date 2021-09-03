@@ -95,9 +95,7 @@
 .markdown dl,
 .markdown ol,
 .markdown ul {
-  list-style: none;
-  margin-top: 0;
-  padding-left: 0;
+  padding: 0 0 0 20px;
 }
 
 .markdown dl dl,
@@ -113,26 +111,26 @@
 }
 
 .markdown ol {
-  list-style: decimal inside;
+  list-style: decimal outside;
 }
 .markdown ol ol {
-  list-style: upper-alpha inside;
+  list-style: upper-alpha outside;
 }
 
 .markdown ol ol ol {
-  list-style: lower-alpha inside;
+  list-style: lower-alpha outside;
 }
 
 .markdown ul {
-  list-style: disc inside;
+  list-style: disc outside;
 }
 
 .markdown ul ul {
-  list-style: circle inside;
+  list-style: circle outside;
 }
 
 .markdown ul ul ul {
-  list-style: square inside;
+  list-style: square outside;
 }
 
 .markdown b,

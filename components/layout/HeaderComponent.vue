@@ -9,7 +9,7 @@
           <Link
             icon-item
             class="home-link flex items-center justify-center p-1 lg:p-1.5 transition-shadow duration-300 rounded-br"
-            to="/"
+            to=""
             :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)"
             :style="`background-color: ${backgroundColors};`"
           >
@@ -66,7 +66,7 @@
           icon-item
           class="home-link w-2/12"
           :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)"
-          to="/"
+          to=""
         >
           <template #icon>
             <Icon

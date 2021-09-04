@@ -18,7 +18,7 @@
                 transition
                 :color-a="logoColors[0]"
                 :color-p="logoColors[1]"
-                width="100%"
+                size="100%"
               />
             </template>
           </Link>
@@ -82,7 +82,7 @@
           :color-a="logoColors[0]"
           :color-p="logoColors[1]"
           class="absolute -top-0.5 right-1/2 p-1 transform translate-x-1/2 rounded-b-full filter drop-shadow-md bg-white"
-          width="2.75rem"
+          size="2.75rem"
         />
         <Translate
           translate-transition

@@ -11,7 +11,7 @@
     <Logo
       transition
       class="rounded max-w-full mx-auto my-0"
-      width="50vh"
+      size="50vh"
     />
     <h1 class="maintenance-text text-xs xs:text-base sm:text-lg text-center xs:whitespace-nowrap pointer-events-none uppercase italic">
       {{ $languageCase("under maintenance", "en mantenimiento", "in manutenzione") }}

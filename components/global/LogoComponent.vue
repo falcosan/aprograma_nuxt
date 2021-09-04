@@ -19,7 +19,7 @@
       xml:space="preserve"
       @click="((blok && blok.transition) || transition) && !$device.isSafari ? play() : null"
     >
-      <g :class="`transition-logo logo-a ${moved.a}`">
+      <g :class="`transition-logo logo-a ${moved.a} ${(blok && blok.color_animation_a) || colorAnimationA ? 'color-animation' : ''}`">
         <path
           :fill="blok && blok.color_a.color ? blok.color_a.color : colorA ? colorA : '#999999'"
           d="M255.8788,165.9017c-83.6324,0-151.4281,69.7552-151.4281,153.3876
@@ -36,7 +36,7 @@
           C406.9996,452.4832,387.2071,472.2758,362.7918,472.2758z"
         />
       </g>
-      <g :class="`transition-logo logo-p ${moved.p}`">
+      <g :class="`transition-logo logo-p ${moved.p} ${(blok && blok.color_animation_p) || colorAnimationP ? 'color-animation' : ''}`">
         <path
           :fill="blok && blok.color_p.color ? blok.color_p.color : colorP ? colorP : '#000000'"
           d="M606.4182,314.8502c-1.7396-92.0206-73.0146-151.8879-149.2385-151.878c-25.4046,0-51.3691,6.6486-75.4841,20.9756
@@ -75,6 +75,14 @@ export default {
     colorP: {
       type: String,
       default: ''
+    },
+    colorAnimationA: {
+      type: Boolean,
+      default: false
+    },
+    colorAnimationP: {
+      type: Boolean,
+      default: false
     }
   },
   data () {

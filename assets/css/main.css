@@ -1,20 +1,21 @@
 html {
-    font: normal 16px/1.9em "Nunito", "Source Sans Pro","Helvetica Neue", Arial, sans-serif;
-   }
+    font: normal 16px/1.9em "Nunito", "Source Sans Pro", "Helvetica Neue", Arial,
+      sans-serif;
+  }
   body {
-      touch-action: manipulation;
-      background-color: #ffffff;
+    touch-action: manipulation;
+    background-color: #ffffff;
   }
-  *::placeholder{
-      font-size: 14px;
+  *::placeholder {
+    font-size: 14px;
   }
-  iframe{
-      border-radius: .25rem;
+  iframe {
+    border-radius: 0.25rem;
   }
   .noscroll {
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
   }
   .layout-enter-active,
   .layout-leave-active,
@@ -29,5 +30,18 @@ html {
   .page-enter,
   .page-leave-active {
     opacity: 0;
+  }
+  
+  .color-animation {
+    animation: changeColor 10s infinite;
+  }
+  @keyframes changeColor {
+    0% {
+      filter: hue-rotate(0deg);
+    }
+  
+    100% {
+      filter: hue-rotate(360deg);
+    }
   }
   

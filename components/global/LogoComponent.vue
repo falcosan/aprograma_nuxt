@@ -5,7 +5,7 @@
     <svg
       key="logo"
       ref="logo"
-      :style="`height: ${blok && blok.height ? `${blok.height}` : height ? height : 'auto'}; width: ${blok && blok.width ? `${blok.width}`: width ? width : 'auto'};`"
+      :style="`height: ${blok && blok.size ? blok.size : size ? size : 'auto'}; width: ${blok && blok.size ? blok.size : size ? size : 'auto'};`"
       class="logo cursor-pointer max-w-full max-h-full mx-auto my-0"
       version="1.1"
       baseProfile="basic"
@@ -60,11 +60,7 @@ export default {
       type: Object,
       default: undefined
     },
-    width: {
-      type: String,
-      default: ''
-    },
-    height: {
+    size: {
       type: String,
       default: ''
     },

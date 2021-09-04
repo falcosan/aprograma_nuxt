@@ -50,11 +50,11 @@
               class="intro-image h-full w-full border-t-2 border-b-2 object-cover rounded select-none"
               :src="blok.image.filename"
               :alt="blok.image.alt"
-              width="1366"
-              height="677"
+              width="984"
+              height="805"
               :fit="blok.image.focus ? null : 'in'"
               :style="`border-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}`"
-              sizes="xs:299px sm:380px md:514px lg:711px xl:804px 2xl:1366px"
+              sizes="xs:299px sm:380px md:514px lg:711px xl:804px 2xl:984pxpx"
             />
           </div>
         </template>

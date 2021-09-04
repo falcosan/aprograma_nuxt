@@ -35,7 +35,7 @@
           class="post-close rounded shadow m-2.5"
           tag="button"
           size="p-3 w-10 h-10"
-          @click.native="goBack()"
+          @click.native="$goBack()"
         />
       </div>
       <div class="post-article w-full max-w-prose pb-10 pt-5 px-5 mx-auto my-0">
@@ -119,9 +119,6 @@ export default {
         case 'tiff':
           return 'NuxtImg'
       }
-    },
-    goBack () {
-      this.$nuxt.context.from ? this.$router.go(-1) : this.$router.push(`/${this.$route.name.split('-')[0]}/`)
     }
   }
 }

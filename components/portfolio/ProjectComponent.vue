@@ -31,7 +31,7 @@
         :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
         :class="`project-back rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
         size="w-10 h-10 p-3"
-        @click.native="goBack()"
+        @click.native="$goBack()"
       />
     </div>
     <div class="project-intro grid gap-5 auto-cols-fr col-start-1 col-end-4">
@@ -165,9 +165,6 @@ export default {
         currentDateTime.getMonth() + 1
       } / ${currentDateTime.getFullYear()}`
       return formattedDate.toString()
-    },
-    goBack () {
-      this.$nuxt.context.from ? this.$router.go(-1) : this.$router.push(`/${this.$route.name.split('-')[0]}/`)
     }
   }
 }

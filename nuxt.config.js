@@ -31,6 +31,7 @@ export default {
     trailingSlash: true
   },
   plugins: [
+    '~/plugins/injects/go-back.client.js',
     '~/plugins/injects/no-scroll.client.js',
     '~/plugins/injects/range-items.client.js',
     '~/plugins/injects/theme-color.client.js',

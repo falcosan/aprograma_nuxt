@@ -167,7 +167,7 @@ export default {
       return formattedDate.toString()
     },
     goBack () {
-      this.$nuxt.context.from ? this.$router.go(-1) : this.$router.push(`/${this.$route.name.split('-')[0]}`)
+      this.$nuxt.context.from ? this.$router.go(-1) : this.$router.push(`/${this.$route.name.split('-')[0]}/`)
     }
   }
 }

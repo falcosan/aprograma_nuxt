@@ -1,5 +1,5 @@
 <template>
-  <Project v-if="!$fetchState.pending" :blok="story.content" />
+  <Project :blok="story.content" />
 </template>
 <script>
 import Project from '@/components/portfolio/ProjectComponent'

@@ -1,6 +1,7 @@
 <template>
   <component
     :is="story.content.component"
+    v-if="!$fetchState.pending"
     :key="story.content._uid"
     :blok="story.content"
   />

@@ -1,5 +1,5 @@
 <template>
-  <Post :blok="story.content" />
+  <Post v-if="!$fetchState.pending" :blok="story.content" />
 </template>
 <script>
 import Post from '@/components/blog/PostComponent'

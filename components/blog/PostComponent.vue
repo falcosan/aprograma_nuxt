@@ -33,13 +33,13 @@
           @click.native="$goBack()"
         />
       </div>
-      <div class="post-article w-full max-w-prose px-5 pt-5 pb-10 mx-auto my-0">
+      <div class="post-article w-full max-w-prose p-5 mx-auto my-0">
         <h2
           :style="`color: ${blok.text_color.color};`"
           class="post-intro text-xl sm:text-2xl"
           v-text="blok.intro"
         />
-        <div class="post-info text-right mt-5">
+        <div class="post-info mt-5">
           <p
             :style="`color: ${blok.text_color.color};`"
             class="post-author text-sm"
@@ -48,7 +48,7 @@
           </p>
           <p
             :style="`color: ${blok.text_color.color};`"
-            class="post-date mt-2.5 text-xs"
+            class="post-date my-2.5 text-xs"
             v-text="changeDate(blok.date)"
           />
           <ul class="post-categories flex flex-wrap mt-5 -mb-1.5 -mx-1.5">
@@ -57,13 +57,9 @@
             </li>
           </ul>
         </div>
-        <hr
-          class="start-line w-full my-10 mx-auto rounded"
-          :style="`border-color: ${blok.text_color.color ? blok.text_color.color : '#000000'};`"
-        >
         <article
           :style="`color: ${blok.text_color.color};`"
-          :class="`post-article markdown block ${setAlignText}`"
+          :class="`post-article markdown block my-10 ${setAlignText}`"
           v-html="$md.render(blok.long_text)"
         />
       </div>

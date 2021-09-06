@@ -77,14 +77,14 @@
         v-html="$md.render(blok.intro)"
       />
 
-      <div class="project-date flex flex-col ss:flex-row flex-wrap justify-evenly items-center xl:col-start-1 xl:col-end-3">
-        <h4 class="date-start mb-1 ss:mb-0 text-right text-sm">
+      <div class="project-date flex flex-col ss:flex-row flex-wrap justify-evenly items-center xl:col-start-1 xl:col-end-3 text-xs">
+        <h4 class="date-start mb-1 ss:mb-0 text-right">
           {{ changeDate(blok.start_date) }}
         </h4>
-        <p class="date-to text-center my-1 ss:my-0 text-xs">
+        <p class="date-to text-center my-1 ss:my-0">
           {{ $languageCase('to', 'hasta', 'al') }}
         </p>
-        <h4 class="date-end mt-1 ss:mt-0 text-left text-sm">
+        <h4 class="date-end mt-1 ss:mt-0 text-left">
           {{ blok.end_date ? changeDate(blok.end_date) : $languageCase('present', 'presente', 'presente') }}
         </h4>
       </div>
@@ -116,7 +116,7 @@
           :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
           :class="`project-back rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
           size="w-10 h-10 p-3"
-          @click.native="goBack()"
+          @click.native="$goBack()"
         />
       </div>
     </div>

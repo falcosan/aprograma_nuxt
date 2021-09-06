@@ -23,42 +23,42 @@
       </div>
     </div>
     <div class="post-body w-full justify-center rounded" :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'};`">
-      <div class="post-action flex flex-wrap-reverse sm:flex-wrap justify-end p-2.5">
-        <ul class="post-categories flex flex-wrap self-center m-1">
-          <li v-for="(category, index) in sortedCategories" :key="index" class="post-category self-start m-1.5 p-2.5 text-center text-xs rounded shadow-sm italic filter brightness-95 transition-shadow" :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'};`">
-            {{ category }}
-          </li>
-        </ul>
+      <div class="post-action flex flex-wrap justify-end pt-5 px-5">
         <Icon
           arrow
           :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
-          class="post-close rounded shadow m-2.5"
+          class="post-close rounded shadow"
           tag="button"
           size="p-3 w-10 h-10"
           @click.native="$goBack()"
         />
       </div>
-      <div class="post-article w-full max-w-prose pb-10 pt-5 px-5 mx-auto my-0">
+      <div class="post-article w-full max-w-prose p-5 mx-auto my-0">
         <h2
           :style="`color: ${blok.text_color.color};`"
           class="post-intro text-xl sm:text-2xl"
           v-text="blok.intro"
         />
-        <div class="post-info mt-5">
+        <div class="post-info text-right mt-5">
           <p
             :style="`color: ${blok.text_color.color};`"
-            class="post-author italic text-sm"
+            class="post-author text-sm"
           >
             {{ $languageCase('by', 'de', 'di') }} {{ blok.author ? blok.author : $languageCase('Anonymous', 'Anónimo', 'Anonimo') }}
           </p>
           <p
             :style="`color: ${blok.text_color.color};`"
-            class="post-date mt-2.5 text-xs font-semibold"
+            class="post-date mt-2.5 text-xs"
             v-text="changeDate(blok.date)"
           />
+          <ul class="post-categories flex flex-wrap mt-5 -mb-1.5 -mx-1.5">
+            <li v-for="(category, index) in sortedCategories" :key="index" class="post-category self-start m-1.5 p-2.5 text-center text-xs rounded shadow-sm italic filter brightness-95 transition-shadow" :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'};`">
+              {{ category }}
+            </li>
+          </ul>
         </div>
         <hr
-          class="start-line w-6/12 my-10 mx-auto rounded"
+          class="start-line w-5/12 my-10 mx-auto rounded"
           :style="`border-color: ${blok.text_color.color ? blok.text_color.color : '#000000'};`"
         >
         <article
@@ -66,6 +66,10 @@
           :class="`post-article markdown block ${setAlignText}`"
           v-html="$md.render(blok.long_text)"
         />
+        <hr
+          class="end-line w-5/12 my-10 mx-auto rounded"
+          :style="`border-color: ${blok.text_color.color ? blok.text_color.color : '#000000'};`"
+        >
       </div>
     </div>
   </div>

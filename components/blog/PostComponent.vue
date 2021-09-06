@@ -41,32 +41,30 @@
       <div class="post-article w-full max-w-prose pb-10 pt-5 px-5 mx-auto my-0">
         <h2
           :style="`color: ${blok.text_color.color};`"
-          class="post-intro text-xl"
+          class="post-intro text-xl sm:text-2xl"
           v-text="blok.intro"
         />
+        <div class="post-info mt-5">
+          <p
+            :style="`color: ${blok.text_color.color};`"
+            class="post-author italic text-sm"
+          >
+            {{ $languageCase('by', 'de', 'di') }} {{ blok.author ? blok.author : $languageCase('Anonymous', 'Anónimo', 'Anonimo') }}
+          </p>
+          <p
+            :style="`color: ${blok.text_color.color};`"
+            class="post-date mt-2.5 text-xs font-semibold"
+            v-text="changeDate(blok.date)"
+          />
+        </div>
         <hr
           class="start-line w-6/12 my-10 mx-auto rounded"
           :style="`border-color: ${blok.text_color.color ? blok.text_color.color : '#000000'};`"
         >
         <article
           :style="`color: ${blok.text_color.color};`"
-          :class="`post-article markdown block mb-10 ${setAlignText}`"
+          :class="`post-article markdown block ${setAlignText}`"
           v-html="$md.render(blok.long_text)"
-        />
-        <p
-          :style="`color: ${blok.text_color.color};`"
-          class="post-author text-center italic text-sm"
-        >
-          {{ $languageCase('by', 'de', 'di') }} {{ blok.author ? blok.author : $languageCase('Anonymous', 'Anónimo', 'Anonimo') }}
-        </p>
-        <hr
-          class="end-line w-5/12 my-5 mx-auto rounded"
-          :style="`border-color: ${blok.text_color.color ? blok.text_color.color : '#000000'};`"
-        >
-        <p
-          :style="`color: ${blok.text_color.color};`"
-          class="post-date text-center text-xs"
-          v-text="changeDate(blok.date)"
         />
       </div>
     </div>

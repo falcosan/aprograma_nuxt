@@ -7,7 +7,7 @@ export default ({ app }, inject) => {
             const content = document.createElement('span')
             content.classList.add('code-language')
             code.classList.add('syntax-code-block')
-            content.appendChild(document.createTextNode(code.className.split(' ')[0]))
+            content.appendChild(document.createTextNode(code.className.split(' ')[0].replace('language-', '')))
             return code.insertBefore(content, code.childNodes[0])
           }
         } else {

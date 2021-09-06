@@ -41,9 +41,13 @@
       <div class="post-article w-full max-w-prose pb-10 pt-5 px-5 mx-auto my-0">
         <h2
           :style="`color: ${blok.text_color.color};`"
-          class="post-intro mb-7 text-xl"
+          class="post-intro text-xl"
           v-text="blok.intro"
         />
+        <hr
+          class="start-line w-6/12 my-10 mx-auto rounded"
+          :style="`border-color: ${blok.text_color.color ? blok.text_color.color : '#000000'};`"
+        >
         <article
           :style="`color: ${blok.text_color.color};`"
           :class="`post-article markdown block mb-10 ${setAlignText}`"
@@ -51,17 +55,17 @@
         />
         <p
           :style="`color: ${blok.text_color.color};`"
-          class="post-author mb-5 text-center italic text-sm"
+          class="post-author text-center italic text-sm"
         >
           {{ $languageCase('by', 'de', 'di') }} {{ blok.author ? blok.author : $languageCase('Anonymous', 'Anónimo', 'Anonimo') }}
         </p>
-        <div
-          class="end-ling w-5/12 h-0.5 my-0 mx-auto rounded filter brightness-50 opacity-50"
-          :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'};`"
-        />
+        <hr
+          class="end-line w-5/12 my-5 mx-auto rounded"
+          :style="`border-color: ${blok.text_color.color ? blok.text_color.color : '#000000'};`"
+        >
         <p
           :style="`color: ${blok.text_color.color};`"
-          class="post-date mt-2.5 text-center text-xs"
+          class="post-date text-center text-xs"
           v-text="changeDate(blok.date)"
         />
       </div>

@@ -33,7 +33,7 @@
           @click.native="$goBack()"
         />
       </div>
-      <div class="post-article w-full max-w-prose p-5 mx-auto my-0">
+      <div class="post-article w-full max-w-prose px-5 pt-5 pb-10 mx-auto my-0">
         <h2
           :style="`color: ${blok.text_color.color};`"
           class="post-intro text-xl sm:text-2xl"
@@ -58,7 +58,7 @@
           </ul>
         </div>
         <hr
-          class="start-line w-5/12 my-10 mx-auto rounded"
+          class="start-line w-full my-10 mx-auto rounded"
           :style="`border-color: ${blok.text_color.color ? blok.text_color.color : '#000000'};`"
         >
         <article
@@ -66,10 +66,6 @@
           :class="`post-article markdown block ${setAlignText}`"
           v-html="$md.render(blok.long_text)"
         />
-        <hr
-          class="end-line w-5/12 my-10 mx-auto rounded"
-          :style="`border-color: ${blok.text_color.color ? blok.text_color.color : '#000000'};`"
-        >
       </div>
     </div>
   </div>

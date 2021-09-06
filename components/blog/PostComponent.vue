@@ -48,10 +48,10 @@
           </p>
           <p
             :style="`color: ${blok.text_color.color};`"
-            class="post-date my-2.5 text-xs"
+            class="post-date mt-2.5 text-xs"
             v-text="changeDate(blok.date)"
           />
-          <ul class="post-categories flex flex-wrap mt-5 -mb-1.5 -mx-1.5">
+          <ul class="post-categories flex flex-wrap justify-end mt-5 -mb-1.5 -mx-1.5">
             <li v-for="(category, index) in sortedCategories" :key="index" class="post-category self-start m-1.5 p-2.5 text-center text-xs rounded shadow-sm italic filter brightness-95 transition-shadow" :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'};`">
               {{ category }}
             </li>
@@ -59,7 +59,7 @@
         </div>
         <article
           :style="`color: ${blok.text_color.color};`"
-          :class="`post-article markdown block my-10 ${setAlignText}`"
+          :class="`post-article markdown block my-5 ${setAlignText}`"
           v-html="$md.render(blok.long_text)"
         />
       </div>

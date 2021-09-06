@@ -28,9 +28,7 @@
 }
 .markdown pre code {
   display: block;
-  white-space: pre-wrap;
   padding: 20px;
-  color: #ffffff;
 }
 .markdown .syntax-code-block {
   padding-top: 4rem;

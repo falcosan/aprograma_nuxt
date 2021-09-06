@@ -1,5 +1,5 @@
 import hljs from 'highlight.js'
-import 'highlight.js/styles/lioshi.css'
+import 'highlight.js/styles/hybrid.css'
 
 export default ({ app }, inject) => {
   inject('markdownRules', () => {

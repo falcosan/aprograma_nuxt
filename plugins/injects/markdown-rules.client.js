@@ -4,8 +4,9 @@ import 'highlight.js/styles/lioshi.css'
 export default ({ app }, inject) => {
   inject('markdownRules', () => {
     if (document.querySelector('pre code')) {
-      [...document.querySelectorAll('pre')].forEach((code) => { hljs.highlightBlock(code) });
-      [...document.querySelectorAll('pre code')].forEach((code) => {
+      [...document.querySelectorAll('pre')].forEach((codeBlock) => {
+        hljs.highlightBlock(codeBlock)
+        const code = codeBlock.querySelector('code')
         if (!code.classList.contains('syntax-code-block')) {
           if (code.className) {
             const content = document.createElement('span')

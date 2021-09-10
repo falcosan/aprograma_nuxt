@@ -26,25 +26,21 @@
   background-color: #f9f9f9;
 }
 .markdown pre code {
-  display: block;
   white-space: pre;
   overflow-wrap: normal;
   word-break: normal;
   overflow: auto;
-  padding: 20px;
 }
-.markdown .syntax-code-block {
-  padding: 3.5rem 1rem 1rem 1rem;
-}
+
 .markdown .syntax-code-block .code-language {
   position: absolute;
   width: 100%;
   display: flex;
-  top: 0;
+  top: -2px;
   left: 0;
   justify-content: flex-end;
-  padding-right: 10px;
-  font-size: 12px;
+  padding-right: 8px;
+  font-size: 10px;
 }
 .markdown blockquote {
   position: relative;

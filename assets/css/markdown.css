@@ -14,7 +14,6 @@
 }
 .markdown pre {
   position: relative;
-  padding: 0;
   border-radius: 0.25rem;
   overflow: hidden;
   background-color: #212121;
@@ -35,7 +34,7 @@
   padding: 20px;
 }
 .markdown .syntax-code-block {
-  padding-top: 4rem;
+  padding: 3.5rem 1rem 1rem 1rem;
 }
 .markdown .syntax-code-block .code-language {
   position: absolute;

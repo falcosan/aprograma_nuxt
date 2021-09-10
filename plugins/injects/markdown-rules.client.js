@@ -4,9 +4,8 @@ import 'highlight.js/styles/hybrid.css'
 export default ({ app }, inject) => {
   inject('markdownRules', () => {
     if (document.querySelector('pre code')) {
-      [...document.querySelectorAll('pre')].forEach((codeBlock) => {
-        hljs.highlightBlock(codeBlock)
-        const code = codeBlock.querySelector('code')
+      [...document.querySelectorAll('pre code')].forEach((code) => {
+        hljs.highlightElement(code)
         if (!code.classList.contains('syntax-code-block')) {
           if (code.className) {
             const content = document.createElement('span')

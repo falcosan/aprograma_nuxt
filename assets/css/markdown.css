@@ -43,10 +43,7 @@
   top: 0;
   left: 0;
   justify-content: flex-end;
-  padding: 5px 10px;
-  border-radius: .25rem .25rem 0 0;
-  background-color: #f9f9f9;
-  color: #212121;
+  padding-right: 10px;
   font-size: 12px;
 }
 .markdown blockquote {

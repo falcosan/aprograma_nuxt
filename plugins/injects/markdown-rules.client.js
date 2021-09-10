@@ -6,8 +6,11 @@ export default ({ app }, inject) => {
     if (document.querySelector('pre code')) {
       [...document.querySelectorAll('pre code')].forEach((code) => {
         hljs.highlightElement(code)
+        if (!code.classList.contains('hljs')) {
+          code.style.color = '#c5c8c6'
+        }
         if (!code.classList.contains('syntax-code-block')) {
-          if (code.className) {
+          if (code.className.split(' ')[0].includes('language-')) {
             const content = document.createElement('span')
             content.classList.add('code-language')
             code.classList.add('syntax-code-block')

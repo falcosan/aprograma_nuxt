@@ -20,7 +20,6 @@
         :src="blok.background_media.filename"
         :file="blok.background_media"
         :alt="blok.background_media.alt"
-        :lazy="false"
         width="2560"
         height="1440"
         sizes="xs:514px sm:711px md:804px lg:1680px xl:1920px 2xl:2560px"

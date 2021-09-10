@@ -14,6 +14,7 @@
             .split(/[\\/]/)
             .pop()
             .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
+          lazy
           :file="blok.media"
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
@@ -77,6 +78,7 @@
           .split(/[\\/]/)
           .pop()
           .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
+        lazy
         :file="blok.media"
         :src="blok && blok.media.filename ? blok.media.filename : src"
         :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"

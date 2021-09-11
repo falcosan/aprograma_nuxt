@@ -5,7 +5,9 @@ export default ({ app }, inject) => {
   inject('markdownRules', () => {
     if (document.querySelector('pre code')) {
       [...document.querySelectorAll('pre code')].forEach((code) => {
-        hljs.highlightElement(code)
+        if (hljs.listLanguages().includes(code.className.split(' ')[0].replace('language-', ''))) {
+          hljs.highlightElement(code)
+        }
         if (!code.classList.contains('hljs')) {
           code.style.color = '#c5c8c6'
         }

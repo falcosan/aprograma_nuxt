@@ -33,9 +33,7 @@
   word-break: normal;
   overflow: auto;
 }
-.markdown .syntax-code-block {
-  padding: 2em 1em 1em 1em;
-}
+
 .markdown .syntax-code-block .code-language {
   position: absolute;
   width: 100%;

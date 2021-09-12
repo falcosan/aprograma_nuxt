@@ -5,9 +5,6 @@ export default ({ app }, inject) => {
   inject('markdownRules', () => {
     if (document.querySelector('pre code')) {
       [...document.querySelectorAll('pre code')].forEach((code) => {
-        if (hljs.listLanguages().includes(code.className.split(' ')[0].replace('language-', ''))) {
-          hljs.highlightElement(code)
-        }
         if (!code.classList.contains('hljs')) {
           code.style.color = '#c5c8c6'
         }
@@ -17,6 +14,10 @@ export default ({ app }, inject) => {
             content.classList.add('code-language')
             code.classList.add('syntax-code-block')
             content.appendChild(document.createTextNode(code.className.split(' ')[0].replace('language-', '')))
+            const language = hljs.getLanguage(code.className.split(' ')[0].replace('language-', '')) ? hljs.getLanguage(code.className.split(' ')[0].replace('language-', '')).name.toLocaleLowerCase() : null
+            if (hljs.listLanguages().includes(language)) {
+              hljs.highlightElement(code)
+            }
             return code.insertBefore(content, code.childNodes[0])
           }
         } else {

@@ -6,7 +6,12 @@ import Project from '@/components/portfolio/ProjectComponent'
 export default {
   components: { Project },
   asyncData (context) {
-    console.log(context)
+    return context.app.$storyapi
+      .get(`cdn/stories${context.route.path}`, {
+        language: context.store.state.language.language
+      }).then((res) => {
+        return res.data
+      })
   },
   data () {
     return {

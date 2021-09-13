@@ -36,7 +36,7 @@ export default {
   },
   head () {
     return {
-      title: `Aprograma - ${this.story.name}`,
+      title: `${this.story.name} - Aprograma`,
       meta: [
         {
           hid: 'description',

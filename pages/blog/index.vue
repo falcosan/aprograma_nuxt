@@ -8,6 +8,19 @@
 </template>
 <script>
 export default {
+  asyncData (context) {
+    return context.app.$storyapi
+      .get(`cdn/stories${context.route.path}`, {
+        language: context.store.state.language.language
+      })
+      .then((res) => {
+        return res.data
+      }).catch((res) => {
+        context.$errorMessage(res.response,
+          `Sorry but this post: ${context.route.name} doesn't extist`, `Sorry, but this post: "${context.route.name}" has a problem or doesn't exist`
+        )
+      })
+  },
   data () {
     return {
       story: {

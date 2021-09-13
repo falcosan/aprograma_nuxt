@@ -9,9 +9,8 @@
 <script>
 export default {
   asyncData (context) {
-    const slug = (context.route.path === '/' || context.route.path === '') ? '/home' : context.route.path
     return context.app.$storyapi
-      .get(`cdn/stories${slug}`, {
+      .get(`cdn/stories${context.route.path}`, {
         language: context.store.state.language.language
       }).then((res) => {
         return res.data

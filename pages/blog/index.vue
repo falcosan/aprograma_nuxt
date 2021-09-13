@@ -12,8 +12,7 @@ export default {
     return context.app.$storyapi
       .get(`cdn/stories${context.route.path}`, {
         language: context.store.state.language.language
-      })
-      .then((res) => {
+      }).then((res) => {
         return res.data
       }).catch((res) => {
         context.$errorMessage(res.response,

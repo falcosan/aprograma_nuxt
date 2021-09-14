@@ -11,8 +11,8 @@
     "push:dev": "git checkout develop && git add -A && git commit -m 'develop' && git push origin develop",
     "push:prod": "git checkout develop && git fetch origin master && git merge master && git push origin develop:master && git fetch origin master:master",
     "dev": "nuxt",
-    "generate": "nuxt generate -m",
-    "test": "nuxt generate && nuxt start"
+    "generate": "nuxt build",
+    "test": "nuxt build && nuxt start"
   },
   "dependencies": {
     "@nuxtjs/feed": "^2.0.0",

@@ -5,6 +5,24 @@
 import Project from '@/components/portfolio/ProjectComponent'
 export default {
   components: { Project },
+  transition: {
+    beforeEnter (el) {
+      el.style.opacity = '0'
+      el.style.transition = '0.4s opacity ease'
+    },
+    enter (el, done) {
+      el.style.opacity = '1'
+      done()
+    },
+    beforeLeave (el) {
+      el.style.opacity = '0'
+      el.style.transition = '0.4s opacity ease'
+    },
+    leave (el, done) {
+      el.style.opacity = '1'
+      done()
+    }
+  },
   asyncData (context) {
     return context.app.$storyapi
       .get(`cdn/stories${context.route.path}`, {

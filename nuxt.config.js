@@ -1,7 +1,6 @@
 const axios = require('axios')
 
 export default {
-  target: 'static',
   head: {
     meta: [
       { name: 'google-site-verification', content: 'XAHIQv3mCKIUNNPmq1Vqr_nnFUudd52GYaCSxWZG_Hc' },
@@ -27,9 +26,6 @@ export default {
   },
   loading: '@/components/layout/LoadingComponent.vue',
   css: ['~/assets/css/main', '~/assets/css/markdown'],
-  router: {
-    trailingSlash: true
-  },
   plugins: [
     '~/plugins/injects/go-back.client.js',
     '~/plugins/injects/no-scroll.client.js',
@@ -42,10 +38,10 @@ export default {
     '~/plugins/injects/content-by-name.client.js',
     '~/plugins/injects/image-validation.client.js',
     '~/plugins/injects/scroll-to-smoothly.client.js',
-    '~/plugins/components',
     '~/plugins/custom-flag.client.js',
     '~/plugins/touchScreen.client.js',
-    '~/plugins/persistedState.client.js'
+    '~/plugins/components',
+    '~/plugins/persistedState.js'
   ],
 
   buildModules: [
@@ -84,7 +80,7 @@ export default {
     routes (callback) {
       const exclude = ['home', 'layout']
       const routes = []
-      axios.get(`https://api.storyblok.com/v2/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`).then((res) => {
+      axios(`https://api.storyblok.com/v2/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`).then((res) => {
         Object.keys(res.data.links).forEach((key) => {
           if (!exclude.includes(res.data.links[key].slug)) {
             routes.push('/' + res.data.links[key].slug)
@@ -129,7 +125,8 @@ export default {
     manifest: {
       name: 'Aprograma',
       short_name: 'Aprograma',
-      description: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.'
+      description: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.',
+      start_url: ''
     }
   },
   googleFonts: {
@@ -152,9 +149,8 @@ export default {
 
   sitemap: {
     hostname: 'https://aprograma.co',
-    trailingSlash: true,
     routes: async () => {
-      const { data } = await axios.get(`https://api.storyblok.com/v2/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
+      const { data } = await axios(`https://api.storyblok.com/v2/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
       const exclude = ['home', 'layout']
       const include = Object.values(data.links).map(link => !exclude.includes(link.slug) ? link.slug : '')
       return include.filter(Boolean)
@@ -181,7 +177,7 @@ export default {
           email: 'danielefalche@gmail.com',
           link: 'https://aprograma.co/'
         })
-        const dataEng = await axios.get(`https://api.storyblok.com/v2/cdn/stories?starts_with=blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
+        const dataEng = await axios(`https://api.storyblok.com/v2/cdn/stories?starts_with=blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
         const dataFiltered = dataLang => dataLang.data.stories.filter(filteredPost => filteredPost.name.toLowerCase() !== 'blog')
         dataFiltered(dataEng).forEach((post) => {
           feed.addItem({
@@ -212,7 +208,7 @@ export default {
           email: 'danielefalche@gmail.com',
           link: 'https://aprograma.co/'
         })
-        const dataEs = await axios.get(`https://api.storyblok.com/v2/cdn/stories?starts_with=es/blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
+        const dataEs = await axios(`https://api.storyblok.com/v2/cdn/stories?starts_with=es/blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
         const dataFiltered = dataLang => dataLang.data.stories.filter(filteredPost => filteredPost.name.toLowerCase() !== 'blog')
         dataFiltered(dataEs).forEach((post) => {
           feed.addItem({
@@ -243,7 +239,7 @@ export default {
           email: 'danielefalche@gmail.com',
           link: 'https://aprograma.co/'
         })
-        const dataIt = await axios.get(`https://api.storyblok.com/v2/cdn/stories?starts_with=it/blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
+        const dataIt = await axios(`https://api.storyblok.com/v2/cdn/stories?starts_with=it/blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
         const dataFiltered = dataLang => dataLang.data.stories.filter(filteredPost => filteredPost.name.toLowerCase() !== 'blog')
         dataFiltered(dataIt).forEach((post) => {
           feed.addItem({

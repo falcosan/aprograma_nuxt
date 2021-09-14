@@ -5,6 +5,14 @@
 import Post from '@/components/blog/PostComponent'
 export default {
   components: { Post },
+  asyncData (context) {
+    return context.app.$storyapi
+      .get(`cdn/stories${context.route.path}`, {
+        language: context.store.state.language.language
+      }).then((res) => {
+        return res.data
+      })
+  },
   data () {
     return {
       story: {
@@ -18,7 +26,6 @@ export default {
     })
     this.story = data.story
   },
-  fetchDelay: 0,
   head () {
     return {
       title: `${this.story.name} - Aprograma`,

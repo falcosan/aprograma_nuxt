@@ -1,6 +1,8 @@
 const axios = require('axios')
 
 export default {
+  ssr: false,
+  target: 'static',
   head: {
     meta: [
       { name: 'google-site-verification', content: 'XAHIQv3mCKIUNNPmq1Vqr_nnFUudd52GYaCSxWZG_Hc' },

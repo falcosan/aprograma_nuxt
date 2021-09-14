@@ -1,25 +1,23 @@
 <template>
   <component
     :is="story.content.component"
-    v-if="!$fetchState.pending"
     :key="story.content._uid"
     :blok="story.content"
   />
 </template>
 <script>
 export default {
-  data () {
-    return {
-      story: {
-        content: {}
-      }
-    }
-  },
-  async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories${this.$route.path}`, {
-      language: this.$store.state.language.language
-    })
-    this.story = data.story
+  asyncData (context) {
+    return context.app.$storyapi
+      .get(`cdn/stories${context.route.path}`, {
+        language: context.store.state.language.language
+      }).then((res) => {
+        return res.data
+      }).catch((res) => {
+        context.$errorMessage(res.response,
+          'Sorry but this content doesn\'t extist', `Sorry, but this content "${context.route.name}" has a problem or doesn't exist`
+        )
+      })
   },
   head () {
     return {
@@ -34,7 +32,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.language.language': '$fetch'
+    '$store.state.language.language' () { this.$nuxt.refresh() }
   }
 }
 </script>

@@ -1,22 +1,17 @@
 <template>
-  <Post v-if="!$fetchState.pending" :blok="story.content" />
+  <Post  :blok="story.content" />
 </template>
 <script>
 import Post from '@/components/blog/PostComponent'
 export default {
   components: { Post },
-  data () {
-    return {
-      story: {
-        content: {}
-      }
-    }
-  },
-  async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories${this.$route.path}`, {
-      language: this.$store.state.language.language
-    })
-    this.story = data.story
+  asyncData (context) {
+    return context.app.$storyapi
+      .get(`cdn/stories${context.route.path}`, {
+        language: context.store.state.language.language
+      }).then((res) => {
+        return res.data
+      })
   },
   head () {
     return {
@@ -38,7 +33,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.language.language': '$fetch'
+    '$store.state.language.language' () { this.$nuxt.refresh() }
   }
 }
 </script>

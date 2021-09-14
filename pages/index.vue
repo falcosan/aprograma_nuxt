@@ -8,7 +8,6 @@
 <script>
 export default {
   asyncData (context) {
-    console.log(context.store.state.language.language)
     const slug = (context.route.path === '/' || context.route.path === '') ? '/home' : context.route.path
     return context.app.$storyapi
       .get(`cdn/stories${slug}`, {
@@ -20,13 +19,6 @@ export default {
           'Sorry but this content doesn\'t extist', `Sorry, but the content called: "${context.route.name}" has a problem or doesn't exist`
         )
       })
-  },
-  data () {
-    return {
-      story: {
-        content: {}
-      }
-    }
   },
   watch: {
     '$store.state.language.language' () { this.$nuxt.refresh() }

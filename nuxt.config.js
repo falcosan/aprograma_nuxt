@@ -42,10 +42,10 @@ export default {
     '~/plugins/injects/content-by-name.client.js',
     '~/plugins/injects/image-validation.client.js',
     '~/plugins/injects/scroll-to-smoothly.client.js',
-    '~/plugins/components',
     '~/plugins/custom-flag.client.js',
     '~/plugins/touchScreen.client.js',
-    '~/plugins/persistedState.client.js'
+    '~/plugins/components',
+    '~/plugins/persistedState.js'
   ],
 
   buildModules: [

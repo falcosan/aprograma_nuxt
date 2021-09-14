@@ -1,22 +1,17 @@
 <template>
-  <Post v-if="!$fetchState.pending" :blok="story.content" />
+  <Post :blok="story.content" />
 </template>
 <script>
 import Post from '@/components/blog/PostComponent'
 export default {
   components: { Post },
-  data () {
-    return {
-      story: {
-        content: {}
-      }
-    }
-  },
-  async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories${this.$route.path}`, {
-      language: this.$store.state.language.language
-    })
-    this.story = data.story
+  async asyncData (context) {
+    return await context.app.$storyapi
+      .get(`cdn/stories${context.route.path}`, {
+        language: context.store.state.language.language
+      }).then((res) => {
+        return res.data
+      })
   },
   head () {
     return {

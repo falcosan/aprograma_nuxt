@@ -5,8 +5,8 @@
 import Project from '@/components/portfolio/ProjectComponent'
 export default {
   components: { Project },
-  async asyncData (context) {
-    return await context.app.$storyapi
+  asyncData (context) {
+    return context.app.$storyapi
       .get(`cdn/stories${context.route.path}`, {
         language: context.store.state.language.language
       }).then((res) => {

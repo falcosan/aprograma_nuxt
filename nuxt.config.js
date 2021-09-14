@@ -129,7 +129,8 @@ export default {
     manifest: {
       name: 'Aprograma',
       short_name: 'Aprograma',
-      description: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.'
+      description: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.',
+      start_url: ''
     }
   },
   googleFonts: {

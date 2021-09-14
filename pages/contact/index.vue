@@ -7,17 +7,18 @@
 </template>
 <script>
 export default {
-  async asyncData (context) {
-    return await context.app.$storyapi
-      .get(`cdn/stories${context.route.path}`, {
-        language: context.store.state.language.language
-      }).then((res) => {
-        return res.data
-      }).catch((res) => {
-        context.$errorMessage(res.response,
-          'Sorry but this content doesn\'t extist', `Sorry, but this content "${context.route.name}" has a problem or doesn't exist`
-        )
-      })
+  data () {
+    return {
+      story: {
+        content: {}
+      }
+    }
+  },
+  async fetch () {
+    const { data } = await this.$storyapi.get(`cdn/stories${this.$route.path}`, {
+      language: this.$store.state.language.language
+    })
+    this.story = data.story
   },
   head () {
     return {

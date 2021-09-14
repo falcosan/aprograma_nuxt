@@ -3,6 +3,9 @@ const axios = require('axios')
 export default {
   ssr: false,
   target: 'static',
+  router: {
+    trailingSlash: true
+  },
   head: {
     meta: [
       { name: 'google-site-verification', content: 'XAHIQv3mCKIUNNPmq1Vqr_nnFUudd52GYaCSxWZG_Hc' },
@@ -29,6 +32,10 @@ export default {
   loading: '@/components/layout/LoadingComponent.vue',
   css: ['~/assets/css/main', '~/assets/css/markdown'],
   plugins: [
+    '~/plugins/components',
+    '~/plugins/custom-flag.client.js',
+    '~/plugins/touchScreen.client.js',
+    '~/plugins/persistedState.client.js',
     '~/plugins/injects/go-back.client.js',
     '~/plugins/injects/no-scroll.client.js',
     '~/plugins/injects/range-items.client.js',
@@ -39,11 +46,7 @@ export default {
     '~/plugins/injects/email-validator.client.js',
     '~/plugins/injects/content-by-name.client.js',
     '~/plugins/injects/image-validation.client.js',
-    '~/plugins/injects/scroll-to-smoothly.client.js',
-    '~/plugins/custom-flag.client.js',
-    '~/plugins/touchScreen.client.js',
-    '~/plugins/components',
-    '~/plugins/persistedState.js'
+    '~/plugins/injects/scroll-to-smoothly.client.js'
   ],
 
   buildModules: [
@@ -151,6 +154,7 @@ export default {
 
   sitemap: {
     hostname: 'https://aprograma.co',
+    trailingSlash: true,
     routes: async () => {
       const { data } = await axios(`https://api.storyblok.com/v2/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
       const exclude = ['home', 'layout']

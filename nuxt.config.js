@@ -27,9 +27,6 @@ export default {
   },
   loading: '@/components/layout/LoadingComponent.vue',
   css: ['~/assets/css/main', '~/assets/css/markdown'],
-  router: {
-    trailingSlash: true
-  },
   plugins: [
     '~/plugins/injects/go-back.client.js',
     '~/plugins/injects/no-scroll.client.js',
@@ -153,7 +150,6 @@ export default {
 
   sitemap: {
     hostname: 'https://aprograma.co',
-    trailingSlash: true,
     routes: async () => {
       const { data } = await axios.get(`https://api.storyblok.com/v2/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
       const exclude = ['home', 'layout']

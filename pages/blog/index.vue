@@ -28,7 +28,6 @@ export default {
     }
   },
   async fetch () {
-    await this.$store.dispatch('list/posts/addPosts')
     const { data } = await this.$storyapi.get(`cdn/stories${this.$route.path}`, {
       language: this.$store.state.language.language
     })

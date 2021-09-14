@@ -8,19 +8,6 @@
 </template>
 <script>
 export default {
-  asyncData (context) {
-    const slug = (context.route.path === '/' || context.route.path === '') ? '/home' : context.route.path
-    return context.app.$storyapi
-      .get(`cdn/stories${slug}`, {
-        language: context.store.state.language.language
-      }).then((res) => {
-        return res.data
-      }).catch((res) => {
-        context.$errorMessage(res.response,
-          'Sorry but this content doesn\'t extist', `Sorry, but the content called: "${context.route.name}" has a problem or doesn't exist`
-        )
-      })
-  },
   data () {
     return {
       story: {
@@ -35,6 +22,8 @@ export default {
     })
     this.story = data.story
   },
+  fetchDelay: 0,
+  fetchOnServer: false,
   watch: {
     '$store.state.language.language': '$fetch'
   }

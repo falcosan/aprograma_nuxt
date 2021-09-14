@@ -47,9 +47,7 @@ export default {
     }
   },
   async fetch () {
-    if (this.$route.name !== 'portfolio') {
-      await this.$store.dispatch('list/projects/addProjects')
-    }
+    await this.$store.dispatch('list/projects/addProjects')
   },
   computed: {
     maxProjects () {

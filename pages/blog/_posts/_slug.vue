@@ -5,8 +5,8 @@
 import Post from '@/components/blog/PostComponent'
 export default {
   components: { Post },
-  asyncData (context) {
-    return context.app.$storyapi
+  async asyncData (context) {
+    return await context.app.$storyapi
       .get(`cdn/stories${context.route.path}`, {
         language: context.store.state.language.language
       }).then((res) => {

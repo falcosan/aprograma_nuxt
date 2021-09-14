@@ -7,9 +7,9 @@
 </template>
 <script>
 export default {
-  asyncData (context) {
+  async asyncData (context) {
     const slug = (context.route.path === '/' || context.route.path === '') ? '/home' : context.route.path
-    return context.app.$storyapi
+    return await context.app.$storyapi
       .get(`cdn/stories${slug}`, {
         language: context.store.state.language.language
       }).then((res) => {

@@ -63,7 +63,11 @@ export default {
     open () { this.checkModal() }
   },
   beforeDestroy () {
-    this.$noscroll(false)
+    if (this.openEvent || this.open) {
+      this.$refs.modal.parentNode.removeChild(this.$refs.modal)
+      document.querySelector('.modal.opened').appendChild(this.$refs.modal)
+      this.$noscroll(false)
+    }
   },
   methods: {
     openModal () {

@@ -1,6 +1,7 @@
 const axios = require('axios')
 
 export default {
+  ssr: false,
   target: 'static',
   router: {
     trailingSlash: true

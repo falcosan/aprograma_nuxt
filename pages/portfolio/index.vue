@@ -7,18 +7,35 @@
 </template>
 <script>
 export default {
-  data () {
-    return {
-      story: {
-        content: {}
-      }
+  transition: {
+    beforeEnter (el) {
+      el.style.opacity = '0'
+      el.style.transition = '0.5s opacity ease'
+    },
+    enter (el, done) {
+      el.style.opacity = '1'
+      done()
+    },
+    beforeLeave (el) {
+      el.style.opacity = '0'
+      el.style.transition = '0.5s opacity ease'
+    },
+    leave (el, done) {
+      el.style.opacity = '1'
+      done()
     }
   },
-  async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories${this.$route.path}`, {
-      language: this.$store.state.language.language
-    })
-    this.story = data.story
+  asyncData (context) {
+    return context.app.$storyapi
+      .get(`cdn/stories${context.route.path}`, {
+        language: context.store.state.language.language
+      }).then((res) => {
+        return res.data
+      }).catch((res) => {
+        context.$errorMessage(res.response,
+          `Sorry but this project: ${context.route.name} doesn't extist`, `Sorry, but this project: "${context.route.name}" has a problem or doesn't exist`
+        )
+      })
   },
   head () {
     return {

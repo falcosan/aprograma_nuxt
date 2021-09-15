@@ -20,7 +20,27 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: `${this.story.content.title} post`
+          content: this.story.content.title
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: this.story.content.title
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.story.content.file.filename
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.story.content.intro
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `${this.$config.projectPath}${this.$route.path}`
         }
       ],
       link: [

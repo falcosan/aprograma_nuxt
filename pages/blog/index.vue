@@ -12,6 +12,7 @@ export default {
       .get(`cdn/stories${context.route.path}`, {
         language: context.store.state.language.language
       }).then((res) => {
+        context.store.dispatch('list/posts/addPosts')
         return res.data
       }).catch((res) => {
         context.$errorMessage(res.response,

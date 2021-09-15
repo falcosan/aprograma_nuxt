@@ -16,7 +16,7 @@ export default {
         return res.data
       }).catch((res) => {
         context.$errorMessage(res.response,
-          `Sorry but this project: ${context.route.name} doesn't extist`, `Sorry, but this project: "${context.route.name}" has a problem or doesn't exist`
+          `Sorry but this project: ${context.route.name} doesn't exist`, `Sorry, but this project: "${context.route.name}" has a problem or doesn't exist`
         )
       })
   },

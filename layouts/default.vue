@@ -34,26 +34,24 @@ export default {
       }
     }
   },
+  fetch () {
+    this.getLayout()
+  },
   watch: {
-    async '$store.state.language.language' () {
+    '$store.state.language.language': '$fetch'
+  },
+  beforeMount () {
+    this.$store.commit('data/responsiveMutation', window.innerWidth)
+    this.setMaintenance()
+    this.$store.dispatch('data/responsiveAction')
+  },
+  methods: {
+    async getLayout () {
       const { data } = await this.$storyapi.get('cdn/stories/layout', {
         language: this.$store.state.language.language
       })
       this.story = data.story
-    }
-  },
-  async beforeCreate () {
-    const { data } = await this.$storyapi.get('cdn/stories/layout', {
-      language: this.$store.state.language.language
-    })
-    this.story = data.story
-  },
-  async beforeMount () {
-    this.$store.commit('data/responsiveMutation', window.innerWidth)
-    this.setMaintenance()
-    await this.$store.dispatch('data/responsiveAction')
-  },
-  methods: {
+    },
     setMaintenance () {
       if (this.story.content.maintenance) {
         this.$noscroll(true)

@@ -95,6 +95,9 @@ export default {
   mounted () {
     this.$markdownRules()
   },
+  updated () {
+    this.$markdownRules()
+  },
   methods: {
     changeDate (date) {
       const currentDateTime = new Date(date.replace(' ', 'T'))

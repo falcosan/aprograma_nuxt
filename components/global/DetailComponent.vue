@@ -153,6 +153,9 @@ export default {
   mounted () {
     this.$markdownRules()
   },
+  updated () {
+    this.$markdownRules()
+  },
   methods: {
     imageType (media) {
       switch (media.filename.toLowerCase().split('.').pop()) {

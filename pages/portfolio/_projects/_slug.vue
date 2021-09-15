@@ -8,7 +8,7 @@ export default {
   transition: {
     beforeEnter (el) {
       el.style.opacity = '0'
-      el.style.transition = '0.4s opacity ease'
+      el.style.transition = '0.5s opacity ease'
     },
     enter (el, done) {
       el.style.opacity = '1'
@@ -16,7 +16,7 @@ export default {
     },
     beforeLeave (el) {
       el.style.opacity = '0'
-      el.style.transition = '0.4s opacity ease'
+      el.style.transition = '0.5s opacity ease'
     },
     leave (el, done) {
       el.style.opacity = '1'

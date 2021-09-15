@@ -16,7 +16,7 @@
   position: relative;
   border-radius: 0.25rem;
   overflow: hidden;
-  background-color: #212121;
+  background-color: #282c34;
 }
 .markdown *:not(pre) code {
   padding: 3px;
@@ -32,7 +32,7 @@
   overflow-wrap: normal;
   word-break: normal;
   overflow: auto;
-  color: #c5c8c6;
+  color: #abb2bf;
 }
 
 .markdown .syntax-code-block .code-language {

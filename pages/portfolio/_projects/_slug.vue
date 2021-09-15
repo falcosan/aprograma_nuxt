@@ -1,35 +1,22 @@
 <template>
-  <Project :blok="story.content" />
+  <Project v-if="!$fetchState.pending" :blok="story.content" />
 </template>
 <script>
 import Project from '@/components/portfolio/ProjectComponent'
 export default {
   components: { Project },
-  transition: {
-    beforeEnter (el) {
-      el.style.opacity = '0'
-      el.style.transition = '0.5s opacity ease'
-    },
-    enter (el, done) {
-      el.style.opacity = '1'
-      done()
-    },
-    beforeLeave (el) {
-      el.style.opacity = '0'
-      el.style.transition = '0.5s opacity ease'
-    },
-    leave (el, done) {
-      el.style.opacity = '1'
-      done()
+  data () {
+    return {
+      story: {
+        content: {}
+      }
     }
   },
-  asyncData (context) {
-    return context.app.$storyapi
-      .get(`cdn/stories${context.route.path}`, {
-        language: context.store.state.language.language
-      }).then((res) => {
-        return res.data
-      })
+  async fetch () {
+    const { data } = await this.$storyapi.get(`cdn/stories${this.$route.path}`, {
+      language: this.$store.state.language.language
+    })
+    this.story = data.story
   },
   head () {
     return {

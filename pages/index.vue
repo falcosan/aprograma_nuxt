@@ -7,36 +7,19 @@
 </template>
 <script>
 export default {
-  transition: {
-    beforeEnter (el) {
-      el.style.opacity = '0'
-      el.style.transition = '0.5s opacity ease'
-    },
-    enter (el, done) {
-      el.style.opacity = '1'
-      done()
-    },
-    beforeLeave (el) {
-      el.style.opacity = '0'
-      el.style.transition = '0.5s opacity ease'
-    },
-    leave (el, done) {
-      el.style.opacity = '1'
-      done()
+  data () {
+    return {
+      story: {
+        content: {}
+      }
     }
   },
-  asyncData (context) {
-    const slug = (context.route.path === '/' || context.route.path === '') ? '/home' : context.route.path
-    return context.app.$storyapi
-      .get(`cdn/stories${slug}`, {
-        language: context.store.state.language.language
-      }).then((res) => {
-        return res.data
-      }).catch((res) => {
-        context.$errorMessage(res.response,
-          'Sorry but this content doesn\'t extist', `Sorry, but the content called: "${context.route.name}" has a problem or doesn't exist`
-        )
-      })
+  async fetch () {
+    const slug = (this.$route.path === '/' || this.$route.path === '') ? '/home' : this.$route.path
+    const { data } = await this.$storyapi.get(`cdn/stories${slug}`, {
+      language: this.$store.state.language.language
+    })
+    this.story = data.story
   },
   watch: {
     '$store.state.language.language' () { this.$nuxt.refresh() }

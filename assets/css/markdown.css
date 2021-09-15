@@ -47,9 +47,9 @@
 }
 .markdown blockquote {
   position: relative;
-  padding: .5rem 15px;
+  padding: 0.5rem 15px;
   border-left: 7px solid #484848;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   background-color: #eeeeeeb3;
   color: #212121;
   quotes: "\201C""\201D""\2018""\2019";
@@ -140,64 +140,10 @@
   margin-top: 0;
 }
 
-.markdown h1,
-.markdown h2,
-.markdown h3,
-.markdown h4,
-.markdown h5,
-.markdown h6 {
-  margin-bottom: 1.25rem;
-  margin-top: 0;
-}
-
-.markdown li h1,
-.markdown li h2,
-.markdown li h3,
-.markdown li h4,
-.markdown li h5,
-.markdown li h6 {
- margin: 0;
-}
-
-.markdown h1 {
-  font-size: clamp(2.59rem, 1.46rem + 2.84vw, 6.00rem);
-  letter-spacing: -0.1rem;
-  line-height: 1.25;
-}
-
-.markdown h2 {
-  font-size: clamp(2.16rem, 1.47rem + 1.73vw, 4.24rem);
-  letter-spacing: -0.1rem;
-  line-height: 1.375;
-}
-
-.markdown h3 {
-  font-size: clamp(1.80rem, 1.40rem + 1.00vw, 3.00rem);
-  letter-spacing: -0.08rem;
-  line-height: 1.5;
-}
-
-.markdown h4 {
-  font-size: clamp(1.50rem, 1.29rem + 0.52vw, 2.12rem);
-  letter-spacing: -0.05rem;
-  line-height: 1.625;
-}
-
-.markdown h5 {
-  font-size: clamp(1.25rem, 1.17rem + 0.21vw, 1.50rem);
-  letter-spacing: -0.01rem;
-  line-height: 1.7;
-}
-
-.markdown h6 {
-  font-size: clamp(1.04rem, 1.04rem + 0.02vw, 1.06rem);
-  line-height: 1.9;
-}
-
 .markdown hr {
   border: 0;
   margin: 3rem 0;
-  border-top: 0.1rem solid #E5E7EB;
+  border-top: 0.1rem solid #e5e7eb;
 }
 
 .markdown > *:last-child {
@@ -213,11 +159,11 @@
 .markdown dd:not(:last-child),
 .markdown dt:not(:last-child),
 .markdown li:not(:last-child) {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 .markdown dl dd {
   margin-left: 1rem;
- }
+}
 .markdown p,
 .markdown input,
 .markdown select,

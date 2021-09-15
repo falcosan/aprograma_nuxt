@@ -8,7 +8,7 @@ export default {
   },
   head: {
     meta: [
-      { name: 'google-site-verification', content: 'XAHIQv3mCKIUNNPmq1Vqr_nnFUudd52GYaCSxWZG_Hc' },
+      { name: 'google-site-verification', content: process.env.GOOGLE_SITE_VERIFICATION },
       {
         hid: 'twitter:title',
         name: 'twitter:title',

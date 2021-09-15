@@ -46,8 +46,8 @@ export default {
       default: false
     }
   },
-  async fetch () {
-    await this.$store.dispatch('list/projects/addProjects')
+  fetch () {
+    this.$store.dispatch('list/projects/addProjects')
   },
   computed: {
     maxProjects () {

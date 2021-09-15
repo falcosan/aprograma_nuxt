@@ -87,8 +87,8 @@ export default {
       showFilters: false
     }
   },
-  async fetch () {
-    await this.$store.dispatch('list/posts/addPosts')
+  fetch () {
+    this.$store.dispatch('list/posts/addPosts')
   },
   computed: {
     maxPosts () {

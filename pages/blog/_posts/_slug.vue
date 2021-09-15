@@ -41,6 +41,28 @@ export default {
           hid: 'og:url',
           property: 'og:url',
           content: `${this.$config.projectPath}${this.$route.path}`
+        },
+        { name: 'twitter:site', content: '@danielefalche' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        {
+          hid: 'twitter:url',
+          name: 'twitter:url',
+          content: this.$config.projectPath
+        },
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: this.story.content.title
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: this.story.content.intro
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: this.story.content.file.filename
         }
       ],
       link: [

@@ -28,6 +28,11 @@ export default {
           content: this.story.content.title
         },
         {
+          hid: 'og:description',
+          property: 'og:description',
+          content: 'Take a peek!'
+        },
+        {
           hid: 'og:image',
           property: 'og:image',
           content: this.story.content.image.filename
@@ -36,6 +41,28 @@ export default {
           hid: 'og:url',
           property: 'og:url',
           content: `${this.$config.projectPath}${this.$route.path}`
+        },
+        { name: 'twitter:site', content: '@danielefalche' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        {
+          hid: 'twitter:url',
+          name: 'twitter:url',
+          content: this.$config.projectPath
+        },
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: this.story.content.title
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: 'Take a peek!'
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: this.story.content.image.filename
         }
       ],
       link: [

@@ -27,7 +27,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `${location.protocol + '//' + location.host}${this.$route.path}`
+          href: `${this.$config.projectPath}${this.$route.path}`
         }
       ]
     }

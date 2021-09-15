@@ -78,7 +78,8 @@ export default {
     refreshOnResize: true
   },
   publicRuntimeConfig: {
-    projectName: process.env.npm_package_name
+    projectName: process.env.npm_package_name,
+    projectPath: 'https://aprograma.co'
   },
   generate: {
     fallback: true,
@@ -116,7 +117,7 @@ export default {
       description: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.',
       theme_color: '#f9f9f9',
       'apple-mobile-web-app-status-bar-style': 'black',
-      'og:url': 'https://aprograma.co/',
+      'og:url': 'https://aprograma.co',
       'og:image': {
         path: 'https://a.storyblok.com/f/106240/810x810/1be2192023/logostatic.png',
         width: 1200,
@@ -181,7 +182,7 @@ export default {
         feed.addContributor({
           name: 'Daniele Falchetti',
           email: 'danielefalche@gmail.com',
-          link: 'https://aprograma.co/'
+          link: 'https://aprograma.co'
         })
         const dataEng = await axios(`https://api.storyblok.com/v2/cdn/stories?starts_with=blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
         const dataFiltered = dataLang => dataLang.data.stories.filter(filteredPost => filteredPost.name.toLowerCase() !== 'blog')
@@ -212,7 +213,7 @@ export default {
         feed.addContributor({
           name: 'Daniele Falchetti',
           email: 'danielefalche@gmail.com',
-          link: 'https://aprograma.co/'
+          link: 'https://aprograma.co'
         })
         const dataEs = await axios(`https://api.storyblok.com/v2/cdn/stories?starts_with=es/blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
         const dataFiltered = dataLang => dataLang.data.stories.filter(filteredPost => filteredPost.name.toLowerCase() !== 'blog')
@@ -243,7 +244,7 @@ export default {
         feed.addContributor({
           name: 'Daniele Falchetti',
           email: 'danielefalche@gmail.com',
-          link: 'https://aprograma.co/'
+          link: 'https://aprograma.co'
         })
         const dataIt = await axios(`https://api.storyblok.com/v2/cdn/stories?starts_with=it/blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`)
         const dataFiltered = dataLang => dataLang.data.stories.filter(filteredPost => filteredPost.name.toLowerCase() !== 'blog')

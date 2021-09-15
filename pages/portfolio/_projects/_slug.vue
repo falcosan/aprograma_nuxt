@@ -15,12 +15,12 @@ export default {
   },
   head () {
     return {
-      title: `${this.story.name} - Aprograma`,
+      title: `${this.story.content.title} - Aprograma`,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: `${this.story.name} project`
+          content: `${this.story.content.title} project`
         }
       ],
       link: [

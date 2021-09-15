@@ -1,26 +1,24 @@
 <template>
-  <client-only>
-    <section v-if="!blok.hide" :class="`${blok.name.toLowerCase()}-page p-5`">
-      <h1 v-if="blok.title" class="page-title mb-5 text-xl sm:text-2xl break-words">
-        {{ blok.title }}
-      </h1>
-      <div class="page-components relative flex flex-wrap -m-2.5">
-        <component
-          :is="component.component"
-          v-for="component in components"
-          :key="component._uid"
-          :blok="component"
-          :style="`flex: ${component.row_container ? `1 ${(100 - (maxComponents > 1 ? spaceFix : 0 )) / $rangeItems(maxComponents, 3)}%` : '100%'};`"
-          :class="`${component.component.toLowerCase()}-content ${component.component.toLowerCase() === 'blank' ? '' : `${setAlignContent} m-2.5` } ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
-        />
-      </div>
-    </section>
-    <section v-else class="page-maintenance fixed max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl flex items-center justify-center inset-0 px-5">
-      <h1 class="maintenance-text p-20 text-xs xs:text-base sm:text-lg text-center pointer-events-none rounded uppercase italic bg-opacity-80 bg-white">
-        {{ $languageCase("This page is in maintenance, sorry for the inconvenience", "Esta página está en mantenimiento, disculpe las molestias", "Questa pagina è in manutenzione, scusa per l'inconveniente") }}
-      </h1>
-    </section>
-  </client-only>
+  <section v-if="!blok.hide" :class="`${blok.name.toLowerCase()}-page p-5`">
+    <h1 v-if="blok.title" class="page-title mb-5 text-xl sm:text-2xl break-words">
+      {{ blok.title }}
+    </h1>
+    <div class="page-components relative flex flex-wrap -m-2.5">
+      <component
+        :is="component.component"
+        v-for="component in components"
+        :key="component._uid"
+        :blok="component"
+        :style="`flex: ${component.row_container ? `1 ${(100 - (maxComponents > 1 ? spaceFix : 0 )) / $rangeItems(maxComponents, 3)}%` : '100%'};`"
+        :class="`${component.component.toLowerCase()}-content ${component.component.toLowerCase() === 'blank' ? '' : `${setAlignContent} m-2.5` } ${component.component.toLowerCase() === 'container' && component.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
+      />
+    </div>
+  </section>
+  <section v-else class="page-maintenance fixed max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl flex items-center justify-center inset-0 px-5">
+    <h1 class="maintenance-text p-20 text-xs xs:text-base sm:text-lg text-center pointer-events-none rounded uppercase italic bg-opacity-80 bg-white">
+      {{ $languageCase("This page is in maintenance, sorry for the inconvenience", "Esta página está en mantenimiento, disculpe las molestias", "Questa pagina è in manutenzione, scusa per l'inconveniente") }}
+    </h1>
+  </section>
 </template>
 
 <script>

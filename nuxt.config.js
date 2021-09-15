@@ -8,22 +8,7 @@ export default {
   },
   head: {
     meta: [
-      { name: 'google-site-verification', content: process.env.GOOGLE_SITE_VERIFICATION },
-      {
-        hid: 'twitter:title',
-        name: 'twitter:title',
-        content: 'Aprograma - A break from stressfull coding'
-      },
-      {
-        hid: 'twitter:description',
-        name: 'twitter:description',
-        content: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.'
-      },
-      {
-        hid: 'twitter:image',
-        name: 'twitter:image',
-        content: 'https://a.storyblok.com/f/106240/810x810/1be2192023/logostatic.png'
-      }
+      { name: 'google-site-verification', content: process.env.GOOGLE_SITE_VERIFICATION }
     ],
     link: [
       { rel: 'preconnect', href: '//img2.storyblok.com' }
@@ -117,13 +102,6 @@ export default {
       description: 'Coding can be defined in many ways, sometimes even stressful. The goal of Aprograma is to change this.',
       theme_color: '#f9f9f9',
       'apple-mobile-web-app-status-bar-style': 'black',
-      'og:url': 'https://aprograma.co',
-      'og:image': {
-        path: 'https://a.storyblok.com/f/106240/810x810/1be2192023/logostatic.png',
-        width: 1200,
-        height: 630,
-        type: 'image/png'
-      },
       'twitter:site': '@danielefalche',
       'twitter:card': 'summary_large_image'
 

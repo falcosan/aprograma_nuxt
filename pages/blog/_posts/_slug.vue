@@ -42,8 +42,6 @@ export default {
           property: 'og:url',
           content: `${this.$config.projectPath}${this.$route.path}`
         },
-        { name: 'twitter:site', content: '@danielefalche' },
-        { name: 'twitter:card', content: 'summary_large_image' },
         {
           hid: 'twitter:url',
           name: 'twitter:url',

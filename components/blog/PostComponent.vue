@@ -3,7 +3,7 @@
     <div class="post-head relative w-full mb-5">
       <h1
         :style="`color: ${blok.text_color.color};`"
-        class="post-title mb-5 text-2xl sm:text-3xl"
+        class="post-title text-2xl sm:text-3xl"
         v-text="blok.title"
       />
       <div :class="`post-file w-full h-full aspect-w-13 aspect-h-8 overflow-hidden rounded ${blok.file.filename ? '' : 'bg-black'}`">
@@ -39,10 +39,10 @@
           class="post-intro text-xl sm:text-2xl"
           v-text="blok.intro"
         />
-        <div class="post-info mt-5">
+        <div class="post-info">
           <p
             :style="`color: ${blok.text_color.color};`"
-            class="post-author text-sm"
+            class="post-author text-sm font-semibold"
           >
             {{ $languageCase('by', 'de', 'di') }} {{ blok.author ? blok.author : $languageCase('Anonymous', 'Anónimo', 'Anonimo') }}
           </p>

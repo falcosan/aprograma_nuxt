@@ -1,6 +1,6 @@
 <template>
   <div class="project grid gap-5 auto-cols-fr p-5">
-    <h1 class="project-title col-start-1 col-end-4 xl:col-end-3 text-2xl sm:text-3xl break-words">
+    <h1 class="project-title col-start-1 col-end-4 xl:col-end-3 m-0 text-2xl sm:text-3xl break-words">
       {{ blok.title }}
     </h1>
     <div v-if="$store.state.data.windowWidth >= 1280" class="project-action min-w-0 flex items-center justify-end">
@@ -78,15 +78,15 @@
       />
 
       <div class="project-date flex flex-col ss:flex-row flex-wrap justify-evenly items-center xl:col-start-1 xl:col-end-3 text-xs">
-        <h4 class="date-start mb-1 ss:mb-0 text-right">
+        <span class="date-start text-right">
           {{ changeDate(blok.start_date) }}
-        </h4>
-        <p class="date-to text-center my-1 ss:my-0">
+        </span>
+        <p class="date-to text-center">
           {{ $languageCase('to', 'hasta', 'al') }}
         </p>
-        <h4 class="date-end mt-1 ss:mt-0 text-left">
+        <span class="date-end text-left">
           {{ blok.end_date ? changeDate(blok.end_date) : $languageCase('present', 'presente', 'presente') }}
-        </h4>
+        </span>
       </div>
       <div v-if="$store.state.data.windowWidth < 1280" class="project-action min-w-0 flex items-center justify-end row-start-2 row-end-3 xl:col-start-2 xl:col-end-3">
         <Link v-if="blok.url_project" icon-item external-link :to="blok.url_project" :title="`${$languageCase('link to', 'enlace por', 'link per')} ${blok.title}`">
@@ -121,7 +121,7 @@
       </div>
     </div>
     <div v-if="blok.body.length > 0" class="project-details grid gap-5 col-start-1 col-end-4 mt-10">
-      <h1 class="detail-project mb-5 text-xl sm:text-2xl">
+      <h1 class="detail-project text-xl sm:text-2xl">
         {{ $languageCase('Project details', 'Detalles del proyecto', 'Dettagli del progetto') }}
       </h1>
       <component

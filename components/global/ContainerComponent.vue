@@ -3,13 +3,14 @@
     v-if="blok.body.length > 0"
     :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
-    <h1
+    <component
+      :is="sliderMode || carouselMode || containerMode ? 'h2' : 'h1'"
       v-if="blok.title"
-      :class="`container-title break-words ${sliderMode || carouselMode || containerMode ? 'm-5 text-xl' : 'mb-5 text-xl sm:text-2xl'}`"
+      :class="`container-title break-words text-xl ${sliderMode || carouselMode || containerMode ? 'mx-5 mt-5' : 'sm:text-2xl'}`"
       :style="`color: ${blok.title_color.color};`"
     >
       {{ blok.title }}
-    </h1>
+    </component>
     <div
       :class="`container-content h-full rounded ${blok.slider_mode === 'slider' ? 'overflow-hidden' : ''}`"
       :style="`background-color: ${blok.background_color_container.color};`"

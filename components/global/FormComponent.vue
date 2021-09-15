@@ -16,7 +16,7 @@
     <transition enter-active-class="duration-200 linear" leave-active-class="duration-200 linear" enter-class="-translate-y-full opacity-0" leave-to-class="-translate-y-full opacity-0">
       <div v-if="alert.message" v-click-outside="removeAlert" :class="`form-alert fixed w-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl left-1/2 top-10 z-30 p-5 transform -translate-x-1/2 text-center text-sm transform rounded-b cursor-pointer bg-opacity-80 text-white ${!$device.isDesktop ? '' : 'md:absolute md:left-0 md:top-0 md:translate-x-0 md:rounded'} ${alert.color}`" @click="removeAlert" v-text="alert.message" />
     </transition>
-    <h2 v-if="blok.title" :class="`form-title mb-5 text-4xl`">
+    <h2 v-if="blok.title" :class="`form-title text-4xl`">
       {{ blok.title }}
     </h2>
     <form

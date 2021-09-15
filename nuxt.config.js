@@ -26,7 +26,7 @@ export default {
       }
     ],
     link: [
-      { rel: 'preconnect', href: 'https://img2.storyblok.com' }
+      { rel: 'preconnect', href: '//img2.storyblok.com' }
     ]
   },
   loading: '@/components/layout/LoadingComponent.vue',

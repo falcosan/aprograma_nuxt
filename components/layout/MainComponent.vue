@@ -75,6 +75,11 @@ export default {
     if (this.blok.background_color.color || this.blok.background_color_mask.color) {
       await this.setBackgroundColor()
     }
+    if (this.blok.background_color.color && !this.blok.background_media.filename) {
+      document.body.style.backgroundColor = this.randomBackgroundColor
+    } else if (this.blok.background_media.filename) {
+      document.body.style.backgroundColor = '#212121'
+    }
   },
   methods: {
     setBackgroundColor () {

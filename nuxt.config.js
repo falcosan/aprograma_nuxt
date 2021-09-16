@@ -1,8 +1,6 @@
 const axios = require('axios')
 
 export default {
-  target: 'server',
-  ssr: false,
   router: {
     trailingSlash: true
   },
@@ -74,6 +72,7 @@ export default {
         cacheProvider: 'memory'
       }
     ],
+    ['cookie-universal-nuxt', { alias: 'storage' }],
     '@nuxtjs/google-fonts',
     '@nuxtjs/markdownit',
     '@nuxtjs/sitemap',

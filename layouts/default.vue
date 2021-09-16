@@ -34,13 +34,11 @@ export default {
       }
     }
   },
-  fetch () {
-    this.getLayout()
-  },
   watch: {
-    '$store.state.language.language': '$fetch'
+    '$store.state.language.language' () { this.getLayout() }
   },
-  beforeMount () {
+  async beforeMount () {
+    await this.getLayout()
     this.$store.commit('data/responsiveMutation', window.innerWidth)
     this.$store.dispatch('data/responsiveAction')
     if (this.story.content.maintenance) {

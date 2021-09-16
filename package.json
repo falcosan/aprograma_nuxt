@@ -13,7 +13,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "generate": "nuxt generate -m",
-    "test": "nuxt generate -m && nuxt start"
+    "test:static": "nuxt generate -m && nuxt start",
+    "test:server": "nuxt build && nuxt start"
   },
   "dependencies": {
     "@nuxtjs/feed": "^2.0.0",
@@ -22,6 +23,7 @@
     "@nuxtjs/sitemap": "^2.4.0",
     "@sendgrid/mail": "^7.4.6",
     "@tailwindcss/aspect-ratio": "^0.2.1",
+    "cookie-universal-nuxt": "^2.1.5",
     "core-js": "^3.17.3",
     "highlight.js": "^11.2.0",
     "markdown-it-emoji": "^2.0.0",

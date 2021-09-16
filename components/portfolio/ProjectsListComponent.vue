@@ -47,9 +47,7 @@ export default {
     }
   },
   fetch () {
-    if (!this.$route.name === 'portfolio') {
-      this.$store.dispatch('list/projects/addProjects')
-    }
+    this.$store.dispatch('list/projects/addProjects')
   },
   computed: {
     maxProjects () {

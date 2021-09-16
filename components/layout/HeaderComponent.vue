@@ -11,7 +11,7 @@
             class="home-link flex items-center justify-center p-1 lg:p-1.5 transition-shadow duration-300 rounded-br"
             to=""
             :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)"
-            :style="`background-color: ${backgroundColors};`"
+            :style="`background-color: ${backgroundColorMenu};`"
           >
             <template #icon>
               <Logo
@@ -27,7 +27,7 @@
           <div
             v-if="expanded"
             :class="`menu-expanded h-10 grid grid-flow-col gap-5 transform transition ${topPosition ? 'translate-y-5 rounded' : 'rounded-b'}`"
-            :style="`background-color: ${topPosition ? 'transparent' : `${backgroundColors}B3`};`"
+            :style="`background-color: ${topPosition ? 'transparent' : `${backgroundColor}B3`};`"
           >
             <ul class="link-list grid grid-flow-col auto-cols-fr">
               <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" :class="`link-menu w-20 hover:shadow-sm ${topPosition ? 'rounded' : 'rounded-b'}`">
@@ -48,8 +48,8 @@
           tag="button"
           class="open-menu relative h-16 w-16 lg:w-20 lg:h-20 z-10 cursor-pointer rounded-bl"
           size="w-5 h-5"
-          :color-icon-animated-menu="blok.icon_color_menu.color"
-          :style="`background-color: ${backgroundColors};`"
+          :color-icon-animated-menu="blok.icon_color.color"
+          :style="`background-color: ${backgroundColorMenu};`"
           @click.native="expanded = !expanded"
         />
       </div>
@@ -59,7 +59,7 @@
     v-else
     class="header flex justify-center"
   >
-    <nav class="navbar-up w-full h-10 fixed flex justify-center top-0 z-40 shadow-sm" :style="`background-color: ${backgroundColors};`">
+    <nav class="navbar-up w-full h-10 fixed flex justify-center top-0 z-40 shadow-sm" :style="`background-color: ${backgroundColor};`">
       <div class="menu-wrapper wrapper-up w-full h-full max-w-sm xs:max-w-md sm:max-w-lg flex justify-between">
         <Link
           active="exact"
@@ -98,7 +98,7 @@
         />
       </div>
     </nav>
-    <nav class="navbar-down fixed w-full h-12 flex items-center justify-center bottom-0 z-40 filter drop-shadow-2xl" :style="`background-color: ${backgroundColors};`">
+    <nav class="navbar-down fixed w-full h-12 flex items-center justify-center bottom-0 z-40 filter drop-shadow-2xl" :style="`background-color: ${backgroundColor};`">
       <ul class="menu-wrapper wrapper-down w-full h-full max-w-sm xs:max-w-md sm:max-w-lg grid grid-cols-4">
         <li
           v-for="item in $contentByName(blok.body, 'Link')"
@@ -130,7 +130,19 @@ export default {
     }
   },
   computed: {
-    backgroundColors () {
+    backgroundColor () {
+      const colors = this.blok.background_color.color.split('; ')
+      if (colors.length > 1) {
+        if (this.$store.state.data.windowWidth >= 768 && this.$device.isDesktop) {
+          return colors[0]
+        } else {
+          return colors.length > 1 ? colors[1] : colors[0]
+        }
+      } else {
+        return this.blok.background_color.color
+      }
+    },
+    backgroundColorMenu () {
       const colors = this.blok.background_color_menu.color.split('; ')
       if (colors.length > 1) {
         if (this.$store.state.data.windowWidth >= 768 && this.$device.isDesktop) {

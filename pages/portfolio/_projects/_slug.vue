@@ -8,7 +8,7 @@ export default {
   asyncData (context) {
     return context.app.$storyapi
       .get(`cdn/stories${context.route.path}`, {
-        language: context.$storage.get('lang')
+        language: context.store.state.language.language
       }).then((res) => {
         return res.data
       })

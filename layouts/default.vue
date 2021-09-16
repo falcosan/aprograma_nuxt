@@ -34,16 +34,16 @@ export default {
       }
     }
   },
+  fetch () {
+    this.getLayout()
+  },
   watch: {
-    '$store.state.language.language' () { this.getLayout() }
+    '$store.state.language.language': '$fetch'
   },
   beforeMount () {
-    this.getLayout()
     this.$store.commit('data/responsiveMutation', window.innerWidth)
+    this.setMaintenance()
     this.$store.dispatch('data/responsiveAction')
-    if (this.story.content.maintenance) {
-      this.$noscroll(true)
-    }
   },
   methods: {
     async getLayout () {
@@ -51,6 +51,11 @@ export default {
         language: this.$store.state.language.language
       })
       this.story = data.story
+    },
+    setMaintenance () {
+      if (this.story.content.maintenance) {
+        this.$noscroll(true)
+      }
     }
   }
 }

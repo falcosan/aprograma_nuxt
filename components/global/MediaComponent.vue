@@ -20,7 +20,7 @@
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :width="blok ? blok.width : width"
           :height="blok ? blok.height : height"
-          sizes="xs:299px sm:380px md:514px lg:711px xl:804px 2xl:984px"
+          sizes="xs:299px sm:380px md:514px lg:711px"
           @click.native="action.open()"
         />
         <video
@@ -84,7 +84,7 @@
         :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
         :width="blok ? blok.width : width"
         :height="blok ? blok.height : height"
-        sizes="xs:299px sm:380px md:514px lg:711px xl:804px 2xl:984px"
+        sizes="xs:299px sm:380px md:514px lg:711px"
       />
       <video
         v-else-if="(blok && blok.media.filename) || video"

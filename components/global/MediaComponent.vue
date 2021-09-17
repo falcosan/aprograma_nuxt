@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`media relative h-full flex flex-col justify-center mx-auto my-0 overflow-hidden rounded ${!blok.remove_space ? blok.title ? 'px-5 pt-5' : 'p-5' : ''}`"
+    :class="`media relative h-full flex flex-col justify-center overflow-hidden rounded ${!blok.remove_space ? blok.title ? 'px-5 pt-5' : 'p-5' : ''}`"
   >
     <Modal
       v-if="blok.modal_mode"
@@ -20,7 +20,7 @@
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :width="blok ? blok.width : width"
           :height="blok ? blok.height : height"
-          sizes="xs:299px sm:380px md:514px lg:711px"
+          sizes="xs:299px sm:380px md:514px lg:711px xl:804px"
           @click.native="action.open()"
         />
         <video
@@ -84,7 +84,7 @@
         :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
         :width="blok ? blok.width : width"
         :height="blok ? blok.height : height"
-        sizes="xs:299px sm:380px md:514px lg:711px"
+        sizes="xs:299px sm:380px md:514px lg:711px xl:804px"
       />
       <video
         v-else-if="(blok && blok.media.filename) || video"

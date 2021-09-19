@@ -1,6 +1,7 @@
 const axios = require('axios')
 
 export default {
+  target: 'static',
   router: {
     trailingSlash: true
   },
@@ -84,7 +85,6 @@ export default {
     '~/plugins/injects/image-validation.client.js',
     '~/plugins/injects/scroll-to-smoothly.client.js'
   ],
-
   buildModules: [
     '@nuxt/image',
     '@nuxtjs/device',
@@ -94,6 +94,21 @@ export default {
   buildOptimisations: {
     profile: process.env.NODE_ENV === 'development' ? 'risky' : 'experimental',
     imageFileLoader: false
+  },
+  generate: {
+    fallback: true,
+    routes (callback) {
+      const exclude = ['home', 'layout']
+      const routes = []
+      axios(`https://api.storyblok.com/v2/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP`).then((res) => {
+        Object.keys(res.data.links).forEach((key) => {
+          if (!exclude.includes(res.data.links[key].slug)) {
+            routes.push('/' + res.data.links[key].slug)
+          }
+        })
+        callback(null, routes)
+      })
+    }
   },
   image: {
     provider: 'storyblok',

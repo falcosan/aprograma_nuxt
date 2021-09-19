@@ -8,7 +8,7 @@ export default {
   asyncData (context) {
     return context.app.$storyapi
       .get(`cdn/stories${context.route.path}`, {
-        language: context.store.state.language.language
+        language: context.$storage.get('lang') ? context.$storage.get('lang') : ''
       }).then((res) => {
         return res.data
       }).catch((res) => {
@@ -24,19 +24,6 @@ export default {
           })
         }
       })
-  },
-  data () {
-    return {
-      story: {
-        content: {}
-      }
-    }
-  },
-  async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories${this.$route.path}`, {
-      language: this.$store.state.language.language
-    })
-    this.story = data.story
   },
   head () {
     return {

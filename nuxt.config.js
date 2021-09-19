@@ -139,6 +139,7 @@ export default {
         cacheProvider: 'memory'
       }
     ],
+    ['cookie-universal-nuxt', { alias: 'storage' }],
     '@nuxtjs/google-fonts',
     '@nuxtjs/markdownit',
     '@nuxtjs/sitemap',

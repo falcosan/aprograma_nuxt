@@ -72,6 +72,7 @@ export default {
     '~/plugins/components',
     '~/plugins/custom-flag.client.js',
     '~/plugins/touchScreen.client.js',
+    '~/plugins/persistedState.client.js',
     '~/plugins/injects/go-back.client.js',
     '~/plugins/injects/no-scroll.client.js',
     '~/plugins/injects/range-items.client.js',
@@ -138,7 +139,6 @@ export default {
         cacheProvider: 'memory'
       }
     ],
-    ['cookie-universal-nuxt', { alias: 'storage' }],
     '@nuxtjs/google-fonts',
     '@nuxtjs/markdownit',
     '@nuxtjs/sitemap',

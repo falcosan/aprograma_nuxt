@@ -37,10 +37,13 @@ export default {
   watch: {
     '$store.state.language.language' () { this.getLayout() }
   },
-  beforeMount () {
+  created () {
     this.getLayout()
     this.$store.commit('data/responsiveMutation', window.innerWidth)
     this.$store.dispatch('data/responsiveAction')
+    if (!this.$storage.get('lang')) {
+      this.$storage.set('lang', '')
+    }
     if (this.story.content.maintenance) {
       this.$noscroll(true)
     }

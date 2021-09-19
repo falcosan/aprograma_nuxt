@@ -42,6 +42,8 @@ export default {
     })
     this.story = data.story
   },
+  fetchOnServer: false,
+  fetchDelay: 0,
   watch: {
     '$store.state.language.language': '$fetch'
   }

@@ -40,6 +40,8 @@ export default {
     })
     this.story = data.story
   },
+  fetchOnServer: false,
+  fetchDelay: 0,
   head () {
     return {
       title: `${this.story.name} - Aprograma`,

@@ -56,6 +56,7 @@ export default {
   },
   methods: {
     changeLanguage (lang) {
+      this.$storage.set('lang', lang.toLowerCase().substring(0, 2) === 'en' ? '' : lang.toLowerCase().substring(0, 2))
       this.$store.dispatch('language/languageAction', lang)
     },
     cutLanguage (abbr) {

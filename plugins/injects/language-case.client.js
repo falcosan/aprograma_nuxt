@@ -1,6 +1,6 @@
 export default ({ app }, inject) => {
   inject('languageCase', (english, spanish, italian) => {
-    switch (app.store.state.language.language) {
+    switch (app.$storage.get('lang')) {
       case '':
         return english
       case 'default':

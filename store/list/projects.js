@@ -7,9 +7,9 @@ export const mutations = {
   }
 }
 export const actions = {
-  async addProjects ({ commit, rootState }) {
+  async addProjects ({ commit }) {
     const listProjects = await this.$storyapi.get('cdn/stories', {
-      language: rootState.language.language
+      language: this.$storage.get('lang')
     })
     commit('setProjects', listProjects.data.stories)
   },

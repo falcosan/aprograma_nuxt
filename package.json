@@ -13,8 +13,8 @@
     "dev": "nuxt",
     "build": "nuxt build -m",
     "generate": "nuxt generate -m",
-    "test:static": "nuxt generate -m && nuxt start",
-    "test:server": "nuxt build -m && nuxt start"
+    "test:static": "nuxt generate && nuxt start",
+    "test:server": "nuxt build && nuxt start"
   },
   "dependencies": {
     "@nuxtjs/feed": "^2.0.0",
@@ -31,8 +31,8 @@
     "nuxt": "^2.15.8",
     "nuxt-build-optimisations": "^1.0.7",
     "storyblok-nuxt": "^2.0.1",
-    "unstorage": "^0.2.8",
-    "vue2-touch-events": "^3.2.2"
+    "vue2-touch-events": "^3.2.2",
+    "vuex-persistedstate": "^4.0.0"
   },
   "devDependencies": {
     "@nuxt/image": "^0.6.0",

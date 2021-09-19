@@ -1,32 +1,26 @@
 <template>
-  <Project :blok="story.content" />
+  <Project v-if="!$fetchState.pending" :blok="story.content" />
 </template>
 <script>
 import Project from '@/components/portfolio/ProjectComponent'
 export default {
   components: { Project },
-  asyncData (context) {
-    return context.app.$storyapi
-      .get(`cdn/stories${context.route.path}`, {
-        language: context.store.state.language.language
-      }).then((res) => {
-        return res.data
-      }).catch((res) => {
-        if (!res) {
-          context.error({
-            statusCode: 404,
-            message: 'Sorry but this content doesn\'t exist'
-          })
-        } else {
-          context.error({
-            statusCode: 500,
-            message: `Sorry, but the content called: "${context.route.name}" has a problem or doesn't exist`
-          })
-        }
-      })
+  data () {
+    return {
+      story: {
+        content: {}
+      }
+    }
+  },
+  fetchDelay: 0,
+  async fetch () {
+    const { data } = await this.$storyapi.get(`cdn/stories${this.$route.path}`, {
+      language: this.$store.state.language.language
+    })
+    this.story = data.story
   },
 
-  head () {
+  async head () {
     return {
       title: `${this.story.content.title} - Aprograma`,
       meta: [
@@ -48,7 +42,7 @@ export default {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: this.story.content.image.filename
+          content: await this.story.content.image.filename
         },
         {
           hid: 'og:url',
@@ -73,7 +67,7 @@ export default {
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: this.story.content.image.filename
+          content: await this.story.content.image.filename
         }
       ],
       link: [

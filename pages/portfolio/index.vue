@@ -34,14 +34,6 @@ export default {
       }
     }
   },
-  async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories${this.$route.path}`, {
-      language: this.$store.state.language.language
-    })
-    this.story = data.story
-  },
-  fetchOnServer: false,
-  fetchDelay: 0,
   head () {
     return {
       title: `${this.story.name} - Aprograma`,
@@ -55,7 +47,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.language.language': '$fetch'
+    '$store.state.language.language' () { this.$nuxt.refresh() }
   }
 }
 </script>

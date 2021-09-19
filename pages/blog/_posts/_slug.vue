@@ -1,25 +1,31 @@
 <template>
-  <Post v-if="!$fetchState.pending" :blok="story.content" />
+  <Post :blok="story.content" />
 </template>
 <script>
 import Post from '@/components/blog/PostComponent'
 export default {
   components: { Post },
-  data () {
-    return {
-      story: {
-        content: {}
-      }
-    }
+  asyncData (context) {
+    return context.app.$storyapi
+      .get(`cdn/stories${context.route.path}`, {
+        language: context.store.state.language.language
+      }).then((res) => {
+        return res.data
+      }).catch((res) => {
+        if (!res) {
+          context.error({
+            statusCode: 404,
+            message: 'Sorry but this content doesn\'t exist'
+          })
+        } else {
+          context.error({
+            statusCode: 500,
+            message: `Sorry, but the content called: "${context.route.name}" has a problem or doesn't exist`
+          })
+        }
+      })
   },
-  fetchDelay: 0,
-  async fetch () {
-    const { data } = await this.$storyapi.get(`cdn/stories${this.$route.path}`, {
-      language: this.$store.state.language.language
-    })
-    this.story = data.story
-  },
-  async head () {
+  head () {
     return {
       title: `${this.story.content.title} - Aprograma`,
       meta: [
@@ -36,7 +42,7 @@ export default {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: await this.story.content.file.filename
+          content: this.story.content.file.filename
         },
         {
           hid: 'og:description',
@@ -66,7 +72,7 @@ export default {
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: await this.story.content.file.filename
+          content: this.story.content.file.filename
         }
       ],
       link: [

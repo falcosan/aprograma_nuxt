@@ -11,7 +11,7 @@ export default {
     const slug = (context.route.path === '/' || context.route.path === '') ? '/home' : context.route.path
     return context.app.$storyapi
       .get(`cdn/stories${slug}`, {
-        language: context.$storage.get('lang') ? context.$storage.get('lang') : context.store.state.language.language
+        language: context.$storage.get('lang')
       }).then((res) => {
         return res.data
       }).catch((res) => {

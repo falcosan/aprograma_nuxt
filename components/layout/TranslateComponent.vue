@@ -31,12 +31,6 @@
 </template>
 
 <script>
-import { createStorage } from 'unstorage'
-import localStorageDriver from 'unstorage/drivers/localstorage'
-
-const storage = createStorage({
-  driver: localStorageDriver({ base: 'app:' })
-})
 export default {
   props: {
     blok: {
@@ -61,8 +55,7 @@ export default {
     }
   },
   methods: {
-    async changeLanguage (lang) {
-      await storage.setItem('foo:bar', 'baz')
+    changeLanguage (lang) {
       this.$store.dispatch('language/languageAction', lang)
     },
     cutLanguage (abbr) {

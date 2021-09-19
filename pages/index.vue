@@ -6,15 +6,8 @@
   />
 </template>
 <script>
-import { createStorage } from 'unstorage'
-import localStorageDriver from 'unstorage/drivers/localstorage'
-
-const storage = createStorage({
-  driver: localStorageDriver({ base: 'app:' })
-})
 export default {
-  async asyncData (context) {
-    console.log(await storage.getItem('foo:bar'))
+  asyncData (context) {
     const slug = (context.route.path === '/' || context.route.path === '') ? '/home' : context.route.path
     return context.app.$storyapi
       .get(`cdn/stories${slug}`, {

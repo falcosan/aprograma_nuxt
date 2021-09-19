@@ -12,9 +12,17 @@ export default {
       }).then((res) => {
         return res.data
       }).catch((res) => {
-        context.$errorMessage(res.response,
-          'Sorry but this content doesn\'t exist', `Sorry, but the content called: "${context.route.name}" has a problem or doesn't exist`
-        )
+        if (!res) {
+          context.error({
+            statusCode: 404,
+            message: 'Sorry but this content doesn\'t exist'
+          })
+        } else {
+          context.error({
+            statusCode: 500,
+            message: `Sorry, but the content called: "${context.route.name}" has a problem or doesn't exist`
+          })
+        }
       })
   },
   data () {

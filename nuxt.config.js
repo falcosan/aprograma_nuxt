@@ -77,7 +77,6 @@ export default {
     '~/plugins/injects/no-scroll.client.js',
     '~/plugins/injects/range-items.client.js',
     '~/plugins/injects/theme-color.client.js',
-    '~/plugins/injects/error-message.client.js',
     '~/plugins/injects/language-case.client.js',
     '~/plugins/injects/markdown-rules.client.js',
     '~/plugins/injects/email-validator.client.js',

@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 export default {
-  ssr: 'false',
+  ssr: false,
   router: {
     trailingSlash: true
   },
@@ -174,7 +174,6 @@ export default {
       'markdown-it-emoji'
     ]
   },
-
   sitemap: {
     hostname: 'https://aprograma.co',
     trailingSlash: true,

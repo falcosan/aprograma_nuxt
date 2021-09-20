@@ -48,7 +48,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.language.language' () { this.$nuxt.refresh() }
+    '$store.state.language.language': '$fetch'
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <Post v-if="!$fetchState.pending" :blok="story.content" />
+  <component :is="story.content.component" :blok="story.content" />
 </template>
 <script>
 import Post from '@/components/blog/PostComponent'
@@ -53,6 +53,11 @@ export default {
           content: this.story.content.intro
         },
         {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.story.content.file ? this.story.content.file.filename : false
+        },
+        {
           hid: 'og:url',
           property: 'og:url',
           content: `${this.$config.projectPath}${this.$route.path}`
@@ -71,6 +76,11 @@ export default {
           hid: 'twitter:description',
           name: 'twitter:description',
           content: this.story.content.intro
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: this.story.content.file ? this.story.content.file.filename : false
         }
       ],
       link: [

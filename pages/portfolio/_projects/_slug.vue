@@ -1,5 +1,5 @@
 <template>
-  <Project v-if="!$fetchState.pending" :blok="story.content" />
+  <component :is="story.content.component" :blok="story.content" />
 </template>
 <script>
 import Project from '@/components/portfolio/ProjectComponent'
@@ -58,6 +58,11 @@ export default {
           content: `${this.$config.projectPath}${this.$route.path}`
         },
         {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.story.content.file ? this.story.content.file.filename : false
+        },
+        {
           hid: 'twitter:url',
           name: 'twitter:url',
           content: this.$config.projectPath
@@ -71,6 +76,11 @@ export default {
           hid: 'twitter:description',
           name: 'twitter:description',
           content: 'Take a peek!'
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: this.story.content.file ? this.story.content.file.filename : false
         }
       ],
       link: [

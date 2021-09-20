@@ -90,7 +90,7 @@ export default {
   fetch () {
     this.$store.dispatch('list/posts/addPosts')
   },
-  fetchDelay: 0,
+
   computed: {
     maxPosts () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {

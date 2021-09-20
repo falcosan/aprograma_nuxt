@@ -36,7 +36,7 @@ export default {
         }
       })
   },
-  fetchDelay: 0,
+
   head () {
     return {
       title: this.story.content.title ? `${this.story.content.title} - Aprograma` : false,

@@ -49,7 +49,7 @@ export default {
   fetch () {
     this.$store.dispatch('list/projects/addProjects')
   },
-  fetchDelay: 0,
+
   computed: {
     maxProjects () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {

@@ -34,7 +34,7 @@ export default {
         }
       })
   },
-  fetchDelay: 0,
+
   head () {
     return {
       title: this.story.name ? `${this.story.name} - Aprograma` : false,

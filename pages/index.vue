@@ -35,7 +35,7 @@ export default {
         }
       })
   },
-  fetchDelay: 0,
+
   watch: {
     '$store.state.language.language': '$fetch'
   }

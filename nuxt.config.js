@@ -96,7 +96,6 @@ export default {
   },
   generate: {
     fallback: true,
-    cache: false,
     routes (callback) {
       const exclude = ['home', 'layout']
       const routes = []

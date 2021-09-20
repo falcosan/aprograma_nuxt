@@ -1,30 +1,10 @@
 <template>
-  <Project :blok="story.content" />
+  <Project v-if="!$fetchState.pending" :blok="story.content" />
 </template>
 <script>
 import Project from '@/components/portfolio/ProjectComponent'
 export default {
   components: { Project },
-  asyncData (context) {
-    return context.app.$storyapi
-      .get(`cdn/stories${context.route.path}`, {
-        language: context.$storage.get('lang')
-      }).then((res) => {
-        return res.data
-      }).catch((res) => {
-        if (!res) {
-          context.error({
-            statusCode: 404,
-            message: 'Sorry but this content doesn\'t exist'
-          })
-        } else {
-          context.error({
-            statusCode: 500,
-            message: `Sorry, but the content called: "${context.route.name}" has a problem or doesn't exist`
-          })
-        }
-      })
-  },
   data () {
     return {
       story: {
@@ -32,9 +12,30 @@ export default {
       }
     }
   },
+  fetch () {
+    return this.$storyapi
+      .get(`cdn/stories${this.$route.path}`, {
+        language: this.$storage.get('lang')
+      }).then((res) => {
+        this.story = res.data.story
+      }).catch((res) => {
+        if (!res) {
+          this.error({
+            statusCode: 404,
+            message: 'Sorry but this content doesn\'t exist'
+          })
+        } else {
+          this.error({
+            statusCode: 500,
+            message: `Sorry, but the content called: "${this.$route.name}" has a problem or doesn't exist`
+          })
+        }
+      })
+  },
+  fetchDelay: 0,
   head () {
     return {
-      title: `${this.story.content.title} - Aprograma`,
+      title: this.story.content.title ? `${this.story.content.title} - Aprograma` : false,
       meta: [
         {
           hid: 'description',
@@ -50,11 +51,6 @@ export default {
           hid: 'og:description',
           property: 'og:description',
           content: 'Take a peek!'
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: this.story.content.image.filename
         },
         {
           hid: 'og:url',
@@ -75,11 +71,6 @@ export default {
           hid: 'twitter:description',
           name: 'twitter:description',
           content: 'Take a peek!'
-        },
-        {
-          hid: 'twitter:image',
-          name: 'twitter:image',
-          content: this.story.content.image.filename
         }
       ],
       link: [

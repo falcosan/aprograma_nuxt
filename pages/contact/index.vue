@@ -7,26 +7,6 @@
 </template>
 <script>
 export default {
-  asyncData (context) {
-    return context.app.$storyapi
-      .get(`cdn/stories${context.route.path}`, {
-        language: context.$storage.get('lang')
-      }).then((res) => {
-        return res.data
-      }).catch((res) => {
-        if (!res) {
-          context.error({
-            statusCode: 404,
-            message: 'Sorry but this content doesn\'t exist'
-          })
-        } else {
-          context.error({
-            statusCode: 500,
-            message: `Sorry, but the content called: "${context.route.name}" has a problem or doesn't exist`
-          })
-        }
-      })
-  },
   data () {
     return {
       story: {
@@ -34,9 +14,30 @@ export default {
       }
     }
   },
+  fetch () {
+    return this.$storyapi
+      .get(`cdn/stories${this.$route.path}`, {
+        language: this.$storage.get('lang')
+      }).then((res) => {
+        this.story = res.data.story
+      }).catch((res) => {
+        if (!res) {
+          this.error({
+            statusCode: 404,
+            message: 'Sorry but this content doesn\'t exist'
+          })
+        } else {
+          this.error({
+            statusCode: 500,
+            message: `Sorry, but the content called: "${this.$route.name}" has a problem or doesn't exist`
+          })
+        }
+      })
+  },
+  fetchDelay: 0,
   head () {
     return {
-      title: `${this.story.name} - Aprograma`,
+      title: this.story.name ? `${this.story.name} - Aprograma` : false,
       meta: [
         {
           hid: 'description',

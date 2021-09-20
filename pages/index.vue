@@ -7,27 +7,35 @@
 </template>
 <script>
 export default {
-  asyncData (context) {
-    const slug = (context.route.path === '/' || context.route.path === '') ? '/home' : context.route.path
-    return context.app.$storyapi
+  data () {
+    return {
+      story: {
+        content: {}
+      }
+    }
+  },
+  fetch () {
+    const slug = (this.$route.path === '/' || this.$route.path === '') ? '/home' : this.$route.path
+    return this.$storyapi
       .get(`cdn/stories${slug}`, {
-        language: context.$storage.get('lang')
+        language: this.$storage.get('lang')
       }).then((res) => {
-        return res.data
+        this.story = res.data.story
       }).catch((res) => {
         if (!res) {
-          context.error({
+          this.error({
             statusCode: 404,
             message: 'Sorry but this content doesn\'t exist'
           })
         } else {
-          context.error({
+          this.error({
             statusCode: 500,
-            message: `Sorry, but the content called: "${context.route.name}" has a problem or doesn't exist`
+            message: `Sorry, but the content called: "${this.$route.name}" has a problem or doesn't exist`
           })
         }
       })
   },
+  fetchDelay: 0,
   watch: {
     '$store.state.language.language' () { this.$nuxt.refresh() }
   }

@@ -41,9 +41,6 @@ export default {
     this.getLayout()
     this.$store.commit('data/responsiveMutation', window.innerWidth)
     this.$store.dispatch('data/responsiveAction')
-    if (!this.$storage.get('lang')) {
-      this.$storage.set('lang', '')
-    }
     if (this.story.content.maintenance) {
       this.$noscroll(true)
     }
@@ -51,7 +48,7 @@ export default {
   methods: {
     async getLayout () {
       const { data } = await this.$storyapi.get('cdn/stories/layout', {
-        language: this.$storage.get('lang')
+        language: this.$store.state.language.language
       })
       this.story = data.story
     }

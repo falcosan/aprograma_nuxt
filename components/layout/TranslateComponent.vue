@@ -6,7 +6,7 @@
       @click="$emit('currentLangAction')"
     >
       <template v-for="selector in blok">
-        <span v-if="cutLanguage(selector) === $storage.get('lang') || cutLanguage(selector) === 'en' && $storage.get('lang') === ''" :key="selector._uid" class="language-item">
+        <span v-if="cutLanguage(selector) === $store.state.language.language || cutLanguage(selector) === 'en' && $store.state.language.language === ''" :key="selector._uid" class="language-item">
           {{ selector.language.toUpperCase() }}
         </span>
       </template>
@@ -16,9 +16,9 @@
     >
       <template v-for="language in blok">
         <li
-          v-if="translateTransition ? cutLanguage(language) !== $storage.get('lang') && $storage.get('lang') !== '' || cutLanguage(language) !== 'en' && $storage.get('lang') === '' : true"
+          v-if="translateTransition ? cutLanguage(language) !== $store.state.language.language && $store.state.language.language !== '' || cutLanguage(language) !== 'en' && $store.state.language.language === '' : true"
           :key="language._uid"
-          :class="`translate-item cursor-pointer ${styleTranslateItem} ${!translateTransition && (cutLanguage(language) === $storage.get('lang') || cutLanguage(language) === 'en' && $storage.get('lang') === '') ? 'filter grayscale bg-gray-500 text-white' : ''}`"
+          :class="`translate-item cursor-pointer ${styleTranslateItem} ${!translateTransition && (cutLanguage(language) === $store.state.language.language || cutLanguage(language) === 'en' && $store.state.language.language === '') ? 'filter grayscale bg-gray-500 text-white' : ''}`"
           @click="changeLanguage(language.language); $emit('translateListAction')"
         >
           <span
@@ -56,7 +56,6 @@ export default {
   },
   methods: {
     changeLanguage (lang) {
-      this.$storage.set('lang', lang.toLowerCase().substring(0, 2) === 'en' ? '' : lang.toLowerCase().substring(0, 2))
       this.$store.dispatch('language/languageAction', lang)
     },
     cutLanguage (abbr) {

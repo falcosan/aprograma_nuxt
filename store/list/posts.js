@@ -9,7 +9,7 @@ export const mutations = {
 export const actions = {
   async addPosts ({ commit, rootState }) {
     const listPosts = await this.$storyapi.get('cdn/stories', {
-      language: this.$storage.get('lang')
+      language: rootState.language.language
     })
     commit('setPosts', listPosts.data.stories)
   },

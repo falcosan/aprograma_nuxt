@@ -15,7 +15,7 @@ export default {
   fetch () {
     return this.$storyapi
       .get(`cdn/stories${this.$route.path}`, {
-        language: this.$storage.get('lang')
+        language: this.$store.state.language.language
       }).then((res) => {
         this.story = res.data.story
       }).catch((res) => {

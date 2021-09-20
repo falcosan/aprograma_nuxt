@@ -18,7 +18,7 @@ export default {
     const slug = (this.$route.path === '/' || this.$route.path === '') ? '/home' : this.$route.path
     return this.$storyapi
       .get(`cdn/stories${slug}`, {
-        language: this.$storage.get('lang')
+        language: this.$store.state.language.language
       }).then((res) => {
         this.story = res.data.story
       }).catch((res) => {

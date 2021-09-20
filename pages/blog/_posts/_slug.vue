@@ -1,5 +1,9 @@
 <template>
-  <component :is="story.content.component" :blok="story.content" />
+  <component
+    :is="story.content.component"
+    :key="story.content._uid"
+    :blok="story.content"
+  />
 </template>
 <script>
 import Post from '@/components/blog/PostComponent'

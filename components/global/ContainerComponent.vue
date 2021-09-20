@@ -422,7 +422,7 @@ export default {
 }
 
 .slider-box .slider .slider-slide {
-  transform:translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 .dot-desktop .dot-text{
   opacity: 0;

@@ -321,7 +321,7 @@ export default {
       this.transitionLeave = ''
     },
     autoPlay () {
-      this.setAutoPlay = setTimeout(this.next, this.blok.slider_time ? `${Number(this.blok.slider_time)}` : '5000')
+      this.setAutoPlay = setTimeout(this.next, this.blok.slider_time ? this.blok.slider_time : '5000')
     },
     clearAutoPlay () {
       clearTimeout(this.setAutoPlay)

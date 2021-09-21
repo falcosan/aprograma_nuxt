@@ -57,13 +57,15 @@
         <ul
           :class="`social-links flex flex-wrap justify-end -m-1.5 ${$themeColor(backgroundColors) ? 'filter invert' : ''}`"
         >
-          <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid" class="link-item m-1.5">
-            <component
-              :is="iconLink.component"
-              :blok="iconLink"
-              class="social-icon opacity-80 hover:opacity-100"
-            />
-          </li>
+          <template v-for="iconLink in $contentByName(blok.body, 'Link')">
+            <li v-if="iconLink.title || iconLink.body.length > 0" :key="iconLink._uid" class="link-item m-1.5">
+              <component
+                :is="iconLink.component"
+                :blok="iconLink"
+                class="social-icon opacity-80 hover:opacity-100"
+              />
+            </li>
+          </template>
         </ul>
       </div>
     </div>
@@ -92,13 +94,15 @@
       <ul
         :class="`social-links flex flex-wrap -m-1.5 justify-center items-center ${$themeColor(backgroundColors) ? 'filter invert' : ''}`"
       >
-        <li v-for="iconLink in $contentByName(blok.body, 'Link')" :key="iconLink._uid" class="link-item m-1.5">
-          <component
-            :is="iconLink.component"
-            :blok="iconLink"
-            class="social-icon transition-all duration-700"
-          />
-        </li>
+        <template v-for="iconLink in $contentByName(blok.body, 'Link')">
+          <li v-if="iconLink.title || iconLink.body.length > 0" :key="iconLink._uid" class="link-item m-1.5">
+            <component
+              :is="iconLink.component"
+              :blok="iconLink"
+              class="social-icon transition-all duration-700"
+            />
+          </li>
+        </template>
       </ul>
     </div>
   </footer>

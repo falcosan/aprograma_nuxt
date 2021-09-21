@@ -34,7 +34,6 @@ export default {
         }
       })
   },
-
   head () {
     return {
       title: this.story.name ? `${this.story.name} - Aprograma` : false,
@@ -42,7 +41,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'Blog with last news of Aprograma'
+          content: 'Last articles of Aprograma'
         }
       ]
     }

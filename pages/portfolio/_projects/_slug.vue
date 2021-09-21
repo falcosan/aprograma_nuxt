@@ -36,7 +36,6 @@ export default {
         }
       })
   },
-
   head () {
     return {
       title: this.story.content.title ? `${this.story.content.title} - Aprograma` : false,

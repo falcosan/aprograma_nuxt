@@ -1,7 +1,7 @@
 <template>
   <component
     :is="blok.external_link ? 'a' : 'NuxtLink'"
-    v-if="blok && (blok.title || blok.body.length > 0)"
+    v-if="blok && (blok.title || (blok.icon_item && blok.body.length > 0))"
     :class="`item-link h-full cursor-pointer ${sliderMode || carouselMode || containerMode ? 'flex items-center justify-center self-center' : 'block'}`"
     :active-class="blok.external_link ? '' : !iconItem && !blok.icon_item ? 'opacity-40 font-semibold' : 'filter invert grayscale bg-gray-300'"
     :to="blok.external_link ? false : `${blok.path}/`"

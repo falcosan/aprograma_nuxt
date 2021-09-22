@@ -3,7 +3,7 @@
     <div :class="`main-wrapper min-h-screen relative overflow-hidden ${!$device.isDesktop ? 'pt-10' : 'pt-10 md:py-20'}`">
       <div
         v-if="blok.show_background_mask"
-        :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-0 mx-auto overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'color-animation' : ''}`"
+        :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-20 mx-auto overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'color-animation' : ''}`"
         :style="`background-color: ${randomBackgroundColorMask ? blok.transparency ? `${randomBackgroundColorMask}b3` : randomBackgroundColorMask : blok.transparency ? '#ffffffb3' : '#ffffff'};`"
       />
       <div

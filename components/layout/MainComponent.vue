@@ -3,12 +3,12 @@
     <div :class="`main-wrapper min-h-screen relative overflow-hidden ${!$device.isDesktop ? 'pt-10' : 'pt-10 md:py-20'}`">
       <div
         v-if="blok.show_background_mask"
-        :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-20 mx-auto overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'color-animation' : ''}`"
+        :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-20 mx-auto -z-10 overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'color-animation' : ''}`"
         :style="`background-color: ${randomBackgroundColorMask ? blok.transparency ? `${randomBackgroundColorMask}b3` : randomBackgroundColorMask : blok.transparency ? '#ffffffb3' : '#ffffff'};`"
       />
       <div
         v-if="!blok.background_media.filename"
-        :class="`main-flat fixed w-full h-full inset-0 -z-10 transition-colors duration-500 ${blok.color_animation ? 'color-animation' : ''}`"
+        :class="`main-flat fixed w-full h-full inset-0 -z-20 transition-colors duration-500 ${blok.color_animation ? 'color-animation' : ''}`"
         :style="`background-color: ${randomBackgroundColor};`"
       />
       <Nuxt :class="`max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
@@ -16,7 +16,7 @@
     <transition appear appear-active-class="duration-300" appear-class="opacity-0">
       <ImageSet
         v-if="$imageValidation(blok.background_media.filename)"
-        :class="`media-image w-full h-full fixed right-0 bottom-0 -z-10 object-cover object-top ${blok.color_animation ? 'color-animation' : ''}`"
+        :class="`media-image w-full h-full fixed right-0 bottom-0 -z-20 object-cover object-top ${blok.color_animation ? 'color-animation' : ''}`"
         :src="blok.background_media.filename"
         :file="blok.background_media"
         :alt="blok.background_media.alt"
@@ -26,7 +26,7 @@
       />
       <video
         v-else-if="blok.background_media.filename"
-        :class="`media-video w-full h-full fixed right-0 bottom-0 -z-10 object-cover object-top ${blok.color_animation ? 'color-animation' : ''}`"
+        :class="`media-video w-full h-full fixed right-0 bottom-0 -z-20 object-cover object-top ${blok.color_animation ? 'color-animation' : ''}`"
         playsinline
         autoplay
         muted

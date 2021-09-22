@@ -27,7 +27,7 @@
           <div
             v-if="expanded"
             :class="`menu-expanded h-10 grid grid-flow-col gap-5 transform transition ${topPosition ? 'translate-y-5 rounded' : 'rounded-b'}`"
-            :style="`background-color: ${topPosition ? 'transparent' : `${backgroundColor}B3`};`"
+            :style="`background-color: ${backgroundColor ? topPosition ? backgroundColor : `${backgroundColor}B3` : 'transparent'};`"
           >
             <ul class="link-list grid grid-flow-col auto-cols-fr">
               <li v-for="item in $contentByName(blok.body, 'Link')" :key="item._uid" :class="`link-menu w-20 hover:shadow-sm ${topPosition ? 'rounded' : 'rounded-b'}`">

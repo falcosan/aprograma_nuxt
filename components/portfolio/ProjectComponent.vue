@@ -77,7 +77,7 @@
         v-html="$md.render(blok.intro)"
       />
 
-      <div class="project-date flex flex-col ss:flex-row flex-wrap justify-evenly items-center xl:col-start-1 xl:col-end-3 p-0.5 rounded text-xs" :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`">
+      <div class="project-date flex flex-col ss:flex-row flex-wrap justify-evenly items-center xl:col-start-1 xl:col-end-3 p-2.5 rounded text-xs" :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`">
         <span class="date-start text-right">
           {{ changeDate(blok.start_date) }}
         </span>

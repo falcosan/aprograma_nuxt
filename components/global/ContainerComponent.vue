@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="blok.body.length > 0"
-    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
+    :class="`container-cover w-full z-0 ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
     <component
       :is="sliderMode || carouselMode || containerMode ? 'h2' : 'h1'"
@@ -117,7 +117,7 @@
             <div
               :key="component._uid"
               :style="`flex: ${component.row_container ? `1 ${(100 - (maxElements > 1 ? spaceFix : 0)) / maxElements}%` : '100%'}; background-color: ${component.component.toLowerCase() === 'blank' ? false : blok.background_color_component.color};`"
-              :class="`${component.name.toLowerCase()}-container z-0 ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.component.toLowerCase() === 'blank' ? '' : `${setAlignContent} m-2.5 rounded`}`"
+              :class="`${component.name.toLowerCase()}-container ${sliderMode || carouselMode || containerMode ? '' : 'parent-container'} ${component.component.toLowerCase() === 'blank' ? '' : `${setAlignContent} m-2.5 rounded`}`"
             >
               <component
                 :is="component.component"
@@ -233,7 +233,7 @@ export default {
   watch: {
     '$store.state.data.windowWidth' () {
       this.getContainerWidth()
-      if (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') {
+      if (this.blok.slider_mode === 'slider') {
         this.sliderKey++
       }
     },
@@ -241,11 +241,8 @@ export default {
   },
   async mounted () {
     await this.getContainerWidth()
-    if (this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') {
-      this.sliderKey++
-      if (this.blok.auto_play) {
-        this.autoPlay()
-      }
+    if ((this.blok.slider_mode === 'slider' || this.blok.slider_mode === 'carousel') && this.blok.auto_play) {
+      this.autoPlay()
     }
   },
   beforeUpdate () {
@@ -368,13 +365,14 @@ export default {
   opacity: 0;
   pointer-events: none;
   cursor: none;
+  visibility: hidden;
 }
 .show {
   opacity: 1;
 }
 .show > *{
   position: relative;
-  z-index: 11;
+  z-index: 1;
 }
 .hidden.leave-right{
   animation: moveLeaveRight .5s cubic-bezier(0.77, 0, 0.175, 1);

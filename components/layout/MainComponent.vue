@@ -7,7 +7,6 @@
         :style="`background-color: ${randomBackgroundColorMask ? blok.transparency ? `${randomBackgroundColorMask}b3` : randomBackgroundColorMask : blok.transparency ? '#ffffffb3' : '#ffffff'};`"
       />
       <div
-        v-if="!blok.background_media.filename"
         :class="`main-flat fixed w-full h-full inset-0 -z-20 transition-colors duration-500 ${blok.color_animation ? 'color-animation' : ''}`"
         :style="`background-color: ${randomBackgroundColor};`"
       />
@@ -71,13 +70,13 @@ export default {
       }
     }
   },
-  async created () {
+  created () {
     if (this.blok.background_color.color || this.blok.background_color_mask.color) {
-      await this.setBackgroundColor()
+      this.setBackgroundColor()
     }
     if (this.blok.background_color.color && !this.blok.background_media.filename) {
       document.body.style.backgroundColor = this.randomBackgroundColor
-    } else if (this.blok.background_media.filename) {
+    } else if (this.blok.background_media.filename && !this.blok.background_color.color) {
       document.body.style.backgroundColor = '#212121'
     }
   },

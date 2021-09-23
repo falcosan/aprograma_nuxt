@@ -73,7 +73,7 @@
               home
               tag="button"
               size="w-5 h-5"
-              class="home-link h-full w-full"
+              class="home-link h-full w-full filter grayscale bg-gray-800 text-white"
             />
           </template>
         </Link>

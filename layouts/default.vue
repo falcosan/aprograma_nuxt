@@ -38,11 +38,11 @@ export default {
   },
   computed: {
     addSpace () {
-      if (this.story.content.add_space && this.story.content.add_space.split(',').length > 1) {
+      if (this.story.content.add_space && this.story.content.add_space.split('; ').length > 1) {
         if (!this.$device.isDesktop || this.$store.state.data.windowWidth < 768) {
-          return this.story.content.add_space.split(',')[1]
+          return this.story.content.add_space.split('; ')[1]
         } else {
-          return this.story.content.add_space.split(',')[0]
+          return this.story.content.add_space.split('; ')[0]
         }
       } else {
         return this.story.content.add_space

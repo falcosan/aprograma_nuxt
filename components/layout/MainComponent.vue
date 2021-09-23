@@ -65,7 +65,7 @@ export default {
       return this.blok.background_color_mask.color.split('; ')[this.index.mask]
     },
     backgroundLevel () {
-      if (this.blok.background_distance) {
+      if (this.blok.background_index) {
         return 'z-20'
       } else {
         return '-z-20'

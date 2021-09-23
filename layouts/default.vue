@@ -1,5 +1,9 @@
 <template>
-  <div v-if="story.content.body && !story.content.maintenance" class="aprograma-theme">
+  <div
+    v-if="story.content.body && !story.content.maintenance"
+    class="aprograma-theme"
+    :style="`padding: ${addSpace};`"
+  >
     <component
       :is="layout.component"
       v-for="layout in story.content.body"
@@ -29,6 +33,19 @@ export default {
     return {
       story: {
         content: {}
+      }
+    }
+  },
+  computed: {
+    addSpace () {
+      if (this.story.content.add_space && this.story.content.add_space.split(',').length > 1) {
+        if (!this.$device.isDesktop || this.$store.state.data.windowWidth < 768) {
+          return this.story.content.add_space.split(',')[1]
+        } else {
+          return this.story.content.add_space.split(',')[0]
+        }
+      } else {
+        return this.story.content.add_space
       }
     }
   },

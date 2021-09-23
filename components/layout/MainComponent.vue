@@ -1,6 +1,9 @@
 <template>
   <main class="main overflow-x-hidden">
-    <div :class="`main-wrapper min-h-screen relative overflow-hidden ${!$device.isDesktop ? 'pt-10' : 'pt-10 md:py-20'}`">
+    <div
+      :class="`main-wrapper min-h-screen relative overflow-hidden ${!$device.isDesktop ? 'pt-10' : 'pt-10 md:pt-20'}`"
+      :style="`padding-bottom: ${!$device.isDesktop || $store.state.data.windowWidth < 768 ? false : blok.background_distance ? `${blok.background_distance}rem` : '5rem'};`"
+    >
       <div
         v-if="blok.show_background_mask"
         :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 my-20 mx-auto -z-10 overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'color-animation' : ''}`"
@@ -15,7 +18,7 @@
     <transition appear appear-active-class="duration-300" appear-class="opacity-0">
       <ImageSet
         v-if="$imageValidation(blok.background_media.filename)"
-        :class="`media-image w-full h-full fixed right-0 bottom-0 -z-20 object-cover object-center ${blok.color_animation ? 'color-animation' : ''}`"
+        :class="`media-image w-full h-full fixed right-0 bottom-0 object-cover object-center pointer-events-none ${backgroundLevel} ${blok.color_animation ? 'color-animation' : ''}`"
         :src="blok.background_media.filename"
         :file="blok.background_media"
         :alt="blok.background_media.alt"
@@ -25,7 +28,7 @@
       />
       <video
         v-else-if="blok.background_media.filename"
-        :class="`media-video w-full h-full fixed right-0 bottom-0 -z-20 object-cover object-center ${blok.color_animation ? 'color-animation' : ''}`"
+        :class="`media-video w-full h-full fixed right-0 bottom-0 object-cover object-center pointer-events-none ${backgroundLevel} ${blok.color_animation ? 'color-animation' : ''}`"
         playsinline
         autoplay
         muted
@@ -61,6 +64,13 @@ export default {
     },
     randomBackgroundColorMask () {
       return this.blok.background_color_mask.color.split('; ')[this.index.mask]
+    },
+    backgroundLevel () {
+      if (this.blok.background_distance) {
+        return 'z-20'
+      } else {
+        return '-z-20'
+      }
     }
   },
   watch: {

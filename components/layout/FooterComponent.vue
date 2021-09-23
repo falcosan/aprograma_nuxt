@@ -72,7 +72,7 @@
   </footer>
   <footer
     v-else-if="!$nuxt.isFetching"
-    class="footer relative px-5 py-20 my-12 z-30 rounded-t"
+    class="footer px-5 py-20 my-12 rounded-t"
     :style="`background-color: ${blok.transparency ? `${backgroundColors}B3` : backgroundColors};`"
   >
     <div class="footer-content h-52 grid gap-5 text-center">

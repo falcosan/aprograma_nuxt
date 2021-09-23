@@ -2,7 +2,6 @@
   <main class="main overflow-x-hidden">
     <div
       :class="`main-wrapper min-h-screen relative overflow-hidden ${!$device.isDesktop ? 'pt-10' : 'pt-10 md:pt-20'}`"
-      :style="`padding-bottom: ${!$device.isDesktop || $store.state.data.windowWidth < 768 ? false : blok.background_distance ? `${blok.background_distance}rem` : '5rem'};`"
     >
       <div
         v-if="blok.show_background_mask"

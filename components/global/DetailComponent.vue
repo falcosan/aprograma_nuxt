@@ -26,9 +26,9 @@
                 lazy
                 :src="media.filename"
                 :alt="media.alt"
-                width="620"
-                height="620"
-                sizes="xs:299px sm:380px md:514px lg:711px xl:804px 2xl:984px"
+                width="711"
+                height="711"
+                sizes="xs:299px sm:380px md:514px lg:711px"
                 @click.native="action.open()"
               />
               <video
@@ -92,9 +92,9 @@
               lazy
               :src="media.filename"
               :alt="media.alt"
-              width="620"
-              height="620"
-              sizes="xs:299px sm:380px md:514px lg:711px xl:804px 2xl:984px"
+              width="711"
+              height="711"
+              sizes="xs:299px sm:380px md:514px lg:711px"
             />
             <video
               v-else

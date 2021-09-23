@@ -20,7 +20,7 @@
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :width="blok ? blok.width : width"
           :height="blok ? blok.height : height"
-          sizes="xs:299px sm:380px md:514px lg:711px xl:804px"
+          :sizes="`xs:${blok.width.replace(/\D/g, '') / 1.15}px sm:${blok.width.replace(/\D/g, '') / 1.12}px md:${blok.width.replace(/\D/g, '') / 1.09}px lg:${blok.width.replace(/\D/g, '') / 1.06}px xl:${blok.width.replace(/\D/g, '') / 1.03}px`"
           @click.native="action.open()"
         />
         <video
@@ -84,7 +84,7 @@
         :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
         :width="blok ? blok.width : width"
         :height="blok ? blok.height : height"
-        sizes="xs:299px sm:380px md:514px lg:711px xl:804px"
+        :sizes="`xs:${blok.width.replace(/\D/g, '') / 1.15}px sm:${blok.width.replace(/\D/g, '') / 1.12}px md:${blok.width.replace(/\D/g, '') / 1.09}px lg:${blok.width.replace(/\D/g, '') / 1.06}px xl:${blok.width.replace(/\D/g, '') / 1.03}px`"
       />
       <video
         v-else-if="(blok && blok.media.filename) || video"

@@ -66,7 +66,7 @@ export default {
     },
     backgroundLevel () {
       if (this.blok.background_index) {
-        return 'z-20'
+        return 'z-0'
       } else {
         return '-z-20'
       }

@@ -128,7 +128,7 @@
     <!--LINK-->
     <svg
       v-else-if="link"
-      :class="`eye-link fill-current ${size}`"
+      :class="`link-icon fill-current ${size}`"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -153,9 +153,22 @@
       <title v-if="tooltip">{{ tooltip }}</title>
       <path d="M12.01 20c-5.065 0-9.586-4.211-12.01-8.424 2.418-4.103 6.943-7.576 12.01-7.576 5.135 0 9.635 3.453 11.999 7.564-2.241 4.43-6.726 8.436-11.999 8.436zm-10.842-8.416c.843 1.331 5.018 7.416 10.842 7.416 6.305 0 10.112-6.103 10.851-7.405-.772-1.198-4.606-6.595-10.851-6.595-6.116 0-10.025 5.355-10.842 6.584zm10.832-4.584c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0 1c2.208 0 4 1.792 4 4s-1.792 4-4 4-4-1.792-4-4 1.792-4 4-4z" /></svg>
 
+    <!--EYE_BOLD-->
+    <svg
+      v-else-if="eyeBold"
+      :class="`eye-bold-icon fill-current ${size}`"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <title v-if="tooltip">{{ tooltip }}</title>
+      <path d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z" /></svg>
+
+    <!--GIT-->
     <svg
       v-else-if="git"
-      :class="`icon-git fill-current ${size}`"
+      :class="`git-icon fill-current ${size}`"
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -167,7 +180,7 @@
     <!--LOADER-->
     <svg
       v-else-if="loader"
-      :class="`icon-loader fill-current ${size}`"
+      :class="`loader-icon fill-current ${size}`"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -272,6 +285,10 @@ export default {
       default: false
     },
     eye: {
+      type: Boolean,
+      default: false
+    },
+    eyeBold: {
       type: Boolean,
       default: false
     },

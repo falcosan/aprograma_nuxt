@@ -25,18 +25,34 @@
       <div
         :class="`open-footer absolute left-0 -top-16 lg:-top-20 ${expanded ? 'w-full' : 'w-20'}`"
       >
-        <div
+        <transition-group
+          tag="div"
+          enter-active-class="duration-300 in-out"
+          leave-active-class="duration-300 out-in"
+          enter-class="opacity-0 absolute"
+          leave-to-class="opacity-0 absolute"
           class="icon-open h-16 w-16 lg:w-20 lg:h-20 flex justify-center items-center rounded-tr transition-all duration-200"
           :style="`background-color: ${expanded ? backgroundColors : blok.background_color_menu.color};`"
         >
           <Icon
+            v-if="!currentEye"
+            key="eye"
             eye
             tooltip="Kiosco Antonio"
             tag="span"
             :style="`color: ${blok.icon_color.color};`"
             :class="`${expanded ? $themeColor(blok.icon_color.color) ? 'text-white' : '' : ''} easter-egg`"
           />
-        </div>
+          <Icon
+            v-else
+            key="eye-bold"
+            eye-bold
+            tooltip="Kiosco Antonio"
+            tag="span"
+            :style="`color: ${blok.icon_color.color};`"
+            :class="`${expanded ? $themeColor(blok.icon_color.color) ? 'text-white' : '' : ''} easter-egg`"
+          />
+        </transition-group>
       </div>
       <div
         :class="`footer-content h-full w-full grid grid-flow-col auto-cols-fr gap-5 items-center px-5 transition-opacity duration-200 ${expanded ? '' : 'opacity-0'}`"
@@ -76,9 +92,31 @@
     :style="`background-color: ${blok.transparency ? `${backgroundColors}B3` : backgroundColors};`"
   >
     <div class="footer-content h-52 grid gap-5 text-center">
-      <span :class="`input-footer relative grid gap-5 grid-flow-col-dense items-end justify-center bottom-6 text-md ${$themeColor(backgroundColors) ? 'text-white' : ''}`">
-        <span class="footer-dash"> - </span> <Icon eye tag="span" size="w-6" class="eye-footer" /><span class="footer-dash"> - </span>
-      </span>
+      <transition-group
+        tag="span"
+        enter-active-class="duration-300 in-out"
+        leave-active-class="duration-300 out-in"
+        enter-class="opacity-0"
+        leave-to-class="opacity-0"
+        :class="`input-footer relative grid gap-5 grid-flow-col-dense items-end justify-center bottom-6 text-md ${$themeColor(backgroundColors) ? 'text-white' : ''}`"
+      >
+        <Icon
+          v-if="!currentEye"
+          key="eye"
+          eye
+          tag="span"
+          class="col-start-1 col-end-1 row-start-1 row-end-1"
+          size="w-6"
+        />
+        <Icon
+          v-if="currentEye"
+          key="eyeb-bold"
+          eye-bold
+          tag="span"
+          class="col-start-1 col-end-1 row-start-1 row-end-1"
+          size="w-6"
+        />
+      </transition-group>
       <div
         :class="`messages-container ${$themeColor(backgroundColors) ? 'text-white' : ''}`"
       >
@@ -124,7 +162,9 @@ export default {
       playTypeText: undefined,
       playEraseText: undefined,
       typewriterIndex: 0,
-      charIndex: 0
+      charIndex: 0,
+      currentEye: false,
+      setEyes: undefined
     }
   },
   computed: {
@@ -150,10 +190,12 @@ export default {
     }
   },
   watch: {
-    '$store.state.language.language' () { this.restartTypewriter() }
+    '$store.state.language.language' () { this.restartTypewriter() },
+    currentEye () { this.showEyes() }
   },
-  async mounted () {
-    await this.typeText()
+  mounted () {
+    this.typeText()
+    this.showEyes()
   },
   methods: {
     expandIn () {
@@ -196,6 +238,10 @@ export default {
         this.typewriterIndex = 0
         setTimeout(this.typeText, 400)
       }
+    },
+    showEyes () {
+      clearInterval(this.setEyes)
+      this.setEyes = setInterval(() => { this.currentEye = !this.currentEye }, '1000')
     },
     scrollTop () {
       return this.$scrollToSmoothly(0)

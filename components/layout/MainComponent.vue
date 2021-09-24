@@ -91,10 +91,15 @@ export default {
     }
   },
   created () {
+    if (this.blok.body_color.color) {
+      document.body.style.backgroundColor = this.blok.body_color.color
+    }
+    if (this.blok.add_space) {
+      document.body.style.padding = this.blok.add_space
+    }
     if (this.blok.background_color.color || this.blok.background_color_mask.color) {
       this.setBackgroundColor()
     }
-    document.body.style.backgroundColor = this.blok.body_color.color
   },
   methods: {
     setBackgroundColor () {

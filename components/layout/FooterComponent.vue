@@ -34,7 +34,7 @@
             tooltip="Kiosco Antonio"
             tag="span"
             :style="`color: ${blok.icon_color.color};`"
-            :class="`${expanded ? $themeColor(blok.icon_color.color) ? 'text-white' : '' : ''}`"
+            :class="`${expanded ? $themeColor(blok.icon_color.color) ? 'text-white' : '' : ''} easter-egg`"
           />
         </div>
       </div>

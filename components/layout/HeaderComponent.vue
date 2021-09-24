@@ -59,12 +59,13 @@
     v-else
     class="header flex justify-center"
   >
-    <nav class="navbar-up w-full h-10 fixed flex justify-center top-0 z-40 shadow-sm" :style="`background-color: ${backgroundColor};`">
+    <nav class="navbar-up w-full h-10 fixed flex justify-center top-0 z-40 shadow-sm rounded-b" :style="`background-color: ${backgroundColor};`">
       <div class="menu-wrapper wrapper-up w-full h-full max-w-sm xs:max-w-md sm:max-w-lg flex justify-between">
         <Link
           active="exact"
+          set-active="border-t pb-px border-gray-300"
           icon-item
-          class="home-link w-2/12"
+          class="home-link w-2/12 rounded-bl filter grayscale bg-gray-800 text-white"
           :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)"
           to=""
         >
@@ -73,7 +74,7 @@
               home
               tag="button"
               size="w-5 h-5"
-              class="home-link h-full w-full filter grayscale bg-gray-800 text-white"
+              class="home-link h-full w-full"
             />
           </template>
         </Link>
@@ -86,8 +87,8 @@
         />
         <Translate
           translate-transition
-          class="translate-header w-2/12 bg-gray-800 text-white filter grayscale"
-          style-current-language="h-full flex items-center justify-center relative z-10 bg-gray-800 text-white"
+          class="translate-header w-2/12 bg-gray-800 text-white filter grayscale rounded-br"
+          style-current-language="h-full flex items-center justify-center relative z-10 rounded-br bg-gray-800 text-white"
           :style-translate-list="`rounded-b w-full transform transition-transform duration-200 esase-out bg-gray-800 ${expanded ? 'translate-y-0' : '-translate-y-full'}`"
           style-translate-item="p-3 text-center"
           :blok="$contentByName(blok.body, 'Translate')"

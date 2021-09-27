@@ -99,7 +99,7 @@
         />
       </div>
     </nav>
-    <nav class="navbar-down fixed w-full h-12 flex items-center justify-center bottom-0 z-40 filter drop-shadow-2xl" :style="`background-color: ${backgroundColor};`">
+    <nav class="navbar-down fixed w-full h-12 flex items-center justify-center bottom-0 z-40 rounded-t filter drop-shadow-2xl" :style="`background-color: ${backgroundColor};`">
       <ul class="menu-wrapper wrapper-down w-full h-full max-w-sm xs:max-w-md sm:max-w-lg grid grid-cols-4">
         <li
           v-for="item in $contentByName(blok.body, 'Link')"

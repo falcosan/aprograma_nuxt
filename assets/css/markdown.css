@@ -109,14 +109,14 @@
 }
 
 .markdown ol {
-  list-style: decimal outside;
+  list-style: decimal inside;
 }
 .markdown ol ol {
-  list-style: upper-alpha outside;
+  list-style: upper-alpha inside;
 }
 
 .markdown ol ol ol {
-  list-style: lower-alpha outside;
+  list-style: lower-alpha inside;
 }
 
 .markdown ul {

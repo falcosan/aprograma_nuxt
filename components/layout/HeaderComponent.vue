@@ -87,8 +87,8 @@
         />
         <Translate
           translate-transition
-          class="translate-header w-2/12 bg-gray-800 text-white filter grayscale rounded-br"
-          style-current-language="h-full flex items-center justify-center relative z-10 rounded-br bg-gray-800 text-white"
+          :class="`translate-header w-2/12 bg-gray-800 text-white filter grayscale ${expanded ? '' : 'rounded-br'}`"
+          :style-current-language="`h-full flex items-center justify-center relative z-10 bg-gray-800 text-white ${expanded ? '' : 'rounded-br'}`"
           :style-translate-list="`rounded-b w-full transform transition-transform duration-200 esase-out bg-gray-800 ${expanded ? 'translate-y-0' : '-translate-y-full'}`"
           style-translate-item="p-3 text-center"
           :blok="$contentByName(blok.body, 'Translate')"

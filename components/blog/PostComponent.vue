@@ -2,7 +2,6 @@
   <div class="post p-5">
     <div class="post-head relative w-full mb-5">
       <h1
-        :style="`color: ${blok.text_color.color};`"
         class="post-title text-2xl sm:text-3xl"
         v-text="blok.title"
       />

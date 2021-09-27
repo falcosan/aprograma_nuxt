@@ -52,7 +52,7 @@
             v-text="changeDate(blok.date)"
           />
           <ul class="post-categories flex flex-wrap justify-end mt-5 -mb-1.5 -mx-1.5">
-            <li v-for="(category, index) in sortedCategories" :key="index" class="post-category self-start m-1.5 p-2.5 text-center text-xs rounded shadow-sm italic filter brightness-95 transition-shadow" :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'};`">
+            <li v-for="(category, index) in sortedCategories" :key="index" class="post-category self-start m-1.5 p-2.5 text-center text-xs rounded shadow italic filter brightness-90" :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`">
               {{ category }}
             </li>
           </ul>

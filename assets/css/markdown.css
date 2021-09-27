@@ -131,6 +131,18 @@
   list-style: square outside;
 }
 
+.markdown * ::marker{
+  font-weight: 700;
+}
+
+.markdown * * ::marker{
+  font-weight: 600;
+}
+
+.markdown * * * ::marker{
+  font-weight: 300;
+}
+
 .markdown b,
 .markdown strong {
   font-weight: 800;
@@ -179,3 +191,4 @@
 .markdown ul {
   margin-bottom: 1.25rem;
 }
+

@@ -52,7 +52,7 @@
                   v-touch:swipe.stop.right="!blok.hide_controllers ? previous : null"
                   :tabindex="!blok.hide_controllers ? '0' : false"
                   :style="`width: ${containerWidth}px; background-color: ${blok.background_color_component.color};`"
-                  :class="`slider-slide slide flex my-0 mx-auto rounded ${setAlignContent} ${!blok.hide_controllers ? 'outline-none' : ''} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
+                  :class="`slider-slide slide flex justify-self-center rounded ${setAlignContent} ${!blok.hide_controllers ? 'outline-none' : ''} ${sliderMode || carouselMode || containerMode ? '' : 'parent-slide'}`"
                   @keydown.right.prevent="!blok.hide_controllers ? next() : null"
                   @keydown.left.prevent="!blok.hide_controllers ? previous() : null"
                   @mouseenter="focusContainer($refs.sliderSlide[0])"

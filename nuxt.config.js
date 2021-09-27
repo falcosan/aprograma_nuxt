@@ -211,7 +211,7 @@ export default {
             title: post.content.title,
             image: post.content.file.filename ? post.content.file.filename : 'https://img2.storyblok.com/1240x0/f/106240/4067x2440/49d9d1a222/noimagedetail.png',
             id: post.id,
-            link: `https://aprograma.co/blog/${post.slug}`,
+            link: `https://aprograma.co/blog/${post.slug}/`,
             description: post.content.intro,
             content: post.content.long_text,
             published: new Date(post.content.date)
@@ -242,7 +242,7 @@ export default {
             title: post.content.title,
             image: post.content.file.filename ? post.content.file.filename : 'https://img2.storyblok.com/1240x0/f/106240/4067x2440/49d9d1a222/noimagedetail.png',
             id: post.id,
-            link: `https://aprograma.co/blog/${post.slug}`,
+            link: `https://aprograma.co/blog/${post.slug}/`,
             description: post.content.intro,
             content: post.content.long_text,
             published: new Date(post.content.date)
@@ -273,7 +273,7 @@ export default {
             title: post.content.title,
             image: post.content.file.filename ? post.content.file.filename : 'https://img2.storyblok.com/1240x0/f/106240/4067x2440/49d9d1a222/noimagedetail.png',
             id: post.id,
-            link: `https://aprograma.co/blog/${post.slug}`,
+            link: `https://aprograma.co/blog/${post.slug}/`,
             description: post.content.intro,
             content: post.content.long_text,
             published: new Date(post.content.date)

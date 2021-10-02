@@ -1,7 +1,7 @@
 <template>
   <footer
     v-if="$store.state.data.windowWidth >= 768 && $device.isDesktop"
-    :style="`background-color: ${backgroundColors ? backgroundColors : '#e0e0e0'};`"
+    :style="`background-color: ${backgroundColors};`"
     :class="`footer w-full fixed z-40 bottom-0 transition-height duration-200 ease-in-out ${expanded ? 'h-28' : 'h-0'}`"
   >
     <div
@@ -13,7 +13,7 @@
         arrow
         tag="button"
         size="w-auto h-auto"
-        :class="`justify-center transform rotate-90 ${expanded ? $themeColor(blok.icon_color.color) ? 'text-white' : '' : ''}`"
+        :class="`justify-center transform rotate-90 ${expanded && $themeColor(blok.icon_color.color) ? 'text-white' : ''}`"
         :style="`color: ${blok.icon_color.color};`"
       />
     </div>
@@ -41,7 +41,7 @@
             tooltip="Kiosco Antonio"
             tag="span"
             :style="`color: ${blok.icon_color.color};`"
-            :class="`${expanded ? $themeColor(blok.icon_color.color) ? 'text-white' : '' : ''} easter-egg`"
+            :class="`${expanded && $themeColor(blok.icon_color.color) ? 'text-white' : ''} easter-egg`"
           />
           <Icon
             v-else
@@ -50,7 +50,7 @@
             tooltip="Kiosco Antonio"
             tag="span"
             :style="`color: ${blok.icon_color.color};`"
-            :class="`${expanded ? $themeColor(blok.icon_color.color) ? 'text-white' : '' : ''} easter-egg`"
+            :class="`${expanded && $themeColor(blok.icon_color.color) ? 'text-white' : ''} easter-egg`"
           />
         </transition-group>
       </div>
@@ -60,18 +60,18 @@
         <div
           class="messages-container"
         >
-          <span :class="`footer-messages text-xs ${$themeColor(backgroundColors) ? 'text-white' : ''}`">
+          <span :class="`footer-messages text-xs ${backgroundColors && $themeColor(backgroundColors) ? '' : ''}`">
             {{ blok.text_static ? blok.text_static : 'ㅤ' }}{{ typewriter }}
           </span>
         </div>
         <div
-          :class="`footer-info grid gap-y-1.5 justify-self-center whitespace-nowrap text-center ${$themeColor(backgroundColors) ? 'text-white' : ''}`"
+          :class="`footer-info grid gap-y-1.5 justify-self-center whitespace-nowrap text-center ${backgroundColors && $themeColor(backgroundColors) ? 'text-white' : ''}`"
         >
           <span class="footer-copyright text-sm"> © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span>
           <span class="footer-powered text-xs leading-relaxed">{{ $languageCase('Made with', 'Hecho con', 'Creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span></a>, <a class="netlify-link" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"><span class="netlify underline">Netlify</span></a> {{ $languageCase('and', 'y', 'e') }} <a class="storyblok-link" href="https://www.storyblok.com/" target="_blank" rel="noopener noreferrer"><span class="storyblok underline">Storyblok</span></a></span>
         </div>
         <ul
-          :class="`social-links flex flex-wrap items-center justify-end -m-1.5 ${$themeColor(backgroundColors) ? 'filter invert' : ''}`"
+          :class="`social-links flex flex-wrap items-center justify-end -m-1.5 ${backgroundColors && $themeColor(backgroundColors) ? 'filter invert' : ''}`"
         >
           <template v-for="iconLink in $contentByName(blok.body, 'Link')">
             <li v-if="iconLink.title || (iconLink.icon_item && iconLink.body.length > 0)" :key="iconLink._uid" class="link-item m-1.5">
@@ -98,7 +98,7 @@
         leave-active-class="duration-300 out-in"
         enter-class="opacity-0"
         leave-to-class="opacity-0"
-        :class="`input-footer relative grid gap-5 grid-flow-col-dense items-end justify-center bottom-6 text-md ${$themeColor(backgroundColors) ? 'text-white' : ''}`"
+        :class="`input-footer relative grid gap-5 grid-flow-col-dense items-end justify-center bottom-6 text-md ${backgroundColors && $themeColor(backgroundColors) ? 'text-white' : ''}`"
       >
         <Icon
           v-if="!currentEye"
@@ -118,19 +118,19 @@
         />
       </transition-group>
       <div
-        :class="`messages-container ${$themeColor(backgroundColors) ? 'text-white' : ''}`"
+        :class="`messages-container ${backgroundColors && $themeColor(backgroundColors) ? 'text-white' : ''}`"
       >
         <span class="footer-messages text-xs">
           {{ blok.text_static ? blok.text_static : 'ㅤ' }}{{ typewriter }}
         </span>
       </div>
-      <div :class="`footer-info grid gap-y-1.5 ${$themeColor(backgroundColors) ? 'text-white' : ''}`">
+      <div :class="`footer-info grid gap-y-1.5 ${backgroundColors && $themeColor(backgroundColors) ? 'text-white' : ''}`">
         <span class="footer-copyright text-sm"> © 2020 - {{ currentYear }}, <strong>Aprograma</strong></span>
         <span class="footer-powered text-xs leading-relaxed">{{ $languageCase('Made with', 'Hecho con', 'Creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span></a>, <a class="netlify-link" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"><span class="netlify underline">Netlify</span></a> {{ $languageCase('and', 'y', 'e') }} <a class="storyblok-link" href="https://www.storyblok.com/" target="_blank" rel="noopener noreferrer"><span class="storyblok underline">Storyblok</span></a></span>
       </div>
 
       <ul
-        :class="`social-links flex flex-wrap -m-1.5 justify-center items-center ${$themeColor(backgroundColors) ? 'filter invert' : ''}`"
+        :class="`social-links flex flex-wrap -m-1.5 justify-center items-center ${backgroundColors && $themeColor(backgroundColors) ? 'filter invert' : ''}`"
       >
         <template v-for="iconLink in $contentByName(blok.body, 'Link')">
           <li v-if="iconLink.title || (iconLink.icon_item && iconLink.body.length > 0)" :key="iconLink._uid" class="link-item m-1.5">
@@ -177,15 +177,19 @@ export default {
       }
     },
     backgroundColors () {
-      const colors = this.blok.background_color.color.split('; ')
-      if (colors.length > 1) {
-        if (this.$store.state.data.windowWidth >= 768 && this.$device.isDesktop) {
-          return colors[0]
+      if (this.blok.background_color.color) {
+        const colors = this.blok.background_color.color.split('; ')
+        if (colors.length > 1) {
+          if (this.$store.state.data.windowWidth >= 768 && this.$device.isDesktop) {
+            return colors[0]
+          } else {
+            return colors.length > 1 ? colors[1] : colors[0]
+          }
         } else {
-          return colors.length > 1 ? colors[1] : colors[0]
+          return this.blok.background_color.color
         }
       } else {
-        return this.blok.background_color.color
+        return ''
       }
     }
   },

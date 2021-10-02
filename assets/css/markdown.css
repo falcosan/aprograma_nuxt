@@ -16,9 +16,8 @@
   position: relative;
   border-radius: 0.25rem;
   overflow: hidden;
-  background-color: #282c34;
 }
-.markdown *:not(pre) code {
+.markdown code {
   padding: 3px;
   border-radius: 0.25rem;
   box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
@@ -33,6 +32,7 @@
   word-break: normal;
   overflow: auto;
   color: #abb2bf;
+  background-color: #282c34;
 }
 
 .markdown .syntax-code-block .code-language {
@@ -90,12 +90,6 @@
   padding-right: 0;
 }
 
-.markdown dl,
-.markdown ol,
-.markdown ul {
-  padding: 0 0 0 20px;
-}
-
 .markdown dl dl,
 .markdown dl ol,
 .markdown dl ul,
@@ -106,6 +100,10 @@
 .markdown ul ol,
 .markdown ul ul {
   margin: 1rem 0 0 1rem;
+}
+
+.markdown dl dd {
+  margin-left: 1rem;
 }
 
 .markdown ol {
@@ -120,27 +118,19 @@
 }
 
 .markdown ul {
-  list-style: disc outside;
+  list-style: disc inside;
 }
 
 .markdown ul ul {
-  list-style: circle outside;
+  list-style: circle inside;
 }
 
 .markdown ul ul ul {
-  list-style: square outside;
+  list-style: square inside;
 }
 
-.markdown * ::marker{
+.markdown ::marker{
   font-weight: 700;
-}
-
-.markdown * * ::marker{
-  font-weight: 600;
-}
-
-.markdown * * * ::marker{
-  font-weight: 300;
 }
 
 .markdown b,
@@ -165,7 +155,7 @@
 .markdown dd > *,
 .markdown dt > *,
 .markdown li > * {
-  display: inline-block;
+  display: block;
 }
 
 .markdown dd:not(:last-child),
@@ -173,9 +163,7 @@
 .markdown li:not(:last-child) {
   margin-bottom: 0.5rem;
 }
-.markdown dl dd {
-  margin-left: 1rem;
-}
+
 .markdown p,
 .markdown input,
 .markdown select,

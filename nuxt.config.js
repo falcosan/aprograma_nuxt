@@ -148,7 +148,7 @@ export default {
   pwa: {
     meta: {
       author: 'Daniele Falchetti - danielefalche@gmail.com',
-      theme_color: '#fafafa'
+      theme_color: '#212121'
     },
     manifest: {
       name: 'Aprograma',

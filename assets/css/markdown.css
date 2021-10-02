@@ -153,12 +153,6 @@
   margin: 0 auto;
 }
 
-.markdown dd > *,
-.markdown dt > *,
-.markdown li > * {
-  display: block;
-}
-
 .markdown dd:not(:last-child),
 .markdown dt:not(:last-child),
 .markdown li:not(:last-child) {

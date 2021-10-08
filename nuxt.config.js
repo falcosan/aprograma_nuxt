@@ -142,6 +142,7 @@ export default {
     '@nuxtjs/google-fonts',
     '@nuxtjs/markdownit',
     '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
     '@nuxtjs/feed',
     '@nuxtjs/pwa'
   ],
@@ -188,6 +189,10 @@ export default {
       priority: 1,
       lastmod: new Date()
     }
+  },
+  robots: {
+    UserAgent: 'Googlebot',
+    Disallow: '/'
   },
   feed: [
     {

@@ -34,7 +34,7 @@
               {{ postContent.title }}
             </span>
             <span
-              class="teaser-intro overflow-hidden text-sm"
+              class="teaser-intro overflow-hidden leading-relaxed text-sm"
             >
               {{ postContent.intro }}
             </span>

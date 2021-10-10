@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="postContent"
-    class="post-teaser w-full overflow-hidden rounded lg:aspect-w-14 lg:aspect-h-4 xl:aspect-w-15 xl:aspect-h-3"
+    class="post-teaser w-full overflow-hidden rounded lg:aspect-w-14 lg:aspect-h-4 xl:aspect-w-16 xl:aspect-h-3"
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div

@@ -90,7 +90,6 @@ export default {
   fetch () {
     this.$store.dispatch('list/posts/addPosts')
   },
-
   computed: {
     maxPosts () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
@@ -133,6 +132,9 @@ export default {
     filterBoth () {
       return this.filterByTerm.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(this.setLanguageCase(postCategory))))
     }
+  },
+  watch: {
+    '$store.state.language.language': '$fetch'
   },
   methods: {
     filterSearch (filter) {

@@ -49,7 +49,6 @@ export default {
   fetch () {
     this.$store.dispatch('list/projects/addProjects')
   },
-
   computed: {
     maxProjects () {
       if (this.sliderMode || this.carouselMode || this.containerMode) {
@@ -69,6 +68,9 @@ export default {
       })
       return featuredProjects
     }
+  },
+  watch: {
+    '$store.state.language.language': '$fetch'
   }
 }
 </script>

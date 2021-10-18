@@ -191,8 +191,7 @@ export default {
     }
   },
   robots: {
-    UserAgent: 'Googlebot',
-    Disallow: '/'
+    UserAgent: '*'
   },
   feed: [
     {

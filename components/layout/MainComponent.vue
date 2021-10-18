@@ -17,7 +17,7 @@
     <transition appear appear-active-class="duration-300" appear-class="opacity-0">
       <ImageSet
         v-if="$imageValidation(blok.background_media.filename)"
-        :class="`media-image h-full fixed inset-0 object-cover pointer-events-none ${backgroundPosition} ${backgroundLevel} ${blok.color_animation ? 'color-animation' : ''}`"
+        :class="`media-image w-full h-full fixed inset-0 object-cover pointer-events-none ${backgroundPosition} ${backgroundLevel} ${blok.color_animation ? 'color-animation' : ''}`"
         :src="blok.background_media.filename"
         :file="blok.background_media"
         :alt="blok.background_media.alt"
@@ -27,7 +27,7 @@
       />
       <video
         v-else-if="blok.background_media.filename"
-        :class="`media-video h-full fixed inset-0 object-cover pointer-events-none ${backgroundPosition} ${backgroundLevel} ${blok.color_animation ? 'color-animation' : ''}`"
+        :class="`media-video w-full h-full fixed inset-0 object-cover pointer-events-none ${backgroundPosition} ${backgroundLevel} ${blok.color_animation ? 'color-animation' : ''}`"
         playsinline
         autoplay
         muted

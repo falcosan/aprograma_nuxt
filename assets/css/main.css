@@ -1,10 +1,10 @@
 html {
   font: normal 16px/1.9em "Nunito", "Source Sans Pro", "Helvetica Neue", Arial,
     sans-serif;
+    height: 100%;
 }
 body {
-  position: relative;
-  z-index: 1;
+  height: 100%;
   touch-action: manipulation;
   background-color: #ffffff;
 }

@@ -1,7 +1,9 @@
 <template>
-  <main class="main overflow-x-hidden">
+  <main
+    class="main overflow-x-hidden"
+  >
     <div
-      :class="`main-wrapper min-h-screen relative overflow-hidden ${!$device.isDesktop ? 'pt-10' : 'pt-10 md:pt-20'}`"
+      :class="`main-wrapper relative overflow-hidden ${!$device.isDesktop ? 'py-10' : 'py-10 md:py-20'}`"
     >
       <div
         v-if="blok.show_background_mask"
@@ -93,9 +95,6 @@ export default {
   created () {
     if (this.blok.body_color.color) {
       document.body.style.backgroundColor = this.blok.body_color.color
-    }
-    if (this.blok.add_space) {
-      document.body.style.padding = this.blok.add_space
     }
     if (this.blok.background_color.color || this.blok.background_color_mask.color) {
       this.setBackgroundColor()

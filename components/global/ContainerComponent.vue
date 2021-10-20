@@ -17,7 +17,7 @@
     >
       <div
         v-if="blok.body.length > 1 && (blok.slider_mode === 'slider' || blok.slider_mode === 'carousel')"
-        :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-5 p-5' : 'p-5': ''}`"
+        :class="`slider-wrapper relative ${sliderMode || containerMode ? 'flex justify-center' : ''} ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'p-5' : 'px-5': ''}`"
       >
         <Icon
           v-if="(blok.slider_mode === 'slider' || $store.state.data.windowWidth < 640 || !$device.isDesktop || sliderMode || carouselMode || blok.row_container) && !blok.hide_controllers"
@@ -110,7 +110,7 @@
       </div>
       <div v-else class="container-box h-full overflow-hidden">
         <div
-          :class="`container-components h-full flex flex-wrap rounded -m-2.5 ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'px-5 p-5' : 'p-5': ''}`"
+          :class="`container-components h-full flex flex-wrap rounded -m-2.5 ${!blok.remove_space ? !blok.background_color_container.color && blok.title ? 'p-5' : 'px-5': ''}`"
           :style="`min-height: ${blok.height};`"
         >
           <template v-for="component in elements">

@@ -3,7 +3,7 @@
     class="main overflow-x-hidden"
   >
     <div
-      :class="`main-wrapper relative overflow-hidden ${!$device.isDesktop ? 'py-10' : 'py-10 md:py-20'}`"
+      :class="`main-wrapper relative overflow-hidden ${!$device.isDesktop ? 'pt-10' : 'pt-10 md:py-20'}`"
     >
       <div
         v-if="blok.show_background_mask"

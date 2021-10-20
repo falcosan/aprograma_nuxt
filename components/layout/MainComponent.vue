@@ -5,12 +5,8 @@
     >
       <div
         v-if="blok.show_background_mask"
-        :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 mt-20 mx-auto -z-10 overflow-hidden rounded-b transition-colors duration-500 ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'color-animation' : ''}`"
+        :class="`main-background absolute max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl inset-0 mt-20 mx-auto -z-10 overflow-hidden rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'} ${blok.color_animation ? 'color-animation' : ''}`"
         :style="`background-color: ${randomBackgroundColorMask ? blok.transparency ? `${randomBackgroundColorMask}b3` : randomBackgroundColorMask : blok.transparency ? '#ffffffb3' : '#ffffff'};`"
-      />
-      <div
-        :class="`main-flat fixed w-full h-full inset-0 -z-20 transition-colors duration-500 ${blok.color_animation ? 'color-animation' : ''}`"
-        :style="`background-color: ${randomBackgroundColor};`"
       />
       <Nuxt :class="`max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl my-0 mx-auto rounded-b ${!$device.isDesktop ? '' : 'md:rounded-t'}`" />
     </div>
@@ -65,7 +61,7 @@ export default {
       return this.blok.background_color_mask.color.split('; ')[this.index.mask]
     },
     backgroundLevel () {
-      if (this.blok.background_index) {
+      if (this.blok.background_front) {
         return 'z-0'
       } else {
         return '-z-20'
@@ -77,9 +73,9 @@ export default {
       } else if (this.blok.background_position === 'up') {
         return 'object-bottom'
       } else if (this.blok.background_position === 'down') {
-        return 'object-center'
-      } else {
         return 'object-top'
+      } else {
+        return 'object-center'
       }
     }
   },
@@ -92,14 +88,18 @@ export default {
   },
   created () {
     if (this.blok.body_color.color) {
-      document.body.style.backgroundColor = this.blok.body_color.color
+      document.documentElement.style.backgroundColor = this.blok.body_color.color
     }
     if (this.blok.add_space) {
       document.body.style.padding = this.blok.add_space
     }
+    if (this.blok.color_animation && this.blok.background_color.color) {
+      document.body.classList.add('color-animation')
+    }
     if (this.blok.background_color.color || this.blok.background_color_mask.color) {
       this.setBackgroundColor()
     }
+    document.body.style.backgroundColor = this.randomBackgroundColor
   },
   methods: {
     setBackgroundColor () {

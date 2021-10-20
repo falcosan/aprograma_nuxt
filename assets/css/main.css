@@ -3,6 +3,8 @@ html {
     sans-serif;
 }
 body {
+  position: relative;
+  z-index: 1;
   touch-action: manipulation;
   background-color: #ffffff;
 }

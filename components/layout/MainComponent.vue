@@ -42,9 +42,7 @@
 </template>
 
 <script>
-import ImageSet from '../global/ImageSetComponent.vue'
 export default {
-  components: { ImageSet },
   props: {
     blok: {
       type: Object,

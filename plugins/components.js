@@ -9,6 +9,7 @@ import Media from '@/components/global/MediaComponent'
 import Field from '@/components/global/FieldComponent'
 import Input from '@/components/global/InputComponent'
 import Detail from '@/components/global/DetailComponent'
+import ImageSet from '@/components/global/ImageSetComponent'
 import PostsList from '@/components/blog/PostsListComponent'
 import Container from '@/components/global/ContainerComponent'
 import TextContent from '@/components/global/TextContentComponent'
@@ -25,6 +26,7 @@ Vue.component('Media', Media)
 Vue.component('Field', Field)
 Vue.component('Input', Input)
 Vue.component('Detail', Detail)
+Vue.component('ImageSet', ImageSet)
 Vue.component('Container', Container)
 Vue.component('TextContent', TextContent)
 

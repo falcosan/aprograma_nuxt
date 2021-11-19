@@ -19,20 +19,17 @@
           @keydown.left.prevent="prev"
         >
           <NuxtLink :to="`${project.slug}/`" class="project-link w-full grid grid-rows-1 grid-cols-2">
-            <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1`" :style="`background-color: ${project.content.background_color.color ? project.content.background_color.color : '#e0e0e0'};`">
-              <h2 class="project-text text-xl sm:text-2xl px-10 overflow-hidden" :style="`color: ${project.content.text_color.color};`">
+            <div :class="`text-container ${index %2 == 0 ? 'col-start-1 col-end-1 text-right' : 'col-start-2 col-end-2 text-end'} flex flex-col justify-center row-start-1 row-end-1`" :style="`background-color: ${$binaryControl(project.content.background_color, 'color', '#e0e0e0')};`">
+              <h2 class="project-text text-xl sm:text-2xl px-10 overflow-hidden" :style="`color: ${$binaryControl(project.content.text_color, 'color')};`">
                 {{ project.content.title }}
               </h2>
             </div>
             <div :class="`image-container flex row-start-1 row-end-1 ${index % 2 == 0 ? 'col-start-2 col-end-2' : 'col-start-1 col-end-1'}`">
-              <NuxtImg
-                loading="lazy"
-                format="webp"
-                :modifiers="{ filters: { focal: project.content.image.focus ? project.content.image.focus : 0 } }"
+              <ImageSet
+                 :file="project.content.image"
                 class="project-image w-full h-full object-cover object-center pointer-events-none select-none"
                 :src="project.content.image.filename"
                 :alt="project.content.image.alt"
-                :fit="project.content.image.focus ? null : 'in'"
                 width="620"
                 height="320"
                 sizes="lg:364px xl:491px 2xl:620px"

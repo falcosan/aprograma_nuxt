@@ -113,9 +113,8 @@
 
 <script>
 import Modal from './ModalComponent'
-import ImageSet from './ImageSetComponent'
 export default {
-  components: { ImageSet, Modal },
+  components: { Modal },
   props: {
     blok: {
       type: Object,

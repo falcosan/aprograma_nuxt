@@ -9,7 +9,7 @@
           <Icon
             link
             :class="`project-external mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
-            :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
+            :style="`background-color: ${$binaryControl(blok.background_color, 'color', '#e0e0e0')}; color: ${$binaryControl(blok.text_color, 'color')};`"
             size="w-10 h-10 p-3"
           />
         </template>
@@ -20,7 +20,7 @@
           <Icon
             git
             :class="`project-repository mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
-            :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
+            :style="`background-color: ${$binaryControl(blok.background_color, 'color', '#e0e0e0')}; color: ${$binaryControl(blok.text_color, 'color')};`"
             size="w-10 h-10 p-3"
           />
         </template>
@@ -28,7 +28,7 @@
       <Icon
         arrow
         tag="button"
-        :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
+        :style="`background-color: ${$binaryControl(blok.background_color, 'color', '#e0e0e0')}; color: ${$binaryControl(blok.text_color, 'color')};`"
         :class="`project-back rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
         size="w-10 h-10 p-3"
         @click.native="$goBack()"
@@ -53,7 +53,7 @@
               width="984"
               height="805"
               :fit="blok.image.focus ? null : 'in'"
-              :style="`border-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}`"
+              :style="`border-color: ${$binaryControl(blok.background_color, 'color', 'e0e0e0')}`"
               sizes="xs:299px sm:380px md:514px lg:711px xl:804px 2xl:984pxpx"
             />
           </div>
@@ -72,12 +72,15 @@
         </template>
       </Modal>
       <div
-        :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
+        :style="`background-color: ${$binaryControl(blok.background_color, 'color', '#e0e0e0')}; color: ${$binaryControl(blok.text_color, 'color')};`"
         :class="`intro-text markdown block self-start xl:row-start-1 xl:row-end-1 xl:col-start-3 xl:col-end-3 rounded ${setAlignText} ${!blok.remove_space ? 'p-5' : ''}`"
         v-html="$md.render(blok.intro)"
       />
 
-      <div class="project-date flex flex-col ss:flex-row flex-wrap justify-evenly items-center xl:col-start-1 xl:col-end-3 p-2.5 rounded text-xs" :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`">
+      <div
+        class="project-date flex flex-col ss:flex-row flex-wrap justify-evenly items-center xl:col-start-1 xl:col-end-3 p-2.5 rounded text-xs"
+        :style="`background-color: ${$binaryControl(blok.background_color, 'color', '#e0e0e0')}; color: ${$binaryControl(blok.text_color, 'color')};`"
+      >
         <span class="date-start text-right">
           {{ changeDate(blok.start_date) }}
         </span>
@@ -94,7 +97,7 @@
             <Icon
               link
               :class="`project-external mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
-              :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
+              :style="`background-color: ${$binaryControl(blok.background_color, 'color', 'e0e0e0')}; color: ${$binaryControl(blok.text_color, 'color')};`"
               size="w-10 h-10 p-3"
             />
           </template>
@@ -105,7 +108,7 @@
             <Icon
               git
               :class="`project-repository mr-2.5 rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
-              :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
+              :style="`background-color: ${$binaryControl(blok.background_color, 'color', 'e0e0e0')}; color: ${$binaryControl(blok.text_color, 'color')};`"
               size="w-10 h-10 p-3"
             />
           </template>
@@ -113,14 +116,14 @@
         <Icon
           arrow
           tag="button"
-          :style="`background-color: ${blok.background_color.color ? blok.background_color.color : '#e0e0e0'}; color: ${blok.text_color.color};`"
+          :style="`background-color: ${$binaryControl(blok.background_color, 'color', 'e0e0e0')}; color: ${$binaryControl(blok.text_color, 'color')};`"
           :class="`project-back rounded ${!$device.isDesktop ? '' : 'hover:shadow transition-shadow duration-100'}`"
           size="w-10 h-10 p-3"
           @click.native="$goBack()"
         />
       </div>
     </div>
-    <div v-if="blok.body.length > 0" class="project-details grid gap-5 col-start-1 col-end-4 mt-10">
+    <div v-if="checkDetail" class="project-details grid gap-5 col-start-1 col-end-4 mt-10">
       <h1 class="detail-project text-xl sm:text-2xl">
         {{ $languageCase('Project details', 'Detalles del proyecto', 'Dettagli del progetto') }}
       </h1>
@@ -153,6 +156,9 @@ export default {
         case 'justify':
           return 'text-justify'
       } return ''
+    },
+    checkDetail () {
+      return this.blok.body?.length > 0
     }
   },
   mounted () {

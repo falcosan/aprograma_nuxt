@@ -4,10 +4,9 @@
     class="project-teaser w-full h-full overflow-hidden rounded"
   >
     <NuxtLink :key="projectContent._uid" :to="projectLink" class="teaser-link">
-      <div class="teaser-content h-full flex flex-col justify-end pt-0.5" :style="`background-color: ${projectContent.background_color.color ? projectContent.background_color.color : '#e0e0e0'}; color: ${projectContent.text_color.color};`">
+      <div class="teaser-content h-full flex flex-col justify-end pt-0.5" :style="`background-color: ${$binaryControl(projectContent.background_color, 'color', '#e0e0e0')}; color: ${$binaryControl(projectContent.text_color, 'color')};`">
         <NuxtImg
           class="project-image h-full w-full object-cover object-center select-none rounded-t"
-          loading="lazy"
           format="webp"
           :modifiers="{ filters: { focal: projectContent.image.focus ? projectContent.image.focus : 0 } }"
           :src="projectContent.image.filename"
@@ -18,7 +17,7 @@
           sizes="xs:299px sm:380px md:514px lg:711px xl:804px"
         />
         <div
-          :style="`background-color: ${projectContent.background_color.color ? projectContent.background_color.color : '#e0e0e0'};`"
+          :style="`background-color: ${$binaryControl(projectContent.background_color, 'color', '#e0e0e0')};`"
           class="title-container w-full flex flex-row items-center p-5"
         >
           <span

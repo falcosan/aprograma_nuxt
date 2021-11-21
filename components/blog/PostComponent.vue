@@ -8,16 +8,15 @@
       <div :class="`post-file w-full h-full aspect-w-13 aspect-h-8 overflow-hidden rounded ${blok.file.filename ? '' : 'bg-black'}`">
         <component
           :is="blok.file.filename ? lookFile() : 'NuxtImg'"
-          :loading="lookFile() === 'NuxtImg' || !blok.file.filename ? 'lazy' : false"
-          :format="lookFile() === 'NuxtImg' || !blok.file.filename ? 'webp' : false"
-          :modifiers="lookFile() === 'NuxtImg' || !blok.file.filename ? { filters: { focal: blok.file.focus ? blok.file.focus : 0 } } : false"
+          :format="checkImage ? 'webp' : false"
+          :modifiers="checkImage ? { filters: { focal: blok.file.focus ? blok.file.focus : 0 } } : false"
           class="w-full h-full object-center select-none object-cover"
           :alt="blok.file.filename ? lookFile() === 'NuxtImg' ? blok.file.alt : false : $languageCase('quantum vacuum', 'vacío cuántico', 'vuoto quantistico')"
           :src="setFile"
-          :width="lookFile() === 'NuxtImg' || !blok.file.filename ? '1366' : false"
-          :height="lookFile() === 'NuxtImg' || !blok.file.filename ? '707' : false"
-          :fit="(lookFile() === 'NuxtImg' || !blok.file.filename) && !blok.file.focus ? 'in' : null"
-          :sizes="lookFile() === 'NuxtImg' || !blok.file.filename ? 'xs:380px sm:514px md:711px lg:804px xl:1366px' : false"
+          :width="checkImage ? '1366' : false"
+          :height="checkImage ? '707' : false"
+          :fit="checkImage && !blok.file.focus ? 'in' : null"
+          :sizes="checkImage ? 'xs:380px sm:514px md:711px lg:804px xl:1366px' : false"
         />
       </div>
     </div>
@@ -79,6 +78,9 @@ export default {
     },
     sortedCategories () {
       return this.blok.categories.map(category => category.toLowerCase().split('; ')[this.$languageCase(0, 1, 2)]).sort()
+    },
+    checkImage () {
+      return this.lookFile() === 'NuxtImg' || !this.blok.file.filename
     },
     setAlignText () {
       switch (this.blok.align_text) {

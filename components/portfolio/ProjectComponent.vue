@@ -44,7 +44,6 @@
         <template #activator="action">
           <div class="image-container w-full aspect-w-11 aspect-h-10 md:aspect-h-9 my-0 mx-auto cursor-pointer" @click="action.open()">
             <NuxtImg
-              loading="lazy"
               format="webp"
               :modifiers="{ filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
               class="intro-image h-full w-full border-t-2 border-b-2 object-cover rounded select-none"

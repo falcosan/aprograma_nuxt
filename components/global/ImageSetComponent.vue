@@ -44,7 +44,7 @@ export default {
     },
     lazy: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   methods: {

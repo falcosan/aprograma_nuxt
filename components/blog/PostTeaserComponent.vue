@@ -14,16 +14,16 @@
         >
           <component
             :is="postContent.file.filename ? lookFile() : 'NuxtImg'"
-            :loading="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'lazy' : false"
-            :format="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'webp' : false"
+            :loading="checkFile ? 'lazy' : false"
+            :format="checkFile ? 'webp' : false"
             :modifiers="lookFile() === 'NuxtImg' && postContent.file.filename ? { filters: { focal: postContent.file.focus ? postContent.file.focus : 0 } } : null"
             :class="`w-full h-full object-center select-none ${postContent.file.filename ? 'object-cover' : 'object-contain'}`"
             :alt="postContent.file.filename ? lookFile() === 'NuxtImg' ? postContent.file.alt : false : $languageCase('quantum vacuum', 'vacío cuántico', 'vuoto quantistico')"
             :src="setFile"
-            :fit="(lookFile() === 'NuxtImg' || !postContent.file.filename) && !postContent.file.focus ? 'in' : null"
-            :width="lookFile() === 'NuxtImg' || !postContent.file.filename ? '1200' : false"
-            :height="lookFile() === 'NuxtImg' || !postContent.file.filename ? '434' : false"
-            :sizes="lookFile() === 'NuxtImg' || !postContent.file.filename ? 'xs:299px sm:380px md:514px lg:620px xl:984px 2xl:1200px' : false"
+            :fit="checkFile && !postContent.file.focus ? 'in' : null"
+            :width="checkFile ? '1200' : false"
+            :height="checkFile ? '434' : false"
+            :sizes="checkFile ? 'xs:299px sm:380px md:514px lg:620px xl:984px 2xl:1200px' : false"
           />
         </div>
         <div :class="`teaser-text w-full flex flex-col flex-auto justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? '' : 'lg:w-1/2'}`" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'}; color: ${postContent.text_color.color};`">
@@ -99,6 +99,9 @@ export default {
     },
     sortedCategories () {
       return this.postContent.categories.map(category => category.toLowerCase().split('; ')[this.$languageCase(0, 1, 2)]).sort()
+    },
+    checkFile () {
+      return this.lookFile() === 'NuxtImg' || !this.postContent.file.filename
     }
   },
   methods: {

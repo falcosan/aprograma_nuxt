@@ -6,9 +6,3 @@
   from = "/*"
   to = "/"
   status = 200
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Cache-Control: max-age=365000000
-    Cache-Control: immutable

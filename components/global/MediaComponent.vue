@@ -20,7 +20,7 @@
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           :width="blok ? blok.width : width"
           :height="blok ? blok.height : height"
-          :sizes="`xs:${blok.width.replace(/\D/g, '') / 1.15}px sm:${blok.width.replace(/\D/g, '') / 1.12}px md:${blok.width.replace(/\D/g, '') / 1.09}px lg:${blok.width.replace(/\D/g, '') / 1.06}px xl:${blok.width.replace(/\D/g, '') / 1.03}px`"
+          :sizes="checkSizes"
           @click.native="action.open()"
         />
         <video
@@ -84,7 +84,7 @@
         :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
         :width="blok ? blok.width : width"
         :height="blok ? blok.height : height"
-        :sizes="`xs:${blok.width.replace(/\D/g, '') / 1.15}px sm:${blok.width.replace(/\D/g, '') / 1.12}px md:${blok.width.replace(/\D/g, '') / 1.09}px lg:${blok.width.replace(/\D/g, '') / 1.06}px xl:${blok.width.replace(/\D/g, '') / 1.03}px`"
+        :sizes="checkSizes"
       />
       <video
         v-else-if="(blok && blok.media.filename) || video"
@@ -155,6 +155,13 @@ export default {
     video: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    checkSizes () {
+      if (this.blok.width === 'auto') { return false } else if (this.blok.width === '100%') { return 'xs:100vw' } else {
+        return `xs:${this.blok.width.replace(/\D/g, '') / 1.15}px sm:${this.blok.width.replace(/\D/g, '') / 1.12}px md:${this.blok.width.replace(/\D/g, '') / 1.09}px lg:${this.blok.width.replace(/\D/g, '') / 1.06}px xl:${this.blok.width.replace(/\D/g, '') / 1.03}px`
+      }
     }
   }
 }

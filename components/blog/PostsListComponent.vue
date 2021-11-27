@@ -18,11 +18,11 @@
           <li
             v-for="(filter, index) in sortedCategories"
             :key="index"
-            :class="`category-container h-full flex justify-between overflow-hidden rounded cursor-pointer select-none transition-all filter grayscale bg-gray-600 text-white ${searchCategory.includes(filter) ? 'bg-opacity-70' : !$device.isDesktop ? '' : 'hover:bg-gray-700'}`"
+            :class="`category-container h-full flex justify-between overflow-hidden rounded cursor-pointer select-none transition-all filter grayscale bg-gray-600 text-white ${comparedCategories.includes(filter.value) ? 'bg-opacity-70' : !$device.isDesktop ? '' : 'hover:bg-gray-700'}`"
             @click="filterSearch(filter)"
           >
-            <Input :class="`category-input w-full text-left rounded pointer-events-none italic truncate transition-all ${searchCategory.includes(filter) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter" />
-            <Icon close tag="span" size="w-2 h-2" :class="`px-5 pointer-events-none transition ${searchCategory.includes(filter) ? '' : 'transform rotate-45'}`" />
+            <Input :class="`category-input w-full text-left rounded pointer-events-none italic truncate transition-all ${comparedCategories.includes(filter.value) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter.render" />
+            <Icon close tag="span" size="w-2 h-2" :class="`px-5 pointer-events-none transition ${comparedCategories.includes(filter.value) ? '' : 'transform rotate-45'}`" />
           </li>
           <li class="reset-container h-full overflow-hidden col-start-1 col-end-1 row-start-1 row-end-1 rounded cursor-pointer select-none" @click="searchCategory = []">
             <Input class="reset-input w-full bg-gray-200" type="button" :text="$languageCase('Clear filters', 'Borrar filtros', 'Rimuovi filtri')" />
@@ -110,14 +110,17 @@ export default {
       return featuredPosts
     },
     sortedCategories () {
-      return this.blok.categories.map(category => category.toLowerCase().split('; ')[this.$languageCase(0, 1, 2)]).sort()
+      return this.blok.categories.map(category => category.toLowerCase().split('; ').map(render => ({ render, value: category.toLowerCase().split('; ')[0] }))[this.$languageCase(0, 1, 2)])
+    },
+    comparedCategories () {
+      return this.searchCategory.map(({ value }) => value)
     },
     searchQuery () {
-      if (this.searchTerm && this.blok.search_action && (!this.blok.categories_action || this.searchCategory.length === 0)) {
+      if (this.searchTerm && this.blok.search_action && (!this.blok.categories_action || this.comparedCategories.length === 0)) {
         return this.filterByTerm
-      } else if ((!this.searchTerm || !this.blok.search_action) && this.blok.categories_action && this.searchCategory.length > 0) {
+      } else if ((!this.searchTerm || !this.blok.search_action) && this.blok.categories_action && this.comparedCategories.length > 0) {
         return this.filterByCategory
-      } else if (this.searchTerm && this.blok.search_action && this.blok.categories_action && this.searchCategory.length > 0) {
+      } else if (this.searchTerm && this.blok.search_action && this.blok.categories_action && this.comparedCategories.length > 0) {
         return this.filterBoth
       } else {
         return this.sortedPosts
@@ -127,10 +130,10 @@ export default {
       return this.sortedPosts.filter(post => `${post.content.title} ${post.content.intro}`.toLowerCase().includes(this.searchTerm.toLowerCase()))
     },
     filterByCategory () {
-      return this.sortedPosts.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(this.setLanguageCase(postCategory))))
+      return this.sortedPosts.filter(post => post.content.categories.some(postCategory => this.comparedCategories.includes(postCategory.toLowerCase().split('; ')[0])))
     },
     filterBoth () {
-      return this.filterByTerm.filter(post => post.content.categories.some(postCategory => this.searchCategory.includes(this.setLanguageCase(postCategory))))
+      return this.filterByTerm.filter(post => post.content.categories.some(postCategory => this.comparedCategories.includes(postCategory.toLowerCase().split('; ')[0])))
     }
   },
   watch: {
@@ -138,10 +141,10 @@ export default {
   },
   methods: {
     filterSearch (filter) {
-      if (!this.searchCategory.includes(filter)) {
+      if (!this.comparedCategories.includes(filter.value)) {
         this.searchCategory.push(filter)
       } else {
-        this.searchCategory.splice(this.searchCategory.indexOf(filter), 1)
+        this.searchCategory.splice(this.searchCategory.indexOf(filter.value), 1)
       }
     },
     setLanguageCase (filter) {

@@ -147,7 +147,7 @@ export default {
       if (!this.comparedCategories.includes(filter.value)) {
         this.searchCategory.push(filter)
       } else {
-        this.searchCategory.splice(this.searchCategory.indexOf(filter.value), 1)
+        this.searchCategory.splice(this.comparedCategories.indexOf(filter.value), 1)
       }
     },
     showCategories () {

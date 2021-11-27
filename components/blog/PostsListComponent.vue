@@ -110,7 +110,7 @@ export default {
       return featuredPosts
     },
     sortedCategories () {
-      return this.blok.categories.map(category => category.toLowerCase().split('; ').map(render => ({ render, value: category.toLowerCase().split('; ')[0] }))[this.$languageCase(0, 1, 2)])
+      return this.blok.categories.map(category => category.toLowerCase().split('; ').map(render => ({ render, value: category.toLowerCase().split('; ')[0] }))[this.$languageCase(0, 1, 2)]).sort((a, b) => a.render.localeCompare(b.render))
     },
     comparedCategories () {
       return this.searchCategory.map(({ value }) => value)
@@ -146,10 +146,6 @@ export default {
       } else {
         this.searchCategory.splice(this.searchCategory.indexOf(filter.value), 1)
       }
-    },
-    setLanguageCase (filter) {
-      const hash = filter.toLowerCase().split('; ').filter(subFilter => subFilter)
-      return this.$languageCase(hash[0], hash[1], hash[2])
     },
     showCategories () {
       this.searchCategory = []

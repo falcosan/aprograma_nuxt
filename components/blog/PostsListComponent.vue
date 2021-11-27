@@ -110,7 +110,10 @@ export default {
       return featuredPosts
     },
     sortedCategories () {
-      return this.blok.categories.map(category => category.toLowerCase().split('; ').map(render => ({ render, value: category.toLowerCase().split('; ')[0] }))[this.$languageCase(0, 1, 2)]).sort((a, b) => a.render.localeCompare(b.render))
+      return this.blok.categories.map((category) => {
+        const mapCategory = category.toLowerCase().split('; ')
+        return mapCategory.map(render => ({ render, value: mapCategory[0] }))[this.$languageCase(0, 1, 2)]
+      }).sort((a, b) => a.render.localeCompare(b.render))
     },
     comparedCategories () {
       return this.searchCategory.map(({ value }) => value)

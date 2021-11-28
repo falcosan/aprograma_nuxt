@@ -1,7 +1,7 @@
 <template>
   <component
     :is="imageType() === 'svg+xml' ? 'img' : 'NuxtImg'"
-    :loading="lazy ? 'lazy' : false"
+    :loading="lazy ? 'lazy' : null"
     class="image"
     :alt="alt"
     :type="`image/${imageType()}`"

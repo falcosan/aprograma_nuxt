@@ -26,7 +26,7 @@
             </div>
             <div :class="`image-container flex row-start-1 row-end-1 ${index % 2 == 0 ? 'col-start-2 col-end-2' : 'col-start-1 col-end-1'}`">
               <ImageSet
-                 :file="project.content.image"
+                :file="project.content.image"
                 class="project-image w-full h-full object-cover object-center pointer-events-none select-none"
                 :src="project.content.image.filename"
                 :alt="project.content.image.alt"

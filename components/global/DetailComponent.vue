@@ -3,7 +3,7 @@
     <component
       :is="sliderMode || carouselMode || containerMode ? 'h2' : 'h1'"
       v-if="blok.title"
-      :class="`detail-title text-lg ${sliderMode || carouselMode || containerMode ? 'mx-5 mt-5' : 'sm:text-xl'}`"
+      :class="`detail-title text-lg ${sliderMode || carouselMode || containerMode ? blok.remove_space ? 'm-5' : 'mt-5 ml-10 mr-5' : 'sm:text-xl'}`"
       v-text="blok.title"
     />
     <div class="detail-content grid gap-5 md:grid-flow-col auto-cols-fr rounded">

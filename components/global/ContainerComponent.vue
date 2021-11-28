@@ -6,7 +6,7 @@
     <component
       :is="sliderMode || carouselMode || containerMode ? 'h2' : 'h1'"
       v-if="blok.title"
-      :class="`container-title break-words text-xl ${sliderMode || carouselMode || containerMode ? 'mx-5 mt-5' : 'sm:text-2xl'}`"
+      :class="`container-title break-words text-xl ${sliderMode || carouselMode || containerMode ? blok.remove_space ? 'm-5' : 'mt-5 ml-10 mr-5' : 'sm:text-2xl'}`"
       :style="`color: ${blok.title_color.color};`"
     >
       {{ blok.title }}

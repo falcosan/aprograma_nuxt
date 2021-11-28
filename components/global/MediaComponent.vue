@@ -10,7 +10,7 @@
       <template #activator="action">
         <ImageSet
           v-if="(blok && $imageValidation(blok.media.filename)) || image"
-          :class="`${getClass}-image my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
+          :class="`${getClass}-image my-0 mx-auto object-contain object-center rounded cursor-pointer select-none ${blok.width === 'full' ? 'w-full' : ''}`"
           lazy
           :file="blok.media"
           :src="blok && blok.media.filename ? blok.media.filename : src"
@@ -62,7 +62,7 @@
     <template v-else>
       <ImageSet
         v-if="(blok && $imageValidation(blok.media.filename)) || image"
-        :class="`${getClass}-image my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
+        :class="`${getClass}-image my-0 mx-auto object-contain object-center rounded pointer-events-none select-none ${blok.width === 'full' ? 'w-full' : ''}`"
         lazy
         :file="blok.media"
         :src="blok && blok.media.filename ? blok.media.filename : src"
@@ -141,7 +141,7 @@ export default {
   },
   computed: {
     checkSizes () {
-      if (this.blok.width === 'auto') { return false } else if (this.blok.width === '100%') { return 'xs:100vw' } else {
+      if (this.blok.width === 'auto' || this.blok.width === 'full') { return false } else if (this.blok.width === '100%') { return 'xs:100vw' } else {
         return `xs:${this.blok.width.replace(/\D/g, '') / 1.15}px sm:${this.blok.width.replace(/\D/g, '') / 1.12}px md:${this.blok.width.replace(/\D/g, '') / 1.09}px lg:${this.blok.width.replace(/\D/g, '') / 1.06}px xl:${this.blok.width.replace(/\D/g, '') / 1.03}px`
       }
     },

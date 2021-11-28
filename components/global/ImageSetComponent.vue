@@ -11,8 +11,8 @@
     :height="height"
     :modifiers="imageType() === 'svg+xml' ? false : { filters: { focal: file.focus ? file.focus : 0 } }"
     :fit="imageType() === 'svg+xml' || file.focus ? null : 'in'"
-    :format="imageType() === 'svg+xml' ? false : 'webp'"
-    :sizes="imageType() === 'svg+xml' ? false : sizes"
+    :format="imageType() === 'svg+xml' ? null : 'webp'"
+    :sizes="imageType() === 'svg+xml' ? null : sizes ? sizes : null"
   />
 </template>
 <script>
@@ -23,7 +23,7 @@ export default {
       required: true
     },
     sizes: {
-      type: String,
+      type: [String, Boolean],
       required: true
     },
     width: {

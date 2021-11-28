@@ -47,7 +47,7 @@ export default {
     }
   },
   fetch () {
-    this.$store.dispatch('list/projects/addProjects')
+    if (this.$route.name !== 'portfolio') { this.$store.dispatch('list/projects/addProjects') }
   },
   computed: {
     maxProjects () {
@@ -70,7 +70,11 @@ export default {
     }
   },
   watch: {
-    '$store.state.language.language': '$fetch'
+    '$store.state.language.language': {
+      handler () {
+        if (this.$route.name !== 'portfolio') { this.$fetch() }
+      }
+    }
   }
 }
 </script>

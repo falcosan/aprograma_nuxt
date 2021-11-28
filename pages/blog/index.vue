@@ -20,6 +20,7 @@ export default {
         language: this.$store.state.language.language
       }).then((res) => {
         this.story = res.data.story
+        this.$store.dispatch('list/posts/addPosts')
       }).catch((res) => {
         if (!res) {
           this.error({

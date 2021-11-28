@@ -88,7 +88,7 @@ export default {
     }
   },
   fetch () {
-    this.$store.dispatch('list/posts/addPosts')
+    if (this.$route.name !== 'blog') { this.$store.dispatch('list/posts/addPosts') }
   },
   computed: {
     maxPosts () {
@@ -140,7 +140,11 @@ export default {
     }
   },
   watch: {
-    '$store.state.language.language': '$fetch'
+    '$store.state.language.language': {
+      handler () {
+        if (this.$route.name !== 'blog') { this.$fetch() }
+      }
+    }
   },
   methods: {
     filterSearch (filter) {

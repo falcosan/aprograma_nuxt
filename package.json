@@ -13,6 +13,7 @@
     "dev": "nuxt",
     "build": "nuxt build -m",
     "generate": "nuxt generate -m",
+    "start": "nuxt start",
     "test:static": "nuxt generate && nuxt start",
     "test:server": "nuxt build && nuxt start"
   },

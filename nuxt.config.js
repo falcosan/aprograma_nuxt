@@ -291,6 +291,7 @@ export default {
   ],
 
   build: {
+    extractCSS: true,
     babel: {
       plugins: [
         ['@babel/plugin-proposal-private-methods', { loose: false }],

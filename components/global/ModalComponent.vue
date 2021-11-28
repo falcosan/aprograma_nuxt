@@ -107,3 +107,8 @@ export default {
   object-fit: contain;
 }
 </style>
+<style scoped>
+hr {
+  border-color: transparent;
+}
+</style>

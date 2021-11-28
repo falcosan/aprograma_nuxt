@@ -19,8 +19,8 @@ export default {
       .get(`cdn/stories${this.$route.path}`, {
         language: this.$store.state.language.language
       }).then((res) => {
-        this.story = res.data.story
         this.$store.dispatch('list/projects/addProjects')
+        this.story = res.data.story
       }).catch((res) => {
         if (!res) {
           this.error({

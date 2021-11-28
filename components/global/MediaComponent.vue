@@ -10,10 +10,7 @@
       <template #activator="action">
         <ImageSet
           v-if="(blok && $imageValidation(blok.media.filename)) || image"
-          :class="`${blok && blok.media.filename ? blok.media.filename : src
-            .split(/[\\/]/)
-            .pop()
-            .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
+          :class="`${getClass}-image my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
           lazy
           :file="blok.media"
           :src="blok && blok.media.filename ? blok.media.filename : src"
@@ -25,10 +22,7 @@
         />
         <video
           v-else-if="(blok && blok.media.filename) || video"
-          :class="`${blok && blok.media.filename ? blok.media.filename : src
-            .split(/[\\/]/)
-            .pop()
-            .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
+          :class="`${getClass}-video my-0 mx-auto object-contain object-center rounded cursor-pointer select-none`"
           :width="blok ? blok.width : width"
           :height="blok ? blok.height : height"
           playsinline
@@ -44,10 +38,7 @@
         <ImageSet
           v-if="(blok && $imageValidation(blok.media.filename)) || image"
           :file="blok.media"
-          :class="`${blok && blok.media.filename ? blok.media.filename : src
-            .split(/[\\/]/)
-            .pop()
-            .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center select-none cursor-default`"
+          :class="`${getClass}-image my-0 mx-auto object-contain object-center select-none cursor-default`"
           :src="blok && blok.media.filename ? blok.media.filename : src"
           :alt="blok && blok.media.filename ? blok.media.alt : alt ? alt : ''"
           width="1920"
@@ -56,10 +47,7 @@
         />
         <video
           v-else-if="(blok && blok.media.filename) || video"
-          :class="`${blok && blok.media.filename ? blok.media.filename : src
-            .split(/[\\/]/)
-            .pop()
-            .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center select-none cursor-default`"
+          :class="`${getClass}-video my-0 mx-auto object-contain object-center select-none cursor-default`"
           width="auto"
           height="auto"
           playsinline
@@ -74,10 +62,7 @@
     <template v-else>
       <ImageSet
         v-if="(blok && $imageValidation(blok.media.filename)) || image"
-        :class="`${blok && blok.media.filename ? blok.media.filename : src
-          .split(/[\\/]/)
-          .pop()
-          .replace(/\.[^/.]+$/, '')}-image my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
+        :class="`${getClass}-image my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
         lazy
         :file="blok.media"
         :src="blok && blok.media.filename ? blok.media.filename : src"
@@ -88,10 +73,7 @@
       />
       <video
         v-else-if="(blok && blok.media.filename) || video"
-        :class="`${blok && blok.media.filename ? blok.media.filename : src
-          .split(/[\\/]/)
-          .pop()
-          .replace(/\.[^/.]+$/, '')}-video my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
+        :class="`${getClass}-video my-0 mx-auto object-contain object-center rounded pointer-events-none select-none`"
         :width="blok ? blok.width : width"
         :height="blok ? blok.height : height"
         playsinline
@@ -162,6 +144,15 @@ export default {
       if (this.blok.width === 'auto') { return false } else if (this.blok.width === '100%') { return 'xs:100vw' } else {
         return `xs:${this.blok.width.replace(/\D/g, '') / 1.15}px sm:${this.blok.width.replace(/\D/g, '') / 1.12}px md:${this.blok.width.replace(/\D/g, '') / 1.09}px lg:${this.blok.width.replace(/\D/g, '') / 1.06}px xl:${this.blok.width.replace(/\D/g, '') / 1.03}px`
       }
+    },
+    getClass () {
+      return this.blok
+        ? this.blok.media.filename?.split(/[\\/]/)
+          .pop()
+          .replace(/\.[^/.]+$/, '')
+        : this.src?.split(/[\\/]/)
+          .pop()
+          .replace(/\.[^/.]+$/, '')
     }
   }
 }

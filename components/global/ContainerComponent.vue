@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="blok.body.length > 0"
-    :class="`container-cover w-full z-0 ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
+    :class="`container-cover w-full ${carouselMode || sliderMode || containerMode ? 'grid' : 'parent-cover'}`"
   >
     <component
       :is="sliderMode || carouselMode || containerMode ? 'h2' : 'h1'"

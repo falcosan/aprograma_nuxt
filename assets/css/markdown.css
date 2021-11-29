@@ -2,8 +2,25 @@
   word-break: break-word;
   overflow-wrap: anywhere;
 }
-.markdown img,
 .markdown video {
+  width: 100%;
+  max-width: 65ch;
+  display: grid;
+  gap: 10px;
+  margin: 0 auto;
+  border-radius: 0.25rem;
+  font-style: italic;
+  font-size: 15px;
+  color: #e5e7eb;
+}
+.markdown figure {
+  display: grid;
+  gap: 10px;
+  font-style: italic;
+  font-size: 15px;
+  color: #e5e7eb;
+}
+.markdown img {
   width: 100%;
   max-width: 65ch;
   display: grid;
@@ -16,16 +33,7 @@
   user-select: none;
   color: #e5e7eb;
 }
-.markdown figure {
-  display: grid;
-  gap: 10px;
-  font-style: italic;
-  font-size: 15px;
-  color: #e5e7eb;
-}
-
-.markdown img.zoomed,
-.markdown video.zoomed {
+.markdown img.zoomed {
   position: fixed;
   max-width: 100%;
   height: 100%;

@@ -291,7 +291,7 @@ export default {
   ],
 
   build: {
-    extractCSS: true,
+    extractCSS: process.env.NODE_ENV !== 'development',
     babel: {
       plugins: [
         ['@babel/plugin-proposal-private-methods', { loose: false }],

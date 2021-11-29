@@ -5,7 +5,7 @@
       <div
         v-show="openEvent || open"
         ref="modal"
-        :class="`modal-backdrop w-full fixed flex justify-center inset-0 z-50 overflow-auto focus:outline-none ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
+        :class="`modal-backdrop w-full fixed flex justify-center inset-0 z-50 overflow-auto focus:outline-none bg-opacity-90 bg-gray-200 ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
         tabindex="0"
         @keydown.esc="closeMode ? closeModal() : ''"
       >

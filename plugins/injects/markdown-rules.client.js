@@ -22,10 +22,23 @@ export default ({ app }, inject) => {
         }
       })
     }
-    if (document.querySelectorAll('markdown br')) {
+    if (document.querySelectorAll('.markdown br')) {
       [...document.querySelectorAll('* + br:last-child')].forEach((br) => {
         br.previousElementSibling.style.marginBottom = '0'
       })
     }
+    document.querySelectorAll('.markdown img')?.forEach((image) => {
+      image.addEventListener('click', function () {
+        document.body.classList.toggle('noscroll')
+        image.classList.toggle('zoomed')
+        document.addEventListener('keydown', function (event) {
+          event.preventDefault()
+          if (event.key.toLowerCase() === 'escape') {
+            document.body.classList.remove('noscroll')
+            image.classList.remove('zoomed')
+          }
+        })
+      })
+    })
   })
 }

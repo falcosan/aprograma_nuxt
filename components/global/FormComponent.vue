@@ -3,7 +3,7 @@
   <div
     :class="`form relative w-full my-0 mx-auto overflow-hidden ${blok.reduce_width ? 'max-w-3xl' : ''}`"
   >
-    <Modal v-if="submitting" class="modal-submit" :open="submitting" modal-style="bg-opacity-90 bg-gray-200 cursor-wait">
+    <Modal v-if="submitting" class="modal-submit" :open="submitting" modal-style="cursor-wait">
       <template #body>
         <Icon
           tag="span"

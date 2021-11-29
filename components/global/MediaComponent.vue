@@ -5,7 +5,6 @@
     <Modal
       v-if="blok.modal_mode"
       close-mode
-      modal-style="bg-gray-200 bg-opacity-90"
     >
       <template #activator="action">
         <ImageSet

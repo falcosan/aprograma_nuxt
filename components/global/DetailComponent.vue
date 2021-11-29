@@ -13,7 +13,6 @@
             v-if="blok.modal_mode"
             close-mode
             class="detail-modal"
-            modal-style="bg-opacity-90 bg-gray-200"
           >
             <template #activator="action">
               <ImageSet

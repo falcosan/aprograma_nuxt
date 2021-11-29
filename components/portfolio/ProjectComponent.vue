@@ -39,7 +39,6 @@
         v-if="blok.image.filename"
         class="modal-project w-full row-start-1 row-end-1 xl:col-start-1 xl:col-end-3"
         close-mode
-        modal-style="bg-gray-200 bg-opacity-90"
       >
         <template #activator="action">
           <div class="image-container w-full aspect-w-11 aspect-h-10 md:aspect-h-9 my-0 mx-auto cursor-pointer" @click="action.open()">

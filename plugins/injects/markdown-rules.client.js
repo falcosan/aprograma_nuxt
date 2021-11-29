@@ -31,13 +31,12 @@ export default ({ app }, inject) => {
       image.addEventListener('click', function () {
         document.body.classList.toggle('noscroll')
         image.classList.toggle('zoomed')
-        document.addEventListener('keydown', function (event) {
-          event.preventDefault()
+        document.onkeydown = function (event) {
           if (event.key.toLowerCase() === 'escape') {
             document.body.classList.remove('noscroll')
             image.classList.remove('zoomed')
           }
-        })
+        }
       })
     })
   })

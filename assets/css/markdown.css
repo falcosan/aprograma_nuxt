@@ -2,17 +2,8 @@
   word-break: break-word;
   overflow-wrap: anywhere;
 }
-.markdown video {
-  width: 100%;
-  max-width: 65ch;
-  display: grid;
-  gap: 10px;
-  margin: 0 auto;
-  border-radius: 0.25rem;
-  font-style: italic;
-  font-size: 15px;
-  color: #e5e7eb;
-}
+.markdown img,
+.markdown video,
 .markdown figure {
   display: grid;
   gap: 10px;
@@ -20,33 +11,33 @@
   font-size: 15px;
   color: #e5e7eb;
 }
-.markdown img {
+.markdown img,
+.markdown video {
   width: 100%;
   max-width: 65ch;
-  display: grid;
-  gap: 10px;
   margin: 0 auto;
   border-radius: 0.25rem;
-  font-style: italic;
-  font-size: 15px;
   cursor: zoom-in;
   user-select: none;
   color: #e5e7eb;
 }
-.markdown img.zoomed {
+.markdown-modal {
   position: fixed;
-  max-width: 100%;
+  width: 100%;
   height: 100%;
-  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0;
-  bottom: 0;
+  left: 0;
   right: 0;
-  padding: 20px 32px;
-  object-fit: contain;
+  bottom: 0;
+  padding: 20px;
   z-index: 50;
-  cursor: zoom-out;
   background-color: #e5e7ebe6;
-  transition: all .3s ease, max-width 1ms;
+}
+.markdown-modal > * {
+  cursor: zoom-out;
 }
 .markdown a {
   text-decoration: underline;

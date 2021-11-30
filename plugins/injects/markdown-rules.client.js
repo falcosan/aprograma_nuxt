@@ -29,12 +29,20 @@ export default ({ app }, inject) => {
     }
     document.querySelectorAll('.markdown img')?.forEach((image) => {
       image.addEventListener('click', function () {
-        document.body.classList.toggle('noscroll')
-        image.classList.toggle('zoomed')
+        document.body.classList.add('noscroll')
+        const wrapper = document.createElement('div')
+        const newImage = image.cloneNode()
+        wrapper.classList.add('markdown-modal')
+        wrapper.appendChild(newImage)
+        document.body.appendChild(wrapper).focus({ preventScroll: true })
+        wrapper.addEventListener('click', function () {
+          document.body.removeChild(wrapper)
+          document.body.classList.remove('noscroll')
+        })
         document.onkeydown = function (event) {
-          if (event.key.toLowerCase() === 'escape') {
+          if (event.key.toLowerCase() === 'escape' && document.body.contains(wrapper)) {
             document.body.classList.remove('noscroll')
-            image.classList.remove('zoomed')
+            document.body.removeChild(wrapper)
           }
         }
       })

@@ -35,16 +35,24 @@ export default ({ app }, inject) => {
         wrapper.classList.add('markdown-modal')
         wrapper.appendChild(newImage)
         document.body.appendChild(wrapper).focus({ preventScroll: true })
-        wrapper.addEventListener('click', function () {
-          document.body.removeChild(wrapper)
-          document.body.classList.remove('noscroll')
-        })
-        document.onkeydown = function (event) {
-          if (event.key.toLowerCase() === 'escape' && document.body.contains(wrapper)) {
+        if (document.body.contains(wrapper)) {
+          wrapper.addEventListener('click', function () {
+            document.body.removeChild(wrapper)
+            document.body.classList.remove('noscroll')
+          })
+          document.onkeydown = function (event) {
+            if (event.key.toLowerCase() === 'escape') {
+              document.body.classList.remove('noscroll')
+              document.body.removeChild(wrapper)
+            }
+          }
+        }
+        window.addEventListener('popstate', function () {
+          if (document.body.contains(wrapper)) {
             document.body.classList.remove('noscroll')
             document.body.removeChild(wrapper)
           }
-        }
+        })
       })
     })
   })

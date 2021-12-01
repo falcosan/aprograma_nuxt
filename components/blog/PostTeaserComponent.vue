@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="postContent"
-    class="post-teaser w-full overflow-hidden rounded lg:aspect-w-14 lg:aspect-h-4 xl:aspect-w-16 xl:aspect-h-3 2xl:aspect-w-11 2xl:aspect-h-2"
+    class="post-teaser w-full overflow-hidden rounded lg:aspect-w-14 lg:aspect-h-4 xl:aspect-w-14 xl:aspect-h-3 2xl:aspect-w-11 2xl:aspect-h-2"
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div
@@ -10,7 +10,7 @@
         @mouseleave="expanded = false"
       >
         <div
-          :class="`teaser-file w-full aspect-w-16 aspect-h-10 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:aspect-h-4 xl:aspect-h-3 2xl:aspect-h-2 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`"
+          :class="`teaser-file w-full aspect-w-16 aspect-h-10 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:w-1/2 lg:aspect-w-14 lg:aspect-h-4 xl:aspect-h-3 2xl:aspect-w-11 2xl:aspect-h-2'} ${postContent.file.filename ? '' : 'bg-black'}`"
         >
           <component
             :is="postContent.file.filename ? lookFile() : 'NuxtImg'"

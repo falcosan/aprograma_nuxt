@@ -39,9 +39,9 @@
               {{ postContent.intro }}
             </span>
           </div>
-          <div class="teaser-info w-full flex flex-col mt-5 items-end">
-            <ul class="teaser-categories w-full flex flex-wrap mx-1 mb-2.5">
-              <li v-for="(category, index) in sortedCategories" :key="index" class="teaser-category text-xs p-2.5 m-1 rounded shadow italic filter brightness-90" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'};`">
+          <div class="teaser-info w-full flex flex-col mt-4 items-end">
+            <ul class="teaser-categories w-full flex flex-wrap lg:flex-nowrap mx-1 mb-2.5 overflow-x-auto">
+              <li v-for="(category, index) in sortedCategories" :key="index" class="teaser-category text-xs p-2 m-1 rounded shadow italic filter brightness-90" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'};`">
                 {{ category }}
               </li>
             </ul>

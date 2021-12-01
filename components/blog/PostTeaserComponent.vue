@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="postContent"
-    class="post-teaser w-full overflow-hidden rounded lg:aspect-w-14 lg:aspect-h-4 xl:aspect-w-16 xl:aspect-h-3"
+    class="post-teaser w-full overflow-hidden rounded lg:aspect-w-14 lg:aspect-h-4 xl:aspect-w-16 xl:aspect-h-3 2xl:aspect-w-11 2xl:aspect-h-2"
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div
@@ -10,7 +10,7 @@
         @mouseleave="expanded = false"
       >
         <div
-          :class="`teaser-file w-full aspect-w-16 aspect-h-10 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:aspect-h-4 xl:aspect-h-3 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`"
+          :class="`teaser-file w-full aspect-w-16 aspect-h-10 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:aspect-h-4 xl:aspect-h-3 2xl:aspect-h-2 lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`"
         >
           <component
             :is="postContent.file.filename ? lookFile() : 'NuxtImg'"
@@ -26,7 +26,7 @@
             :sizes="checkFile ? 'xs:299px sm:380px md:514px lg:620px xl:984px 2xl:1200px' : false"
           />
         </div>
-        <div :class="`teaser-text w-full flex flex-col flex-auto justify-between p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? '' : 'lg:w-1/2'}`" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'}; color: ${postContent.text_color.color};`">
+        <div :class="`teaser-text w-full flex flex-col flex-auto justify-between space-y-2.5 lg:space-y-px 2xl:space-y-0 p-5 ${rowContainer || sliderContainer || carouselContainer || containerContainer ? '' : 'lg:w-1/2'}`" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'}; color: ${postContent.text_color.color};`">
           <div class="text-description">
             <span
               class="teaser-title mb-2.5 overflow-hidden text-lg sm:text-xl"
@@ -34,22 +34,20 @@
               {{ postContent.title }}
             </span>
             <span
-              class="teaser-intro overflow-hidden leading-relaxed text-sm"
+              class="teaser-intro h-12 overflow-hidden leading-relaxed text-sm"
             >
               {{ postContent.intro }}
             </span>
           </div>
-          <div class="teaser-info w-full flex flex-col mt-4 items-end">
-            <ul class="teaser-categories w-full flex flex-wrap lg:flex-nowrap mx-1 mb-2.5 overflow-x-auto">
-              <li v-for="(category, index) in sortedCategories" :key="index" class="teaser-category text-xs p-2 m-1 rounded shadow italic filter brightness-90" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'};`">
-                {{ category }}
-              </li>
-            </ul>
-            <span
-              class="teaser-date flex-none self-end text-xs text-right"
-              v-text="changeDate(postContent.date)"
-            />
-          </div>
+          <ul class="teaser-categories w-full flex flex-wrap lg:flex-nowrap -mx-1 overflow-x-auto">
+            <li v-for="(category, index) in sortedCategories" :key="index" class="teaser-category text-xs p-2 m-1 rounded shadow italic filter brightness-90" :style="`background-color: ${postContent.background_color.color ? postContent.background_color.color : '#e0e0e0'};`">
+              {{ category }}
+            </li>
+          </ul>
+          <span
+            class="teaser-date flex-none self-end text-xs text-right"
+            v-text="changeDate(postContent.date)"
+          />
         </div>
       </div>
     </NuxtLink>

@@ -21,7 +21,7 @@ iframe {
 }
 .page-enter-active,
 .page-leave-active {
-  transition-duration: 0.3s;
+  transition-duration: 150ms;
   transition-property: opacity;
   transition-timing-function: ease;
 }

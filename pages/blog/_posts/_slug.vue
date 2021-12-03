@@ -7,8 +7,10 @@
 </template>
 <script>
 import Post from '@/components/blog/PostComponent'
+import seo from '~/mixins/seo'
 export default {
   components: { Post },
+  mixins: [seo],
   data () {
     return {
       story: {
@@ -37,63 +39,7 @@ export default {
       })
   },
   head () {
-    return {
-      title: this.story.content.title ? `${this.story.content.title} - Aprograma` : false,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.story.content.title
-        },
-        {
-          hid: 'og:title',
-          name: 'og:title',
-          content: this.story.content.title
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: this.story.content.intro
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: this.story.content.file ? this.story.content.file.filename : false
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: `${this.$config.projectPath}${this.$route.path}`
-        },
-        {
-          hid: 'twitter:url',
-          name: 'twitter:url',
-          content: this.$config.projectPath
-        },
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: this.story.content.title
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: this.story.content.intro
-        },
-        {
-          hid: 'twitter:image',
-          name: 'twitter:image',
-          content: this.story.content.file ? this.story.content.file.filename : false
-        }
-      ],
-      link: [
-        {
-          hid: 'canonical',
-          rel: 'canonical',
-          href: `${this.$config.projectPath}${this.$route.path}`
-        }
-      ]
-    }
+    return this.seo()
   },
   watch: {
     '$store.state.language.language': '$fetch'

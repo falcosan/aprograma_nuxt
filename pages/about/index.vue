@@ -6,7 +6,9 @@
   />
 </template>
 <script>
+import seo from '~/mixins/seo'
 export default {
+  mixins: [seo],
   data () {
     return {
       story: {
@@ -35,16 +37,7 @@ export default {
       })
   },
   head () {
-    return {
-      title: this.story.name ? `${this.story.name} - Aprograma` : false,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'About the Aprograma project'
-        }
-      ]
-    }
+    return this.seo('About the Aprograma project')
   },
   watch: {
     '$store.state.language.language': '$fetch'

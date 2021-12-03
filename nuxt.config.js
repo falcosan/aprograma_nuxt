@@ -19,7 +19,7 @@ export default {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://aprograma.co/'
+        content: `${process.env.NUXT_ENV_DOMAIN}/`
       },
       {
         hid: 'og:title',
@@ -42,7 +42,7 @@ export default {
       {
         hid: 'twitter:url',
         name: 'twitter:url',
-        content: 'https://aprograma.co/'
+        content: `${process.env.NUXT_ENV_DOMAIN}/`
       },
       {
         hid: 'twitter:title',
@@ -63,6 +63,11 @@ export default {
       }
     ],
     link: [
+      {
+        hid: 'canonical',
+        rel: 'canonical',
+        href: `${process.env.NUXT_ENV_DOMAIN}/`
+      },
       { rel: 'preconnect', href: '//img2.storyblok.com' }
     ]
   },
@@ -130,7 +135,7 @@ export default {
   },
   publicRuntimeConfig: {
     projectName: process.env.npm_package_name,
-    projectPath: 'https://aprograma.co'
+    projectDomain: process.env.NUXT_ENV_DOMAIN
   },
   modules: [
     [
@@ -177,7 +182,7 @@ export default {
     ]
   },
   sitemap: {
-    hostname: 'https://aprograma.co',
+    hostname: `${process.env.NUXT_ENV_DOMAIN}/`,
     trailingSlash: true,
     routes: async () => {
       const { data } = await axios(`https://api.storyblok.com/v2/cdn/links?token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP&version=published`)
@@ -200,14 +205,14 @@ export default {
       async create (feed) {
         feed.options = {
           title: 'Aprograma Blog ENG',
-          link: 'https://aprograma.co/feedeng.xml',
+          link: `${process.env.NUXT_ENV_DOMAIN}/feedeng.xml`,
           description: 'Aprograma Blog RSS'
         }
         feed.addCategory('Blog ENG')
         feed.addContributor({
           name: 'Daniele Falchetti',
           email: 'danielefalche@gmail.com',
-          link: 'https://aprograma.co'
+          link: `${process.env.NUXT_ENV_DOMAIN}/`
         })
         const dataEng = await axios(`https://api.storyblok.com/v2/cdn/stories?starts_with=blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP&version=published`)
         const dataFiltered = dataLang => dataLang.data.stories.filter(filteredPost => filteredPost.name.toLowerCase() !== 'blog')
@@ -216,7 +221,7 @@ export default {
             title: post.content.title,
             image: post.content.file.filename ? post.content.file.filename : 'https://img2.storyblok.com/1240x0/f/106240/4067x2440/49d9d1a222/noimagedetail.png',
             id: post.id,
-            link: `https://aprograma.co/blog/${post.slug}/`,
+            link: `${process.env.NUXT_ENV_DOMAIN}/blog/${post.slug}/`,
             description: post.content.intro,
             content: post.content.long_text,
             published: new Date(post.content.date)
@@ -231,14 +236,14 @@ export default {
       async create (feed) {
         feed.options = {
           title: 'Aprograma Blog ESP',
-          link: 'https://aprograma.co/feedesp.xml',
+          link: `${process.env.NUXT_ENV_DOMAIN}/feedesp.xml`,
           description: 'Aprograma Blog RSS'
         }
         feed.addCategory('Blog ESP')
         feed.addContributor({
           name: 'Daniele Falchetti',
           email: 'danielefalche@gmail.com',
-          link: 'https://aprograma.co'
+          link: `${process.env.NUXT_ENV_DOMAIN}/`
         })
         const dataEs = await axios(`https://api.storyblok.com/v2/cdn/stories?starts_with=es/blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP&version=published`)
         const dataFiltered = dataLang => dataLang.data.stories.filter(filteredPost => filteredPost.name.toLowerCase() !== 'blog')
@@ -247,7 +252,7 @@ export default {
             title: post.content.title,
             image: post.content.file.filename ? post.content.file.filename : 'https://img2.storyblok.com/1240x0/f/106240/4067x2440/49d9d1a222/noimagedetail.png',
             id: post.id,
-            link: `https://aprograma.co/blog/${post.slug}/`,
+            link: `${process.env.NUXT_ENV_DOMAIN}/blog/${post.slug}/`,
             description: post.content.intro,
             content: post.content.long_text,
             published: new Date(post.content.date)
@@ -262,14 +267,14 @@ export default {
       async create (feed) {
         feed.options = {
           title: 'Aprograma Blog ITA',
-          link: 'https://aprograma.co/feedita.xml',
+          link: `${process.env.NUXT_ENV_DOMAIN}/feedita.xml`,
           description: 'Aprograma Blog RSS'
         }
         feed.addCategory('Blog ITA')
         feed.addContributor({
           name: 'Daniele Falchetti',
           email: 'danielefalche@gmail.com',
-          link: 'https://aprograma.co'
+          link: `${process.env.NUXT_ENV_DOMAIN}/`
         })
         const dataIt = await axios(`https://api.storyblok.com/v2/cdn/stories?starts_with=it/blog&token=${process.env.NUXT_ENV_PREVIEW_TOKEN}&cv=CURRENT_TIMESTAMP&version=published`)
         const dataFiltered = dataLang => dataLang.data.stories.filter(filteredPost => filteredPost.name.toLowerCase() !== 'blog')
@@ -278,7 +283,7 @@ export default {
             title: post.content.title,
             image: post.content.file.filename ? post.content.file.filename : 'https://img2.storyblok.com/1240x0/f/106240/4067x2440/49d9d1a222/noimagedetail.png',
             id: post.id,
-            link: `https://aprograma.co/blog/${post.slug}/`,
+            link: `${process.env.NUXT_ENV_DOMAIN}/blog/${post.slug}/`,
             description: post.content.intro,
             content: post.content.long_text,
             published: new Date(post.content.date)

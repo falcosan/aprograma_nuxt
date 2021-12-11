@@ -59,9 +59,6 @@ module.exports = {
         'fill-small': 'repeat(auto-fill, minmax(157.5px, 1fr))',
         'fill-tiny': 'repeat(auto-fill, minmax(130px, 1fr))'
       },
-      opacity: {
-        65: '0.65'
-      },
       transitionProperty: {
         height: 'height'
       },

@@ -7,7 +7,7 @@
     <div
       :style="`background-color: ${expanded ? backgroundColors : blok.background_color_menu.color};`"
       class="top-kick absolute h-16 w-16 lg:w-20 lg:h-20 flex right-0 -top-16 lg:-top-20 items-center justify-center z-10 rounded-tl cursor-pointer transition-all duration-200"
-      @click="scrollTop();"
+      @click="$scrollToSmoothly(0);"
     >
       <Icon
         arrow
@@ -246,9 +246,6 @@ export default {
     showEyes () {
       clearInterval(this.setEyes)
       this.setEyes = setInterval(() => { this.currentEye = !this.currentEye }, '1000')
-    },
-    scrollTop () {
-      return this.$scrollToSmoothly(0)
     }
   }
 }

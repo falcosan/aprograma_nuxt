@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="postContent"
-    class="post-teaser w-full overflow-hidden rounded lg:aspect-w-14 lg:aspect-h-4 xl:aspect-w-14 xl:aspect-h-3 2xl:aspect-w-11 2xl:aspect-h-2"
+    class="post-teaser w-full overflow-hidden rounded lg:aspect-[14/4] xl:aspect-[14/3] 2xl:aspect-[11/2]"
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div
@@ -10,14 +10,14 @@
         @mouseleave="expanded = false"
       >
         <div
-          :class="`teaser-file w-full aspect-w-16 aspect-h-10 ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:w-1/2 lg:aspect-w-14 lg:aspect-h-4 xl:aspect-h-3 2xl:aspect-w-11 2xl:aspect-h-2'} ${postContent.file.filename ? '' : 'bg-black'}`"
+          :class="`teaser-file w-full ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:w-1/2'} ${postContent.file.filename ? '' : 'bg-black'}`"
         >
           <component
             :is="postContent.file.filename ? lookFile() : 'NuxtImg'"
             :loading="checkFile ? 'lazy' : false"
             :format="checkFile ? 'webp' : false"
             :modifiers="lookFile() === 'NuxtImg' && postContent.file.filename ? { filters: { focal: postContent.file.focus ? postContent.file.focus : 0 } } : null"
-            :class="`w-full h-full object-center select-none ${postContent.file.filename ? 'object-cover' : 'object-contain'}`"
+            :class="`w-full h-full object-center select-none aspect-[16/10] ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:aspect-[14/4] xl:aspect-[14/3] 2xl:aspect-[11/2]'} ${postContent.file.filename ? 'object-cover' : 'object-contain'}`"
             :alt="postContent.file.filename ? lookFile() === 'NuxtImg' ? postContent.file.alt : false : $languageCase('quantum vacuum', 'vacío cuántico', 'vuoto quantistico')"
             :src="setFile"
             :fit="checkFile && !postContent.file.focus ? 'in' : null"

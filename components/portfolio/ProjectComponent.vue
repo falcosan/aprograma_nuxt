@@ -41,11 +41,11 @@
         close-mode
       >
         <template #activator="action">
-          <div class="image-container w-full aspect-w-11 aspect-h-10 md:aspect-h-9 my-0 mx-auto cursor-pointer" @click="action.open()">
+          <div class="image-container w-full my-0 mx-auto cursor-pointer" @click="action.open()">
             <NuxtImg
               format="webp"
               :modifiers="{ filters: { focal: blok.image.focus ? blok.image.focus : 0 } }"
-              class="intro-image h-full w-full border-t-2 border-b-2 object-cover rounded select-none"
+              class="intro-image h-full w-full aspect-[11/10] md:aspect-[11/9] border-t-2 border-b-2 object-cover rounded select-none"
               :src="blok.image.filename"
               :alt="blok.image.alt"
               width="984"

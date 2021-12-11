@@ -5,12 +5,12 @@
         class="post-title text-2xl sm:text-3xl"
         v-text="blok.title"
       />
-      <div :class="`post-file w-full h-full aspect-w-13 aspect-h-8 overflow-hidden rounded ${blok.file.filename ? '' : 'bg-black'}`">
+      <div :class="`post-file w-full h-full overflow-hidden rounded ${blok.file.filename ? '' : 'bg-black'}`">
         <component
           :is="blok.file.filename ? lookFile() : 'NuxtImg'"
           :format="checkImage ? 'webp' : false"
           :modifiers="checkImage ? { filters: { focal: blok.file.focus ? blok.file.focus : 0 } } : false"
-          class="w-full h-full object-center select-none object-cover"
+          class="w-full h-full aspect-[13/8] object-center select-none object-cover"
           :alt="blok.file.filename ? lookFile() === 'NuxtImg' ? blok.file.alt : false : $languageCase('quantum vacuum', 'vacío cuántico', 'vuoto quantistico')"
           :src="setFile"
           :width="checkImage ? '1366' : false"

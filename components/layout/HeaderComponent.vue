@@ -23,7 +23,7 @@
             </template>
           </Link>
         </div>
-        <transition enter-active-class="duration-300" leave-active-class="duration-300" enter-class="-translate-y-full" leave-to-class="-translate-y-full">
+        <transition enter-active-class="duration-200" leave-active-class="duration-200" enter-class="-translate-y-10" leave-to-class="-translate-y-10">
           <div
             v-if="expanded"
             :class="`menu-expanded h-10 grid grid-flow-col gap-5 transform transition ${topPosition ? 'translate-y-5 rounded' : 'rounded-b'}`"

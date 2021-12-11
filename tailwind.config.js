@@ -1,13 +1,13 @@
 module.exports = {
-  purge: {
-    content: ['./components/**/*.{vue,js}',
-      './layouts/**/*.vue',
-      './pages/**/*.vue',
-      './plugins/**/*.{js,ts}',
-      './nuxt.config.{js,ts}'],
-    enabled: process.env.NODE_ENV === 'production'
-  },
-  darkMode: false,
+  mode: "jit",
+  content: [
+    "./components/**/*.{js,vue,ts}",
+    "./layouts/**/*.vue",
+    "./pages/**/*.vue",
+    "./plugins/**/*.{js,ts}",
+    "./nuxt.config.{js,ts}",
+  ],
+  enabled: process.env.NODE_ENV === 'production',
   theme: {
     screens: {
       ss: '320px',
@@ -74,7 +74,5 @@ module.exports = {
       }
     }
   },
-  plugins: [
-    require('@tailwindcss/aspect-ratio')
-  ]
+  plugins: []
 }

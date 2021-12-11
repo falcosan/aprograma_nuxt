@@ -72,7 +72,7 @@ export default {
     ]
   },
   loading: '@/components/layout/LoadingComponent.vue',
-  css: ['~/assets/css/main', '~/assets/css/markdown'],
+  css: ['~/assets/css/tailwind', '~/assets/css/main', '~/assets/css/markdown'],
   plugins: [
     '~/plugins/components',
     '~/plugins/custom-flag.client.js',
@@ -93,13 +93,8 @@ export default {
   buildModules: [
     '@nuxt/image',
     '@nuxtjs/device',
-    '@nuxtjs/tailwindcss',
-    'nuxt-build-optimisations'
+    '@nuxt/postcss8'
   ],
-  buildOptimisations: {
-    profile: process.env.NODE_ENV === 'development' ? 'risky' : 'experimental',
-    imageFileLoader: false
-  },
   generate: {
     fallback: true,
     routes (callback) {
@@ -306,14 +301,9 @@ export default {
     },
     postcss: {
       plugins: {
-        'postcss-url': false,
-        'postcss-nested': {}
+        tailwindcss: {},
+        autoprefixer: {},
       },
-      preset: {
-        autoprefixer: {
-          grid: 'autoplace'
-        }
-      }
-    }
+    },
   }
 }

@@ -21,7 +21,7 @@
           class="title-container w-full flex flex-row items-center p-5"
         >
           <span
-            class="teaser-title min-w-0 overflow-hidden"
+            class="teaser-title block overflow-hidden whitespace-nowrap text-ellipsis"
           > {{ projectContent.title }}</span>
         </div>
       </div>
@@ -71,10 +71,5 @@ export default {
 <style scoped>
 .project-image{
     transform: scaleX(1.001);
-}
-.teaser-title{
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
 }
 </style>

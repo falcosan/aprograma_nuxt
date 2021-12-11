@@ -14,8 +14,8 @@
     "build": "nuxt build -m",
     "generate": "nuxt generate -m",
     "start": "nuxt start",
-    "test:static": "nuxt generate && nuxt start",
-    "test:server": "nuxt build && nuxt start"
+    "test:static": "npm run generate && npm run start",
+    "test:server": "npm run build && npm run start"
   },
   "dependencies": {
     "@nuxtjs/feed": "^2.0.0",
@@ -24,24 +24,25 @@
     "@nuxtjs/robots": "^2.5.0",
     "@nuxtjs/sitemap": "^2.4.0",
     "@sendgrid/mail": "^7.6.0",
-    "@tailwindcss/aspect-ratio": "^0.4.0",
     "core-js": "^3.19.3",
     "highlight.js": "^11.3.1",
     "markdown-it-emoji": "^2.0.0",
     "netlify-lambda": "^2.0.15",
     "nuxt": "^2.15.8",
-    "nuxt-build-optimisations": "^1.0.7",
     "storyblok-nuxt": "^2.0.1",
     "vue2-touch-events": "^3.2.2",
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@nuxt/image": "^0.6.0",
+    "@nuxt/postcss8": "^1.1.3",
     "@nuxtjs/device": "^2.1.0",
     "@nuxtjs/eslint-config": "^8.0.0",
     "@nuxtjs/google-fonts": "^1.3.0",
-    "@nuxtjs/tailwindcss": "^4.2.1",
-    "eslint": "^8.4.1"
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.4.1",
+    "postcss": "^8.4.4",
+    "tailwindcss": "^3.0.1"
   },
   "main": ".eslintrc.js",
   "repository": {

@@ -17,7 +17,7 @@
             :loading="checkFile ? 'lazy' : false"
             :format="checkFile ? 'webp' : false"
             :modifiers="lookFile() === 'NuxtImg' && postContent.file.filename ? { filters: { focal: postContent.file.focus ? postContent.file.focus : 0 } } : null"
-            :class="`w-full h-full object-center select-none aspect-[16/10] ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:aspect-[14/4] xl:aspect-[14/3] 2xl:aspect-[11/2]'} ${postContent.file.filename ? 'object-cover' : 'object-contain'}`"
+            :class="`w-full h-full object-center select-none aspect-video ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'md:aspect-[16/10] lg:aspect-[14/4] xl:aspect-[14/3] 2xl:aspect-[11/2]'} ${postContent.file.filename ? 'object-cover' : 'object-contain'}`"
             :alt="postContent.file.filename ? lookFile() === 'NuxtImg' ? postContent.file.alt : false : $languageCase('quantum vacuum', 'vacío cuántico', 'vuoto quantistico')"
             :src="setFile"
             :fit="checkFile && !postContent.file.focus ? 'in' : null"

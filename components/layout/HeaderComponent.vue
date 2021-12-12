@@ -23,10 +23,8 @@
             </template>
           </Link>
         </div>
-        <transition enter-active-class="duration-200" leave-active-class="duration-200" enter-class="-translate-y-10" leave-to-class="-translate-y-10">
           <div
-            v-if="expanded"
-            :class="`menu-expanded h-10 grid grid-flow-col gap-5 transform transition ${topPosition ? 'translate-y-5 rounded' : 'rounded-b'}`"
+            :class="`menu-expanded h-10 grid grid-flow-col gap-5 transform transition ${expanded ? topPosition ? 'translate-y-5 rounded' : 'rounded-b' : '-translate-y-10 opacity-0'}`"
             :style="`background-color: ${backgroundColor ? topPosition ? backgroundColor : `${backgroundColor}B3` : 'transparent'};`"
           >
             <ul class="link-list grid grid-flow-col auto-cols-fr">
@@ -42,7 +40,6 @@
               :blok="$contentByName(blok.body, 'Translate')"
             />
           </div>
-        </transition>
         <Icon
           animate-menu
           tag="button"
@@ -89,7 +86,7 @@
           translate-transition
           :class="`translate-header w-2/12 bg-gray-800 text-white filter grayscale ${expanded ? '' : 'rounded-br'}`"
           :style-current-language="`h-full flex items-center justify-center relative z-10 bg-gray-800 text-white ${expanded ? '' : 'rounded-br'}`"
-          :style-translate-list="`rounded-b w-full transform transition-transform duration-200 esase-out bg-gray-800 ${expanded ? 'translate-y-0' : '-translate-y-full'}`"
+          :style-translate-list="`rounded-b w-full transform transition-transform duration-200 ease-out bg-gray-800 ${expanded ? 'translate-y-0' : '-translate-y-full'}`"
           style-translate-item="p-3 text-center"
           :blok="$contentByName(blok.body, 'Translate')"
           @translateListAction.passive="expanded = false"
@@ -112,7 +109,6 @@
     </nav>
   </header>
 </template>
-
 <script>
 import Translate from './TranslateComponent'
 export default {

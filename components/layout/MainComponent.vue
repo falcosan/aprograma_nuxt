@@ -1,6 +1,6 @@
 <template>
   <main
-    class="main overflow-x-hidden"
+    class="main min-h-screen overflow-x-hidden"
   >
     <div
       :class="`main-wrapper relative overflow-hidden ${!$device.isDesktop ? 'pt-10' : 'pt-10 md:py-20'}`"
@@ -40,7 +40,6 @@
     </transition>
   </main>
 </template>
-
 <script>
 export default {
   props: {

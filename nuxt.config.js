@@ -72,7 +72,7 @@ export default {
     ]
   },
   loading: '@/components/layout/LoadingComponent.vue',
-  css: ['~/assets/css/tailwind', '~/assets/css/main', '~/assets/css/markdown'],
+  css: ['~/assets/css/tailwind', '~/assets/css/main'],
   plugins: [
     '~/plugins/components',
     '~/plugins/custom-flag.client.js',

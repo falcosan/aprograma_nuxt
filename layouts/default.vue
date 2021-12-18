@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     v-if="story.content.body && !story.content.maintenance"
     class="aprograma-theme"
   >
@@ -9,8 +9,8 @@
       :key="layout._uid"
       :blok="layout"
     />
-  </div>
-  <div v-else-if="story.content.body" class="aprograma-maintenance h-screen flex flex-col justify-center p-5">
+  </section>
+  <section v-else-if="story.content.body" class="aprograma-maintenance h-screen flex flex-col justify-center p-5">
     <Logo
       transition
       class="rounded max-w-full mx-auto my-0"
@@ -19,7 +19,7 @@
     <h1 class="maintenance-text text-xs xs:text-base sm:text-lg text-center xs:whitespace-nowrap pointer-events-none uppercase italic">
       {{ $languageCase("under maintenance", "en mantenimiento", "in manutenzione") }}
     </h1>
-  </div>
+  </section>
 </template>
 
 <script>

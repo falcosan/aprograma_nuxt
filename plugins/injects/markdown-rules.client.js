@@ -28,8 +28,21 @@ export default ({ app }, inject) => {
       })
     }
     document.querySelectorAll('.markdown img')?.forEach((image) => {
-      image.addEventListener('click', function () {
+      const noScroll = (condition) => {
+        if(condition){
         document.body.classList.add('noscroll')
+        document.ontouchmove = function (e) {
+          e.preventDefault();
+        }
+      } else {
+          document.body.classList.remove('noscroll')
+          document.ontouchmove = function () {
+            return true;
+          }
+        }
+      }
+      image.addEventListener('click', function () {
+        noScroll(true)
         const wrapper = document.createElement('div')
         const newImage = image.cloneNode()
         wrapper.classList.add('markdown-modal')
@@ -38,18 +51,18 @@ export default ({ app }, inject) => {
         if (document.body.contains(wrapper)) {
           wrapper.addEventListener('click', function () {
             document.body.removeChild(wrapper)
-            document.body.classList.remove('noscroll')
+            noScroll(false)
           })
           document.onkeydown = function (event) {
             if (event.key.toLowerCase() === 'escape') {
-              document.body.classList.remove('noscroll')
+              noScroll(false)
               document.body.removeChild(wrapper)
             }
           }
         }
         window.addEventListener('popstate', function () {
           if (document.body.contains(wrapper)) {
-            document.body.classList.remove('noscroll')
+            noScroll(false)
             document.body.removeChild(wrapper)
           }
         })

@@ -1,9 +1,6 @@
-
-
 html {
-  font: normal 16px/1.9em "Nunito", "Source Sans Pro", "Helvetica Neue", Arial,
-    sans-serif;
-    height: 100%;
+  font: normal 16px/1.9em "Nunito", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  height: 100%;
 }
 body {
   height: 100%;
@@ -22,14 +19,12 @@ iframe {
   width: 100%;
   overflow: hidden;
 }
-.page-enter-active,
-.page-leave-active {
+.page-enter-active, .page-leave-active {
   transition-duration: 150ms;
   transition-property: opacity;
   transition-timing-function: ease;
 }
-.page-enter,
-.page-leave-active {
+.page-enter, .page-leave-active {
   opacity: 0;
 }
 .color-animation {
@@ -37,10 +32,9 @@ iframe {
 }
 @keyframes changeColor {
   0% {
-    filter: hue-rotate(0deg);
-  }
-
+      filter: hue-rotate(0deg);
+ }
   100% {
-    filter: hue-rotate(360deg);
-  }
+      filter: hue-rotate(360deg);
+ }
 }

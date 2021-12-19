@@ -70,7 +70,8 @@ module.exports = {
       },
       cursor: {
         next: 'url("data:image/svg+xml,%3Csvg width=\'24\' height=\'24\' xmlns=\'http://www.w3.org/2000/svg\' fill-rule=\'evenodd\' clip-rule=\'evenodd\'%3E%3Cpath d=\'M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z\'/%3E%3C/svg%3E") 32 32, pointer',
-        previous: 'url("data:image/svg+xml,%3Csvg width=\'24\' height=\'24\' xmlns=\'http://www.w3.org/2000/svg\' fill-rule=\'evenodd\' clip-rule=\'evenodd\'%3E%3Cpath d=\'M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z\'/%3E%3C/svg%3E") 32 32, pointer'
+        previous: 'url("data:image/svg+xml,%3Csvg width=\'24\' height=\'24\' xmlns=\'http://www.w3.org/2000/svg\' fill-rule=\'evenodd\' clip-rule=\'evenodd\'%3E%3Cpath d=\'M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z\'/%3E%3C/svg%3E") 32 32, pointer',
+        close: 'url("data:image/svg+xml,%3Csvg width=\'24\' height=\'24\' xmlns=\'http://www.w3.org/2000/svg\' fill-rule=\'evenodd\' clip-rule=\'evenodd\'%3E%3Cpath d=\'M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z\'/%3E%3C/svg%3E") 32 32, pointer'
       }
     }
   },

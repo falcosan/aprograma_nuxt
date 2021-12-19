@@ -5,30 +5,21 @@
       <div
         v-show="openEvent || open"
         ref="modal"
-        :class="`modal-backdrop w-full fixed flex justify-center inset-0 z-50 overflow-auto focus:outline-none bg-opacity-90 bg-gray-200 ${modalStyle} ${closeMode ? 'cursor-pointer' : ''}`"
+        :class="`modal-backdrop w-full fixed flex justify-center inset-0 z-50 overflow-auto focus:outline-none bg-opacity-90 bg-gray-200 ${modalStyle} ${closeMode ? 'cursor-close' : ''}`"
         tabindex="0"
         @keydown.esc="closeMode ? closeModal() : ''"
       >
-        <div class="modal-container w-full flex items-center" @click.self.stop="closeMode ? closeModal() : ''">
+        <div class="modal-container" @click.stop="closeMode ? closeModal() : ''">
           <header v-if="hasSlot('header') || closeMode" class="modal-header">
             <slot name="header" />
-            <Icon
-              close
-              class="modal-close fixed top-0 right-0 rounded-bl filter invert grayscale bg-gray-300"
-              tag="button"
-              size="p-3 w-10 h-10"
-              @click.native.stop="closeModal()"
-            />
           </header>
           <section
             v-if="hasSlot('body')"
-            :class="`modal-body w-full h-auto px-5 lg:px-12 ${closeMode ? 'cursor-pointer' : ''}`"
-            @click.self.stop="closeModal()"
+            :class="`modal-body w-full h-full ${closeMode ? 'cursor-close' : ''}`"
           >
             <transition appear appear-active-class="duration-300" appear-class="opacity-0">
-              <div class="body-container grid gap-10 grid-flow-row-dense" @click.self.stop="closeModal()">
+              <div class="body-container h-full">
                 <slot name="body" />
-                <hr>
               </div>
             </transition>
           </section>
@@ -96,19 +87,11 @@ export default {
 }
 </script>
 <style>
-.body-container{
-  max-height: calc(100vh - 90px);
-}
-.body-container > *:not(hr) {
-  max-height: inherit;
-  width: inherit;
-  margin: 0 auto;
-  align-self: flex-end;
+.body-container > * {
+  height: 100%;
   object-fit: contain;
 }
-</style>
-<style scoped>
-hr {
-  border-color: transparent;
+.body-container > *:not(:first-child) {
+  margin-top: 20px;
 }
 </style>

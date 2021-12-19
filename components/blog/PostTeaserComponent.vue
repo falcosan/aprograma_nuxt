@@ -1,11 +1,11 @@
 <template>
   <li
     v-if="postContent"
-    class="post-teaser w-full overflow-hidden rounded lg:aspect-[14/4] xl:aspect-[14/3] 2xl:aspect-[11/2]"
+    class="post-teaser w-full overflow-hidden rounded"
   >
     <NuxtLink :to="postLink" class="teaser-link">
       <div
-        :class="`teaser-content h-full flex flex-col ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:flex-row'}`"
+        :class="`teaser-content h-full flex flex-col lg:aspect-[14/4] xl:aspect-[14/3] 2xl:aspect-[11/2] ${rowContainer || sliderContainer || containerContainer || carouselContainer ? '' : 'lg:flex-row'}`"
         @mouseover="expanded = true"
         @mouseleave="expanded = false"
       >

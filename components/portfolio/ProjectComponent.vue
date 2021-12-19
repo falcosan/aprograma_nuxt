@@ -52,18 +52,26 @@
               height="805"
               :fit="blok.image.focus ? null : 'in'"
               :style="`border-color: ${$binaryControl(blok.background_color, 'color', 'e0e0e0')}`"
-              sizes="xs:299px sm:380px md:514px lg:711px xl:804px 2xl:984pxpx"
+              sizes="xs:299px sm:380px md:514px lg:711px xl:804px 2xl:984px"
             />
           </div>
         </template>
         <template #body>
           <NuxtImg
-            class="image-project select-none cursor-default"
+            class="image-project select-none"
             width="1920"
             height="1980"
             format="webp"
             fit="in"
-            sizes="xs:380px sm:514px md:711px lg:804px xl:1680px 2xl:1920px"
+            :src="blok.image.filename"
+            :alt="blok.image.alt"
+          />
+                    <NuxtImg
+            class="image-project select-none"
+            width="1920"
+            height="1980"
+            format="webp"
+            fit="in"
             :src="blok.image.filename"
             :alt="blok.image.alt"
           />

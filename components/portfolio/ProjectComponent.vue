@@ -63,15 +63,7 @@
             height="1980"
             format="webp"
             fit="in"
-            :src="blok.image.filename"
-            :alt="blok.image.alt"
-          />
-                    <NuxtImg
-            class="image-project select-none"
-            width="1920"
-            height="1980"
-            format="webp"
-            fit="in"
+            sizes="xs:380px sm:514px md:711px lg:804px xl:1680px 2xl:1920px"
             :src="blok.image.filename"
             :alt="blok.image.alt"
           />

@@ -6,7 +6,7 @@
     <div v-if="blok.categories_action && sortedCategories.length > 0" class="post-categories grid relative overflow-hidden">
       <div :class="`show-categories flex justify-self-end row-start-2 row-end-1 mb-5 cursor-pointer rounded transition bg-gray-200 ${!$device.isDesktop ? '' : 'hover:opacity-80'}`" @click="showCategories">
         <Input class="input-show w-full pr-0 bg-transparent" type="button" :text="$languageCase('Categories' , 'Categorías' , 'Categorie')" />
-        <Icon next class="px-5 rounded bg-gray-200" tag="span" :size="`w-2 h-2 transition ${showFilters ? 'transform -rotate-90' : 'transform rotate-90'}`" />
+        <Icon next class="px-4 rounded bg-gray-200" tag="span" :size="`w-3 h-3 transition ${showFilters ? 'transform -rotate-90' : 'transform rotate-90'}`" />
       </div>
       <transition
         enter-active-class="duration-150"
@@ -22,7 +22,7 @@
             @click="filterSearch(filter)"
           >
             <Input :class="`category-input w-full text-left rounded pointer-events-none italic truncate transition-all ${comparedCategories.includes(filter.value) ? 'filter grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter.render" />
-            <Icon close tag="span" size="w-2 h-2" :class="`px-5 pointer-events-none transition ${comparedCategories.includes(filter.value) ? '' : 'transform rotate-45'}`" />
+            <Icon close tag="span" size="w-2.5 h-2.5" :class="`px-4 pointer-events-none transition ${comparedCategories.includes(filter.value) ? '' : 'transform rotate-45'}`" />
           </li>
           <li class="reset-container h-full overflow-hidden col-start-1 col-end-1 row-start-1 row-end-1 rounded cursor-pointer select-none" @click="searchCategory = []">
             <Input class="reset-input w-full bg-gray-200" type="button" :text="$languageCase('Clear filters', 'Borrar filtros', 'Rimuovi filtri')" />

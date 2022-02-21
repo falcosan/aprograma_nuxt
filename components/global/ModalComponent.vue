@@ -8,8 +8,9 @@
         :class="`modal-backdrop w-full fixed flex justify-center inset-0 z-50 overflow-auto focus:outline-none bg-opacity-90 bg-gray-200 ${modalStyle} ${closeMode ? 'cursor-close' : ''}`"
         tabindex="0"
         @keydown.esc="closeMode ? closeModal() : ''"
+        @click.stop="closeMode ? closeModal() : ''"
       >
-        <div class="modal-container" @click.stop="closeMode ? closeModal() : ''">
+        <div class="modal-container">
           <header v-if="hasSlot('header') || closeMode" class="modal-header">
             <slot name="header" />
           </header>

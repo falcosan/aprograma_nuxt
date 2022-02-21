@@ -25,7 +25,7 @@
           :class="`previous-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? !blok.hide_dots ? 'bottom-3.5' : '-bottom-3.5' : !blok.hide_dots ? 'bottom-7' : '-bottom-7'} ${sliderMode ? fullWidth > 295 ? 'left-10' : 'left-5' : 'left-2'}`"
           :size="`${sliderMode || carouselMode ? 'w-5 h-5 p-1.5' : 'w-6 h-6 p-2'}`"
           tag="button"
-          @click.native="previous"
+          @click.native="previous(true)"
         />
         <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode) && !blok.row_container && !blok.hide_controllers" class="previous-control control h-full w-full absolute top-0 z-10 -left-1/2 cursor-previous" @click="previous" />
         <Icon
@@ -34,7 +34,7 @@
           :class="`next-control control absolute z-20 transform rounded-full bg-opacity-70 shadow-sm text-white bg-gray-500 ${blok.slider_mode === 'slider' ? 'top-1/2 -translate-y-1/2' : sliderMode || carouselMode ? !blok.hide_dots ? 'bottom-3.5' : '-bottom-3.5' : !blok.hide_dots ? 'bottom-7' : '-bottom-7'} ${sliderMode ? fullWidth > 295 ? 'right-10' : 'right-5' : 'right-2'}`"
           :size="`${sliderMode || carouselMode ? 'w-5 h-5 p-1.5' : 'w-6 h-6 p-2'}`"
           tag="button"
-          @click.native="next"
+          @click.native="next(true)"
         />
         <div v-else-if="blok.slider_mode === 'carousel' && (!sliderMode || !carouselMode) && !blok.row_container && !blok.hide_controllers" class="next-control control h-full w-full absolute top-0 z-10 -right-1/2 cursor-next" @click="next" />
         <div ref="sliderBox" :class="`slider-box w-full rounded ${blok.slider_mode ? 'overflow-hidden' : ''}`">
@@ -290,7 +290,7 @@ export default {
         this.transitionLeave = 'leave-left'
       }
     },
-    next () {
+    next (autoFocus = false) {
       if (this.blok.auto_play) {
         this.setNext()
         this.clearAutoPlay()
@@ -298,14 +298,21 @@ export default {
       } else {
         this.setNext()
       }
+      if(autoFocus && !this.blok.hide_controllers){
+        console.log();
+        this.$refs.sliderSlide[0].focus()
+      }
     },
-    previous () {
+    previous (autoFocus = false) {
       if (this.blok.auto_play) {
         this.setPrevious()
         this.clearAutoPlay()
         this.autoPlay()
       } else {
         this.setPrevious()
+      }
+      if(autoFocus && !this.blok.hide_controllers){
+        this.$refs.sliderSlide[0].focus()
       }
     },
     changeDot (input) {

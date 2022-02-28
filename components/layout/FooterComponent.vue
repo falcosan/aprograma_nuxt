@@ -71,7 +71,7 @@
           <span class="footer-powered text-xs leading-relaxed">{{ $languageCase('Made with', 'Hecho con', 'Creato con') }} <a class="nuxtjs-link" href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer"><span class="nuxtjs underline">Nuxt.js</span></a>, <a class="netlify-link" href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"><span class="netlify underline">Netlify</span></a> {{ $languageCase('and', 'y', 'e') }} <a class="storyblok-link" href="https://www.storyblok.com/" target="_blank" rel="noopener noreferrer"><span class="storyblok underline">Storyblok</span></a></span>
         </div>
         <ul
-          :class="`social-links flex flex-wrap items-center justify-end -m-1.5 ${backgroundColors && $themeColor(backgroundColors) ? 'filter invert' : ''}`"
+          :class="`social-links flex flex-wrap items-center justify-end -m-1.5 ${backgroundColors && $themeColor(backgroundColors) ? 'invert' : ''}`"
         >
           <template v-for="iconLink in $contentByName(blok.body, 'Link')">
             <li v-if="iconLink.title || (iconLink.icon_item && iconLink.body.length > 0)" :key="iconLink._uid" class="link-item m-1.5">
@@ -130,7 +130,7 @@
       </div>
 
       <ul
-        :class="`social-links flex flex-wrap -m-1.5 justify-center items-center ${backgroundColors && $themeColor(backgroundColors) ? 'filter invert' : ''}`"
+        :class="`social-links flex flex-wrap -m-1.5 justify-center items-center ${backgroundColors && $themeColor(backgroundColors) ? 'invert' : ''}`"
       >
         <template v-for="iconLink in $contentByName(blok.body, 'Link')">
           <li v-if="iconLink.title || (iconLink.icon_item && iconLink.body.length > 0)" :key="iconLink._uid" class="link-item m-1.5">

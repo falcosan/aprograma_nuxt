@@ -8,7 +8,7 @@
       :class="`icon ${blok.icon_image.filename
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-icon mx-auto my-0 fill-current object-contain object-center pointer-events-none ${blok && blok.invert_color ? 'filter invert' : ''}`"
+        .replace(/\.[^/.]+$/, '')}-icon mx-auto my-0 fill-current object-contain object-center pointer-events-none ${blok && blok.invert_color ? 'invert' : ''}`"
       lazy
       :style="`width: ${/[a-zA-Z]/g.test(blok.size) ? blok.size : `${blok.size}px`}; height: ${/[a-zA-Z]/g.test(blok.size) ? blok.size : `${blok.size}px`};`"
       :title="blok.title && !blok.show_title || tooltip ? blok ? blok.title : tooltip : ''"

@@ -62,7 +62,7 @@
           active="exact"
           set-active="border-t-2 pb-0.5 border-gray-300"
           icon-item
-          class="home-link w-2/12 rounded-bl filter grayscale bg-gray-800 text-white"
+          class="home-link w-2/12 rounded-bl grayscale bg-gray-800 text-white"
           :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)"
           to=""
         >
@@ -79,12 +79,12 @@
           transition
           :color-a="logoColors[0]"
           :color-p="logoColors[1]"
-          class="absolute -top-0.5 right-1/2 p-1 transform translate-x-1/2 rounded-b-full filter drop-shadow-md bg-white"
+          class="absolute -top-0.5 right-1/2 p-1 transform translate-x-1/2 rounded-b-full drop-shadow-md bg-white"
           size="2.75rem"
         />
         <Translate
           translate-transition
-          :class="`translate-header w-2/12 bg-gray-800 text-white filter grayscale ${expanded ? '' : 'rounded-br'}`"
+          :class="`translate-header w-2/12 bg-gray-800 text-white grayscale ${expanded ? '' : 'rounded-br'}`"
           :style-current-language="`h-full flex items-center justify-center relative z-10 bg-gray-800 text-white ${expanded ? '' : 'rounded-br'}`"
           :style-translate-list="`rounded-b w-full transform transition-transform duration-200 ease-out bg-gray-800 ${expanded ? 'translate-y-0' : '-translate-y-full'}`"
           style-translate-item="p-3 text-center"
@@ -96,7 +96,7 @@
         />
       </div>
     </nav>
-    <nav class="navbar-down fixed w-full h-12 flex items-center justify-center bottom-0 z-40 rounded-t filter drop-shadow-2xl" :style="`background-color: ${backgroundColor};`">
+    <nav class="navbar-down fixed w-full h-12 flex items-center justify-center bottom-0 z-40 rounded-t drop-shadow-2xl" :style="`background-color: ${backgroundColor};`">
       <ul class="menu-wrapper wrapper-down w-full h-full max-w-sm xs:max-w-md sm:max-w-lg grid grid-cols-4">
         <li
           v-for="item in $contentByName(blok.body, 'Link')"

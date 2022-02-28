@@ -51,10 +51,10 @@
       leave-to-class="opacity-0"
       class="controls w-full absolute top-1/2 text-white"
     >
-      <span :key="`${indexControls}-1`" class="next-control absolute right-3 transform -translate-y-1/2 rounded-full bg-opacity-70 bg-gray-800">
+      <span :key="`${indexControls}-1`" class="next-control absolute right-3 transform -translate-y-1/2 rounded-full bg-opacity-70 bg-neutral-800">
         <Icon next class="next" size="p-3 w-9 h-9" tag="button" @click.native="next" />
       </span>
-      <span :key="`${indexControls}-2`" class="previous-control absolute left-3 transform -translate-y-1/2 rounded-full bg-opacity-70 bg-gray-800">
+      <span :key="`${indexControls}-2`" class="previous-control absolute left-3 transform -translate-y-1/2 rounded-full bg-opacity-70 bg-neutral-800">
         <Icon previous class="previous" size="p-3 w-9 h-9" tag="button" @click.native="prev" />
       </span>
     </transition-group>

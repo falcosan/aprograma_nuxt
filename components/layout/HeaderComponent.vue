@@ -62,7 +62,7 @@
           active="exact"
           set-active="border-t-2 pb-0.5 border-gray-300"
           icon-item
-          class="home-link w-2/12 rounded-bl grayscale bg-gray-800 text-white"
+          class="home-link w-2/12 rounded-bl bg-neutral-800 text-white"
           :aria-label="$config.projectName.charAt(0).toUpperCase() + $config.projectName.slice(1)"
           to=""
         >
@@ -84,9 +84,9 @@
         />
         <Translate
           translate-transition
-          :class="`translate-header w-2/12 bg-gray-800 text-white grayscale ${expanded ? '' : 'rounded-br'}`"
-          :style-current-language="`h-full flex items-center justify-center relative z-10 bg-gray-800 text-white ${expanded ? '' : 'rounded-br'}`"
-          :style-translate-list="`rounded-b w-full transform transition-transform duration-200 ease-out bg-gray-800 ${expanded ? 'translate-y-0' : '-translate-y-full'}`"
+          :class="`translate-header w-2/12 text-white bg-neutral-800 ${expanded ? '' : 'rounded-br'}`"
+          :style-current-language="`h-full flex items-center justify-center relative z-10 bg-neutral-800 text-white ${expanded ? '' : 'rounded-br'}`"
+          :style-translate-list="`rounded-b w-full transform transition-transform duration-200 ease-out bg-neutral-800 ${expanded ? 'translate-y-0' : '-translate-y-full'}`"
           style-translate-item="p-3 text-center"
           :blok="$contentByName(blok.body, 'Translate')"
           @translateListAction.passive="expanded = false"

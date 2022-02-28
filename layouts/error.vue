@@ -4,7 +4,7 @@
       <span class="text-7xl">{{ error.statusCode }}</span>
       <Logo class="relative w-max h-max justify-self-center -top-1 brightness-0 animate-pulse" size="50px" />
       <span class="text-xs xs:text-base sm:text-lg text-center pointer-events-none uppercase italic"> {{ error.message }}</span>
-      <NuxtLink class=" w-max justify-self-center py-3 px-4 rounded text-sm grayscale bg-gray-600 text-white" to="/">
+      <NuxtLink class=" w-max justify-self-center py-3 px-4 rounded text-sm bg-neutral-800 text-white" to="/">
         Home
       </NuxtLink>
     </div>
@@ -12,7 +12,7 @@
       <span class="text-7xl">{{ error.statusCode }}</span>
       <Logo class="relative w-max h-max justify-self-center -top-1 brightness-0 animate-pulse" size="50px" />
       <span class="text-xs xs:text-base sm:text-lg text-center pointer-events-none uppercase italic"> {{ error.message }}</span>
-      <NuxtLink class=" w-max justify-self-center py-3 px-4 rounded text-sm grayscale bg-gray-600 text-white" to="/">
+      <NuxtLink class=" w-max justify-self-center py-3 px-4 rounded text-sm bg-neutral-800 text-white" to="/">
         Home
       </NuxtLink>
     </div>

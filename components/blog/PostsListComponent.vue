@@ -18,10 +18,10 @@
           <li
             v-for="(filter, index) in sortedCategories"
             :key="index"
-            :class="`category-container h-full flex justify-between overflow-hidden rounded cursor-pointer select-none transition-all grayscale bg-gray-600 text-white ${comparedCategories.includes(filter.value) ? 'bg-opacity-70' : !$device.isDesktop ? '' : 'hover:bg-gray-700'}`"
+            :class="`category-container h-full flex justify-between overflow-hidden rounded cursor-pointer select-none transition-all bg-neutral-600 text-white ${comparedCategories.includes(filter.value) ? 'bg-opacity-70' : !$device.isDesktop ? '' : 'hover:bg-gray-700'}`"
             @click="filterSearch(filter)"
           >
-            <Input :class="`category-input w-full text-left rounded pointer-events-none italic truncate transition-all ${comparedCategories.includes(filter.value) ? 'grayscale bg-gray-500' : 'bg-transparent'}`" type="button" :text="filter.render" />
+            <Input :class="`category-input w-full text-left rounded pointer-events-none italic truncate transition-all ${comparedCategories.includes(filter.value) ? 'bg-neutral-500' : 'bg-transparent'}`" type="button" :text="filter.render" />
             <Icon close tag="span" size="w-2.5 h-2.5" :class="`px-4 pointer-events-none transition ${comparedCategories.includes(filter.value) ? '' : 'transform rotate-45'}`" />
           </li>
           <li class="reset-container h-full overflow-hidden col-start-1 col-end-1 row-start-1 row-end-1 rounded cursor-pointer select-none" @click="searchCategory = []">

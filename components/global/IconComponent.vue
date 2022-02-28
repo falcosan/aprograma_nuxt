@@ -8,9 +8,9 @@
       :class="`icon ${blok.icon_image.filename
         .split(/[\\/]/)
         .pop()
-        .replace(/\.[^/.]+$/, '')}-icon mx-auto my-0 fill-current object-contain object-center pointer-events-none ${blok && blok.invert_color ? 'invert' : ''}`"
+        .replace(/\.[^/.]+$/, '')}-icon mx-auto my-0 fill-current object-contain object-center pointer-events-none`"
       lazy
-      :style="`width: ${/[a-zA-Z]/g.test(blok.size) ? blok.size : `${blok.size}px`}; height: ${/[a-zA-Z]/g.test(blok.size) ? blok.size : `${blok.size}px`};`"
+      :style="`width: ${/[a-zA-Z]/g.test(blok.size) ? blok.size : `${blok.size}px`}; height: ${/[a-zA-Z]/g.test(blok.size) ? blok.size : `${blok.size}px`}; filter: invert(${blok && blok.invert_color ? '1' : '0'})`"
       :title="blok.title && !blok.show_title || tooltip ? blok ? blok.title : tooltip : ''"
       :src="blok.icon_image.filename"
       :alt="blok.alt"
